@@ -1,9 +1,0 @@
-#overlayCSS{
-    position: fixed;
-    display: inline-block;
-    height: 50%;
-    width: 50%;
-    background-color: wheat;
-    opacity: 50%;
-    cursor: pointer;
-    }
