@@ -91,7 +91,7 @@ img {
     margin: auto;
     padding: 7%;   
 }
-div.project-tile, div.profile-link, div.linkedin {
+div.project-tile, div.profile-link, div.linkedin div.mail-link {
     display: inline-block;
     width: 30%;
     font-style: italic;
