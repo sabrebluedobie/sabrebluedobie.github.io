@@ -1,0 +1,126 @@
+
+h1 {
+    display:block;
+    background-color: #0A1824;
+    font-family: 'Optima';
+    color: #DEC6AB;
+    font-size: 350%;
+    width: 100%;
+    padding: 5%;
+    text-align: center;
+    text-shadow: 2px 2px 2px#1b2614;
+    
+}
+h2 {
+    font-family: 'Futura', sans-serif;
+    font-size: 200%;
+    color: #364251;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    text-decoration: underline;
+    text-shadow: 3px 3px 3px #8d7c68;
+    text-decoration: solid;
+    
+}
+
+h3 {
+   font-family: "Optima", sans-serif; 
+   font-size: 110%;
+   padding-left: 5px;
+   font-weight: bold;
+   color: #364251;
+}
+div#welcome-section {
+    text-align: center;
+
+}
+nav#navbar {
+    display: inline-block;
+    text-align: center;
+    font-family: cursive, fantasy;
+    color: #1a2027;
+    width: 100%;
+    padding-bottom: 5px;
+    background-color: rgba(140, 165, 196, 0.3);
+    /* margin-left: 10%; */
+}
+
+body {
+    background-color: #DEC6AB
+}
+
+a {
+    color: #29333e;
+}
+li.nav-item {
+    transform: translate(0px, -10px);
+    color: #1b2614;
+    padding-top: 20px;
+    margin-top: 0;
+    display: inline-block;
+    font-size: 125%;
+    margin-left: 7.5%;
+    margin-right: 7.5%; 
+   
+
+}
+.navbar-brand {
+    display: none;
+}
+p {
+    font-family: Optima, Script;
+    font-size: 120%;
+    padding-bottom: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+ 
+i.fa-brands.fa-linkedin {
+    display: inline-block;
+    color: #1e2a15;
+    transform: translate(0px, 7.5px);
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+img {
+    display: inline-block;
+    width: 30%;
+    margin: auto;
+    padding: 7%;   
+}
+div.project-tile, div.profile-link, div.linkedin {
+    display: inline-block;
+    width: 30%;
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: 'Futura', sans-serif;
+    font-size: 120%;
+    color: #1e2a15;
+    vertical-align: middle;
+}
+footer {
+    background-color: #0A1824;
+    padding-bottom: 20px;
+    text-align: center;
+    font-family:
+    'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #e6dacd;
+    font-size: 150%;
+}
+span.sr-only {
+    display: none;
+}
+
+img.a11y {
+    display: block;
+    height: 300;
+    width: 200;
+}
+form {
+   text-align: center;
+   
+   font: "Gill Sans", 'Trebuchet MS', sans-serif;
+}
