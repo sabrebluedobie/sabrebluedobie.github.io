@@ -143,7 +143,7 @@ audio {
     text-align: left;
 }
 
-input[type=text], select, textarea {
+input[type=text], input[type=email], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -160,4 +160,5 @@ input[type=text], select, textarea {
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
+    bottom: 0;
   }
