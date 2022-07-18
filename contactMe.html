@@ -1,3 +1,20 @@
+<?php
+
+
+if($_POST["message"]) {
+
+
+mail("mbrown9702@gmail.com", "Here is the subject line",
+
+
+$_POST["insert your message here"]. "From: an@email.address");
+
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,40 +54,16 @@
               </ul>
             </div>
           </nav>
-<div> <?php 
-    $action=$_REQUEST['action'];
-    if ($action=="")?>    <!--display the contact form-->
-    <?php
-    {
-    <form  action="" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="submit">
-    Your name:<br>
-    <input name="name" type="text" aria-label="name" value="" size="30"/><br>
-    Your email:<br>
-    <input name="email" type="text" aria-label="email" value="" size="30"/><br>
-    Your message:<br>
-    <textarea name="message" aria-label="message" rows="7" cols="30"></textarea><br>
-    <input type="submit" label="Send email" value="Send email"/>
-    </form>
-    ?>
-    } 
-else                /* send the submitted data */
-    {
-    $name=$_REQUEST['name'];
-    $email=$_REQUEST['email'];
-    $message=$_REQUEST['message'];
-    if (($name=="")||($email=="")||($message==""))
-        {
-        echo "All fields are required, please fill <a href=\"\">the form</a> again.";
-        }
-    else{        
-        $from="From: $name<$email>\r\nReturn-path: $email";
-        $subject="Message sent using your contact form";
-        mail("mbrown9702@gmail.com", $subject, $message, $from);
-        echo "Email sent!";
-        }
-    }  
-?>
+          <form method="post" action="contact.php">
+
+
+            <textarea name="message" aria-label="message"></textarea>
+            
+            
+            <input type="submit">
+            
+            
+            </form>
 <div class="project-tile" id="projects">      
     <a class="project-tile" href="Sabre's Revenge.html" target="_blank">For Fun!</a>
 </div>
