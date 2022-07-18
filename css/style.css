@@ -93,7 +93,7 @@ img {
 }
 div.project-tile, div.profile-link, div.linkedin div.mail-link {
     display: inline-block;
-    width: 30%;
+    width: 23%;
     font-style: italic;
     text-align: center;
     padding-bottom: 10px;
