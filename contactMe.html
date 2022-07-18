@@ -1,19 +1,4 @@
-<?php
 
-
-if($_POST["message"]) {
-
-
-mail("mbrown9702@gmail.com", "Here is the subject line",
-
-
-$_POST["insert your message here"]. "From: an@email.address");
-
-
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +39,22 @@ $_POST["insert your message here"]. "From: an@email.address");
               </ul>
             </div>
           </nav>
-          <form method="post" action="subscriberform.php">
-
-
-            <textarea name="message" aria-label="message"></textarea>
-            
-            
-            <input type="submit">
-            
-            
+          <div class="container">
+            <form action="action_page.php">
+          
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          
+              <label for="subject">Subject</label>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Submit">
+          
             </form>
+          </div>
 <div class="project-tile" id="projects">      
     <a class="project-tile" href="Sabre's Revenge.html" target="_blank">For Fun!</a>
 </div>
