@@ -44,7 +44,6 @@
 if (!isset($_POST["submit"])) { ?>
  
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-   To: <input type="text" name="to_email"><br>
    From: <input type="text" name="from_email"><br>
    Subject: <input type="text" name="subject"><br>
    Message: <textarea rows="10" cols="20" name="message"></textarea><br>
@@ -54,7 +53,7 @@ if (!isset($_POST["submit"])) { ?>
 } else {
  
   if (isset($_POST["to_email"])) {
-    $to_email = $_POST["to_email"];
+    $to_email = $_POST["mbrown9702@gmail.com"];
     $from_email = $_POST["from_email"];
     $subject = $_POST["subject"];
     $body = $_POST["message"];
