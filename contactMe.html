@@ -43,36 +43,28 @@
 
           <h3>Contact me!</h3>
           <fieldset>
-            <form action="mailto:mbrown9702@gmail.com?subject = Message from client" method="post">
-            <input type="text" name="name" aria-label="First and Last name" placeholder="First/Last Name"><label>Name</label></input>
-            <input type="email" name="email" aria-label="Email Address" placeholder="(ex.)rsmith0718@gmail.com"><label>Email Address</label></input>
-            <textarea name="Message" aria-label="Message" cols="5" rows="10" placeholder="Type your message here."></textarea>
-            <input type="submit" name="submit" value="Send Email"><a type="mailto" href = mailto:mbrown9702@gmail.com?subject="Client contact" aria-label="Send email"></a>
-            </form>
-          </fieldset>
-<div class="project-tile" id="projects">      
-    <a class="project-tile" href="sabresRevenge.html" target="_blank">For Fun!(Desktop Only)</a>
-</div>
-<!-- end of projects section -->
+            <form method="POST" name="contact_form" 
+action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>"> 
 
-<div class="mail-link">
-  <SCRIPT TYPE="text/javascript">
-    
-    // protected email script by Joe Maller
-    // JavaScripts available at http://www.joemaller.com
-    // this script is free to use and distribute
-    // but please credit me and/or link to my site
-    
-    emailE=('mbrown9702@' + 'gmail.com')
-    document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-    
-     //-->
-    </script>
-    
-    <NOSCRIPT>
-        <em>Email address protected by JavaScript.<BR>
-        Please enable JavaScript to contact me.</em>
-    </NOSCRIPT>
+<label for="name">Name: </label>
+<input type="text" name="name" 
+value="<?php echo htmlentities($name) ?>">
+
+<label for="email">Email: </label>
+<input type="text" name="email" 
+value="<?php echo htmlentities($visitor_email) ?>">
+
+<label for="message">Message:</label> 
+<textarea name="message" rows=8 cols=30
+><?php echo htmlentities($user_message) ?></textarea>
+
+<img src="sendEmail.php?rand=<?php echo rand(); ?>" 
+id="captchaimg" >
+<label for="message">Enter the code above here :</label>
+<input id="6_letters_code" name="6_letters_code" type="text">
+
+<input type="submit" value="Submit" name="submit">
+</form>
 </div>
 
 <div class="profile-link"> 
