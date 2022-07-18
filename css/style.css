@@ -130,8 +130,3 @@ form {
 button {
     display: none;
 }
-p.hook {
-    display: inline-block;
-    transform: translate(45%, -800%);
-    padding-left: 5%;
-}
