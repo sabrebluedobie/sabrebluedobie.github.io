@@ -41,30 +41,50 @@
           </nav>
 
           <h3>Contact me!</h3>
-          <form id="fcf-form-id" class="fcf-form-class" method="post" action="sendEmail.php">
-                  <label for="Name" class="fcf-label">Your name</label>
-                  <div class="fcf-input-group">
-                      <input type="text" id="Name" name="Name" class="fcf-form-control" required>
-                  </div>
-              <div class="fcf-form-group">
-                  <label for="Email" class="fcf-label">Your email address</label>
-                </div>
-                  <div class="fcf-input-group">
-                      <input type="email" id="Email" name="Email" class="fcf-form-control" required>
-                  </div>
-              <div class="fcf-form-group">
-                  <label for="Message" class="fcf-label">Your message</label>
-                  <div class="fcf-input-group">
-                      <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
-                  </div>
-              </div>
-              <div class="fcf-form-group">
-                <label for="Submit" class="fcf-label">Send</label>
-                <div class="fcf-button">
-                  <input type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</input>
-                </div>
-              </div>
-          </form>
+          <form action="post.php" method="POST">
+            <input type="text" name="name" class="name form-control" placeholder="Enter name">
+            <input type="text" name="subject" class="subject form-control" placeholder="Enter subject">
+            <input type="email" name="email" class="email form-control" placeholder="Enter email">
+            <textarea name="message" class="message form-control" placeholder="Enter your message" rows="5"></textarea>
+            <input name="submit" type="submit" value="Submit" class="submit btn btn-primary">
+            </form>
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+$(document).ready(function(){        
+	$(".submit").click(function (event){
+		//get value of form fields
+		var name = $(".name").val();
+		var email = $(".email").val();
+		var subject = $(".subject").val();
+		var message = $(".message").val();
+		
+		//Function to email address validation
+		function validateEmail(email) {
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			return emailReg.test( email );
+		}
+		
+		//Check if email  format is correct
+		if( !validateEmail(email)) { 
+			alert("Enter a valid email address");
+			$("form").find("input[type=email]").css("border","1px solid orange");
+			//Highlight invalid email form field
+			setTimeout(function() {
+				$("form").find("input[type=email]").css("border","1px solid #ced4da");
+			}, 1000);
+			return false;
+		}
+		
+		//check if fields are empty
+		if (name == '' || email == '' || subject == '' || message == ''){
+			$('.success').fadeOut(200).hide();
+			$('.error').fadeOut(200).show();
+		}
+		
+		event.preventDefault();
+	});
+});      
+</script>
 <div class="project-tile" id="projects">      
     <a class="project-tile" href="sabresRevenge.html" target="_blank">For Fun!(Desktop Only)</a>
 </div>

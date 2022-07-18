@@ -1,76 +1,48 @@
 <?php
-if (isset($_POST['Email'])) {
-
-    // EDIT THE FOLLOWING TWO LINES:
-    $email_to = "mbrown9702@gmail.com";
-    $email_subject = "Customer Inquiry";
-
-    function problem($error)
-    {
-        echo "We're sorry, but there were error(s) found with the form you submitted. ";
-        echo "These errors appear below.<br><br>";
-        echo $error . "<br><br>";
-        echo "Please go back and fix these errors.<br><br>";
-        die();
-    }
-
-    // validation expected data exists
-    if (
-        !isset($_POST['Name']) ||
-        !isset($_POST['Email']) ||
-        !isset($_POST['Message'])
-    ) {
-        problem('We're sorry, but there appears to be a problem with the form you submitted.');
-    }
-
-    $name = $_POST['Name']; // required
-    $email = $_POST['Email']; // required
-    $message = $_POST['Message']; // required
-
-    $error_message = "";
-    $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-
-    if (!preg_match($email_exp, $email)) {
-        $error_message .= 'The Email address you entered does not appear to be valid.<br>';
-    }
-
-    $string_exp = "/^[A-Za-z .'-]+$/";
-
-    if (!preg_match($string_exp, $name)) {
-        $error_message .= 'The Name you entered does not appear to be valid.<br>';
-    }
-
-    if (strlen($message) < 2) {
-        $error_message .= 'The Message you entered do not appear to be valid.<br>';
-    }
-
-    if (strlen($error_message) > 0) {
-        problem($error_message);
-    }
-
-    $email_message = "Form details below.\n\n";
-
-    function clean_string($string)
-    {
-        $bad = array("content-type", "bcc:", "to:", "cc:", "href");
-        return str_replace($bad, "", $string);
-    }
-
-    $email_message .= "Name: " . clean_string($name) . "\n";
-    $email_message .= "Email: " . clean_string($email) . "\n";
-    $email_message .= "Message: " . clean_string($message) . "\n";
-
-    // create email headers
-    $headers = 'From: ' . $email . "\r\n" .
-        'Reply-To: ' . $email . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-    @mail($email_to, $email_subject, $email_message, $headers);
-?>
-
-    <!-- INCLUDE YOUR SUCCESS MESSAGE BELOW -->
-
-    Thanks for reaching out! I will get back to you soon. Have a great day!
-
-<?php
+if(isset($_POST["submit"])){
+	
+	//Get form data in variables
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$subject = $_POST['subject'];
+	$message = $_POST['message'];
+ 
+	//Use PHPmailer
+	require "phpmailer/PHPMailerAutoload.php";
+	$mail = new PHPMailer;
+ 
+	//Mailbody to send in email
+	$mailbody = "The details submitted on contact form are:-<br><br><b>Name:</b> ".$name . "<br> <b>Email:</b> ".$email . "<br> <b>Subject:</b> " . $_POST['subject'] . "<br> <b>Message:</b> " . $_POST['message'];
+ 
+	//Sender email address
+	$sender = "mbrown9702@gmail.com"; 	  // Gmail SMTP username
+	$mail->isSMTP();                  // Set mailer to use SMTP
+	$mail->Host = 'smtp.gmail.com';   // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;           // Enable SMTP authentication
+	$mail->Username = $sender;        // SMTP username
+	$mail->Password = 'Copjobs231!';// Gmail SMTP password
+	$mail->SMTPSecure = 'tls';        // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                // TCP port to connect to	 
+ 
+	$mail->setFrom($sender, 'Melanie Brown'); 
+	
+	$mail->addAddress('recipient@example.com', 'Sendername');     // Add a recipient
+	//$mail->addAddress('ellen@example.com'); //add more recipient (optional)
+	//$mail->addReplyTo('reply@example.com', 'replytoname');
+	//$mail->addCC('cc@example.com');
+	//$mail->addBCC('bcc@example.com');
+ 
+	$mail->isHTML(true);    // Set email format to HTML
+	$mail->Subject = 'Contact Form '.'"'.$subject.'"';
+	$mail->Body = $mailbody;
+	//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+ 
+	//Email your contact form data using Gmail SMTP with PHPMailer
+	if(!$mail->send()){
+		echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+	}else{
+		echo 'Message has been sent successfully';
+	}
 }
 ?>
