@@ -1,6 +1,6 @@
 #overlayCSS{
     position: fixed;
-    display: none;
+    display: inline-block;
     height: 50%;
     width: 50%;
     background-color: wheat;
