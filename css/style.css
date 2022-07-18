@@ -132,6 +132,6 @@ button {
 }
 p.hook {
     display: inline-block;
-    
-    transform: translate();
+    transform: translate(30%, -300%);
+    padding-left: 10%;
 }
