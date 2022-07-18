@@ -130,3 +130,7 @@ form {
 button {
     display: none;
 }
+audio {
+    position: absolute;
+    right: 0;
+}
