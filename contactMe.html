@@ -40,32 +40,26 @@
             </div>
           </nav>
 
-<?php 
-if (!isset($_POST["submit"])) { ?>
- 
-  <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-   From: <input type="text" name="from_email"><br>
-   Subject: <input type="text" name="subject"><br>
-   Message: <textarea rows="10" cols="20" name="message"></textarea><br>
-   <input type="submit" name="submit" value="Send Email">
-  </form>
-<?php
-} else {
- 
-  if (isset($_POST["mbrown9702@gmail.com"])) {
-    $to_email = $_POST["mbrown9702@gmail.com"];
-    $from_email = $_POST["from_email"];
-    $subject = $_POST["subject"];
-    $body = $_POST["message"];
- 
-    if ( mail($to_email, $subject, $body, $headers)) {
-      echo("Email successfully sent to $to_email...");
-    } else {
-      echo("Email sending failed...");
-    }
-  }
-}
-?>
+          <h3>Contact me!</h3>
+          <form id="fcf-form-id" class="fcf-form-class" method="post" action="sendEmail.php">
+                  <label for="Name" class="fcf-label">Your name</label>
+                  <div class="fcf-input-group">
+                      <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                  </div>
+              <div class="fcf-form-group">
+                  <label for="Email" class="fcf-label">Your email address</label>
+                  <div class="fcf-input-group">
+                      <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                  </div>
+              <div class="fcf-form-group">
+                  <label for="Message" class="fcf-label">Your message</label>
+                  <div class="fcf-input-group">
+                      <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                  </div>
+              </div>
+              <div class="fcf-form-group">
+                  <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
+              </div>
 <div class="project-tile" id="projects">      
     <a class="project-tile" href="sabresRevenge.html" target="_blank">For Fun!(Desktop Only)</a>
 </div>
