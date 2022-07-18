@@ -124,3 +124,7 @@ form {
    
    font: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
+
+button {
+    display: none;
+}
