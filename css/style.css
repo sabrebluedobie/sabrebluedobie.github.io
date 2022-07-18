@@ -114,7 +114,9 @@ footer {
 span.sr-only {
     display: none;
 }
-
+.a11y {
+    background-color: #0A1824;
+}
 img.a11y {
     display: block;
     
