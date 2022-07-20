@@ -60,13 +60,14 @@ li.nav-item.active.current {
 }
 
 li.nav-item {
+    display: inline-block;
+    font-size: 125%;
+    text-align: center;
     transform: translate(0px, -10px);
     color: #1b2614;
     background-color:rgba(140, 165, 196, 0.3);
     padding-top: 20px;
     margin-top: 0;
-    display: inline-block;
-    font-size: 125%;
     margin-left: 7.5%;
     margin-right: 7.5%; 
    
