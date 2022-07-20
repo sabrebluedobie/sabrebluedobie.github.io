@@ -54,6 +54,8 @@ body {
 a {
     color: #29333e;
 }
+
+li.nav-item
 li.nav-item {
     transform: translate(0px, -10px);
     color: #1b2614;
