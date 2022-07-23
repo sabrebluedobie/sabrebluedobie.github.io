@@ -1,6 +1,6 @@
 
 div#welcome-section {
-    background: #e6d6c6;
+    background: #2b3642;
 background: -moz-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
 background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e6d6c6), color-stop(100%, #2b3642));
 background: -webkit-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
@@ -118,7 +118,7 @@ div.project-tile, div.profile-link, div.linkedin div.mail-link {
     vertical-align: middle;
 }
 footer {
-    background: #e6d6c6;
+    background: #2b3642;
 background: -moz-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
 background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e6d6c6), color-stop(100%, #2b3642));
 background: -webkit-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
@@ -137,7 +137,14 @@ span.sr-only {
     display: none;
 }
 .a11y {
-    background-color: #0A1824;
+    background: #2b3642;
+background: -moz-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e6d6c6), color-stop(100%, #2b3642));
+background: -webkit-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
+background: -o-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
+background: -ms-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
+background: radial-gradient(ellipse at center, #e6d6c6 0%, #2b3642 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', endColorstr='#2b3642', GradientType=1 );
 }
 img.a11y {
     display: block;
