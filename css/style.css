@@ -1,4 +1,3 @@
-
 div#welcome-section {
     background: #2b3642;
 background: -moz-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%);
@@ -11,7 +10,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', end
 }
 
 img.sabre {
-    margin-bottom: 2%;
+    display: inline-block;
+    padding: 2%;
+    margin: 0, 5px;
+    width: 20%;
+    float: left;
+    
 }
 h1 {
     display:block;
@@ -45,8 +49,7 @@ h3 {
    color: #364251;
 }
 div#welcome-section {
-    text-align: center;
-
+    /* text-align: center; */
 }
 nav#navbar {
     display: inline-block;
