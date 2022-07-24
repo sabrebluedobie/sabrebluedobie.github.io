@@ -9,7 +9,7 @@ background: radial-gradient(ellipse at center, #e6d6c6 0%, #2b3642 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', endColorstr='#2b3642', GradientType=1 );
 }
 
-img.sabre {
+.sabre {
     display: inline-block;
     padding: 2%;
     margin: 0, 0;
