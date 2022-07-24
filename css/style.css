@@ -15,6 +15,7 @@ img.sabre {
     margin: 0, 0;
     width: 20%;
     float: left;
+    border: 2px double #1d1d30;
     
 }
 h1 {
