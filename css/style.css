@@ -9,6 +9,12 @@ background: -ms-radial-gradient(center, ellipse cover, #e6d6c6 0%, #2b3642 100%)
 background: radial-gradient(ellipse at center, #e6d6c6 0%, #2b3642 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', endColorstr='#2b3642', GradientType=1 );
 }
+
+.sabre {
+    display: inline-block;
+    width: 60px;
+    left: 5px;
+}
 h1 {
     display:block;
     font-family: 'Optima';
