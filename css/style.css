@@ -12,7 +12,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', end
 img.sabre {
     display: inline-block;
     padding: 2%;
-    margin: 0, 5px;
+    margin: 0, 0;
     width: 20%;
     float: left;
     
