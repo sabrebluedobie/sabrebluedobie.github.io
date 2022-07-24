@@ -46,7 +46,9 @@ h2 {
 }
 
 h2.sabre {
-    padding: 20px 0 20px 10px;
+    position: relative;
+    padding: 20px 10px 20px 10px;
+    vertical-align: top;
 }
 
 h3 {
