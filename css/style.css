@@ -195,6 +195,6 @@ input[type=text], input[type=email], select, textarea {
     text-align: center;
  }
 
- div.item {
+ .content .item {
     margin: 20px 0;
  }
