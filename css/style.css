@@ -198,3 +198,7 @@ input[type=text], input[type=email], select, textarea {
  .content .item {
     margin: 20px 0;
  }
+
+ a.work {
+    margin: 10px 0;
+ }
