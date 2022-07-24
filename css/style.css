@@ -10,10 +10,13 @@ background: radial-gradient(ellipse at center, #e6d6c6 0%, #2b3642 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', endColorstr='#2b3642', GradientType=1 );
 }
 
-.sabre {
+img.sabre {
     display: inline-block;
-    width: 60px;
-    left: 5px;
+    padding: 2%;
+    margin: 0, 5px;
+    width: 20%;
+    float: left;
+    
 }
 h1 {
     display:block;
@@ -47,8 +50,7 @@ h3 {
    color: #364251;
 }
 div#welcome-section {
-    text-align: center;
-
+    /* text-align: center; */
 }
 nav#navbar {
     display: inline-block;
