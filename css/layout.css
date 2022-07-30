@@ -135,6 +135,10 @@ img {
     width: 15%;
     border: none;
 }
+
+article.description {
+    margin: 0 10%;
+}
 p.footer {
     text-align: center;
     margin: 2.2vh 0 0 0;
