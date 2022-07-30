@@ -20,8 +20,14 @@ h2 {
 h3 {
     font-family: "Optima", sans-serif; 
     font-size: 110%;
-    font-weight: bold;
+    font-weight: normal;
     color: #364251;
+ }
+
+ article {
+   font-family:'Times New Roman', Times, serif;
+   font-size: 110%;
+   color: #1a2027;
  }
 
  nav#navbar {
