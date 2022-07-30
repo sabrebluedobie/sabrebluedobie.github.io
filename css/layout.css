@@ -112,7 +112,7 @@ img {
     border: 3px solid #000000;
 }
 
-img.frontpg {
+.frontpg {
     -webkit-box-align: center;
     -ms-flex-item-align: center;
     -moz-box-flex: initial;
@@ -125,15 +125,15 @@ img.frontpg {
     border: 3px solid #000000;
 }
 
-img .screenshot {
+.screenshot {
     display: block;
 }
 
-img.a11y {
+.a11y {
     width: 15%;
 }
 
-img.css {
+.css {
     margin:  0 auto;
     width: 15%;
     border: none;
