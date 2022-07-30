@@ -113,7 +113,12 @@ img {
 }
 
 img .frontpg {
-    display: block;
+    -webkit-box-align: center;
+    -ms-flex-item-align: center;
+    -moz-box-flex: initial;
+    -moz-box-align: center;
+    display: flex;
+    justify-content: center;
     width: 50%;
     margin: 0 auto;
     padding: 0%;
