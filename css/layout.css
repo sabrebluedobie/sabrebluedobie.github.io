@@ -111,6 +111,10 @@ img {
     padding: 0%;
     border: 3px solid #000000;
 }
+
+div.squareFrame {
+    margin: 0 auto;
+}
 img .frontpg {
     display: block;
     width: 50%;
