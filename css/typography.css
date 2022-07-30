@@ -24,7 +24,7 @@ h3 {
     color: #364251;
  }
 
- .description {
+ p, .description {
    font-family:'Times New Roman', Times, serif;
    font-size: 1.25rem;
    color: #1a2027;
