@@ -49,3 +49,7 @@ h3 {
  i.fa-brands.fa-linkedin {
     color: #1e2a15;
  }
+ em {
+   font-weight: bold;
+   font-style: italic;
+ }
