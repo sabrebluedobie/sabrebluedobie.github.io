@@ -107,7 +107,7 @@ i.fa-brands.fa-linkedin {
 img {
     display: inline-block;
     width: 30%;
-    margin: auto;
+    margin: 0 auto;
     padding: 0%;
     /* border: 3px solid #000000; */
 }
