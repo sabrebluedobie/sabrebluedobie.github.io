@@ -1,5 +1,5 @@
 function myArticle(){
-    document.getElementsByClassName('article').innerHTML=myArticle(0,0);
+    document.getElementsByTagName('article').innerHTML=myArticle(0,0);
     }
 
     myArticle=((("<h3>Web Design</h3>") 
