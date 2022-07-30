@@ -44,7 +44,7 @@ h2.head {
 }
 
 h2.hook {
-    margin: 0vh 10vw;
+    margin: 0 27%;
 }
 
 h3 {
@@ -144,7 +144,7 @@ article.description {
 }
 
 p.quote {
-    margin: 0 2.5vw 1vh 2.5vw;
+    margin: 0 15%;
 }
 
 p.footer {
