@@ -1,0 +1,46 @@
+h1 {
+    
+    font-family: 'Optima';
+    color: #2b3642;
+    font-size: 350%;
+    text-shadow: 2px 2px 2px#324328;
+    
+}
+
+h2 {
+    font-family: 'Futura', sans-serif;
+    font-size: 200%;
+    color: #364251;
+    text-decoration: underline;
+    text-shadow: 2px 2px 2px #324328;
+    text-decoration: solid;
+    
+}
+
+h3 {
+    font-family: "Optima", sans-serif; 
+    font-size: 110%;
+    font-weight: bold;
+    color: #364251;
+ }
+
+ nav#navbar {
+    font-family: cursive, fantasy;
+    color: #1a2027;
+    
+ }
+
+ li.nav-item {
+    font-size: 125%;
+    color: #1b2614;
+ }
+
+ p {
+    padding-bottom: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+ }
+
+ i.fa-brands.fa-linkedin {
+    color: #1e2a15;
+ }
