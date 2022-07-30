@@ -115,9 +115,9 @@ img {
 .frontpg {
     
     display: inline-block;
-    margin-left: auto;
+    
     width: 50%;
-    margin-right: auto;
+    margin: 0 auto;
     padding: 0%;
     border: 3px solid #000000;
 }
