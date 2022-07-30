@@ -114,7 +114,7 @@ img {
 
 .frontpg {
     
-    display: block;
+    display: inline-block;
     margin-left: auto;
     width: 50%;
     margin-right: auto;
