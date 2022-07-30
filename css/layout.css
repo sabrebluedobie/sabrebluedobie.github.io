@@ -109,7 +109,14 @@ img {
     width: 30%;
     margin: 0 auto;
     padding: 0%;
-    /* border: 3px solid #000000; */
+    border: 3px solid #000000;
+}
+img .frontpg {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0%;
+    border: 3px solid #000000;
 }
 
 img .screenshot {
