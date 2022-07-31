@@ -153,3 +153,7 @@ p.footer {
     text-align: center;
     margin: 2.2vh 0 0 0;
 }
+
+div.container {
+    margin: 0 auto;
+}
