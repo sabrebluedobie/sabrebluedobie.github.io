@@ -52,6 +52,7 @@
 header {
     display:flex;
     position: relative;
+    width: 100%;
 }
 
 .logo {
@@ -86,7 +87,7 @@ ul.navbar-nav {
     list-style: none;
     display: flex;
     padding: 0;
-    align-items: center;
+    margin-right: 30%;
     flex-shrink: 25%;
 
 }
