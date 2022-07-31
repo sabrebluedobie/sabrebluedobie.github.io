@@ -133,8 +133,11 @@ a {
     text-align: center;
     padding: 0 1em;
     margin-top: 0;
-    border: 2px solid ghostwhite;
     float: right;
+}
+
+a.footer-link {
+    border: 2px solid ghostwhite;
 }
 
 a.nav-link:hover {
