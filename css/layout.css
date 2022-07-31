@@ -13,7 +13,7 @@
     }
     h2.head {
         font-size: 85%;
-        padding: 1%;
+        padding: 0 1vw;
     }
     h2.position {
         padding: 0;
@@ -32,6 +32,8 @@
         list-style: none;
         display: flex;
         padding: 0;
+        align-items: center;
+        height: 75%;
     
     }
 
