@@ -201,7 +201,7 @@ p.footer {
 }
 
 div.frame {
-    margin: 0 10%;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
