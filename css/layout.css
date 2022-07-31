@@ -6,7 +6,7 @@
         height:fit-content;
     }
     body {
-        width: 100%;
+        width: fit-content;
     }
     h1 {
         font-size: 100%;
