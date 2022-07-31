@@ -174,6 +174,7 @@ img.frontpg {
 
 img.screenshot {
     display: block;
+    left: 0;
 }
 
 img.a11y {
