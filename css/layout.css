@@ -49,8 +49,12 @@
     }
 }
   
+header {
+    display:flex;
+}
+
 .logo {
-    display: inline-block;
+    display: flex;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -58,22 +62,18 @@
     -moz-box-sizing: border-box;
     padding: 2%;
     width: 15%;
-    float: left;
+    justify-content: flex-start;
     border: 2px double #1d1d30;
     margin: 0, 0;
-    top: 0;
-    left: 0;
     background-color: #363658
 }
 div.collapse {
     display: flex;
+    justify-content: space-between flex-end;
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    right: 0;
+    vertical-align:
     
 }
 ul.navbar-nav {
