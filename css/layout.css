@@ -156,6 +156,6 @@ p.footer {
 
 img#dogs, img#profile-img {
     margin: 0 10%;
-    display: inline-block
+    display: block;
     float: right;
 }
