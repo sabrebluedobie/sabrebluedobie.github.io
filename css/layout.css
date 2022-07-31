@@ -154,6 +154,7 @@ p.footer {
     margin: 2.2vh 0 0 0;
 }
 
-div.container {
-    margin: 0 12.5%;
+img#dogs, img#profile-img {
+    margin: 0 15%;
+    float: right;
 }
