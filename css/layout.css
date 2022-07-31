@@ -1,7 +1,7 @@
 @-ms-viewport{
     width: device-width;
   }
-@media screen and (min-width:360px) {
+@media screen and (max-width:600px) {
     body {
         width: 100%;
     }
@@ -20,7 +20,7 @@
         width: 50%;
         margin: 0 auto;
     }
-    .logo {
+    img.logo {
         width: 75%;
     }
 }
