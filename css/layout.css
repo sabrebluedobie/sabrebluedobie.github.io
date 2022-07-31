@@ -1,7 +1,7 @@
 @-ms-viewport{
     width: device-width;
   }
-@media screen and (max-width:600px) {
+@media screen and (max-width:640px) {
     header {
         height:fit-content;
     }
@@ -18,10 +18,28 @@
     h2.position {
         padding: 0;
     }
-    ul.navbar-nav {
-        padding: 1%;
-        width: 50%;
+    div.collapse {
+        display: flex;
+        width: 90%;
+        max-width: 600px;
         margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    ul.navbar-nav {
+        list-style: none;
+        display: flex;
+        padding: 0;
+    
+    }
+
+    li.nav-link{
+        margin-left: 2em;
+    }
+    nav.a {
+        text-decoration: none;
     }
     img.logo {
         width: 30%;
