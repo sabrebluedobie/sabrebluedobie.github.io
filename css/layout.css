@@ -16,9 +16,10 @@
     }
     ul.navbar-nav {
         padding: 1%;
+        width: 50%;
     }
     .logo {
-        size: 60px 60px;
+        width: 30%;
     }
 }
   
