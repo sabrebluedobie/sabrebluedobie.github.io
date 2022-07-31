@@ -11,8 +11,14 @@
     h2.head {
         font-size: 85%;
     }
+    h2.position {
+        padding: 0;
+    }
     ul.navbar-nav {
         padding: 1%;
+    }
+    .logo {
+        size: 60px 60px;
     }
 }
   
