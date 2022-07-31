@@ -51,6 +51,7 @@
   
 header {
     display:flex;
+    position: relative;
 }
 
 .logo {
@@ -62,7 +63,9 @@ header {
     -moz-box-sizing: border-box;
     padding: 2%;
     width: 15%;
-    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    top: 0;
     border: 2px double #1d1d30;
     margin: 0, 0;
     background-color: #363658
@@ -70,10 +73,13 @@ header {
 div.collapse {
     display: flex;
     justify-content: space-between flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
-    vertical-align:
+    
     
 }
 ul.navbar-nav {
@@ -92,10 +98,10 @@ a.nav-link.active, a.nav-link{
 }
 h1 {
     display: inline-block;
+    position: absolute;
     vertical-align: top;
     right: 0;
     padding: 2vh 2vw 0 2vw;
-    float: right;
 }
 
 h2 {
@@ -106,7 +112,6 @@ h2 {
 
 h2.head {
     display: inline-block;
-    float: right;
     position: absolute;
     padding: 2vh 2vh;
     margin: 7.5vh 2.5vw 0.5vh 2.5vw;
