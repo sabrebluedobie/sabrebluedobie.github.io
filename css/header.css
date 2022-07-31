@@ -22,12 +22,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6d6c6', end
 
 /* LOGO */
 
-.logo {
+img.logo {
 
     background-color: #2b3642;
-}
-
-img.logo {
     background-clip: padding-box;/* <----*/
     box-shadow: inset 0 0 0 23.477px #2b3642;
 }

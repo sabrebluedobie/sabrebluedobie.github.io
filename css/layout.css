@@ -2,7 +2,7 @@
     width: device-width;
   }
 @media screen and (max-width:600px) {
-    div.welcome-section {
+    header {
         height:fit-content;
     }
     body {
