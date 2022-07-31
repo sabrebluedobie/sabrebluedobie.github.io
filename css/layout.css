@@ -38,14 +38,12 @@
     
     }
 
-    li.nav-link{
+    a.nav-link{
         margin-left: 2em;
         text-decoration: none;
         color: #292944;
     }
-    nav.a {
-        text-decoration: none;
-    }
+    
     img.logo {
         width: 30%;
     }
