@@ -38,7 +38,7 @@
     
     }
 
-    a.nav-link{
+    a.nav-link.active, a.nav-link{
         margin-left: 2em;
         text-decoration: none;
         color: #292944;
@@ -129,9 +129,9 @@ li {
 }
 
 a {
-    display: inline-block;
+    display: flex;
     text-align: center;
-    padding: 15px;
+    padding: 0;
     margin-top: 0;
     border: 2px solid ghostwhite;
     float: right;
