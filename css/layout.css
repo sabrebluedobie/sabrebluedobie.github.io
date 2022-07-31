@@ -203,5 +203,5 @@ p.footer {
 div.frame {
     margin: 5% auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
