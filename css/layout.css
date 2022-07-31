@@ -1,7 +1,7 @@
 @-ms-viewport{
     width: device-width;
   }
-@media screen and (min-width:360px) and (max-width: 600px) {
+@media screen and (min-width:360px) {
     body {
         width: 100%;
     }
