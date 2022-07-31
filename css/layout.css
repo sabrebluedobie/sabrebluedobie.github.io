@@ -2,8 +2,11 @@
     width: device-width;
   }
 @media screen and (min-width:360px) and (max-width: 600px) {
-    * {
+    body {
         width: 50%;
+    }
+    h1 {
+        font-size: 50%;
     }
 }
   
