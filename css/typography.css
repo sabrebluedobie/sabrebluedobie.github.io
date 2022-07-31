@@ -31,7 +31,8 @@ h3 {
  }
 
  nav#navbar {
-    font-family: cursive, fantasy;
+    font-family: Optima, Verdana, Geneva, Tahoma, sans-serif;
+    font-style:italic;
     color: #1a2027;  
  }
 
