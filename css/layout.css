@@ -23,13 +23,13 @@
         justify-content: space-between;
         right: 0;
         
+        
     }
     ul.navbar-nav {
         list-style: none;
-        display: flex;
+        display: inline-block;
         padding: 0;
-        align-items: center;
-        flex-shrink: 25%;
+        float: right;
     
     }
 
@@ -37,6 +37,7 @@
         margin-left: 2em;
         text-decoration: none;
         color: #292944;
+
     }
     
     img.logo {
@@ -70,14 +71,9 @@ div.collapse {
     display: flex;
     justify-content: flex-end;
     vertical-align: bottom;
-    align-content: flex-end;
+    flex-flow: row;
     position: absolute;
-    width: 75%;
-    max-width: 600px;
-    margin: 0;
-    flex-direction: row;
-    
-    
+    margin: 0;  
 }
 ul.navbar-nav {
     list-style: none;
@@ -85,6 +81,7 @@ ul.navbar-nav {
     padding: 0;
     right: 0;
     bottom: 0;
+    float: left;
 
 }
 
@@ -150,9 +147,10 @@ ul.footer-list {
     right: 0;
 }
 
-li {
+li.nav-item {
     display: inline;
     right: 0;
+    float:right;
 }
 
 a {
