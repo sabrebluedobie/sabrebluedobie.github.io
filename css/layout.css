@@ -20,11 +20,7 @@
     }
     div.collapse {
         display: flex;
-        width: 90%;
-        max-width: 600px;
-        margin: 0 auto;
         justify-content: space-between;
-        align-items: center;
         right: 0;
         
     }
@@ -244,4 +240,9 @@ div.frame {
 
 div.empty {
     display: none;
+}
+
+div.item {
+    margin: 0 auto;
+    text-align: center;
 }
