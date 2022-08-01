@@ -73,11 +73,12 @@ header {
 }
 div.collapse {
     display: flex;
-    justify-content: space-between flex-end;
-    position: absolute;
-    width: 90%;
+    justify-content: flex-end;
+    vertical-align: bottom;
+    position: relative;
+    width: 75%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
     
     
 }
