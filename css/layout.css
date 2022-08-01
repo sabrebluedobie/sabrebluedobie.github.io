@@ -75,10 +75,12 @@ div.collapse {
     display: flex;
     justify-content: flex-end;
     vertical-align: bottom;
+    align-content: flex-end;
     position: relative;
     width: 75%;
     max-width: 600px;
     margin: 0;
+    flex-direction: row;
     
     
 }
@@ -162,7 +164,7 @@ a {
     text-align: center;
     padding: 0 1em;
     margin-top: 0;
-    float: right;
+    
 }
 
 a.footer-link {
