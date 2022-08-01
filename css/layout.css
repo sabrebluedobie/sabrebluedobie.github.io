@@ -81,7 +81,7 @@ ul.navbar-nav {
     padding: 0;
     right: 0;
     bottom: 0;
-    float: left;
+    float: right;
 
 }
 
@@ -150,7 +150,7 @@ ul.footer-list {
 li.nav-item {
     display: inline;
     right: 0;
-    float:right;
+    float:left;
 }
 
 a {
