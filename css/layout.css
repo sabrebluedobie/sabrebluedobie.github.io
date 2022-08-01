@@ -82,6 +82,7 @@ ul.navbar-nav {
     right: 0;
     bottom: 0;
     float: right;
+    vertical-align: bottom;
 
 }
 
