@@ -71,7 +71,7 @@ div.collapse {
     display: flex;
     justify-content: flex-end;
     vertical-align: bottom;
-    flex-flow: row;
+    flex-flow: row-reverse;
     position: absolute;
     margin: 0;  
 }
