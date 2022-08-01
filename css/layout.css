@@ -22,6 +22,7 @@
         display: flex;
         justify-content: space-between;
         right: 0;
+        float: right;
         
         
     }
@@ -29,7 +30,7 @@
         list-style: none;
         display: inline-block;
         padding: 0;
-        float: right;
+        float: left;
     
     }
 
