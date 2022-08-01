@@ -135,25 +135,25 @@ h3 {
   padding: 0;
   width: 100%;
   background: transparent;
-  float: right;
+  
 
 }
 
 
 ul {
-    float: right;
+    
     margin: 6.5% 0 5% 50vw;
-    background-color: #e1d3c3a0;
+    background:transparent;
     
 }
 
 ul.footer-list {
-    float: right;
+    
     right: 0;
 }
 
 li {
-    float: left;
+    right: 0;
 }
 
 a {
