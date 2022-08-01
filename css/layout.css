@@ -22,7 +22,7 @@
         display: flex;
         justify-content: space-between;
         right: 0;
-        float: right;
+        
         
         
     }
@@ -30,8 +30,11 @@
         list-style: none;
         display: inline-block;
         padding: 0;
-        float: left;
+        float: right;
     
+    }
+    li.nav-item {
+        float: left;
     }
 
     a.nav-link.active, a.nav-link{
