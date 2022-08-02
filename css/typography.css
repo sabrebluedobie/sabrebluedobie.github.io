@@ -26,7 +26,7 @@ h3 {
 
  .quote, .description {
    font-family:'Times New Roman', Times, serif;
-   font-size: 1.25rem;
+   font-size: 2rem;
    color: #1a2027;
  }
 
@@ -42,7 +42,7 @@ h3 {
     color: #1b2614;
  }
 
- #text {
+ p {
     padding-bottom: 15px;
     padding-left: 8px;
     padding-right: 8px;
