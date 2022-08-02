@@ -258,7 +258,7 @@ h1, h2, h3, h4 {
 .caption2 {
     color: #556a65;
 }
-.lead, .container {
+h1.lead, .container {
     color: #293f50
 }
 .label {
