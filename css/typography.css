@@ -26,7 +26,7 @@ h3 {
 
  .quote, .description {
    font-family:'Times New Roman', Times, serif;
-   font-size: 150%;
+   font-size: 200%;
    color: #1a2027;
  }
 
@@ -38,7 +38,7 @@ h3 {
  
 
  li.nav-item {
-    font-size: 125%;
+    font-size: 200%;
     color: #1b2614;
  }
 
@@ -47,7 +47,7 @@ h3 {
     padding-left: 8px;
     padding-right: 8px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 150%;
+    font-size: 200%;
  }
 
  i.fa-brands.fa-linkedin {
