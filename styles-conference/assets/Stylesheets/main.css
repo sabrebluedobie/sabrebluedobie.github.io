@@ -252,6 +252,13 @@ h1, h2, h3, h4 {
     color: #8fada7
 }
 
+.caption1, .caption3 {
+    color: #293f50;
+}
+.caption2 {
+    color: #556a65;
+}
+
 h1 {
     font-size: 36px;
     line-height: 44px;
@@ -271,7 +278,7 @@ h4 {
 }
 
 h5 {
-    color: #7c8388;
+    color: #3f4346;
     font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
