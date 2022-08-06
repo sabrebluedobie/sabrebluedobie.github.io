@@ -1,8 +1,9 @@
+html {font-size: 100%}
 h1 {
     
     font-family: 'Optima';
     color: #2b3642;
-    font-size: 350%;
+    font-size: 3.5em;
     text-shadow: 2px 2px 2px#324328;
     
 }
