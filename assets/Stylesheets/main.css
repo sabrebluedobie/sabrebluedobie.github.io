@@ -137,7 +137,9 @@ Home
     vertical-align: top;
 }
 
-
+article.description {
+    color:#a9b2b9;
+}
 
 /*
 ===========================================
