@@ -142,8 +142,24 @@ article.description {
     margin-left: 5vw;
     margin-right: 15vw;
 }
+article.description1 {
+    color: #a9b2b9;
+    max-width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 p.quote, b {
     color:#aad0c8;
+}
+h2.hook {
+    margin:5vh 10vw; 
+    text-align: center;
+    font-weight: 400; 
+    text-decoration: underline;
+}
+h2.caption4 {
+    margin: 5vh 5vw;
+    text-align: center;
 }
 /*
 ===========================================
@@ -204,7 +220,11 @@ Rows
 footer {
     color:#aad0c8;
 }
-
+#MelanieB, #Kenstrailers {
+    min-width: auto;
+    max-width: 20vw;
+    align-content: center;
+}
 /*
 ===========================================
 Primary header
@@ -280,13 +300,16 @@ h1, h2, h3, h4 {
 }
 
 .caption1, .caption3 {
-    color: #042d4d;
+    color: #021b2d;
 }
 .caption2 {
     color: #556a65;
 }
 .caption3 {
-    font-weight: 200;
+    font-weight: 300;
+}
+p.caption3 {
+    color: #021b2d;
 }
 h3.caption2 {
     text-decoration: underline;
