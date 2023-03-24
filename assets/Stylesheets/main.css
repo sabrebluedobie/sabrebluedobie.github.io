@@ -93,7 +93,15 @@ Home
 ===========================================
 */
 
-
+header.primary-header {
+    margin: 0px;
+}
+body {
+    margin: 0px;
+}
+section.hero.container {
+    margin: 0px;
+}
 .hero {
     color: #fff;
     padding: 22px 80px 66px 80px;
@@ -105,11 +113,6 @@ Home
     font-size: 36px;
 }
 
-.hero p {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 100;
-}
 
 .teaser a:hover h3 {
     color: #a9b2b9;
@@ -202,7 +205,14 @@ Primary header
     font-weight: 100;
     line-height: 44px;
     text-transform: uppercase;
+    min-height: 20px;
+    max-height: 200px;
 
+}
+img.logo {
+    border: 5px solid #042d4d;
+    padding: 0px;
+    margin: 10px;
 }
 
 .tagline {
@@ -215,6 +225,7 @@ Primary header
     font-weight: 400;
     letter-spacing: .5px;
     text-transform: uppercase;
+    float: right;
 }
 
 
@@ -255,10 +266,16 @@ h1, h2, h3, h4 {
 }
 
 .caption1, .caption3 {
-    color: #293f50;
+    color: #042d4d;
 }
 .caption2 {
     color: #556a65;
+}
+.caption3 {
+    font-weight: 200;
+}
+h3.caption2 {
+    text-decoration: underline;
 }
 h1.lead, .container {
     color: #293f50
