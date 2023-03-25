@@ -38,8 +38,8 @@ Grid
 .grid,
 .col-1-3,
 .col-2-3 {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 3vw;
+    padding-right: 3vw;
 }
 
 
@@ -51,7 +51,7 @@ Typography
 
 
 h1, h3, h4, h5, p {
-    margin-bottom: 22px;
+    margin-bottom: 2.2vh;
 }
 
 
@@ -65,7 +65,7 @@ Buttons
 .btn {
     color: #fff;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5vw;
     display: inline-block;
     font-weight: 400;
     letter-spacing: .5px;
@@ -100,8 +100,9 @@ section.hero.container {
 }
 .hero {
     color: #fff;
-    padding: 22px 80px 66px 80px;
-    line-height: 44px;
+    padding-left: 5vw;
+    padding-top: 10vh;
+    line-height: 4.4vh;
     text-align: center;
 }
 
@@ -115,23 +116,23 @@ section.hero.container {
 }
 
 .teaser img {
-    border-radius: 5px;
+    border-radius: 2.5vw;
     display: block;
-    margin-bottom: 22px;
-    max-width: 100%;
+    margin-bottom: 10vh;
+    max-width: 100vw;
 }
 
 .speaker-info {
     border: 1px solid #dfe2e5;
-    border-radius: 5px;
-    margin-top: 88px;
-    padding-bottom: 22px;
+    border-radius: 2.5vw;
+    margin-top: 15vh;
+    padding-bottom: 10vh;
     text-align: center;
 }
 
 .speaker-info img {
     border-radius: 50%;
-    height: 130px;
+    height: 25vh;
     margin: -66px 0 22px 0;
     vertical-align: top;
 }
@@ -191,7 +192,7 @@ Rows
 
 .row,
 .row-alt {
-    min-width: 960px; 
+    min-width: 90vw; 
 }
 
 .row {
@@ -209,7 +210,7 @@ Rows
 
 #dogs, #profile-img {
     min-width:auto;
-    max-width: 300px;
+    max-width: 20vw;
     margin-left: 5vw;
     margin-top: 5vh;
 }
@@ -220,11 +221,7 @@ Rows
 footer {
     color:#aad0c8;
 }
-#MelanieB, #Kenstrailers {
-    min-width: auto;
-    max-width: 20vw;
-    align-content: center;
-}
+
 /*
 ===========================================
 Primary header
@@ -232,21 +229,25 @@ Primary header
 */
 
 .logo {
-    border-top: 4px solid #648880;
+    border-top: 1vh solid #648880;
     padding: 40px 0 22px 0;
     float: left;
-    font-size: 48px;
+    font-size: 4.8vh;
     font-weight: 100;
-    line-height: 44px;
+    line-height: 4.4vh;
     text-transform: uppercase;
-    min-height: 20px;
-    max-height: 200px;
+    min-height: 5vh;
+    max-height: 15vh;
 
 }
 img.logo {
-    border: 5px solid #042d4d;
+    border: 0.3472222222222222vw solid #042d4d;
     padding: 0px;
     margin: 10px;
+}
+img.frontpgimg {
+    min-width: auto;
+    max-width: 25vw;
 }
 
 .tagline {
