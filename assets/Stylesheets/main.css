@@ -299,9 +299,11 @@ body {
 h1, h2, h3, h4 {
     color: #8fada7
 }
-
+h1.contact {
+   color:#042d4d;
+}
 .caption1, .caption3 {
-    color: #021b2d;
+    color:#021b2d;
 }
 .caption2 {
     color: #556a65;
@@ -316,10 +318,10 @@ h3.caption2 {
     text-decoration: underline;
 }
 h1.lead, .container {
-    color: #293f50
+    color: #293f50;
 }
 .label {
-    color: #44655f
+    color: #44655f;
 }
 
 h1 {
@@ -381,7 +383,7 @@ p a {
 
 .primary-header a:hover,
 .primary-footer a:hover {
-    color: #648880
+    color: #648880;
 }
 /*
 ======================================
