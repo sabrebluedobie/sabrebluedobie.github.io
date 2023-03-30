@@ -299,7 +299,7 @@ body {
 h1, h2, h3, h4 {
     color: #8fada7
 }
-h1.contact {
+.contact {
    color:#042d4d;
 }
 .caption1, .caption3 {
