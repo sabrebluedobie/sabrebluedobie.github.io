@@ -208,15 +208,15 @@ Rows
     padding: 44px 0 22px 0;
 }
 
-#dogs, #profile-img {
+#dogs, #sabresmile, #profile-img {
     min-width:auto;
     max-width: 20vw;
     margin-left: 5vw;
     margin-top: 5vh;
 }
 
-#dogs {
-    margin-left: 25vw;
+#sabresmile {
+    margin-left: 10vw;
 }
 footer {
     color:#aad0c8;
