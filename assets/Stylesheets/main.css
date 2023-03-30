@@ -218,6 +218,11 @@ Rows
 #sabresmile {
     margin-left: 10vw;
 }
+#jigsaw {
+    border:0;
+    width:88px;
+    height:31px;
+}
 footer {
     color:#aad0c8;
 }
