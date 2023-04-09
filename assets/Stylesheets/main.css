@@ -102,7 +102,7 @@ section.hero.container {
 .hero {
     color: #fff;
     padding-left: 5vw;
-    padding-top: 10vh;
+    padding-top: 5vh;
     line-height: 4.4vh;
     text-align: center;
 }
@@ -160,7 +160,7 @@ h2.hook {
     text-decoration: underline;
 }
 h2.caption4 {
-    margin: 5vh 5vw;
+    margin: 3vh 3.5vw;
     text-align: center;
 }
 /*
