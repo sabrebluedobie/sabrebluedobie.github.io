@@ -35,4 +35,22 @@
         margin-bottom: 3vh;
         margin-top: 3vh;
     }
-}
+    .caption1 {
+        font-size: 3.3333333333333335vw;
+        text-decoration: underline;
+    }
+    p.caption3 {
+        color: #021b2d;
+        font-size: 3.3333333333333335vw;
+    }
+    h3.caption2 {
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 3.3333333333333335vw;
+    }
+    .btn-alt {
+        border: 0.06944444444444445vw solid #fff;
+        padding: 1.394700139470014vh 5.0833333333333335vw;
+        margin: 0 20vw;
+        
+    }

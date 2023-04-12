@@ -69,14 +69,15 @@ Buttons
     border-radius: 5vw;
     display: inline-block;
     font-weight: 400;
-    letter-spacing: .5px;
+    letter-spacing: 0.034722222222222224vw;
     text-transform: uppercase;
     margin: 0;
 }
 
 .btn-alt {
-    border: 1px solid #fff;
-    padding: 10px 30px;
+    border: 0.06944444444444445vw solid #fff;
+    padding: 1.394700139470014vh 2.0833333333333335vw;
+    margin: 0 38vw;
 }
 
 .btn-alt:hover {
@@ -143,12 +144,16 @@ article.description {
     max-width: 90vw;
     margin-left: 5vw;
     margin-right: 15vw;
+    
 }
 article.description1 {
     color: #a9b2b9;
     max-width: 90vw;
     margin-left: 5vw;
     margin-right: 5vw;
+    font-size: 2.5vw;
+    line-height: 6.136680613668061vh;
+    
 }
 p.quote, b {
     color:#aad0c8;
@@ -198,7 +203,7 @@ Rows
 
 .row {
     background: #fff;
-    padding: 66px 0 44px 0;
+    padding: 9.205020920502092vh 0 6.136680613668061vh 0;
 }
 
 .row-alt {
@@ -206,7 +211,7 @@ Rows
     background: -webkit-linear-gradient(to right, #a1d3b0, #f6f1d3);
     background: -moz-linear-gradient(to right, #a1d3b0, #f6f1d3);
     background: linear-gradient(to right, #128783, #b7ebf2);
-    padding: 44px 0 22px 0;
+    padding: 6.136680613668061vh 0 3.0683403068340307vh 0;
 }
 .bookingpg {
     min-width: none;
@@ -225,8 +230,8 @@ Rows
 }
 #jigsaw {
     border:0;
-    width:88px;
-    height:31px;
+    width:12.104539202200826vw;
+    height:4.323570432357044vh;
 }
 footer {
     color:#aad0c8;
@@ -240,7 +245,7 @@ Primary header
 
 .logo {
     border-top: 1vh solid #648880;
-    padding: 40px 0 22px 0;
+    padding: 5.578800557880056vh 0 3.0683403068340307vh 0;
     float: left;
     font-size: 4.8vh;
     font-weight: 100;
@@ -262,15 +267,16 @@ img.frontpgimg {
 img.frontend {
     min-width: auto;
     max-width: 65vw;
+    margin: 0 16vw;
 }
 
 .tagline {
-    margin: 66px 0 22px 15px;
+    margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
     text-align: right;
 }
 
 .primary-nav {
-    font-size: 14px;
+    font-size: 1.9257221458046767vw;
     font-weight: 400;
     letter-spacing: .5px;
     text-transform: uppercase;
@@ -319,6 +325,10 @@ h1, h2, h3, h4 {
 .caption1, .caption3 {
     color:#021b2d;
 }
+.caption1 {
+    font-size: 1.5277777777777777vw;
+    text-decoration: underline;
+}
 .caption2 {
     color: #556a65;
 }
@@ -327,9 +337,12 @@ h1, h2, h3, h4 {
 }
 p.caption3 {
     color: #021b2d;
+    font-size: 1.5277777777777777vw;
 }
 h3.caption2 {
     text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.9444444444444444vw;
 }
 h1.lead, .container {
     color: #293f50;
@@ -339,26 +352,26 @@ h1.lead, .container {
 }
 
 h1 {
-    font-size: 36px;
-    line-height: 44px;
+    font-size: 6.2717770034843205vw;
+    line-height: 6.136680613668061vh;
 }
 
 h2 {
-    font-size: 24px;
-    line-height: 44px;
+    font-size: 4.181184668989547vw;
+    line-height: 6.136680613668061vh;
 }
 
 h3 {
-    font-size: 21px;
+    font-size: 3.658536585365854vw;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 3.1358885017421603vw;
 }
 
 h5 {
     color: #3f4346;
-    font-size: 14px;
+    font-size: 2.4390243902439024vw;
     font-weight: 400;
     text-transform: uppercase;
 }
@@ -411,7 +424,7 @@ Navigation
 
 .nav li {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 1.7421602787456445vw;
     vertical-align: top;
 }
 
@@ -431,8 +444,8 @@ Leads
 }
 
 .lead p {
-    font-size: 21px;
-    line-height: 33px;
+    font-size: 3.658536585365854vw;
+    line-height: 5.7491289198606275vw;
 }
 
 /*
@@ -442,15 +455,15 @@ Speakers
 */
 
 .speaker-info {
-    border: 1px solid #dfe2e5;
-    border-radius: 5px;
-    margin-top: 88px;
-    padding: 22px 0;
+    border: 0.17421602787456447vw solid #dfe2e5;
+    border-radius: 0.8710801393728222vw;
+    margin-top: 12.273361227336123vh;
+    padding: 3.0683403068340307vh 0;
     text-align: center;
 }
 
 .speaker {
-    margin-bottom: 44px;
+    margin-bottom: 6.136680613668061vh;
 }
 
 /*
@@ -460,13 +473,13 @@ Venue
 */
 
 .venue-theatre {
-    margin-bottom: 66px;
+    margin-bottom: 9.205020920502092vh;
 }
 
 .venue-hotel {
-    margin-bottom: 22px;
+    margin-bottom: 3.0683403068340307vh;
 }
 
 .venue-map {
-    height: 264px;
+    height: 36.82008368200837vh;
 }
