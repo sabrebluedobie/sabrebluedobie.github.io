@@ -263,20 +263,27 @@ img.frontpgimg {
 img.frontend {
     min-width: auto;
     max-width: 65vw;
+    margin: 0 17.5vw;
+}
+.a11y {
+   width: 15vw;
 }
 
 .tagline {
-    margin: 66px 0 22px 15px;
+    margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
     text-align: right;
 }
 
 .primary-nav {
-    font-size: 14px;
+    
     font-weight: 400;
-    letter-spacing: .5px;
+    letter-spacing: 0.0687757909215956vw;
     text-transform: uppercase;
     float: right;
 }
+
+
+
 
 
 /*
