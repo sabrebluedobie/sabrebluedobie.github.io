@@ -265,7 +265,7 @@ img.frontpgimg {
    max-width: 25vw;
 }
 img.frontend {
-    position: relative;
+    position: static;
     max-width: 60%;
     top: 10%;
     left: 10%;
