@@ -159,6 +159,7 @@ h2.hook {
     text-align: center;
     font-weight: 400; 
     text-decoration: underline;
+    align-content: center;
 }
 h2.caption4 {
     margin: 3vh 3.5vw;
@@ -263,7 +264,7 @@ img.frontpgimg {
 img.frontend {
     min-width: auto;
     max-width: 65vw;
-    margin: 0 auto;
+    margin: 0, 17.5vw;
 }
 .a11y {
    width: 15vw;
