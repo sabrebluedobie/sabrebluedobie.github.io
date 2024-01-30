@@ -281,12 +281,7 @@ img.frontend:empty {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-@media screen and (orientation: portrait) {
-    img.frontend { max-width: 90%; }
-}
-@media screen and (orientation: landscape) {
-    img.frontend { max-height: 90%; }
-}
+
 
 .tagline {
     margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;

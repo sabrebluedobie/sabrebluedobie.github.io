@@ -59,3 +59,9 @@
         margin: 0 29vw;
         
     }
+    @media screen and (orientation: portrait) {
+        img.frontend { max-width: 90%; }
+    }
+    @media screen and (orientation: landscape) {
+        img.frontend { max-height: 90%; }
+    }
