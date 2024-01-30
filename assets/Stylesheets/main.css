@@ -265,10 +265,27 @@ img.frontpgimg {
    max-width: 25vw;
 }
 img.frontend {
-    min-width: auto;
-    max-width: 65vw;
-    margin: 0 17.5vw;
-    align-items: center;
+    position:absolute;
+    max-width: 60%;
+    top: 10%;
+    left: 10%;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+}
+img.frontend:empty {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+@media screen and (orientation: portrait) {
+    img.frontend { max-width: 90%; }
+}
+@media screen and (orientation: landscape) {
+    img.frontend { max-height: 90%; }
 }
 
 .tagline {
