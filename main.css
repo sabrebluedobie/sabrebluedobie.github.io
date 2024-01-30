@@ -263,7 +263,7 @@ img.frontpgimg {
 img.frontend {
     min-width: auto;
     max-width: 65vw;
-    margin: 0 17.5vw;
+    margin: 0 auto;
 }
 .a11y {
    width: 15vw;
