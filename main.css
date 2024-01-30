@@ -1,0 +1,483 @@
+
+/*
+=================================================
+Grid
+=================================================
+*/
+
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing:border-box;
+}
+
+.container, .grid {
+    margin: 0 auto;
+    width: 90vw;
+}
+
+
+.col-1-3 {
+    width: 33.33%;
+}
+
+.col-2-3 {
+    width: 66.66%;
+}
+
+.col-1-3,
+.col-2-3 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.grid,
+.col-1-3,
+.col-2-3 {
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+
+/*
+================================================
+Typography
+================================================
+*/
+
+
+h1, h3, h4, h5, p {
+    margin-bottom: 2.2vh;
+}
+
+
+/*
+=================================================
+Buttons
+=================================================
+*/
+
+
+.btn {
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5vw;
+    display: inline-block;
+    font-weight: 400;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.btn-alt {
+    border: 1px solid #fff;
+    padding: 10px 30px;
+}
+
+.btn-alt:hover {
+    background: #fff;
+    color: #648880;
+}
+
+/*
+===========================================
+Home
+===========================================
+*/
+
+header.primary-header {
+    margin: 0px;
+}
+body {
+    margin: 0px;
+}
+section.hero.container {
+    margin: 0px;
+}
+.hero {
+    color: #fff;
+    padding-left: 5vw;
+    padding-top: 5vh;
+    line-height: 4.4vh;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 36px;
+}
+
+
+.teaser a:hover h3 {
+    color: #a9b2b9;
+}
+
+.teaser img {
+    border-radius: 2.5vw;
+    display: block;
+    margin-bottom: 10vh;
+    max-width: 100vw;
+}
+
+.speaker-info {
+    border: 1px solid #dfe2e5;
+    border-radius: 2.5vw;
+    margin-top: 15vh;
+    padding-bottom: 10vh;
+    text-align: center;
+}
+
+.speaker-info img {
+    border-radius: 50%;
+    height: 25vh;
+    margin: -66px 0 22px 0;
+    vertical-align: top;
+}
+
+article.description {
+    color:#a9b2b9;
+    max-width: 90vw;
+    margin-left: 5vw;
+    margin-right: 15vw;
+}
+article.description1 {
+    color: #a9b2b9;
+    max-width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-size: 3.0261348005502064vw;
+}
+p.quote, b {
+    color:#aad0c8;
+}
+h2.hook {
+    margin:5vh 10vw; 
+    text-align: center;
+    font-weight: 400; 
+    text-decoration: underline;
+    align-content: center;
+}
+h2.caption4 {
+    margin: 3vh 3.5vw;
+    text-align: center;
+}
+/*
+===========================================
+Clearfix
+===========================================
+*/
+
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear:both;
+}
+
+.group {
+    clear:both;
+    zoom: 1;
+}
+
+/*
+==========================================
+Rows
+==========================================
+*/
+
+.row,
+.row-alt {
+    min-width: 90vw; 
+}
+
+.row {
+    background: #fff;
+    padding: 66px 0 44px 0;
+}
+
+.row-alt {
+    background: #cbe2c1;
+    background: -webkit-linear-gradient(to right, #a1d3b0, #f6f1d3);
+    background: -moz-linear-gradient(to right, #a1d3b0, #f6f1d3);
+    background: linear-gradient(to right, #128783, #b7ebf2);
+    padding: 44px 0 22px 0;
+}
+.bookingpg {
+    min-width: none;
+    max-width: 95vw;
+}
+
+#dogs, #sabresmile, #profile-img {
+    min-width:auto;
+    max-width: 20vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
+}
+
+#sabresmile {
+    margin-left: 10vw;
+}
+#jigsaw {
+    border:0;
+    width:88px;
+    height:31px;
+}
+footer {
+    color:#aad0c8;
+}
+
+/*
+===========================================
+Primary header
+===========================================
+*/
+
+.logo {
+    border-top: 1vh solid #648880;
+    padding: 40px 0 22px 0;
+    float: left;
+    font-size: 4.8vh;
+    font-weight: 100;
+    line-height: 4.4vh;
+    text-transform: uppercase;
+    min-height: 5vh;
+    max-height: 15vh;
+
+}
+img.logo {
+    border: 0.3472222222222222vw solid #042d4d;
+    padding: 0;
+    margin: 3vh, 3vw;
+}
+img.frontpgimg {
+   min-width: 0;
+   max-width: 25vw;
+}
+img.frontend {
+    min-width: auto;
+    max-width: 65vw;
+    margin: 0, 17.5vw;
+}
+.a11y {
+   width: 15vw;
+}
+
+.tagline {
+    margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
+    text-align: right;
+    -ms-text-align-last: right;
+    text-align-last: right;
+}
+
+.primary-nav {
+    
+    font-weight: 400;
+    letter-spacing: 0.0687757909215956vw;
+    text-transform: uppercase;
+    float: right;
+}
+
+
+
+
+
+/*
+===========================================
+Primary footer
+===========================================
+*/
+
+
+.primary-footer small {
+    float:left;
+    font-weight: 400;
+    color: #aad0c8;
+}
+
+.primary-footer {
+    padding-bottom: 44px;
+    padding-top: 44px;
+    color: #abc5bf;
+    font-size: 14px;
+}
+
+/*
+===========================================
+Custom Styles
+===========================================
+*/
+
+body {
+    background: #293f50;
+    color:#888;
+    font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: #8fada7
+}
+.contact {
+   color:#042d4d;
+}
+.caption1, .caption3 {
+    color:#021b2d;
+}
+.caption2 {
+    color: #556a65;
+}
+.caption3 {
+    font-weight: 300;
+}
+p.caption3 {
+    color: #021b2d;
+}
+h3.caption2 {
+    text-decoration: underline;
+}
+h1.lead, .container {
+    color: #293f50;
+}
+.label {
+    color: #44655f;
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 44px;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 44px;
+}
+
+h3 {
+    font-size: 21px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    color: #3f4346;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+strong {
+    font-weight: 400;
+}
+
+cite, em {
+    font-style: italic;
+}
+
+/* 
+=======================================
+Links
+=======================================
+*/
+
+a {
+    color: #648880;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a9b2b9;
+}
+
+p a {
+    border-bottom: 1px solid #dfe2e5;
+}
+
+.primary-header a,
+.primary-footer a {
+    color: #fff;
+}
+
+.primary-header a:hover,
+.primary-footer a:hover {
+    color: #648880;
+}
+/*
+======================================
+Navigation
+======================================
+*/
+
+.nav {
+    text-align: right;
+}
+
+.nav li {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+}
+
+.nav li:last-child {
+    margin-right: 0;
+}
+
+
+/* 
+======================================
+Leads
+======================================
+*/
+
+.lead {
+    text-align: center;
+}
+
+.lead p {
+    font-size: 21px;
+    line-height: 33px;
+}
+
+/*
+======================================
+Speakers
+======================================
+*/
+
+.speaker-info {
+    border: 1px solid #dfe2e5;
+    border-radius: 5px;
+    margin-top: 88px;
+    padding: 22px 0;
+    text-align: center;
+}
+
+.speaker {
+    margin-bottom: 44px;
+}
+
+/*
+======================================
+Venue
+======================================
+*/
+
+.venue-theatre {
+    margin-bottom: 66px;
+}
+
+.venue-hotel {
+    margin-bottom: 22px;
+}
+
+.venue-map {
+    height: 264px;
+}
