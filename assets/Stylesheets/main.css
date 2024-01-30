@@ -267,7 +267,7 @@ img.frontpgimg {
 }
 img.frontend {
     position: relative;
-    top: 10%;
+    top: 20vh;
     max-width: 60%;
     border-radius: 3px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.9);
