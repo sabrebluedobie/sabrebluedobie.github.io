@@ -224,6 +224,7 @@ Rows
 #dogs, #sabresmile, #profile-img {
     min-width:auto;
     max-width: 20vw;
+    min-height:auto;
     margin-left: 5vw;
     margin-top: 5vh;
 }
