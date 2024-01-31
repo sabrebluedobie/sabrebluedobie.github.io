@@ -401,6 +401,7 @@ p.contact {
     font-family: 'Arapey', 'Times New Roman', Times, serif;
     font-size: 3vh;
     font-style:italic;
+    line-height: 5vh;
     color: #a9b2b9;
 }
 .aboutnav {
