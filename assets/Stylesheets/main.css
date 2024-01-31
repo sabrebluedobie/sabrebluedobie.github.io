@@ -370,7 +370,15 @@ h1.lead, .container {
 .label {
     color: #44655f;
 }
-
+.contactform {
+    display: inline-block;
+    margin-left: 10%;
+    
+}
+.bookings {
+    display: inline-block;
+    margin-left: 15%;
+}
 h1 {
     font-size: 6.2717770034843205vw;
     line-height: 6.136680613668061vh;
