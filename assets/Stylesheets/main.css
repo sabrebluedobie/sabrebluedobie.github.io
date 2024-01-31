@@ -161,12 +161,13 @@ p.quote, b {
 }
 h2.hook {
     margin:5vh auto; 
-    text-align: center;
+    align-content: center;
     font-weight: 400; 
     text-decoration: underline;
+    text-align: center;
 }
 h2.caption4 {
-    font: 300, 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 400, 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 3vh 3.5vw;
     text-align: center;
 }
