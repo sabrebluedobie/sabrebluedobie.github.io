@@ -267,9 +267,7 @@ img.frontpgimg {
    min-width: 0;
    max-width: 25vw;
 }
-img.frontend::before {
-  content: h2.hook   
-}
+
 img.frontend {
     display:block;
     margin-top: 40vh;
