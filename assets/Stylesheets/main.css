@@ -370,14 +370,51 @@ h1.lead, .container {
 .label {
     color: #44655f;
 }
+.lead.container {
+    display: inline-block;
+    margin-top: 8%;
+}
+.contact {
+    margin-bottom: 2.5%;
+}
+p.contact {
+    text-align: center;
+    margin-left: 5%;
+}
 .contactform {
     display: inline-block;
-    margin-left: 10%;
+    margin-top: 10%;
+    margin-left: 25%;
+    max-width: 60%;
+    max-height: auto;
     
+}
+.contactnav {
+    margin-bottom: 5%;
 }
 .bookings {
     display: inline-block;
-    margin-left: 15%;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+.aboutarticle {
+    font-family: 'Arapey', 'Times New Roman', Times, serif;
+    font-size: 3vh;
+    font-style:italic;
+    color: #a9b2b9;
+}
+.aboutnav {
+    margin-bottom: 5%;
+}
+#sabresmile, #dogs, #profile-img {
+    vertical-align: center;
+}
+.frame {
+    margin-bottom: 2.5%;
+}
+.a11y {
+    display: inline-block;
+    max-width: 40%;
 }
 h1 {
     font-size: 6.2717770034843205vw;
