@@ -746,6 +746,37 @@ Media
         margin-left: 2.5vw;
         max-width: 90%;
     }
+    section.row-alt {
+        position: relative;
+        min-height:fit-content;
+        height: auto;
+        max-height:min-content;
+        padding: 0;
+    }
+    h1.lead {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        top: -2.5vh;
+    }
+    p.portfolio {
+        position: relative;
+        margin-left: 2.5vw;
+        top: -2.5vh;
+    }
+    h2.contact, h2.contactform {
+        color:#021b2d;
+        text-align: center;
+        margin-left: 10%;
+        font-style: bold;
+    }
+    iframe.contactform {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        max-width: 90%;
+        max-height: fit-content;
+    }
     
     @media screen and (orientation: portrait) {
         img.frontend { max-width: 90%; }
