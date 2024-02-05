@@ -600,7 +600,7 @@ Media
         max-width: 90vw;
     }
     img.logo {
-        max-width: 30%
+        max-width: 25%
     }
     a.tagline {
         text-align: right;
@@ -608,6 +608,7 @@ Media
     }
     div.row {
         position: relative;
+        top: -10vh;
     }
     .frontpgimg {
         min-width: fit-content;
@@ -663,6 +664,7 @@ Media
         text-decoration: underline;
         font-weight: bold;
         font-size: 3.3333333333333335vw;
+        top: -10vh;
     }
     .btn-alt {
         border: 0.06944444444444445vw solid #fff;
