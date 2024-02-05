@@ -301,12 +301,10 @@ img.construction {
     margin-left: 15%
 }
 
-a.tagline {
-    font-size: 1.25em;
-}
 .tagline {
     margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
     text-align: right;
+    font-size: 2.5vw;
 }
 
 .primary-nav {
@@ -315,6 +313,7 @@ a.tagline {
     letter-spacing: .5px;
     text-transform: uppercase;
     float: right;
+    margin: 3.75vh;
 }
 
 
@@ -685,9 +684,11 @@ Media
         line-height: 4vh;
         top: -10vh;
     }
+    
     @media screen and (orientation: portrait) {
         img.frontend { max-width: 90%; }
     }
-    @media screen and (orientation: landscape) {
-        img.frontend { max-height: 90%; }
+
+    @media screen and (orientation: landscape) {  
+        img.frontend { max-height: 90%; }  
     }
