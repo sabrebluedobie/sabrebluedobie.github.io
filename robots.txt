@@ -1,2 +1,5 @@
-User-agent: Seobility, *
-Allow: /public/, /private/
+User-agent: Seobility
+Allow: /
+
+User-agent: *
+Allow: /
