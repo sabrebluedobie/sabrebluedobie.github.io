@@ -658,6 +658,7 @@ Media
         font-size: 3.3333333333333335vw;
         position: relative;
         line-height: 3vh;
+        top: -10vh;
     }
     h3.caption2 {
         text-decoration: underline;
@@ -671,7 +672,8 @@ Media
         margin: 0 29vw;
         
     }
-    .aboutarticle {
+    article.description {
+        line-height: 4vh;
         top: -10vh;
     }
     @media screen and (orientation: portrait) {
