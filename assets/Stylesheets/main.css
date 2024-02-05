@@ -624,7 +624,7 @@ Media
         position: absolute;
         right: -400;
         text-align: right;
-        top: -10vh;
+        top: 0vh;
         line-height: 3vh;
         margin-bottom: 2vh;
         display: inline-block;
