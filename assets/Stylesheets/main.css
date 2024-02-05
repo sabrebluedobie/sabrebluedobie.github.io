@@ -626,6 +626,7 @@ Media
         line-height: 3vh;
         margin: 2vh;
         margin-left: 2vh;
+        display: inline-block;
     }
     .primary-nav {
         position: relative;
