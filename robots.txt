@@ -1,6 +1,2 @@
-User-agent: Seobility
-Disallow:
-
-User-agent: *
-Disallow: /private/
-Allow: /public/
+User-agent: Seobility, *
+Allow: /public/, /private/
