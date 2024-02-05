@@ -78,6 +78,7 @@ Buttons
     border: 0.06944444444444445vw solid #fff;
     padding: 1.394700139470014vh 2.0833333333333335vw;
     margin: 0 40vw;
+    text-align: center;
 }
 
 .btn-alt:hover {
