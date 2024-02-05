@@ -621,7 +621,8 @@ Media
     }
     a.logo {
         font-size: 2vh;
-        position: relative;
+        position: absolute;
+        right: -400;
         text-align: right;
         top: -10vh;
         line-height: 3vh;
