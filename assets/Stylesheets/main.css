@@ -673,6 +673,7 @@ Media
     img.frontend {
         position: relative;
         top: -10vh;
+        margin: auto;
     }
     .btn-alt {
         border: 0.06944444444444445vw solid #fff;
