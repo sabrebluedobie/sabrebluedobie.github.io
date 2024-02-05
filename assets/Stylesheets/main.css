@@ -632,6 +632,7 @@ Media
     }
     .tagline {
         margin-top: 3vh;
+        display: none;
     }
     .heroimg {
         position: relative;
@@ -640,8 +641,8 @@ Media
     }
     
     h1.logo {
-        margin-bottom: 3vh;
-        margin-top: 3vh;
+        margin: 2vh;
+        margin-left: 2vh;
     }
     .caption1 {
         font-size: 3.3333333333333335vw;
