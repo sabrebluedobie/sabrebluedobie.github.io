@@ -722,7 +722,20 @@ Media
     }
     .aboutarticle {
         position: relative;
-        top: -8vh;
+        top: -5vh;
+    }
+    h2.About {
+        position: relative;
+        top: -3vh;
+        font-size: 3vh;
+    }
+    #sabresmile, #dogs, img#profile-img {
+        position: relative;
+        top: -5vh;
+    }
+    p.quote {
+        position: relative;
+        top: -4vh;
     }
     
     @media screen and (orientation: portrait) {
