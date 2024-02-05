@@ -666,6 +666,9 @@ Media
         font-size: 3.3333333333333335vw;
         top: -10vh;
     }
+    h2.hook {
+        top: -10vh;
+    }
     .btn-alt {
         border: 0.06944444444444445vw solid #fff;
         padding: 1.394700139470014vh 5.0833333333333335vw;
