@@ -29,6 +29,12 @@
         margin-left: auto;
         margin-right: auto;
     }
+    a.logo {
+        font-size: 2vh;
+        position: relative;
+        top: -30px;
+        margin: 2vh, 2vw;
+    }
     .tagline {
         margin-top: 3vh;
 
