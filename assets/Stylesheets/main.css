@@ -599,10 +599,21 @@ Media
     .col-2-3 {
         max-width: 90vw;
     }
+    img.logo {
+        max-width: 30%
+    }
+    a.tagline {
+        text-align: right;
+        font-size: 1.75vh;
+    }
+    div.row {
+        position: relative;
+        top: -15vh;
+    }
     .frontpgimg {
         min-width: fit-content;
         min-width: -moz-fit-content;
-        max-width: 90vw;
+        max-width: 40vw;
         max-height: fit-content;
         max-height: -moz-fit-content;
         margin-left: auto;
@@ -611,12 +622,21 @@ Media
     a.logo {
         font-size: 2vh;
         position: relative;
-        top: -50px;
-       
+        top: -10vh;
+        line-height: 3vh;
+    }
+    .primary-nav {
+        position: relative;
+        top: -12vh;
+        font-size: 1vh;
     }
     .tagline {
         margin-top: 3vh;
-
+    }
+    .heroimg {
+        position: relative;
+        top: -15vh;
+        max-width: 90%
     }
     
     h1.logo {
@@ -626,10 +646,18 @@ Media
     .caption1 {
         font-size: 3.3333333333333335vw;
         text-decoration: underline;
+   
+    }
+    .caption2 {
+        position: relative;
+        top: -10vh;
     }
     p.caption3 {
         color: #021b2d;
         font-size: 3.3333333333333335vw;
+        position: relative;
+        top: -10vh;
+        line-height: 3vh;
     }
     h3.caption2 {
         text-decoration: underline;
