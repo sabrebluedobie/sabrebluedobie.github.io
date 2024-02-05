@@ -608,7 +608,6 @@ Media
     }
     div.row {
         position: relative;
-        top: -15vh;
     }
     .frontpgimg {
         min-width: fit-content;
