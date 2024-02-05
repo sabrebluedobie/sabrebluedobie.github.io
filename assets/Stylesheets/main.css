@@ -631,7 +631,6 @@ Media
     }
     .primary-nav {
         position: relative;
-        top: -12vh;
         font-size: 1vh;
     }
     .tagline {
@@ -640,7 +639,6 @@ Media
     }
     .heroimg {
         position: relative;
-        top: -15vh;
         max-width: 90%
     }
     
@@ -655,13 +653,11 @@ Media
     }
     .caption2 {
         position: relative;
-        top: -10vh;
     }
     p.caption3 {
         color: #021b2d;
         font-size: 3.3333333333333335vw;
         position: relative;
-        top: -10vh;
         line-height: 3vh;
     }
     h3.caption2 {
