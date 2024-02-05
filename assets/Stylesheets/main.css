@@ -608,7 +608,6 @@ Media
     }
     div.row {
         position: relative;
-        top: -10vh;
     }
     .frontpgimg {
         min-width: fit-content;
@@ -671,6 +670,9 @@ Media
         padding: 1.394700139470014vh 5.0833333333333335vw;
         margin: 0 29vw;
         
+    }
+    .aboutarticle {
+        top: -10vh;
     }
     @media screen and (orientation: portrait) {
         img.frontend { max-width: 90%; }
