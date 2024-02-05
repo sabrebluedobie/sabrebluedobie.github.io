@@ -623,13 +623,22 @@ Media
         right: -400;
         text-align: right;
         top: 0vh;
+        margin: 0;
+        padding: 0;
         line-height: 3vh;
-        margin-bottom: 2vh;
+        margin-right: 2vw;
         display: inline-block;
+       
     }
     .primary-nav {
+        display: inline-block;
         position: relative;
-        font-size: 1vh;
+        font-size: 0.6vh;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        top: -4.5vh;
+        margin-top: 1vh;
     }
     .tagline {
         margin-top: 3vh;
@@ -637,7 +646,8 @@ Media
     }
     .heroimg {
         position: relative;
-        max-width: 90%
+        max-width: 90%;
+        top: -5vh;
     }
     
     h1.logo {
@@ -667,22 +677,48 @@ Media
     }
     h2.hook {
         position: relative;
-        top: -10vh;
+        top: -4vh;
     }
     img.frontend {
         position: relative;
         top: -10vh;
-        margin: auto;
+        margin: 1%;
+    }
+    h2.caption4 {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        top: -8vh;
     }
     .btn-alt {
+        position: relative;
         border: 0.06944444444444445vw solid #fff;
         padding: 1.394700139470014vh 5.0833333333333335vw;
         margin: 0 29vw;
+        top: -10vh;
         
     }
+    nav.nav {
+        display: block;
+        position: relative;
+        font-size: 1.25vh;
+    }
     article.description1 {
-        line-height: 4vh;
+        position: relative;
+        line-height: 2.5vh;
+        margin: 0;
+        padding: 0;
         top: -10vh;
+        margin-left: 3.5vw;
+        text-align: center;
+        
+    }
+    .primary-footer {
+        display: block;
+        position: relative;
+        font-size: 1.25vh;
+        top: -11vh;
+
     }
     
     @media screen and (orientation: portrait) {
