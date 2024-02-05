@@ -720,6 +720,10 @@ Media
         top: -11vh;
 
     }
+    .aboutarticle {
+        position: relative;
+        top: -8vh;
+    }
     
     @media screen and (orientation: portrait) {
         img.frontend { max-width: 90%; }
