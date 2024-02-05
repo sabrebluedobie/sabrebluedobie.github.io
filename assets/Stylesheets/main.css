@@ -667,6 +667,11 @@ Media
         top: -10vh;
     }
     h2.hook {
+        position: relative;
+        top: -10vh;
+    }
+    img.frontend {
+        position: relative;
         top: -10vh;
     }
     .btn-alt {
