@@ -167,7 +167,7 @@ h2.hook {
 }
 h2.caption4 {
     font-family: 600, 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 3vh 3.5vw;
+    margin: 1.5vh 3.5vw;
     text-align: center;
 }
 
@@ -268,10 +268,16 @@ img.frontpgimg {
    min-width: 0;
    max-width: 25vw;
 }
+.heroimg {
+    max-width: 75%;
+    border-width: 25px;
+    border-color: #8fada7;
+    border-style: solid;
+}
 
 img.frontend {
     display:block;
-    margin-top: 40vh;
+    margin-top: 30vh;
     margin-left:48vw;
     max-width: 60%;
     border-radius: 3px;
@@ -406,6 +412,10 @@ p.contact {
 }
 .aboutnav {
     margin-bottom: 5%;
+}
+h2.About {
+    margin-top: 5%;
+
 }
 #sabresmile, #dogs, #profile-img {
     vertical-align: center;
