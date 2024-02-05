@@ -624,6 +624,8 @@ Media
         position: relative;
         top: -10vh;
         line-height: 3vh;
+        margin: 2vh;
+        margin-left: 2vh;
     }
     .primary-nav {
         position: relative;
