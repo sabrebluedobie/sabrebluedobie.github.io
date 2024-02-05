@@ -292,6 +292,13 @@ img.frontend:empty {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+img.construction {
+    max-width: 75%;
+    border-width: 25px;
+    border-style: solid;
+    border-color: black;
+    margin-left: 12%
+}
 
 
 .tagline {
