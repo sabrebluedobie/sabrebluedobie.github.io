@@ -612,14 +612,13 @@ Media
         font-size: 2vh;
         position: relative;
         top: -50px;
-        margin: 2vh, 2vw;
+       
     }
     .tagline {
         margin-top: 3vh;
 
     }
-    .logo {
-        margin: 2vh, 2vw;
+    
     }
     h1.logo {
         margin-bottom: 3vh;
