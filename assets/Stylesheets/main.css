@@ -301,7 +301,9 @@ img.construction {
     margin-left: 15%
 }
 
-
+a.tagline {
+    font-size: 1.25em;
+}
 .tagline {
     margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
     text-align: right;
