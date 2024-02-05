@@ -777,6 +777,10 @@ Media
         max-width: 90%;
         max-height: fit-content;
     }
+    nav.contact {
+        position: relative;
+        top: -.5vh;
+    }
     
     @media screen and (orientation: portrait) {
         img.frontend { max-width: 90%; }
