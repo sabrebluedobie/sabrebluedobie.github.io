@@ -162,14 +162,14 @@ p.quote, b {
     color:#aad0c8;
 }
 h2.hook {
-    margin:5vh auto; 
+    margin: 10vh auto; 
     font-weight: 400; 
     text-decoration: underline;
     text-align: center;
 }
 h2.caption4 {
     font-family: 600, 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 1.5vh 3.5vw;
+    margin: 10vh auto;
     text-align: center;
 }
 
@@ -281,7 +281,7 @@ img.frontpgimg {
     display: flex;
     justify-content: center;
     height: 40vh;
-    border-bottom: 5vh;
+    border-bottom: 10vh;
 }
 iframe.frontend {
     display: grid;
