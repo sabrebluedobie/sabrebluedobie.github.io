@@ -96,6 +96,7 @@ header.primary-header {
     margin: 0px;
 }
 body {
+    display: grid;
     margin: 0px;
 }
 section.hero.container {
@@ -276,23 +277,19 @@ img.frontpgimg {
     border-style: solid;
 }
 
-img.frontend {
-    display:block;
-    margin-top: 30vh;
-    margin-left:48vw;
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+}
+iframe.frontend {
+    display: grid;
+    align-self: center;
     max-width: 60%;
     border-radius: 3px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.9);
 }
-img.frontend:empty {
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
+
 img.construction {
     max-width: 75%;
     border-width: 25px;
@@ -693,7 +690,7 @@ Media
         position: relative;
         top: -4vh;
     }
-    img.frontend {
+    .iframe-container {
         position: relative;
         top: -10vh;
         margin: 1%;
@@ -801,9 +798,7 @@ Media
     }
     
     @media screen and (orientation: portrait) {
-        img.frontend { max-width: 90%; }
     }
 
     @media screen and (orientation: landscape) {  
-        img.frontend { max-height: 90%; }  
     }
