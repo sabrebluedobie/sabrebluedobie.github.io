@@ -687,6 +687,7 @@ Media
         top: -10vh;
     }
     h2.hook {
+        margin: 5vh auto;
         position: relative;
         top: -4vh;
     }
@@ -700,6 +701,7 @@ Media
         max-height: 70%;
     }
     h2.caption4 {
+        margin: 5vh auto;
         position: relative;
         margin: 0;
         padding: 0;
