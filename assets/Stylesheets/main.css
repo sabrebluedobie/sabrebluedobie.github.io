@@ -389,10 +389,13 @@ h1.lead, .container {
     display: inline-block;
     margin-top: 8%;
 }
-.contact {
-    margin-bottom: 2.5%;
-}
+
 p.contact {
+    font-size: 4.5vw;
+    line-height: 7.5vh;
+    position: relative;
+    top: 3vh;
+    margin-bottom: 5vh;
     text-align: center;
     margin-left: 5%;
 }
@@ -444,6 +447,16 @@ h1 {
 h2 {
     font-size: 4.181184668989547vw;
     line-height: 6.136680613668061vh;
+}
+h2.contact, h2.contactform {
+    font-size: 5vh;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    text-align: center;
+    color: #023254;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 h3 {
@@ -528,7 +541,7 @@ Leads
     text-align: center;
 }
 
-.lead p {
+p.lead {
     font-size: 3.658536585365854vw;
     line-height: 5.7491289198606275vw;
 }
@@ -780,6 +793,9 @@ Media
     nav.contact {
         position: relative;
         top: -.5vh;
+    }
+    p.contact {
+        line-height: 6vh;
     }
     
     @media screen and (orientation: portrait) {
