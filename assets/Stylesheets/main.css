@@ -297,9 +297,9 @@ img.construction {
     border-color: black;
     margin-left: 15%
 }
-
-.tagline {
-    margin: 9.205020920502092vh 0 3.0683403068340307vh 2.063273727647868vw;
+a.tagline {
+    display: grid;
+    margin-right: 1vw;
     text-align: right;
     font-size: 2.5vw;
 }
@@ -614,6 +614,8 @@ Media
     a.tagline {
         text-align: right;
         font-size: 1.75vh;
+        margin-top: 3vh;
+        display: none;
     }
     div.row {
         position: relative;
@@ -650,10 +652,7 @@ Media
         top: -3vh;
         margin-top: 1vh;
     }
-    .tagline {
-        margin-top: 3vh;
-        display: none;
-    }
+    
     .heroimg {
         position: relative;
         max-width: 90%;
