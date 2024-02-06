@@ -281,6 +281,7 @@ img.frontpgimg {
     display: flex;
     justify-content: center;
     height: 40vh;
+    border-bottom: 5vh;
 }
 iframe.frontend {
     display: grid;
