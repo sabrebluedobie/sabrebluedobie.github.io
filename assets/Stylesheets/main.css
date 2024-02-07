@@ -406,6 +406,9 @@ p.contact {
 .contactnav {
     margin-bottom: 5%;
 }
+iframe.bookings {
+    margin: 5% 38%;
+}
 .bookings {
     display: inline-block;
     margin-left: 25%;
