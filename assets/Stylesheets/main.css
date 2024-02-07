@@ -224,16 +224,14 @@ Rows
 }
 
 #dogs, #sabresmile, #profile-img {
+    display: flex;
+    position: relative;
     min-width:auto;
     max-width: 20vw;
     min-height:auto;
-    margin-left: 5vw;
-    margin-top: 5vh;
+    margin: 5vh 30vw;
 }
 
-#sabresmile {
-    margin-left: 10vw;
-}
 #jigsaw {
     border:0;
     width:12.104539202200826vw;
