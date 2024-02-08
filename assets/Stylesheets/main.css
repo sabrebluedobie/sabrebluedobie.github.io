@@ -374,8 +374,8 @@ h1, h2, h3, h4 {
 }
 img.sabresprite {
     display: none;
-    max-height: 6vh;
-    max-width: 4vw;
+    height: 6vh;
+    width: 4vw;
     margin-right: 1vw;
     -webkit-transform: scaleX(-1);
     -moz-transform: scaleX(-1);
@@ -384,8 +384,8 @@ img.sabresprite {
 }
 img.sabrespritereg {
     margin-left: 1vw;
-    max-height: 6vh;
-    max-width: 4vw;
+    height: 6.5vh;
+    width: 3vw;
 }
 .contact {
    color:#042d4d;
@@ -532,11 +532,14 @@ a.payment {
 
 }
 i.statcaption {
-    margin: 5vh 2vw 5vh 1%;
-    padding: 0;
+    display: grid;
+    display:-ms-grid;
+    padding: 0 1.5;
     font-weight: 400;
     font-size: 2.5vh;
     color: #293f50;
+    border: 2px solid #042d4d;
+    background-color: lightgray;
 }
     
 .frame {
@@ -736,6 +739,18 @@ Media
     }
     div.row {
         position: relative;
+        top: -20vh;
+    }
+    h3.stats {
+        font-size: 5vh;
+        line-height: 5.5vh;
+    }
+    i.statcaption {
+        top: -5vh;
+    }
+    img.sabrespritereg {
+        height: 6vh;
+        width: 10vw;
     }
     
     .frontpgimg {
@@ -795,13 +810,18 @@ Media
         position: relative;
         font-size: 2vh;
         line-height: 3vh;
-        top: -10vh;
+    }
+    i.statcaption {
+        display:grid;
+        border: 2px solid #042d4d;
+        background-color: lightgray;
+        margin: 0;
+        padding: 0 1.5vw;
     }
     h3.caption2 {
         text-decoration: underline;
         font-weight: bold;
         font-size: 3.3333333333333335vw;
-        top: -10vh;
     }
     h2.hook {
         margin: 5vh auto;
