@@ -159,7 +159,9 @@ article.description1 {
     
 }
 p.quote, b {
-    color:#aad0c8;
+    color:#fff;
+    font-size: 2.25vh;
+    text-align: center;
 }
 h2.hook {
     margin: 10vh auto; 
@@ -227,7 +229,7 @@ Rows
     display: flex;
     position: relative;
     min-width:auto;
-    max-width: 20vw;
+    max-width: 60vh;
     min-height:auto;
     margin: 5vh 30vw;
 }
