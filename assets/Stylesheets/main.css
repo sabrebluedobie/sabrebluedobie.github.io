@@ -793,15 +793,13 @@ Media
         margin: auto;
     }
     iframe.bookings {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        margin-left: 2.5vw;
-        max-width: 90%;
-        width: 1000px;
-        max-height: fit-content;
-        height: 800px;
-        background-color: #293f50;
+        position: inherit;
+        margin: auto;
+        width: max-content;
+        width: 400px;
+        min-width: max-content;
+        max-height: max-content;
+        height: 2900px;
     }
     section.row-alt {
         position: relative;
