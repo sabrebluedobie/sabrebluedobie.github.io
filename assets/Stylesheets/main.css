@@ -793,6 +793,7 @@ Media
         margin: auto;
     }
     iframe.bookings {
+        display: initial !important;
         position: inherit;
         margin: auto;
         width: max-content;
