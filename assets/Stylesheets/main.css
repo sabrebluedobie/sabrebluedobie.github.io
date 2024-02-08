@@ -165,7 +165,7 @@ p.quote, b {
     text-align: center;
 }
 h2.hook {
-    margin: 10vh auto; 
+    margin: 5vh auto 2.5vh auto; 
     font-weight: 400; 
     text-decoration: underline;
     text-align: center;
@@ -278,9 +278,10 @@ img.frontpgimg {
     border-style: solid;
 }
 
-.iframe-container {
+div.iframe-container {
     display: flex;
     justify-content: center;
+    margin: 0 auto 5vh auto;
     height: 40vh;
     border-bottom: 10vh;
 }
@@ -352,6 +353,21 @@ body {
 
 h1, h2, h3, h4 {
     color: #8fada7
+}
+img.sabresprite {
+    display: none;
+    max-height: 6vh;
+    max-width: 4vw;
+    margin-right: 1vw;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+img.sabrespritereg {
+    margin-left: 1vw;
+    max-height: 6vh;
+    max-width: 4vw;
 }
 .contact {
    color:#042d4d;
@@ -484,10 +500,21 @@ h4.stats {
 p.stats {
     text-align: center;
     font-size: 2.5vh;
-    margin: 5vh 10%;
+    margin: 5vh auto;
+}
+a.payment {
+    position:static;
+    text-align: center;
+    font-weight: 400;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 4vh;
+    border: 3px solid #8fada7;
+    padding: 2vh 0vw;
+    background-color: #dfe2e5;
+
 }
 i.statcaption {
-    margin: 5vh auto;
+    margin: 5vh 2vw 5vh 1%;
     padding: 0;
     font-weight: 400;
     font-size: 2.5vh;
@@ -692,6 +719,7 @@ Media
     div.row {
         position: relative;
     }
+    
     .frontpgimg {
         min-width: fit-content;
         min-width: -moz-fit-content;
