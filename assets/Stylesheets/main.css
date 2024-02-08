@@ -799,7 +799,7 @@ Media
         width: max-content;
         width: 400px;
         min-width: max-content;
-        max-height: max-content;
+        max-height: 90%;
         height: 2900px;
     }
     section.row-alt {
