@@ -409,7 +409,10 @@ p.contact {
     margin-bottom: 5%;
 }
 iframe.bookings {
-    margin: 5% 38%;
+    width: 25%;
+    margin: auto;
+    max-height: max-content;
+    
 }
 .bookings {
     display: inline-block;
