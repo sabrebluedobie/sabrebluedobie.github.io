@@ -464,6 +464,23 @@ h2.About {
     border: 2px solid cornsilk;
     padding: 2vh 0;
 }
+h3.stats {
+    color:#042d4d;
+    font-size: 5.5vh;
+    font-weight: 400;
+    text-decoration: underline;
+}
+h4.stats {
+    font-size: 4.25vh;
+    font-weight: 400;
+    font-style: italic;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+p.stats {
+    font-size: 2.5vh;
+    margin: 0 7.5%;
+}
+    
 .frame {
     margin-bottom: 2.5%;
 }
@@ -858,3 +875,4 @@ Media
 
     @media screen and (orientation: landscape) {  
     }
+}
