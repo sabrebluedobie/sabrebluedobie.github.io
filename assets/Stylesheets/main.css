@@ -798,6 +798,7 @@ Media
         padding: 0;
         margin-left: 2.5vw;
         max-width: 90%;
+        width: 1000px;
         background-color: #293f50;
     }
     section.row-alt {
