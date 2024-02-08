@@ -377,8 +377,18 @@ h3.caption2 {
     font-weight: bold;
     font-size: 1.9444444444444444vw;
 }
-h1.lead, .container {
+.container {
+    margin: auto;
+}
+h1.lead {
     color: #293f50;
+    font-size: 7vh;
+    line-height: 8vh;
+    font-weight: bold;
+    position: top;
+    position: relative;
+    top: -7vh;
+    text-decoration: underline;
 }
 .label {
     color: #44655f;
@@ -386,6 +396,11 @@ h1.lead, .container {
 .lead.container {
     display: inline-block;
     margin-top: 8%;
+}
+p.portfolio {
+    font-size: 5vh;
+    line-height: 6.5vh;
+    text-align: center;
 }
 
 p.contact {
