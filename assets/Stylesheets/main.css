@@ -455,6 +455,15 @@ h2.About {
 #sabresmile, #dogs, #profile-img {
     vertical-align: center;
 }
+#coupon {
+    text-align: center;
+    font-size: 4vh;
+    color:cornsilk;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 3vh;
+    border: 2px solid cornsilk;
+    padding: 2vh 0;
+}
 .frame {
     margin-bottom: 2.5%;
 }
@@ -768,6 +777,7 @@ Media
         top: -11vh;
 
     }
+    
     .aboutarticle {
         position: relative;
         top: -5vh;
