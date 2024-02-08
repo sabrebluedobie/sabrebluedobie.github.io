@@ -97,6 +97,7 @@ header.primary-header {
 }
 body {
     display: grid;
+    display: -ms-grid;
     margin: 0px;
 }
 section.hero.container {
@@ -285,6 +286,7 @@ img.frontpgimg {
 }
 iframe.frontend {
     display: grid;
+    display: -ms-grid;
     align-self: center;
     max-width: 60%;
     border-radius: 3px;
@@ -300,6 +302,7 @@ img.construction {
 }
 a.tagline {
     display: grid;
+    display: -ms-grid;
     margin-right: 1vw;
     text-align: right;
     font-size: 2.5vw;
@@ -654,7 +657,9 @@ Media
     }
     .grid {
         display: grid;
+        display: -ms-grid;
         grid-template-columns: 1fr;
+        -ms-grid-columns: 1fr;
         width: 90vw;
     }
     .col-1-3 {
@@ -842,6 +847,7 @@ Media
     section.row-alt {
         position: relative;
         min-height:fit-content;
+        min-height: -moz-fit-content;
         height: auto;
         max-height:min-content;
         padding: 0;
@@ -870,6 +876,7 @@ Media
         padding: 0;
         max-width: 90%;
         max-height: fit-content;
+        max-height: -moz-fit-content;
     }
     nav.contact {
         position: relative;
