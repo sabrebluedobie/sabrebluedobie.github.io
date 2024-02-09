@@ -57,7 +57,11 @@ h1, h3, h4, h5, p {
     margin-bottom: 2.2vh;
 }
 
-
+p.privacy {
+    color: #abc5bf;
+    font-size: 1.5vh;
+    margin: 2vh 2vw;
+}
 /*
 =================================================
 Buttons
