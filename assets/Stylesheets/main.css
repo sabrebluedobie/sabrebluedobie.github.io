@@ -4,7 +4,9 @@
 Grid
 =================================================
 */
-
+Content-Security-Policy: default-src 'none';
+   frame-src youtube.com www.youtube.com;
+   report-uri /tst/csp.php?hash=49327997c95cb8a9f1b3471df9f71f91
 
 *,
 *:before,
