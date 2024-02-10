@@ -62,6 +62,32 @@ p.privacy {
     font-size: 1.5vh;
     margin: 2vh 2vw;
 }
+a.privacy {
+    color: #ffffff;
+}
+span.content {
+    color:#dfe2e5;
+}
+p.documentTitle {
+    text-align: center;
+    color:#dfe2e5;
+    font-weight: 400;
+}
+p.content {
+    color:#dfe2e5;
+}
+p#date {
+    text-align: center;
+}
+u#purpose, u#consent, u#personal {
+    font-weight: 400;
+    color:#dfe2e5;
+}
+ol.toc, li.toc, span.toc{
+    color:#dfe2e5;
+
+}
+
 /*
 =================================================
 Buttons
