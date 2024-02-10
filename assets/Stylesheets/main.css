@@ -476,6 +476,7 @@ p.portfolio {
     font-size: 5vh;
     line-height: 6.5vh;
     text-align: center;
+    margin: 0 5vw;
 }
 a.citation {
     text-decoration: underline;
@@ -594,6 +595,54 @@ i.statcaption {
     display: inline-block;
     max-width: 40%;
 }
+h2.Kenspage, h2#Kensname {
+    display: grid;
+    position: relative;
+    margin: 0;
+    padding: 1.5vh 0 1.5vh 0;
+    font-size: 6.75vh;
+    top: -5vh;
+    border: 2px solid #000;
+    background-color: #3f4346;
+    color:orange;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+    
+}
+div#back {
+    background-color:#9ccdf0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+}
+section#Kens {
+    margin: 0;
+    padding: 5vh 0 0 0;
+}
+h2.label {
+    display: inline-block;
+    position: relative;
+    font-size: 
+
+}
+h5.Kenspage {
+
+}
+img.Kenspage {
+
+}
+img.Kenslogo {
+
+}
+img.Kensicon {
+
+}
+caption.Kenspage, caption.Kenslogo, caption.Kensicon {
+
+}
+
 h1 {
     font-size: 6.2717770034843205vw;
     line-height: 6.136680613668061vh;
