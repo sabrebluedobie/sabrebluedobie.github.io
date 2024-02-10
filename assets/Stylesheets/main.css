@@ -57,6 +57,10 @@ h1, h3, h4, h5, p {
     margin-bottom: 2.2vh;
 }
 
+body#privacy {
+    color:#dfe2e5;
+    margin: 2.5vw 2.5vh;
+}
 p.privacy {
     color: #abc5bf;
     font-size: 1.5vh;
@@ -65,8 +69,10 @@ p.privacy {
 a.privacy {
     color: #ffffff;
 }
-span.content {
+span.content, span#policy {
     color:#dfe2e5;
+    margin: 0 44vw;
+    
 }
 p.documentTitle {
     text-align: center;
