@@ -546,6 +546,8 @@ h3.stats {
     border: 3px solid #042d4d;
     padding: 1.5vh 0;
     background-color: lightgoldenrodyellow;
+    display:grid;
+    place-items: center;
 }
 h4.stats {
     font-size: 4.25vh;
@@ -554,9 +556,12 @@ h4.stats {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 p.stats {
+    display: grid;
+    place-items: center;
     text-align: center;
     font-size: 2.5vh;
     margin: 5vh auto;
+    
 }
 a.payment {
     position:relative;
@@ -570,9 +575,11 @@ a.payment {
 
 }
 i.statcaption {
-    display: grid;
-    display:-ms-grid;
-    padding: 0 1.5;
+    display: flex;
+    display:-ms-flexbox;
+    padding: 0;
+    margin:0 auto;
+    float: inline-start;
     font-weight: 400;
     font-size: 2.5vh;
     color: #293f50;
