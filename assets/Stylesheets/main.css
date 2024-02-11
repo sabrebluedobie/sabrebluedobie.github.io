@@ -665,10 +665,12 @@ img.Kensicon {
     position: relative;
     margin: 0 auto;
 }
-caption.Kenspage caption.Kenslogo caption.Kensicon {
-    display: inline;
+i.Kenspage, i.Kenslogo, i.Kensicon {
+    display: grid;
     position: relative;
     text-align: center;
+    font-size: 2.5vh;
+    color: #3f4346;
 }
 
 h1 {
