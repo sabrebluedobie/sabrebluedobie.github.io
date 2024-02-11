@@ -633,6 +633,7 @@ h2.label {
     border: 2px solid #3f4346;
     background-color:#3f4346;
     color: orange;
+    margin: 0;
 }
 h5.Kenspage {
     text-decoration: underline;
