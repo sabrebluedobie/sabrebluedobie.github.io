@@ -644,7 +644,7 @@ p.Kenspage {
     font-size: 3.5vh;
     line-height: 4.5vh;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    margin-left: 3.5vh;
+    margin: auto 3.5vw;
 }
 img.Kenspage {
 
