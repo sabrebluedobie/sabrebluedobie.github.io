@@ -639,6 +639,7 @@ h5.Kenspage {
     text-decoration: underline;
     margin-top: 7.5vh;
     font-size: 4vh;
+    color: #000;
 
 }
 p.Kenspage {
@@ -646,15 +647,23 @@ p.Kenspage {
     line-height: 4.5vh;
     font-family:Georgia, 'Times New Roman', Times, serif;
     margin: auto 3.5vw;
+    color: #3f4346;
 }
 img.Kenspage {
+    display: grid;
+    position: relative;
+    margin: 0 auto;
 
 }
 img.Kenslogo {
-
+    display: grid;
+    position: relative;
+    margin: 0 auto;
 }
 img.Kensicon {
-
+    display: grid;
+    position: relative;
+    margin: 0 auto;
 }
 caption.Kenspage, caption.Kenslogo, caption.Kensicon {
 
