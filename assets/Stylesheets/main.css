@@ -470,7 +470,8 @@ h1.lead {
 }
 .lead.container {
     display: inline-block;
-    margin-top: 8%;
+    margin-top: 5%;
+
 }
 p.portfolio {
     font-size: 5vh;
@@ -602,13 +603,14 @@ h2.Kenspage, h2#Kensname {
     margin: 0;
     padding: 1.5vh 0 1.5vh 0;
     font-size: 6.75vh;
-    top: -5vh;
-    border: 2px solid #000;
+    
+    border: 2px solid #3f4346;
     background-color: #3f4346;
     color:orange;
     font-weight: 400;
     align-items: center;
     text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 }
 div#back {
@@ -618,18 +620,31 @@ div#back {
     width: 100%;
     
 }
-section#Kens {
-    margin: 0;
-    padding: 5vh 0 0 0;
+section#Kens.row {
+    background-color: #9ccdf0;
 }
 h2.label {
-    display: inline-block;
-    position: relative;
-    font-size: 
-
+    display: grid;
+    position:relative;
+    font-size: 5vh;
+    text-align: center;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 2px solid #3f4346;
+    background-color:#3f4346;
+    color: orange;
 }
 h5.Kenspage {
+    text-decoration: underline;
+    margin-top: 7.5vh;
+    font-size: 4vh;
 
+}
+p.Kenspage {
+    font-size: 3.5vh;
+    line-height: 4.5vh;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-left: 3.5vh;
 }
 img.Kenspage {
 
