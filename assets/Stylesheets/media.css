@@ -32,6 +32,9 @@ Media
     .col-2-3 {
         max-width: 95vw;
     }
+    section.hero-container {
+        position: relative;
+    }
     header.primary-header, .container, .group {
         padding-bottom: 0;
         margin-bottom: 0;
@@ -116,11 +119,19 @@ Media
         margin-top: 1vh;
     }
     div.slideshow-container {
+        position: relative;
         top:-10vh;
     }
     div.dots {
         text-align: center;
         display: none;
+    }
+    div.text {
+        position: relative;
+    }
+    h3.click {
+        position: relative;
+        top: -15vh;
     }
     .heroimg {
         position: relative;
@@ -225,12 +236,13 @@ Media
         display: block;
         position: relative;
         font-size: 1.25vh;
-        top: -25vh;
+        top: -15vh;
+    
 
     }
     p.privacy {
         position: relative;
-        top: -30vh;
+        top:-20vh;
     }
     
     .aboutarticle {
