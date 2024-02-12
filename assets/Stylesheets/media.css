@@ -208,6 +208,7 @@ Media
         display: block;
         position: relative;
         font-size: 1.25vh;
+        top:-10vh;
     }
     article.description1 {
         position: relative;
