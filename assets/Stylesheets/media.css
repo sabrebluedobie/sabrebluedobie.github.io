@@ -40,6 +40,7 @@ Media
     h2.tagline, a#tagline.tagline {
         display: none;
     }
+    
     a.payment {
         position: relative;    margin: 0;
         top: -20vh;
@@ -81,11 +82,11 @@ Media
         font-size: 2vh;
         position: relative;
         text-align: right;
-        top: 0;
+        top: -6vh;
+        margin-left: 9vh;
         padding: 0;
         line-height: 3vh;
-        margin-right: .5vw;
-        display: inline;
+        display: inline-block;
         border-top: none;
        
     }
@@ -94,6 +95,7 @@ Media
         position: relative;
         font-size: 0.6vh;
         text-align: center;
+        top:-10vh;
         margin: 0;
         padding: 0;
         margin-top: 1vh;
