@@ -94,10 +94,10 @@ Media
     }
     .primary-nav {
         display: inline-block;
-        position: relative;
+        position: fixed;
+        position: top;
         font-size: 0.6vh;
         text-align: center;
-        top:-10vh;
         margin: 0;
         padding: 0;
         margin-top: 1vh;
