@@ -49,8 +49,10 @@ Media
         padding: 0;
     }
    
-    h2.tagline, a#tagline.tagline {
+    a#tagline.tagline, h2.tagline{
         display: none;
+        visibility: hidden;
+
     }
     a.btn-alt {
         position: relative;
@@ -100,7 +102,7 @@ Media
         font-size: 2vh;
         position: relative;
         text-align: right;
-        top: -4.5vh;
+        top: -4vh;
         margin-left: 9vh;
         padding: 0;
         line-height: 3vh;
@@ -108,8 +110,8 @@ Media
         border-top: none;
        
     }
-    .primary-nav {
-        display: inline-flex;
+    .primary-nav, .nav {
+        display: inline-block;
         position: relative;
         font-size: 0.6vh;
         float: right;
@@ -117,6 +119,7 @@ Media
         margin: 0;
         padding: 0;
         margin-top: 1vh;
+        z-index: 2;
     }
     div.slideshow-container {
         position: relative;
@@ -216,7 +219,7 @@ Media
         
     }
     nav.nav {
-        display: inline-block;
+        display: inline-flex;
         position: relative;
         font-size: 1.25vh;
         top:-10vh;
@@ -321,6 +324,83 @@ Media
         font-size: 4.5vw;
         line-height: 5.5vh;
     }
+    a.about {
+        margin-top: 2vh;
+    }
+    h1.lead {
+        position: relative;
+        margin: 0 1vw;
+        font-size: 4.5vh;
+        text-align: center;
+    }
+    p.portfolio {
+        position: relative;
+        font-size: 2.5vh;
+        line-height: 3.5vh;
+        text-align: left;
+    }
+    section#Kens.row {
+        margin: 0;
+        padding: 0;
+    }
+    h2#Kensname.Kenspage {
+        position: relative;
+        font-size: 3vh;
+        line-height: 4vh;
+        margin: 0;
+        padding: 0;
+    }
+    h2.label {
+        position: relative;
+        font-size: 3vh;
+        line-height: 4vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    /* Style the navigation menu */
+.topnav {
+    display: none;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+  
+  /* Hide the links inside the navigation menu (except for logo/home) */
+  .topnav #myLinks {
+    display: none;
+  }
+  
+  /* Style navigation menu links */
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  /* Style the hamburger menu */
+  .topnav a.icon {
+    background: #d2dde6;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Style the active link (or home/logo) */
+  .active {
+    background-color: #042d4d;
+    color: white;
+  }
     
     @media screen and (orientation: portrait) {
     }
