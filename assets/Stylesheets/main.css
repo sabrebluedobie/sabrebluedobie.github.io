@@ -90,7 +90,7 @@ h1, h3, h4, h5, p {
     margin-bottom: 2.2vh;
 }
 
-body#privacy {
+body {
     color:#dfe2e5;
     margin: 2.5vw 2.5vh;
 }
@@ -888,11 +888,11 @@ Media
         margin: 0;
         padding: 0;
     }
+    h2.tagline {
+        display:none;
+    }
     a.tagline {
-        text-align: right;
-        font-size: 1.75vh;
-        margin-top: 3vh;
-        display: none;
+        display:none;
     }
     a.payment {
         position: relative;    margin: 0;
