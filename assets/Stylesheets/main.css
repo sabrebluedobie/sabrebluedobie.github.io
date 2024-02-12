@@ -790,6 +790,7 @@ Navigation
 
 .nav {
     text-align: right;
+    padding-top: 2.5vh;
 }
 
 .nav li {
