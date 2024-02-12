@@ -82,11 +82,10 @@ Media
         position: relative;
         text-align: right;
         top: 0;
-        margin-left: 9vw;
         padding: 0;
         line-height: 3vh;
         margin-right: .5vw;
-        display: grid;
+        display: inline;
         border-top: none;
        
     }
