@@ -109,10 +109,6 @@ Media
         top: -5vh;
     }
     
-    h1.logo {
-        margin: 2vh;
-        margin-left: 2vh;
-    }
     .caption1 {
         font-size: 3.3333333333333335vw;
         text-decoration: underline;
@@ -173,6 +169,7 @@ Media
         display: block;
         position: relative;
         font-size: 1.25vh;
+        z-index: 2;
     }
     article.description1 {
         position: relative;
