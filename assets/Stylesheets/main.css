@@ -157,6 +157,9 @@ Buttons
     background: #fff;
     color: #648880;
 }
+div.dots {
+    text-align: center;
+}
 
 /*
 ===========================================
