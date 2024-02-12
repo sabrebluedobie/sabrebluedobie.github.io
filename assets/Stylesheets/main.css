@@ -37,9 +37,10 @@ Grid
     
 }
 
-Content-Security-Policy: default-src 'none';
-   frame-src youtube.com www.youtube.com;
-   report-uri /tst/csp.php?hash=49327997c95cb8a9f1b3471df9f71f91
+Content-Security-Policy: default-src: none;
+   frame-src: youtube.com www.youtube.com;
+   report-uri: /tst/csp.php?hash=49327997c95cb8a9f1b3471df9f71f91
+
 
 *,
 *:before,
@@ -48,7 +49,7 @@ Content-Security-Policy: default-src 'none';
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .container, .grid {
@@ -167,8 +168,9 @@ header.primary-header {
     margin: 0px;
 }
 body {
-    display: grid;
+    
     display: -ms-grid;
+    display: grid;
     margin: 0px;
 }
 section.hero.container {
@@ -318,9 +320,9 @@ Rows
 #dogs, #sabresmile, #profile-img {
     display: flex;
     position: relative;
-    min-width:auto;
+    min-width: 1vw;
     max-width: 60vh;
-    min-height:auto;
+    min-height:1vh;
     margin: 5vh 30vw;
 }
 
@@ -375,8 +377,9 @@ div.iframe-container {
     border-bottom: 10vh;
 }
 iframe.frontend {
-    display: grid;
+    
     display: -ms-grid;
+    display: grid;
     align-self: center;
     max-width: 60%;
     border-radius: 3px;
@@ -391,8 +394,9 @@ img.construction {
     margin-left: 15%
 }
 a.tagline {
-    display: grid;
+    
     display: -ms-grid;
+    display: grid;
     margin-right: 1vw;
     text-align: right;
     font-size: 2.5vw;
@@ -611,8 +615,9 @@ a.payment {
 
 }
 i.statcaption {
-    display: flex;
+    
     display:-ms-flexbox;
+    display: flex;
     padding: 0;
     margin:0 auto;
     float: inline-start;
