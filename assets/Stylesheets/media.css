@@ -74,16 +74,20 @@ Media
         margin-left: auto;
         margin-right: auto;
     }
+    .primary-header a:hover {
+        display: none;
+    }
    h1.logo, a.logo {
         font-size: 2vh;
         position: relative;
         text-align: right;
-        top: 0vh;
-        margin: 0;
+        top: 0;
+        margin-left: 9vw;
         padding: 0;
         line-height: 3vh;
         margin-right: .5vw;
         display: grid;
+        border-top: none;
        
     }
     .primary-nav {
@@ -93,7 +97,6 @@ Media
         text-align: center;
         margin: 0;
         padding: 0;
-        top: -3vh;
         margin-top: 1vh;
     }
     
