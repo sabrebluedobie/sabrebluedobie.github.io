@@ -107,10 +107,10 @@ Media
     }
     .primary-nav {
         display: inline-block;
-        position: relative;
+        position: fixed;
+        position: top;
         font-size: 0.6vh;
         text-align: center;
-        top:-10vh;
         margin: 0;
         padding: 0;
         margin-top: 1vh;
@@ -128,10 +128,6 @@ Media
         top: -5vh;
     }
     
-    h1.logo {
-        margin: 2vh;
-        margin-left: 2vh;
-    }
     .caption1 {
         font-size: 3.3333333333333335vw;
         text-decoration: underline;
@@ -212,8 +208,6 @@ Media
         display: block;
         position: relative;
         font-size: 1.25vh;
-        margin: 0;
-        padding: 0;
     }
     article.description1 {
         position: relative;
