@@ -109,10 +109,10 @@ Media
        
     }
     .primary-nav {
-        display: inline-block;
-        position: fixed;
-        position: top;
+        display: inline-flex;
+        position: relative;
         font-size: 0.6vh;
+        float: right;
         text-align: center;
         margin: 0;
         padding: 0;
@@ -216,7 +216,7 @@ Media
         
     }
     nav.nav {
-        display: block;
+        display: inline-block;
         position: relative;
         font-size: 1.25vh;
         top:-10vh;
