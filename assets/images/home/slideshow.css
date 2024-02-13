@@ -1,14 +1,14 @@
 * {box-sizing:border-box}
 
 /* Slideshow container */
-.slideshow-container {
+.slideshow-container, .slideshow-container1 {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
 /* Hide the images by default */
-.mySlides {
+.mySlides, .mySlides1 {
   display: none;
 }
 

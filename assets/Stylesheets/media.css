@@ -149,16 +149,16 @@ Media
         margin-right: 0;
     }
     
-    div.slideshow-container {
+    div.slideshow-container, div.slideshow-container1 {
         position: relative;
-        z-index: -2;
     }
     div.dots {
         text-align: center;
-        display: none;
+        display: inline-block;
     }
     div.text {
         position: relative;
+        color: #000;
     }
     h3.click {
         position: relative;
@@ -363,21 +363,26 @@ Media
     a.about {
         margin-top: 2vh;
     }
-    h1.lead {
+    h2.lead {
         position: relative;
         margin: 0 1vw;
         font-size: 4.5vh;
         text-align: center;
+        margin-top: 7.5vh;
+        margin-bottom: 2.5vh;
+        color:darkslateblue;
     }
     p.portfolio {
         position: relative;
         font-size: 2.5vh;
         line-height: 3.5vh;
         text-align: left;
+        font-family: 'Arapey', 'Times New Roman', Times, serif;
     }
     section#Kens.row {
         margin: 0;
         padding: 0;
+        margin-top: 7.5vh;
     }
     h2#Kensname.Kenspage {
         position: relative;
@@ -385,6 +390,7 @@ Media
         line-height: 4vh;
         margin: 0;
         padding: 0;
+        margin-top: 30vh;
     }
     h2.label {
         position: relative;
