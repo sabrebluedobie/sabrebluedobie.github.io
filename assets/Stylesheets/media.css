@@ -106,9 +106,14 @@ Media
         font-size: 1.75vh;
         text-align: right;
     }
-    h1#schedule.lead {
+    h1#schedule {
         position: absolute;
         top:-5vh;
+    }
+    h1#about1 {
+        position: relative;
+        top: -12.5vh;
+        right: 2vw;
     }
    h1.logo {
         font-size: 2vh;
