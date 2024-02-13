@@ -42,7 +42,7 @@ Media
         margin: 0;
     }
     img.logo {
-        position: fixed;
+        position: absolute;
         max-width: 25%;
         z-index: -1;
         
@@ -112,13 +112,13 @@ Media
         top:-5vh;
     }
     h1#about1 {
-        position: relative;
-        top: -12.5vh;
+        position: absolute;
+        top: 7.5vh;
         right: 2vw;
     }
    h1.logo {
         font-size: 2vh;
-        position: fixed;
+        position: absolute;
         text-align: right;
         margin-left: 35vw;
         padding: 0;
@@ -281,13 +281,14 @@ Media
     }
     article.description1, article.description {
         position: relative;
+        display: inline;
         line-height: 2.5vh;
         font-size: 2vh;
         margin: 0;
         padding: 0;
         margin-left: 3.5vw;
         text-align: center;
-        margin-top: 10vh;
+        margin-top: 15vh;
         z-index: -2;
         
     }
