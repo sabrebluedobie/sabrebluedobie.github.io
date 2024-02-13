@@ -117,6 +117,11 @@ Media
         top: 7.5vh;
         right: 2vw;
     }
+    h1#info {
+        position: absolute;
+        margin-top: 7.5vh;
+        margin-right: 2.5vw;
+    }
    h1.logo {
         font-size: 2vh;
         position: absolute;
@@ -225,13 +230,14 @@ Media
     h2.hook {
         margin: 5vh auto;
         position: relative;
-        top: 2.5vh;
+        top: 9vh;
         z-index: -2;
+        color: lightblue;
         
     }
     .iframe-container {
         position: relative;
-        top:-7.5vh;
+        top:-2.5vh;
         margin: 0;
         z-index: -2;
         
