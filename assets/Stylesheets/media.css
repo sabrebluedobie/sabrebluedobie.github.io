@@ -146,6 +146,7 @@ Media
     
     div.slideshow-container {
         position: relative;
+        z-index: -1;
     }
     div.dots {
         text-align: center;
