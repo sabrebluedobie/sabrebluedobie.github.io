@@ -109,7 +109,8 @@ Media
     }
     h1#schedule {
         position: absolute;
-        top:-5vh;
+        margin-top: 7.5vh;
+        margin-right: 1.5vw;
     }
     h1#about1 {
         position: absolute;
@@ -341,7 +342,7 @@ Media
         min-width: max-content;
         max-height: 90%;
         height: 2900px;
-        top: -10vh;
+        
         z-index:-2;
     }
     section.row-alt {
