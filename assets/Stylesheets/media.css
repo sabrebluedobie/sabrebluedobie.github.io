@@ -312,6 +312,7 @@ Media
         max-height: 90%;
         height: 2900px;
         top: -10vh;
+        z-index:-2;
     }
     section.row-alt {
         position: relative;
