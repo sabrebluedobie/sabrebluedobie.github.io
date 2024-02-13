@@ -413,6 +413,18 @@ Media
     z-index: -2;
 
    }
+   div.privacy {
+    position: absolute;
+    top: 150vh;
+   }
+   footer#contact1 {
+    position: relative;
+    top: 40vh;
+   }
+   div#contact2 {
+    position: relative;
+    display: none;
+   }
     
     @media screen and (orientation: portrait) {
     }
