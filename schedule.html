@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/Stylesheets/meyerStyle.css">
 		<link rel="stylesheet" type="text/css" href="assets/Stylesheets/main.css">
 		<link rel="stylesheet" type="text/css" href="assets/Stylesheets/media.css">
-		
+		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
 <!--Microsoft Clarity code-->
 <script type="text/javascript">
@@ -41,27 +41,41 @@
 	
 	<body>
 		
-		<header class="primary-header container group">
+		<header id="navbar">
+			<nav class="navbar-container container">
+			  <a href="index.html" class="home-link">
+				<div class="navbar-logo"><img class="navbar-logo" src="assets/images/home/bluedobielogo-1.png" alt="bluedobie logo"></div>
+				<h2 class="home-link">Developing Dreams by #bluedobie Developing</h2>
+			  </a>
+			  <button
+				type="button"
+				id="navbar-toggle"
+				aria-controls="navbar-menu"
+				aria-label="Toggle menu"
+				aria-expanded="false"
+			  >
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <div id="navbar-menu" aria-labelledby="navbar-toggle">
+				<ul class="navbar-links">
+				  <li class="navbar-item"><a class="navbar-link" href="aboutMe.html">About</a></li>
+				  <li class="navbar-item"><a class="navbar-link" href="schedule.html">Schedule</a></li>
+				  <li class="navbar-item"><a class="navbar-link" href="Portfolio.html">Portfolio</a></li>
+				  <li class="navbar-item"><a class="navbar-link" href="Contact.html">Contact</a></li>
+				</ul>
+			  </div>
+			</nav>
+		  </header>
+		  <script src="index.js"></script>
 
 			<img class="logo" src="assets/images/home/bluedobielogo-1.ico" title="#bluedobie Developing" alt="blue doberman leaping out of a MacBook, logo #bluedobie Developing">
 			<h1 class="logo">
-				<a class="logo" href="index.html">Developing Dreams <br> #bluedobie Web Developing</a>
+				<h1 id="schedule" class="logo">Developing Dreams<br>by <br> #bluedobie Web Developing</a>
 			</h1>
 
-			<h3 class="tagline"><a class="tagline" href="schedule.html" aria-label="link to schedule page">By Appointment Only</a></h3>
-
-			<nav class="nav primary-nav">
-				<ul>
-					<li><a href="index.html" title="Home Page">Home</a></li><!--
-					--><li><a href="aboutMe.html" title="About Me">About Me</a></li><!--
-					--><li><a href="schedule.html" title="Schedule Form">Schedule</a></li><!--
-					--><li><a href="Portfolio.html" title="Portfolio Work">Portfolio</a></li><!--
-					--><li><a href="Contact.html" title="Contact Form">Contact Me</a></li>
-				</ul>
-			</nav>	
 			
-		</header>
-
 		<iframe class="bookings" title="bookings" src='https://outlook.office365.com/owa/calendar/sabrebluedobie@brownadminserv.onmicrosoft.com/bookings/' width='450' height='900'  style='border:0'></iframe><br><br><br><br>
 
 		<a class="payment" href="jotform.html" aria-label="Go to payments">Order and Pay for Services</a>
@@ -71,19 +85,10 @@
 			<small>Melanie Brown/#bluedobie Developing</small><br>
 
 			
-			<nav class="nav">
-
-				<ul>
-					<li><a href="index.html" title="Home Page">Home</a></li><!--
-					--><li><a href="aboutMe.html" title="About Me">About Me</a></li><!--
-					--><li><a href="schedule.html" title="Schedule Form">Schedule</a></li><!--
-					--><li><a href="Portfolio.html" title="Portfolio Work">Portfolio</a></li><!--
-					--><li><a href="Contact.html" title="Contact Form">Contact Me</a></li>
-				</ul>
-
-			</nav>
+			
 			
 		</footer>
+		<p class="privacy">* Notice * We partner with Microsoft Clarity and Microsoft Advertising to capture how you use and interact with our website through behavioral metrics, heatmaps, and session replay to improve and market our products/services. Website usage data is captured using first and third-party cookies and other tracking technologies to determine the popularity of products/services and online activity. Additionally, we use this information for site optimization, fraud/security purposes, and advertising. For more information about how Microsoft collects and uses your data, visit the Microsoft Privacy Statement. View #bluedobie Developing <a class="privacy" href="bluedobiedev Terms and Conditions.html">Terms and Conditions</a> and Full <a class="privacy" href="bluedobiedev Privacy Policy.html">Privacy Policy</a> at the links. Thank you!</p>
 	
 	</body>
 </html>

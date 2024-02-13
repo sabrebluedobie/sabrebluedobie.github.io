@@ -100,7 +100,7 @@ Media
     .primary-header a:hover {
         display: none;
     }
-    h1#index {
+    h1#index, h1#schedule {
         top: -10vh;
     }
    h1.logo {
@@ -304,13 +304,14 @@ Media
     }
     iframe.bookings {
         display: initial !important;
-        position: inherit;
+        position: relative;
         margin: auto;
         width: max-content;
         width: 400px;
         min-width: max-content;
         max-height: 90%;
         height: 2900px;
+        top: -10vh;
     }
     section.row-alt {
         position: relative;
