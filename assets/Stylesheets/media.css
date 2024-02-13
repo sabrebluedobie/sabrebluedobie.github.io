@@ -98,16 +98,18 @@ Media
     .primary-header a:hover {
         display: none;
     }
-   h1.logo, a.logo {
+   h1.logo {
         font-size: 2vh;
         position: relative;
         text-align: right;
-        top: -4vh;
         margin-left: 9vh;
         padding: 0;
+        margin-top: 0;
+        top: -10vh;
         line-height: 3vh;
         display: inline-block;
         border-top: none;
+        z-index: -1;
        
     }
     .primary-nav, .nav {
@@ -119,11 +121,29 @@ Media
         margin: 0;
         padding: 0;
         margin-top: 1vh;
-        z-index: 2;
+        z-index: 0;
+        display: inline-flex;
+        position: relative;
+        font-size: 1.25vh;
+        top:-10vh;
     }
+    .primary-nav {
+        text-align: right;
+        padding-top: 2.5vh;
+    }
+    
+    .primary-nav li {
+        display: inline-block;
+        margin: 0 1.7421602787456445vw;
+        vertical-align: top;
+    }
+    
+    .primary-nav li:last-child {
+        margin-right: 0;
+    }
+    
     div.slideshow-container {
         position: relative;
-        top:-10vh;
     }
     div.dots {
         text-align: center;
@@ -134,7 +154,6 @@ Media
     }
     h3.click {
         position: relative;
-        top: -15vh;
     }
     .heroimg {
         position: relative;
@@ -156,7 +175,6 @@ Media
         position: relative;
         font-size: 2vh;
         line-height: 3vh;
-        top: -35vh;
     }
     i.statcaption {
         display:grid;
@@ -239,13 +257,13 @@ Media
         display: block;
         position: relative;
         font-size: 1.25vh;
-        top: -15vh;
+        top: -5vh;
     
 
     }
     p.privacy {
         position: relative;
-        top:-20vh;
+        top:-5vh;
     }
     
     .aboutarticle {
@@ -357,50 +375,9 @@ Media
         margin: 0;
         padding: 0;
     }
+
     
-    
-    /* Style the navigation menu */
-.topnav {
-    display: none;
-    overflow: hidden;
-    background-color: #333;
-    position: relative;
-  }
-  
-  /* Hide the links inside the navigation menu (except for logo/home) */
-  .topnav #myLinks {
-    display: none;
-  }
-  
-  /* Style navigation menu links */
-  .topnav a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-  }
-  
-  /* Style the hamburger menu */
-  .topnav a.icon {
-    background: #d2dde6;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  
-  /* Add a grey background color on mouse-over */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Style the active link (or home/logo) */
-  .active {
-    background-color: #042d4d;
-    color: white;
-  }
+   
     
     @media screen and (orientation: portrait) {
     }
