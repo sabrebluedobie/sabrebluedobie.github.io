@@ -103,6 +103,7 @@ Media
         position: relative;
         text-align: right;
         margin-left: 9vh;
+        margin-right: 1.5vh;
         padding: 0;
         margin-top: 0;
         top: -10vh;
@@ -110,6 +111,7 @@ Media
         display: inline-block;
         border-top: none;
         z-index: -1;
+        color: #fff;
        
     }
     .primary-nav, .nav {
