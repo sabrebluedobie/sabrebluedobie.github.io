@@ -157,6 +157,7 @@ Media
     div.slideshow-container {
         position: relative;
         margin-top: 7.5vh;
+        z-index:-2;
     }
     div.slideshow-container div.slideshow-container1 {
         position: relative;
