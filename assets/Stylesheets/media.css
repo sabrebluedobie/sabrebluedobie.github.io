@@ -42,7 +42,7 @@ Media
         margin: 0;
     }
     img.logo {
-        position: relative;
+        position: fixed;
         max-width: 25%;
         top: -7.5vh;
     }
