@@ -100,15 +100,21 @@ Media
     .primary-header a:hover {
         display: none;
     }
-    h1#index, h1#schedule {
-        top: -10vh;
+    h1#index {
+        position: absolute;
+        margin-top: 7.5vh;
+        font-size: 1.75vh;
+        text-align: right;
+    }
+    h1#schedule.lead {
+        position: absolute;
+        top:-5vh;
     }
    h1.logo {
         font-size: 2vh;
         position: relative;
         text-align: right;
-        margin-left: 9vh;
-        margin-right: 1.5vh;
+        margin-left: 35vw;
         padding: 0;
         margin-top: 0;
         top: -vh;
@@ -148,21 +154,33 @@ Media
     .primary-nav li:last-child {
         margin-right: 0;
     }
-    
+    div.slideshow-container {
+        position: relative;
+        margin-top: 7.5vh;
+    }
     div.slideshow-container div.slideshow-container1 {
         position: relative;
         z-index: -2;
     }
     div.dots {
         text-align: center;
-        display: inline-block;
+        display: none;
     }
     div.text {
         position: relative;
         color: #000;
     }
+    div.text1 {
+        position: relative;
+        color: #fff;
+        font-family: 'Arapey', 'Times New Roman', serif;
+        font-style: italic;
+    }
     h3.click {
         position: relative;
+        font-family: 'Arapey', 'Times New Roman', Times, serif;
+        text-align: center;
+        color:cornsilk
     }
     .heroimg {
         position: relative;
@@ -352,6 +370,15 @@ Media
         max-width: 90%;
         max-height: fit-content;
         max-height: -moz-fit-content;
+        z-index: index onhover -2;
+    }
+    header#navbar {
+        position: relative;
+        z-index: 0;
+    }
+    nav.navbar-container .container {
+        position: relative;
+        z-index: 0;
     }
     nav.contact {
         position: relative;
@@ -425,7 +452,16 @@ Media
     position: relative;
     display: none;
    }
-    
+   body.index {
+    position: absolute;
+    margin: 0 1.5vw;
+   }
+    iframe.contactform {
+        z-index: -1;
+    }
+    section.row-alt {
+        z-index: -2;
+    }
     @media screen and (orientation: portrait) {
     }
 
