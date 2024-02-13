@@ -150,6 +150,8 @@ Media
         position: relative;
         top: -12.5vh;
     }
+    
+    
    h1.logo {
         font-size: 2vh;
         position: absolute;
@@ -163,6 +165,11 @@ Media
         z-index: -1;
         color: #fff;
        
+    }
+    h1#contact3 {
+        position: relative;
+        margin-right: 1.5vw;
+        z-index: -1;
     }
    
     div.slideshow-container {
@@ -385,7 +392,8 @@ Media
         max-width: 90%;
         max-height: fit-content;
         max-height: -moz-fit-content;
-        z-index: index onhover -2;
+        
+        z-index: -1;
     }
     header#navbar {
         position: relative;
@@ -482,9 +490,7 @@ Media
     position: absolute;
     margin: 0 1.5vw;
    }
-    iframe.contactform {
-        z-index: -1;
-    }
+    
     section.row-alt {
         z-index: -2;
     }
