@@ -122,6 +122,34 @@ Media
         margin-top: 7.5vh;
         margin-right: 2.5vw;
     }
+    h1#portfolio {
+        position: relative;
+        margin-top: -25vh;
+        display: inline;
+
+    }
+    div.logo {
+        position: relative;
+        background-color: #042d4d;
+        top:5vh;
+        padding-bottom: 10vh;
+        z-index: -2;
+        
+    }
+    div.text {
+        font-family: 'Arapey', 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+    div#portfolio2 {
+        position: relative;
+        display: inline;
+        margin-top: -5vh;
+        z-index: -1;
+    }
+    img#portfolio3 {
+        position: relative;
+        top: -12.5vh;
+    }
    h1.logo {
         font-size: 2vh;
         position: absolute;
@@ -136,43 +164,16 @@ Media
         color: #fff;
        
     }
-    .primary-nav, .nav {
-        display: inline-block;
-        position: relative;
-        font-size: 0.6vh;
-        float: right;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        margin-top: 1vh;
-        z-index: 0;
-        display: inline-flex;
-        position: relative;
-        font-size: 1.25vh;
-        top:-10vh;
-    }
-    .primary-nav {
-        text-align: right;
-        padding-top: 2.5vh;
-    }
-    
-    .primary-nav li {
-        display: inline-block;
-        margin: 0 1.7421602787456445vw;
-        vertical-align: top;
-    }
-    
-    .primary-nav li:last-child {
-        margin-right: 0;
-    }
+   
     div.slideshow-container {
         position: relative;
         margin-top: 12.5vh;
         z-index:-2;
     }
-    div.slideshow-container div.slideshow-container1 {
+
+    div.slideshow-container1 {
         position: relative;
-        z-index: -2;
+        z-index: -1;
     }
     div.dots {
         text-align: center;
@@ -426,9 +427,11 @@ Media
         
     }
     section#Kens.row {
+        position: relative;
         margin: 0;
         padding: 0;
-        margin-top: 7.5vh;
+        top: -20vh;
+        z-index: -2;
     }
     h2#Kensname.Kenspage {
         position: relative;
@@ -436,7 +439,16 @@ Media
         line-height: 4vh;
         margin: 0;
         padding: 0;
-        margin-top: 35vh;
+        margin-top: 25vh;
+    }
+    h5.Kenspage {
+        position: relative;
+        font-size: 3vh;
+        margin: auto 2.5vw;
+        text-align: left;
+    }
+    p.Kenspage {
+        font-size: 2.5vh;
     }
     h2.label {
         position: relative;
@@ -474,6 +486,10 @@ Media
         z-index: -1;
     }
     section.row-alt {
+        z-index: -2;
+    }
+    div#back {
+        position: relative;
         z-index: -2;
     }
     @media screen and (orientation: portrait) {
