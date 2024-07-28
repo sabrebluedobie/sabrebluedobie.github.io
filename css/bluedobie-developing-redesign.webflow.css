@@ -1997,8 +1997,8 @@ blockquote {
 
 .button.contact {
   border-radius: 0;
-  background-color:#042d4d;
-  color:#ededed;
+  background-color:#ededed;
+  color:#000;
   flex-flow: row;
   justify-content: center;
   align-items: center;
