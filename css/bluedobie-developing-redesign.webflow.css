@@ -20,6 +20,10 @@
   margin-bottom: 8px;
 }
 
+.w-form-contactformrecaptcha {
+  margin-top: -5vh;
+}
+
 .w-checkbox {
   margin-bottom: 5px;
   padding-left: 20px;
@@ -1516,8 +1520,9 @@ blockquote {
 }
 
 .contact-form-grid {
-  grid-column-gap: 2em;
-  grid-row-gap: 2em;
+  column-gap: 1em;
+  row-gap: 0.5em;
+  margin-top: 75px;
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
@@ -1992,6 +1997,8 @@ blockquote {
 
 .button.contact {
   border-radius: 0;
+  background-color:#042d4d;
+  color:#ededed;
   flex-flow: row;
   justify-content: center;
   align-items: center;
@@ -6218,15 +6225,16 @@ blockquote {
 }
 
 .contact-form-holder {
-  background-color: #332e2a;
+  background-color: #042d4d;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1060px;
-  height: 510px;
-  min-height: 510px;
-  max-height: 510px;
-  margin-top: -45px;
+  height: 580px;
+  min-height: 580px;
+  max-height: 580px;
+  margin-top: 25vh;
+  margin-bottom: 5vh;
   margin-left: auto;
   margin-right: auto;
   padding: 70px 30px;
