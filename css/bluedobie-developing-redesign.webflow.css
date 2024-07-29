@@ -6215,6 +6215,8 @@ blockquote {
   align-items: flex-start;
   margin-top: 80px;
   display: flex;
+  background-color: #000;
+  color:#ededed;
 }
 
 .statistics-title {
