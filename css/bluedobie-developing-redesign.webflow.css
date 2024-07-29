@@ -6214,13 +6214,14 @@ blockquote {
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 80px;
+  padding: 10px 10px;
   display: flex;
   background-color: #000;
   color:#ededed;
 }
 
 .statistics-title {
-  color: var(--text-color);
+  color: #fff;
   max-width: 860px;
   font-family: Instrument Serif, sans-serif;
   font-size: 3.25rem;
