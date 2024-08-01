@@ -7244,7 +7244,8 @@ span.reviewname {
   margin: 0 25px 100% 0;
 }
 
-span.reviewbody {
+.reviewbody {
+  display: inline-block;
   width: 80%;
   text-align: center;
   margin: 0 20px 100% 0;
@@ -10431,16 +10432,20 @@ span.reviewbody {
     object-fit: fill;
     flex-flow: column;
     align-self: center;
-    width: 100%;
+    width: 80%;
+    height: auto;
     display: block;
     bottom: 10vh;
     right: 50vw;
   }
-  span.reviewbody {
+  .reviewbody {
+    width: 80vw;
+    margin: 0px 5px 5px 40px;
 
   }
   span.reviewname {
-    float:left;
+    float: left;
+    margin: 0px 30px 0px 0px;
   }
   .code-embed-2 {
     width: 80;
@@ -10448,7 +10453,7 @@ span.reviewbody {
     max-width: 479px;
   }
   .div-block-5 {
-    height: auto;
+    height: 35vh;
   }
 
   .div-block-2 {
