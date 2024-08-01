@@ -7220,22 +7220,35 @@ blockquote {
 
 .div-block-5 {
   outline-offset: 0px;
-  border-bottom: 2px solid #000;
-  outline: 2px #000;
   height: 40vh;
+  width: 80%;
+  margin-top: 10vh;
 }
 
 .div-block-6 {
   outline-offset: 0px;
-  border-bottom: 2px solid #000;
-  outline: 1px solid #000;
   height: 50vh;
+  width: 80%;
+  margin-top: 5vh;
 }
 
 .code-embed-3 {
   outline-offset: 0px;
   border-bottom: 2px solid #000;
   outline: 1px #000;
+}
+
+span.reviewname {
+  margin-right: 25vw;
+  float: left;
+  margin: 0 25px 100% 0;
+}
+
+span.reviewbody {
+  width: 80%;
+  text-align: center;
+  margin: 0 20px 100% 0;
+
 }
 
 .heading-28 {
@@ -10422,6 +10435,20 @@ blockquote {
     display: block;
     bottom: 10vh;
     right: 50vw;
+  }
+  span.reviewbody {
+
+  }
+  span.reviewname {
+    float:left;
+  }
+  .code-embed-2 {
+    width: 80;
+    min-width: 100vw;
+    max-width: 479px;
+  }
+  .div-block-5 {
+    height: auto;
   }
 
   .div-block-2 {
