@@ -6704,6 +6704,7 @@ blockquote {
   margin-top: 60px;
   margin-left: 10%;
   margin-right: auto;
+  height: auto;
 }
 
 .html-embed-6 {
@@ -6714,7 +6715,7 @@ blockquote {
   width: 100%;
   min-width: 0;
   max-width: 0;
-  height: 100%;
+  height: auto;
   min-height: 0;
   max-height: 0;
   margin: auto;
