@@ -6702,9 +6702,9 @@ blockquote {
 
 .html-embed-5 {
   margin-top: 60px;
-  margin-left: 10%;
-  margin-right: auto;
-  height: auto;
+  margin-left: 20%;
+  margin-right: 20%;
+  height: 100%;
 }
 
 .html-embed-6 {
@@ -6715,7 +6715,7 @@ blockquote {
   width: 100%;
   min-width: 0;
   max-width: 0;
-  height: auto;
+  height: 100%;
   min-height: 0;
   max-height: 0;
   margin: auto;
@@ -7221,16 +7221,18 @@ blockquote {
 
 .div-block-5 {
   outline-offset: 0px;
-  height: 40vh;
+  height: 60vh;
   width: 80%;
   margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .div-block-6 {
   outline-offset: 0px;
-  height: 50vh;
+  height: 80vh;
   width: 80%;
   margin-top: 5vh;
+  margin-bottom: 10vh;
 }
 
 .code-embed-3 {
@@ -7239,18 +7241,27 @@ blockquote {
   outline: 1px #000;
 }
 
-span.reviewname {
-  margin-right: 25vw;
-  float: left;
-  margin: 0 25px 100% 0;
+
+
+h3.address {
+  font-size: 1.5em;
 }
 
-.reviewbody {
-  display: inline-block;
+a.reviewbody {
   width: 80%;
   text-align: center;
-  margin: 0 20px 100% 0;
+  margin: 0 20px 100% 10px;
+  font-size: 1em;
+  float: left;
 
+}
+
+h4.reviewname {
+  font-size: 1.5em;
+  margin-right: 25vw;
+  float: left;
+  margin: 0 25vw 100% 0;
+  
 }
 
 .heading-28 {
@@ -10439,12 +10450,12 @@ span.reviewname {
     bottom: 10vh;
     right: 50vw;
   }
-  .reviewbody {
-    width: 80vw;
+  a.reviewbody {
+    float: left;
     margin: 0px 5px 5px 40px;
 
   }
-  span.reviewname {
+  h4.reviewname {
     float: left;
     margin: 0px 30px 0px 0px;
   }
