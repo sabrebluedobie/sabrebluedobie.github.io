@@ -14,6 +14,15 @@
   --bg-grey: #d4d4d4;
   --notification-bg: #001b38;
   --nav-background: #fff;
+  max-width: 100%;
+  width: 100vw;
+}
+.body {
+  max-width: 100%;
+  width: 100vw;
+  width: -moz-fit-content;
+  width: fit-content;
+
 }
 
 .w-form-formrecaptcha {
@@ -2275,6 +2284,7 @@ blockquote {
   padding-top: 90px;
   display: flex;
   position: relative;
+  max-width: 100%;
 }
 
 .hero-text-secondary {
@@ -8462,6 +8472,7 @@ h4.reviewname {
 
   .hero-section-secondary {
     height: auto;
+    max-width: 100%;
   }
 
   .hero-description-short-container {
@@ -9354,6 +9365,7 @@ h4.reviewname {
 
   .hero-section-secondary {
     min-height: 40vh;
+    max-width: 100%;
   }
 
   .hero-text-secondary {
