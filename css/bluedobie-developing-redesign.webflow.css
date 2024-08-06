@@ -2302,6 +2302,7 @@ blockquote {
   justify-content: center;
   align-items: center;
   display: flex;
+  max-width: 100%;
 }
 
 .social-media-link {
@@ -6540,11 +6541,14 @@ div.blog-main-image-div {
 div.article-image {
   width: 480px;
   margin-left: 5vw;
-  max-width: 100%;
+  max-width: 80%;
   max-height: 200px;
   margin-bottom: 7.5vh;
 }
 
+.data-youtube-video {
+  max-width: 80%;
+}
 .about-boxes-holder {
   width: 100%;
 }
