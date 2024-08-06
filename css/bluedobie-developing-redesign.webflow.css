@@ -6520,6 +6520,21 @@ blockquote {
   margin-right: auto;
 }
 
+div.blog-main-image-div {
+  width: 80vw;
+  margin-left: 5vw;
+  margin-top: 10vh;
+
+}
+
+div.article-image {
+  width: 480px;
+  margin-left: 5vw;
+  max-width: 100%;
+  max-height: 200px;
+  margin-bottom: 7.5vh;
+}
+
 .about-boxes-holder {
   width: 100%;
 }
