@@ -7324,7 +7324,36 @@ h4.reviewname {
   flex: 0 auto;
   align-self: center;
 }
+.hero-image, .blog-home-main-image {
+  width: 40vw;
+  max-height: 40vh;
+  display: block;
+  margin-left: 12.5vw;
+}
+.blog-home-main-item {
+  margin-bottom: 20vh;
+  display: block;
+}
+.blog-container {
+  margin-bottom: 10vh;
+  display: block;
+}
+.pagination-controls {
+  text-align: center;
+  margin-top: 40vh;
+  display: block;
+}
 
+button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc; /* Grey out the button when disabled */
+  cursor: not-allowed;
+}
 .flex-block-11 {
   justify-content: center;
   align-items: center;
