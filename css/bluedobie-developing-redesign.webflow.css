@@ -10347,8 +10347,8 @@ button:disabled {
   }
 
   .about-description-holder {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 7.5vw;
+    padding-right: 2.5vw;
   }
 
   .statistics-text-holder {
@@ -10368,7 +10368,7 @@ button:disabled {
   }
 
   .statistics-title {
-    font-size: 50px;
+    font-size: 40px;
   }
 
   .contact-form-holder {
