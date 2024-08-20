@@ -6547,7 +6547,13 @@ div.article-image {
 }
 
 .data-youtube-video {
+  max-width: 100%;
+  display: flex;
+}
+.youtube {
   max-width: 80%;
+  display: flex;
+  margin: 0 10%;
 }
 .about-boxes-holder {
   width: 100%;
