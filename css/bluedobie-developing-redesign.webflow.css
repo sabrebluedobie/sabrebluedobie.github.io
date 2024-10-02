@@ -2288,7 +2288,7 @@ blockquote {
 }
 
 .hero-text-secondary {
-  width: 100vw;
+  max-width: 100%;
   margin-top: 2.5vh;
   margin-left: 20px;
 }
