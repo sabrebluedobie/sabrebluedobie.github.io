@@ -2284,6 +2284,7 @@ blockquote {
   padding-top: 90px;
   display: flex;
   position: relative;
+  width: 80vw;
   max-width: 100%;
 }
 
