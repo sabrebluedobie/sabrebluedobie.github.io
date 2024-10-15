@@ -2288,7 +2288,7 @@ blockquote {
 }
 
 .hero-text-secondary {
-  width: 100vw;
+  width: 85vw;
   margin-top: 2.5vh;
   margin-left: 20px;
 }
@@ -4698,7 +4698,7 @@ blockquote {
 }
 
 .blog-home-item-title {
-  max-width: 875px;
+  max-width: 85vw;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 100px;
