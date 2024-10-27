@@ -16,7 +16,7 @@
   <meta content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY" name="google-site-verification">
   <meta content="Webflow" name="generator">
   <meta content="noindex" name="robots">
-  <link href="sabrebluedobie.github.io/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="../css/normalize.css" rel="stylesheet" type="text/css">
   <link href="../css/webflow.css" rel="stylesheet" type="text/css">
   <link href="../css/bluedobie-developing-redesign.webflow.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -204,7 +204,7 @@
       </div>
     </div>
   </div>
-  {{ With Resources.Get "../_posts/2024-10-27-%20Bluedobie%20Dialogues-The%20Future%20of%20Artificial%20In}}
+  {{ With Resources.Get "../_posts/2024-10-27-%20Bluedobie%20Dialogues-The%20Future%20of%20Artificial%20In.html}}
   <h1>{{ page.title }}</h1>
   <p>{{ page.title }}
  <div class="section">
