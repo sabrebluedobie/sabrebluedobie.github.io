@@ -207,7 +207,7 @@
   <h1>{{ post.title }}</h1>
   <p>{{ post.title }}
  <div class="section">
-    {{ post.content }}
+    {{ content }}
  </div>
  {{ end }}
  <div class="section">
