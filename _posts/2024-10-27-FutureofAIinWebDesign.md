@@ -1,5 +1,3 @@
-
----
 ---
 layout: bloglayout
 title: "The Future of Artificial Intelligence in Web Design: Benefits, Risks, and Ethical Dilemmas"
