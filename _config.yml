@@ -1,6 +1,6 @@
 title: "Bluedobie Developing"
 description: "Bluedobie Developing's awesome site."
-baseurl: "" # for user site, or "/project-name" for project site
+baseurl: "#" # for user site, or "/project-name" for project site
 url: "https://sabrebluedobie.github.io"
 # Where things are
 source              : .
