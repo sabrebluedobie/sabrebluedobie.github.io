@@ -15,7 +15,7 @@
   <meta content="summary_large_image" name="twitter:card">
   <meta content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY" name="google-site-verification">
   <meta content="Webflow" name="generator">
-  <link href="../css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="../css/normalize.css" rel="stylesheet">
   <link href="{{ site.baseurl }}/css/webflow.css" rel="stylesheet" type="text/css">
   <link href="{{ site.baseurl }}/css/bluedobie-developing-redesign.webflow.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
