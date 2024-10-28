@@ -4,7 +4,7 @@ baseurl: "#" # for user site, or "/project-name" for project site
 url: "https://sabrebluedobie.github.io"
 # Where things are
 source              : .
-destination         : .
+destination         : ./_site
 collections_dir     : .
 plugins_dir         : _plugins # takes an array of strings and loads plugins in that order
 layouts_dir         : _layouts
