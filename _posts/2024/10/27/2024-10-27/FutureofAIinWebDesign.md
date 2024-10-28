@@ -1,8 +1,12 @@
 
 ---
+---
 layout: bloglayout
-title: The Future of Artificial Intelligence in Web Design: Benefits, Risks, and Ethical Dilemmas
-description: Discover how AI shapes web design for small businesses, its benefits, risks, and ethical dilemmas. Learn how to optimize your site with Bluedobie.
+title: "The Future of Artificial Intelligence in Web Design: Benefits, Risks, and Ethical Dilemmas"
+description: "Discover how AI shapes web design for small businesses, its benefits, risks, and ethical dilemmas. Learn how to optimize your site with Bluedobie."
+date: 2024-10-27
+---
+
 ---
 
 ![AI working on web design!](../images/AIImplications.webp "The Implications of AI")
