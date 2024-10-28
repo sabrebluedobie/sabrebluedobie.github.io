@@ -189,11 +189,16 @@
       </div>
     </div>
   </div>
-  <h1>{{ page.title }}</h1>
-  <p>{{ page.description }}</p>
- <div class="section">
+
+  <header>
+    <h1>{{ page.title }}</h1>
+  </header>
+  <div class="description">
+    <p>{{ page.description }}</p>
+  </div>
+ <main class="section">
     {{ content }}
- </div>
+ </main>
 
  <div class="section">
     <div class="container footer-container">
