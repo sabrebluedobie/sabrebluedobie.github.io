@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
+  <title>{{ post.title }}</title>
   <meta content="" name="description">
-  <meta content="{{ page.title }}" property="og:title">
-  <meta content="{{ page.description }}" property="og:description">
+  <meta content="{{ post.title }}" property="og:title">
+  <meta content="{{ post.description }}" property="og:description">
   <meta content="../images/sabrebloglandingpg.webp" property="og:image">
-  <meta content="{{ page.title }}" property="twitter:title">
-  <meta content="{{ page.description }}" property="twitter:description">
+  <meta content="{{ post.title }}" property="twitter:title">
+  <meta content="{{ post.description }}" property="twitter:description">
   <meta content="../images/images/sabrebloglandingpg.webp" property="twitter:image">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
@@ -204,10 +204,10 @@
       </div>
     </div>
   </div>
-  <h1>{{ page.title }}</h1>
-  <p>{{ page.title }}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.title }}
  <div class="section">
-    {{ content }}
+    {{ post.content }}
  </div>
  {{ end }}
  <div class="section">
