@@ -3,7 +3,7 @@ description: "Bluedobie Developing's awesome site."
 baseurl: "" # for user site, or "/project-name" for project site
 url: "https://www.bluedobiedev.com"
 # Where things are
-source              : ./_posts
+source              : ./_pages
 destination         : ./_site
 collections_dir     : .
 plugins_dir         : _plugins # takes an array of strings and loads plugins in that order
@@ -34,6 +34,7 @@ unpublished         : false
 # Plugins
 whitelist           : []
 plugins             : []
+theme               : []
 
 # Conversion
 markdown            : kramdown
