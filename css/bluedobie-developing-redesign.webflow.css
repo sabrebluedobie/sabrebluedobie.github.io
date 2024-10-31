@@ -25,6 +25,10 @@
 
 }
 
+.dark {
+  color: #ffffff;
+}
+
 .w-form-formrecaptcha {
   margin-bottom: 8px;
 }
