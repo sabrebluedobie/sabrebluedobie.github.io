@@ -6535,18 +6535,19 @@ blockquote {
   margin-right: auto;
 }
 
-div.blog-main-image-div {
+.blog-main-image-div {
   width: 80vw;
   margin-left: 5vw;
   margin-top: 10vh;
 
 }
 
-div.article-image {
+.article-image {
   width: 480px;
-  margin-left: 5vw;
+  padding-left: 10vw;
   max-width: 80%;
-  max-height: 200px;
+  max-height: 80%;
+  height: 200px;
   margin-bottom: 7.5vh;
 }
 
