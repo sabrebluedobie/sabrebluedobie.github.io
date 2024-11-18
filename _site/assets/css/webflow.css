@@ -310,6 +310,7 @@ button,
 }
 .w-form {
   margin: 0 0 15px;
+  overflow-y: scroll;
 }
 .w-form-done {
   display: none;
@@ -755,6 +756,10 @@ textarea.w-select {
   .w-col-tiny-12 {
     width: 100%;
   }
+}
+.w-form {
+  margin: 0 0 15px;
+  overflow-y: scroll !important;
 }
 .w-widget {
   position: relative;
