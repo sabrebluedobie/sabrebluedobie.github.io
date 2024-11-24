@@ -63,11 +63,11 @@
   var r_ = M(() => {
       "use strict";
       (function() {
-          if (typeof window > "u") return;
+        if (typeof window > "u") return;
           let e = window.navigator.userAgent.match(/Edge\/(\d{2})\./),
               t = e ? parseInt(e[1], 10) >= 16 : !1;
           if ("objectFit" in document.documentElement.style && !t) {
-              window.objectFitPolyfill = function() {
+            window.objectFitPolyfill = function() {
                   return !1
               };
               return
@@ -57871,3 +57871,12 @@ Webflow.require('ix2').init({
       }]
   }
 });
+
+var result = await minify({"webflow.js": "var a = function() {};"}, {
+  sourceMap: {
+      filename: "webflow.js",
+      url: "inline"
+  }
+});
+console.log(result.code); // minified output
+console.log(result.map);  // source map
