@@ -15,7 +15,7 @@ body {
 	margin: 0 auto;
 	padding-top: 0;
 	padding-bottom: 0;
-	overflow: hidden;
+	overflow-x:hidden;
 }
 
 input, input[type="text"], input[type="search"], isindex, textarea, button {
