@@ -3,7 +3,18 @@
 <link href="css/form.css" rel="stylesheet" type="text/css"><script src="js/validation.js"></script>
 </head><body class="zf-backgroundBg"><!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
 <div class="zf-templateWidth"><form action='https://forms.zohopublic.com/bluedobiedev/form/SignUpForm/formperma/0uSEGRs-83UJufB1WOi4NzM366z3Pze_fOe0eXQ1tow/htmlRecords/submit' name='form' method='POST' onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' accept-charset='UTF-8' enctype='multipart/form-data' id='form'><input type="hidden" name="zf_referrer_name" value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
-<input type="hidden" name="zf_redirect_url" value="https://bluedobie.zohobookings.com/#/bluedobiedesignanddeveloping"><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+    <form onsubmit="openInNewWindow(); return false;">
+        <input type="hidden" name="zf_redirect_url" value="https://bluedobie.zohobookings.com/#/bluedobiedesignanddeveloping">
+        <!-- Other form inputs -->
+        <button type="submit">Submit</button>
+      </form>
+      
+      <script>
+        function openInNewWindow() {
+          const redirectUrl = document.querySelector('input[name="zf_redirect_url"]').value;
+          window.open(redirectUrl, '_blank'); // Opens the URL in a new tab or window
+        }
+      </script>
 <input type="hidden" name="zc_gad" value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
 <div class="zf-templateWrapper"><!---------template Header Starts Here---------->
 <ul class="zf-tempHeadBdr"><li class="zf-tempHeadContBdr"><h2 class="zf-frmTitle"><em>Sign Up Form</em></h2>
