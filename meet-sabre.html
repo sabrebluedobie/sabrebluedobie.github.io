@@ -271,6 +271,45 @@ gtag('config', 'GTM-MCV3HH7L');
             insights in our <a href="/sabre-tips">Sabre’s Tips</a> section!
         </p>
     </section>
+    <div id="sabre-tip-widget" class="sabre-widget">
+        <div class="sabre-widget-header">
+            <img src="/images/sabre-icon.png" alt="Sabre Icon" class="sabre-icon">
+            <h3>Sabre's Success Tip of the Month</h3>
+        </div>
+        <div id="sabre-tip-content" class="sabre-widget-content">
+            <p>Loading Sabre's tip...</p>
+        </div>
+        <div class="sabre-widget-footer">
+            <button id="new-tip-button" class="sabre-button">Get a New Tip</button>
+        </div>
+    </div>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        const tips = [
+            "Consistency is key. Show up for your customers every day.",
+            "A mobile-friendly website is no longer optional—it's essential!",
+            "Invest in quality visuals to make your website stand out.",
+            "Connect with your audience through engaging content.",
+            "Local SEO can be a game changer for small businesses."
+        ];
+    
+        const tipContent = document.getElementById("sabre-tip-content");
+        const newTipButton = document.getElementById("new-tip-button");
+    
+        // Function to get a random tip
+        function getRandomTip() {
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            return tips[randomIndex];
+        }
+    
+        // Display an initial random tip
+        tipContent.innerHTML = `<p>${getRandomTip()}</p>`;
+    
+        // Update tip on button click
+        newTipButton.addEventListener("click", function () {
+            tipContent.innerHTML = `<p>${getRandomTip()}</p>`;
+        });
+    });
+    </script>
 
     <section class="contact-sabre">
         <h2>Say Hi to Sabre!</h2>
@@ -280,45 +319,7 @@ gtag('config', 'GTM-MCV3HH7L');
         </p>
     </section>
 </main>
-<div id="sabre-tip-widget" class="sabre-widget">
-    <div class="sabre-widget-header">
-        <img src="/images/sabre-icon.png" alt="Sabre Icon" class="sabre-icon">
-        <h3>Sabre's Success Tip of the Month</h3>
-    </div>
-    <div id="sabre-tip-content" class="sabre-widget-content">
-        <p>Loading Sabre's tip...</p>
-    </div>
-    <div class="sabre-widget-footer">
-        <button id="new-tip-button" class="sabre-button">Get a New Tip</button>
-    </div>
-</div>
-<script>document.addEventListener("DOMContentLoaded", function () {
-    const tips = [
-        "Consistency is key. Show up for your customers every day.",
-        "A mobile-friendly website is no longer optional—it's essential!",
-        "Invest in quality visuals to make your website stand out.",
-        "Connect with your audience through engaging content.",
-        "Local SEO can be a game changer for small businesses."
-    ];
 
-    const tipContent = document.getElementById("sabre-tip-content");
-    const newTipButton = document.getElementById("new-tip-button");
-
-    // Function to get a random tip
-    function getRandomTip() {
-        const randomIndex = Math.floor(Math.random() * tips.length);
-        return tips[randomIndex];
-    }
-
-    // Display an initial random tip
-    tipContent.innerHTML = `<p>${getRandomTip()}</p>`;
-
-    // Update tip on button click
-    newTipButton.addEventListener("click", function () {
-        tipContent.innerHTML = `<p>${getRandomTip()}</p>`;
-    });
-});
-</script>
 
 
   <div class="section">
