@@ -309,6 +309,19 @@ gtag('config', 'GTM-MCV3HH7L');
             tipContent.innerHTML = `<p>${getRandomTip()}</p>`;
         });
     });
+    function saveTip(tip) {
+    localStorage.setItem("sabreTip", tip);
+}
+function loadTip() {
+    return localStorage.getItem("sabreTip") || getRandomTip();
+}
+tipContent.innerHTML = `<p>${loadTip()}</p>`;
+newTipButton.addEventListener("click", function () {
+    const newTip = getRandomTip();
+    saveTip(newTip);
+    tipContent.innerHTML = `<p>${newTip}</p>`;
+});
+
     </script>
 
     <section class="contact-sabre">
