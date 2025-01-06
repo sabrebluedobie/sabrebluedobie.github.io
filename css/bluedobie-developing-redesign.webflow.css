@@ -144,3 +144,34 @@ iframe.form {
 .sabre-button:hover {
     background-color: #357ab8;
 }
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    color: #007BFF;
+}
+
+.dropdown.show .dropdown-menu {
+    display: block;
+}

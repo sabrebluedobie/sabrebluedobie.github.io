@@ -167,27 +167,43 @@ gtag('config', 'GTM-MCV3HH7L');
             </div>
         
             <!-- Dropdown for Additional Links -->
-            <div class="nav-link-holder">
-                <div class="nav-dropdown w-dropdown">
-                    <div class="nav-link-dropdown w-dropdown-toggle">More</div>
-                    <nav class="nav-dropdown-list w-dropdown-list">
-                        <a href="our-portfolio.html" class="nav-link w-inline-block">Portfolio</a>
-                        <a href="meet-sabre.html" class="nav-link w-inline-block">Meet Sabre</a>
-                        <a href="blog-home.html" class="nav-link w-inline-block">Blog</a>
-                        <a href="contact.html" class="nav-link w-inline-block">Contact</a>
-                    </nav>
-                </div>
-            </div>
-        
-            <!-- Social Links Column -->
-            <div class="social-links-column">
-                <p>Follow Us:</p>
-                <a href="https://fb.com/sabrebluedobie" target="_blank" class="social-link w-inline-block">Facebook</a>
-                <a href="https://twitter.com/sabrebluedobie" target="_blank" class="social-link w-inline-block">Twitter</a>
-        <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" class="social-link w-inline-block">LinkedIn</a>
-        <a href="https://instagram.com/sabrebluedobie" target="_blank" class="social-link w-inline-block">Instagram</a>
-    </div>
+    <div class="nav-link-holder dropdown">
+      <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+      <div class="dropdown-menu" id="dropdown-menu">
+          <a href="our-portfolio.html" class="nav-link">Portfolio</a>
+          <a href="meet-sabre.html" class="nav-link">Meet Sabre</a>
+          <a href="blog-home.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+  </div>
+
+  <!-- Social Links Column -->
+  <div class="social-links-column">
+      <p>Follow Us:</p>
+      <a href="https://fb.com/sabrebluedobie" target="_blank" class="social-link">Facebook</a>
+      <a href="https://twitter.com/sabrebluedobie" target="_blank" class="social-link">Twitter</a>
+      <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" class="social-link">LinkedIn</a>
+      <a href="https://instagram.com/sabrebluedobie" target="_blank" class="social-link">Instagram</a>
+  </div>
 </nav>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdownToggle = document.getElementById("dropdown-toggle");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    dropdownToggle.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show");
+    });
+
+    // Close the dropdown if clicked outside
+    document.addEventListener("click", function (event) {
+        if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove("show");
+        }
+    });
+});
+
+</script>
 
               </div>
             </div>
