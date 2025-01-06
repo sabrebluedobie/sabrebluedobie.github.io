@@ -66,7 +66,74 @@ gtag('config', 'GTM-MCV3HH7L');
       position: absolute; 
       
     }
-  
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: linear-gradient(to bottom, #0078d4, #0056b3);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+}
+
+.poll-question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.poll-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.vote-button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.vote-button:hover {
+    background-color: #0078d4;
+}
+
+.results {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.results-title {
+    font-size: 20px;
+}
+
+.results-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.count {
+    font-weight: bold;
+}
+
     @media screen and (max-width: 479px) {
       .hero-content {
         top: 25%;
@@ -449,6 +516,7 @@ gtag('config', 'GTM-MCV3HH7L');
         </div>
       </div>
     </div>
+
     <div class="container big-container"></div>
     <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe-bfbcede3" data-w-id="0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe" style="opacity:0;-webkit-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="feature-box">
       <div class="feature-text">Ready to Transform Your Digital Presence? Get in Touch Today!</div>
@@ -458,7 +526,55 @@ gtag('config', 'GTM-MCV3HH7L');
         
         </div>
       </div>
-    
+     <div class="container">
+        <h1 class="poll-question">
+          What's the most important feature of a business website?
+        </h1>
+        <form id="poll-form" class="poll-form">
+            <label>
+                <input type="radio" 
+                       name="vote" 
+                       value="speed"> Speed
+            </label>
+            <label>
+                <input type="radio" 
+                       name="vote" 
+                       value="design"> Design
+            </label>
+            <label>
+              <input type="radio" 
+                     name="vote" 
+                     value="visibility"> Visibility
+          </label>
+            <button type="submit" 
+                    class="vote-button">
+              Vote
+            </button>
+        </form>
+        <div id="results" class="results">
+          <h2 class="results-title">
+            Results
+          </h2>
+          <div class="results-count">
+              <p>Speed: 
+                <span id="speed-count" 
+                      class="count">0
+                </span>
+              </p>
+              <p>Design: 
+                <span id="design-count" 
+                           class="count">0
+                </span>
+              </p>
+              <p>Visibility: 
+                <span id="visibility-count" 
+                           class="count">0
+                </span>
+              </p>
+          </div>
+      </div>
+  </div>
+  <script src="./script.js"></script>
   
   <div class="container big-container"></div>
   <div class="section">
