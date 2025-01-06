@@ -172,6 +172,9 @@ iframe.form {
     color: #007BFF;
 }
 
-.dropdown.show .dropdown-menu {
+.dropdown-menu.show {
     display: block;
+}
+.social-link {
+    padding: 0 1.25vw;
 }
