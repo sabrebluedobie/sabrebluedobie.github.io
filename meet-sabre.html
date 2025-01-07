@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Sat Jul 27 2024 17:46:24 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html lang=en data-wf-page="661e91263937928082596024" data-wf-site="661e91253937928082595f31">
 <head>
   <script src="https://cdn.pagesense.io/js/bluedobiedev/34c0e572bd704acba28d4a31e394e7eb.js"></script>
@@ -56,6 +56,155 @@ gtag('js', new Date());
 gtag('config', 'GTM-MCV3HH7L');
 </script>
   <script data-type="lazy" data-src="https://www.googletagmanager.com/gtag/js?id=GTM-MCV3HH7L"></script>
+  <style>
+    .navbar {
+      background-color: transparent;
+      transition: background-color 0.5s ease;
+      position: sticky; /* Ensure the navbar stays at the top */
+      width: 100%;
+      z-index: 10;
+    }
+    
+    .navbar.scrolled {
+      background-color: #000; /* Black background after scroll */
+    }
+    
+    .nav-link {
+      color: #000; /* Default color for white background */
+      transition: color 0.5s ease;
+    }
+    
+    .navbar.scrolled .nav-link {
+      color: #fff; /* White color for black background */
+    }
+    .navbar.scrolled a.social-link {
+      color: #fff;
+    }
+    .navbar.scrolled .follow {
+      color: #fff;
+    }
+    .container {
+      max-width: 100%;
+      width: 100%;
+      padding: 0 1em;
+      box-sizing: border-box;
+    }
+    .footer {
+      background-color: #000; /* Explicit black background */
+      color: #fff; /* Explicit white text color */
+      padding: 2em 1em;
+      text-align: center;
+    }
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-link {
+      color: #fff; /* White text for links */
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.3s;
+    }
+    .footer-link:hover {
+      color: #ffd700; /* Bright yellow for hover effect */
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 0.5em;
+    }
+    .footer-text {
+      font-size: 0.8em;
+      margin: 0;
+    }
+    .container {
+      max-width: 100%; /* Ensure it fits the screen */
+      width: 100%; 
+      padding: 0 1em; /* Add padding to avoid edge clipping */
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+    
+    .hero-image {
+      max-width: 100%;
+      height: auto; /* Maintain aspect ratio */
+      margin: 0 auto; /* Center the image */
+      display: block;
+    }
+    
+    .section {
+      margin: 0 auto;
+      padding: 2em 1em;
+      box-sizing: border-box;
+    }
+    h1, h2, h3 {
+      margin: 0.5em 0;
+      line-height: 1.2;
+    }
+    
+    p {
+      margin: 0.5em 0;
+      font-size: 0.9rem; /* Adjust based on base font size */
+    }
+    
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+    @media screen and (max-width: 768px) {
+      .hero {
+        text-align: center; /* Center-align text for smaller screens */
+      }
+    
+      .hero-image {
+        width: 90%; /* Reduce image size on smaller devices */
+        margin: 0 auto; /* Center image */
+      }
+    
+      .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center;
+        gap: 1em;
+      }
+    
+      .footer-text {
+        font-size: 0.7em; /* Adjust text size for readability */
+      }
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Disable horizontal scrolling */
+    }
+    
+    section {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .section {
+      margin: 0 auto;
+      padding: 1em;
+    }
+    
+    p, h1, h2 {
+      margin: 0.5em 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  </style>
   
 </head>
 <body>
@@ -64,147 +213,44 @@ gtag('config', 'GTM-MCV3HH7L');
       <div class="nav-elements-holder">
         <div class="nav-menu-container">
           <a href="https://bit.ly/4aOSYq4" class="brand-link w-nav-brand"><img src="images/bluedobielogo_1.webp" loading="lazy" width="100" height="100" alt="The blue dobie logo on a white background" class="brand-logo"></a>
-          <nav class="nav-menu w-nav-menu">
+          <nav role="navigation" class="nav-menu w-nav-menu">
+            <!-- Top-Level Navigation -->
             <div class="nav-link-holder">
-              <a href="index.html" class="nav-link w-inline-block">
-                <div>Home</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="index.html" class="nav-link w-inline-block">Home</a>
             </div>
             <div class="nav-link-holder">
-              <a href="our-portfolio.html" class="nav-link w-inline-block">
-                <div>Portfolio</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="about.html" class="nav-link w-inline-block">About</a>
             </div>
             <div class="nav-link-holder">
-              <a href="about.html" aria-current="page" class="nav-link w-inline-block w--current">
-                <div>About</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="services.html" class="nav-link w-inline-block">Services</a>
             </div>
-            <div class="nav-link-holder">
-              <div data-hover="true" data-delay="300" class="nav-dropdown w-dropdown">
-                <div class="nav-link nav-link-dropdown w-dropdown-toggle">
-                  <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
-                  <div>Pages</div>
-                  <div class="link-background"></div>
-                  <div class="nav-dropdown-link-arrow-holder">
-                    <div class="nav-dropdown-link-arrow-animated">
-                      <div class="nav-dropdown-link-arrow"></div>
-                    </div>
-                  </div>
-                </div>
-                <nav class="nav-dropdown-list w-dropdown-list">
-                  <div class="nav-dropdown-list-content">
-                    <div class="w-layout-grid nav-dropdown-grid">
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Pages</div>
-                        <ul class="nav-list">
-                          <li class="nav-dropdown-item">
-                            <a href="index.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Home</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="our-portfolio.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Portfolio</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="about.html" aria-current="page" class="nav-link white-nav-link w-inline-block">
-                              <div>About</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="meet-sabre.html" aria-current="page" class="nav-link white-nav-link w-inline-block w--current">
-                              <div>Meet Sabre</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="contact.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Contact</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                            <a href="contact.html" class="nav-link white-nav-link w-inline-block"></a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="digital-branding-services.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Digital Branding Services</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                        <div class="nav-dropdown-line-abs"></div>
-                      </div>
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Other pages</div>
-                        <ul class="nav-list">
-                          <li class="nav-dropdown-item"></li>
-                          <li class="nav-dropdown-item">
-                            <a href="referral-page.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Referrals</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="newsletters.html" class="nav-link white-nav-link w-inline-block">
-                              <div>newsletters</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="nav-dropdown-line-abs"></div>
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Follow us</div>
-                        <ul class="nav-list">
-                          <li class="nav-dropdown-item">
-                            <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Facebook</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://twitter.com/sabrebluedobie" target="_blank" class="nav-link white-nav-link w-inline-block" rel="noopener">
-                              <div>Twitter</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Linkedin</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Instagram</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="nav-dropdown-footer">
-                      <div class="content"><img src="images/bluedobielogo_2.webp" loading="lazy" alt="Blue doberman with text Bluedobie Design and Developing: Bluedobie Logo" width="50" height="50" style="padding-bottom: 5px;">
-                        <div style="padding-bottom: 5px;">Brought to you with ❤️ by <a href="mailto:melanie.brown@bluedobiedev.com?subject=website%20mail" style="color: lightblue">Bluedobie Developing</a>.</div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-            </div>
-            <div class="nav-link-holder nav-button-holder _2">
-              <a href="contact.html" class="button nav w-inline-block">
-                <div>Contact Us</div>
-              </a>
-            </div>
-          </nav>
+        
+            <!-- Dropdown for Additional Links -->
+    <div class="nav-link-holder dropdown">
+      <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+      <div class="dropdown-menu" id="dropdown-menu">
+          <a href="our-portfolio.html" class="nav-link">Portfolio</a>
+          <a href="meet-sabre.html" class="nav-link">Meet Sabre</a>
+          <a href="blog-home.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </div>
+
+  <!-- Social Links Column -->
+  <div class="social-links-column" style="padding-left: 2.5vw;">
+      <p class="follow">Follow Us:</p>
+             <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+      <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+      <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+      <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+  </div>
+  <div class="nav-link-holder nav-button-holder _2">
+    <a href="contact.html" class="button nav w-inline-block">
+      <div>Contact Us</div>
+    </a>
+  </div>
+  <script src="js/dropdown.js" ></script>
+</nav>
           <div class="nav-menu-overlay-mobile"></div>
           <div class="nav-link-holder nav-button-holder-copy">
             <a data-w-id="21f763a3-44d0-e6a3-ac84-b9cf055e839b" href="contact.html" class="button nav w-inline-block">
@@ -366,44 +412,6 @@ newTipButton.addEventListener("click", function () {
         </div>
         <div class="dark-bg"></div>
       </div>
-      <style>
-        .footer {
-          background-color: #000; /* Explicit black background */
-          color: #fff; /* Explicit white text color */
-          padding: 2em 1em;
-          text-align: center;
-        }
-        .footer-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1em;
-        }
-        .footer-links {
-          display: flex;
-          gap: 1.5em;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-        .footer-link {
-          color: #fff; /* White text for links */
-          text-decoration: none;
-          font-size: 0.9em;
-          transition: color 0.3s;
-        }
-        .footer-link:hover {
-          color: #ffd700; /* Bright yellow for hover effect */
-        }
-        .footer-logo {
-          width: 120px;
-          margin-bottom: 0.5em;
-        }
-        .footer-text {
-          font-size: 0.8em;
-          margin: 0;
-        }
-      </style>
-    <div class="dark-bg"></div>
       
     </footer>
     
@@ -412,6 +420,15 @@ newTipButton.addEventListener("click", function () {
   <script src="js/webflow.js"></script><!--  Google Tag Manager (noscript)  -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCV3HH7L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
+  <script>document.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
   
 
 </body>
