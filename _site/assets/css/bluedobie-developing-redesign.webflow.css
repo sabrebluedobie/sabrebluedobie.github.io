@@ -1313,11 +1313,12 @@ blockquote {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1170px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 2em;
   display: flex;
+  box-sizing: border-box;
 }
 
 .container.nav-container {
@@ -6180,6 +6181,7 @@ blockquote {
 }
 
 .about-image {
+  justify-content: center;
   align-self: center;
   width: 50%;
   height: 100%;
