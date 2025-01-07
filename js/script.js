@@ -27,19 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
         if (totalVotes === 0) return; // Avoid division by zero
     
         // Calculate percentages
-        const speedPercentage = Math.min(Math.round((votes.speed / totalVotes) * 100), 100);
-        const designPercentage = Math.min(Math.round((votes.design / totalVotes) * 100), 100);
-        const visibilityPercentage = Math.min(Math.round((votes.visibility / totalVotes) * 100), 100);
+        const percentages = {
+            speed: Math.round((votes.speed / totalVotes) * 100),
+            design: Math.round((votes.design / totalVotes) * 100),
+            visibility: Math.round((votes.visibility / totalVotes) * 100),
+        };
     
-        // Update progress bars and percentages
-        document.getElementById("speed-bar").style.width = `${speedPercentage}%`;
-        document.getElementById("design-bar").style.width = `${designPercentage}%`;
-        document.getElementById("visibility-bar").style.width = `${visibilityPercentage}%`;
+        // Find the highest percentage
+        const highest = Math.max(percentages.speed, percentages.design, percentages.visibility);
     
-        document.getElementById("speed-percentage").textContent = `${speedPercentage}%`;
-        document.getElementById("design-percentage").textContent = `${designPercentage}%`;
-        document.getElementById("visibility-percentage").textContent = `${visibilityPercentage}%`;
+        // Update progress bars and set colors
+        const bars = {
+            speed: document.getElementById("speed-bar"),
+            design: document.getElementById("design-bar"),
+            visibility: document.getElementById("visibility-bar"),
+        };
+    
+        const labels = {
+            speed: document.getElementById("speed-percentage"),
+            design: document.getElementById("design-percentage"),
+            visibility: document.getElementById("visibility-percentage"),
+        };
+    
+        for (const [option, percentage] of Object.entries(percentages)) {
+            bars[option].style.width = `${percentage}%`;
+            labels[option].textContent = `${percentage}%`;
+    
+            // Set color: Green for highest, Red for others
+            bars[option].style.backgroundColor = percentage === highest ? "#4caf50" : "#f44336";
+        }
     }
+    
     
 
     // Initialize poll
