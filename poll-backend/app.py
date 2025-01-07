@@ -4,7 +4,7 @@ import psycopg2
 from psycopg2 import pool
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/*": {"origins": "https://www.bluedobiedev.com"}})
 
 # Database connection details (from Supabase dashboard)
 DB_HOST = "aws-0-us-east-2.pooler.supabase.com"  # Replace with your Supabase host
