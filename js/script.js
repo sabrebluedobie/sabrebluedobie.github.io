@@ -2,26 +2,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const pollForm = document.getElementById("poll-form");
     const pollResults = document.getElementById("poll-results");
 
-    // Retrieve votes from localStorage or initialize
-    const votes = JSON.parse(localStorage.getItem("pollVotes")) || {
-        speed: 0,
-        design: 0,
-        visibility: 0
-    };
+    // Backend API URL
+    const API_URL = "http://127.0.0.1:5000/api";
 
-    // Update results
-    function updateResults() {
+    // Fetch votes from the backend
+    async function fetchVotes() {
+        const response = await fetch(`${API_URL}/votes`);
+        return response.json();
+    }
+
+    // Submit a vote
+    async function submitVote(option) {
+        await fetch(`${API_URL}/vote`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ option }),
+        });
+    }
+
+    // Update results on the page
+    function updateResults(votes) {
         const totalVotes = votes.speed + votes.design + votes.visibility;
+
         if (totalVotes === 0) return; // Avoid division by zero
 
-        // Calculate percentages
         const speedPercentage = Math.round((votes.speed / totalVotes) * 100);
         const designPercentage = Math.round((votes.design / totalVotes) * 100);
         const visibilityPercentage = Math.round((votes.visibility / totalVotes) * 100);
 
-        // Update progress bars and percentages
         document.getElementById("speed-bar").style.width = `${speedPercentage}%`;
-        document.getElementById("design-bar").style.width = `${designPercentage}%`;
+        document.getElementById("design-bar").style.width = `${speedPercentage}%`;
         document.getElementById("visibility-bar").style.width = `${visibilityPercentage}%`;
 
         document.getElementById("speed-percentage").textContent = `${speedPercentage}%`;
@@ -29,31 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("visibility-percentage").textContent = `${visibilityPercentage}%`;
     }
 
-    // Show results
-    function showResults() {
+    // Initialize poll
+    async function initializePoll() {
+        const votes = await fetchVotes();
+        updateResults(votes);
         pollResults.style.display = "block";
-        updateResults();
     }
 
     // Handle form submission
-    pollForm.addEventListener("submit", function (e) {
+    pollForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const formData = new FormData(pollForm);
         const userVote = formData.get("vote");
 
-        // Increment vote count
         if (userVote) {
-            votes[userVote]++;
-            localStorage.setItem("pollVotes", JSON.stringify(votes)); // Save to localStorage
-            pollForm.style.display = "none"; // Hide form after voting
-            showResults(); // Show updated results
+            await submitVote(userVote);
+            pollForm.style.display = "none";
+            const votes = await fetchVotes();
+            updateResults(votes);
         }
     });
 
-    // Show results if votes already exist
-    if (votes.speed || votes.design || votes.visibility) {
-        pollForm.style.display = "none";
-        showResults();
-    }
+    // Fetch initial results
+    initializePoll();
 });
