@@ -122,30 +122,34 @@ gtag('config', 'GTM-MCV3HH7L');
 }
 
 .result-bar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  display: flex; /* Align children horizontally */
+  align-items: center; /* Center-align text and progress bars */
+  justify-content: space-between; /* Spread content evenly */
+  margin-bottom: 15px; /* Add spacing between result bars */
 }
 
 .result-bar span {
   width: 20%;
 }
 
+/* Progress Container */
 .progress {
-  width: 60%;
-  height: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 0 10px;
+  width: 100%; /* Ensure the progress bar spans the full width */
+  height: 20px; /* Set consistent height */
+  background-color: #e0e0e0; /* Light gray background */
+  border-radius: 10px; /* Rounded corners for the container */
+  overflow: hidden; /* Ensure the fill doesn't spill out */
+  margin: 5px 0; /* Add spacing between progress bars */
 }
 
+/* Progress Fill */
 .progress-fill {
-  height: 100%;
-  background-color: #4caf50;
-  width: 0%;
-  transition: width 0.5s ease-in-out;
+  height: 100%; /* Match the height of the container */
+  background-color: #007BFF; /* Blue fill color */
+  width: 0%; /* Start with 0% width */
+  transition: width 0.5s ease-in-out; /* Smooth transition for width changes */
 }
+
 
 #poll-results span {
   font-weight: bold;
@@ -454,21 +458,21 @@ gtag('config', 'GTM-MCV3HH7L');
           <div class="result-bar">
               <span>Speed</span>
               <div class="progress">
-                  <div class="progress-fill" id="speed-bar" style="width: 0%;"></div>
+                  <div class="progress-fill" id="speed-bar"></div>
               </div>
               <span id="speed-percentage">0%</span>
           </div>
           <div class="result-bar">
               <span>Design</span>
               <div class="progress">
-                  <div class="progress-fill" id="design-bar" style="width: 0%;"></div>
+                  <div class="progress-fill" id="design-bar"></div>
               </div>
               <span id="design-percentage">0%</span>
           </div>
           <div class="result-bar">
               <span>Visibility</span>
               <div class="progress">
-                  <div class="progress-fill" id="visibility-bar" style="width: 0%;"></div>
+                  <div class="progress-fill" id="visibility-bar"></div>
               </div>
               <span id="visibility-percentage">0%</span>
           </div>

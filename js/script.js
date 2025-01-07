@@ -23,21 +23,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update results on the page
     function updateResults(votes) {
         const totalVotes = votes.speed + votes.design + votes.visibility;
-
+    
         if (totalVotes === 0) return; // Avoid division by zero
-
-        const speedPercentage = Math.round((votes.speed / totalVotes) * 100);
-        const designPercentage = Math.round((votes.design / totalVotes) * 100);
-        const visibilityPercentage = Math.round((votes.visibility / totalVotes) * 100);
-
+    
+        // Calculate percentages
+        const speedPercentage = Math.min(Math.round((votes.speed / totalVotes) * 100), 100);
+        const designPercentage = Math.min(Math.round((votes.design / totalVotes) * 100), 100);
+        const visibilityPercentage = Math.min(Math.round((votes.visibility / totalVotes) * 100), 100);
+    
+        // Update progress bars and percentages
         document.getElementById("speed-bar").style.width = `${speedPercentage}%`;
-        document.getElementById("design-bar").style.width = `${speedPercentage}%`;
+        document.getElementById("design-bar").style.width = `${designPercentage}%`;
         document.getElementById("visibility-bar").style.width = `${visibilityPercentage}%`;
-
+    
         document.getElementById("speed-percentage").textContent = `${speedPercentage}%`;
         document.getElementById("design-percentage").textContent = `${designPercentage}%`;
         document.getElementById("visibility-percentage").textContent = `${visibilityPercentage}%`;
     }
+    
 
     // Initialize poll
     async function initializePoll() {
