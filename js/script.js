@@ -39,47 +39,46 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Update results on the page
-    function updateResults(votes) {
-        const totalVotes = votes.speed + votes.design + votes.visibility;
+// Update results on the page
+function updateResults(votes) {
+    const totalVotes = votes.speed + votes.design + votes.visibility;
 
-        if (totalVotes === 0) return; // Avoid division by zero
+    if (totalVotes === 0) return; // Avoid division by zero
 
-        // Calculate percentages
-        const percentages = {
-            speed: Math.round((votes.speed / totalVotes) * 100),
-            design: Math.round((votes.design / totalVotes) * 100),
-            visibility: Math.round((votes.visibility / totalVotes) * 100),
-        };
+    // Calculate percentages accurately
+    const percentages = {
+        speed: (votes.speed / totalVotes) * 100,
+        design: (votes.design / totalVotes) * 100,
+        visibility: (votes.visibility / totalVotes) * 100,
+    };
 
-        // Find the highest percentage
-        const highest = Math.max(percentages.speed, percentages.design, percentages.visibility);
+    // Find the highest percentage
+    const highest = Math.max(percentages.speed, percentages.design, percentages.visibility);
 
-        // Update progress bars and set colors
-        const bars = {
-            speed: document.getElementById("speed-bar"),
-            design: document.getElementById("design-bar"),
-            visibility: document.getElementById("visibility-bar"),
-        };
+    // Update progress bars and set colors
+    const bars = {
+        speed: document.getElementById("speed-bar"),
+        design: document.getElementById("design-bar"),
+        visibility: document.getElementById("visibility-bar"),
+    };
 
-        const labels = {
-            speed: document.getElementById("speed-percentage"),
-            design: document.getElementById("design-percentage"),
-            visibility: document.getElementById("visibility-percentage"),
-        };
+    const labels = {
+        speed: document.getElementById("speed-percentage"),
+        design: document.getElementById("design-percentage"),
+        visibility: document.getElementById("visibility-percentage"),
+    };
 
-        Object.keys(bars).forEach((option) => {
-            bars[option].style.width = `${percentages[option]}%`;
-
-            if (percentages[option] === highest) {
-                bars[option].style.backgroundColor = "#4caf50"; // Green for highest
-            } else {
-                bars[option].style.backgroundColor = "#f44336"; // Red for others
-            }
-
-            labels[option].textContent = `${percentages[option]}%`;
-        });
-    }
+    Object.keys(bars).forEach((option) => {
+        // Update progress
+        bars[option].style.width = `${percentages[option].toFixed(2)}%`; // Use fixed decimal
+        if (percentages[option] === highest) {
+            bars[option].style.backgroundColor = "#4caf50"; // Green for highest
+        } else {
+            bars[option].style.backgroundColor = "#f44336"; // Red for others
+        }
+        labels[option].textContent = `${percentages[option].toFixed(2)}%`; // Show percentage with two decimals
+    });
+}
 
     // Initialize poll
     async function initializePoll() {
