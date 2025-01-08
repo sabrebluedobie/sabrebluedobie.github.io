@@ -179,9 +179,26 @@ gtag('config', 'GTM-MCV3HH7L');
       }
       .blog-home-main-wrapper {
         margin-top: 2.5vh;
-     
-        
-      }
+        overflow: visible; /* Ensure no independent scrolling */
+    height: auto; /* Allow the content to determine the height */
+    display: block; /* Default display setting */
+    margin-bottom: 2em; /* Add spacing below, if needed */
+       }
+       .black-cta-holder {
+    margin-top: 2em; /* Adjust spacing to your preference */
+}
+        .container {
+          overflow: visible;
+          height: auto;
+        }
+        .blog-home-main-item {
+          width:auto;
+          height: auto;
+        }
+        .blog-home-image {
+          width: auto;
+          height: auto;
+        }
     }
     body {
       margin: 0;
@@ -556,14 +573,7 @@ gtag('config', 'GTM-MCV3HH7L');
       link: "blogpost3.html",
       image: "images/3F98D3AE-ECDD-4D11-A82B-E53DEEDEBDC3.webp",
     },
-    {
-      
-      title: "Sabre's Top 10 Business Tips for Entrepreneurs",
-      date: "August 9, 2024",
-      summary: "Discover Sabre's top 10 funny and informal business tips for entrepreneurs, from finances to hiring your first employee.",
-      link: "blogpost2.html",
-      image: "images/Sabre-innovations.webp",
-    },
+    
     {
       title: "SEO Keywords for Web Design",
       date: "August 6, 2024",
