@@ -4,7 +4,13 @@ import psycopg2
 from psycopg2 import pool
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500", "https://www.bluedobiedev.com"}})
+CORS(app, resources={
+    r"/*": {"origins": [
+        "http://127.0.0.1:5500", 
+        "https://www.bluedobiedev.com"
+        ]
+    }
+})
 
 @app.after_request
 def after_request(response):
