@@ -166,13 +166,22 @@ gtag('config', 'GTM-MCV3HH7L');
       .hero-image {
         width: 90%; /* Reduce image size on smaller devices */
         margin: 0 auto; /* Center image */
+        z-index: 100;
       }
       .hero-content .hero-section .hero-container {
         overflow: visible; /* Ensure no independent scrolling */
     height: auto; /* Allow the content to determine the height */
     display: block; /* Default display setting */
     margin-bottom: 2em; /* Add spacing below, if needed */
+    position: relative;
+    z-index: 10;
        }
+       .black-cta-holder {
+   position: relative;
+   width: 100%;
+   z-index: 5;
+   padding-top: 20px;
+}
       }
     
       .footer-links {
@@ -190,9 +199,7 @@ gtag('config', 'GTM-MCV3HH7L');
     display: block; /* Default display setting */
     margin-bottom: 2em; /* Add spacing below, if needed */
        }
-       .black-cta-holder {
-    margin-top: 2em; /* Adjust spacing to your preference */
-}
+      
         .container {
           overflow: visible;
           height: auto;
