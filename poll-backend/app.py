@@ -4,13 +4,16 @@ import psycopg2
 from psycopg2 import pool
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {"origins": [
-        "http://192.168.50.241:5000", 
-        "https://www.bluedobiedev.com"
-        ]
-    }
-})
+CORS(app)
+
+@app.route('/votes', methods=['GET'])
+def get_votes():
+    return jsonify({"speed": 10, "design": 20, "visibility": 30})
+@app.route('/vote', methods=['POST'])
+def submit_vote():
+    data = request.json
+    # Handle vote submission
+    return jsonify({"success": True}), 200
 
 @app.after_request
 def after_request(response):
