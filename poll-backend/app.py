@@ -6,7 +6,7 @@ from psycopg2 import pool
 app = Flask(__name__)
 CORS(app, resources={
     r"/*": {"origins": [
-        "http://127.0.0.1:5500", 
+        "http://192.168.50.241:5000", 
         "https://www.bluedobiedev.com"
         ]
     }
