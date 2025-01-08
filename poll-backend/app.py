@@ -6,6 +6,13 @@ from psycopg2 import pool
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://www.bluedobiedev.com"}})
 
+@app.after_request
+def after_request(response):
+    response.headers.add("Access-Control-Allow-Origin", "http://127.0.0.1:5500")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+    return response
+
 # Database connection details (from Supabase dashboard)
 DB_HOST = "aws-0-us-east-2.pooler.supabase.com"  # Replace with your Supabase host
 DB_NAME = "postgres"
