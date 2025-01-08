@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Sat Jul 27 2024 17:46:24 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html lang=en data-wf-page="661e91263937928082595fec" data-wf-site="661e91253937928082595f31">
 <head>
   <script src="https://cdn.pagesense.io/js/bluedobiedev/34c0e572bd704acba28d4a31e394e7eb.js"></script>
@@ -56,7 +56,161 @@ gtag('js', new Date());
 gtag('config', 'GTM-MCV3HH7L');
 </script>
   <script defer="" data-type="lazy" data-src="https://www.googletagmanager.com/gtag/js?id=GTM-MCV3HH7L"></script>
-  
+
+  <style>
+    .navbar {
+      background-color: transparent;
+      transition: background-color 0.5s ease;
+      position: sticky; /* Ensure the navbar stays at the top */
+      width: 100%;
+      z-index: 10;
+    }
+    
+    .navbar.scrolled {
+      background-color: #000; /* Black background after scroll */
+    }
+    
+    .nav-link {
+      color: #000; /* Default color for white background */
+      transition: color 0.5s ease;
+    }
+    
+    .navbar.scrolled .nav-link {
+      color: #fff; /* White color for black background */
+    }
+    .navbar.scrolled a.social-link {
+      color: #fff;
+    }
+    .navbar.scrolled .follow {
+      color: #fff;
+    }
+    .container {
+      max-width: 100%;
+      width: 100%;
+      padding: 0 1em;
+      box-sizing: border-box;
+    }
+    .footer {
+      background-color: #000; /* Explicit black background */
+      color: #fff; /* Explicit white text color */
+      padding: 2em 1em;
+      text-align: center;
+    }
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-link {
+      color: #fff; /* White text for links */
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.3s;
+    }
+    .footer-link:hover {
+      color: #ffd700; /* Bright yellow for hover effect */
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 0.5em;
+    }
+    .footer-text {
+      font-size: 0.8em;
+      margin: 0;
+    }
+    .container {
+      max-width: 100%; /* Ensure it fits the screen */
+      width: 100%; 
+      padding: 0 1em; /* Add padding to avoid edge clipping */
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+    
+    .hero-image {
+      max-width: 100%;
+      height: auto; /* Maintain aspect ratio */
+      margin: 0 auto; /* Center the image */
+      display: block;
+    }
+    
+    .section {
+      margin: 0 auto;
+      padding: 2em 1em;
+      box-sizing: border-box;
+    }
+    h1, h2, h3 {
+      margin: 0.5em 0;
+      line-height: 1.2;
+    }
+    
+    p {
+      margin: 0.5em 0;
+      font-size: 0.9rem; /* Adjust based on base font size */
+    }
+    
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+    @media screen and (max-width: 768px) {
+      .hero {
+        text-align: center; /* Center-align text for smaller screens */
+      }
+    
+      .hero-image {
+        width: 90%; /* Reduce image size on smaller devices */
+        margin: 0 auto; /* Center image */
+      }
+    
+      .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center;
+        gap: 1em;
+      }
+    
+      .footer-text {
+        font-size: 0.7em; /* Adjust text size for readability */
+      }
+      .blog-home-main-wrapper {
+        margin-top: 2.5vh;
+     
+        
+      }
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Disable horizontal scrolling */
+    }
+    
+    section {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .section {
+      margin: 0 auto;
+      padding: 1em;
+    }
+    
+    p, h1, h2 {
+      margin: 0.5em 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <div data-animation="default" class="navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" data-w-id="e0b516b2-bf57-08a9-1f3c-0329245b60b9" role="banner" data-no-scroll="1" data-duration="500" data-doc-height="1">
