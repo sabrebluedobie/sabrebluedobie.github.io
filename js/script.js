@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return await response.json();
         } catch (error) {
             console.error("Error fetching votes:", error);
+            alert("Failed to load poll results. Please check your network or contact support.");
             return { speed: 0, design: 0, visibility: 0 }; // Default empty data on failure
         }
     }
@@ -35,50 +36,50 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Vote submitted successfully");
         } catch (error) {
             console.error("Error submitting vote:", error);
-            alert("An error occurred while submitting your vote. Please try again.");
+            if (error.message.includes("CORS")) {
+                alert("CORS policy error. Please ensure your backend is configured to accept requests from this origin.");
+            } else {
+                alert("An error occurred while submitting your vote. Please try again later.");
+            }
         }
     }
 
-// Update results on the page
-function updateResults(votes) {
-    const totalVotes = votes.speed + votes.design + votes.visibility;
+    // Update results on the page
+    function updateResults(votes) {
+        const totalVotes = votes.speed + votes.design + votes.visibility;
 
-    if (totalVotes === 0) return; // Avoid division by zero
-
-    // Calculate percentages accurately
-    const percentages = {
-        speed: (votes.speed / totalVotes) * 100,
-        design: (votes.design / totalVotes) * 100,
-        visibility: (votes.visibility / totalVotes) * 100,
-    };
-
-    // Find the highest percentage
-    const highest = Math.max(percentages.speed, percentages.design, percentages.visibility);
-
-    // Update progress bars and set colors
-    const bars = {
-        speed: document.getElementById("speed-bar"),
-        design: document.getElementById("design-bar"),
-        visibility: document.getElementById("visibility-bar"),
-    };
-
-    const labels = {
-        speed: document.getElementById("speed-percentage"),
-        design: document.getElementById("design-percentage"),
-        visibility: document.getElementById("visibility-percentage"),
-    };
-
-    Object.keys(bars).forEach((option) => {
-        // Update progress
-        bars[option].style.width = `${percentages[option].toFixed(2)}%`; // Use fixed decimal
-        if (percentages[option] === highest) {
-            bars[option].style.backgroundColor = "#4caf50"; // Green for highest
-        } else {
-            bars[option].style.backgroundColor = "#f44336"; // Red for others
+        if (totalVotes === 0) {
+            console.log("No votes yet.");
+            return; // Avoid division by zero and unnecessary updates
         }
-        labels[option].textContent = `${percentages[option].toFixed(2)}%`; // Show percentage with two decimals
-    });
-}
+
+        const percentages = {
+            speed: (votes.speed / totalVotes) * 100,
+            design: (votes.design / totalVotes) * 100,
+            visibility: (votes.visibility / totalVotes) * 100,
+        };
+
+        const highest = Math.max(percentages.speed, percentages.design, percentages.visibility);
+
+        const bars = {
+            speed: document.getElementById("speed-bar"),
+            design: document.getElementById("design-bar"),
+            visibility: document.getElementById("visibility-bar"),
+        };
+
+        const labels = {
+            speed: document.getElementById("speed-percentage"),
+            design: document.getElementById("design-percentage"),
+            visibility: document.getElementById("visibility-percentage"),
+        };
+
+        Object.keys(bars).forEach((option) => {
+            bars[option].style.width = `${percentages[option].toFixed(2)}%`;
+            bars[option].style.backgroundColor =
+                percentages[option] === highest ? "#4caf50" : "#f44336";
+            labels[option].textContent = `${percentages[option].toFixed(2)}%`;
+        });
+    }
 
     // Initialize poll
     async function initializePoll() {
@@ -89,8 +90,7 @@ function updateResults(votes) {
 
     // Handle form submission
     pollForm.addEventListener("submit", async function (e) {
-        e.preventDefault(); // Prevent page refresh
-        console.log("Vote button clicked!");
+        e.preventDefault();
 
         const formData = new FormData(pollForm);
         const userVote = formData.get("vote");
@@ -102,7 +102,6 @@ function updateResults(votes) {
             const updatedVotes = await fetchVotes();
             updateResults(updatedVotes);
         } else {
-            console.log("No vote selected.");
             alert("Please select an option before voting.");
         }
     });
@@ -110,3 +109,4 @@ function updateResults(votes) {
     // Fetch initial results
     initializePoll();
 });
+
