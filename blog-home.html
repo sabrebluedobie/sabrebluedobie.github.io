@@ -167,6 +167,13 @@ gtag('config', 'GTM-MCV3HH7L');
         width: 90%; /* Reduce image size on smaller devices */
         margin: 0 auto; /* Center image */
       }
+      .hero-content .hero-section .hero-container {
+        overflow: visible; /* Ensure no independent scrolling */
+    height: auto; /* Allow the content to determine the height */
+    display: block; /* Default display setting */
+    margin-bottom: 2em; /* Add spacing below, if needed */
+       }
+      }
     
       .footer-links {
         flex-direction: column; /* Stack links vertically */
@@ -178,8 +185,7 @@ gtag('config', 'GTM-MCV3HH7L');
         font-size: 0.7em; /* Adjust text size for readability */
       }
       .blog-home-main-wrapper {
-        margin-top: 2.5vh;
-        overflow: visible; /* Ensure no independent scrolling */
+      overflow: visible; /* Ensure no independent scrolling */
     height: auto; /* Allow the content to determine the height */
     display: block; /* Default display setting */
     margin-bottom: 2em; /* Add spacing below, if needed */
@@ -191,13 +197,18 @@ gtag('config', 'GTM-MCV3HH7L');
           overflow: visible;
           height: auto;
         }
-        .blog-home-main-item {
-          width:auto;
+        .blog-home-main-item img {
+          max-width: 100;
           height: auto;
+          display: block;
+          margin: 0 auto;
         }
-        .blog-home-image {
-          width: auto;
+        #blog-container {
+          overflow: hidden;
           height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
     }
     body {
@@ -236,148 +247,43 @@ gtag('config', 'GTM-MCV3HH7L');
         <div class="nav-menu-container">
           <a href="https://bit.ly/4aOSYq4" class="brand-link w-nav-brand"><img src="images/bluedobielogo_1.webp" loading="lazy" width="100" height="100" alt="The blue dobie logo on a white background" class="brand-logo"></a>
           <nav role="navigation" class="nav-menu w-nav-menu">
+            <!-- Top-Level Navigation -->
             <div class="nav-link-holder">
-              <a href="index.html" class="nav-link w-inline-block">
-                <div>Home</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="index.html" class="nav-link w-inline-block">Home</a>
             </div>
             <div class="nav-link-holder">
-              <a href="our-portfolio.html" class="nav-link w-inline-block">
-                <div>Portfolio</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="about.html" class="nav-link w-inline-block">About</a>
             </div>
             <div class="nav-link-holder">
-              <a href="about.html" class="nav-link w-inline-block">
-                <div>About</div>
-                <div class="link-background"></div>
-              </a>
+                <a href="services.html" class="nav-link w-inline-block">Services</a>
             </div>
-            <div class="nav-link-holder">
-              <div data-hover="true" data-delay="300" class="nav-dropdown w-dropdown">
-                <div class="nav-link nav-link-dropdown w-dropdown-toggle">
-                  <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
-                  <div>Pages</div>
-                  <div class="link-background"></div>
-                  <div class="nav-dropdown-link-arrow-holder">
-                    <div class="nav-dropdown-link-arrow-animated">
-                      <div class="nav-dropdown-link-arrow"></div>
-                    </div>
-                  </div>
-                </div>
-                <nav class="nav-dropdown-list w-dropdown-list">
-                  <div class="nav-dropdown-list-content">
-                    <div class="w-layout-grid nav-dropdown-grid">
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Pages</div>
-                        <ul role="list" class="nav-list">
-                          <li class="nav-dropdown-item">
-                            <a href="index.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Home</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="our-portfolio.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Portfolio</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="about.html" aria-current="page" class="nav-link white-nav-link w-inline-block">
-                              <div>About</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="meet-sabre.html" aria-current="page" class="nav-link white-nav-link w-inline-block">
-                              <div>Meet Sabre</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="contact.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Contact</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                            <a href="contact.html" class="nav-link white-nav-link w-inline-block"></a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="digital-branding-services.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Digital Branding Services</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                        <div class="nav-dropdown-line-abs"></div>
-                      </div>
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Other pages</div>
-                        <ul role="list" class="nav-list">
-                          <li class="nav-dropdown-item">
-                            <a href="blog-home.html" class="nav-link white-nav-link w-inline-block">Blog Home</a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="referral-page.html" class="nav-link white-nav-link w-inline-block">
-                              <div>Referrals</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="newsletters.html" class="nav-link white-nav-link w-inline-block">
-                              <div>newsletters</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="nav-dropdown-line-abs"></div>
-                      <div class="nav-dropdown-column">
-                        <div class="nav-dropdown-heading">Follow us</div>
-                        <ul role="list" class="nav-list">
-                          <li class="nav-dropdown-item">
-                            <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Facebook</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Twitter</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Linkedin</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                          <li class="nav-dropdown-item">
-                            <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="nav-link white-nav-link w-inline-block">
-                              <div>Instagram</div>
-                              <div class="link-background link-bg-on-dark"></div>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="nav-dropdown-footer">
-                      <div class="content"><img src="images/bluedobielogo_2.webp" loading="lazy" alt="Blue doberman with text Bluedobie Design and Developing: Bluedobie Logo" width="50" height="50" style="padding-bottom: 5px;">
-                        <div style="padding-bottom: 5px;">Brought to you with ❤️ by <a href="mailto:melanie.brown@bluedobiedev.com?subject=website%20mail" style="color: lightblue">Bluedobie Developing</a>.</div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-            </div>
-            <div class="nav-link-holder nav-button-holder _2">
-              <a href="contact.html" class="button nav w-inline-block">
-                <div>Contact Us</div>
-              </a>
-            </div>
-          </nav>
+        
+            <!-- Dropdown for Additional Links -->
+    <div class="nav-link-holder dropdown">
+      <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+      <div class="dropdown-menu" id="dropdown-menu">
+          <a href="our-portfolio.html" class="nav-link">Portfolio</a>
+          <a href="meet-sabre.html" class="nav-link">Meet Sabre</a>
+          <a href="blog-home.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </div>
+
+  <!-- Social Links Column -->
+  <div class="social-links-column" style="padding-left: 2.5vw;">
+      <p class="follow">Follow Us:</p>
+             <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+      <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+      <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+      <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+  </div>
+  <div class="nav-link-holder nav-button-holder _2">
+    <a href="contact.html" class="button nav w-inline-block">
+      <div>Contact Us</div>
+    </a>
+  </div>
+  <script src="js/dropdown.js" ></script>
+</nav>
           <div class="nav-menu-overlay-mobile"></div>
           <div class="nav-link-holder nav-button-holder-copy">
             <a data-w-id="21f763a3-44d0-e6a3-ac84-b9cf055e839b" href="contact.html" class="button nav w-inline-block">
@@ -610,7 +516,7 @@ gtag('config', 'GTM-MCV3HH7L');
               <h2 class="blog-home-item-title" style="font-size: 2.25em; color: black; z-index: 0;">${article.title}</h2>
               <p class="blog-home-item-summary">${article.summary}</p> 
               <div class="blog-home-image">
-              <img src="${article.image}" alt="${article.title}" class="blog-home-main-image" style="height: 50%;width: auto;">
+              <img src="${article.image}" alt="${article.title}" class="blog-home-main-image" style="height: auto;width: auto;">
               </div> 
             </div> 
           </a>  
