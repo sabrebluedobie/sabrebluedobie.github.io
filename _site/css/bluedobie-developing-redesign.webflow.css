@@ -6497,13 +6497,14 @@ blockquote {
 }
 
 .demo-title {
-  font-size: 64px;
+  font-size: 0.8rem !important;
 }
 
 .demo-title.white-text {
   position: relative;
   bottom: auto;
   right: 2.5vw;
+  font-size: 0.8rem !important;
 }
 
 .about-hero-images-holder {

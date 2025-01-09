@@ -6506,6 +6506,7 @@ blockquote {
   position: relative;
   bottom: auto;
   right: 2.5vw;
+  font-size: 0.8rem !important;
 }
 
 .about-hero-images-holder {
@@ -6990,6 +6991,7 @@ div.blog-main-image-div {
   position: relative;
   bottom: auto;
   right: 2.5vw;
+  font-size: .9rem !important;
 }
 
 .rich-text-block-2 {
