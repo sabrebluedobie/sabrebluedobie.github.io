@@ -2,17 +2,23 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import psycopg2 
 from psycopg2 import pool
+from supabase import create_client, Client
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/votes', methods=['GET'])
 def get_votes():
-    return jsonify({"speed": 10, "design": 20, "visibility": 30})
+    votes = supabase.table("votes").select("*").execute()
+    results = {"speed": 0, "design": 0, "visibility": 0}
+    for vote in votes.data:
+        results[vote["option"]] += 1
+    return jsonify(results)@app.route('/vote', methods=['POST'])
 @app.route('/vote', methods=['POST'])
 def submit_vote():
     data = request.json
-    # Handle vote submission
+    supabase.table("votes").insert({"option": data["option"]}).execute()
     return jsonify({"success": True}), 200
 
 @app.after_request
@@ -98,7 +104,7 @@ print("GET /api/votes endpoint was called")
 @app.route("/vote", methods=["POST"])
 def submit_vote():
     data = request.json
-    option = data.get("option")
+    return jsonify({"success": True}), 200
 
     if option not in ["speed", "design", "visibility"]:
         return jsonify({"error": "Invalid vote option"}), 400
