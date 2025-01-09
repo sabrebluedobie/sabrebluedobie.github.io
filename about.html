@@ -61,9 +61,80 @@ gtag('config', 'GTM-MCV3HH7L');
       max-width: 100%;
       width: 100vw;
     }
-    .dropdown-toggle {
-      color: #000;
+    h2 {
+      text-align: center;
+      font-size: 2.25rem;
     }
+    
+    /* Dropdown Menu Styling for Dark Background */
+.dropdown-toggle {
+  background-color: #333; /* Dark background for the button */
+  color: #fff; /* White text for visibility */
+  padding: 10px 20px;
+  border: 1px solid #444; /* Subtle border for definition */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.dropdown-toggle:hover {
+  background-color: #555; /* Slightly lighter hover color */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444; /* Dark background for dropdown */
+  color: #fff; /* White text */
+  min-width: 200px;
+  border: 1px solid #555;
+  z-index: 9999;
+  padding: 10px 0;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  border-radius: 5px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: #fff; /* White text */
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #555; /* Lighter background on hover */
+  color: #ffd700; /* Bright yellow text on hover */
+}
+.nav-link {
+  color: #fff; /* White text for links */
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 1em;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffd700; /* Bright yellow on hover */
+}
+.nav-container {
+  overflow: visible; /* Prevent clipping */
+}
+
+
+
+/* Ensure Dropdown is Fully Visible on Mobile */
+@media (max-width: 768px) {
+  .dropdown-menu {
+      position: static; /* Ensure it aligns with parent */
+      width: 100%; /* Full width for mobile */
+      box-shadow: none; /* Remove shadow for simplicity */
+      border-radius: 0;
+  }
+}
+
 
   </style>
   
@@ -168,7 +239,7 @@ gtag('config', 'GTM-MCV3HH7L');
           <div data-w-id="5e4ee538-4da4-bee3-851b-5741a6f2aa4e" style="opacity:0" class="second-home-description">At Bluedobie Developing, we believe that magic happens when creativity meets technology. With a team of dedicated storytellers, designers, and marketing specialists, we deliver tailor-made web solutions designed to captivate hearts and minds across the United States.</div>
         </div>
         <div class="div-block-3">
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1031168185?loop=1&amp;autoplay=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;muted=true" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Bluedobie Helping Small Businesses"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+          <div style="padding:56.25% 0 0 0;position:relative; margin-bottom: 5vh; margin-top: -4vh;"><iframe src="https://player.vimeo.com/video/1031168185?loop=1&amp;autoplay=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;muted=true" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Bluedobie Helping Small Businesses"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
         </div>
       </div>
     </div>
@@ -213,7 +284,7 @@ gtag('config', 'GTM-MCV3HH7L');
         <h2>Contact Us</h2>
         <p class="paragraph-32" style="margin-bottom: 2.5vh; display: block;"><span>We invite you to explore how Bluedobie Developing can assist in bringing your digital vision to life. Contact us via email at <strong><a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></strong> or call us at <strong><a href="tel:+12703883535">(270)388-3535</a></strong> Join us in creating captivating digital experiences.<br><br>Thank you for considering Bluedobie Developing for your web design and digital branding needs. We look forward to working with you. Let&#x27;s embark on this exciting adventure together with Bluedobie Developing!</span><br><br></p>
           <img class="about-image" src="images/melanie-brown.webp" alt="A woman standing in front of a brick building" style="opacity:0;filter:blur(5px)" sizes="(max-width: 479px) 27vw, (max-width: 767px) 26vw, (max-width: 1279px) 28vw, (max-width: 1439px) 338.515625px, 397.6796875px" data-w-id="10623c21-284e-8e2e-c5d3-45065e026c04" loading="lazy" srcset="images/melanie-brown-p-500.webp 500w, images/melanie-brown-p-800.webp 800w, images/melanie-brown-p-1080.webp 1080w, images/melanie-brown.webp 1536w">
-        <div data-w-id="7ea15f08-6342-2936-7ee4-feb8a66a3b97" style="opacity:0;-webkit-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="statistics-title">Passionate Designer / Developer That Loves Bringing Good Stories to Life</div>
+        <div data-w-id="7ea15f08-6342-2936-7ee4-feb8a66a3b97" style="opacity:0;-webkit-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="statistics-title"><h2>Passionate Designer / Developer That Loves Bringing Good Stories to Life</h2></div>
         <p class="paragraph-37"><span>I love to code and watch projects transform on-screen based on what I enter. The challenges associated with the work excite me, as I enjoy solving problems. Working as a creative web solutions provider, I can bring unique ideas to life.<br><br>
           I look forward to sharing my work with you through our web development services. Thank you for sharing your time with me. Partnering with a reputable web design company can make your vision a reality.<br><br>“You are never too old to set another goal, or to dream a new dream.” ― C.S. Lewis</span><br></p>
         <div data-w-id="b3f260a8-46e1-c6a3-3817-275686f7fdd7" class="about-boxes-holder"></div>
@@ -227,7 +298,7 @@ gtag('config', 'GTM-MCV3HH7L');
   <div class="section">
     <div class="container">
       <div id="w-node-b469aaea-63b4-8d52-7e18-6bbc5d5399f1-82596024" class="our-values-holder">
-        <div data-w-id="086d3f13-9d51-4ddf-a630-0306844cfd6f" style="opacity:0;-webkit-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="our-values-text">Our Mission Defines Us</div>
+        <div data-w-id="086d3f13-9d51-4ddf-a630-0306844cfd6f" style="opacity:0;-webkit-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-25px, null, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="our-values-text"><h2>Our Mission Defines Us</h2></div>
         <p class="paragraph-32"><span>Bluedobie Developing is committed to offering visually stunning and functional websites customized to meet your unique requirements. Our web design company aims to transform your ideas into captivating digital experiences through people-focused custom webpage design. We strive to empower individuals and businesses by providing inclusive and engaging online platforms. Our creative web solutions enable everyone to thrive and share their stories in the digital world. With a blend of innovation and creativity, Bluedobie Developing is your partner in making a significant impact online through our web development services.</span></p><br>‍<br>
         <p>Created by Melanie Brown/Bluedobie Developing</p>
       </div>
@@ -290,7 +361,22 @@ gtag('config', 'GTM-MCV3HH7L');
   
 </footer>
 
-    
+    <script>document.addEventListener("DOMContentLoaded", () => {
+      const dropdownToggle = document.getElementById("dropdown-toggle");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+  
+      dropdownToggle.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent click from bubbling
+          dropdownMenu.style.display =
+              dropdownMenu.style.display === "block" ? "none" : "block";
+      });
+  
+      // Close the dropdown when clicking outside
+      document.addEventListener("click", () => {
+          dropdownMenu.style.display = "none";
+      });
+  });
+  </script>
 
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=661e91253937928082595f31" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js"></script><!--  Google Tag Manager (noscript)  -->
