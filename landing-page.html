@@ -80,6 +80,7 @@ function gtag_report_conversion(url) {
   .responsive-iframe-container {
     position: relative;
     width: 100%; /* Full width */
+    height: 700px;
     padding-top: 56.25%; /* Aspect ratio: 16:9 */
     overflow: hidden; /* Ensure no overflow */
   }
@@ -91,8 +92,14 @@ function gtag_report_conversion(url) {
     width: 100%; /* Take full width */
     height: 100%; /* Take full height */
     border: 0; /* Remove borders */
+    
   }
-  
+  .form {
+    width: 99%;
+    height: 700px;
+    overflow: hidden;
+    scrollbar-width: 0;
+  }
 </style>
 </head>
 <body class="body">
@@ -135,9 +142,10 @@ function gtag_report_conversion(url) {
 
   <div class="w-layout-blockcontainer container-3 w-container">
     <div class="responsive-iframe-container">
-    <iframe class=form src="form.html" width="99%" height="700" scrolling="no" title="Sign Up Form" style="border:none; overflow:hidden;"></iframe>
+    <iframe class=form src="form.html" title="Sign Up Form" style="border:none; overflow:hidden;"></iframe>
     </div>
   </div>
+  <div class="container"></div>
   <div id="cookieBanner" class="cookie-banner">
     <p>We use cookies to improve your experience on our site. By using our site, you consent to cookies. 
        <a href="/privacy" target="_blank" rel="noopener noreferrer">Learn More</a>
