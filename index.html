@@ -66,94 +66,43 @@ gtag('config', 'GTM-MCV3HH7L');
       position: absolute; 
       
     }
-    form {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-}
-
-#poll-container {
-    background: linear-gradient(to bottom, #0078d4, #0056b3);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #042d4d;
-    text-align: center;
-    padding: 30px;
-    font-family: Arial, sans-serif;
+   
+    .hero-section {
+    position: relative;
     width: 100%;
-    max-width: 100%;
-    margin: 20px auto;
+    height: 100vh; /* Adjust based on your layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Adjust text color for visibility */
 }
 
-.poll-question {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color:#fff;    
-    text-shadow: 1px 1px 2px #042d4d; /* X, Y, blur, and color */
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
 }
 
-
-#poll-form label {
-    display: block;
-    margin-top: 3vh;
-    padding-top: 2vh;
-    font-size: 18px;
-    color: #042d4d;
+.hero-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.vote-button {
-    background-color: #0056b3;
-    color: #fff;
-    border: none;
-    margin-top: 5vh;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+.hero-text-1 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
 }
 
-.vote-button:hover {
-    background-color: #0078d4;
-}
-
-.result-bar {
-  display: flex; /* Align children horizontally */
-  align-items: center; /* Center-align text and progress bars */
-  justify-content: space-between; /* Spread content evenly */
-  margin-bottom: 15px; /* Add spacing between result bars */
-}
-
-.result-bar span {
-  width: 20%;
-}
-
-/* Progress Container */
-.progress {
-  width: 100%; /* Ensure the progress bar spans the full width */
-  height: 20px; /* Set consistent height */
-  background-color: #e0e0e0; /* Light gray background */
-  border-radius: 10px; /* Rounded corners for the container */
-  overflow: hidden; /* Ensure the fill doesn't spill out */
-  margin: 5px 0; /* Add spacing between progress bars */
-}
-
-/* Progress Fill */
-.progress-fill {
-  height: 100%; /* Match the height of the container */
-  background-color: #007BFF; /* Blue fill color */
-  width: 0%; /* Start with 0% width */
-  transition: width 0.5s ease-in-out; /* Smooth transition for width changes */
-}
-
-
-#poll-results span {
-  font-weight: bold;
-}
 
     @media screen and (max-width: 479px) {
       .hero-content {
@@ -223,10 +172,12 @@ gtag('config', 'GTM-MCV3HH7L');
   <div class="demo-page-wrapper">
     <div class="hero-section">
       <div class="background-video w-background-video w-background-video-atom">
+        <div class="hero-video-container" style="z-index: -1;">
         <video id="4a301a29-48c6-47ec-593c-df19c086d02f-video" autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true">
           <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
           <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
         </video>
+        </div>
   
       <!-- Hero Content -->
       <div class="hero-content">
