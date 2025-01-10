@@ -106,9 +106,14 @@ gtag('config', 'GTM-MCV3HH7L');
       width: 100%;
       padding: 0 1em;
       box-sizing: border-box;
+      overflow: visible;
+      height: auto;
     }
-    iframe.form {
-    width: 100%; /* Make it responsive */
+    #zf_div__VqSQjXBNYdzfba7hvdvoImuqZy49vmZzH5p2AchX3M {
+      width: 99%;
+    }
+    iframe {
+    width: 99%; /* Make it responsive */
     max-width: 800px; /* Set a wider maximum width for desktop */
     height: auto; /* Allow height to adjust naturally */
     min-height: 500px; /* Ensure enough height to display content */
@@ -149,12 +154,7 @@ gtag('config', 'GTM-MCV3HH7L');
       font-size: 0.8em;
       margin: 0;
     }
-    .container {
-      max-width: 100%; /* Ensure it fits the screen */
-      width: 100%; 
-      padding: 0 1em; /* Add padding to avoid edge clipping */
-      box-sizing: border-box; /* Include padding in width calculation */
-    }
+   
     
     .hero-image {
       max-width: 100%;
@@ -188,12 +188,12 @@ gtag('config', 'GTM-MCV3HH7L');
         text-align: left;
         margin-left: auto;
     }
-    @media (min-width: 1024px) {
+  
     .form-container {
         width: 90%; /* Allow a wider form for desktop */
         max-width: 900px;
     }
-    iframe.form {
+    iframe {
         width: 80%; /* Adjust width for desktop */
         max-width: 900px; /* Maximum width for larger screens */
         height: 600px; /* Fixed height if needed */
@@ -201,7 +201,7 @@ gtag('config', 'GTM-MCV3HH7L');
 
 }
 
-}
+
     @media screen and (max-width: 768px) {
       .hero {
         text-align: center; /* Center-align text for smaller screens */
@@ -232,7 +232,7 @@ gtag('config', 'GTM-MCV3HH7L');
    padding: 0;
    
    }
-   iframe.form {
+   iframe {
     padding: 0;
     margin: 0;
    }
@@ -254,26 +254,61 @@ gtag('config', 'GTM-MCV3HH7L');
     margin-bottom: 2em; /* Add spacing below, if needed */
        }
       
-        .container {
-          overflow: visible;
-          height: auto;
-        }
         .blog-home-main-item img {
           max-width: 100;
           height: auto;
           display: block;
           margin: 0 auto;
         }
+        div.blog-home-main-image {
+          overflow: auto;
+          display: flex;
+          justify-content: center;
+          margin-left: 30vw;
+          z-index: 100;
+        }
+        img.blog-home-main-image {
+          display: block;
+          margin-left: 20vw;
+        }
+
         #blog-container {
           overflow: hidden;
           height: auto;
           display: flex;
           flex-direction: column;
           align-items: center;
+          height: 70vh;
+        }
+        .hero-content {
+          text-align: center;
+        }
+        h1 {
+          text-align: center;
+        }
+        .blog-home-item-category {
+          display: flex;
+          margin-left: 10vw;
+        }
+      .blog-home-category-text {
+        flex: 50%;
+        text-align: center;
+      }
+        .blog-home-date-category {
+          flex: 50%;
+          text-align: center;
+        }
+        .blog-home-item-title {
+          margin-top: 5vh;
+          text-align: center;
+        }
+        .cta-title-holder {
+          width: 99%;
+          
         }
        
 .form-container {
-    width: 100%;
+    width: 99%;
     max-width: 800px; /* Adjust as needed for desktop */
     margin: 0 auto; /* Center the form on the page */
 }
@@ -394,7 +429,7 @@ gtag('config', 'GTM-MCV3HH7L');
                 f.src = 'https://forms.zohopublic.com/bluedobiedev/form/BluedobieDialoguesForm/formperma/_VqSQjXBNYdzfba7hvdvoImuqZy49vmZzH5p2AchX3M?zf_rszfm=1';
                 f.style.border="none";
                 f.style.height="1230px";
-                f.style.width="90%";
+                f.style.width="100%";
                 f.style.transition="all 0.5s ease";
                 f.setAttribute("aria-label", 'Sign\x20Up\x20for\x20Bluedobie\x20Dialogues\x20Blog\x20and\x20Updates');
                 
