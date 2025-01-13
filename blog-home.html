@@ -74,6 +74,49 @@ gtag('config', 'GTM-MCV3HH7L');
     height: auto; /* Not fixed or 100% */
 }
 
+.dropdown-menu {
+  position: absolute; /* Ensures the dropdown is removed from the flow */
+  top: 100%; /* Position it just below the "More" button */
+  left: 0;
+  right: 0; /* Allow the dropdown to span the entire screen width */
+  z-index: 9999; /* Ensure it appears above other elements */
+  min-width: 200px;
+  max-height: 80vh; /* Prevent it from exceeding the screen height */
+  overflow-y: auto; /* Enable scrolling if the dropdown is long */
+  background-color: #fff; /* Ensure visibility on different backgrounds */
+  border: 1px solid #ccc; /* Add border for better visibility */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
+  padding: 10px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1; /* Highlight links on hover */
+}
+.container,
+.nav,
+.dropdown {
+    overflow: visible !important; /* Prevent clipping of child elements */
+}
+
+#dropdown-toggle {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Optional rounded corners */
+  cursor: pointer;
+}
+
+#dropdown-toggle:hover {
+  background-color: #444; /* Slightly lighter black on hover */
+}
 
     .navbar {
       background-color: transparent;
@@ -211,7 +254,7 @@ gtag('config', 'GTM-MCV3HH7L');
         margin: 0;
         padding-bottom: 20vh;
       }
-      .hero-image {
+      .hero-/image {
         width: 90%; /* Reduce image size on smaller devices */
         margin: 0 auto; /* Center image */
         z-index: 100;
@@ -225,6 +268,16 @@ gtag('config', 'GTM-MCV3HH7L');
     z-index: 10;
     
        }
+       .dropdown-menu {
+      position: fixed; /* Fix the dropdown relative to the screen */
+      top: 60px; /* Adjust based on the height of your navbar */
+      left: 0;
+      right: 0;
+      width: 100%; /* Full-width dropdown for mobile */
+      max-height: 80vh; /* Limit height to prevent large dropdowns */
+      overflow-y: auto; /* Scroll if dropdown exceeds the screen height */
+  }
+
        .black-cta-holder {
    position: relative;
    width: 100%;
