@@ -61,77 +61,93 @@ gtag('config', 'GTM-MCV3HH7L');
       background-color: #000;
       color: #fff;
     }
-    /* Dropdown Menu Styling for Dark Background */
-    .dropdown-toggle {
-  background-color: #333; /* Dark background for the button */
-  color: #fff; /* White text for visibility */
-  padding: 10px 20px;
-  border: 1px solid #444; /* Subtle border for definition */
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
-}
-.menu-button.w-nav-button {
-  color:#000;
-  background-color: #000;
-}
+   /* Universal Dropdown Toggle Styles */
+   .dropdown-toggle {
+            background-color: #333; /* Consistent dark background */
+            color: #fff; /* White text for visibility */
+            padding: 10px 20px;
+            border: 1px solid #444; /* Subtle border for definition */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.dropdown-toggle:hover {
-  background-color: #555; /* Slightly lighter hover color */
-}
+        .dropdown-toggle:hover {
+            background-color: #555; /* Slightly lighter hover color */
+            color: #ffd700; /* Bright yellow text */
+        }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #444; /* Dark background for dropdown */
-  color: #fff; /* White text */
-  min-width: 200px;
-  border: 1px solid #555;
-  z-index: 9999;
-  padding: 10px 0;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  border-radius: 5px;
-}
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444; /* Dark background for dropdown */
+            color: #fff; /* White text */
+            min-width: 200px;
+            border: 1px solid #555;
+            z-index: 9999;
+            padding: 10px 0;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+            border-radius: 5px;
+        }
 
-.dropdown-menu a {
-  display: block;
-  padding: 10px;
-  color: #fff; /* White text */
-  text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
-}
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            color: #fff; /* White text */
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.dropdown-menu a:hover {
-  background-color: #555; /* Lighter background on hover */
-  color: #ffd700; /* Bright yellow text on hover */
-}
-
-@media (min-width: 1024px) {
-    .dropdown-menu {
-        width: 300px; /* Adjust this value as needed */
-        text-align: left;
-        margin-left: auto;
+        .dropdown-menu a:hover {
+            background-color: #555; /* Lighter background on hover */
+            color: #ffd700; /* Bright yellow text */
+        }
+        .navbar {
+      background-color: transparent;
+      color:#000;
+      transition: background-color 0.5s ease;
+      position: sticky; /* Ensure the navbar stays at the top */
+      width: 100%;
+      z-index: 10;
     }
-}
-/* Ensure Dropdown is Fully Visible on Mobile */
-@media (max-width: 768px) {
-  .dropdown-menu {
-      position: static; /* Ensure it aligns with parent */
-      width: 100%; /* Full width for mobile */
-      box-shadow: none; /* Remove shadow for simplicity */
-      border-radius: 0;
-  }
-  .dropdown-toggle {
-    color: #000
+    .navbar.scrolled {
+      background-color: #000; /* Black background after scroll */
     }
-}
-.nav-menu-overlay-mobile {
-  color: #000;
-}
+    
+    .nav-link {
+      color: #000;
+    }
+    
+    a.social-link {
+      color:#000;
+    }
+    .navbar.scrolled .nav-link {
+      color: #fff; /* White color for black background */
+    }
+    .navbar.scrolled a.social-link {
+      color: #fff;
+    }
+    .navbar.scrolled .follow {
+      color: #fff;
+    }
 
-.nav-link {
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                position: static; /* Ensure it aligns with parent */
+                width: 100%; /* Full width for mobile */
+                box-shadow: none; /* Remove shadow for simplicity */
+                border-radius: 0;
+            }
+
+            .dropdown-toggle {
+                color: #fff; /* Keep consistent white text */
+            }
+            .nav-menu-overlay-mobile {
+                color: #000;
+            }
+            .nav-link {
   color: #fff; /* White text for links */
   text-decoration: none;
   padding: 10px 15px;
@@ -156,17 +172,17 @@ gtag('config', 'GTM-MCV3HH7L');
       width: 100%;
       z-index: 10;
     }
-    
     .navbar.scrolled {
       background-color: #000; /* Black background after scroll */
+      color:#fff;
     }
     
     .nav-link {
-      color: #fff;
+      color: #000;
     }
     
     a.social-link {
-      color:#fff;
+      color:#000;
     }
     .navbar.scrolled .nav-link {
       color: #fff; /* White color for black background */
@@ -250,8 +266,6 @@ gtag('config', 'GTM-MCV3HH7L');
       h1 {
         font-size: 1.8rem;
       }
-      
-    @media screen and (max-width: 768px) {
       .hero {
         text-align: center; /* Center-align text for smaller screens */
       }
@@ -270,7 +284,52 @@ gtag('config', 'GTM-MCV3HH7L');
       .footer-text {
         font-size: 0.7em; /* Adjust text size for readability */
       }
+      .menu-button .w-nav-button {
+          display: block;
+          position: relative;
+          z-index:1000;
+          background-color: rgba(255, 0, 0, 0.3);
+          border: 1px solid red;
+          
+        }
+        .nav-menu-container {
+          overflow: visible;
+        }
+    } 
+         
+        .navbar {
+            background-color: #000; /* Consistent black background */
+            color: #fff;
+            position: sticky; /* Sticky navbar */
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar .nav-link {
+            color: #000;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-link .navbar.scrolled
+        {
+          color: #fff;
+        }
+        .navbar .nav-link:hover {
+            color: #ffd700; /* Bright yellow on hover */
+        }
+
+@media (min-width: 1024px) {
+    .dropdown-menu {
+        width: 300px; /* Adjust this value as needed */
+        text-align: left;
+        margin-left: auto;
     }
+}
+
     body {
       margin: 0;
       padding: 0;
