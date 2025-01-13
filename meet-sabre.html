@@ -62,15 +62,19 @@ gtag('config', 'GTM-MCV3HH7L');
       color: #fff;
     }
     /* Dropdown Menu Styling for Dark Background */
-.dropdown-toggle {
+    .dropdown-toggle {
   background-color: #333; /* Dark background for the button */
-  color: #000; /* White text for visibility */
+  color: #fff; /* White text for visibility */
   padding: 10px 20px;
   border: 1px solid #444; /* Subtle border for definition */
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s;
+}
+.menu-button.w-nav-button {
+  color:#000;
+  background-color: #000;
 }
 
 .dropdown-toggle:hover {
@@ -145,8 +149,9 @@ gtag('config', 'GTM-MCV3HH7L');
 
 
     .navbar {
-      background-color: #000;
+      background-color: transparent;
       color:#fff;
+      transition: background-color 0.5s ease;
       position: sticky; /* Ensure the navbar stays at the top */
       width: 100%;
       z-index: 10;
