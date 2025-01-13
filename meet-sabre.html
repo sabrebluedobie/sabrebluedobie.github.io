@@ -105,9 +105,9 @@ gtag('config', 'GTM-MCV3HH7L');
             color: #ffd700; /* Bright yellow text */
         }
         .navbar {
-      background-color: transparent;
-      color:#000;
-      transition: background-color 0.5s ease;
+      background-color: #000 !important;
+      color:#fff;
+      
       position: sticky; /* Ensure the navbar stays at the top */
       width: 100%;
       z-index: 10;
@@ -116,23 +116,14 @@ gtag('config', 'GTM-MCV3HH7L');
       background-color: #000; /* Black background after scroll */
     }
     
-    .nav-link {
-      color: #000;
-    }
     
-    a.social-link {
-      color:#000;
-    }
-    p.follow {
-      color: #000;
-    }
-    .navbar.scrolled .nav-link {
+    a.nav-link.w.inline-block {
       color: #fff; /* White color for black background */
     }
-    .navbar.scrolled a.social-link {
+    a.social-link {
       color: #fff;
     }
-    .navbar.scrolled .follow {
+    .follow {
       color: #fff;
     }
 
@@ -167,8 +158,8 @@ gtag('config', 'GTM-MCV3HH7L');
 }
 
 
-    .navbar {
-      background-color: transparent;
+    .navbar.w-nav {
+      background-color: #000 !important;
       color:#fff;
       transition: background-color 0.5s ease;
       position: sticky; /* Ensure the navbar stays at the top */
@@ -179,17 +170,10 @@ gtag('config', 'GTM-MCV3HH7L');
       background-color: #000; /* Black background after scroll */
       color:#fff;
     }
-    
-    .nav-link {
-      color: #000;
+    .nav-link a.social-link .follow {
+      color: #fff;
     }
-    
-    a.social-link {
-      color:#000;
-    }
-    .follow {
-      color: #000;
-    }
+   
     .navbar.scrolled .nav-link {
       color: #fff; /* White color for black background */
     }
@@ -289,18 +273,7 @@ gtag('config', 'GTM-MCV3HH7L');
     
       .footer-text {
         font-size: 0.7em; /* Adjust text size for readability */
-      }
-      #hamburger-icon {
-          display: block;
-          position: relative;
-          z-index:1000;
-          color: #000;
-          
-        }
-        #hamburger-icon.navbar.scrolled {
-          color:#fff;
-        }
-        
+      }  
         .nav-menu-container {
           overflow: visible;
         }
@@ -317,16 +290,13 @@ gtag('config', 'GTM-MCV3HH7L');
         }
 
         .navbar .nav-link {
-            color: #000;
+            color: #fff;
             text-decoration: none;
             padding: 10px;
             transition: color 0.3s;
         }
 
-        .navbar .nav-link .navbar.scrolled
-        {
-          color: #fff;
-        }
+        
         .navbar .nav-link:hover {
             color: #ffd700; /* Bright yellow on hover */
         }
@@ -436,9 +406,9 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
             </a>
           </div>
           <div class="menu-button w-nav-button" id="hamburger-icon" style="display: block;
-          position: relative; z-index:1000; background-color: rgba(255, 0, 0, 0.3)!important; border: 1px solid red;">
-          <img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" style="display: block;
-          position: relative; z-index:1000; background-color: rgba(255, 0, 0, 0.3)!important; border: 1px solid red;" class="menu-icon"></div>
+          position: relative; z-index:1000;">
+          <img src="/images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" style="display: block;
+          position: relative; z-index:1000;" class="menu-icon"></div>
         </div>
       </div>
     </div>
