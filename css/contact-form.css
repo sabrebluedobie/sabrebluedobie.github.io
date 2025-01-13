@@ -9,7 +9,7 @@
     border: 1px solid #d6d6d6;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
     color: #444;
 }
 
@@ -51,7 +51,7 @@
 
 /* Submit Button */
 #custom-form-container button[type="submit"] {
-    background-color: #2596e6;
+    background-color: #042d4d;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -62,7 +62,7 @@
 }
 
 #custom-form-container button[type="submit"]:hover {
-    background-color: #1988d6;
+    background-color: #042d4d;
 }
 
 /* Error Messages */
