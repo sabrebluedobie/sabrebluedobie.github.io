@@ -75,10 +75,51 @@ gtag('config', 'GTM-MCV3HH7L');
       color: #fff;
       transition: color 0.5s ease;
     }
-
-    .dropdown-toggle {
-      color:#000;
+    header {
+      background-color: #000;
+      color:#fff;
     }
+    .dropdown-toggle {
+  background-color: #333; /* Dark background for the button */
+  color: #fff; /* White text for visibility */
+  padding: 10px 20px;
+  border: 1px solid #444; /* Subtle border for definition */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.dropdown-toggle:hover {
+  background-color: #555; /* Slightly lighter hover color */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444; /* Dark background for dropdown */
+  color: #fff; /* White text */
+  min-width: 200px;
+  border: 1px solid #555;
+  z-index: 9999;
+  padding: 10px 0;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  border-radius: 5px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: #fff; /* White text */
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #555; /* Lighter background on hover */
+  color: #ffd700; /* Bright yellow text on hover */
+}
     
     .navbar.scrolled .nav-link {
       color: #fff; /* White color for black background */
@@ -180,7 +221,12 @@ gtag('config', 'GTM-MCV3HH7L');
         width: 90%; /* Reduce image size on smaller devices */
         margin: 0 auto; /* Center image */
       }
-    
+      .dropdown-menu {
+      position: static; /* Ensure it aligns with parent */
+      width: 100%; /* Full width for mobile */
+      box-shadow: none; /* Remove shadow for simplicity */
+      border-radius: 0;
+  }
       .footer-links {
         flex-direction: column; /* Stack links vertically */
         align-items: center;
