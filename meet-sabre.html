@@ -123,6 +123,9 @@ gtag('config', 'GTM-MCV3HH7L');
     a.social-link {
       color:#000;
     }
+    p.follow {
+      color: #000;
+    }
     .navbar.scrolled .nav-link {
       color: #fff; /* White color for black background */
     }
@@ -183,6 +186,9 @@ gtag('config', 'GTM-MCV3HH7L');
     
     a.social-link {
       color:#000;
+    }
+    .follow {
+      color: #000;
     }
     .navbar.scrolled .nav-link {
       color: #fff; /* White color for black background */
@@ -284,14 +290,17 @@ gtag('config', 'GTM-MCV3HH7L');
       .footer-text {
         font-size: 0.7em; /* Adjust text size for readability */
       }
-      .menu-button .w-nav-button {
+      #hamburger-icon {
           display: block;
           position: relative;
           z-index:1000;
-          background-color: rgba(255, 0, 0, 0.3);
-          border: 1px solid red;
+          color: #000;
           
         }
+        #hamburger-icon.navbar.scrolled {
+          color:#fff;
+        }
+        
         .nav-menu-container {
           overflow: visible;
         }
@@ -426,7 +435,10 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
               <div>Contact Us</div>
             </a>
           </div>
-          <div class="menu-button w-nav-button"><img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" class="menu-icon"></div>
+          <div class="menu-button w-nav-button" id="hamburger-icon" style="display: block;
+          position: relative; z-index:1000; background-color: rgba(255, 0, 0, 0.3)!important; border: 1px solid red;">
+          <img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" style="display: block;
+          position: relative; z-index:1000; background-color: rgba(255, 0, 0, 0.3)!important; border: 1px solid red;" class="menu-icon"></div>
         </div>
       </div>
     </div>
