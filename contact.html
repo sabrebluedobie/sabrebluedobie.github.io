@@ -16,6 +16,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY" name="google-site-verification">
   <meta content="Webflow" name="generator">
+  <link href="css/contact-form.css" rel="stylesheet" type="text/css">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/bluedobie-developing-redesign.webflow.css" rel="stylesheet" type="text/css">
@@ -390,9 +391,87 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
       <div class="section-background-dark"></div>
     </div>
     <div class="section">
-      <div class="container contact-container">
-        <iframe aria-label='Contact Form' style="height:130vh;width:99%;border:none;" src='https://forms.zohopublic.com/bluedobiedev/form/ContactForm/formperma/i-_a_4byvPCwG2jCjAWYFAMEKPQ9hj4LGk3eb0MMqyY'></iframe>
-        
+      <div class="container contact-container" id="custom-form-container">
+        <script src="js/form-validation.js"></script>
+<form class="zf-backgroundBg"><!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+<div class="zf-templateWidth"><form action='https://forms.zohopublic.com/bluedobiedev/form/ContactForm/formperma/sVdhaCrYy6-hmyzkpbIooZ8Wt8ckWpva6zG8TtrPEY4/htmlRecords/submit' name='form' method='POST' onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' accept-charset='UTF-8' enctype='multipart/form-data' id='form'><input type="hidden" name="zf_referrer_name" value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+<input type="hidden" name="zf_redirect_url" value=""><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+<input type="hidden" name="zc_gad" value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+<div class="zf-templateWrapper"><!---------template Header Starts Here---------->
+<ul class="zf-tempHeadBdr"><li class="zf-tempHeadContBdr"><h2 class="zf-frmTitle"><em>Contact Form</em></h2>
+<p class="zf-frmDesc"></p>
+<div class="zf-clearBoth"></div></li></ul><!---------template Header Ends Here---------->
+<!---------template Container Starts Here---------->
+<div class="zf-subContWrap zf-topAlign"><ul>
+<!---------Name Starts Here----------> 
+<li class="zf-tempFrmWrapper zf-name zf-namelarge"><label class="zf-labelName"> 
+Full Name 
+<em class="zf-important">*</em>
+</label>
+<div 
+class="zf-tempContDiv zf-twoType"  
+>
+<div
+class="zf-nameWrapper"  
+>
+ </span>
+<span> <input type="text" maxlength="255" name="Name_First" fieldType=7 placeholder=""/> <label>First</label>
+ </span> 
+ </span> </span>
+<span> <input type="text" maxlength="255" name="Name_Last" fieldType=7 placeholder=""/> <label>Last</label>
+ </span> 
+ </span> </span>
+ </span>
+<div class="zf-clearBoth"></div></div><p id="Name_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div><div class="zf-clearBoth"></div></li><!---------Name Ends Here----------> 
+<!---------Email Starts Here---------->  
+<li class="zf-tempFrmWrapper zf-large"><label class="zf-labelName"> 
+Your Email 
+<em class="zf-important">*</em>
+</label>
+<div class="zf-tempContDiv">
+<span> <input fieldType=9  type="text" maxlength="255" name="Email" checktype="c5" value="" placeholder=""/></span> <p id="Email_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div><div class="zf-clearBoth"></div></li><!---------Email Ends Here---------->  
+<!---------Single Line Starts Here---------->
+<li class="zf-tempFrmWrapper zf-large"><label class="zf-labelName"> 
+Company Name 
+<em class="zf-important">*</em>
+</label>
+<div class="zf-tempContDiv">
+<span> <input type="text" name="SingleLine1" checktype="c1" value="" maxlength="255" fieldType=1 placeholder=""/></span> <p id="SingleLine1_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div><div class="zf-clearBoth"></div></li><!---------Single Line Ends Here---------->
+<!---------Single Line Starts Here---------->
+<li class="zf-tempFrmWrapper zf-large"><label class="zf-labelName"> 
+Referrer 
+</label>
+<div class="zf-tempContDiv">
+<span> <input type="text" name="SingleLine" checktype="c1" value="Where did you hear about us?" maxlength="255" fieldType=1 placeholder=""/></span> <p id="SingleLine_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div><div class="zf-clearBoth"></div></li><!---------Single Line Ends Here---------->
+<!---------Multiple Line Starts Here---------->
+<li class="zf-tempFrmWrapper zf-large"><label class="zf-labelName"> 
+Message 
+<em class="zf-important">*</em>
+</label>
+<div class="zf-tempContDiv">
+<span> <textarea name="MultiLine" checktype="c1" maxlength="65535" placeholder=""></textarea> </span><p id="MultiLine_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div><div class="zf-clearBoth"></div></li><!---------Multiple Line Ends Here---------->
+<!---------Decision Starts Here----------> 
+<li class="zf-tempFrmWrapper zf-decesion "><div class="zf-tempContDiv">
+<input type="checkbox" checktype="c1" checked=true id="DecisionBox" name="DecisionBox"/>
+<label for="DecisionBox" class="zf-labelName">Terms and Conditions
+<em class="zf-important">*</em>
+</label>
+<p id="DecisionBox_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+<p class="zf-instruction">By checking this box, you agree to Bluedobie Developing&#x27;s terms and conditions as outlined at https&#x3a;&#x2f;&#x2f;www.bluedobiedev.com&#x2f;bluedobie-developing-terms-and-conditions.html</p>
+</div><div class="zf-clearBoth"></div></li><!---------Decision Ends Here----------> 
+</ul></div><!---------template Container Starts Here---------->
+<ul><li class="zf-fmFooter"><button class="zf-submitColor" >Submit</button></li></ul></div><!-- 'zf-templateWrapper' ends --></form></div><!-- 'zf-templateWidth' ends -->
+<script type="text/javascript">var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+var zf_MonthYearRegex = new RegExp("^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+var zf_MandArray = [ "Name_Last", "Email", "SingleLine1", "MultiLine", "DecisionBox"]; 
+var zf_FieldArray = [ "Name_Salutation", "Name_First", "Name_Last", "Name_Middle", "Email", "SingleLine1", "SingleLine", "MultiLine", "DecisionBox"]; 
+var isSalesIQIntegrationEnabled = false;
+var salesIQFieldsArray = [];</script></form>
       </div>
     </div>
     <div class="section">
