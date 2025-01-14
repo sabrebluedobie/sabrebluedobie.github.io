@@ -1,7 +1,7 @@
 /* Common Button Styles */
 .button {
-    background-color: #fff;
-    color: #042d4d;
+    background-color: #042d4d;
+    color: #fff;
     font-size: 16px;
     padding: 10px 20px;
     border: 1px solid #042d4d;
