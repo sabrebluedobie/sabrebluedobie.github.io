@@ -84,9 +84,48 @@ gtag('set', 'user_data', {
 "Email": yourEmailVariable,
 "Name_first": yourFirstNameVariable,
 "Name_last": yourLastNameVariable,
-}
 });
 </script>
+<script>
+  // Function to hash data using SHA-256
+  async function sha256(str) {
+      const buffer = new TextEncoder('utf-8').encode(str);
+      const hash = await crypto.subtle.digest('SHA-256', buffer);
+      return Array.from(new Uint8Array(hash))
+          .map((b) => b.toString(16).padStart(2, '0'))
+          .join('');
+  }
+
+  // Function to send enhanced conversions
+  async function sendEnhancedConversions() {
+      // Capture the form data
+      const firstName = document.getElementById('Name_first')?.value.trim().toLowerCase() || '';
+      const lastName = document.getElementById('Name_last')?.value.trim().toLowerCase() || '';
+      const email = document.getElementById('Email')?.value.trim().toLowerCase() || '';
+
+      // Hash the data
+      const hashedFirstName = await sha256(firstName);
+      const hashedLastName = await sha256(lastName);
+      const hashedEmail = await sha256(email);
+
+      // Send to Google Ads
+      gtag('event', 'conversion', {
+          send_to: 'AW-11098113675',
+          first_name: hashedFirstName,
+          last_name: hashedLastName,
+          email: hashedEmail,
+      });
+  }
+
+  // Attach the function to the form submission event
+  document.querySelector('form').addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent default form submission for testing
+      sendEnhancedConversions(); // Call the enhanced conversions function
+      event.target.submit(); // Submit the form after sending data
+  });
+</script>
+
+
 <style>
   .responsive-iframe-container {
     position: relative;
