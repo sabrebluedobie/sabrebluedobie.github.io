@@ -2,6 +2,36 @@
 
 /** Variables **/
 
+#custom-form-container.section {
+  width: 90%; /* Adjust width to fit smaller screens */
+  max-width: 400px; /* Set a maximum width for larger screens */
+  margin: 0 auto; /* Center the form */
+  padding: 10px; /* Add padding inside the container */
+  box-sizing: border-box; /* Ensure padding doesn’t add to total width */
+}
+
+#custom-form-container.section input,
+#custom-form-container.section textarea,
+#custom-form-container.section button {
+  width: 100%; /* Make inputs span the full width */
+  margin-bottom: 10px; /* Add spacing between form elements */
+  padding: 10px; /* Add internal spacing for easier tapping */
+  font-size: 16px; /* Ensure text is legible */
+  border: 1px solid #ccc; /* Clean, simple border */
+  border-radius: 5px; /* Rounded corners for a modern look */
+}
+
+@media (max-width: 768px) {
+  #custom-form-container.section {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+  #custom-form-container.section input,
+  #custom-form-container.section textarea,
+  #custom-form-container.section button {
+    font-size: 14px; /* Slightly smaller font for smaller screens */
+  }
+}
+
 :root {
   --color-background: #cbd5e1;
   --color-background-alt: #3a9092;
