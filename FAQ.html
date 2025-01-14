@@ -1,15 +1,15 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Sat Jul 27 2024 17:46:24 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html lang="en" data-wf-page="66637b9360f8a07fbfbcede3" data-wf-site="661e91253937928082595f31">
 <head>
   <script src="https://cdn.pagesense.io/js/bluedobiedev/34c0e572bd704acba28d4a31e394e7eb.js"></script>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="/images/favicon.ico">
-  <title>Thank You for Reaching Out! | Bluedobie Developing</title>
+  <title>Custom Web Design in Western KY | Bluedobie Developing</title>
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" name="description">
-  <meta content="Thank You for Reaching Out!| Bluedobie Developing" property="og:title">
+  <meta content="Custom Web Design in Western KY | Bluedobie Developing" property="og:title">
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" property="og:description">
   <meta content="https://bluedobiedev.com/images/sabre-website.png" property="og:image">
-  <meta content="Thank You for Reaching Out!| Bluedobie Developing" property="twitter:title">
+  <meta content="Custom Web Design in Western KY | Bluedobie Developing" property="twitter:title">
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" property="twitter:description">
   <meta content="https://bluedobiedev.com/images/sabre-website.png" property="twitter:image">
   <meta property="og:type" content="website">
@@ -236,50 +236,119 @@ gtag('config', 'GTM-MCV3HH7L');
     }
 }
 
-  /* Container for the video and overlay */
-.hero-video-container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full screen height */
-    overflow: hidden;
-}
-
-/* Fullscreen video background */
-.background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; /* Behind overlay and content */
-}
-
-/* Semi-transparent overlay */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 2; /* Above video, behind content */
-}
-
-/* Content over the video */
-.hero-content {
-    position: relative;
-    z-index: 3; /* Above video and overlay */
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-}
-    
+      
     }
-  </style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+
+    .faq-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .faq-header h1 {
+        font-size: 2rem;
+        color: #042d4d;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 10px;
+        background-color: #042d4d;
+        color: #fff;
+        border-radius: 5px;
+        margin: 5px 0;
+    }
+
+    .faq-answer {
+        display: none;
+        padding: 10px;
+        margin: 0;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        border-left: 4px solid #0073e6;
+    }
+
+    .faq-question:hover {
+        background-color: #005bb5;
+    }
+    .cta {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .cta a {
+      color: #042d4d;
+      text-decoration: none;
+      font-weight: bold;
+  }
+
+  .cta a:hover {
+      text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    .faq-container {
+        padding: 10px;
+    }
+
+    .faq-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const questions = document.querySelectorAll('.faq-question');
+
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+
+                // Hide all answers first
+                document.querySelectorAll('.faq-answer').forEach(answer => {
+                    answer.style.display = 'none';
+                });
+
+                // Toggle current answer
+                answer.style.display = isVisible ? 'none' : 'block';
+            });
+        });
+    });
+</script>
   <!-- Meta Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
@@ -354,40 +423,84 @@ gtag('config', 'GTM-MCV3HH7L');
       </div>
     </div>
   </div>
-  <div class="demo-page-wrapper">
-    <div class="hero-section">
-      <div class="background-video w-background-video w-background-video-atom">
-        <div class="hero-video-container">
-         
-        <video id="4a301a29-48c6-47ec-593c-df19c086d02f-video" autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true">
-          <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-          <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-        </video>
-        </div>
-        <div class="overlay"> 
-  
-      <!-- Hero Content -->
-      <div class="hero-content">
-        <div class="hero-text-1">
-          <h1 class="demo-hero-text" style="color: white; z-index: 0;">Thank you for contacting us!</h1>
-          <h2 class="heading-6">Bluedobie Developing</h2>
-          <h3 class="heading-14">We Help Princeton's Businesses Thrive Online</h3>
-        
-        <div class="hero-description-holder small-top-margin">
-          <h3 class="heading-15" style="font-size: 1rem;">The best web design company Western Kentucky has to offer: We focus on making websites that stand out!</h3>
-          </div>
-        
-        <div class="demo-hero-buttons-holder">
-          <a href="contact.html" rel="noopener" class="button dark w-button" style="border: solid 2px #fff;">Spend Time With Us</a>
-          <a href="index.html" rel="noopener" class="button explore-button w-button">I Want to Keep Looking!</a>
-        </div>
-        </div>
-        </div>
-      </div>
+  <div class="faq-container">
+    <div class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Have questions? We've got answers!</p>
     </div>
-  </div>
-  </div>
-    
+
+    <!-- General Questions Section -->
+    <div class="faq-section">
+        <h2>General Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">What is Bluedobie Developing?</div>
+            <div class="faq-answer">Bluedobie Developing is a web design and development agency dedicated to helping small businesses succeed online with custom websites and digital solutions.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Who is Sabre?</div>
+            <div class="faq-answer">Sabre is our beloved blue Doberman mascot, symbolizing loyalty, agility, and excellence!</div>
+        </div>
+    </div>
+
+    <!-- Services Offered Section -->
+    <div class="faq-section">
+        <h2>Services Offered</h2>
+        <div class="faq-item">
+            <div class="faq-question">What services do you provide?</div>
+            <div class="faq-answer">We specialize in custom web design, SEO optimization, e-commerce solutions, and branding.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can you help with social media branding?</div>
+            <div class="faq-answer">Yes, we offer tailored social media branding packages to boost your online presence.</div>
+        </div>
+    </div>
+
+    <!-- Pricing and Payments Section -->
+    <div class="faq-section">
+        <h2>Pricing and Payments</h2>
+        <div class="faq-item">
+            <div class="faq-question">What’s your pricing structure?</div>
+            <div class="faq-answer">We provide flexible packages to meet your needs. Contact us for a custom quote.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you offer payment plans?</div>
+            <div class="faq-answer">Yes, we offer payment plans for select services. Let's discuss what works for you.</div>
+        </div>
+    </div>
+
+    <!-- Technical Support Section -->
+    <div class="faq-section">
+        <h2>Technical Support</h2>
+        <div class="faq-item">
+            <div class="faq-question">What if I need help after my website is live?</div>
+            <div class="faq-answer">We offer ongoing support packages to ensure your site runs smoothly.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you help with website updates?</div>
+            <div class="faq-answer">Absolutely! We provide maintenance services for updates, content changes, and more.</div>
+        </div>
+    </div>
+
+    <!-- Getting Started Section -->
+    <div class="faq-section">
+        <h2>Getting Started</h2>
+        <div class="faq-item">
+            <div class="faq-question">How do I get started with Bluedobie Developing?</div>
+            <div class="faq-answer">Simply reach out to us via our contact form, and we’ll guide you through the process.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What’s the typical project timeline?</div>
+            <div class="faq-answer">Timelines vary based on project complexity, but we’ll provide a clear estimate upfront.</div>
+        </div>
+    </div>
+
+    <!-- Call-to-Action -->
+    <div class="cta">
+        <p>Didn't find what you’re looking for? <a href="#">Contact us</a> for personalized assistance!</p>
+    </div>
+</div>
+     
+  
   <div class="container big-container"></div>
   <div class="section">
     <div class="container footer-container">
