@@ -392,98 +392,68 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
       </div>
       <div class="section-background-dark"></div>
     </div>
-    <div class="section" id="custom-form-container">
-      <div class="container contact-container" style="display: block; text-align: center;">
-            
-<form
-action="https://formspree.io/f/xbllwwdy"
-class="fs-form fs-layout__2-column"
-target="_top"
-method="POST"
->
-<fieldset>
-  <h2>Contact Form</h2>
-  <div class="fs-field">
-    <label class="fs-label" for="request-type">Type of Request</label>
-    <select class="fs-select" id="request-type" name="request-type" required>
-      <option value="product-inquiry">Product Inquiry</option>
-      <option value="purchase-request">Appointment Request</option>
-      <option value="general-inquiry">General Inquiry</option>
-    </select>
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="title">Title</label>
-    <select class="fs-select" id="title" name="title" required>
-      <option value="mr">Mr</option>
-      <option value="ms">Ms</option>
-      <option value="mx">Mrs</option>
-    </select>
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="first-name">First Name</label>
-    <input class="fs-input" id="first-name" name="first-name" required />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="last-name">Last Name</label>
-    <input class="fs-input" id="last-name" name="last-name" required />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="email">Email</label>
-    <input class="fs-input" id="email" name="email" required />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="company">Company</label>
-    <input class="fs-input" id="company" name="company" required />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="country">Country</label>
-    <input class="fs-input" id="country" name="country" required />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="phone-number">Phone Number</label>
-    <input class="fs-input" id="phone-number" name="phone-number" />
-  </div>
-  <div class="fs-field">
-    <label class="fs-label" for="message">Your Message</label>
-    <textarea
-      class="fs-textarea"
-      id="message"
-      name="message"
-      required
-    ></textarea>
-  </div>
-</fieldset>
-<div class="fs-checkbox-field" >
-  <div class="fs-checkbox-wrapper">
-    <input
-      aria-describedby="dpa-consent-description"
-      class="fs-checkbox"
-      id="dpa-consent"
-      name="dpa-consent"
-      required
-      type="checkbox"
-      value="consent"
-    />
-  </div>
-  <div>
-    <h3><label class="fs-label" for="dpa-consent">
-      Declaration of consent for data processing
-    </label></h3>
-    <p class="fs-description" id="dpa-consent-description">
-      You agree that your data from the form will be collected and processed
-      to answer your request. You can revoke your consent at any time for the
-      future by e-mail to melanie.brown@bluedobiedev.com. Detailed information on the
-      handling of user data can be found at https://www.bluedobiedev.com/privacy.
-    </p>
-  </div>
-</div>
-<div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl" style="display: flex; margin-top: 2.5vh; justify-content: center; align-items: center;"></div>
-<br/>
-<div class="fs-button-group">
-  <button class="fs-button" type="submit">Submit</button>
-</div>
-</form>
-      </div>
+    <div id="custom-form-container" class="section">
+      <form
+        action="https://formspree.io/f/xbllwwdy"
+        method="POST"
+        class="fs-form"
+      >
+        <fieldset>
+          <h2>Contact Form</h2>
+          <div class="fs-field">
+            <label class="fs-label" for="request-type">Type of Request</label>
+            <select id="request-type" name="request-type" class="fs-select" required>
+              <option value="product-inquiry">Product Inquiry</option>
+              <option value="purchase-request">Appointment Request</option>
+              <option value="general-inquiry">General Inquiry</option>
+            </select>
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" class="fs-input" required />
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" class="fs-input" required />
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="fs-input" required />
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="message">Your Message</label>
+            <textarea id="message" name="message" class="fs-textarea" required></textarea>
+          </div>
+        </fieldset>
+        <div class="fs-checkbox-field">
+          <div class="fs-checkbox-wrapper">
+            <input
+              type="checkbox"
+              id="dpa-consent"
+              name="dpa-consent"
+              class="fs-checkbox"
+              required
+            />
+          </div>
+          <div>
+            <label for="dpa-consent" class="fs-label">
+              Declaration of consent for data processing
+            </label>
+            <p class="fs-description">
+              You agree that your data from the form will be collected and processed
+              to answer your request. You can revoke your consent at any time by
+              emailing melanie.brown@bluedobiedev.com. Details are in our
+              <a href="/privacy" target="_blank">Privacy Policy</a>.
+            </p>
+          </div>
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></div>
+        <div class="fs-button-group">
+          <button type="submit" class="fs-button">Submit</button>
+        </div>
+      </form>
+    </div>
+    
     <div class="section">
       <div class="container">
         <div class="second-cta-holder">

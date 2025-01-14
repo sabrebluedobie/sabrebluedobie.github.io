@@ -1,36 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /** Variables **/
-
 #custom-form-container.section {
-  width: 90%; /* Adjust width to fit smaller screens */
-  max-width: 400px; /* Set a maximum width for larger screens */
-  margin: 0 auto; /* Center the form */
-  padding: 10px; /* Add padding inside the container */
-  box-sizing: border-box; /* Ensure padding doesn’t add to total width */
+  width: 100%; /* Full width for responsiveness */
+  max-width: 600px; /* Limit width on larger screens */
+  margin: 0 auto; /* Center the container */
+  padding: 15px; /* Add padding for spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 #custom-form-container.section input,
 #custom-form-container.section textarea,
-#custom-form-container.section button {
-  width: 100%; /* Make inputs span the full width */
-  margin-bottom: 10px; /* Add spacing between form elements */
-  padding: 10px; /* Add internal spacing for easier tapping */
-  font-size: 16px; /* Ensure text is legible */
-  border: 1px solid #ccc; /* Clean, simple border */
-  border-radius: 5px; /* Rounded corners for a modern look */
+#custom-form-container.section button,
+#custom-form-container.section select {
+  width: 100%; /* Full width for form elements */
+  margin-bottom: 15px; /* Add spacing between elements */
+  padding: 10px; /* Comfortable padding for touchscreens */
+  font-size: 16px; /* Ensure text legibility */
+  border: 1px solid #ccc; /* Simple border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.fs-checkbox-field {
+  display: flex;
+  align-items: flex-start; /* Align checkbox and text */
+  gap: 10px; /* Space between checkbox and text */
+  flex-wrap: wrap; /* Allow text wrapping for smaller screens */
+}
+
+.fs-checkbox {
+  flex-shrink: 0; /* Prevent shrinking of the checkbox */
+}
+
+.fs-button-group {
+  display: flex;
+  justify-content: center; /* Center the submit button */
+}
+
+.g-recaptcha {
+  margin: 20px auto 0; /* Add spacing and center */
+  display: flex;
+  justify-content: center; /* Center the reCAPTCHA */
 }
 
 @media (max-width: 768px) {
   #custom-form-container.section {
-    padding: 15px; /* Adjust padding for smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
   }
+
+  .fs-checkbox-field {
+    gap: 5px; /* Adjust spacing for tighter layouts */
+  }
+
   #custom-form-container.section input,
   #custom-form-container.section textarea,
   #custom-form-container.section button {
-    font-size: 14px; /* Slightly smaller font for smaller screens */
+    font-size: 14px; /* Slightly reduce font size for compactness */
   }
 }
+
 
 :root {
   --color-background: #cbd5e1;
