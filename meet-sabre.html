@@ -61,6 +61,7 @@ gtag('config', 'GTM-MCV3HH7L');
       background-color: #000;
       color: #fff;
     }
+   
    /* Universal Dropdown Toggle Styles */
    .dropdown-toggle {
             background-color: #333; /* Consistent dark background */
@@ -189,41 +190,7 @@ gtag('config', 'GTM-MCV3HH7L');
       padding: 0 1em;
       box-sizing: border-box;
     }
-    .footer {
-      background-color: #000; /* Explicit black background */
-      color: #fff; /* Explicit white text color */
-      padding: 2em 1em;
-      text-align: center;
-    }
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-    }
-    .footer-links {
-      display: flex;
-      gap: 1.5em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .footer-link {
-      color: #fff; /* White text for links */
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: color 0.3s;
-    }
-    .footer-link:hover {
-      color: #ffd700; /* Bright yellow for hover effect */
-    }
-    .footer-logo {
-      width: 120px;
-      margin-bottom: 0.5em;
-    }
-    .footer-text {
-      font-size: 0.8em;
-      margin: 0;
-    }
+   
     .container {
       max-width: 100%; /* Ensure it fits the screen */
       width: 100%; 
@@ -253,9 +220,6 @@ gtag('config', 'GTM-MCV3HH7L');
       font-size: 0.9rem; /* Adjust based on base font size */
     }
     
-      h1 {
-        font-size: 1.8rem;
-      }
       .hero {
         text-align: center; /* Center-align text for smaller screens */
       }
@@ -307,7 +271,43 @@ gtag('config', 'GTM-MCV3HH7L');
         text-align: left;
         margin-left: auto;
     }
-}
+    .footer {
+      background-color: #000; /* Explicit black background */
+      color: #fff; /* Explicit white text color */
+      padding: 2em 1em;
+      text-align: center;
+    }
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      background-color:#000;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-link {
+      color: #fff !important; /* White text for links */
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.3s;
+    }
+    .footer-link:hover {
+      color: #ffd700; /* Bright yellow for hover effect */
+    }
+    .footer-logo {
+      width: 20vw;
+      margin-bottom: 0.5em;
+    }
+    .footer-text {
+      font-size: 0.8em;
+      margin: 0;
+    }
+  }
 
     body {
       margin: 0;
@@ -327,15 +327,45 @@ gtag('config', 'GTM-MCV3HH7L');
     p, h1, h2 {
       margin: 0.5em 0;
     }
-    h1 {
-      font-size: 2.5rem;
-    }
-    h1 {
-      font-size: 1.8rem;
+    h2 {
+      font-size: 3rem;
     }
     p {
       font-size: 0.9rem;
     }
+    .social-buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+  }
+  
+  .social-button {
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: 1px solid #042d4d;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-button.facebook {
+      background-color: #3b5998; /* Facebook blue */
+      color: white;
+  }
+  
+  .social-button.facebook:hover {
+      background-color: #2d4373;
+  }
+  
+  .social-button.instagram {
+      background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* Instagram gradient */
+      color: white;
+  }
+  
+  .social-button.instagram:hover {
+      background: linear-gradient(45deg, #fd1d1d, #fcb045, #833ab4);
+  }
   </style> <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -459,6 +489,14 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
             <li>Curling up on his favorite rug during team brainstorming sessions.</li>
             <li>Being the star of our social media posts, where he shares his “business tips” with a paw-sitive twist!</li>
         </ul>
+        <div class="social-buttons-container">
+          <button class="social-button facebook" onclick="location.href='https://www.facebook.com/profile.php?id=61571691185959';">
+              Visit Sabre on Facebook
+          </button>
+          <button class="social-button instagram" onclick="location.href='https://www.instagram.com/SabreTheBluedobie';">
+              Follow Sabre on Instagram
+          </button>
+      </div>
     </section>
 
     <section class="sabre-tips">
@@ -563,8 +601,7 @@ newTipButton.addEventListener("click", function () {
         </div>
         <div class="dark-bg"></div>
       </div>
-      
-    </footer>
+          </footer>
     
   </div>
   <script>document.addEventListener("DOMContentLoaded", () => {
