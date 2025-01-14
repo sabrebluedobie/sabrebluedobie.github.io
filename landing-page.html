@@ -77,6 +77,23 @@ function gtag_report_conversion(url) {
   return false;
 }
 </script>
+// Implement
+
+<script>
+gtag('set', 'user_data', {
+"email": yourEmailVariable, ***Change yourEmailVariable to the actual Javascript variable name where you are storing the user’s email data. Do the same for the other variables below. Make sure the values aren't hashed.
+"phone_number": yourPhoneVariable,
+"address": {
+"first_name": yourFirstNameVariable,
+"last_name": yourLastNameVariable,
+"street": yourStreetAddressVariable,
+"city":yourCityVariable,
+"region": yourRegionVariable,
+"postal_code": yourPostalCodeVariable,
+"country": yourCountryVariable
+}
+});
+</script>
 <style>
   .responsive-iframe-container {
     position: relative;
@@ -234,6 +251,7 @@ Message
 <div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></div>
 <!---------template Container Starts Here---------->
 <ul><li class="zf-fmFooter"><button class="zf-submitColor" >Submit</button></li></ul></div><!-- 'zf-templateWrapper' ends --></form></div><!-- 'zf-templateWidth' ends -->
+<script src=js/validation2.js></script>
 <script type="text/javascript">var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
 var zf_MonthYearRegex = new RegExp("^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
 var zf_MandArray = [ "Name_Last", "Email", "SingleLine1", "MultiLine", "DecisionBox"]; 
