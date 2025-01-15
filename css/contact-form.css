@@ -216,7 +216,7 @@ button.fs-button {
   box-shadow: var(--color-border-default) 0 0 0 1px inset;
   color: var(--color-primary);
   font-size: 0.875rem;
-  height: 2rem;
+  height: 3rem;
   line-height: 1.25rem;
   outline: none;
   padding-left: 0.75rem;
