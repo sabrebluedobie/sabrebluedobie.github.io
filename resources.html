@@ -1,15 +1,15 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Sat Jul 27 2024 17:46:24 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html lang="en" data-wf-page="66637b9360f8a07fbfbcede3" data-wf-site="661e91253937928082595f31">
 <head>
   <script src="https://cdn.pagesense.io/js/bluedobiedev/34c0e572bd704acba28d4a31e394e7eb.js"></script>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="/images/favicon.ico">
-  <title>Custom Web Design in Western KY | Bluedobie Developing</title>
+  <title>Thank You for Reaching Out! | Bluedobie Developing</title>
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" name="description">
-  <meta content="Custom Web Design in Western KY | Bluedobie Developing" property="og:title">
+  <meta content="Thank You for Reaching Out!| Bluedobie Developing" property="og:title">
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" property="og:description">
   <meta content="https://bluedobiedev.com/images/sabre-website.png" property="og:image">
-  <meta content="Custom Web Design in Western KY | Bluedobie Developing" property="twitter:title">
+  <meta content="Thank You for Reaching Out!| Bluedobie Developing" property="twitter:title">
   <meta content="Leading the way in web design and development solutions in Western KY. Partner with Bluedobie for exceptional results!" property="twitter:description">
   <meta content="https://bluedobiedev.com/images/sabre-website.png" property="twitter:image">
   <meta property="og:type" content="website">
@@ -28,7 +28,15 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <link href="https://www.bluedobiedev.com/" rel="canonical">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6B45D1C0L8');
+</script>
   <script >window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('set', 'developer_id.dZGVlNj', true);gtag('config', 'G-6B45D1C0L8');</script>
   <script src="https://www.google.com/recaptcha/api.js" ></script>
   <style>
@@ -186,7 +194,7 @@ gtag('config', 'GTM-MCV3HH7L');
     color: #ffffff; /* White text on hover */
 }
 
-.button.transparent-on-dark {
+.button.transparent-on-dark, {
   border: solid 2px #fff;
   border-radius: 5px;
 }
@@ -236,7 +244,48 @@ gtag('config', 'GTM-MCV3HH7L');
     }
 }
 
-      
+  /* Container for the video and overlay */
+.hero-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    overflow: hidden;
+}
+
+/* Fullscreen video background */
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Behind overlay and content */
+}
+
+/* Semi-transparent overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    z-index: 2; /* Above video, behind content */
+}
+
+/* Content over the video */
+.hero-content {
+    position: relative;
+    z-index: 3; /* Above video and overlay */
+    color: #fff;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+    
     }
   </style>
   <!-- Meta Pixel Code -->
@@ -253,7 +302,8 @@ gtag('config', 'GTM-MCV3HH7L');
   fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1" alt="hidden"/></noscript>
+  src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
+  /></noscript>
   <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -315,255 +365,42 @@ gtag('config', 'GTM-MCV3HH7L');
   <div class="demo-page-wrapper">
     <div class="hero-section">
       <div class="background-video w-background-video w-background-video-atom">
+        <div class="video-overlay" style="display: block; background-color:rgba(0, 0, 0, 0.5); z-index: 1;"> 
         <div class="hero-video-container">
-        <video id="4a301a29-48c6-47ec-593c-df19c086d02f-video" autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true">
-          <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-          <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-        </video>
+            
+                <video id="4a301a29-48c6-47ec-593c-df19c086d02f-video" autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true" style="background-color: #333">
+                    
+                <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
+            </video>
         </div>
+        </div>
+        <div class="overlay"> 
   
       <!-- Hero Content -->
       <div class="hero-content">
         <div class="hero-text-1">
-          <h1 class="demo-hero-text" style="color: white; z-index: 0;">Bluedobie Developing:</h1>
-          <h2 class="heading-6">Custom Web Design and Web Development Services</h2>
-          <h3 class="heading-14">Helping Princeton's Businesses Thrive Online</h3>
+          <h1 class="demo-hero-text" style="color: white; z-index: 0;">Resources From Sabre</h1>
+          <h2 class="heading-6">Bluedobie Developing</h2>
+          <h3 class="heading-14">Products and Services We Know You Will Absolutely Love!</h3>
         
         <div class="hero-description-holder small-top-margin">
-          <h3 class="heading-15" style="font-size: 1rem;">The best web design company Western Kentucky has to offer: We focus on making websites that stand out!</h3>
+          <h3 class="heading-15" style="font-size: 1rem;">***Some of the links on this page are affiliate links. This means that if you click on them and make a purchase, we may receive a small commission at no extra cost to you. Your support helps us continue to provide valuable content. Thank you!***</h3>
           </div>
         
         <div class="demo-hero-buttons-holder">
-          <a href="about.html" rel="noopener" class="button dark w-button" style="border: solid 2px #fff;">See For Yourself!</a>
-          <a href="services.html" rel="noopener" class="button explore-button w-button">I Have Questions!</a>
+          <a href="contact.html" rel="noopener" class="button dark w-button" style="border: solid 2px #fff;">Spend Time With Us</a>
+          <a href="index.html" rel="noopener" class="button explore-button w-button">I Want to Keep Looking!</a>
+        </div>
         </div>
         </div>
       </div>
     </div>
   </div>
   </div>
-    <div class="container"></div>
-    <div class="rich-text-block-2 w-richtext">
-      <p style="padding-bottom: 5vh; padding-top: 5vh;">Welcome to Bluedobie Developing, your go-to destination for custom web design and web development services in Western Kentucky. Our locally owned web design company is committed to crafting digital experiences that truly stand out. When you choose Bluedobie Developing, you're not just getting a website; you're investing in a digital future that elevates your brand to new heights. Let us guide you through our comprehensive services and show you why we are considered the best web design company in Western Kentucky.</p>
-      <h4 class="heading-8">Bluedobie Developing: Premier Web Development Services</h4>
-      <p>At Bluedobie Developing, we blend our expertise in web development and design with our commitment to delivering customized solutions tailored to your business needs. Located in Princeton, Kentucky, our team is dedicated to creating websites that are not only visually stunning but also highly functional and user-friendly. We understand that your website is a reflection of your brand, and we strive to ensure it leaves a lasting impression on your audience.</p>
-      <h5 class="heading-9">Why Choose Bluedobie Developing?</h5>
-      <p>There are several reasons why businesses across Western Kentucky choose Bluedobie Developing for their unique web design and development needs:</p>
-      <ol role="list">
-        <li><strong>Personalized Service:</strong> 
-          <ul>
-            <li>Bespoke Solutions</li>
-            <li>Direct Communication</li>
-          </ul>
-        </li>
-        <li><strong>Comprehensive Expertise:</strong> 
-        <ul>
-          <li>Full-Service Digital Solutions</li>
-          <li>Experienced Professionals</li>
-        </ul>
-      </li>
-        <li><strong>Cutting-Edge Technology:</strong>
-        <ul>
-          <li>Up-to date techniques</li>
-          <li>Continuous Learning</li>
-        </ul>
-        <li><strong>Client Centered Approach</strong>
-        <ul>
-          <li>Focus on User Experience</li>
-          <li>Client Satisfaction</li>
-        </ul>
-      </li>
-      </li>
-      </ol>
-      <h6 class="heading-10">Our Comprehensive Web Design Company Services</h6>
-      <p>As a full-service web design company, Bluedobie Developing is proud to offer a wide range of digital solutions that cater to all aspects of your online presence. From initial design to ongoing maintenance and support, we handle every aspect of your website's lifecycle.</p>
-      
-
-      <h6 class="heading-12">Contact Our Experts</h6>
-      <p>At Bluedobie Developing, staying connected with our clients is a top priority. Whether you have inquiries or want to discuss your project needs, don't hesitate to reach out to our experts:</p>
-      <ul>
-        <li><strong>Email:</strong><a href="mailto:melanie.brown@bluedobiedev.com" style="color:#D5ffff; font-weight:500;"> melanie.brown@bluedobiedev.com</a></li>
-        <li><strong>Facebook:</strong> @sabrebluedobie</li>
-        <li><strong>Phone:</strong><a href="tel:+12703883535" style="color:#D5ffff; font-weight:500;">(270)388-3535</a></li>
-        <li><strong>Address:</strong> P.O. Box 391, 11640 Farmersville Road, Princeton, KY 42445, USA</li>
-      </ul>
-      <h5 class="heading-13">Start Your Project Today!</h5>
-      <p style="padding-bottom: 5vh;">Are you ready to transform your digital presence? Embark on your journey to digital excellence with Bluedobie Developing. Contact us today to learn how our tailored web solutions can revolutionize your online presence and accelerate your business growth. Our web design company is here to craft the website you've always dreamed of, with fast and scalable hosting, advanced security, and a dedicated partnership.<br><br>
-
-        Explore the endless possibilities with Bluedobie Developing—your partner in web excellence. Empower your digital future with our comprehensive services and let's create an online experience that leaves a lasting impression. Ready to transform your digital presence? Get in touch today!</p>
-      <div class="button-container">
-      <a src="contact.html" class="button white-button">Free Consultation Here!</a>
-    </div>
-    </div>
-    <div class="container"></div>
-    <div class="section">
-      <div class="container big-container">
-        <div id="make" data-w-id="d03869cc-5c20-4048-724a-8b441814bbda" style="opacity:0;-webkit-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="template-section">
-          <div class="demo-section">
-            <div data-w-id="d03869cc-5c20-4048-724a-8b441814bbdc" class="demo-container">
-              <div class="template-cards-wrapper">
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/review-Critter-Care_1.avif" alt="Critter Care Review" sizes="(max-width: 479px) 168px, (max-width: 767px) 42vw, (max-width: 991px) 33vw, (max-width: 1279px) 40vw, (max-width: 1439px) 31vw, (max-width: 1919px) 27vw, 25vw" srcset="images/review-Critter-Care_1.avif 500w, images/review-Critter-Care_1.avif 800w, images/review-Critter-Care_1.avif 1080w, images/review-Critter-Care_1.avif 1200w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="https://www.crittercarepky.com" target="_blank" rel="noopener" class="button-view-page w-button">Critter Care<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/Tiny-Trinkets-Clutch-img.webp" alt="A web page with a black and white theme" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="https://tiny-trinkets-tha-business.webflow.io" target="_blank" rel="noopener" class="button-view-page w-button">Tiny Trinkets<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/Screenshot-2024-04-17-at-4.35.35PM.webp" alt="A woman and a dog are featured in a website" sizes="(max-width: 479px) 123.4921875px, (max-width: 767px) 31vw, (max-width: 991px) 24vw, (max-width: 1279px) 30vw, (max-width: 1439px) 23vw, (max-width: 1919px) 20vw, 19vw" srcset="images/Screenshot-2024-04-17-at-4.35.35-PM-p-500.webp 500w, images/Screenshot-2024-04-17-at-4.35.35PM.webp 1010w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="about.html" class="button-view-page w-button">About Us<span class="hide-demo-page-text-on-tablet"> Page</span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/bluedobielogo_1.webp" alt="The blue dobie logo on a white background" sizes="(max-width: 479px) 170.6875px, (max-width: 767px) 43vw, (max-width: 991px) 34vw, (max-width: 1279px) 41vw, (max-width: 1439px) 31vw, (max-width: 1919px) 28vw, 26vw" srcset="images/bluedobielogo_1bluedobielogo.webp 500w, images/bluedobielogo_1.webp 508w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="contact.html" class="button-view-page w-button">Schedule Now<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="template-cards-wrapper">
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/mobile-friendly_1.webp" alt="A woman sitting at a table looking at a cell phone" sizes="(max-width: 479px) 299.7578125px, (max-width: 767px) 75vw, (max-width: 991px) 59vw, (max-width: 1279px) 72vw, (max-width: 1439px) 55vw, (max-width: 1919px) 49vw, 45vw" srcset="images/mobile-friendly_1.webp 500w, images/mobile-friendly_1.webp 800w, images/mobile-friendly_1.webp 1080w, images/mobile-friendly_1.webp 1600w, images/mobile-friendly_1.webp 2000w, images/mobile-friendly_1.webp 2600w, images/mobile-friendly_1.webp 3200w, images/mobile-friendly_1.webp 5824w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="https://www.youtube.com/channel/UCrzRp5foyttC7xXUMCdN2mw" class="button-view-page w-button">YouTube Channel<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/About-Us-New.webp" alt="A screen shot of the website about us" sizes="(max-width: 479px) 314.703125px, (max-width: 767px) 78vw, (max-width: 991px) 62vw, (max-width: 1279px) 76vw, (max-width: 1439px) 58vw, (max-width: 1919px) 51vw, 47vw" srcset="images/About-Us-New-p-500.webp 500w, images/About-Us-New-p-800.webp 800w, images/About-Us-New-p-1080.webp 1080w, images/About-Us-New-p-1600.webp 1600w, images/About-Us-New-p-2000.webp 2000w, images/About-Us-New.webp 3488w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="about.html" class="button-view-page w-button">Learn More<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/Simulator-Too-Good-Maids-Homepage.webp" alt="A website page for a cleaning company" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="https://www.toogoodmaidscleaning.com" target="_blank" rel="noopener" class="button-view-page w-button">Too Good Maids<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="template-card-holder">
-                  <div class="demo-blur-bg-effect"></div>
-                  <div class="template-card-image-holder"><img loading="eager" height="420" src="images/digital-branding-main_1.avif" alt="" sizes="(max-width: 479px) 168px, (max-width: 767px) 42vw, (max-width: 991px) 33vw, (max-width: 1279px) 40vw, (max-width: 1439px) 31vw, (max-width: 1919px) 27vw, 25vw" srcset="images/digital-branding-main_1digital-branding-main.avif 500w, images/digital-branding-main_1digital-branding-main.avif 800w, images/digital-branding-main_1.avif 1024w" class="template-card-image">
-                    <div class="template-hover-state">
-                      <a href="services.html" class="button-view-page w-button">See Our Services<span class="hide-demo-page-text-on-tablet"></span></a>
-                      <div class="template-overlay"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="container no-padding-top">
-            <div class="template-footer-holder">
-              <div class="template-footer-heading">
-                <div class="fade-in-move-on-scroll">
-                  <div class="integration-heading">Let's Build Your Princeton Area Business Together. Contact us today!</div>
-                </div>
-              </div>
-              <div class="template-footer-button-holder">
-                <div class="fade-in-move-on-scroll">
-                  <p class="white-paragraph">Fast and scalable hosting, advanced security, dedicated partnership, and much more.</p>
-                </div>
-                <div class="fade-in-move-on-scroll">
-                  <div class="template-button-holder">
-                    <a href="contact.html" rel="noopener" class="button white-button w-button">Avoid a Slow Site!</a>
-                    <a href="our-portfolio.html" rel="noopener" class="button transparent-on-dark w-button" style="border: solid 2px #fff;">See Your New Site Here!</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="pages" class="section">
-      <div class="container"></div>
-      <div class="section-background grey"></div>
-    </div>
-    <div class="section dark-section">
-      <div class="container">
-        <div class="demo-page-text-center">
-          <h2 class="demo-title white-text">Services We Offer</h2>
-          <div class="small-content no-padding">
-            <p class="paragraph-45">What can Bluedobie do for you?</p>
-          </div>
-        </div>
-        <div data-w-id="0f9ac4e2-b36f-27d4-d4dd-c911ba0198d1" style="opacity:0;-webkit-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="w-layout-grid template-more-things-grid">
-          <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198d2-bfbcede3" class="figma-component-library-holder">
-            <div class="text-gray-paragraph-holder">
-              <div class="template-growth-features">Website Design &amp; Web Development Services</div>
-              <p>Available via our Scheduling Page.</p>
-            </div><img src="images/434098722_1102511367632445_4375115299046555709_n.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 53vw, (max-width: 991px) 58vw, (max-width: 1279px) 62vw, (max-width: 1439px) 740.03125px, 905.8515625px" srcset="images/434098722_1102511367632445_4375115299046555709_n-p-500.webp 500w, images/434098722_1102511367632445_4375115299046555709_n-p-800.webp 800w, images/434098722_1102511367632445_4375115299046555709_n-p-1080.webp 1080w, images/434098722_1102511367632445_4375115299046555709_n-p-1600.webp 1600w, images/434098722_1102511367632445_4375115299046555709_n.webp 2000w" alt="Three computer screens displaying a man&#x27;s shirt" class="figma-file-image">
-          </div>
-          <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198e2-bfbcede3" class="template-includes-card">
-            <div class="text-gray-paragraph-holder-2">
-              <div class="template-growth-features">E-Commerce Solutions</div>
-              <p>When you are ready to start that online store!</p>
-            </div><img src="images/online-shopping.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 65vw, (max-width: 991px) 69vw, (max-width: 1279px) 72vw, (max-width: 1439px) 867.1328125px, 1057.828125px" srcset="images/online-shopping-p-500.webp 500w, images/online-shopping-p-800.webp 800w, images/online-shopping-p-1080.webp 1080w, images/online-shopping-p-1600.webp 1600w, images/online-shopping-p-2000.webp 2000w, images/online-shopping-p-2600.webp 2600w, images/online-shopping-p-3200.webp 3200w, images/online-shopping.webp 6000w" alt="A woman sitting on a couch holding a cell phone" class="notifications-image">
-          </div>
-          <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198e9-bfbcede3" class="template-includes-card">
-            <div class="text-gray-paragraph-holder-2">
-              <div class="template-growth-features">Responsive Mobile Design</div>
-              <p>Your site will work on every device.</p>
-            </div>
-            <img src="images/mobile-friendly_1.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 56vw, (max-width: 991px) 60vw, (max-width: 1279px) 63vw, (max-width: 1439px) 754.03125px, 919.8515625px" srcset="images/mobile-friendly_1.webp 500w, images/mobile-friendly_1.webp 800w, images/mobile-friendly_1.webp 1080w, images/mobile-friendly_1.webp 1600w, images/mobile-friendly_1.webp 2000w, images/mobile-friendly_1.webp 2600w, images/mobile-friendly_1.webp 5824w" alt="A woman sitting at a table looking at a cell phone" class="demo-business-email-image">
-          </div>
-          <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198f0-bfbcede3" class="template-includes-card">
-            <div class="text-gray-paragraph-holder-2">
-              <div class="template-growth-features">Digital Branding</div>
-              <p>Distinctive Fonts, logos and more!</p>
-            </div><img src="images/bluedobielogo_1.webp" loading="lazy" alt="The blue dobie logo on a white background" class="demo-cta-image">
-          </div>
-          <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198f7-bfbcede3" class="template-includes-card">
-            <div class="text-gray-paragraph-holder-2">
-              <div class="template-growth-features">SEO Optimization</div>
-              <p>A way for you to gain more visitors to your site.</p>
-            </div><img src="images/SEO-article-image.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 56vw, (max-width: 991px) 60vw, (max-width: 1279px) 63vw, (max-width: 1439px) 754.03125px, 919.8515625px" srcset="images/SEO-article-image-p-500.webp 500w, images/SEO-article-image-p-800.webp 800w, images/SEO-article-image-p-1080.webp 1080w, images/SEO-article-image-p-1600.webp 1600w, images/SEO-article-image.webp 2160w" alt="A woman with glasses looking up at a diagram of keywords" class="style-guide-image">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container"></div>
-    <iframe aria-label='Bluedobie Developing Poll' style="height:600px;width:99%;border:none;" src='https://forms.zohopublic.com/bluedobiedev/form/HomepagePoll/formperma/leiWVNeDORQ3Mqz8yFVLxrNx84D5TcYIIcn9dL65vBQ'></iframe>
     
-    <div class="container big-container"></div>
-    <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe-bfbcede3" data-w-id="0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe" style="opacity:0;-webkit-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="feature-box">
-      <div class="feature-text">Ready to Transform Your Digital Presence? Check Availability Today!</div>
-      <p class="paragraph-46">Join us on this digital journey, where we don&#x27;t just create websites, we craft online experiences that leave a lasting impression. Explore the endless possibilities with Bluedobie Developing - Your Partner in Web Excellence!</p>
-      <div class="w-form" style="width: 100%; overflow: hidden;">
-        <iframe aria-label='Product Interest Form' scrolling="no" style="height:150vh;width:99%;border:none;overflow-y: hidden;scrollbar-width: none;  " src='https://forms.zohopublic.com/bluedobiedev/form/ProductInterestForm/formperma/rv8Tns76cOObDF9qc--H9PcDdRvwvsIVdKL0TgLMH40'></iframe>
-        
-        </div>
-      </div>
-     
-  
-  <div class="container big-container"></div>
+  <div class="container big-container">
+    <h2>Links to Products/Services</h2>
+  </div>
   <div class="section">
     <div class="container footer-container">
       <footer class="footer">
@@ -580,7 +417,6 @@ gtag('config', 'GTM-MCV3HH7L');
     </div>
     <div class="dark-bg"></div>
   </div>
-      </footer>
   <style>
     .footer {
       background-color: #000; /* Explicit black background */
