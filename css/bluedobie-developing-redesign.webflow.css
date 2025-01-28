@@ -178,3 +178,8 @@ iframe.form {
 .social-link {
     padding: 0 1.25vw;
 }
+
+.blog-home-item-title {
+    display: flex;
+    justify-content: center;
+}
