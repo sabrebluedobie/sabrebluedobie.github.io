@@ -755,17 +755,17 @@ src="https://www.facebook.com/tr?id=3464289587038478&ev=PageView&noscript=1"
   
     articlesToDisplay.forEach(article => {
       const articleHTML = `
-        <div class="blog-home-main-item">
-          <a href="${article.link}" class="blog-home-main-item-link">
+        <div class="blog-home-main-item blog-home-blog-entry">
+          <a href="${article.link}" class="blog-home-main-item-link link">
              
-              <div class="blog-home-item-content">
-              <div class="blog-home-item-category">
+              <div class="blog-home-item-content content">
+              <div class="blog-home-item-category category">
              
                 <div class="blog-home-category-text" style="font-size: 0.75rem; margin-bottom: 0.5em;">${article.category}</div>
-                <div class="blog-home-date-category" style="font-size: 0.75rem;">${article.date}</div>
+                <div class="blog-home-date-category date" style="font-size: 0.75rem;">${article.date}</div>
               </div>
-              <h2 class="blog-home-item-title" style="font-size: 2.5em; color: black; z-index: 0;">${article.title}</h2>
-              <p class="blog-home-item-summary" style="font-size: 1.25em;">${article.summary}</p> 
+              <h2 class="blog-home-item-title title" style="font-size: 2.5em; color: black; z-index: 0;">${article.title}</h2>
+              <p class="blog-home-item-summary description" style="font-size: 1.25em;">${article.summary}</p> 
               <div class="blog-home-image">
               <img src="${article.image}" alt="${article.title}" class="blog-home-main-image" style="width: 40vw;">
               </div> 
