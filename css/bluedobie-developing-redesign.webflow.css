@@ -179,9 +179,14 @@ iframe.form {
     padding: 0 1.25vw;
 }
 
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .med-banner {
     display: block;
-    margin: auto auto;
+    
 }
 
 .text-link {
