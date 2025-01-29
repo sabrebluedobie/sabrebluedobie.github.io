@@ -188,27 +188,40 @@ iframe.form {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .med-banner {
     display: block;
+    margin-top: 2rem;
+    width: 600 !important;
+    height: 500 !important;
+    
     
 }
 
+.text-link-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .text-link {
     display:block;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 3em;
+    margin: 2rem 0;
 }
 
 .partner-div {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .partner-badge {
     display: block;
-    width: auto;
-    height: 5vh;
+    width: auto !important;
+    height: 3rem !important;
+    margin: 0 0;
 }
