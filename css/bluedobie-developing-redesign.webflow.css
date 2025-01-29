@@ -178,3 +178,12 @@ iframe.form {
 .social-link {
     padding: 0 1.25vw;
 }
+
+.med-banner {
+    display: block;
+    margin: auto auto;
+}
+
+.text-link {
+    display:block;
+}
