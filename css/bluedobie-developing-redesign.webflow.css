@@ -198,12 +198,12 @@ iframe.form {
 
 .partner-div {
     display: flex;
-    position:relative;
-    margin-right: 50vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .partner-badge {
     display: block;
-    width: 5rem;
-    height: auto;
+    width: auto;
+    height: 5vh;
 }
