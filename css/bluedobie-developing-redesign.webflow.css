@@ -191,6 +191,7 @@ iframe.form {
 
 .text-link {
     display:block;
+    text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 3em;
 }
@@ -203,6 +204,6 @@ iframe.form {
 
 .partner-badge {
     display: block;
-    width: 10rem;
+    width: 5rem;
     height: auto;
 }
