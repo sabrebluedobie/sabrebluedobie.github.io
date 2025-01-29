@@ -188,28 +188,65 @@ iframe.form {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 98vw;
     
 }
 .med-banner {
     display: block;
-    margin-top: 2rem;
-    width: 600 !important;
-    height: 500 !important;
-    
-    
+    margin-top: 2rem;  
+}
+
+.med-banner-img {
+    display: block;
 }
 
 .text-link-wrapper {
+    display: block;   
+}
+
+.upper-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.text-wrap {
+    display: block;
+    width: 75vw;
+
+}
+
+.text-wrap h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.text-wrap p {
+    font-size: 1.5rem;
+}
+
+.link-wrap {
+    display: block;
+    margin: 25%;
+    
+}
 .text-link {
     display:block;
+    width: 50%;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 3em;
-    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(0,150,136,1);
+    border-radius: 2px;
+    box-shadow: 4px 4px 16px #333;
+    text-shadow: 2px 2px 5px #ededed;
+}
+
+.text-link a {
+   
+   
 }
 
 .partner-div {
