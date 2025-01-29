@@ -183,3 +183,32 @@ iframe.form {
     display: flex;
     justify-content: center;
 }
+
+.banner-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.med-banner {
+    display: block;
+    
+}
+
+.text-link {
+    display:block;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3em;
+}
+
+.partner-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partner-badge {
+    display: block;
+    width: auto;
+    height: 5vh;
+}
