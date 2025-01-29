@@ -203,4 +203,6 @@ iframe.form {
 
 .partner-badge {
     display: block;
+    width: 10rem;
+    height: auto;
 }
