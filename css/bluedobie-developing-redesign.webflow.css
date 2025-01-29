@@ -179,7 +179,7 @@ iframe.form {
     padding: 0 1.25vw;
 }
 
-.banner {
+.banner-div {
     display: flex;
     justify-content: center;
     align-items: center;
