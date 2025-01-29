@@ -276,3 +276,25 @@ h2#header-text {
     height: 3rem !important;
     margin: 0 0;
 }
+
+.tp-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+hr.dashed {
+    border-top: 2px dashed #333;
+    margin-top: 5vh;
+}
+
+.tp-text a {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.5rem;
+}
+
+.tp-form p {
+    font-family: Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
+}
