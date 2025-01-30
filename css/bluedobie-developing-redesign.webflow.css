@@ -179,9 +179,30 @@ iframe.form {
     padding: 0 1.25vw;
 }
 
-.blog-home-item-title {
-    display: flex;
-    justify-content: center;
+.blog-list {
+    font-size: 1.5rem;
+    text-align: left;
+    padding-left: 7.5vw;
+    padding-right: 7.5vw;
+  }
+
+  li {
+      list-style-type: none !important;
+  }
+
+  .blog-main-image-div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+
+}
+
+img.blogmainimg {
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+ 
 }
 
 .banner-div {
@@ -298,3 +319,4 @@ hr.dashed {
 .tp-form p {
     font-family: Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
 }
+
