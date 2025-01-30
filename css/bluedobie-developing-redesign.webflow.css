@@ -205,6 +205,13 @@ img.blogmainimg {
  
 }
 
+
+
+.description p {
+    text-align: center;
+    width: 80vw;
+}
+
 .contact-div {
     display: flex;
     justify-content: center;
