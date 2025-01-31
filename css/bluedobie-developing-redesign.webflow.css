@@ -382,11 +382,12 @@ hr.dashed {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 80%;
+    overflow: hidden;
 }
 .tp-form p {
     font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
     font-size: 1.0rem;
-    max-width: 80%;
     text-align: center;
 }
 
