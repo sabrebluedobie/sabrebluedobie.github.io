@@ -361,6 +361,22 @@ h2#header-text {
     margin: 0 0;
 }
 
+@media screen and (max-width: 768px) {
+    .tp-link {
+      max-width: 100%;
+      width: 100%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      white-space: normal;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .tp-link p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+  
 .tp-link {
     display: flex;
     flex-direction: column;
@@ -382,8 +398,8 @@ hr.dashed {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 80%;
-    overflow: hidden;
+    
+    
 }
 .tp-form p {
     font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
