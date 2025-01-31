@@ -375,6 +375,15 @@ h2#header-text {
       font-size: 16px;
       line-height: 1.5;
     }
+    .tp-form {
+        max-width: 100%;
+        width: 80%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+        padding: 2vh 2vw;
+        box-sizing: border-box;  
+    }
   }
   
 .tp-link {
@@ -383,6 +392,7 @@ h2#header-text {
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
+    box-sizing: border-box;
 }
 
 hr.dashed {
@@ -398,6 +408,7 @@ hr.dashed {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     
     
 }
