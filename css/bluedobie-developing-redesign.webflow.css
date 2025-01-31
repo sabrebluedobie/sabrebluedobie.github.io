@@ -383,7 +383,33 @@ h2#header-text {
         padding: 2vh 2vw;
         box-sizing: border-box;  
     }
+    .social-embeds {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .instagram-media {
+        flex: 1 1 200px;
+        padding: 1.5rem;
+        border: 1px solid #333;
+    }
   }
+
+  @media screen and (min-width: 769px) {
+    .social-embeds {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .instagram-media {
+        flex: 1 1 200px;
+        padding: 1.5rem;
+        border: 1px solid #333;
+    }
   
 .tp-link {
     display: flex;
@@ -467,3 +493,16 @@ hr.dashed {
   background: linear-gradient(#fff, lightgrey, #042d4d);
     color: #000;
 }
+
+.social-embeds {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.instagram-media {
+    flex: 1 1 1 1 200px;
+    padding: 1.5rem;
+    border: 1px solid #333;
+}
+
