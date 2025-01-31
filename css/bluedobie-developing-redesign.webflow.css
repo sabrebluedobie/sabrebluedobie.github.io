@@ -238,9 +238,7 @@ img.blogmainimg {
     background-color: #064073;
     box-shadow: 3px 3px 12px #222;
 }
-.link-holder {
 
-}
 .affiliate-list {
     display: flex;
     flex-direction: column;
@@ -341,10 +339,6 @@ h2#header-text {
     text-shadow: 2px 2px 5px #ededed;
 }
 
-.text-link a {
-   
-   
-}
 
 .partner-div {
     display: flex;
