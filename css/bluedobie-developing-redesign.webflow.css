@@ -378,9 +378,16 @@ hr.dashed {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 2.5rem;
 }
-
+.tp-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .tp-form p {
-    font-family: Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', sans-serif;
+    font-size: 1.0rem;
+    max-width: 80%;
+    text-align: center;
 }
 
 .banner-is {
