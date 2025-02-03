@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About Bluedobie Dialogues"
+title: About
 permalink: /about/
 ---
 
