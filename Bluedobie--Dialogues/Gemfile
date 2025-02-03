@@ -6,3 +6,4 @@ source "https://rubygems.org"
 
 gem "jekyll", "~> 4.4"
 gem "bundler", "~> 2.6.3"
+gem "unicode-display_width", "~> 3.1.4"
