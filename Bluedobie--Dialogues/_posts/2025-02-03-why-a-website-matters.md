@@ -1,7 +1,7 @@
 ---
 layout: blog
 title: "Why Your Business Needs a High-Impact Website"
-date: 2025-02-10 08:00:00
+date: 2025-02-03 08:00:00
 categories: web-design
 tags: [website, business, marketing]
 excerpt: "Discover why a professional website is essential for business success. Learn how it builds credibility, boosts visibility, and increases sales."
