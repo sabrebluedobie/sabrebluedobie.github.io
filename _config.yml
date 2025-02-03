@@ -28,7 +28,7 @@ strict_front_matter : false
 # Filtering Content
 show_drafts         : true
 limit_posts         : 0
-future              : true
+future              : false
 unpublished         : false
 
 # Plugins
