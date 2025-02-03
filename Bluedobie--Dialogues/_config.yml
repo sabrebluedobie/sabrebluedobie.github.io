@@ -55,9 +55,6 @@ unpublished         : false
 
 # Plugins
 whitelist           : []
-plugins             :
-  - jekyll-feed
-  - jekyll-seo-tag
 
 
 # Conversion
