@@ -24,6 +24,19 @@ description: >- # this means to ignore newlines until "baseurl:"
   A look at web design for small business by a web designer. Learn about topics that can help your business grow!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+destination: ./blog
+collections:
+  posts:
+    permalink: /blog/:title/
+    output: true
+    source: ./_posts
+
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "blog"
 twitter_username: sabrebluedobie  
 github_username:  sabrebluedobie
 
