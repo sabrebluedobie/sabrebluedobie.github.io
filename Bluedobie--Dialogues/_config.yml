@@ -23,7 +23,7 @@ description: "Bluedobie Developing's Web Design Blog"
 baseurl: "" # for user site, or "/project-name" for project site
 url: "https://www.bluedobiedev.com"
 # Where things are
-source              : 
+source              : .
 destination         : _site
 collections_dir     : .
 plugins_dir         : _plugins # takes an array of strings and loads plugins in that order
