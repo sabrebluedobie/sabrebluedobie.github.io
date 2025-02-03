@@ -23,13 +23,14 @@ description: "Bluedobie Developing's Web Design Blog"
 baseurl: "" # for user site, or "/project-name" for project site
 url: "https://www.bluedobiedev.com"
 # Where things are
-source              : /_posts
-destination         : /_site
+source              : 
+destination         : _site
 collections_dir     : .
 plugins_dir         : _plugins # takes an array of strings and loads plugins in that order
-layouts_dir         : /_layouts
-data_dir            : /_data
-includes_dir        : /_includes
+layouts_dir         : _layouts
+data_dir            : _data
+includes_dir        : _includes
+exclude             : _pages
 sass:
   sass_dir: _sass
 collections:
@@ -53,8 +54,10 @@ unpublished         : false
 
 # Plugins
 whitelist           : []
-plugins             : []
-theme               : []
+plugins             :
+  - jekyll-feed
+  - jekyll-seo-tag
+
 
 # Conversion
 markdown            : kramdown
