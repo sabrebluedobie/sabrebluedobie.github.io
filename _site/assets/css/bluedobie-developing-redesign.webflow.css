@@ -6790,7 +6790,7 @@ div.blog-main-image-div {
   display: flex;
 }
 
-.body {
+.background {
   background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../images/IMG_0189.webp');
   background-position: 0 0, 0 0;
   background-repeat: repeat, repeat-y;
