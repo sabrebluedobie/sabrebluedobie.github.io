@@ -1,4 +1,3 @@
-ruby '3.3.4'
 
 # frozen_string_literal: true
 
