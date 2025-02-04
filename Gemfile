@@ -1,4 +1,4 @@
-ruby 3.1.3
+ruby '3.1.3'
 
 # frozen_string_literal: true
 
