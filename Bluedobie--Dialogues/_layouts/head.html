@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8">
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ page.title }}</title>
 <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
@@ -12,7 +12,6 @@
 <meta name="twitter:title" content="{{ page.title }}">
 <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
 <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_assets/css/bluedobie-developing-redesign.webflow.css" rel="stylesheet">
     <link href="../_assets/css/normalize.css" rel="stylesheet">
     <link href="../_assets/css/webflow.css" rel="stylesheet">

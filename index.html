@@ -235,27 +235,46 @@ gtag('config', 'GTM-MCV3HH7L');
         margin: 0 auto; /* Center content */
     }
 }
-
+.footer {
+  background-color: #000; /* Explicit black background */
+  color: #fff; /* Explicit white text color */
+  padding: 2em 1em;
+  text-align: center;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  background-color:#000;
+}
+.footer-links {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-link {
+  color: #fff; /* White text for links */
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s;
+}
+.footer-link:hover {
+  color: #ffd700; /* Bright yellow for hover effect */
+}
+.footer-logo {
+  width: 120px;
+  margin-bottom: 0.5em;
+}
+.footer-text {
+  font-size: 0.8em;
+  margin: 0;
+}
       
     }
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '776246200615205');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
 </head>
 <body>
   <div data-animation="default" class="navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" data-w-id="e0b516b2-bf57-08a9-1f3c-0329245b60b9" role="banner" data-no-scroll="1" data-duration="500" data-doc-height="1">
@@ -263,7 +282,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
       <div class="nav-elements-holder">
         <div class="nav-menu-container">
           <a href="https://bit.ly/4aOSYq4" class="brand-link w-nav-brand"><img src="images/bluedobielogo_1.webp" loading="lazy" width="100" height="100" alt="The blue dobie logo on a white background" class="brand-logo"></a>
-          <nav role="navigation" class="nav-menu w-nav-menu">
+          <nav class="nav-menu w-nav-menu">
             <!-- Top-Level Navigation -->
             <div class="nav-link-holder">
                 <a href="index.html" class="nav-link w-inline-block">Home</a>
@@ -351,7 +370,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
       <p>At Bluedobie Developing, we blend our expertise in web development and design with our commitment to delivering customized solutions tailored to your business needs. Located in Princeton, Kentucky, our team is dedicated to creating websites that are not only visually stunning but also highly functional and user-friendly. We understand that your website is a reflection of your brand, and we strive to ensure it leaves a lasting impression on your audience.</p>
       <h5 class="heading-9">Why Choose Bluedobie Developing?</h5>
       <p>There are several reasons why businesses across Western Kentucky choose Bluedobie Developing for their unique web design and development needs:</p>
-      <ol role="list">
+      <ol>
         <li><strong>Personalized Service:</strong> 
           <ul>
             <li>Bespoke Solutions</li>
@@ -369,12 +388,12 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
           <li>Up-to date techniques</li>
           <li>Continuous Learning</li>
         </ul>
+        </li>
         <li><strong>Client Centered Approach</strong>
         <ul>
           <li>Focus on User Experience</li>
           <li>Client Satisfaction</li>
         </ul>
-      </li>
       </li>
       </ol>
       <h6 class="heading-10">Our Comprehensive Web Design Company Services</h6>
@@ -394,7 +413,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
 
         Explore the endless possibilities with Bluedobie Developing—your partner in web excellence. Empower your digital future with our comprehensive services and let's create an online experience that leaves a lasting impression. Ready to transform your digital presence? Get in touch today!</p>
       <div class="button-container">
-      <a src="contact.html" class="button white-button">Free Consultation Here!</a>
+      <a href="contact.html" class="button white-button">Free Consultation Here!</a>
     </div>
     </div>
     <div class="container"></div>
@@ -559,7 +578,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
       <div class="feature-text">Ready to Transform Your Digital Presence? Check Availability Today!</div>
       <p class="paragraph-46">Join us on this digital journey, where we don&#x27;t just create websites, we craft online experiences that leave a lasting impression. Explore the endless possibilities with Bluedobie Developing - Your Partner in Web Excellence!</p>
       <div class="w-form" style="width: 100%; overflow: hidden;">
-        <iframe aria-label='Product Interest Form' scrolling="no" style="height:150vh;width:99%;border:none;overflow-y: hidden;scrollbar-width: none;  " src='https://forms.zohopublic.com/bluedobiedev/form/ProductInterestForm/formperma/rv8Tns76cOObDF9qc--H9PcDdRvwvsIVdKL0TgLMH40'></iframe>
+        <iframe aria-label='Product Interest Form' style="height:150vh;width:99%;border:none;overflow-y: hidden;" src='https://forms.zohopublic.com/bluedobiedev/form/ProductInterestForm/formperma/rv8Tns76cOObDF9qc--H9PcDdRvwvsIVdKL0TgLMH40'></iframe>
         
         </div>
       </div>
@@ -584,47 +603,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
     <div class="dark-bg"></div>
   </div>
       </footer>
-  <style>
-    .footer {
-      background-color: #000; /* Explicit black background */
-      color: #fff; /* Explicit white text color */
-      padding: 2em 1em;
-      text-align: center;
-    }
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-      background-color:#000;
-    }
-    .footer-links {
-      display: flex;
-      gap: 1.5em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .footer-link {
-      color: #fff; /* White text for links */
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: color 0.3s;
-    }
-    .footer-link:hover {
-      color: #ffd700; /* Bright yellow for hover effect */
-    }
-    .footer-logo {
-      width: 120px;
-      margin-bottom: 0.5em;
-    }
-    .footer-text {
-      font-size: 0.8em;
-      margin: 0;
-    }
-  </style>
-
-  
-</footer>
+    </div>
     <div class="dark-bg"></div>
     <div id="cookieBanner" class="cookie-banner">
       <p>We use cookies to improve your experience on our site. By using our site, you consent to cookies. 
@@ -674,7 +653,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
   <script src="js/webflow.js" ></script><!--  Google Tag Manager (noscript)  -->
   <noscript async=""><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCV3HH7L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
-  <script type="text/javascript" id="zsiqchat">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: "siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zohopublic.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+  <script id="zsiqchat">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: "siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zohopublic.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
   
 </body>
 </html>
