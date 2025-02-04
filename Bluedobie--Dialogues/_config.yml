@@ -16,7 +16,7 @@ description: >-
   A look at web design for small business by a web designer. 
   Learn about topics that can help your business grow!
 baseurl: "/_blog/"  # If deploying at root, keep it empty
-url: "http://127.0.0.1:4000"  # Local development URL
+url: "https://www.bluedobiedev.com"  # Local development URL
 
 # Destination for generated site files
 destination: "/_blog/"
