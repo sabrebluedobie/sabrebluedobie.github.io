@@ -1,7 +1,7 @@
 ---
 title: "Why Your Business Needs a High-Impact Website"
 date: 2025-02-03 08:00:00
-categories: Web Design
+categories: [Web Design]
 excerpt: "Discover why a professional website is essential for business success. Learn how it builds credibility, boosts visibility, and increases sales."
 image: ../../images/professional-website.webp
 ---

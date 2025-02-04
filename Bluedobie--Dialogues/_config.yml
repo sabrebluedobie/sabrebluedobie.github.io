@@ -27,10 +27,10 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 destination: _blog
 collections:
+  collections:
   posts:
-    permalink: /blog/:title/
     output: true
-    source: _posts
+    permalink: /blog/:year/:month/:day/:title/
 
 sass:
   sass_dir: _sass
