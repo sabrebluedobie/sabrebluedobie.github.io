@@ -31,6 +31,11 @@ collections:
     output: true
     source: _posts
 
+sass:
+  sass_dir: _sass
+  style: compressed
+
+
 defaults:
   - scope:
       path: "_posts"
