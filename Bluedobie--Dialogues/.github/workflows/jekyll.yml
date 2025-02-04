@@ -1,32 +1,28 @@
-name: Jekyll site CI
-
+name: Build and Deploy Jekyll
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Delete Cached Build Files
-        run: |
-          rm -rf _site
-          jekyll clean
-
-      - name: Set up Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.13 # Adjust based on your Jekyll version
-          bundler-cache: true
+          ruby-version: '3.1'
 
       - name: Install dependencies
         run: bundle install
 
-      - name: Build the site
-        run: bundle exec jekyll build --future
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
