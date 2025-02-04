@@ -19,7 +19,7 @@ baseurl: "/_blog"  # If deploying at root, keep it empty
 url: "https://www.bluedobiedev.com"
 
 # Destination for generated site files
-destination: "/_blog/"
+destination: "_blog"
 
 # Collections
 collections:
