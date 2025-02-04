@@ -4,14 +4,13 @@ date: 2025-02-03 08:00:00
 categories: [Web Design]
 excerpt: "Discover why a professional website is essential for business success. Learn how it builds credibility, boosts visibility, and increases sales."
 
-image: "/assets/images/professional-website.webp"
+image: "assets/images/professional-website.webp"
 ---
-<div style="text-align: center;">
+
 # **Why Your Business Needs a High-Impact Website to Succeed**
-</div>
-<div class="blog-main-image-div">
-![Main Image]({{ site.baseurl }}{{ page.image }})
-</div>
+
+![Two people creating a website.] {{ page.image }}
+
 
 {{ page.excerpt }}
 
