@@ -2,4 +2,6 @@
 # This front matter tells Jekyll to process this file as SCSS
 ---
 
-@import "main"; // Import other styles if needed
+@import "bluedobie-developing-redesign.webflow"; // Import other styles if needed
+@import "normalize";
+@import "webflow";

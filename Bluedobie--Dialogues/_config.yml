@@ -29,7 +29,7 @@ collections:
 
 # SASS settings
 sass:
-  sass_dir: _sass
+  sass_dir: "/assets/css"
   style: compressed
 
 # Defaults for collections
