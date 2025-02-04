@@ -13,6 +13,8 @@ image: "/assets/images/professional-website.webp"
 ![Main Image]({{ site.baseurl }}{{ page.image }})
 </div>
 
+{{ page.excerpt }}
+
 In today’s digital world, having a **professional website** is no longer optional—it’s a necessity. Whether you're a **small business owner, freelancer, or established brand**, your website serves as the **first impression** for potential customers.
 
 A well-designed website builds **credibility, improves visibility, and drives sales**. In this post, we’ll explore why a professional website is crucial, what key features it should include, and how **Bluedobie Developing** can help.
