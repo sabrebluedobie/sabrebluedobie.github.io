@@ -111,6 +111,7 @@ PLATFORMS
   x86_64-darwin
 
 DEPENDENCIES
+  bundler (~> 2.6.3)
   jekyll (~> 4.4.1)
   minima (~> 2.5.2)
 
