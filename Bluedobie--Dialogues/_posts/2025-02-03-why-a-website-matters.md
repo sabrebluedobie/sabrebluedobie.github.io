@@ -6,11 +6,12 @@ excerpt: "Discover why a professional website is essential for business success.
 
 image: "/assets/images/professional-website.webp"
 ---
-
+<div style="text-align: center;">
 # **Why Your Business Needs a High-Impact Website to Succeed**
-
+</div>
+<div class="blog-main-image-div">
 ![Main Image]({{ site.baseurl }}{{ page.image }})
-
+</div>
 
 In today’s digital world, having a **professional website** is no longer optional—it’s a necessity. Whether you're a **small business owner, freelancer, or established brand**, your website serves as the **first impression** for potential customers.
 
