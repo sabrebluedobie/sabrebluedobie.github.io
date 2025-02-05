@@ -11058,6 +11058,9 @@ h1 {
   text-align: center;
   max-width: 100%;
 }
+main {
+  max-width: 100%;
+}
 h2 {
   font-size: 3.0rem;
   text-align: left;
