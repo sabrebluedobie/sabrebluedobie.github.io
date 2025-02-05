@@ -25,9 +25,11 @@ A well-designed website builds **credibility, improves visibility, and drives sa
 Your website is the **online storefront** for your business. Even if you have a physical location, **most customers research businesses online** before making a decision. Without a strong online presence, you're **missing out on potential sales and credibility**.
 
 ### **1. Builds Credibility & Trust**
-- A well-designed website makes your business look **legitimate and professional**.
-- **75% of consumers judge credibility based on web design**.
-- Secure (SSL-enabled) websites **increase customer confidence**.
+<ul class="blog-list">
+<li>- A well-designed website makes your business look **legitimate and professional**.</li>
+<li>- **75% of consumers judge credibility based on web design**.</li>
+<li>- Secure (SSL-enabled) websites **increase customer confidence**.</li>
+</ul>
 
 ### **2. Available 24/7**
 - Unlike a physical store, your website is **always open**—24/7.
