@@ -506,3 +506,221 @@ hr.dashed {
     border: 1px solid #333;
 }
 
+/* code from blog */
+
+body {
+    overflow-x: hidden;
+  }
+  .container {
+  width: 100%;
+  max-width: 100%; /* Remove width constraints for small screens */
+  margin: 0 auto;
+  overflow: visible;
+}
+/* Ensure dropdown menu appears above other content */
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-menu {
+position: absolute; /* Ensures the dropdown is removed from the flow */
+top: 100%; /* Position it just below the "More" button */
+left: 0;
+right: 0; /* Allow the dropdown to span the entire screen width */
+z-index: 9999; /* Ensure it appears above other elements */
+min-width: 200px;
+max-height: 80vh; /* Prevent it from exceeding the screen height */
+overflow-y: auto; /* Enable scrolling if the dropdown is long */
+background-color: #fff; /* Ensure visibility on different backgrounds */
+border: 1px solid #ccc; /* Add border for better visibility */
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
+padding: 10px;
+}
+
+.dropdown-menu a {
+display: block;
+padding: 10px;
+color: #000;
+text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+background-color: #f1f1f1; /* Highlight links on hover */
+}
+.container,
+.nav,
+.dropdown {
+  overflow: visible !important; /* Prevent clipping of child elements */
+}
+
+#dropdown-toggle {
+background-color: #000; /* Black background */
+color: #fff; /* White text */
+padding: 10px 20px;
+border: none;
+border-radius: 5px; /* Optional rounded corners */
+cursor: pointer;
+}
+
+#dropdown-toggle:hover {
+background-color: #444; /* Slightly lighter black on hover */
+}
+
+
+
+  .hero-content {
+    display: flex; 
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    text-align: center;
+    position: absolute; 
+    
+  }
+ 
+  .hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust based on your layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Adjust text color for visibility */
+}
+
+.hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text-1 {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+.button-container {
+display: flex;
+justify-content: center;
+
+}
+.button.white-button {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border: 2px solid #000000; /* Black border */
+  border-radius: 5px; /* Optional rounded corners */
+  padding: 10px 20px; /* Adjust spacing inside the button */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Adjust text size */
+  font-weight: bold; /* Make text bold */
+  display: inline-block; /* Ensure proper alignment */
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+.button.white-button:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+.button.transparent-on-dark {
+border: solid 2px #fff;
+border-radius: 5px;
+}
+
+@media (min-width: 1024px) {
+  .dropdown-menu {
+      width: 300px; /* Adjust this value as needed */
+      text-align: left;
+      margin-left: auto;
+  }
+}
+
+
+  @media screen and (max-width: 479px) {
+    .hero-content {
+      top: 25%;
+      left: 0%; 
+    }
+    @media screen and (max-width: 768px) {
+  #pages .container, 
+  .section.dark-section .container {
+      padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .demo-page-text-center {
+      text-align: center;
+      padding: 10px; /* Add padding for spacing */
+  }
+
+  .demo-title {
+      font-size: 24px; /* Reduce font size */
+      line-height: 1.2; /* Adjust line height */
+  }
+  .dropdown-menu {
+    position: fixed; /* Fix the dropdown relative to the screen */
+    top: 60px; /* Adjust based on the height of your navbar */
+    left: 0;
+    right: 0;
+    width: 100%; /* Full-width dropdown for mobile */
+    max-height: 80vh; /* Limit height to prevent large dropdowns */
+    overflow-y: auto; /* Scroll if dropdown exceeds the screen height */
+}
+
+  .small-content p {
+      font-size: 14px; /* Smaller font for better readability */
+      margin: 0 auto; /* Center content */
+  }
+}
+
+.footer {
+background-color: #000; /* Explicit black background */
+color: #fff; /* Explicit white text color */
+padding: 2em 1em;
+text-align: center;
+}
+.footer-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1em;
+background-color:#000;
+}
+.footer-links {
+display: flex;
+gap: 1.5em;
+flex-wrap: wrap;
+justify-content: center;
+}
+.footer-link {
+color: #fff; /* White text for links */
+text-decoration: none;
+font-size: 0.9em;
+transition: color 0.3s;
+}
+.footer-link:hover {
+color: #ffd700; /* Bright yellow for hover effect */
+}
+.footer-logo {
+width: 120px;
+margin-bottom: 0.5em;
+}
+.footer-text {
+font-size: 0.8em;
+margin: 0;
+}
+    
+  }
