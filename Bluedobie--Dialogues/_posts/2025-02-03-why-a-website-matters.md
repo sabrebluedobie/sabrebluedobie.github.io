@@ -46,7 +46,9 @@ Your website is the **online storefront** for your business. Even if you have a 
 - More visibility = **more potential customers**.
 
 ### **4. Increases Sales & Lead Generation**
-!["Two people creating a website."](/assets/images/blog-image-cta-11-23-24.webp)
+<div class="article-image-div1">
+<img class="article-image1" alt="A Contact-Us call to action." src="/assets/images/blog-image-cta-11-23-24.webp">
+</div>
 
 - A website isn't just a brochure—it's a **sales tool**.
 - **Call-to-action buttons (CTAs)** guide visitors to contact, purchase, or sign up.
