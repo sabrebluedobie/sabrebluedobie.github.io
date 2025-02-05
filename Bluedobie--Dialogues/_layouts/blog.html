@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
-    <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+    <meta property="og:image" content="{{ site.url }}{% if post.image %}{{ post.image }}{% else %}/assets/images/bluedobielogo_1.webp{% endif %}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ page.content | strip_html | truncate: 160 }}{% endif %}">
-    <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+    <meta name="twitter:image" content="{{ site.url }}{% if post.image %}{{ post.image }}{% else %}/assets/images/bluedobielogo_1.webp{% endif %}">
     <link rel="stylesheet" href="/assets/css/style.css">
       <link href="/assets/css/bluedobie-developing-redesign.webflow.css" type="text/css" rel="stylesheet">
         <link href="/assets/css/normalize.css" type="text/css" rel="stylesheet">
