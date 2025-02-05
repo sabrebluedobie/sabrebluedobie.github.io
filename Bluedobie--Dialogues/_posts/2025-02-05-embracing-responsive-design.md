@@ -1,4 +1,3 @@
-```markdown
 ---
 Title: "Embracing Responsive Web Design and the Mobile-First Approach"
 Date: "2023-10-11"
