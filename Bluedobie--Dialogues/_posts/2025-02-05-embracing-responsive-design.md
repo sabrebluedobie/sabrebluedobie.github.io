@@ -10,7 +10,7 @@ Image: "/assets/images/responsive-visibility.webp"
 !["A mobile phone showing responsive design."](/assets/images/responsive-visibility.webp)
 
 
-<p>{{ page.excerpt }}</p>
+<p>Explore the importance of responsive web design and the mobile-first approach in today's digital landscape, highlighting their benefits for user experience and business growth.</p>
 
 ## Introduction
 In today’s fast-paced digital world, effective web design can determine the success or failure of online businesses. With an increasing number of users accessing the internet through mobile devices, it's crucial to adopt a responsive web design and mobile-first approach. These strategies ensure that your website provides an optimal user experience regardless of the device used. This blog will explore the basics of responsive web design, the advantages of a mobile-first strategy, and their impact on digital marketing and business.
