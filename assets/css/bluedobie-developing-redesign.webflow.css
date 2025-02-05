@@ -10970,6 +10970,16 @@ border-radius: 5px;
     top: 25%;
     left: 0%; 
   }
+
+  .container p {
+    width: 95%;
+    margin-left: 5vw;
+  }
+  .container li {
+    width: 95%;
+    margin-left: 5vw;
+  }
+  
   @media screen and (max-width: 768px) {
 #pages .container, 
 .section.dark-section .container {
