@@ -9,7 +9,7 @@ image: "/assets/images/professional-website.webp"
 
 # **Why Your Business Needs a High-Impact Website to Succeed**
 
-<img src="/assets/images/professional-website.webp" alt="two people creating a website">
+!["Two people creating a website."](/assets/images/professional-website.webp)
 
 
 {{ page.excerpt }}
