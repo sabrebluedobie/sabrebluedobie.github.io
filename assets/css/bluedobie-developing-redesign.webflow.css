@@ -10803,7 +10803,7 @@ button:disabled {
 
 /* code from blog */
 
-body {
+html, body {
   overflow-x: hidden;
 }
 .container {
@@ -10982,7 +10982,7 @@ border-radius: 5px;
 }
 
 .demo-title {
-    font-size: 24px; /* Reduce font size */
+    font-size: 2em; /* Reduce font size */
     line-height: 1.2; /* Adjust line height */
 }
 .dropdown-menu {
@@ -10996,7 +10996,7 @@ border-radius: 5px;
 }
 
 .small-content p {
-    font-size: 14px; /* Smaller font for better readability */
+    font-size: 1em; /* Smaller font for better readability */
     margin: 0 auto; /* Center content */
 }
 }
