@@ -15,7 +15,7 @@ email: "melanie.brown@bluedobiedev.com"
 description: >-
   A look at web design for small business by a web designer. 
   Learn about topics that can help your business grow!
-baseurl: "/_blog"  # If deploying at root, keep it empty
+baseurl: ""  # If deploying at root, keep it empty
 url: "https://www.bluedobiedev.com"
 
 # Destination for generated site files
