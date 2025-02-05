@@ -21,8 +21,9 @@ A well-designed website builds **credibility, improves visibility, and drives sa
 ---
 
 ## **Why a Professional Website Matters** 
-
+<div class="shorts-responsive">
 <iframe width="318" height="566" src="https://www.youtube.com/embed/OaL54b2WFtk" title="Why a Website is Essential" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 Your website is the **online storefront** for your business. Even if you have a physical location, **most customers research businesses online** before making a decision. Without a strong online presence, you're **missing out on potential sales and credibility**.
 

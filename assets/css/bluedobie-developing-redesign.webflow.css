@@ -10835,6 +10835,7 @@ display: inline-block;
 }
 
 .dropdown-menu {
+display: none;
 position: absolute; /* Ensures the dropdown is removed from the flow */
 top: 100%; /* Position it just below the "More" button */
 left: 0;
@@ -10847,6 +10848,9 @@ background-color: #fff; /* Ensure visibility on different backgrounds */
 border: 1px solid #ccc; /* Add border for better visibility */
 box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
 padding: 10px;
+}
+.dropdown-menu.show {
+  display: block;
 }
 
 .dropdown-menu a {
@@ -11033,5 +11037,20 @@ margin-bottom: 0.5em;
 font-size: 0.8em;
 margin: 0;
 }
-  
 }
+.shorts-responsive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.shorts-responsive iframe {
+  width: 90%; /* Adjusts width based on screen */
+    max-width: 318px; /* Keeps Shorts format */
+    height: auto;
+    aspect-ratio: 9 / 16; /* Maintains correct ratio */
+    display: block;
+}
+
