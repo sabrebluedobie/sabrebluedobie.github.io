@@ -18,7 +18,9 @@ In today’s fast-paced digital world, effective web design can determine the su
 
 ## What is Responsive Web Design?
 
+<div class="youtube div">
 <iframe width="1294" height="493" src="https://www.youtube.com/embed/Ayu1pa2UWj4" title="Short Responsive Design Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 <br>
 Responsive web design (RWD) is an approach to web creation where a website's layout adjusts smoothly across various screen sizes and devices. The goal is to provide a seamless user experience, whether accessed on a desktop, tablet, or smartphone. Key techniques include fluid grids, flexible images, and CSS media queries.
 

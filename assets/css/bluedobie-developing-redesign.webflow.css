@@ -10826,7 +10826,7 @@ overflow: visible;
   font-size: 1.25rem;
   line-height: 1.75rem;
   width: 80%;
-  margin-left: 5vw;
+  margin-left: 7.5vw;
 }
 /* Ensure dropdown menu appears above other content */
 .dropdown {
@@ -11140,3 +11140,19 @@ div.description {
   padding-left: 10vw;
 }
 * {-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+
+.youtube-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+.youtube-div iframe {
+  width: 90%; /* Adjusts width based on screen */
+    max-width: 1294px; /* Keeps Shorts format */
+    height: auto;
+    aspect-ratio: 16 / 9; /* Maintains correct ratio */
+    display: block;
+}
