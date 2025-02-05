@@ -9,7 +9,7 @@ image: "{{ site.baseurl}}/assets/images/professional-website.webp"
 
 # **Why Your Business Needs a High-Impact Website to Succeed**
 
-![Two people creating a website.] ({{ site.baseurl }}/assets/images/professional-website.webp)
+![Two people building a website.]({{ '{{ site.baseurl }}/assets/images/professional-website.webp' | raw }})
 
 
 {{ page.excerpt }}
