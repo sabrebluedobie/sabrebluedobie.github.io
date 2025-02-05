@@ -3,7 +3,7 @@
 Title: "Embracing Responsive Web Design and the Mobile-First Approach"
 Date: "2023-10-11"
 Excerpt: "Explore the importance of responsive web design and the mobile-first approach in today's digital landscape, highlighting their benefits for user experience and business growth."
-Image: "/path/to/image.jpg"
+Image: "/assets/images/responsive-visibility.webp"
 ---
 
 # Embracing Responsive Web Design and the Mobile-First Approach
@@ -11,7 +11,7 @@ Image: "/path/to/image.jpg"
 ## Introduction
 In today’s fast-paced digital world, effective web design can determine the success or failure of online businesses. With an increasing number of users accessing the internet through mobile devices, it's crucial to adopt a responsive web design and mobile-first approach. These strategies ensure that your website provides an optimal user experience regardless of the device used. This blog will explore the basics of responsive web design, the advantages of a mobile-first strategy, and their impact on digital marketing and business.
 
-![DALL-E Prompt: "A split screen showing a website on a desktop computer on one side and on a mobile device on the other, both with a consistent design."](#)
+![DALL-E Prompt: "A split screen showing a website on a desktop computer on one side and on a mobile device on the other, both with a consistent design."](/assets/images/responsive-visibility.webp)
 
 ## What is Responsive Web Design?
 Responsive web design (RWD) is an approach to web creation where a website's layout adjusts smoothly across various screen sizes and devices. The goal is to provide a seamless user experience, whether accessed on a desktop, tablet, or smartphone. Key techniques include fluid grids, flexible images, and CSS media queries.
