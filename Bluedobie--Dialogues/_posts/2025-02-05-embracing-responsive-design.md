@@ -19,7 +19,7 @@ In today’s fast-paced digital world, effective web design can determine the su
 ## What is Responsive Web Design?
 <div class="article-image-div1">
 <img class="article-image1" alt="A computer, two tablets, and a mobile phone all showing the same website." src="/assets/images/434098722_1102511367632445_4375115299046555709_n.webp">
-</div>
+</div><br>
 Responsive web design (RWD) is an approach to web creation where a website's layout adjusts smoothly across various screen sizes and devices. The goal is to provide a seamless user experience, whether accessed on a desktop, tablet, or smartphone. Key techniques include fluid grids, flexible images, and CSS media queries.
 
 ### Elements of Responsive Web Design:
@@ -28,6 +28,10 @@ Responsive web design (RWD) is an approach to web creation where a website's lay
 3. **CSS Media Queries**: Applying different CSS rules based on the device's characteristics.
 
 ## Why Adopt a Mobile-First Approach?
+
+<div class="article-image-div1">
+<img class="article-image1" src="/assets/images/mobile-first.webp" alt="a phone that shows on the screen the words 'Mobile First'">
+</div><br>
 Mobile-first design is a strategy where the design process starts with the mobile version first before scaling up to larger screens. Given the priority mobile devices hold in today’s browsing habits, this approach ensures that the essential features and content remain accessible and user-friendly on smaller screens.
 
 ### Benefits of Mobile-First Design:
