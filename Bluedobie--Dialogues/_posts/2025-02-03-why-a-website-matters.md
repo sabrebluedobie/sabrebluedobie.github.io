@@ -7,7 +7,7 @@ excerpt: "Discover why a professional website is essential for business success.
 image: "/assets/images/professional-website.webp"
 ---
 
-# **Why Your Business Needs a High-Impact Website to Succeed**
+# **{{ page.title }}**
 
 !["Two people creating a website."](/assets/images/professional-website.webp)
 
