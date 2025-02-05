@@ -11038,6 +11038,11 @@ font-size: 0.8em;
 margin: 0;
 }
 }
+
+iframe {
+  max-width: 100%;
+}
+
 .shorts-responsive {
   display: flex;
   justify-content: center;
