@@ -10812,6 +10812,22 @@ max-width: 100%; /* Remove width constraints for small screens */
 margin: 0 auto;
 overflow: visible;
 }
+
+.container h2, .container h3 {
+  margin-left: 2.5vw;
+}
+.container p {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  width: 80%;
+  margin-left: 5vw;
+}
+.container li {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  width: 80%;
+  margin-left: 5vw;
+}
 /* Ensure dropdown menu appears above other content */
 .dropdown {
 position: relative;

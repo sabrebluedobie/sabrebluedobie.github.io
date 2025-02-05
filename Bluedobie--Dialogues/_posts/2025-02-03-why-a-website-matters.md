@@ -20,7 +20,9 @@ A well-designed website builds **credibility, improves visibility, and drives sa
 
 ---
 
-## **Why a Professional Website Matters**  
+## **Why a Professional Website Matters** 
+
+<iframe width="318" height="566" src="https://www.youtube.com/embed/OaL54b2WFtk" title="Why a Website is Essential" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Your website is the **online storefront** for your business. Even if you have a physical location, **most customers research businesses online** before making a decision. Without a strong online presence, you're **missing out on potential sales and credibility**.
 
@@ -32,6 +34,7 @@ Your website is the **online storefront** for your business. Even if you have a 
 </ul>
 
 ### **2. Available 24/7**
+
 - Unlike a physical store, your website is **always open**—24/7.
 - Customers can learn about your services or products **at any time**.
 - **Live chat, FAQs, and contact forms** enhance customer experience.
@@ -42,6 +45,8 @@ Your website is the **online storefront** for your business. Even if you have a 
 - More visibility = **more potential customers**.
 
 ### **4. Increases Sales & Lead Generation**
+!["Two people creating a website."](/assets/images/blog-image-cta-11-23-24.webp)
+
 - A website isn't just a brochure—it's a **sales tool**.
 - **Call-to-action buttons (CTAs)** guide visitors to contact, purchase, or sign up.
 - **E-commerce & online booking** make transactions seamless.
