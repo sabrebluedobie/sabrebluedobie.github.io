@@ -155,6 +155,15 @@ gtag('config', 'GTM-MCV3HH7L');
     #zf_div__VqSQjXBNYdzfba7hvdvoImuqZy49vmZzH5p2AchX3M {
       width: 99%;
     }
+
+    .blog-home-title-div {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
     iframe {
     width: 99%; /* Make it responsive */
     max-width: 800px; /* Set a wider maximum width for desktop */
@@ -351,10 +360,7 @@ gtag('config', 'GTM-MCV3HH7L');
           flex: 50%;
           text-align: center;
         }
-        .blog-home-item-title {
-          margin-top: 5vh;
-          text-align: center;
-        }
+        
         .cta-title-holder {
           width: 99%;
           
@@ -393,6 +399,12 @@ gtag('config', 'GTM-MCV3HH7L');
     p {
       font-size: 0.9rem;
     }
+    
+    #prev-btn, #next-btn {
+      color: #000;
+      border: 1px solid #333;
+    }
+    
   </style> <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -632,8 +644,10 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
                     <div class="blog-home-category-text">${article.category}</div>
                     <div class="blog-home-date-category">${article.date}</div>
                   </div>
-                  <h2 class="blog-home-item-title">${article.title}</h2>
-                  <p class="blog-home-item-summary">${article.summary}</p>
+                  <div class="blog-home-title-div">
+                  <h2 class="blog-home-item-title" style="font-family: 'Instrument Serif', 'sans serif'; font-size: 2.5rem; text-align: center;">${article.title}</h2>
+                  <p class="blog-home-item-summary" style="font-family: 'Inter', 'sans serif'; text-align: center;">${article.summary}</p>
+                </div>
                   <div class="blog-home-image">
                     <img src="${article.image}" alt="${article.title}">
                   </div>
@@ -654,6 +668,80 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
     document.addEventListener('DOMContentLoaded', loadArticles);
   </script>
   
+  <script>
+    let currentPage = 1;
+    const postsPerPage = 5; // Adjust based on how many articles you want per page
+    let allArticles = [];
+
+    async function loadArticles() {
+        const targetUrl = "https://www.bluedobiedev.com/api/articles.json"; // JSON file location
+
+        try {
+            const response = await fetch(targetUrl);
+            allArticles = await response.json();
+            renderPage(currentPage);
+        } catch (error) {
+            console.error("Error loading articles:", error);
+            document.getElementById('blog-container').innerHTML =
+                "<p>Failed to load blog articles. Please try again later.</p>";
+        }
+    }
+
+    function renderPage(page) {
+        const blogContainer = document.getElementById('blog-container');
+        blogContainer.innerHTML = '';
+
+        const start = (page - 1) * postsPerPage;
+        const end = start + postsPerPage;
+        const paginatedArticles = allArticles.slice(start, end);
+
+        paginatedArticles.forEach((article) => {
+            const articleHTML = `
+                <div class="blog-home-main-item">
+                    <a href="${article.link}" class="blog-home-main-item-link">
+                        <div class="blog-home-item-content">
+                            <div class="blog-home-item-category">
+                                <div class="blog-home-category-text">${article.category}</div>
+                                <div class="blog-home-date-category">${article.date}</div>
+                            </div>
+                            <h2 class="blog-home-item-title" style="font-family: 'Instrument Serif', 'sans serif'; font-size: 2.5rem; text-align: center;">
+                                ${article.title}
+                            </h2>
+                            <p class="blog-home-item-summary" style="font-family: 'Inter', 'sans serif'; text-align: center;">
+                                ${article.summary}
+                            </p>
+                            <div class="blog-home-image">
+                                <img src="${article.image}" alt="${article.title}">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            blogContainer.innerHTML += articleHTML;
+        });
+
+        updatePaginationButtons();
+    }
+
+    function changePage(direction) {
+        const totalPages = Math.ceil(allArticles.length / postsPerPage);
+        if (direction === -1 && currentPage > 1) {
+            currentPage--;
+        } else if (direction === 1 && currentPage < totalPages) {
+            currentPage++;
+        }
+        renderPage(currentPage);
+    }
+
+    function updatePaginationButtons() {
+        const totalPages = Math.ceil(allArticles.length / postsPerPage);
+        document.getElementById('prev-btn').disabled = currentPage === 1;
+        document.getElementById('next-btn').disabled = currentPage === totalPages;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadArticles);
+</script>
+
   
 </body>
 </html>
