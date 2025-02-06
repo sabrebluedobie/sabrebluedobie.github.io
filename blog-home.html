@@ -670,7 +670,7 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
   
   <script>
     let currentPage = 1;
-    const postsPerPage = 5; // Adjust based on how many articles you want per page
+    const postsPerPage = 1; // Adjust based on how many articles you want per page
     let allArticles = [];
 
     async function loadArticles() {
@@ -688,50 +688,56 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
     }
 
     function renderPage(page) {
-        const blogContainer = document.getElementById('blog-container');
-        blogContainer.innerHTML = '';
+      const blogContainer = document.getElementById('blog-container');
+      blogContainer.innerHTML = ''; // Clear previous article
+  
+      if (allArticles.length === 0) {
+          blogContainer.innerHTML = "<p>No articles available.</p>";
+          return;
+      }
+  
+      const articleIndex = page - 1; // Convert page number to index
+      const article = allArticles[articleIndex];
+  
+      if (!article) return; // Prevent errors if index is out of range
+  
+      const articleHTML = `
+          <div class="blog-home-main-item">
+              <a href="${article.link}" class="blog-home-main-item-link">
+                  <div class="blog-home-item-content">
+                      <div class="blog-home-item-category">
+                          <div class="blog-home-category-text">${article.category}</div>
+                          <div class="blog-home-date-category">${article.date}</div>
+                      </div>
+                      <h2 class="blog-home-item-title" style="font-family: 'Instrument Serif', 'sans serif'; font-size: 2.5rem; text-align: center;">
+                          ${article.title}
+                      </h2>
+                      <p class="blog-home-item-summary" style="font-family: 'Inter', 'sans serif'; text-align: center;">
+                          ${article.summary}
+                      </p>
+                      <div class="blog-home-image">
+                          <img src="${article.image}" alt="${article.title}">
+                      </div>
+                  </div>
+              </a>
+          </div>
+      `;
+  
+      blogContainer.innerHTML = articleHTML;
+      updatePaginationButtons();
+  }
+  
 
-        const start = (page - 1) * postsPerPage;
-        const end = start + postsPerPage;
-        const paginatedArticles = allArticles.slice(start, end);
-
-        paginatedArticles.forEach((article) => {
-            const articleHTML = `
-                <div class="blog-home-main-item">
-                    <a href="${article.link}" class="blog-home-main-item-link">
-                        <div class="blog-home-item-content">
-                            <div class="blog-home-item-category">
-                                <div class="blog-home-category-text">${article.category}</div>
-                                <div class="blog-home-date-category">${article.date}</div>
-                            </div>
-                            <h2 class="blog-home-item-title" style="font-family: 'Instrument Serif', 'sans serif'; font-size: 2.5rem; text-align: center;">
-                                ${article.title}
-                            </h2>
-                            <p class="blog-home-item-summary" style="font-family: 'Inter', 'sans serif'; text-align: center;">
-                                ${article.summary}
-                            </p>
-                            <div class="blog-home-image">
-                                <img src="${article.image}" alt="${article.title}">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            `;
-            blogContainer.innerHTML += articleHTML;
-        });
-
-        updatePaginationButtons();
+  function changePage(direction) {
+    const totalPages = allArticles.length; // Each article is its own page
+    if (direction === -1 && currentPage > 1) {
+        currentPage--; // Go back one article
+    } else if (direction === 1 && currentPage < totalPages) {
+        currentPage++; // Go forward one article
     }
+    renderPage(currentPage);
+}
 
-    function changePage(direction) {
-        const totalPages = Math.ceil(allArticles.length / postsPerPage);
-        if (direction === -1 && currentPage > 1) {
-            currentPage--;
-        } else if (direction === 1 && currentPage < totalPages) {
-            currentPage++;
-        }
-        renderPage(currentPage);
-    }
 
     function updatePaginationButtons() {
         const totalPages = Math.ceil(allArticles.length / postsPerPage);
