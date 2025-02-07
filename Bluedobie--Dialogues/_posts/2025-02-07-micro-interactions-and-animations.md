@@ -72,7 +72,7 @@ For digital marketing, the use of micro-interactions and animations can signific
 
 To further enrich your knowledge on the importance of micro-interactions and animations in web design, consider watching this comprehensive video on YouTube:
 
-## **“How Micro-interactions and Animations Can Elevate Your Web Design”**
+## **“Boosting Website UX with Micro-Interactions”**
 
 <div class="youtube div">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Gq39AyAf13Y?si=9wdegl4nqqYzwlj9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
