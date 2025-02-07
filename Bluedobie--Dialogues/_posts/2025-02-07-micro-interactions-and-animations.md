@@ -60,7 +60,7 @@ For digital marketing, the use of micro-interactions and animations can signific
 - **Click-through rates (CTR)**
 - **Bounce rates**
 - **Session durations**
-- **Conversion rates**【6:4†source】
+- **Conversion rates**【Internal Knowledge of Web Design Practices】
 
 ### Examples of Successful Integration
 
@@ -96,4 +96,4 @@ _For more insights into advanced web design strategies, stay tuned to Bluedobie 
 **References:**
 
 1. Internal understanding and analysis of web development and design best practices.
-2. Insights aggregated from marketing and web design trends indicated in the ubersuggest_Bluedobiedev_2.pdf【6:4†source】.
+2. Youtube video titled "Boosting Website UX with Micro-Interactions".
