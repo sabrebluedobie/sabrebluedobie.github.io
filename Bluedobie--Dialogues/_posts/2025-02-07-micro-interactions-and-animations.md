@@ -85,7 +85,7 @@ This video covers:
 
 ## Conclusion
 
-When thoughtfully applied, micro-interactions and animations can transform a static website into a dynamic user experience【6:4†source】. They bridge the gap between technology and human interaction, making digital interfaces more intuitive, engaging, and delightful. For businesses and media outlets aiming to elevate their digital presence, investment in these small, yet powerful, design elements is indispensable.
+When thoughtfully applied, micro-interactions and animations can transform a static website into a dynamic user experience【Internal Knowledge of Web Development and Design】. They bridge the gap between technology and human interaction, making digital interfaces more intuitive, engaging, and delightful. For businesses and media outlets aiming to elevate their digital presence, investment in these small, yet powerful, design elements is indispensable.
 
 ## **Bluedobie Dialogues Team**
 
