@@ -64,7 +64,7 @@ For digital marketing, the use of micro-interactions and animations can signific
 
 ### Examples of Successful Integration
 
-- **E-commerce Websites**: Animations highlighting product details on hover, interactive shopping carts, and animated add-to-cart actions can make the shopping experience more interactive and enjoyable【6:4†source】.
+- **E-commerce Websites**: Animations highlighting product details on hover, interactive shopping carts, and animated add-to-cart actions can make the shopping experience more interactive and enjoyable【Internal Knowledge of Web Design Practices】.
 - **Service Providers**: Subtle animations in the contact forms or service pages help in retaining visitor attention and improving form submission rates.
 - **Media Outlets**: Animated transitions between articles or sections can make reading and navigating through content smooth and enjoyable.
 
