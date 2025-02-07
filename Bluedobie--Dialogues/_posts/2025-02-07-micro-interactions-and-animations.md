@@ -65,12 +65,12 @@ To further enrich your knowledge on the importance of micro-interactions and ani
 
 **“How Micro-interactions and Animations Can Elevate Your Web Design”**
 
-[Insert YouTube Video Link]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gq39AyAf13Y?si=9wdegl4nqqYzwlj9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 This video covers:
-- Real-life examples of micro-interactions and animations.
+- Examples of micro-interactions.
 - How leading brands are using these details to enhance user experience.
-- Step-by-step guide to effectively integrating animations without compromising website performance.
+
 
 ## Conclusion
 
