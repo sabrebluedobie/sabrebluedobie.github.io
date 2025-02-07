@@ -11,7 +11,7 @@ image: "/assets/images/micro-interactions.jpg"
 
 Micro-interactions and animations may seem like small elements in web design, but they play a colossal role in driving engagement and enhancing user experience. These tiny details help in making the interaction intuitive, satisfying, and memorable. Today, we’ll dive deep into why these elements are so crucial and how to effectively incorporate them into your web design strategy, especially in the context of digital marketing, business, and media.
 
-![Multiple engaging micro-interactions and text: "Micro-Interactions".](/assets/images/micro-interactions.jpg)
+!["Multiple engaging micro-interactions and text: "Micro-Interactions".](/assets/images/micro-interactions.jpg)
 
 ### The Role of Micro-interactions
 
