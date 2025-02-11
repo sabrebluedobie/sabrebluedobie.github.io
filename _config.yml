@@ -29,6 +29,12 @@ collections:
   Bluedobie--Dialogues:
     output: true
     permalink: /Bluedobie--Dialogues/:year/:month/:day/:title/
+    defaults:
+      - scope:
+          path: "Bluedobie--Dialogues/_posts"
+        values:
+          layout: "blog"
+
 
 
 # SASS settings
