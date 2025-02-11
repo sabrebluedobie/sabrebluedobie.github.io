@@ -426,3 +426,16 @@ button.fs-button {
   border: none; /* Remove unwanted borders */
   margin: 5vh 0 0 0;
 }
+@media screen and (max-width: 479px) {
+    .booking-widget-container iframe{
+        display: block;
+        margin-top: 100vh;
+    }
+    .booking-widget-container {
+        display: block;
+        overflow: visible;
+    }
+    #iframe-0.9112455224295191, div.clutch-widget {
+      margin-top: -100vh;
+    }
+}
