@@ -42,10 +42,9 @@ jobs:
         run:  bundle install
 
       - name: Build Jekyll
-        uses:  actions/jekyll-build-pages@v1
-        with: 
-          source: .
-          destination: ./_site
+        run:  bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
