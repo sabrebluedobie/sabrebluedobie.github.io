@@ -1,4 +1,5 @@
 ---
+layout: blog
 title: "Why Your Business Needs a High-Impact Website"
 date: 2025-02-03 08:00:00
 categories: [Web Design]

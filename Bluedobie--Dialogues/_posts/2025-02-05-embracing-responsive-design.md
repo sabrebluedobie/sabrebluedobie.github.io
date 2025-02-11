@@ -2,6 +2,7 @@
 title: "Embracing Responsive Web Design and the Mobile-First Approach"
 date: 2025-02-05
 categories: [Web Design]
+layout: blog
 excerpt: "Explore the importance of responsive web design and the mobile-first approach in today's digital landscape, highlighting their benefits for user experience and business growth."
 image: "/assets/images/responsive-visibility.webp"
 ---
