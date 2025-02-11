@@ -28,15 +28,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./_posts
-          destination: ./_blog
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with: 
+              ruby-version: '3.1'
+              bundler-cache: true
+
+      - name: Install Dependencies
+        run:  bundle install
+
+      - name: Build Jekyll
+        run:  bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
   # Deployment job
   deploy:

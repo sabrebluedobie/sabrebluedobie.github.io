@@ -26,6 +26,10 @@ collections:
   posts:
     output: true
     permalink: /blog/:year/:month/:day/:title/
+  Bluedobie--Dialogues:
+    output: true
+    permalink: /Bluedobie--Dialogues/:year/:month/:day/:title/
+
 
 # SASS settings
 sass:
