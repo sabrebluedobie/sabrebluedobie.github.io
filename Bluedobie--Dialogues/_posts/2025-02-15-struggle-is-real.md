@@ -1,7 +1,7 @@
 ---
 title: "The Website Struggle is Real: How to Stop Fighting Your Own Website"
 author: "Bluedobie Developing"
-date: "2025-02-19"
+date: "2025-02-15"
 categories: 
   - Web Design
   - Small Business Growth
