@@ -86,8 +86,6 @@ Your website isn’t just an **online brochure**—it should be a **customer mag
 ✅ **Make Forms Simple & Friction-Free** – Long forms scare people away.  
 ✅ **Showcase Testimonials & Social Proof** – People trust people!  
 
-🎥 **Video Prompt:** A quick before-and-after breakdown showing how small SEO tweaks helped a website go from “invisible” to getting real customers.  
-
 ---
 
 # ✅ Ready to Stop Fighting Your Website?  
@@ -102,7 +100,9 @@ Your website **shouldn’t be a constant headache**—it should be **a tool that
 
 📩 **Contact us today** for a **free consultation!**  
 
-📸 **Final Image Prompt:** A confident, victorious-looking Sabre with the text: *“Your website doesn’t have to be your worst enemy. Let’s fix it.”*  
+![Your website doesn’t have to be your worst enemy. Let’s fix it.](assets/images/sabre-web-blog.webp)  
+*Sabre knows a good website when he sees one—let’s make yours work for you!*
+  
 
 ---
 
