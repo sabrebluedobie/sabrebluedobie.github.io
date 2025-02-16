@@ -108,8 +108,4 @@ Your website **shouldn’t be a constant headache**—it should be **a tool that
 📌 **[Check Out Our Services](https://www.bluedobiedev.com/services)**  
 
 ---
-
-**What’s your biggest website struggle? Drop a comment below! ⬇️**  
-
-**Hashtags:**  
-#WebsiteStruggles #WebDesign #SmallBusinessTips #BluedobieDeveloping #FixYourWebsite #SEO #WebDesignLife #EntrepreneurTips  
+  
