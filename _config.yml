@@ -36,6 +36,13 @@ collections:
           layout: "blog"
 
 
+# Site settings
+title: "Bluedobie Dialogues"
+site_title: "Bluedobie Developing"
+email: "melanie.brown@bluedobiedev.com"
+description: >-
+  A look at web design for small business by a web designer. 
+  Learn about topics that can help your business grow!
 
 # SASS settings
 sass:
