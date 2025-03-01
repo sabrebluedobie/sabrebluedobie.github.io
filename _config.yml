@@ -25,10 +25,10 @@ destination: "_site"
 collections:
   posts:
     output: true
-    permalink: /blog/:year/:month/:day/:title/
+    permalink: /blog/:title/
   Bluedobie--Dialogues:
     output: true
-    permalink: /Bluedobie--Dialogues/:year/:month/:day/:title/
+    permalink: /Bluedobie--Dialogues/:title/
     defaults:
       - scope:
           path: "Bluedobie--Dialogues/_posts"
