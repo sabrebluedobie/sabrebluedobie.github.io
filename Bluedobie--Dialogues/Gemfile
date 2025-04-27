@@ -7,7 +7,7 @@ source "https://rubygems.org"
 
 
 gem "jekyll", "~> 4.4.1"
-gem "liquid", "~> 5.4"
+gem "liquid", "~> 4.0"
 gem "webrick"  # Needed for Ruby 3.0+
 gem "jekyll-seo-tag"
 gem "jekyll-feed"
