@@ -42,7 +42,7 @@ twitter_username: "sabrebluedobie"
 github_username: "sabrebluedobie"
 
 # Build settings
-theme: "minima"
+# theme: "minima"
 plugins:
   - jekyll-feed
 
