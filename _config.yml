@@ -1,0 +1,81 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that.
+#
+# If you change this file, please restart the server process.
+#
+# YAML resources:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+
+# Site settings
+title: "Bluedobie Dialogues"
+email: "melanie.brown@bluedobiedev.com"
+description: >-
+  A look at web design for small business by a web designer. 
+  Learn about topics that can help your business grow!
+baseurl: ""  # If deploying at root, keep it empty
+url: "https://www.bluedobiedev.com"
+
+# Destination for generated site files
+destination: "_site"
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+  Bluedobie--Dialogues:
+    output: true
+    permalink: /Bluedobie--Dialogues/:title/
+    defaults:
+      - scope:
+          path: "Bluedobie--Dialogues/_posts"
+        values:
+          layout: "blog"
+
+
+# Site settings
+title: "Bluedobie Dialogues"
+site_title: "Bluedobie Developing"
+email: "melanie.brown@bluedobiedev.com"
+description: >-
+  A look at web design for small business by a web designer. 
+  Learn about topics that can help your business grow!
+
+# SASS settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Defaults for collections
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "blog"
+
+# Social media usernames
+twitter_username: "sabrebluedobie"
+github_username: "sabrebluedobie"
+
+# Build settings
+theme: "minima"
+plugins:
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - "*.erb"
