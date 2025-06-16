@@ -70,6 +70,15 @@ gtag('config', 'GTM-MCV3HH7L');
   <style>
     body {
       overflow-x: hidden;
+      height: 100%;
+      margin: 0;
+    }
+    .page-wrapper {
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure the page takes full height */
+       /* Prevent horizontal scrolling */
     }
     .container {
     width: 100%;
@@ -77,14 +86,15 @@ gtag('config', 'GTM-MCV3HH7L');
     margin: 0 auto;
     overflow: visible;
 }
+  .main {
+    flex: 1;
 
-h3 {
-  margin-top: 5vh;
-  font-size: 2.5rem;
-}
+  }
 
-h2 {
-  font-size: 3rem;
+.container,
+.nav,
+.dropdown {
+  overflow: visible !important;
 }
 /* Ensure dropdown menu appears above other content */
 .dropdown {
@@ -99,13 +109,19 @@ h2 {
   right: 0; /* Allow the dropdown to span the entire screen width */
   z-index: 9999; /* Ensure it appears above other elements */
   min-width: 200px;
-  max-height: 80vh; /* Prevent it from exceeding the screen height */
+  max-height: 100vh; /* Prevent it from exceeding the screen height */
   overflow-y: auto; /* Enable scrolling if the dropdown is long */
   background-color: #fff; /* Ensure visibility on different backgrounds */
   border: 1px solid #ccc; /* Add border for better visibility */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
   padding: 10px;
-}
+  width: auto;
+  min-width: 300px;
+  max-width: 100vw;
+  white-space: nowrap;
+  overflow-x: visible;
+  }
+
 
 .dropdown-menu a {
   display: block;
@@ -211,11 +227,21 @@ h2 {
 }
 
 @media (min-width: 1024px) {
-    .dropdown-menu {
-        width: 300px; /* Adjust this value as needed */
-        text-align: left;
-        margin-left: auto;
-    }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999999;
+    width: 300px;         /* Ensure enough space */
+    min-width: 250px;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    white-space: nowrap;  /* Prevent text wrapping */
+  }
 }
 
 
@@ -245,7 +271,7 @@ h2 {
       left: 0;
       right: 0;
       width: 100%; /* Full-width dropdown for mobile */
-      max-height: 80vh; /* Limit height to prevent large dropdowns */
+      max-height: 100vh; /* Limit height to prevent large dropdowns */
       overflow-y: auto; /* Scroll if dropdown exceeds the screen height */
   }
 
@@ -255,48 +281,44 @@ h2 {
     }
 }
 
-  /* Container for the video and overlay */
-.hero-video-container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full screen height */
-    overflow: hidden;
+.footer {
+  background-color: #000; /* Explicit black background */
+  color: #fff; /* Explicit white text color */
+  padding: 2em 1em;
+  text-align: center;
+  
 }
-
-/* Fullscreen video background */
-.background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; /* Behind overlay and content */
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  background-color:#000;
 }
-
-/* Semi-transparent overlay */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 2; /* Above video, behind content */
+.footer-links {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
-/* Content over the video */
-.hero-content {
-    position: relative;
-    z-index: 3; /* Above video and overlay */
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
+.footer-link {
+  color: #fff; /* White text for links */
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s;
 }
-    
+.footer-link:hover {
+  color: #ffd700; /* Bright yellow for hover effect */
+}
+.footer-logo {
+  width: 120px;
+  margin-bottom: 0.5em;
+}
+.footer-text {
+  font-size: 0.8em;
+  margin: 0;
+}
+      
     }
   </style>
   <!-- Meta Pixel Code -->
@@ -376,16 +398,17 @@ h2 {
       </div>
     </div>
   </div>
-  <div class="demo-page-wrapper">
+  <div class="demo-page-wrapper page-wrapper">
     <div class="hero-section">
       <div class="background-video w-background-video w-background-video-atom">
         <div class="hero-video-container">
          
         <video id="4a301a29-48c6-47ec-593c-df19c086d02f-video" autoplay="" loop="" muted="" data-wf-ignore="true">
           <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-          <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
+          <source src="videos/Sabre-Office-Adventures-wide1.webm" type="video/webm">
         </video>
         </div>
+      </div>
         <div class="overlay"> 
   
       <!-- Hero Content -->
@@ -399,7 +422,7 @@ h2 {
           <h3 class="heading-15" style="font-size: 1rem;">The best web design company Western Kentucky has to offer: We focus on making websites that stand out!</h3>
           </div>
         </div>
-     <div class="container">
+     <div class="main">
       <div class="banner-div">
       <a class="med-banner" href="https://www.tkqlhce.com/click-101342345-13942203" target="_blank">
         <img class="med-banner-img" src="https://www.lduhtrp.net/image-101342345-13942203" width="430" height="358" alt="Complete end-to-end security. Sucuri.net"/></a>
@@ -428,7 +451,7 @@ h2 {
           <br><br><a class="text-link" href="https://www.kqzyfj.com/click-101342345-13942195" target="_blank">Platform Plan Pricing</a><img src="https://www.tqlkg.com/image-101342345-13942195" alt="text only" width="1" height="1" border="0"/>
         </div>
           </div>
-        </div>
+    
     </div>
         </div>
         <div class="partner-div">
@@ -465,185 +488,33 @@ h2 {
                 "</a>");
         </script>
         
-        
-        </div>
+    <div class="container big-container"></div>
+    <div class="section">
+      <div class="container footer-container">
+        <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="/about" class="footer-link">About Us</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/contact" class="footer-link">Contact</a> 
+        <a href="/FAQ" class="footer-link">FAQ's</a>
+        <a href="/business-links.html" class="footer-link">Our Links</a>
+        <a href="/privacy" class="footer-link">Privacy Policy</a>
+      </div>
+      <div class="footer-brand">
+        <a href="index.html"><img src="images/bluedobielogo_1.webp" loading="lazy" alt="Bluedobie Developing Logo" class="footer-logo"></a>
+        <p class="footer-text">&copy; 2025 Bluedobie Developing. All rights reserved.</p>
+      </div>
+      <div class="dark-bg"></div>
+    </div>
+
+
   
-      
-    
-   <!-- <div class="demo-hero-buttons-holder" style="display: flex; justify-content: left; margin-top: 5vh;">
-    <a href="#sucuri" rel="noopener" class="button explore-button w-button">Return to Section Top</a>
-  </div>
-  </div>
-  </div>
-  
-    <hr class="dashed">
-    <div class="collapsible-container">
-      <button class="collapsible-btn">Click to Expand/Close</button>
-    <div class="tp-link collapsible-content" id="tp-link">
-      <div class="tp-text">
-        <a href="https://www.tkqlhce.com/click-101342345-15622545?url=https%3A%2F%2Fus.store.tp-link.com%2Fproducts%2Farcher-ax55%3F_pos%3D1%26_sid%3Db9f0433db%26_ss%3Dr&cjsku=Archer-Ax55" target="_blank">
-          TP-Link AX3000 Dual Band Gigabit Wi-Fi 6 Router</a><img src="https://www.tqlkg.com/image-101342345-15622545" width="1" height="1" alt="router image" border="0"/>
-      </div>
-      <div class="tp-image">
-        <a href="https://www.jdoqocy.com/click-101342345-15622545?url=https%3A%2F%2Fus.store.tp-link.com%2Fproducts%2Farcher-ax55%3F_pos%3D1%26_sid%3Db9f0433db%26_ss%3Dr&cjsku=Archer-Ax55" target="_blank"><img src="https://us.store.tp-link.com/cdn/shop/products/21_Archer-AX55_01_1500x1500_e726d69a-851e-4a59-b77b-d06c4d8e0728_600x.png?v=1634258275" border="0" alt="TP-Link AX3000 Dual Band Gigabit Wi-Fi 6 Router"/></a><img src="https://www.lduhtrp.net/image-101342345-15622545" width="1" height="1" border="0"/>
-      </div>
-      <div class="tp-form">
-        <form method="get" action="https://www.dpbolvw.net/interactive" target="_blank">
-          <table border="0" width="600" cellpadding="5" cellspacing="0">
-          <tr>
-          <td valign="top" width="10%"><img src="https://us.store.tp-link.com/cdn/shop/products/21_Archer-AX55_01_1500x1500_e726d69a-851e-4a59-b77b-d06c4d8e0728_600x.png?v=1634258275" border="0" alt="TP-Link AX3000 Dual Band Gigabit Wi-Fi 6 Router"/></td>
-          <td valign="top" >
-          <p><b><font size="6">TP-Link AX3000 Dual Band Gigabit Wi-Fi 6 Router</font></b></p>
-          <p><font size="3">Next-Gen Gigabit Wi-Fi 6 Speed: 2402 Mbps on 5 GHz and 574 Mbps on 2.4 GHz band ensure smoother streaming and faster downloads.
-          Connect More Devices: OFDMA technology increases capacity by 4 times to enable simultaneous transmission to more devices.
-          Ultra-Low Latency: Enables more responsive gaming and video chatting.
-          Expanded Wi-Fi Coverage: Four high-gain external antennas and Beamforming technology combine to extend strong, reliable Wi-Fi throughout your home.
-          TP-Link HomeShield: Enhanced security defends against the latest cyber threats.
-          Improved Battery Life: Target Wake Time helps your devices to communicate more while consuming less power.
-          Compatible with Alexa: Control your router via voice commands and make your life smarter and easier with Amazon Alexa.
-          A modem is required for most internet service providers.</font></p>
-          <hr>
-          <input type="hidden" name="cjevent" value="{eventId}"/>
-          <input type="hidden" name="pid" value="101342345"/>
-          <input type="hidden" name="aid" value="15622545"/>
-          <input type="hidden" name="cjsku" value="Archer-Ax55"/>
-          <input type="hidden" name="url" value="https://us.store.tp-link.com/"/>
-          <a href="https://www.kqzyfj.com/click-101342345-15736930" target="_blank"></a>
-          <input type="submit" value="Buy"/>
-          </td>
-          </tr>
-          </table>
-          </form>
-          <img src="https://www.ftjcfx.com/image-101342345-15622545" width="1" height="1" border="0"/>
-      </div>
-    </div>
-    <div class="demo-hero-buttons-holder" style="display: flex; justify-content: left; margin-top: 5vh;">
-      <a href="#tp-link" rel="noopener" class="button explore-button w-button">Return to Section Top</a>
-    </div>
-    </div>
-    <hr class="dashed">
-    <div class="collapsible-container">
-      <button class="collapsible-btn">Click to Expand/Close</button>
-      <div class="collapsible-content">
-    <div class="banner-is" id="interserver">
-      <a href="https://www.tkqlhce.com/click-101342345-11337760" target="_top">
-        <img src="https://www.awltovhc.com/image-101342345-11337760" width="728" height="90" alt="" border="0"/></a>
-    </div>
-
-    
-
-    <div class="promo-container">
-      <h2>InterServer VPS & Cloud Hosting: Reliable, Affordable, and Scalable Solutions</h2>
-      <p>When it comes to <strong>VPS and cloud hosting</strong>, businesses need <strong>reliability, security, and affordability</strong>. With <strong>InterServer VPS and Cloud Hosting</strong>, you get all three—starting at just <strong>$6 per month</strong>!</p>
-      
-      <h3>Why Choose InterServer VPS & Cloud Hosting?</h3>
-      <p>InterServer has been a leader in web hosting for over <strong>16 years</strong>, providing <strong>top-tier infrastructure</strong> and <strong>customer support</strong> that businesses can trust.</p>
-
-      <div class="promo">
-        <a href="https://www.anrdoezrs.net/click-101342345-11337766" target="_top">
-          <img class="promo-img" src="https://www.tqlkg.com/image-101342345-11337766" width="300" height="250" alt="" border="0"/></a>
-      </div>
-      
-      <h3>🔹 VPS Hosting Benefits</h3>
-      <ul class="blog-list">
-          <li>✅ <strong>Customizable Plans</strong> – Scale your resources (RAM, CPU, storage) based on your needs.</li>
-          <li>✅ <strong>99.9% Uptime Guarantee</strong> – Your website stays online with a <strong>highly reliable</strong> infrastructure.</li>
-          <li>✅ <strong>Full Root Access</strong> – Enjoy <strong>complete control</strong> over your virtual server.</li>
-          <li>✅ <strong>Choice of OS</strong> – Select <strong>Linux or Windows</strong> VPS based on your requirements.</li>
-          <li>✅ <strong>DDoS Protection</strong> – Keep your server secure with <strong>built-in security measures</strong>.</li>
-          <li>✅ <strong>Instant Setup</strong> – Deploy a VPS in <strong>less than 15 minutes</strong>.</li>
-      </ul>
-      
-      <h3>🔹 Cloud Hosting Benefits</h3>
-      <ul class="blog-list">
-          <li>☁️ <strong>Scalable Performance</strong> – Cloud hosting adjusts resources as traffic fluctuates.</li>
-          <li>☁️ <strong>Redundant Storage</strong> – <strong>Built-in failover protection</strong> ensures your data stays safe.</li>
-          <li>☁️ <strong>Price-Locked Guarantee</strong> – No sudden price increases; your rate stays the same!</li>
-          <li>☁️ <strong>US-Based Data Centers</strong> – Secure and <strong>high-speed servers</strong> within the U.S.</li>
-          <li>☁️ <strong>24/7 Support</strong> – Get assistance via <strong>live chat, ticket, or phone</strong> anytime.</li>
-      </ul>
-      
-      <h3>💰 Affordable Hosting, No Surprises!</h3>
-      <p>Unlike other hosting providers that lure customers with low introductory rates only to increase prices later, <strong>InterServer offers a price lock guarantee</strong>—meaning you’ll pay the same <strong>low monthly rate</strong> for as long as you stay with them.</p>
-      
-      <p><strong>🖥️ VPS Hosting starts at just $6/month!</strong></p>
-      <p><strong>🌍 Cloud Hosting available with instant setup!</strong></p>
-      
-      <h3>🚀 Get Started with InterServer VPS & Cloud Hosting</h3>
-      <p>If you're looking for a <strong>powerful, secure, and budget-friendly hosting solution</strong>, <strong>InterServer VPS and cloud hosting</strong> is the perfect choice.</p>
-      
-      <div class="cta-container">
-      <a href="https://www.tkqlhce.com/click-101342345-11337766" target="_blank" class="cta-button">Check Out InterServer Now</a>
-      </div>
-    </div>
-    </div>
-    </div>
-    <div class="demo-hero-buttons-holder" style="display: flex; justify-content: left; margin-top: 5vh;">
-      <a href="#interserver" rel="noopener" class="button explore-button w-button">Return to Section Top</a>
-    </div>
-    <div class="demo-hero-buttons-holder" style="display: flex; justify-content: center; margin-top: 5vh;">
-      <a href="#hero-content" rel="noopener" class="button explore-button w-button">Return to Page Top</a>
-    </div>-->
-   <div class="container big-container"></div>
-  <div class="section">
-    <div class="container footer-container">
-      <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-links">
-      <a href="/about" class="footer-link">About Us</a>
-      <a href="/services" class="footer-link">Services</a>
-      <a href="/contact" class="footer-link">Contact</a> 
-      <a href="/FAQ" class="footer-link">FAQ's</a>
-      <a href="/business-links.html" class="footer-link">Our Links</a>
-      <a href="/privacy" class="footer-link">Privacy Policy</a>
-    </div>
-    <div class="footer-brand">
-      <a href="index.html"><img src="images/bluedobielogo_1.webp" loading="lazy" alt="Bluedobie Developing Logo" class="footer-logo"></a>
-      <p class="footer-text">&copy; 2025 Bluedobie Developing. All rights reserved.</p>
-    </div>
-    <div class="dark-bg"></div>
-  </div>
-  <style>
-    .footer {
-      background-color: #000; /* Explicit black background */
-      color: #fff; /* Explicit white text color */
-      padding: 2em 1em;
-      text-align: center;
-    }
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-      background-color:#000;
-    }
-    .footer-links {
-      display: flex;
-      gap: 1.5em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .footer-link {
-      color: #fff; /* White text for links */
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: color 0.3s;
-    }
-    .footer-link:hover {
-      color: #ffd700; /* Bright yellow for hover effect */
-    }
-    .footer-logo {
-      width: 120px;
-      margin-bottom: 0.5em;
-    }
-    .footer-text {
-      font-size: 0.8em;
-      margin: 0;
-    }
-  </style>
-
   
 </footer>
+    </div>
+  </div>
+        </div>
     <div class="dark-bg"></div>
     <div id="cookieBanner" class="cookie-banner">
       <p>We use cookies to improve your experience on our site. By using our site, you consent to cookies. 

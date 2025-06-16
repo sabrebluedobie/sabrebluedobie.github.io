@@ -78,13 +78,10 @@ gtag('config', 'GTM-MCV3HH7L');
     overflow: visible;
 }
 
-h3 {
-  margin-top: 5vh;
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 3rem;
+.container,
+.nav,
+.dropdown {
+  overflow: visible !important;
 }
 /* Ensure dropdown menu appears above other content */
 .dropdown {
@@ -99,13 +96,19 @@ h2 {
   right: 0; /* Allow the dropdown to span the entire screen width */
   z-index: 9999; /* Ensure it appears above other elements */
   min-width: 200px;
-  max-height: 80vh; /* Prevent it from exceeding the screen height */
+  max-height: 100vh; /* Prevent it from exceeding the screen height */
   overflow-y: auto; /* Enable scrolling if the dropdown is long */
   background-color: #fff; /* Ensure visibility on different backgrounds */
   border: 1px solid #ccc; /* Add border for better visibility */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
   padding: 10px;
-}
+  width: auto;
+  min-width: 300px;
+  max-width: 100vw;
+  white-space: nowrap;
+  overflow-x: visible;
+  }
+
 
 .dropdown-menu a {
   display: block;
@@ -211,11 +214,21 @@ h2 {
 }
 
 @media (min-width: 1024px) {
-    .dropdown-menu {
-        width: 300px; /* Adjust this value as needed */
-        text-align: left;
-        margin-left: auto;
-    }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999999;
+    width: 300px;         /* Ensure enough space */
+    min-width: 250px;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    white-space: nowrap;  /* Prevent text wrapping */
+  }
 }
 
 
@@ -245,7 +258,7 @@ h2 {
       left: 0;
       right: 0;
       width: 100%; /* Full-width dropdown for mobile */
-      max-height: 80vh; /* Limit height to prevent large dropdowns */
+      max-height: 100vh; /* Limit height to prevent large dropdowns */
       overflow-y: auto; /* Scroll if dropdown exceeds the screen height */
   }
 
@@ -255,48 +268,43 @@ h2 {
     }
 }
 
-  /* Container for the video and overlay */
-.hero-video-container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full screen height */
-    overflow: hidden;
+.footer {
+  background-color: #000; /* Explicit black background */
+  color: #fff; /* Explicit white text color */
+  padding: 2em 1em;
+  text-align: center;
 }
-
-/* Fullscreen video background */
-.background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; /* Behind overlay and content */
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  background-color:#000;
 }
-
-/* Semi-transparent overlay */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 2; /* Above video, behind content */
+.footer-links {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
-/* Content over the video */
-.hero-content {
-    position: relative;
-    z-index: 3; /* Above video and overlay */
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
+.footer-link {
+  color: #fff; /* White text for links */
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s;
 }
-    
+.footer-link:hover {
+  color: #ffd700; /* Bright yellow for hover effect */
+}
+.footer-logo {
+  width: 120px;
+  margin-bottom: 0.5em;
+}
+.footer-text {
+  font-size: 0.8em;
+  margin: 0;
+}
+      
     }
   </style>
   <!-- Meta Pixel Code -->
