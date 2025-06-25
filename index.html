@@ -17,6 +17,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY" name="google-site-verification">
   <meta content="Webflow" name="generator">
+  <link href="/css/formcss.css" rel="stylesheet" type="text/css">
   <link href="/css/homepage.css" rel="stylesheet" type="text/css">
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
   <link href="/css/webflow.css" rel="stylesheet" type="text/css">
@@ -264,6 +265,7 @@ gtag('config', 'GTM-MCV3HH7L');
   color: #fff; /* Explicit white text color */
   padding: 2em 1em;
   text-align: center;
+  width: 100vw !important;
 }
 .footer-container {
   display: flex;
@@ -458,11 +460,46 @@ gtag('config', 'GTM-MCV3HH7L');
     <div id="w-node-_0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe-bfbcede3" data-w-id="0f9ac4e2-b36f-27d4-d4dd-c911ba0198fe" style="opacity:0;-webkit-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="feature-box">
       <div class="feature-text">Ready to Transform Your Digital Presence? Check Availability Today!</div>
       <p class="paragraph-46">Join us on this digital journey, where we don&#x27;t just create websites, we craft online experiences that leave a lasting impression. Explore the endless possibilities with Bluedobie Developing - Your Partner in Web Excellence!</p>
-      <div class="w-form" style="width: 100%; overflow: hidden;">
-        <iframe aria-label='Product Interest Form' style="height:150vh;width:99%;border:none;overflow-y: hidden;" src='https://forms.zohopublic.com/bluedobiedev/form/ProductInterestForm/formperma/rv8Tns76cOObDF9qc--H9PcDdRvwvsIVdKL0TgLMH40'></iframe>
-        
-        </div>
+      <div id="contact-wizard">
+  <form id="multiForm" action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" method="POST">
+    <!-- Step 1: Basic Info -->
+    <div class="form-step active" id="step1">
+      <h3>Step 1 of 3</h3>
+      <input name="first-name" placeholder="First Name" required>
+      <input name="last-name" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="button" onclick="nextStep(1)">Next</button>
+    </div>
+
+    <!-- Step 2: Inquiry -->
+    <div class="form-step" id="step2">
+      <h3>Step 2 of 3</h3>
+      <select name="request-type" required>
+        <option value="">Select a Service</option>
+        <option value="Website">Website</option>
+        <option value="Logo Design">Logo Design</option>
+        <option value="SEO Optimization">SEO Optimization</option>
+        <option value="Social Media">Social Media</option>
+        <option value="Content Creation">Content Creation</option>
+      </select>
+      <input name="summary" placeholder="One-sentence summary" required>
+      <div class="nav-buttons">
+        <button type="button" onclick="prevStep(1)">Back</button>
+        <button type="button" onclick="nextStep(2)">Next</button>
       </div>
+    </div>
+
+    <!-- Step 3: Final Message -->
+    <div class="form-step" id="step3">
+      <h3>Step 3 of 3</h3>
+      <textarea name="message" placeholder="Tell us a bit more..." required></textarea>
+      <div class="nav-buttons">
+        <button type="button" onclick="prevStep(2)">Back</button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
      
   
       <div class="container big-container"></div>
@@ -536,6 +573,6 @@ gtag('config', 'GTM-MCV3HH7L');
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCV3HH7L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
   <script id="zsiqchat">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: "siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zohopublic.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
-  
+  <script src="/js/formjs.js"></script>
 </body>
 </html>
