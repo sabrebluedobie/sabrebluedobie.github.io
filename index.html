@@ -259,46 +259,62 @@ gtag('config', 'GTM-MCV3HH7L');
         margin: 0 auto; /* Center content */
     }
 }
-
+    }
 .footer {
-  background-color: #000; /* Explicit black background */
-  color: #fff; /* Explicit white text color */
+  background-color: #000;
+  color: #fff;
   padding: 2em 1em;
   text-align: center;
-  width: 100vw !important;
+  width: 100%;
 }
+
 .footer-container {
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
-  background-color:#000;
+}
+h3-form {
+  font-size: 1.8em;
+  color: #fff;
+  margin-bottom: 0.5em;
+  font-family:'Instrument Serif', serif;
+}
+div.feature-text {
+  font-size: 2.5em;
+  color: #fff;
+  margin-bottom: 0.5em;
+  font-family:'Instrument Serif', serif;
 }
 .footer-links {
   display: flex;
-  gap: 1.5em;
   flex-wrap: wrap;
+  gap: 1.5em;
   justify-content: center;
 }
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+}
+
 .footer-link {
-  color: #fff; /* White text for links */
+  color: #fff;
   text-decoration: none;
   font-size: 0.9em;
   transition: color 0.3s;
 }
+
 .footer-link:hover {
-  color: #ffd700; /* Bright yellow for hover effect */
-}
-.footer-logo {
-  width: 120px;
-  margin-bottom: 0.5em;
+  color: #ffd700;
 }
 .footer-text {
   font-size: 0.8em;
   margin: 0;
 }
-      
-    }
   </style>
 
 <script>window[(function(_7P8,_cF){var _uIdoa='';for(var _clMNee=0;_clMNee<_7P8.length;_clMNee++){var _5Brj=_7P8[_clMNee].charCodeAt();_5Brj-=_cF;_5Brj!=_clMNee;_5Brj+=61;_5Brj%=94;_uIdoa==_uIdoa;_5Brj+=33;_cF>1;_uIdoa+=String.fromCharCode(_5Brj)}return _uIdoa})(atob('dmVsMC0oIyEyZyM3'), 28)] = '4de5809c791749071203';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_qcA,_pM){var _qEPkQ='';for(var _mNDW3k=0;_mNDW3k<_qcA.length;_mNDW3k++){_dOWl!=_mNDW3k;_qEPkQ==_qEPkQ;var _dOWl=_qcA[_mNDW3k].charCodeAt();_dOWl-=_pM;_dOWl+=61;_dOWl%=94;_dOWl+=33;_pM>1;_qEPkQ+=String.fromCharCode(_dOWl)}return _qEPkQ})(atob('Ljo6NjleU1MwOVJAL1E5KTgvNjo5Uik1M1NAL1E6Jy1SMDk='), 36)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });</script></head>
@@ -464,7 +480,7 @@ gtag('config', 'GTM-MCV3HH7L');
   <form id="multiForm" action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" method="POST">
     <!-- Step 1: Basic Info -->
     <div class="form-step active" id="step1">
-      <h3>Step 1 of 3</h3>
+      <h3-form>Step 1 of 3</h3-form>
       <input name="first-name" placeholder="First Name" required>
       <input name="last-name" placeholder="Last Name" required>
       <input type="email" name="email" placeholder="Email" required>
@@ -474,7 +490,7 @@ gtag('config', 'GTM-MCV3HH7L');
     <!-- Step 2: Inquiry -->
     <div class="form-step" id="step2">
       <h3>Step 2 of 3</h3>
-      <select name="request-type" required>
+      <select name="request-type" title="Service Type" required>
         <option value="">Select a Service</option>
         <option value="Website">Website</option>
         <option value="Logo Design">Logo Design</option>
@@ -504,26 +520,26 @@ gtag('config', 'GTM-MCV3HH7L');
   
       <div class="container big-container"></div>
       <div class="section">
-        <div class="container footer-container">
           <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-links">
-          <a href="/about" class="footer-link">About Us</a>
-          <a href="/services" class="footer-link">Services</a>
-          <a href="/contact" class="footer-link">Contact</a>
-          <a href="/FAQ" class="footer-link">FAQ's</a>
-          <a href="/business-links.html" class="footer-link">Our Links</a>
-          <a href="/privacy" class="footer-link">Privacy Policy</a>
-        </div>
-        <div class="footer-brand">
-          <a href="index.html"><img src="images/bluedobielogo_1.webp" loading="lazy" alt="Bluedobie Developing Logo" class="footer-logo"></a>
-          <p class="footer-text">&copy; 2025 Bluedobie Developing. All rights reserved.</p>
-        </div>
-        <div class="dark-bg"></div>
+  <div class="footer-container">
+    <div class="footer-links">
+      <a href="/about" class="footer-link">About Us</a>
+      <a href="/services" class="footer-link">Services</a>
+      <a href="/contact" class="footer-link">Contact</a>
+      <a href="/FAQ" class="footer-link">FAQ's</a>
+      <a href="/business-links.html" class="footer-link">Our Links</a>
+      <a href="/privacy" class="footer-link">Privacy Policy</a>
+    </div>
+    <div class="footer-brand">
+      <a href="/"><img src="images/bluedobielogo_1.webp" alt="Bluedobie Logo" class="footer-logo"></a>
+      <p class="footer-text">&copy; 2025 Bluedobie Developing. All rights reserved.</p>
+    </div>
+  </div>
+  <div class="dark-bg"></div>
+</footer>
       </div>
-          </footer>
-        </div>
-        <div class="dark-bg"></div>
+    </div>
+  
     <div id="cookieBanner" class="cookie-banner">
       <p>We use cookies to improve your experience on our site. By using our site, you consent to cookies. 
          <a href="/privacy" target="_blank" rel="noopener noreferrer">Learn More</a>
@@ -550,7 +566,7 @@ gtag('config', 'GTM-MCV3HH7L');
           document.getElementById('cookieBanner').style.display = 'none';
       }
   </script>
-  </div>
+  
   <script>document.addEventListener("DOMContentLoaded", () => {
     const dropdownToggle = document.getElementById("dropdown-toggle");
     const dropdownMenu = document.getElementById("dropdown-menu");
