@@ -12,8 +12,18 @@ function prevStep(current) {
 document.getElementById("multiForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  // ✅ reCAPTCHA check
+  const recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    alert("Please complete the reCAPTCHA.");
+    return;
+  }
+
   const form = e.target;
   const data = new FormData(form);
+
+  // Append reCAPTCHA response to the data sent to Zapier
+  data.append("g-recaptcha-response", recaptchaResponse);
 
   fetch(form.action, {
     method: "POST",
@@ -21,7 +31,7 @@ document.getElementById("multiForm").addEventListener("submit", function (e) {
   })
     .then((res) => {
       if (res.ok) {
-        window.location.href = "/thank-you.html"; // 🔁 your real thank you page
+        window.location.href = "/thank-you.html";
       } else {
         alert("Something went wrong. Please try again.");
       }
