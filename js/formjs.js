@@ -22,6 +22,23 @@ document.getElementById("multiForm").addEventListener("submit", function (e) {
   const form = e.target;
   const data = new FormData(form);
 
+  document.querySelector("form").addEventListener("submit", function(event) {
+  const token = document.getElementById("g-recaptcha-response").value;
+
+  // Delay actual submission to allow token to populate
+  if (!token) {
+    event.preventDefault();
+    setTimeout(() => {
+      const delayedToken = document.getElementById("g-recaptcha-response").value;
+      if (!delayedToken) {
+        alert("Please complete the reCAPTCHA before submitting.");
+      } else {
+        event.target.submit(); // Proceed with submission if token appears
+      }
+    }, 800); // 800ms delay — adjust if needed
+  }
+});
+
   // Append reCAPTCHA response to the data sent to Zapier
   data.append("g-recaptcha-response", recaptchaResponse);
 
