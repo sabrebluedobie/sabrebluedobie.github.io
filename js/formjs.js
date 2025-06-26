@@ -1,4 +1,3 @@
-
 function nextStep(current) {
   document.getElementById('step' + current).classList.remove('active');
   document.getElementById('step' + (current + 1)).classList.add('active');
@@ -12,35 +11,28 @@ function prevStep(current) {
 document.getElementById("multiForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // ✅ reCAPTCHA check
-  const recaptchaResponse = grecaptcha.getResponse();
-  if (!recaptchaResponse) {
-    alert("Please complete the reCAPTCHA.");
-    return;
-  }
-
   const form = e.target;
-  const data = new FormData(form);
 
-  document.querySelector("form").addEventListener("submit", function(event) {
+  // Delay to allow reCAPTCHA token to populate
   const token = document.getElementById("g-recaptcha-response").value;
-
-  // Delay actual submission to allow token to populate
   if (!token) {
-    event.preventDefault();
     setTimeout(() => {
       const delayedToken = document.getElementById("g-recaptcha-response").value;
       if (!delayedToken) {
         alert("Please complete the reCAPTCHA before submitting.");
+        return;
       } else {
-        event.target.submit(); // Proceed with submission if token appears
+        submitForm(form, delayedToken);
       }
-    }, 800); // 800ms delay — adjust if needed
+    }, 800);
+  } else {
+    submitForm(form, token);
   }
 });
 
-  // Append reCAPTCHA response to the data sent to Zapier
-  data.append("g-recaptcha-response", recaptchaResponse);
+function submitForm(form, recaptchaToken) {
+  const data = new FormData(form);
+  data.append("g-recaptcha-response", recaptchaToken);
 
   fetch(form.action, {
     method: "POST",
@@ -56,4 +48,4 @@ document.getElementById("multiForm").addEventListener("submit", function (e) {
     .catch(() => {
       alert("Something went wrong. Please try again.");
     });
-});
+}
