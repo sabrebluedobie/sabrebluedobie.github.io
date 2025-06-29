@@ -39,12 +39,16 @@ function submitForm(form, recaptchaToken) {
     body: data
   })
     .then((res) => {
-      if (res.ok) {
-        window.location.href = "/thank-you.html";
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    })
+  return res.json(); // parse the response body
+})
+.then((data) => {
+  if (data.status === "success") {
+    window.location.href = "/thank-you.html";
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+})
+
     .catch(() => {
       alert("Something went wrong. Please try again.");
     });
