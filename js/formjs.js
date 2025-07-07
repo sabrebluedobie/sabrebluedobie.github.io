@@ -35,7 +35,7 @@ function submitForm(form, recaptchaToken) {
   fetch(form.action, {
     method: "POST",
     body: data
-  })  <!-- This is a comment -->
+  }) 
    .then(response => response.json())
 .then(data => {
   if (data) {
@@ -46,11 +46,5 @@ function submitForm(form, recaptchaToken) {
 })
 .catch(error => {
   console.error('Error!', error.message);
-}); else {
-        alert("Something went wrong. Please try again.");
-      }
-    })
-    .catch(() => {
-      alert("Something went wrong. Please try again.");
-    });
+});
 }
