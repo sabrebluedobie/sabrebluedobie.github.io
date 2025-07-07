@@ -464,5 +464,25 @@ gtag('config', 'GTM-MCV3HH7L');
 <noscript async=""><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-MCV3HH7L" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <!--  End Google Tag Manager (noscript)  -->
 <script id="zsiqchat" type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: "siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zohopublic.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q"></script>
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(function(token) {
+      const form = document.getElementById('multiForm');
+      const tokenField = document.createElement('input');
+      tokenField.type = 'hidden';
+      tokenField.name = 'token';
+      tokenField.value = token;
+      form.appendChild(tokenField);
+
+      const actionField = document.createElement('input');
+      actionField.type = 'hidden';
+      actionField.name = 'action';
+      actionField.value = 'submit';
+      form.appendChild(actionField);
+    });
+  });
+</script>
+
 </body>
 </html>

@@ -460,7 +460,7 @@
             </p>
           </div>
         </div>
-        <div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></div>
+        <div class="g-recaptcha" data-sitekey="6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q"></div>
         <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
         <div class="fs-button-group">
@@ -507,6 +507,24 @@
     }
   });
 </script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q"></script>
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(function(token) {
+      const form = document.getElementById('multiForm');
+      const tokenField = document.createElement('input');
+      tokenField.type = 'hidden';
+      tokenField.name = 'token';
+      tokenField.value = token;
+      form.appendChild(tokenField);
+
+      const actionField = document.createElement('input');
+      actionField.type = 'hidden';
+      actionField.name = 'action';
+      actionField.value = 'submit';
+      form.appendChild(actionField);
+    });
+  });
 
 </body>
 </html>
