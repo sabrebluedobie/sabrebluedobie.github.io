@@ -1,3 +1,17 @@
+
+  function nextStep(currentStep) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    const next = currentStep + 1;
+    document.getElementById('step' + next).classList.add('active');
+  }
+
+  // Optional: add form navigation back button
+  function prevStep(currentStep) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    const prev = currentStep - 1;
+    document.getElementById('step' + prev).classList.add('active');
+  }
+
 document.getElementById("multiForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
