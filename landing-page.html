@@ -199,7 +199,7 @@
 <input name="first-name" placeholder="First Name" required=""/>
 <input name="last-name" placeholder="Last Name" required=""/>
 <input name="email" placeholder="Email" required="" type="email"/>
-<button onclick="nextStep(1)" type="button" style="color: #fff">Next</button>
+<button onclick="nextStep(1)" style="color: #fff" type="button">Next</button>
 </div>
 <!-- Step 2: Inquiry -->
 <div class="form-step" id="step2">
@@ -214,8 +214,8 @@
 </select>
 <input name="summary" placeholder="One-sentence summary" required=""/>
 <div class="nav-buttons">
-<button onclick="prevStep(1)" type="button" style="color: #fff">Back</button>
-<button onclick="nextStep(2)" type="button" style="color: #fff">Next</button>
+<button onclick="prevStep(1)" style="color: #fff" type="button">Back</button>
+<button onclick="nextStep(2)" style="color: #fff" type="button">Next</button>
 </div>
 </div>
 <!-- Step 3: Final Message -->
@@ -223,17 +223,17 @@
 <h3>Step 3 of 3</h3>
 <textarea name="message" placeholder="Tell us a bit more..." required=""></textarea>
 <input aria-label="Company Website" name="company_website" style="display:none;" type="text"/>
-<input type="hidden" id="recaptcha_token" name="token">
-<input name="action" type="hidden" value="submit"/>
+<input id="recaptcha_token" name="token" type="hidden"/>
+<input name="action" type="hidden" value="submit">
 <p class="paragraph-46" style="color:#000">By submitting this form, you agree to our <a href="/privacy" rel="noopener noreferrer" target="_blank">Privacy Policy</a>.</p>
 <p class="paragraph-46" style="color:#000">We will get back to you within 24 hours. If you need immediate assistance, please call us at <a href="tel:+12703883535">270-388-3535</a>.</p>
 <p class="paragraph-46" style="color:#000">Thank you for considering Bluedobie Developing for your web design needs! We look forward to working with you.</p>
 <p class="paragraph-46" style="color:#000">If you have any questions or need assistance, please feel free to reach out to us at <a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>.</p>
 <div class="nav-buttons">
-<button onclick="prevStep(2)" type="button" style="color:#fff">Back</button>
-<button type="submit" style="color:#fff">👉 Get My Free Strategy Guide</button>
+<button onclick="prevStep(2)" style="color:#fff" type="button">Back</button>
+<button style="color:#fff" type="submit">👉 Get My Free Strategy Guide</button>
 </div>
-</div>
+</input></div>
 </form></div><!-- 'zf-templateWidth' ends -->
 <script src="js/validation2.js"></script>
 <script type="text/javascript">var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
@@ -315,5 +315,5 @@ var salesIQFieldsArray = [];</script>
 <script src="js/dropdown.js"></script>
 <script src="js/formjs.js"></script>
 </div>
-</body>
+<script defer="True" src="formjs.js"></script></body>
 </html>
