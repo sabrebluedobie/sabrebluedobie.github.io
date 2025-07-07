@@ -35,11 +35,14 @@ function submitForm(form, recaptchaToken) {
   fetch(form.action, {
     method: "POST",
     body: data
-  })
-    .then((res) => {
-      if (res.ok) {
-        window.location.href = "/thank-you.html"; // Change path as needed
-      } else {
+  })  <!-- This is a comment -->
+   .then(response => response.json())
+.then(data => { 
+  window.location.href = "/thank-you.html";
+})
+.catch(error => {
+  console.error('Error!', error.message);
+}); else {
         alert("Something went wrong. Please try again.");
       }
     })
