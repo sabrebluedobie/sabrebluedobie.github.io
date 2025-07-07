@@ -116,7 +116,7 @@
     }
 
     // Attach the function to the form submission event
-    document.querySelector('form').addEventListener('submit', (event) => {
+    document.querySelector('#multiForm').addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent default form submission for testing
         sendEnhancedConversions(); // Call the enhanced conversions function
         event.target.submit(); // Submit the form after sending data
