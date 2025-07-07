@@ -403,74 +403,54 @@
      
       <hr class="dashed">
     
-    <div id="custom-form-container" class="section">
-      <form
-        action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/"
-        method="POST"
-        class="fs-form"
-      >
-        <fieldset>
-          <h2>Contact Form</h2>
-          <div class="fs-field">
-            <label class="fs-label" for="request-type">Type of Request</label>
-            <select id="request-type" name="request-type" class="fs-select" required>
-              <option value="" disabled selected>Choose One</option>
-              <option value="website">Website</option>
-              <option value="logo">Logo Design</option>
-              <option value="SEO">SEO Optimization</option>
-              <option value="Social">Social Media</option>
-              <option value="Content">Content Creation</option>
-            </select>
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" class="fs-input" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" class="fs-input" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="email">Email</label>
-            <input type="email" id="email" name="email" class="fs-input" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="message">Your Message</label>
-            <textarea id="message" name="message" class="fs-textarea" required></textarea>
-          </div>
-        </fieldset>
-        <input type="hidden" name="token" value="...">
-        <input type="hidden" name="action" value="submit">
-        <div class="fs-checkbox-field">
-          <div class="fs-checkbox-wrapper">
-            <input
-              type="checkbox"
-              id="dpa-consent"
-              name="dpa-consent"
-              class="fs-checkbox"
-              required
-            />
-          </div>
-          <div>
-            <label for="dpa-consent" class="fs-label">
-              Declaration of consent for data processing
-            </label>
-            <p class="fs-description">
-              You agree that your data from the form will be collected and processed
-              to answer your request. You can revoke your consent at any time by
-              emailing melanie.brown@bluedobiedev.com. Details are in our
-              <a href="/privacy" target="_blank">Privacy Policy</a>.
-            </p>
-          </div>
-        </div>
-        
-        
-
-        <div class="fs-button-group">
-          <button type="submit" class="fs-button">Submit</button>
-        </div>
-      </form>
+   <div id="contact-wizard">
+  <form id="multiForm" action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" method="POST">
+    <!-- Step 1: Basic Info -->
+    <div class="form-step active" id="step1">
+      <h3-form>Step 1 of 3</h3-form>
+      <input name="first-name" placeholder="First Name" required>
+      <input name="last-name" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="button" onclick="nextStep(1)">Next</button>
     </div>
+
+    <!-- Step 2: Inquiry -->
+    <div class="form-step" id="step2">
+      <h3-form>Step 2 of 3</h3-form>
+      <select name="request-type" title="Service Type" required>
+        <option value="">Select a Service</option>
+        <option value="Website">Website</option>
+        <option value="Logo Design">Logo Design</option>
+        <option value="SEO Optimization">SEO Optimization</option>
+        <option value="Social Media">Social Media</option>
+        <option value="Content Creation">Content Creation</option>
+      </select>
+      <input name="summary" placeholder="One-sentence summary" required>
+      <div class="nav-buttons">
+        <button type="button" onclick="prevStep(1)">Back</button>
+        <button type="button" onclick="nextStep(2)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Final Message -->
+    <div class="form-step" id="step3">
+      <h3-form>Step 3 of 3</h3-form>
+      <textarea name="message" placeholder="Tell us a bit more..." required></textarea>
+      <input type="text" name="company_website" style="display:none;" aria-label="Company Website">
+      <input type="hidden" name="token" value="...">
+      <input type="hidden" name="action" value="submit">
+
+      
+      <p class="paragraph-46">By submitting this form, you agree to our <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+      <p class="paragraph-46">We will get back to you within 24 hours. If you need immediate assistance, please call us at <a href="tel:+12703883535">270-388-3535</a>.</p>
+      <p class="paragraph-46">Thank you for considering Bluedobie Developing for your web design needs! We look forward to working with you.</p>
+      <p class="paragraph-46">If you have any questions or need assistance, please feel free to reach out to us at <a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>.</p>
+      <div class="nav-buttons">
+        <button type="button" onclick="prevStep(2)">Back</button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
     
 
     <div class="section">
