@@ -332,20 +332,25 @@ var salesIQFieldsArray = [];</script>
 <script src="js/formjs.js"></script>  
 <script src="https://www.google.com/recaptcha/api.js?render=6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q"></script>
 <script>
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(function(token) {
-      const form = document.getElementById('multiForm');
-      const tokenField = document.createElement('input');
-      tokenField.type = 'hidden';
-      tokenField.name = 'token';
-      tokenField.value = token;
-      form.appendChild(tokenField);
+  const form = document.getElementById('multiForm');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default submit
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(function(token) {
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'token';
+        tokenInput.value = token;
+        form.appendChild(tokenInput);
 
-      const actionField = document.createElement('input');
-      actionField.type = 'hidden';
-      actionField.name = 'action';
-      actionField.value = 'submit';
-      form.appendChild(actionField);
+        const actionInput = document.createElement('input');
+        actionInput.type = 'hidden';
+        actionInput.name = 'action';
+        actionInput.value = 'submit';
+        form.appendChild(actionInput);
+
+        form.submit(); // Now submit
+      });
     });
   });
 </script>
