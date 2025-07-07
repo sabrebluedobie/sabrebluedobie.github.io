@@ -37,8 +37,12 @@ function submitForm(form, recaptchaToken) {
     body: data
   })  <!-- This is a comment -->
    .then(response => response.json())
-.then(data => { 
-  window.location.href = "/thank-you.html";
+.then(data => {
+  if (data) {
+    window.location.href = '/thank-you.html';
+  } else {
+    alert('Something went wrong. Please try again.');
+  }
 })
 .catch(error => {
   console.error('Error!', error.message);
