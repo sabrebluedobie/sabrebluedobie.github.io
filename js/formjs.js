@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // your event listener code here
+});
 
   function nextStep(currentStep) {
     document.getElementById('step' + currentStep).classList.remove('active');
