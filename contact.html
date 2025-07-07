@@ -499,17 +499,6 @@
   <script src="js/webflow.js" ></script><!--  Google Tag Manager (noscript)  -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCV3HH7L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!--  End Google Tag Manager (noscript)  -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<script>
-  document.querySelector("form").addEventListener("submit", function(event) {
-    const token = document.getElementById("g-recaptcha-response").value;
-    if (!token) {
-      event.preventDefault();
-      alert("Please complete the reCAPTCHA.");
-    }
-  });
-</script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q"></script>
 <script>
   const form = document.getElementById('multiForm');
@@ -534,6 +523,7 @@
     });
   });
   </script>
-
+<script src="/js/formjs.js" ></script>
+<script src="js/dropdown.js" ></script>
 </body>
 </html>
