@@ -1,192 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sales Page | Bluedobie Developing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link src="css/app.css">
-  <style> 
-  		header {
-        font-family: 'Instrument Serif' !important;
-        }
-    
-    .site-header {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-    }
-    .site-header .site-logo {
-      height: 60px;   /* adjust size */
-      width: auto;
-      margin-right: 15px;
-    }
-    .site-header .site-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0;
-    }
-    .content {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+
+  <!-- Fonts: Instrument Serif (titles) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lightweight styles (no webflow bloat) -->
+  <link rel="stylesheet" href="css/app.css">
+
+  <style>
+    /* Keep it minimal here; most is in app.css */
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f7f7f8; color:#222; }
+    .site-header { display:flex; align-items:center; gap:12px; padding:16px; background:#fff; border-bottom:1px solid #e6e6e6; }
+    .site-header img { height:56px; width:auto; }
+    .site-title { font-family:'Instrument Serif', serif; font-size:1.5rem; margin:0; }
+    .content { max-width:900px; margin:24px auto; padding:20px; background:#fff; border:1px solid #e6e6e6; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+    h1,h2,h3 { font-family:'Instrument Serif', serif; margin:.25rem 0 .75rem; }
+    .tiers { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap:18px; margin-top:1rem; }
+    .card { background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.05); transition:transform .2s; }
+    .card:hover { transform: translateY(-4px); }
+    .price { font-weight:800; font-size:1.25rem; margin:.5rem 0 1rem; }
+    .cta-button { display:inline-block; padding:.75rem 1.25rem; background:#042d4d; color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
+    .cta-button:hover { filter: brightness(1.05); }
+    .cta-row { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .muted { color:#666; }
   </style>
 </head>
 <body>
-
   <header class="site-header">
-    <img src="images/logo-nobkg_1.webp" alt="Bluedobie Logo" class="site-logo">
+    <img src="images/logo-nobkg_1.webp" alt="Bluedobie Logo">
     <h1 class="site-title">Bluedobie Developing</h1>
+    <a href="index.html" style="margin-left:auto; text-decoration:none;">Home</a>
   </header>
 
- <main class="content">
-  <h2>Why Choose Bluedobie Developing?</h2>
-  <ul>
-    <li><strong>Affordable, No-Nonsense Web Design</strong> – Professional websites built for small businesses without inflated costs.</li>
-    <li><strong>Fast Setup, Stress-Free Process</strong> – Simple, streamlined 3-page sites so you can focus on your business.</li>
-    <li><strong>Local Support You Can Trust</strong> – Direct, reliable help from someone who understands small business needs.</li>
-  </ul>
+  <main class="content">
+    <h2>Why Choose Bluedobie Developing?</h2>
+    <ul>
+      <li><strong>Affordable, No-Nonsense Web Design</strong> – Professional sites without inflated costs.</li>
+      <li><strong>Fast Setup, Stress-Free</strong> – Streamlined builds so you can focus on your business.</li>
+      <li><strong>Local Support You Can Trust</strong> – Direct help from someone who understands small biz needs.</li>
+    </ul>
+  </main>
 
-  <h3>Ready to Get Started?</h3>
-  <p>Let’s build your website the simple way — no stress, no jargon, just results.</p>
-  <p>
-    <a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a>
-  </p>
-</main>
+  <section class="content" id="quickspin">
+    <h2>QuickSpin: AI Social Posts in Seconds</h2>
+    <p class="muted">Generate clean, on-brand post ideas in seconds. Perfect for busy small businesses.</p>
 
-<style>
-   .cta-container {
-      text-align: center;
-      margin: 20px 0;
-  }
-  
-  .cta-button {
-      background-color:#042d4d;
-      color: #fff;
-      font-size: 16px;
-      padding: 10px 20px;
-      border: 1px solid #042d4d;
-      border-radius: 5px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s ease, color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background: linear-gradient(#fff, lightgrey, #042d4d);
-      color: #000;
-  }
-</style>
-<section class="content" id="easy-templates">
-  <h2>Easy Social Media Templates</h2>
-  <p>Ready-to-edit Canva templates made for small, local businesses—clean layouts, clear messaging, zero fluff.</p>
+    <div class="tiers">
+      <div class="card">
+        <h3>QuickSpin Starter</h3>
+        <p>One-time purchase • Lifetime access</p>
+        <ul style="text-align:left; line-height:1.5;">
+          <li>AI captions (short + medium)</li>
+          <li>Smart, no-spam hashtags</li>
+          <li>Clear CTA to your services</li>
+        </ul>
+        <p class="price">$29</p>
+        <!-- 🔗 Replace with your real Stripe Payment Link -->
+        <p class="cta-row">
+          <a class="cta-button" href="https://buy.stripe.com/8x25kE8x14jd5OI5Zn0x200" target="_blank" rel="noopener">Get QuickSpin Starter</a>
+          <a class="cta-button" href="quickspin.html">Try the Tool</a>
+        </p>
+        <p class="muted" style="margin-top:.5rem;">Sabre-approved: fast, loyal, always on watch.</p>
+      </div>
 
-  <div class="tiers">
-    <div class="card">
-      <h3>Starter</h3>
-      <p>15 templates • square & vertical</p>
-      <ul>
-        <li>Editable in Canva</li>
-        <li>Brand color slots</li>
-        <li>Quick-use captions</li>
-      </ul>
-      <p class="price">$39</p>
-      <a class="cta-button" href="https://bluedobiedev.com/contact">Get Starter</a>
+      <div class="card">
+        <h3>Templates Bundle (Coming Soon)</h3>
+        <p>Plug-and-play Canva templates</p>
+        <p class="muted">Launching after QuickSpin.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Pro</h3>
-      <p>40 templates • adds carousels & promos</p>
-      <ul>
-        <li>Story sequences & testimonials</li>
-        <li>Caption pack upgrade</li>
-        <li>Usage rights for your biz</li>
-      </ul>
-      <p class="price">$89</p>
-      <a class="cta-button" href="https://bluedobiedev.com/contact">Get Pro</a>
-    </div>
-
-    <div class="card">
-      <h3>Ultimate</h3>
-      <p>60 total items • Pro + 20 reels covers</p>
-      <ul>
-        <li>Seasonal variants</li>
-        <li>Extended caption pack</li>
-        <li>Best value</li>
-      </ul>
-      <p class="price">$149</p>
-      <a class="cta-button" href="https://bluedobiedev.com/contact">Get Ultimate</a>
-    </div>
-  </div>
-
-  <p><em>Add a 30-minute setup call for $49 and I’ll brand your colors & fonts live.</em></p>
-</section>
-
-<style>
-  .tiers { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:1rem; }
-  .card { background:#fff; border:1px solid #e5e5e5; border-radius:10px; padding:1rem; }
-  .card h3 { margin:0 0 .25rem 0; }
-  .price { font-weight:700; font-size:1.25rem; margin:.5rem 0 1rem; }
-</style>
-<section class="content" id="quickspin">
-  <h2>QuickSpin: Niche Content Creator</h2>
-  <p>Generate on-brand posts in seconds. Perfect for quick wins on busy days.</p>
-
-  <form id="quickspin-form">
-    <label>Business Type<input name="business" placeholder="e.g., house cleaning service" required></label>
-    <label>Offer Focus<input name="offer" placeholder="e.g., fall deep-clean special"></label>
-    <label>Tone
-      <select name="tone">
-        <option>Friendly</option>
-        <option>Professional</option>
-        <option>Bold</option>
-      </select>
-    </label>
-    <label>Platform
-      <select name="platform">
-        <option>Facebook</option>
-        <option>Instagram</option>
-        <option>Google Business</option>
-      </select>
-    </label>
-    <label>Keywords (comma-separated)<input name="keywords" placeholder="quick, local, affordable"></label>
-    <button class="cta-button" type="submit">Create Content</button>
-  </form>
-
-  <pre id="quickspin-output" style="white-space:pre-wrap; background:#f6f6f6; padding:1rem; border-radius:8px; border:1px solid #e5e5e5; margin-top:1rem;">Your content will appear here…</pre>
-</section>
-<div class=card><a class="cta-button" style="display:flex; padding-bottom: 2%;" href="https://bluedobiedev.com/quickspin.html">Try Quickspin Now!</a>
-<a class="cta-button" style="display: flex; width: 50%;" href="https://buy.stripe.com/8x25kE8x14jd5OI5Zn0x200">Get QuickSpin Starter today and let Sabre guard your social presence while you focus on your business.</a>
-</a></div>
-<script>
-document.getElementById('quickspin-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const body = Object.fromEntries(fd.entries());
-  const res = await fetch('/api/create', {
-    method: 'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify(body)
-  });
-  const data = await res.json().catch(()=>({error:'Bad response'}));
-  document.getElementById('quickspin-output').textContent = data.error ? ('Error: ' + data.error) : data.result;
-});
-</script>
-<section class="content">
-  <h2>How It Works</h2>
-  <ol>
-    <li>Pick your product (Templates or QuickSpin).</li>
-    <li>Tell us your business basics (name, services, brand colors).</li>
-    <li>Publish in minutes—with support if you want it.</li>
-  </ol>
-  <p><a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a></p>
-</section>
+  <section class="content">
+    <h3>Questions?</h3>
+    <p><a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a></p>
+  </section>
 </body>
 </html>
