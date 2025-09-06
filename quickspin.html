@@ -127,59 +127,35 @@ QuickSpin helps you show up consistently while you handle the million other hats
       <p class="muted">Tip: Run QuickSpin more than once to get fresh variations.</p>
     </section>
   </div>
-
 <script>
-  const API_URL = "https://quickspin-api.vercel.app/api/create";
+const API_URL = "https://quickspin-api.vercel.app/api/create";
 
-  const form = document.getElementById('quickspin-form');
-  const out = document.getElementById('output') || document.getElementById('quickspin-output');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  out.textContent = "Thinking…";
+  log("Submitting to " + API_URL);
 
-  // Add a debug panel so you can see errors directly on-page
-  const debug = document.createElement('pre');
-  debug.id = "debug";
-  debug.style.background = "#222";
-  debug.style.color = "#0f0";
-  debug.style.padding = "10px";
-  debug.style.fontSize = "0.8rem";
-  debug.style.whiteSpace = "pre-wrap";
-  debug.textContent = "Debug log:\n";
-  document.body.appendChild(debug);
+  try {
+    const body = Object.fromEntries(new FormData(form).entries());
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      // mode: 'cors' // optional; default is fine
+    });
 
-  function log(msg) {
-    debug.textContent += msg + "\n";
+    log("Response status: " + res.status);
+    const text = await res.text();
+    log("Raw response: " + text);
+
+    let data; try { data = JSON.parse(text); } catch { data = { error: text }; }
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    out.textContent = data.result || 'No result.';
+  } catch (err) {
+    out.textContent = "Error: " + (err.message || 'Failed.');
+    log("Error caught: " + (err.message || err));
   }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    out.textContent = "Thinking…";
-    log("Submitting to " + API_URL);
-
-    try {
-      const body = Object.fromEntries(new FormData(form).entries());
-      log("Request body: " + JSON.stringify(body));
-
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-
-      log("Response status: " + res.status);
-
-      const text = await res.text();
-      log("Raw response: " + text);
-
-      let data;
-      try { data = JSON.parse(text); }
-      catch { data = { error: text }; }
-
-      if (!res.ok) throw new Error(data.error || 'Request failed');
-      out.textContent = data.result || 'No result.';
-    } catch (err) {
-      out.textContent = "Error: " + (err.message || 'Failed.');
-      log("Error caught: " + (err.message || err));
-    }
-  });
+});
 </script>
 </body>
 </html>
