@@ -15,6 +15,7 @@
     input, select, textarea { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font:inherit; }
     .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     .cta-button { display:inline-block; padding:0.75rem 1.25rem; background:#042d4d; color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
+    .cta-button[disabled] { opacity:.6; cursor:not-allowed; }
     .cta-button:hover { filter:brightness(1.05); }
     pre { white-space:pre-wrap; background:#fafafa; border:1px solid #eee; border-radius:8px; padding:12px; }
     .muted { color:#666; font-size:.95rem; }
@@ -69,7 +70,7 @@
         <input name="keywords" placeholder="quick, local, affordable" />
 
         <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-          <button class="cta-button" type="submit">Create Content</button>
+          <button id="submit" class="cta-button" type="submit">Create Content</button>
           <button id="download" type="button" style="border:none; background:none; text-decoration:underline; cursor:pointer;">Download .txt</button>
           <span class="muted" id="status" aria-live="polite"></span>
         </div>
@@ -93,17 +94,19 @@
   </div>
 
   <script>
-    // 🔧 set this to your deployed Vercel URL, e.g. "https://quickspin-bluedobie.vercel.app/api/create"
-    const API_URL = "https://YOUR-VERCEL-APP.vercel.app/api/create";
+    // ✅ Your live Vercel function:
+    const API_URL = "https://quickspin-api.vercel.app/api/create";
 
     const form = document.getElementById('quickspin-form');
     const statusEl = document.getElementById('status');
     const out = document.getElementById('output');
+    const submitBtn = document.getElementById('submit');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       statusEl.textContent = "Generating…";
       out.textContent = "Thinking…";
+      submitBtn.disabled = true;
 
       const body = Object.fromEntries(new FormData(form).entries());
 
@@ -113,13 +116,15 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
         });
-        const data = await res.json();
+        const data = await res.json().catch(() => ({ error: 'Bad response' }));
         if (!res.ok) throw new Error(data.error || 'Request failed');
         out.textContent = data.result || 'No result.';
         statusEl.textContent = "Done.";
       } catch (err) {
         out.textContent = "Error: " + (err.message || 'Failed to generate.');
         statusEl.textContent = "Failed.";
+      } finally {
+        submitBtn.disabled = false;
       }
     });
 
