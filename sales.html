@@ -140,5 +140,47 @@
   .card h3 { margin:0 0 .25rem 0; }
   .price { font-weight:700; font-size:1.25rem; margin:.5rem 0 1rem; }
 </style>
+<section class="content" id="quickspin">
+  <h2>QuickSpin: Niche Content Creator</h2>
+  <p>Generate on-brand posts in seconds. Perfect for quick wins on busy days.</p>
+
+  <form id="quickspin-form">
+    <label>Business Type<input name="business" placeholder="e.g., house cleaning service" required></label>
+    <label>Offer Focus<input name="offer" placeholder="e.g., fall deep-clean special"></label>
+    <label>Tone
+      <select name="tone">
+        <option>Friendly</option>
+        <option>Professional</option>
+        <option>Bold</option>
+      </select>
+    </label>
+    <label>Platform
+      <select name="platform">
+        <option>Facebook</option>
+        <option>Instagram</option>
+        <option>Google Business</option>
+      </select>
+    </label>
+    <label>Keywords (comma-separated)<input name="keywords" placeholder="quick, local, affordable"></label>
+    <button class="cta-button" type="submit">Create Content</button>
+  </form>
+
+  <pre id="quickspin-output" style="white-space:pre-wrap; background:#f6f6f6; padding:1rem; border-radius:8px; border:1px solid #e5e5e5; margin-top:1rem;">Your content will appear here…</pre>
+</section>
+
+<script>
+document.getElementById('quickspin-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const body = Object.fromEntries(fd.entries());
+  const res = await fetch('/api/create', {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+  const data = await res.json().catch(()=>({error:'Bad response'}));
+  document.getElementById('quickspin-output').textContent = data.error ? ('Error: ' + data.error) : data.result;
+});
+</script>
 </body>
 </html>
