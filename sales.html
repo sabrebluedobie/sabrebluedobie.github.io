@@ -8,25 +8,31 @@
   <!-- Fonts: Instrument Serif (titles) + Inter (body) -->
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Lightweight styles (no webflow bloat) -->
-  <link rel="stylesheet" href="css/app.css">
-
+  <!-- Lightweight styles -->
   <style>
-    /* Keep it minimal here; most is in app.css */
-    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f7f7f8; color:#222; }
-    .site-header { display:flex; align-items:center; gap:12px; padding:16px; background:#fff; border-bottom:1px solid #e6e6e6; }
-    .site-header img { height:56px; width:auto; }
-    .site-title { font-family:'Instrument Serif', serif; font-size:1.5rem; margin:0; }
-    .content { max-width:900px; margin:24px auto; padding:20px; background:#fff; border:1px solid #e6e6e6; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
-    h1,h2,h3 { font-family:'Instrument Serif', serif; margin:.25rem 0 .75rem; }
-    .tiers { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap:18px; margin-top:1rem; }
-    .card { background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.05); transition:transform .2s; }
-    .card:hover { transform: translateY(-4px); }
-    .price { font-weight:800; font-size:1.25rem; margin:.5rem 0 1rem; }
-    .cta-button { display:inline-block; padding:.75rem 1.25rem; background:#042d4d; color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
-    .cta-button:hover { filter: brightness(1.05); }
-    .cta-row { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
-    .muted { color:#666; }
+    :root{
+      --brand:#042d4d; --text:#222; --muted:#666; --bg:#f7f7f8;
+      --card:#fff; --border:#e6e6e6; --shadow:0 2px 6px rgba(0,0,0,.05);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text);}
+    .wrap{max-width:960px; margin:24px auto; padding:0 16px;}
+    .site-header{display:flex; align-items:center; gap:12px; padding:16px; background:#fff; border-bottom:1px solid var(--border);}
+    .site-header img{height:56px; width:auto;}
+    .site-title{font-family:'Instrument Serif',serif; font-size:1.5rem; margin:0;}
+    .content{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin:18px 0; box-shadow:var(--shadow);}
+    h1,h2,h3{font-family:'Instrument Serif',serif; margin:.25rem 0 .75rem;}
+    .muted{color:var(--muted)}
+    .cta-button{display:inline-block; padding:.75rem 1.25rem; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer;}
+    .cta-button:hover{filter:brightness(1.05)}
+    .tiers{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-top:1rem;}
+    .card{background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:1.25rem; text-align:center; box-shadow:var(--shadow); transition:transform .2s;}
+    .card:hover{transform:translateY(-4px)}
+    .price{font-weight:800; font-size:1.25rem; margin:.5rem 0 1rem;}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+    .sabre{display:grid; grid-template-columns: 100px 1fr; gap:14px; align-items:center;}
+    .sabre img{width:100px; height:100px; object-fit:cover; border-radius:12px; border:1px solid var(--border);}
+    @media (max-width:640px){ .sabre{grid-template-columns:1fr} .sabre img{width:100%; height:160px}}
   </style>
 </head>
 <body>
@@ -36,48 +42,63 @@
     <a href="index.html" style="margin-left:auto; text-decoration:none;">Home</a>
   </header>
 
-  <main class="content">
-    <h2>Why Choose Bluedobie Developing?</h2>
-    <ul>
-      <li><strong>Affordable, No-Nonsense Web Design</strong> – Professional sites without inflated costs.</li>
-      <li><strong>Fast Setup, Stress-Free</strong> – Streamlined builds so you can focus on your business.</li>
-      <li><strong>Local Support You Can Trust</strong> – Direct help from someone who understands small biz needs.</li>
-    </ul>
-  </main>
+  <div class="wrap">
+    <section class="content">
+      <h2>Why Choose Bluedobie Developing?</h2>
+      <ul>
+        <li><strong>Affordable, No-Nonsense Web Design</strong> – professional sites without inflated costs.</li>
+        <li><strong>Fast Setup, Stress-Free</strong> – streamlined builds so you can focus on your business.</li>
+        <li><strong>Local Support You Can Trust</strong> – direct help from someone who understands small biz needs.</li>
+      </ul>
+    </section>
 
-  <section class="content" id="quickspin">
-    <h2>QuickSpin: AI Social Posts in Seconds</h2>
-    <p class="muted">Generate clean, on-brand post ideas in seconds. Perfect for busy small businesses.</p>
+    <section class="content" id="quickspin">
+      <h2>QuickSpin: AI Social Posts in Seconds</h2>
+      <p class="muted">Generate clean, on-brand post ideas in seconds. Perfect for busy small businesses.</p>
 
-    <div class="tiers">
-      <div class="card">
-        <h3>QuickSpin Starter</h3>
-        <p>One-time purchase • Lifetime access</p>
-        <ul style="text-align:left; line-height:1.5;">
-          <li>AI captions (short + medium)</li>
-          <li>Smart, no-spam hashtags</li>
-          <li>Clear CTA to your services</li>
-        </ul>
-        <p class="price">$29</p>
-        <!-- 🔗 Replace with your real Stripe Payment Link -->
-        <p class="cta-row">
-          <a class="cta-button" href="https://buy.stripe.com/8x25kE8x14jd5OI5Zn0x200" target="_blank" rel="noopener">Get QuickSpin Starter</a>
-          <a class="cta-button" href="quickspin.html">Try the Tool</a>
-        </p>
-        <p class="muted" style="margin-top:.5rem;">Sabre-approved: fast, loyal, always on watch.</p>
+      <div class="tiers">
+        <div class="card">
+          <h3>QuickSpin Starter</h3>
+          <p>One-time purchase • Lifetime access</p>
+          <ul style="text-align:left; line-height:1.5;">
+            <li>AI captions (short + medium)</li>
+            <li>Smart, no-spam hashtags</li>
+            <li>Clear CTA to your services</li>
+          </ul>
+          <p class="price">$29</p>
+          <p class="cta-row">
+            <!-- Your live Stripe link -->
+            <a class="cta-button" href="https://buy.stripe.com/8x25kE8x14jd5OI5Zn0x200" target="_blank" rel="noopener">Get QuickSpin Starter</a>
+            <a class="cta-button" href="quickspin.html">Try the Tool</a>
+          </p>
+          <p class="muted" style="margin-top:.5rem;">Sabre-approved: fast, loyal, always on watch.</p>
+        </div>
+
+        <div class="card">
+          <h3>Templates Bundle (Coming Soon)</h3>
+          <p>Plug-and-play Canva templates</p>
+          <p class="muted">Launching after QuickSpin.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Templates Bundle (Coming Soon)</h3>
-        <p>Plug-and-play Canva templates</p>
-        <p class="muted">Launching after QuickSpin.</p>
+    <!-- Sabre Story -->
+    <section class="content">
+      <div class="sabre">
+        <!-- Optional: replace with a smaller, web-optimized image of Sabre if you add one to /images -->
+        <img src="images/logo-nobkg_1.webp" alt="Sabre badge">
+        <div>
+          <h3>🐾 Sabre-Approved</h3>
+          <p>QuickSpin was inspired by Sabre, our loyal blue Doberman who keeps a steady watch over home and family. Just like Sabre, QuickSpin is built to guard what matters most — your time, energy, and peace of mind.</p>
+          <p class="muted">Sabre keeps the porch safe; QuickSpin keeps your social presence steady.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content">
-    <h3>Questions?</h3>
-    <p><a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a></p>
-  </section>
+    <section class="content">
+      <h3>Questions?</h3>
+      <p><a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a></p>
+    </section>
+  </div>
 </body>
 </html>
