@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuickSpin | Bluedobie Developing</title>
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f7f7f8; color:#222; }
+    .site-header { display:flex; align-items:center; gap:12px; padding:14px 16px; background:#fff; border-bottom:1px solid #e6e6e6; }
+    .site-header img { height:48px; width:auto; }
+    .site-title { font-weight:700; font-size:1.1rem; }
+    .wrap { max-width:900px; margin:24px auto; padding:0 16px; }
+    .content { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:20px; margin-bottom:18px; }
+    label { display:block; font-weight:600; margin:10px 0 6px; }
+    input, select, textarea { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font:inherit; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .cta-button { display:inline-block; padding:0.75rem 1.25rem; background:#042d4d; color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
+    .cta-button:hover { filter:brightness(1.05); }
+    pre { white-space:pre-wrap; background:#fafafa; border:1px solid #eee; border-radius:8px; padding:12px; }
+    .muted { color:#666; font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <img src="images/logo-nobkg_1.webp" alt="Bluedobie Logo" />
+    <div class="site-title">QuickSpin — AI Content Creator</div>
+    <a href="sales.html" style="margin-left:auto; text-decoration:none;">← Back to Sales</a>
+  </header>
+
+  <div class="wrap">
+    <section class="content">
+      <h2>What is QuickSpin?</h2>
+      <p class="muted">Generate clean, on-brand post ideas in seconds. Perfect for busy small businesses.</p>
+    </section>
+
+    <section class="content">
+      <form id="quickspin-form">
+        <div class="row">
+          <div>
+            <label>Business Type</label>
+            <input name="business" placeholder="e.g., house cleaning service" required />
+          </div>
+          <div>
+            <label>Offer Focus</label>
+            <input name="offer" placeholder="e.g., fall deep-clean special" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Tone</label>
+            <select name="tone">
+              <option>Friendly</option>
+              <option>Professional</option>
+              <option>Bold</option>
+            </select>
+          </div>
+          <div>
+            <label>Platform</label>
+            <select name="platform">
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>Google Business</option>
+            </select>
+          </div>
+        </div>
+
+        <label>Keywords (comma-separated)</label>
+        <input name="keywords" placeholder="quick, local, affordable" />
+
+        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+          <button class="cta-button" type="submit">Create Content</button>
+          <button id="download" type="button" style="border:none; background:none; text-decoration:underline; cursor:pointer;">Download .txt</button>
+          <span class="muted" id="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="content">
+      <h3>Result</h3>
+      <pre id="output">Your content will appear here…</pre>
+    </section>
+
+    <section class="content">
+      <h3>How to Use QuickSpin</h3>
+      <ol>
+        <li>Enter your business type, offer, tone, and platform.</li>
+        <li>Click “Create Content.”</li>
+        <li>Copy the post you like and paste it into your social media.</li>
+      </ol>
+      <p class="muted">Tip: Run QuickSpin more than once to get fresh variations.</p>
+    </section>
+  </div>
+
+  <script>
+    // 🔧 set this to your deployed Vercel URL, e.g. "https://quickspin-bluedobie.vercel.app/api/create"
+    const API_URL = "https://YOUR-VERCEL-APP.vercel.app/api/create";
+
+    const form = document.getElementById('quickspin-form');
+    const statusEl = document.getElementById('status');
+    const out = document.getElementById('output');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Generating…";
+      out.textContent = "Thinking…";
+
+      const body = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Request failed');
+        out.textContent = data.result || 'No result.';
+        statusEl.textContent = "Done.";
+      } catch (err) {
+        out.textContent = "Error: " + (err.message || 'Failed to generate.');
+        statusEl.textContent = "Failed.";
+      }
+    });
+
+    // Simple .txt download
+    document.getElementById('download').addEventListener('click', () => {
+      const blob = new Blob([out.textContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: 'quickspin-output.txt' });
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
