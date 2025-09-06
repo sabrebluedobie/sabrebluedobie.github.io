@@ -35,7 +35,7 @@
     </section>
 
     <section class="content">
-      <form id="quickspin-form">
+      <form id="quickspin-form" method="post" action="https://quickspin-api.vercel.app/api/create">
         <div class="row">
           <div>
             <label>Business Type</label>
@@ -94,7 +94,6 @@
   </div>
 
   <script>
-    // ✅ Your live Vercel function:
     const API_URL = "https://quickspin-api.vercel.app/api/create";
 
     const form = document.getElementById('quickspin-form');
@@ -118,7 +117,7 @@
         });
         const data = await res.json().catch(() => ({ error: 'Bad response' }));
         if (!res.ok) throw new Error(data.error || 'Request failed');
-        out.textContent = data.result || 'No result.';
+        out.textContent = data.result || JSON.stringify(data, null, 2);
         statusEl.textContent = "Done.";
       } catch (err) {
         out.textContent = "Error: " + (err.message || 'Failed to generate.');
