@@ -5,67 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gridiron Gazette — Weekly Fantasy League Newsletter</title>
   <meta name="description" content="Automated weekly fantasy league newsletters — scores, storylines, standings, and custom mascots.">
-  <!-- Fonts (Bluedobie set) -->
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Fonts: Graduate (titles), Inter (body), Raleway (quotes) -->
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&family=Raleway:ital,wght@1,200&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --gg-cream:#fff6ec;
       --gg-navy:#07212e;
       --gg-brown:#915f55;
       --gg-blue:#406a9b;
       --gg-slate:#86929b;
     }
-    /* Reset-ish */
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+
+    body {
+      font-family:'Inter', sans-serif;
       color:var(--gg-navy);
       background:#fff;
+      margin:0;
+      padding:0;
     }
-    h1,h2,h3{font-family:'Instrument Serif',serif;color:var(--gg-navy);margin:0 0 .5rem}
-    a{text-decoration:none;color:inherit}
 
-    /* Layout */
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    .hero{
-      display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;
-      background:var(--gg-cream);
-      padding:52px 24px;
-      border-bottom:1px solid var(--gg-slate);
+    h1, h2, h3, .title, .heading, .section-header {
+      font-family:'Graduate', serif;
+      color:var(--gg-navy);
+      margin:0 0 .5rem;
     }
-    .hero .sub{font-size:1.15rem;opacity:.9;margin:.5rem 0 1rem}
-    .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:.25rem}
-    .hero img{width:100%;border-radius:14px;object-fit:cover;border:3px solid var(--gg-blue)}
-    .badge{display:inline-block;background:var(--gg-blue);color:#fff;border-radius:999px;padding:6px 12px;font-weight:600;margin-bottom:10px}
 
-    /* Buttons */
-    .btn{
-      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;
-      background:var(--gg-navy);color:#fff;border:2px solid var(--gg-navy);
-      transition:transform .04s ease, background .2s ease, color .2s ease;
+    p, li, .subtitle, .subheading, .caption {
+      font-family:'Inter', sans-serif;
     }
-    .btn:hover{background:var(--gg-blue);border-color:var(--gg-blue)}
-    .btn:active{transform:translateY(1px)}
-    .btn.ghost{background:transparent;color:var(--gg-navy)}
-    .btn.ghost:hover{background:var(--gg-cream)}
-    .fine{opacity:.7;font-size:.9rem}
 
-    /* Sections */
-    .section{padding:48px 24px}
-    .alt{background:var(--gg-cream)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px;background:#fff}
-    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px}
-    .plan{border:1px solid var(--gg-slate);border-radius:12px;padding:20px;background:#fff}
-    .plan.highlight{border:2px solid var(--gg-blue)}
-    .price{font-size:1.9rem;font-weight:800;color:var(--gg-navy);margin:.25rem 0 1rem}
-
-    /* Footer-ish strip */
-    .foot{padding:28px 24px;border-top:1px solid var(--gg-slate);background:#fff;text-align:center}
-
-    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    blockquote, .quote {
+      font-family:'Raleway', sans-serif;
+      font-style:italic;
+      font-weight:200;
+      color:var(--gg-brown);
+    }
   </style>
 </head>
 <body>
