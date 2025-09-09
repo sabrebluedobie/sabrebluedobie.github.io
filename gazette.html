@@ -5,53 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gridiron Gazette — Weekly Fantasy League Newsletter</title>
   <meta name="description" content="Automated weekly fantasy league newsletters — scores, storylines, standings, and custom mascots.">
-
-  <!-- Fonts: Graduate (titles), Inter (body), Raleway (quotes) -->
+  <!-- Fonts: Graduate (titles), Inter (body), Raleway Thin Italic (quotes) -->
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&family=Raleway:ital,wght@1,200&display=swap" rel="stylesheet">
 
   <style>
-    :root {
+    :root{
       --gg-cream:#fff6ec;
       --gg-navy:#07212e;
       --gg-brown:#915f55;
       --gg-blue:#406a9b;
       --gg-slate:#86929b;
     }
-
-    body {
-      font-family:'Inter', sans-serif;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Inter',sans-serif;
       color:var(--gg-navy);
       background:#fff;
-      margin:0;
-      padding:0;
     }
 
-    h1, h2, h3, .title, .heading, .section-header {
-      font-family:'Graduate', serif;
-      color:var(--gg-navy);
-      margin:0 0 .5rem;
+    /* Top brand strip with logo */
+    .brandbar{
+      display:flex;align-items:center;gap:12px;
+      padding:12px 18px;border-bottom:1px solid var(--gg-slate);background:#fff;
+      position:sticky;top:0;z-index:10;
+    }
+    .brandbar img{height:40px;width:auto;display:block}
+    .brandbar .wordmark{font-family:'Graduate',serif;font-size:1.15rem;letter-spacing:.5px}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;
+      background:var(--gg-cream);
+      padding:52px 24px;border-bottom:1px solid var(--gg-slate);
+    }
+    .wrap{max-width:1100px;margin:0 auto;width:100%}
+    h1,h2,h3,.title,.heading,.section-header{font-family:'Graduate',serif;margin:0 0 .5rem;color:var(--gg-navy)}
+    .sub{font-size:1.15rem;opacity:.9;margin:.5rem 0 1rem}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:.25rem}
+    .hero img{width:100%;border-radius:14px;object-fit:cover;border:3px solid var(--gg-blue)}
+    .badge{display:inline-block;background:var(--gg-blue);color:#fff;border-radius:999px;padding:6px 12px;font-weight:600;margin-bottom:10px}
+
+    /* Buttons */
+    .btn{
+      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;
+      background:var(--gg-navy);color:#fff;border:2px solid var(--gg-navy);
+      transition:transform .04s ease, background .2s ease, color .2s ease;
+      text-decoration:none;
+    }
+    .btn:hover{background:var(--gg-blue);border-color:var(--gg-blue)}
+    .btn:active{transform:translateY(1px)}
+    .btn.ghost{background:transparent;color:var(--gg-navy)}
+    .btn.ghost:hover{background:#ffffff55}
+
+    /* Sections */
+    .section{padding:48px 24px}
+    .alt{background:var(--gg-cream)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px;background:#fff}
+    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px}
+    .plan{border:1px solid var(--gg-slate);border-radius:12px;padding:20px;background:#fff}
+    .plan.highlight{border:2px solid var(--gg-blue)}
+    .price{font-size:1.9rem;font-weight:800;color:var(--gg-navy);margin:.25rem 0 1rem}
+    .fine{opacity:.75;font-size:.9rem}
+
+    /* Quote styling */
+    blockquote,.quote{
+      font-family:'Raleway',sans-serif;font-style:italic;font-weight:200;color:var(--gg-brown);
+      border-left:4px solid var(--gg-brown);margin:16px 0;padding:8px 14px;background:#fff8f4;
     }
 
-    p, li, .subtitle, .subheading, .caption {
-      font-family:'Inter', sans-serif;
-    }
+    /* Footer */
+    .foot{padding:28px 24px;border-top:1px solid var(--gg-slate);background:#fff;text-align:center}
 
-    blockquote, .quote {
-      font-family:'Raleway', sans-serif;
-      font-style:italic;
-      font-weight:200;
-      color:var(--gg-brown);
-    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
+
+  <!-- Brand bar with logo -->
+  <div class="brandbar">
+    <!-- Swap to .png if you don't have an .svg yet -->
+    <img src="/assets/gazette/logo.svg" onerror="this.onerror=null;this.src='/assets/gazette/logo.png';" alt="Gridiron Gazette logo">
+    <div class="wordmark">Gridiron Gazette</div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="wrap" style="grid-column:1 / -1;display:contents"></div>
     <div class="wrap" style="display:contents">
       <div>
-        <span class="badge">Gridiron Gazette</span>
+        <span class="badge">New • Season Pass</span>
         <h1>Weekly Fantasy League Newsletter</h1>
         <p class="sub">
           Automated Tuesday newsletters for your fantasy football league —
@@ -59,8 +103,8 @@
           the protective (and silly) blue Doberman.
         </p>
         <div class="cta">
-          <!-- Replace with your Stripe Payment Link -->
-          <a class="btn" href="https://buy.stripe.com/your-payment-link" target="_blank" rel="noopener">Buy Season Pass</a>
+          <!-- Replace with your Stripe Payment Link(s) -->
+          <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Season Pass</a>
           <a class="btn ghost" href="#learn">Learn more</a>
         </div>
         <p class="fine">Works with public & private ESPN leagues.</p>
@@ -70,13 +114,15 @@
   </section>
 
   <!-- HOW -->
-  <section id="learn" class="section wrap">
-    <h2>How it works</h2>
-    <ol>
-      <li><strong>Share your League ID</strong> (and cookies if private)</li>
-      <li><strong>Add team mascots</strong> (or we’ll generate them)</li>
-      <li><strong>Every Tuesday</strong> you receive a polished Google Doc newsletter</li>
-    </ol>
+  <section id="learn" class="section">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <ol>
+        <li><strong>Share your League ID</strong> (and cookies if private)</li>
+        <li><strong>Add team mascots</strong> (or we’ll generate them)</li>
+        <li><strong>Every Tuesday</strong> you receive a polished Google Doc newsletter</li>
+      </ol>
+    </div>
   </section>
 
   <!-- FEATURES -->
@@ -89,21 +135,41 @@
         <div class="card"><h3>Standings & quick hits</h3><p>Highest score, closest game, and a tidy standings snapshot every week.</p></div>
         <div class="card"><h3>Automatic delivery</h3><p>Delivered in Google Docs — comment, share, or export to PDF.</p></div>
       </div>
+      <blockquote class="quote">“Protective, silly, and always on schedule — Sabre makes sure your Gazette hits Tuesday morning.”</blockquote>
     </div>
   </section>
 
   <!-- PRICING -->
-  <section class="section wrap">
-    <h2>Season pricing</h2>
-    <div class="pricing">
-      <div class="plan">
-        <h3>Starter</h3>
-        <p class="price">$29 / season</p>
-        <ul><li>League intro</li><li>Per-team recaps (text)</li><li>Standings & results</li></ul>
-        <a class="btn" href="https://buy.stripe.com/your-starter-link" target="_blank" rel="noopener">Buy Starter</a>
+  <section class="section">
+    <div class="wrap">
+      <h2>Season pricing</h2>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Starter</h3>
+          <p class="price">$29 / season</p>
+          <ul><li>League intro</li><li>Per-team recaps (text)</li><li>Standings & results</li></ul>
+          <a class="btn" href="https://buy.stripe.com/your-starter-link" target="_blank" rel="noopener">Buy Starter</a>
+        </div>
+        <div class="plan highlight">
+          <h3>Plus</h3>
+          <p class="price">$49 / season</p>
+          <ul><li>Everything in Starter</li><li>Mascot personas</li><li>1× mascot image per team</li></ul>
+          <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Plus</a>
+        </div>
+        <div class="plan">
+          <h3>Commissioner</h3>
+          <p class="price">$79 / season</p>
+          <ul><li>Everything in Plus</li><li>Discord/Email delivery</li><li>PDF export included</li></ul>
+          <a class="btn" href="https://buy.stripe.com/your-commissioner-link" target="_blank" rel="noopener">Buy Commissioner</a>
+        </div>
       </div>
-      <div class="plan highlight">
-        <h3>Plus</h3>
-        <p class="price">$49 / season</p>
-        <ul><li>Everything in Starter</li><li>Mascot personas</li><li>1× mascot image per team</li></ul>
-        <a class="btn" href="https://buy.str
+      <p class="fine">Beta pricing. Limited early-adopter slots.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    © <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie
+  </div>
+</body>
+</html>
