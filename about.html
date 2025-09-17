@@ -83,17 +83,23 @@ gtag('config', 'GTM-MCV3HH7L');
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #444; /* Dark background for dropdown */
-  color: #fff; /* White text */
-  min-width: 200px;
-  border: 1px solid #555;
-  z-index: 9999;
-  padding: 10px 0;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  border-radius: 5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    z-index: 9999;
+    min-width: 250px;
+    max-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    white-space: normal; /* Allow text wrapping */
+    border-radius: 5px;
+    /* Hide by default */
+    display: none;
 }
 
 .dropdown-menu a {

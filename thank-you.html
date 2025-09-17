@@ -158,13 +158,14 @@ gtag('config', 'GTM-MCV3HH7L');
 }
 
 .hero-video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Add performance optimizations */
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
 }
+
 
 .hero-text-1 {
     position: relative;

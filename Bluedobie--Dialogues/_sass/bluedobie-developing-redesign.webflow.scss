@@ -10824,13 +10824,20 @@ top: 100%; /* Position it just below the "More" button */
 left: 0;
 right: 0; /* Allow the dropdown to span the entire screen width */
 z-index: 9999; /* Ensure it appears above other elements */
-min-width: 200px;
-max-height: 80vh; /* Prevent it from exceeding the screen height */
+min-width: 250px;
+max-height: 300vh; /* Prevent it from exceeding the screen height */
 overflow-y: auto; /* Enable scrolling if the dropdown is long */
 background-color: #fff; /* Ensure visibility on different backgrounds */
 border: 1px solid #ccc; /* Add border for better visibility */
 box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for visual depth */
 padding: 10px;
+white-space: normal; /* Allow text wrapping */
+    border-radius: 5px;
+    /* Hide by default */
+    display: none;
+}
+.dropdown-menu.show {
+display: block; /* Show the dropdown when the 'show' class is added */
 }
 
 .dropdown-menu a {
