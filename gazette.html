@@ -23,6 +23,9 @@
       color:var(--gg-navy);
       background:#fff;
     }
+    /* Add to your CSS */
+.gg-disabled { pointer-events:none; opacity:.5; filter:grayscale(0.2); }
+
 
     /* Top brand strip with logo */
     .brandbar{
@@ -104,7 +107,9 @@
         </p>
         <div class="cta">
           <!-- Replace with your Stripe Payment Link(s) -->
-          <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Season Pass</a>
+          <!-- <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Season Pass</a> -->
+          <a data-gg-cta href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
+
           <a class="btn ghost" href="#learn">Learn more</a>
         </div>
         <p class="fine">Works with public & private ESPN leagues.</p>
@@ -139,6 +144,52 @@
     </div>
   </section>
 
+  <section id="gg-countdown" style="padding:32px 0; text-align:center;">
+  <h2 style="margin:0 0 12px;">Beta opens September 30</h2>
+  <div id="clock" style="font:700 28px/1.2 system-ui;">— : — : — : —</div>
+  <p style="opacity:.8;margin:8px 0 20px;">days : hours : minutes : seconds</p>
+  <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
+</section>
+
+<section id="waitlist" style="padding:32px 0;">
+  <h3>Join the Waitlist</h3>
+  <p style="opacity:.8">Get early access + loyalty pricing. We’ll email your link before Sept 30.</p>
+  <!-- ⬇️ Paste your Zoho Campaigns Embedded Signup Form here -->
+  <!-- ZOHO_SIGNUP_FORM_SNIPPET -->
+</section>
+
+<script>
+(function(){
+  // America/Chicago (CST/CDT) launch time. Adjust the hour if you like.
+  const launch = new Date("2025-09-30T10:00:00-05:00");
+  const clock = document.getElementById('clock');
+
+  function fmt(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const now = new Date(); let s = Math.max(0, Math.floor((launch - now)/1000));
+    const d = Math.floor(s/86400); s%=86400;
+    const h = Math.floor(s/3600);  s%=3600;
+    const m = Math.floor(s/60);    s%=60;
+    if (clock) clock.textContent = `${fmt(d)} : ${fmt(h)} : ${fmt(m)} : ${fmt(s)}`;
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  // Gate all “Buy” buttons until launch; auto-switch on/after launch
+  const live = new Date() >= launch;
+  document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
+    if(!live){
+      btn.textContent = "Join the Waitlist";
+      btn.setAttribute('href', '#waitlist');
+    } else {
+      btn.textContent = "Get the Gazette";
+      btn.setAttribute('href', '/checkout'); // TODO: replace with your Stripe link on 9/30
+    }
+  });
+})();
+</script>
+
+
   <!-- PRICING -->
   <section class="section">
     <div class="wrap">
@@ -148,20 +199,26 @@
           <h3>Starter</h3>
           <p class="price">$29 / season</p>
           <ul><li>League intro</li><li>Per-team recaps (text)</li><li>Standings & results</li></ul>
-          <a class="btn" href="https://buy.stripe.com/your-starter-link" target="_blank" rel="noopener">Buy Starter</a>
+          <!-- Example purchase button inside pricing: -->
+          <a class="btn gg-disabled" data-gg-cta href="https://zc.vg/bCUxg">Join the Waitlist</a>
+        </div>
+        <!-- <a class="btn" href="https://buy.stripe.com/your-starter-link" target="_blank" rel="noopener">Buy Starter</a>-->
         </div>
         <div class="plan highlight">
           <h3>Plus</h3>
           <p class="price">$49 / season</p>
           <ul><li>Everything in Starter</li><li>Mascot personas</li><li>1× mascot image per team</li></ul>
-          <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Plus</a>
+          <!-- Example purchase button inside pricing: -->
+          <a class="btn gg-disabled" data-gg-cta href="https://zc.vg/bCUxg">Join the Waitlist</a>
+
+          <!-- <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Plus</a> -->
         </div>
         <div class="plan">
           <h3>Commissioner</h3>
           <p class="price">Not Available in Beta</p>
-          <!---<ul><li>Everything in Plus</li><li>Discord/Email delivery</li><li>PDF export included</li></ul>
+          <!-- <ul><li>Everything in Plus</li><li>Discord/Email delivery</li><li>PDF export included</li></ul>
           <a class="btn" href="https://buy.stripe.com/your-commissioner-link" target="_blank" rel="noopener">Buy Commissioner</a>
-        </div>--->
+        </div> -->
       </div>
       <p class="fine">Beta pricing. Limited early-adopter slots.</p>
     </div>
