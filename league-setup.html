@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPN League Setup Guide - Gridiron Gazette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #fff6ec 0%, #e8dcc8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            color: #07212e;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(7, 33, 46, 0.15);
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 3px solid #07212e;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-text {
+            font-family: 'Graduate', serif;
+            font-size: 1rem;
+            color: #86929b;
+            margin-top: 10px;
+        }
+        
+        h1 {
+            font-family: 'Graduate', serif;
+            font-size: 2rem;
+            color: #07212e;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-family: 'Graduate', serif;
+            color: #07212e;
+        }
+        
+        h3 {
+            font-family: 'Graduate', serif;
+            color: #07212e;
+        }
+        
+        .subtitle {
+            color: #86929b;
+            margin-bottom: 30px;
+        }
+        
+        .video-box {
+            background: #fff6ec;
+            border: 2px solid #915f55;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .video-box h2 {
+            color: #07212e;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .warning-box {
+            background: #fff6ec;
+            border: 2px solid #915f55;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .warning-box h3 {
+            color: #07212e;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .warning-box ul {
+            margin-left: 20px;
+            color: #07212e;
+        }
+        
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(7, 33, 46, 0.15);
+            padding: 40px;
+            border: 3px solid #07212e;
+        }
+        
+        .section {
+            border: 2px solid #86929b;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #fff6ec;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .section-header:hover {
+            background: #f5ebd8;
+        }
+        
+        .section-title {
+            font-family: 'Graduate', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #07212e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-content {
+            background: white;
+            border-top: 2px solid #86929b;
+            padding: 25px;
+            display: none;
+        }
+        
+        .section.active .section-content {
+            display: block;
+        }
+        
+        .instruction-box {
+            background: #fff6ec;
+            border: 2px solid #07212e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .instruction-box.chrome {
+            border-color: #406a9b;
+        }
+        
+        .instruction-box.safari {
+            border-color: #915f55;
+        }
+        
+        .instruction-box.firefox {
+            border-color: #86929b;
+        }
+        
+        .instruction-title {
+            font-family: 'Graduate', serif;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #07212e;
+        }
+        
+        ol {
+            margin-left: 20px;
+        }
+        
+        ol li {
+            margin: 10px 0;
+        }
+        
+        code {
+            background: #86929b;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        kbd {
+            background: #07212e;
+            color: #fff6ec;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            border: 1px solid #915f55;
+        }
+        
+        .example-box {
+            background: #fff6ec;
+            border: 2px solid #915f55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .example-title {
+            font-family: 'Graduate', serif;
+            font-weight: 400;
+            color: #07212e;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: white;
+            border: 1px solid #86929b;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            background: #fff6ec;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+        
+        .info-box {
+            background: #f5f5f5;
+            border: 2px solid #86929b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .success-box {
+            background: #fff6ec;
+            border: 2px solid #915f55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .error-box {
+            background: #fff6ec;
+            border: 2px solid #915f55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .help-box {
+            background: #406a9b;
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .help-box h4 {
+            font-family: 'Graduate', serif;
+            color: #fff6ec;
+            margin-bottom: 10px;
+        }
+        
+        .help-box a {
+            color: #fff6ec;
+            text-decoration: underline;
+        }
+        
+        .chevron {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s;
+            fill: #07212e;
+        }
+        
+        .section.active .chevron {
+            transform: rotate(180deg);
+        }
+        
+        .btn {
+            background: #07212e;
+            color: #fff6ec;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Graduate', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: #915f55;
+        }
+        
+        .footer-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(7, 33, 46, 0.15);
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            border: 3px solid #07212e;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #86929b;
+            font-size: 0.9rem;
+            padding: 20px 0;
+        }
+        
+        .footer-brand {
+            font-family: 'Graduate', serif;
+            color: #07212e;
+        }
+        
+        @media (max-width: 640px) {
+            .header-card, .main-card, .footer-card {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <div class="logo">
+                <p class="logo-text">by Bluedobie Developing</p>
+            </div>
+            <h1>ESPN League Setup Guide</h1>
+            <p class="subtitle">Follow these step-by-step instructions to connect your ESPN Fantasy Football league to Gridiron Gazette.</p>
+            
+            <div class="video-box">
+                <h2>📺 Video Tutorial (2 minutes)</h2>
+                <p style="color: #07212e;">
+                    <svg style="display: inline-block; width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <a href="#video" style="color: #915f55; text-decoration: underline;">Watch the quick video walkthrough →</a>
+                </p>
+            </div>
+            
+            <div class="warning-box">
+                <h3>⚠️ Important: Before You Start</h3>
+                <ul>
+                    <li>You must be logged into ESPN Fantasy Football</li>
+                    <li>Use a regular browser window (not private/incognito mode)</li>
+                    <li>Have your league page open</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-card">
+            <h2 style="margin-bottom: 25px;">What You Need to Find:</h2>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">1️⃣ ESPN League ID</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 15px;"><strong>This is the easiest one!</strong> Your League ID is in your browser's address bar.</p>
+                    
+                    <div class="instruction-box">
+                        <p class="instruction-title">Steps:</p>
+                        <ol>
+                            <li>Go to your ESPN Fantasy Football league homepage</li>
+                            <li>Look at the URL in your browser's address bar</li>
+                            <li>Find the number after <code>leagueId=</code></li>
+                        </ol>
+                    </div>
+
+                    <div class="example-box">
+                        <p class="example-title">Example URL:</p>
+                        <div class="code-block">
+                            https://fantasy.espn.com/football/league?leagueId=<span class="highlight">1234567</span>&seasonId=2024
+                        </div>
+                        <p style="margin-top: 10px; color: #07212e;">Your League ID would be: <strong>1234567</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">2️⃣ ESPN s2 Cookie</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 15px;">The s2 cookie is needed to access your private league data.</p>
+                    
+                    <div class="instruction-box chrome">
+                        <p class="instruction-title">For Chrome Users:</p>
+                        <ol>
+                            <li>While on your ESPN Fantasy page, press <kbd>F12</kbd> (or right-click → "Inspect")</li>
+                            <li>Click the <strong>"Application"</strong> tab at the top</li>
+                            <li>In the left sidebar, expand <strong>"Cookies"</strong></li>
+                            <li>Click <strong>"https://fantasy.espn.com"</strong></li>
+                            <li>Find <strong>"espn_s2"</strong> in the Name column</li>
+                            <li>Double-click the Value to select it all (it's long!)</li>
+                            <li>Copy it (Ctrl+C or Cmd+C)</li>
+                        </ol>
+                    </div>
+
+                    <div class="instruction-box safari">
+                        <p class="instruction-title">For Safari Users:</p>
+                        <ol>
+                            <li>Go to Safari → Preferences → Advanced</li>
+                            <li>Check "Show Develop menu in menu bar"</li>
+                            <li>On ESPN page: Develop → Show Web Inspector</li>
+                            <li>Click the <strong>"Storage"</strong> tab</li>
+                            <li>Click "Cookies" → "https://fantasy.espn.com"</li>
+                            <li>Find "espn_s2" and copy the value</li>
+                        </ol>
+                    </div>
+
+                    <div class="instruction-box firefox">
+                        <p class="instruction-title">For Firefox Users:</p>
+                        <ol>
+                            <li>Press <kbd>F12</kbd> on ESPN page</li>
+                            <li>Click the <strong>"Storage"</strong> tab</li>
+                            <li>Expand "Cookies"</li>
+                            <li>Click "https://fantasy.espn.com"</li>
+                            <li>Find "espn_s2" and copy the value</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box">
+                        <p class="instruction-title">What it looks like:</p>
+                        <div class="code-block">
+                            AECAbcd123xyz789...really long string...abc123
+                        </div>
+                        <p style="margin-top: 10px; color: #86929b;">Starts with "AE" and is very long (100+ characters)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">3️⃣ ESPN SWID Cookie</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 15px;">The SWID cookie works together with the s2 cookie for authentication.</p>
+                    
+                    <div class="success-box">
+                        <p class="instruction-title">Good news!</p>
+                        <p>Follow the <strong>exact same steps</strong> as finding the s2 cookie above, but look for <strong>"SWID"</strong> instead of "espn_s2"</p>
+                    </div>
+
+                    <div class="info-box">
+                        <p class="instruction-title">What it looks like:</p>
+                        <div class="code-block">
+                            {12345678-90AB-CDEF-1234-567890ABCDEF}
+                        </div>
+                        <p style="margin-top: 10px; color: #86929b;">Surrounded by curly brackets { } with letters, numbers and dashes</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <p style="color: #07212e;">⚠️ <strong>Important:</strong> Copy the entire thing including the curly brackets!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">🆘 Troubleshooting</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="section-content">
+                    <div class="error-box">
+                        <h4 style="font-family: 'Graduate', serif; margin-bottom: 10px;">Problem: Can't find the cookies</h4>
+                        <ul>
+                            <li>✓ Make sure you're logged into ESPN first</li>
+                            <li>✓ Close private/incognito windows - use regular browser</li>
+                            <li>✓ Try logging out and back into ESPN</li>
+                            <li>✓ Refresh the page after opening developer tools</li>
+                        </ul>
+                    </div>
+
+                    <div class="error-box">
+                        <h4 style="font-family: 'Graduate', serif; margin-bottom: 10px;">Problem: "Access Denied" or "Invalid Credentials"</h4>
+                        <ul>
+                            <li>✓ Cookies may have expired - log out and back in</li>
+                            <li>✓ Make sure you copied the entire value (s2 is very long!)</li>
+                            <li>✓ Check for extra spaces when pasting</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-box">
+                        <h4>Still stuck?</h4>
+                        <p style="margin-bottom: 10px; color: #fff6ec;">I'm here to help!</p>
+                        <p style="color: #fff6ec;">📧 Email: <a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></p>
+                        <p style="color: #fff6ec; margin-top: 5px;">📱 Include a screenshot if possible!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">🔒 Privacy & Security</span>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 15px;"><strong>Is this safe?</strong> Absolutely! Here's why:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>✓ We only use these to read your league data (rosters, scores, etc.)</li>
+                        <li>✓ We never store your ESPN password</li>
+                        <li>✓ We can't modify your league or make any changes</li>
+                        <li>✓ You can revoke access anytime by changing your ESPN password</li>
+                        <li>✓ We use bank-level encryption for all data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-card">
+            <p style="color: #86929b; margin-bottom: 20px;">Ready to continue with your signup?</p>
+            <button class="btn" onclick="window.history.back()">← Back to Signup Form</button>
+        </div>
+
+        <div class="footer">
+            <p class="footer-brand">GRIDIRON GAZETTE</p>
+            <p style="margin-top: 5px;">by Bluedobie Developing</p>
+            <p style="margin-top: 10px;">Questions? <a href="mailto:melanie.brown@bluedobiedev.com" style="color: #915f55;">melanie.brown@bluedobiedev.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const allSections = document.querySelectorAll('.section');
+            
+            // Close all other sections
+            allSections.forEach(s => {
+                if (s !== section) {
+                    s.classList.remove('active');
+                }
+            });
+            
+            // Toggle current section
+            section.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

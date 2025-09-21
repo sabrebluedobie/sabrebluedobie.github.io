@@ -210,6 +210,135 @@
           <!-- Example purchase button inside pricing: -->
           <a class="btn gg-disabled" data-gg-cta href="https://zc.vg/bCUxg">Join the Waitlist</a>
 
+          <!-- Gridiron Gazette – Mascot Prompt Builder (single-file) -->
+<section id="gg-prompt-builder" style="--ink:#0b0f14; --dark:#111827; --muted:#334155; --amber:#f59e0b; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; max-width:860px; margin:32px auto; padding:0 16px;">
+  <h2 style="margin:18px 0 0 0;">Mascot Prompt Builder</h2>
+  <div style="background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden;">
+    <div style="background:var(--dark); color:#e5e7eb; padding:14px 18px; display:flex; align-items:center; gap:10px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);"></div>
+      <strong>Mascot Prompt Builder (Plus plan)</strong>
+    </div>
+
+    <div style="padding:18px;">
+      <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;">
+        <label>Subject / Mascot
+          <input id="pb-subject" type="text" placeholder="e.g., Doberman" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+        </label>
+        <label>Colors
+          <input id="pb-colors" type="text" placeholder="e.g., navy, steel, amber" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+        </label>
+        <label>Pose / Action
+          <input id="pb-pose" type="text" placeholder="e.g., standing with a football under one paw" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+        </label>
+        <label>Style
+          <select id="pb-style" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+            <option value="clean modern">Clean modern</option>
+            <option value="bold graphic">Bold graphic</option>
+            <option value="cartoon">Cartoon</option>
+            <option value="realistic">Realistic</option>
+            <option value="retro vintage">Retro vintage</option>
+            <option value="3D render">3D render</option>
+            <option value="hand-drawn">Hand-drawn</option>
+          </select>
+        </label>
+        <label>Props / Gear (optional)
+          <input id="pb-props" type="text" placeholder="e.g., helmet, jersey #12" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+        </label>
+        <label>Background
+          <select id="pb-bg" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
+            <option value="solid background">Solid background</option>
+            <option value="stadium background">Stadium background</option>
+            <option value="football field background">Football field background</option>
+            <option value="transparent background">Transparent background</option>
+          </select>
+        </label>
+      </div>
+
+      <div style="margin-top:10px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;">
+        <label class="gg-row"><input id="pb-square" type="checkbox" checked> Square (1:1)</label>
+        <label class="gg-row"><input id="pb-notext" type="checkbox" checked> No text/lettering on image</label>
+      </div>
+
+      <hr style="margin:16px 0; border:0; border-top:1px solid #e5e7eb;">
+
+      <div>
+        <div style="font-weight:700; margin-bottom:6px;">Generated prompt</div>
+        <label for="pb-output" style="font-weight:600;display:block;margin-bottom:4px;">Generated prompt</label>
+        <textarea id="pb-output" rows="4" title="Generated mascot prompt" placeholder="Your mascot prompt will appear here..." style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:10px; font-size:15px;"></textarea>
+        <div style="display:flex; gap:10px; margin-top:10px;">
+          <button id="pb-copy" style="background:var(--amber); color:var(--ink); border:0; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;">Copy</button>
+          <small style="color:var(--muted); align-self:center;">Copy this into your Plus onboarding reply.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const els = {
+      subject: document.getElementById('pb-subject'),
+      colors:  document.getElementById('pb-colors'),
+      pose:    document.getElementById('pb-pose'),
+      style:   document.getElementById('pb-style'),
+      props:   document.getElementById('pb-props'),
+      bg:      document.getElementById('pb-bg'),
+      square:  document.getElementById('pb-square'),
+      notext:  document.getElementById('pb-notext'),
+      out:     document.getElementById('pb-output'),
+      copy:    document.getElementById('pb-copy')
+    };
+
+    const saved = JSON.parse(localStorage.getItem('gg-prompt')||'{}');
+    ['subject','colors','pose','style','props','bg','square','notext'].forEach(k=>{
+      if(saved[k]!==undefined){ if(els[k].type==='checkbox'){els[k].checked=saved[k];} else {els[k].value=saved[k];}}
+    });
+
+    function build(){
+      const s = (v)=>String(v||'').trim();
+      const parts = [];
+      if(s(els.colors.value)) parts.push(s(els.colors.value));
+      if(s(els.subject.value)) parts.push(s(els.subject.value));
+      const subject = parts.join(' ');
+      const pose = s(els.pose.value);
+      const props = s(els.props.value);
+      const style = s(els.style.value);
+      const bg = s(els.bg.value);
+
+      let line = '';
+      if(subject) line += subject.charAt(0).toUpperCase() + subject.slice(1);
+      if(pose){ line += ', ' + pose; }
+      if(props){ line += ', ' + props; }
+      if(style){ line += ', ' + style + ' style'; }
+      if(bg){ line += ', ' + bg; }
+      if(els.notext.checked){ line += ', no text or lettering'; }
+      if(els.square.checked){ line += ', square 1:1 composition'; }
+      line = line.replace(/\s+/g,' ').replace(/\s, /g, ', ');
+
+      els.out.value = '“' + line + '.”';
+      const data = {
+        subject: els.subject.value, colors: els.colors.value, pose: els.pose.value,
+        style: els.style.value, props: els.props.value, bg: els.bg.value,
+        square: els.square.checked, notext: els.notext.checked
+      };
+      localStorage.setItem('gg-prompt', JSON.stringify(data));
+    }
+
+    ['input','change'].forEach(evt=>{
+      Object.values(els).forEach(el=>{
+        if(el && el.addEventListener) el.addEventListener(evt, build);
+      });
+    });
+    build();
+
+    els.copy.addEventListener('click', async ()=>{
+      try { await navigator.clipboard.writeText(els.out.value); els.copy.textContent='Copied!'; setTimeout(()=>els.copy.textContent='Copy',1200); }
+      catch(e){ alert('Copy failed—select and copy manually.'); }
+    });
+  })();
+  </script>
+</section>
+
+
           <!-- <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Plus</a> -->
         </div>
         <div class="plan">
