@@ -6,11 +6,11 @@
   <title>Gridiron Gazette — Beta opens Sept 30</title>
   <meta name="description" content="Weekly fantasy recaps with stats, awards, and a dash of Sabre. Automated Tuesday PDFs for your ESPN league." />
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="/css/button-styles.css" rel="stylesheet">
   <meta property="og:title" content="Gridiron Gazette — Beta opens Sept 30">
   <meta property="og:description" content="Weekly fantasy recaps with stats, awards, and a dash of Sabre.">
   <meta property="og:image" content="/assets/og-gazette.jpg">
   <meta property="og:type" content="website">
+
   <style>
     :root{
       --gg-cream:#fff6ec;
@@ -64,15 +64,16 @@
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','776246200615205'); fbq('track','PageView');
   </script>
+
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-6B45D1C0L8');</script>
 </head>
 <body>
-  <div class="brandbar">
+  <div class="brandbar" role="banner">
     <div class="wrap" style="display:flex;align-items:center;gap:12px">
       <img src="/assets/logo.PNG" alt="Gridiron Gazette logo">
-      <div class="wordmark">Gridiron Gazette</div>
+      <div class="wordmark" aria-label="Gridiron Gazette">Gridiron Gazette</div>
     </div>
   </div>
 
@@ -88,10 +89,10 @@
           <a data-gg-cta href="#waitlist" class="btn">Join Beta Waitlist</a>
           <a href="#learn" class="btn ghost">How it works</a>
         </div>
-        <p class="fine">Works with public & private ESPN leagues.</p>
+        <p class="fine">Compatible with all ESPN leagues — public or private.</p>
       </div>
       <div>
-        <img class="hero-img" src="/images/SabreReporter.webp" alt="Sabre at the news desk with a microphone" />
+        <img class="hero-img" src="/assets/SabreReporter.webp" alt="Sabre reporting your fantasy mistakes with snark">
       </div>
     </div>
   </header>
@@ -103,11 +104,9 @@
       <ol>
         <li><strong>League ID</strong> — tell us your ESPN league (private or public).</li>
         <li><strong>Mascots</strong> — bring your own or let Sabre invent them.</li>
-        <li><strong>Tuesday delivery</strong> — you get a polished PDF recap in your inbox.</li>
+        <li><strong>Tuesday delivery</strong> — polished PDF recap, straight to your inbox.</li>
       </ol>
-      <div style="display: flex;justify-content: center; margin-top: 20px;">
-      <img src="/images/glowingeyesabre.webp" alt="Glowing eyes Sabre" style="display: block; max-width: 60%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)" />
-    </div>
+      <p class="fine">Private leagues may require ESPN authentication (we’ll guide you step by step).</p>
     </div>
   </section>
 
@@ -115,13 +114,13 @@
   <section class="section alt">
     <div class="wrap">
       <h2>Inside your weekly Gazette</h2>
-      <div class="grid">
-        <div class="card"><h3>Recaps with bite</h3><p>Each team gets a breakdown, a key stat, and a respectful roast.</p></div>
-        <div class="card"><h3>Mascots & visuals</h3><p>Logos and optional images give your league personality.</p></div>
-        <div class="card"><h3>Standouts & stats</h3><p>Highest score, closest game, biggest flop — one tidy snapshot.</p></div>
-        <div class="card"><h3>Automatic delivery</h3><p>We send the PDF every Tuesday. No lift required.</p></div>
+      <div class="grid" role="list">
+        <div class="card" role="listitem"><h3>Recaps with bite</h3><p>Each team gets a breakdown, a key stat, and a respectful roast.</p></div>
+        <div class="card" role="listitem"><h3>Mascots & visuals</h3><p>Logos and optional images give your league personality.</p></div>
+        <div class="card" role="listitem"><h3>Standouts & stats</h3><p>Highest score, closest game, biggest flop — one tidy snapshot.</p></div>
+        <div class="card" role="listitem"><h3>Automatic delivery</h3><p>Pro PDF in your inbox every Tuesday. No lift required.</p></div>
       </div>
-      <div class="quote">“Reliable. Snarky. On time. I don’t skip recaps.” — Sabre</div>
+      <div class="quote" aria-label="Sabre quote">“Reliable. Snarky. On time. I don’t skip recaps.” — Sabre</div>
     </div>
   </section>
 
@@ -129,23 +128,10 @@
   <section id="gg-countdown" class="section" style="text-align:center">
     <div class="wrap">
       <h2>Beta opens September 30</h2>
-      <div id="clock" class="count">— : — : — : —</div>
-<p class="fine">days : hours : minutes : seconds</p>
-<script>
-  (function(){
-    const launch = new Date("2025-09-30T10:00:00-05:00"); // adjust to your launch time
-    const clock = document.getElementById('clock'); const pad=n=>String(n).padStart(2,'0');
-    function tick(){
-      const s = Math.max(0, Math.floor((launch - new Date())/1000));
-      const d = Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
-      clock && (clock.textContent = `${pad(d)} : ${pad(h)} : ${pad(m)} : ${pad(sec)}`);
-      requestAnimationFrame(()=>setTimeout(tick, 1000));
-    }
-    tick();
-  })();
-</script>
-
-      <a href="https://zc.vg/bCUxg" class="button">Join the Waitlist</a>
+      <div id="clock" class="count" aria-live="polite">— : — : — : —</div>
+      <p class="fine">days : hours : minutes : seconds</p>
+      <p class="fine">Early adopters lock in beta pricing. Don’t miss kickoff.</p>
+      <a href="https://zc.vg/bCUxg" class="btn">Join the Waitlist</a>
     </div>
   </section>
 
@@ -185,34 +171,53 @@
     </div>
   </section>
 
+  <!-- MASCOT BUILDER (optional note) -->
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Mascot Prompt Builder</h2>
+      <p class="fine">Included in the <strong>Plus</strong> plan during Beta.</p>
+      <!-- Keep your existing builder embed / content here -->
+    </div>
+  </section>
+
   <!-- WAITLIST -->
-  <section id="waitlist" class="section alt" style="text-align:center">
+  <section id="waitlist" class="section" style="text-align:center">
     <div class="wrap">
       <h2>Join the Waitlist</h2>
       <p class="fine">Early access + loyalty pricing. We’ll email your link before Sept 30.</p>
-      <a href="https://zc.vg/bCUxg" class="button">Join the Waitlist</a>
+      <a href="https://zc.vg/bCUxg" class="btn">Join the Waitlist</a>
     </div>
   </section>
 
   <footer class="foot">© <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie</footer>
 
-  <!-- Countdown + CTA flip on launch -->
+  <!-- ONE countdown + CTA flip script -->
   <script>
     (function(){
-      const launch = new Date("2025-09-30T10:00:00-05:00"); // 10am CT
+      const launch = new Date("2025-09-30T10:00:00-05:00"); // 10am CT (adjust as needed)
       const clock = document.getElementById('clock');
-      const fmt = n => String(n).padStart(2,'0');
+      const pad = n => String(n).padStart(2,'0');
+
       function tick(){
-        const now = new Date(); let s = Math.max(0, Math.floor((launch - now)/1000));
-        const d = Math.floor(s/86400); s%=86400; const h = Math.floor(s/3600); s%=3600;
-        const m = Math.floor(s/60); s%=60; if(clock) clock.textContent = `${fmt(d)} : ${fmt(h)} : ${fmt(m)} : ${fmt(s)}`;
+        const now = new Date();
+        let s = Math.max(0, Math.floor((launch - now)/1000));
+        const d = Math.floor(s/86400); s%=86400;
+        const h = Math.floor(s/3600); s%=3600;
+        const m = Math.floor(s/60); s%=60;
+        if(clock) clock.textContent = `${pad(d)} : ${pad(h)} : ${pad(m)} : ${pad(s)}`;
         setTimeout(tick,1000);
       }
       tick();
-      const live = new Date() >= launch;
-      document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
-        if(live){ btn.textContent="Get the Gazette"; btn.href="/checkout"; }
-      });
+
+      // Flip CTAs to checkout after launch
+      function flipCTAs(){
+        const live = new Date() >= launch;
+        document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
+          if(live){ btn.textContent="Get the Gazette"; btn.href="/checkout"; }
+        });
+      }
+      flipCTAs();
+      setInterval(flipCTAs, 30000);
     })();
   </script>
 
