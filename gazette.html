@@ -129,7 +129,21 @@
     <div class="wrap">
       <h2>Beta opens September 30</h2>
       <div id="clock" class="count">— : — : — : —</div>
-      <p class="fine">days : hours : minutes : seconds</p>
+<p class="fine">days : hours : minutes : seconds</p>
+<script>
+  (function(){
+    const launch = new Date("2025-09-30T10:00:00-05:00"); // adjust to your launch time
+    const clock = document.getElementById('clock'); const pad=n=>String(n).padStart(2,'0');
+    function tick(){
+      const s = Math.max(0, Math.floor((launch - new Date())/1000));
+      const d = Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
+      clock && (clock.textContent = `${pad(d)} : ${pad(h)} : ${pad(m)} : ${pad(sec)}`);
+      requestAnimationFrame(()=>setTimeout(tick, 1000));
+    }
+    tick();
+  })();
+</script>
+
       <a href="https://zc.vg/bCUxg" class="btn">Join the Waitlist</a>
     </div>
   </section>
