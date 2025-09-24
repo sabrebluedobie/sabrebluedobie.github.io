@@ -3,151 +3,106 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gridiron Gazette — Weekly Fantasy League Newsletter</title>
-  <meta name="description" content="Automated weekly fantasy league newsletters — scores, storylines, standings, and custom mascots.">
-  <!-- Fonts: Graduate (titles), Inter (body), Raleway Thin Italic (quotes) -->
-  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&family=Raleway:ital,wght@1,200&display=swap" rel="stylesheet">
-
+  <title>Gridiron Gazette — Beta opens Sept 30</title>
+  <meta name="description" content="Weekly fantasy recaps with stats, awards, and a dash of Sabre. Automated Tuesday PDFs for your ESPN league." />
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Gridiron Gazette — Beta opens Sept 30">
+  <meta property="og:description" content="Weekly fantasy recaps with stats, awards, and a dash of Sabre.">
+  <meta property="og:image" content="/assets/og-gazette.jpg">
+  <meta property="og:type" content="website">
   <style>
     :root{
       --gg-cream:#fff6ec;
-      --gg-navy:#07212e;
-      --gg-brown:#915f55;
+      --gg-navy:#042d4d;
       --gg-blue:#406a9b;
       --gg-slate:#86929b;
+      --gg-amber:#f59e0b;
+      --gg-ink:#0b0f14;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    body{
-      font-family:'Inter',sans-serif;
-      color:var(--gg-navy);
-      background:#fff;
-    }
-    /* Add to your CSS */
-.gg-disabled { pointer-events:none; opacity:.5; filter:grayscale(0.2); }
-
-
-    /* Top brand strip with logo */
-    .brandbar{
-      display:flex;align-items:center;gap:12px;
-      padding:12px 18px;border-bottom:1px solid var(--gg-slate);background:#fff;
-      position:sticky;top:0;z-index:10;
-    }
-    .brandbar img{height:40px;width:auto;display:block}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--gg-navy);background:#fff}
+    .brandbar{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--gg-slate);position:sticky;top:0;background:#fff;z-index:10}
+    .brandbar img{height:40px;width:auto}
     .brandbar .wordmark{font-family:'Graduate',serif;font-size:1.15rem;letter-spacing:.5px}
-
-    /* Hero */
-    .hero{
-      display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;
-      background:var(--gg-cream);
-      padding:52px 24px;border-bottom:1px solid var(--gg-slate);
-    }
-    .wrap{max-width:1100px;margin:0 auto;width:100%}
-    h1,h2,h3,.title,.heading,.section-header{font-family:'Graduate',serif;margin:0 0 .5rem;color:var(--gg-navy)}
-    .sub{font-size:1.15rem;opacity:.9;margin:.5rem 0 1rem}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:.25rem}
-    .hero img{width:100%;border-radius:14px;object-fit:cover;border:3px solid var(--gg-blue)}
-    .badge{display:inline-block;background:var(--gg-blue);color:#fff;border-radius:999px;padding:6px 12px;font-weight:600;margin-bottom:10px}
-
-    /* Buttons */
-    .btn{
-      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;
-      background:var(--gg-navy);color:#fff;border:2px solid var(--gg-navy);
-      transition:transform .04s ease, background .2s ease, color .2s ease;
-      text-decoration:none;
-    }
-    .btn:hover{background:var(--gg-blue);border-color:var(--gg-blue)}
-    .btn:active{transform:translateY(1px)}
-    .btn.ghost{background:transparent;color:var(--gg-navy)}
-    .btn.ghost:hover{background:#ffffff55}
-
-    /* Sections */
-    .section{padding:48px 24px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .hero{position:relative;padding:56px 0;border-bottom:1px solid var(--gg-slate);background:linear-gradient(135deg,#061a27 0%,#0a2a42 60%,#0e2f4b 100%),radial-gradient(80% 60% at 50% 20%,rgba(64,106,155,.25),transparent);color:#fff}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .badge{display:inline-block;background:var(--gg-amber);color:#111;border-radius:999px;padding:6px 12px;font-weight:700;margin-bottom:10px}
+    h1,h2,h3{font-family:'Graduate',serif;margin:0 0 .5rem}
+    h1{font-size:clamp(1.9rem,4.2vw,2.7rem);color:#fff}
+    .sub{font-size:1.15rem;opacity:.95;margin:.5rem 0 1rem;color:#e6edf5}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:.5rem}
+    .btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;border:2px solid #fff;color:#0f2537;background:#fff}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.ghost{background:transparent;color:#fff;border-color:#ffffff88}
+    .btn.ghost:hover{background:#ffffff14}
+    .hero-img{width:100%;border-radius:14px;border:3px solid #173a57;box-shadow:0 10px 30px rgba(0,0,0,.4);object-fit:cover}
+    .section{padding:48px 0}
     .alt{background:var(--gg-cream)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
     .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px;background:#fff}
+    .card h3{margin-top:0}
     .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px}
     .plan{border:1px solid var(--gg-slate);border-radius:12px;padding:20px;background:#fff}
     .plan.highlight{border:2px solid var(--gg-blue)}
     .price{font-size:1.9rem;font-weight:800;color:var(--gg-navy);margin:.25rem 0 1rem}
-    .fine{opacity:.75;font-size:.9rem}
-
-    /* Quote styling */
-    blockquote,.quote{
-      font-family:'Raleway',sans-serif;font-style:italic;font-weight:200;color:var(--gg-brown);
-      border-left:4px solid var(--gg-brown);margin:16px 0;padding:8px 14px;background:#fff8f4;
-    }
-
-    /* Footer */
-    .foot{padding:28px 24px;border-top:1px solid var(--gg-slate);background:#fff;text-align:center}
-
-    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    .fine{opacity:.8;font-size:.92rem}
+    .quote{border-left:4px solid var(--gg-amber);padding:8px 14px;background:#fff8f4;color:#7a503e;margin:16px 0;border-radius:8px}
+    .count{font:800 28px/1 system-ui;letter-spacing:1px}
+    .foot{padding:28px 0;border-top:1px solid var(--gg-slate);text-align:center}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
   </style>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','776246200615205'); fbq('track','PageView');
+  </script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-6B45D1C0L8');</script>
 </head>
 <body>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '776246200615205');
-fbq('track', 'PageView');
-</script>
-
-<!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
- gtag('config', 'G-6B45D1C0L8');
-</script>
-  <!-- Brand bar with logo -->
   <div class="brandbar">
-    <!-- Swap to .png if you don't have an .svg yet -->
-    <img src="/assets/logo.PNG" onerror="this.onerror=null;this.src='/assets/logo.PNG';" alt="Gridiron Gazette logo">
-    <div class="wordmark">Gridiron Gazette</div>
+    <div class="wrap" style="display:flex;align-items:center;gap:12px">
+      <img src="/assets/logo.PNG" alt="Gridiron Gazette logo">
+      <div class="wordmark">Gridiron Gazette</div>
+    </div>
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="wrap" style="grid-column:1 / -1;display:contents"></div>
-    <div class="wrap" style="display:contents">
+  <header class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <span class="badge">New • Season Pass</span>
-        <h1>Weekly Fantasy League Newsletter</h1>
-        <p class="sub">
-          Automated Tuesday newsletters for your fantasy football league —
-          scores, storylines, standings, and custom mascots. Edited by Sabre,
-          the protective (and silly) blue Doberman.
-        </p>
+        <span class="badge">New • Beta Season</span>
+        <h1>Your weekly fantasy wrap-up. With edge.</h1>
+        <p class="sub">“I see your lineup mistakes — and I’ll write about them.” — <strong>Sabre</strong></p>
+        <p class="sub">Automated Tuesday PDFs for your ESPN league: recaps, awards, standings, and just enough snark.</p>
         <div class="cta">
-          <!-- Replace with your Stripe Payment Link(s) -->
-          <!-- <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Season Pass</a> -->
-          <a data-gg-cta href="#gg-countdown" class="btn btn-primary">Join the Waitlist</a>
-
-          <a class="btn ghost" href="#learn">Learn more</a>
+          <a data-gg-cta href="#waitlist" class="btn">Join Beta Waitlist</a>
+          <a href="#learn" class="btn ghost">How it works</a>
         </div>
         <p class="fine">Works with public & private ESPN leagues.</p>
       </div>
-      <div><img src="/assets/logo.PNG" alt="Sabre, the Gazette commissioner’s assistant"></div>
+      <div>
+        <img class="hero-img" src="/assets/hero-sabre-smoke.jpg" alt="Sabre in smoky blue, watching your box scores">
+      </div>
     </div>
-  </section>
+  </header>
 
   <!-- HOW -->
   <section id="learn" class="section">
     <div class="wrap">
-      <h2>How it works</h2>
+      <h2>How it works (3 clicks)</h2>
       <ol>
-        <li><strong>Share your League ID</strong> (and cookies if private)</li>
-        <li><strong>Add team mascots</strong> (or we’ll generate them)</li>
-        <li><strong>Every Tuesday</strong> you receive a polished Google Doc newsletter</li>
+        <li><strong>League ID</strong> — tell us your ESPN league (private or public).</li>
+        <li><strong>Mascots</strong> — bring your own or let Sabre invent them.</li>
+        <li><strong>Tuesday delivery</strong> — you get a polished PDF recap in your inbox.</li>
       </ol>
     </div>
   </section>
@@ -155,61 +110,26 @@ fbq('track', 'PageView');
   <!-- FEATURES -->
   <section class="section alt">
     <div class="wrap">
-      <h2>What’s inside</h2>
+      <h2>Inside your weekly Gazette</h2>
       <div class="grid">
-        <div class="card"><h3>Per-team recaps</h3><p>Witty but respectful write-ups with final score, key performers, and one stat-backed insight.</p></div>
-        <div class="card"><h3>Mascots & images</h3><p>Custom personas and optional images that give your league personality.</p></div>
-        <div class="card"><h3>Standings & quick hits</h3><p>Highest score, closest game, and a tidy standings snapshot every week.</p></div>
-        <div class="card"><h3>Automatic delivery</h3><p>Delivered in PDF format via link from Adobe Acrobat</p></div>
+        <div class="card"><h3>Recaps with bite</h3><p>Each team gets a breakdown, a key stat, and a respectful roast.</p></div>
+        <div class="card"><h3>Mascots & visuals</h3><p>Logos and optional images give your league personality.</p></div>
+        <div class="card"><h3>Standouts & stats</h3><p>Highest score, closest game, biggest flop — one tidy snapshot.</p></div>
+        <div class="card"><h3>Automatic delivery</h3><p>We send the PDF every Tuesday. No lift required.</p></div>
       </div>
-      <blockquote class="quote">“Protective, silly, and always on schedule — Sabre makes sure your Gazette hits Tuesday morning.”</blockquote>
+      <div class="quote">“Reliable. Snarky. On time. I don’t skip recaps.” — Sabre</div>
     </div>
   </section>
 
-  <section id="gg-countdown" style="padding:32px 0; text-align:center;">
-  <h2 style="margin:0 0 12px;">Beta opens September 30</h2>
-  <div id="clock" style="font:700 28px/1.2 system-ui;">— : — : — : —</div>
-  <p style="opacity:.8;margin:8px 0 20px;">days : hours : minutes : seconds</p>
-  <a href="https://zc.vg/bCUxg" class="btn btn-primary">Join the Waitlist</a>
-</section>
-
-<section id="waitlist" style="padding:32px 0;">
-  <h3>Join the Waitlist</h3>
-  <p style="opacity:.8">Get early access + loyalty pricing. We’ll email your link before Sept 30.</p>
-  <a href="https://zc.vg/bCUxg" class="btn btn-primary">Join the Waitlist</a>
-</section>
-
-<script>
-(function(){
-  // America/Chicago (CST/CDT) launch time. Adjust the hour if you like.
-  const launch = new Date("2025-09-30T10:00:00-05:00");
-  const clock = document.getElementById('clock');
-
-  function fmt(n){ return String(n).padStart(2,'0'); }
-  function tick(){
-    const now = new Date(); let s = Math.max(0, Math.floor((launch - now)/1000));
-    const d = Math.floor(s/86400); s%=86400;
-    const h = Math.floor(s/3600);  s%=3600;
-    const m = Math.floor(s/60);    s%=60;
-    if (clock) clock.textContent = `${fmt(d)} : ${fmt(h)} : ${fmt(m)} : ${fmt(s)}`;
-    setTimeout(tick, 1000);
-  }
-  tick();
-
-  // Gate all “Buy” buttons until launch; auto-switch on/after launch
-  const live = new Date() >= launch;
-  document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
-    if(!live){
-      btn.textContent = "Join the Waitlist";
-      btn.setAttribute('href', '#waitlist');
-    } else {
-      btn.textContent = "Get the Gazette";
-      btn.setAttribute('href', '/checkout'); // TODO: replace with your Stripe link on 9/30
-    }
-  });
-})();
-</script>
-
+  <!-- COUNTDOWN -->
+  <section id="gg-countdown" class="section" style="text-align:center">
+    <div class="wrap">
+      <h2>Beta opens September 30</h2>
+      <div id="clock" class="count">— : — : — : —</div>
+      <p class="fine">days : hours : minutes : seconds</p>
+      <a href="https://zc.vg/bCUxg" class="btn">Join the Waitlist</a>
+    </div>
+  </section>
 
   <!-- PRICING -->
   <section class="section">
@@ -219,165 +139,67 @@ fbq('track', 'PageView');
         <div class="plan">
           <h3>Starter</h3>
           <p class="price">$29 / season</p>
-          <ul><li>League intro</li><li>Per-team recaps (text)</li><li>Standings & results</li></ul>
-          <!-- Example purchase button inside pricing: -->
-          <a class="btn gg-disabled" data-gg-cta href="https://zc.vg/bCUxg">Join the Waitlist</a>
+          <ul>
+            <li>League intro</li>
+            <li>Per-team recaps (text)</li>
+            <li>Standings & results</li>
+          </ul>
+          <a class="btn" data-gg-cta href="#waitlist">Join Beta Waitlist</a>
         </div>
-        <!-- <a class="btn" href="https://buy.stripe.com/your-starter-link" target="_blank" rel="noopener">Buy Starter</a>-->
-        </div>
+
         <div class="plan highlight">
           <h3>Plus</h3>
           <p class="price">$49 / season</p>
-          <ul><li>Everything in Starter</li><li>Mascot personas</li><li>1× mascot image per team</li></ul>
-          <!-- Example purchase button inside pricing: -->
-          <a class="btn gg-disabled" data-gg-cta href="https://zc.vg/bCUxg">Join the Waitlist</a>
-
-          <!-- Gridiron Gazette – Mascot Prompt Builder (single-file) -->
-<section id="gg-prompt-builder" style="--ink:#0b0f14; --dark:#111827; --muted:#334155; --amber:#f59e0b; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; max-width:860px; margin:32px auto; padding:0 16px;">
-  <h2 style="margin:18px 0 0 0;">Mascot Prompt Builder</h2>
-  <div style="background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden;">
-    <div style="background:var(--dark); color:#e5e7eb; padding:14px 18px; display:flex; align-items:center; gap:10px;">
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);"></div>
-      <strong>Mascot Prompt Builder (Plus plan)</strong>
-    </div>
-
-    <div style="padding:18px;">
-      <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;">
-        <label>Subject / Mascot
-          <input id="pb-subject" type="text" placeholder="e.g., Doberman" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-        </label>
-        <label>Colors
-          <input id="pb-colors" type="text" placeholder="e.g., navy, steel, amber" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-        </label>
-        <label>Pose / Action
-          <input id="pb-pose" type="text" placeholder="e.g., standing with a football under one paw" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-        </label>
-        <label>Style
-          <select id="pb-style" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-            <option value="clean modern">Clean modern</option>
-            <option value="bold graphic">Bold graphic</option>
-            <option value="cartoon">Cartoon</option>
-            <option value="realistic">Realistic</option>
-            <option value="retro vintage">Retro vintage</option>
-            <option value="3D render">3D render</option>
-            <option value="hand-drawn">Hand-drawn</option>
-          </select>
-        </label>
-        <label>Props / Gear (optional)
-          <input id="pb-props" type="text" placeholder="e.g., helmet, jersey #12" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-        </label>
-        <label>Background
-          <select id="pb-bg" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px;">
-            <option value="solid background">Solid background</option>
-            <option value="stadium background">Stadium background</option>
-            <option value="football field background">Football field background</option>
-            <option value="transparent background">Transparent background</option>
-          </select>
-        </label>
-      </div>
-
-      <div style="margin-top:10px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;">
-        <label class="gg-row"><input id="pb-square" type="checkbox" checked> Square (1:1)</label>
-        <label class="gg-row"><input id="pb-notext" type="checkbox" checked> No text/lettering on image</label>
-      </div>
-
-      <hr style="margin:16px 0; border:0; border-top:1px solid #e5e7eb;">
-
-      <div>
-        <div style="font-weight:700; margin-bottom:6px;">Generated prompt</div>
-        <label for="pb-output" style="font-weight:600;display:block;margin-bottom:4px;">Generated prompt</label>
-        <textarea id="pb-output" rows="4" title="Generated mascot prompt" placeholder="Your mascot prompt will appear here..." style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:10px; font-size:15px;"></textarea>
-        <div style="display:flex; gap:10px; margin-top:10px;">
-          <button id="pb-copy" style="background:var(--amber); color:var(--ink); border:0; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;">Copy</button>
-          <small style="color:var(--muted); align-self:center;">Copy this into your Plus onboarding reply.</small>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Mascot personas</li>
+            <li>1× mascot image per team</li>
+          </ul>
+          <a class="btn" data-gg-cta href="#waitlist">Join Beta Waitlist</a>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <script>
-  (function(){
-    const els = {
-      subject: document.getElementById('pb-subject'),
-      colors:  document.getElementById('pb-colors'),
-      pose:    document.getElementById('pb-pose'),
-      style:   document.getElementById('pb-style'),
-      props:   document.getElementById('pb-props'),
-      bg:      document.getElementById('pb-bg'),
-      square:  document.getElementById('pb-square'),
-      notext:  document.getElementById('pb-notext'),
-      out:     document.getElementById('pb-output'),
-      copy:    document.getElementById('pb-copy')
-    };
-
-    const saved = JSON.parse(localStorage.getItem('gg-prompt')||'{}');
-    ['subject','colors','pose','style','props','bg','square','notext'].forEach(k=>{
-      if(saved[k]!==undefined){ if(els[k].type==='checkbox'){els[k].checked=saved[k];} else {els[k].value=saved[k];}}
-    });
-
-    function build(){
-      const s = (v)=>String(v||'').trim();
-      const parts = [];
-      if(s(els.colors.value)) parts.push(s(els.colors.value));
-      if(s(els.subject.value)) parts.push(s(els.subject.value));
-      const subject = parts.join(' ');
-      const pose = s(els.pose.value);
-      const props = s(els.props.value);
-      const style = s(els.style.value);
-      const bg = s(els.bg.value);
-
-      let line = '';
-      if(subject) line += subject.charAt(0).toUpperCase() + subject.slice(1);
-      if(pose){ line += ', ' + pose; }
-      if(props){ line += ', ' + props; }
-      if(style){ line += ', ' + style + ' style'; }
-      if(bg){ line += ', ' + bg; }
-      if(els.notext.checked){ line += ', no text or lettering'; }
-      if(els.square.checked){ line += ', square 1:1 composition'; }
-      line = line.replace(/\s+/g,' ').replace(/\s, /g, ', ');
-
-      els.out.value = '“' + line + '.”';
-      const data = {
-        subject: els.subject.value, colors: els.colors.value, pose: els.pose.value,
-        style: els.style.value, props: els.props.value, bg: els.bg.value,
-        square: els.square.checked, notext: els.notext.checked
-      };
-      localStorage.setItem('gg-prompt', JSON.stringify(data));
-    }
-
-    ['input','change'].forEach(evt=>{
-      Object.values(els).forEach(el=>{
-        if(el && el.addEventListener) el.addEventListener(evt, build);
-      });
-    });
-    build();
-
-    els.copy.addEventListener('click', async ()=>{
-      try { await navigator.clipboard.writeText(els.out.value); els.copy.textContent='Copied!'; setTimeout(()=>els.copy.textContent='Copy',1200); }
-      catch(e){ alert('Copy failed—select and copy manually.'); }
-    });
-  })();
-  </script>
-</section>
-
-
-          <!-- <a class="btn" href="https://buy.stripe.com/your-plus-link" target="_blank" rel="noopener">Buy Plus</a> -->
-        </div>
         <div class="plan">
           <h3>Commissioner</h3>
-          <p class="price">Not Available in Beta</p>
-          <!-- <ul><li>Everything in Plus</li><li>Discord/Email delivery</li><li>PDF export included</li></ul>
-          <a class="btn" href="https://buy.stripe.com/your-commissioner-link" target="_blank" rel="noopener">Buy Commissioner</a>
-        </div> -->
+          <p class="price">Not available in Beta</p>
+        </div>
       </div>
       <p class="fine">Beta pricing. Limited early-adopter slots.</p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <div class="foot">
-    © <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie
-  </div>
-  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
+  <!-- WAITLIST -->
+  <section id="waitlist" class="section alt" style="text-align:center">
+    <div class="wrap">
+      <h2>Join the Waitlist</h2>
+      <p class="fine">Early access + loyalty pricing. We’ll email your link before Sept 30.</p>
+      <a href="https://zc.vg/bCUxg" class="btn">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <footer class="foot">© <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie</footer>
+
+  <!-- Countdown + CTA flip on launch -->
+  <script>
+    (function(){
+      const launch = new Date("2025-09-30T10:00:00-05:00"); // 10am CT
+      const clock = document.getElementById('clock');
+      const fmt = n => String(n).padStart(2,'0');
+      function tick(){
+        const now = new Date(); let s = Math.max(0, Math.floor((launch - now)/1000));
+        const d = Math.floor(s/86400); s%=86400; const h = Math.floor(s/3600); s%=3600;
+        const m = Math.floor(s/60); s%=60; if(clock) clock.textContent = `${fmt(d)} : ${fmt(h)} : ${fmt(m)} : ${fmt(s)}`;
+        setTimeout(tick,1000);
+      }
+      tick();
+      const live = new Date() >= launch;
+      document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
+        if(live){ btn.textContent="Get the Gazette"; btn.href="/checkout"; }
+      });
+    })();
+  </script>
+
+  <!-- Zoho chat (unchanged) -->
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}};</script>
+  <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
 </body>
 </html>

@@ -3,96 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>&#x1F3C8; Thank You — Gridiron Gazette by Bluedobie &#x1F3C8;</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Thanks! — Gridiron Gazette</title>
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #042d4d;
-      background: #ececec;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.5em;
-      color: #042d4d;
-    }
-    p {
-      max-width: 600px;
-      margin: 0 auto 1em;
-      font-size: 1.125rem;
-      line-height: 1.6;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      background: #042d4d;
-      color: #fff;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-    .btn:hover { background: #06406f; }
-    img {
-      max-width: 260px;
-      border-radius: 12px;
-      margin-top: 2em;
-    }
-    footer {
-      margin-top: 2em;
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
+    :root{--gg-navy:#042d4d;--gg-blue:#406a9b;--gg-slate:#86929b}
+    body{font-family:'Inter',sans-serif;color:var(--gg-navy);background:#ececec;margin:0;min-height:100vh;display:grid;place-items:center}
+    .wrap{max-width:720px;margin:0 auto;padding:24px;text-align:center;background:#fff;border:1px solid var(--gg-slate);border-radius:14px}
+    h1{font-family:'Graduate',serif;font-size:clamp(2rem,4vw,2.6rem);margin:0 0 .5rem}
+    p{font-size:1.1rem;line-height:1.6;margin:.25rem 0}
+    .btn{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;background:var(--gg-navy);color:#fff}
+    .subtle{opacity:.8}
+    img{max-width:200px;margin-top:18px;border-radius:10px}
+    footer{margin-top:16px;font-size:.85rem;opacity:.7}
   </style>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','776246200615205'); fbq('track','PageView'); fbq('track','CompleteRegistration');
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-6B45D1C0L8');</script>
 </head>
 <body>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '776246200615205');
-fbq('track', 'PageView');
-</script>
-
-<!-- End Meta Pixel Code -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
- gtag('config', 'G-6B45D1C0L8');
-</script>
-  <main>
-    <h1>&#x1F3C8; Thank You! &#x1F3C8;</h1>
-    <p>Your league is now subscribed to the <strong>Gridiron Gazette</strong>.</p>
-    <p>
-      We’ll be in touch shortly with setup instructions (League ID &amp; mascots).  
-      Look out for your first newsletter on Tuesday morning! (Our very first edition drops October 7th)
-    </p>
-    <a class="btn" href="/">Return to Bluedobie</a>
-    <div>
-      <img src="assets/logo.PNG" alt="Sabre, the blue Doberman commissioner’s assistant" />
-    </div>
+  <main class="wrap">
+    <h1>Thank you! 🏈</h1>
+    <p>Your league is on the list for <strong>Gridiron Gazette</strong> beta.</p>
+    <p class="subtle">We’ll send setup instructions (League ID & mascots). Watch your inbox for Tuesday delivery.</p>
+    <a class="btn" href="/gazette">Back to Gazette</a>
+    <div><img src="/assets/logo.PNG" alt="Sabre, the blue Doberman commissioner’s assistant"></div>
+    <footer>© <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie</footer>
   </main>
-  <footer>
-    © <script>document.write(new Date().getFullYear());</script> Bluedobie Developing
-  </footer>
-  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
+
+  <!-- Zoho chat (unchanged) -->
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}};</script>
+  <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
 </body>
 </html>
