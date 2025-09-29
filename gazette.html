@@ -220,15 +220,21 @@
       tick();
 
       // Flip CTAs to checkout after launch
-      function flipCTAs(){
-        const live = new Date() >= launch;
-        document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
-          if(live){ btn.textContent="Get the Gazette"; btn.href="/checkout"; }
-        });
+function flipCTAs(){
+  const live = new Date() >= launch;
+  document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
+    if(live){ 
+      btn.textContent="Get the Gazette"; 
+      // Check if this is the Plus plan button (highlighted plan)
+      if(btn.closest('.plan.highlight')){
+        btn.href="https://buy.stripe.com/28EfZidRl5nh3GAfzX0x202";
+      } else {
+        // All other buttons go to Starter plan
+        btn.href="https://buy.stripe.com/fZudRa8x17vp0uogE10x201";  
       }
-      flipCTAs();
-      setInterval(flipCTAs, 30000);
-    })();
+    }
+  });
+}
   </script>
 
   <!-- Zoho chat (unchanged) -->
