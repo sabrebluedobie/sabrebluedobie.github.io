@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascot Prompt Builder - Gridiron Gazette</title>
+    <style>
+        :root {
+            --gg-cream: #fff6ec;
+            --gg-navy: #042d4d;
+            --gg-blue: #406a9b;
+            --gg-slate: #86929b;
+            --gg-amber: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--gg-cream);
+            color: var(--gg-navy);
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-family: 'Graduate', serif;
+            color: var(--gg-navy);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--gg-navy);
+        }
+        
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--gg-slate);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gg-blue);
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .generate-btn {
+            background: var(--gg-blue);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .generate-btn:hover {
+            background: var(--gg-navy);
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--gg-cream);
+            border-radius: 8px;
+            border-left: 4px solid var(--gg-amber);
+        }
+        
+        .prompt-output {
+            background: white;
+            padding: 15px;
+            border: 1px solid var(--gg-slate);
+            border-radius: 6px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .copy-btn {
+            background: var(--gg-amber);
+            color: var(--gg-navy);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .copy-btn:hover {
+            filter: brightness(0.9);
+        }
+        
+        .email-section {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏈 Mascot Prompt Builder</h1>
+        <p style="text-align: center; color: var(--gg-slate); margin-bottom: 30px;">
+            Create the perfect AI prompt for your team's mascot. Available with Plus plan.
+        </p>
+        
+        <form id="mascotForm">
+            <div class="form-group">
+                <label for="teamName">Team Name *</label>
+                <input type="text" id="teamName" name="teamName" placeholder="e.g., Dallas Cowboys, Seattle Seahawks" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="teamColors">Team Colors *</label>
+                <input type="text" id="teamColors" name="teamColors" placeholder="e.g., navy blue and silver, red and gold" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mascotType">Mascot Type *</label>
+                <select id="mascotType" name="mascotType" required>
+                    <option value="">Choose a type</option>
+                    <option value="animal">Animal (bear, eagle, lion, etc.)</option>
+                    <option value="person">Person (cowboy, pirate, warrior, etc.)</option>
+                    <option value="object">Object (bolt, star, machine, etc.)</option>
+                    <option value="mythical">Mythical Creature (dragon, phoenix, etc.)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="specificMascot">Specific Mascot/Character</label>
+                <input type="text" id="specificMascot" name="specificMascot" placeholder="e.g., cowboy, eagle, pirate, knight">
+                <small style="color: var(--gg-slate);">Be specific: "cowboy" not just "person"</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="artStyle">Art Style *</label>
+                <select id="artStyle" name="artStyle" required>
+                    <option value="">Choose a style</option>
+                    <option value="vintage sports poster">Vintage Sports Poster</option>
+                    <option value="modern cartoon">Modern Cartoon</option>
+                    <option value="realistic digital art">Realistic Digital Art</option>
+                    <option value="comic book style">Comic Book Style</option>
+                    <option value="retro illustration">Retro Illustration</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Personality Traits</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tough" name="personality" value="tough">
+                        <label for="tough">Tough</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="heroic" name="personality" value="heroic">
+                        <label for="heroic">Heroic</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="friendly" name="personality" value="friendly">
+                        <label for="friendly">Friendly</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="mischievous" name="personality" value="mischievous">
+                        <label for="mischievous">Mischievous</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="determined" name="personality" value="determined">
+                        <label for="determined">Determined</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="confident" name="personality" value="confident">
+                        <label for="confident">Confident</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="setting">Background/Setting</label>
+                <select id="setting" name="setting">
+                    <option value="">Choose background</option>
+                    <option value="football field">Football Field</option>
+                    <option value="team stadium">Team Stadium</option>
+                    <option value="city skyline">City Skyline</option>
+                    <option value="nature landscape">Nature Landscape</option>
+                    <option value="abstract geometric">Abstract/Geometric</option>
+                    <option value="vintage texture">Vintage Texture</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="action">Action/Pose</label>
+                <select id="action" name="action">
+                    <option value="">Choose action</option>
+                    <option value="running with football">Running with Football</option>
+                    <option value="throwing football">Throwing Football</option>
+                    <option value="celebratory pose">Victory/Celebration Pose</option>
+                    <option value="defensive stance">Defensive Stance</option>
+                    <option value="pointing forward">Pointing Forward</option>
+                    <option value="arms crossed">Arms Crossed (confident)</option>
+                </select>
+            </div>
+            
+            <button type="button" class="generate-btn" onclick="generatePrompt()">
+                🎨 Generate Mascot Prompt
+            </button>
+        </form>
+        
+        <div class="output-section" id="outputSection" style="display: none;">
+            <h3>Your AI Prompt:</h3>
+            <div class="prompt-output" id="promptOutput"></div>
+            <button class="copy-btn" onclick="copyPrompt()">📋 Copy Prompt</button>
+            
+            <div class="email-section">
+                <h4>📧 Send to Gridiron Gazette</h4>
+                <p>Copy the prompt above and email it to: <strong>gridirongazette@bluedobiedev.com</strong></p>
+                <p>Include your team name in the subject line: "Mascot Request - [Team Name]"</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function generatePrompt() {
+            const form = document.getElementById('mascotForm');
+            const formData = new FormData(form);
+            
+            const teamName = formData.get('teamName');
+            const teamColors = formData.get('teamColors');
+            const mascotType = formData.get('mascotType');
+            const specificMascot = formData.get('specificMascot');
+            const artStyle = formData.get('artStyle');
+            const setting = formData.get('setting');
+            const action = formData.get('action');
+            
+            // Get selected personality traits
+            const personalityTraits = [];
+            const checkboxes = document.querySelectorAll('input[name="personality"]:checked');
+            checkboxes.forEach(cb => personalityTraits.push(cb.value));
+            
+            if (!teamName || !teamColors || !mascotType || !artStyle) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+            
+            // Build the prompt
+            let prompt = `Create a ${artStyle} style mascot `;
+            
+            if (specificMascot) {
+                prompt += `of a ${personalityTraits.join(', ')} ${specificMascot} character `;
+            } else {
+                prompt += `featuring a ${personalityTraits.join(', ')} ${mascotType} `;
+            }
+            
+            prompt += `in ${teamColors} colors for the ${teamName}. `;
+            
+            if (action) {
+                prompt += `Show the character ${action}. `;
+            }
+            
+            if (setting) {
+                prompt += `Background should be ${setting}. `;
+            }
+            
+            prompt += `Art style should be clean with bold colors and professional sports team logo quality. High resolution, suitable for team branding.`;
+            
+            // Display the prompt
+            document.getElementById('promptOutput').textContent = prompt;
+            document.getElementById('outputSection').style.display = 'block';
+            
+            // Scroll to output
+            document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function copyPrompt() {
+            const promptText = document.getElementById('promptOutput').textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
