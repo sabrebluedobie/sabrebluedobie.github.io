@@ -31,6 +31,17 @@
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-6B45D1C0L8');</script>
+  <!--Paramount Pixel</title>-->
+<script type="text/javascript" src="https://qscripts.s3.amazonaws.com/pscript.js"></script>
+<script>
+qbit('event', 'site_visit', {
+  agid: '1480',
+  adid: '961532',
+  referrer: document.referrer,
+  site_url: window.location.href,
+  timestamp: Date.now()
+ });
+</script>
 </head>
 <body>
   <main class="wrap">
@@ -46,5 +57,18 @@
   <!-- Zoho chat (unchanged) -->
   <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}};</script>
   <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
+  <!--Paramount Pixel</title>-->
+<script type="text/javascript" src="https://qscripts.s3.amazonaws.com/pscript.js"></script>
+<script>
+qbit('event', 'purchase', {
+  value: {checkout_value},
+  referrer: document.referrer,
+  site_url: window.location.href,
+  agid: '1480',
+  adid: '961532',
+  timestamp: Date.now() 
+ });
+</script>
+
 </body>
 </html>
