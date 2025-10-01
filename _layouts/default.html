@@ -1,116 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }}</title>
-
-  {%- assign canonical = page.url | absolute_url -%}
-  {%- assign og_desc = page.excerpt | default: page.content | strip_html | truncate: 160 -%}
-  {%- assign og_image = page.image | default: "/assets/images/bluedobielogo_1.webp" -%}
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="{{ page.title }}">
-  <meta property="og:description" content="{{ og_desc }}">
-  <meta property="og:image" content="{{ og_image | absolute_url }}">
-  <meta property="og:url" content="{{ canonical }}">
-  <meta property="og:type" content="{% if page.layout == 'post' or page.collection == 'posts' %}article{% else %}website{% endif %}">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="{{ page.title }}">
-  <meta property="twitter:description" content="{{ og_desc }}">
-  <meta property="twitter:image" content="{{ og_image | absolute_url }}">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="{{ canonical }}">
-
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/assets/images/webclip.png">
-
-  <!-- Fonts & CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Site styles (order: reset → framework → theme) -->
-  <link href="/assets/css/normalize.css" rel="stylesheet">
-  <link href="/assets/css/webflow.css" rel="stylesheet">
-  <link href="/assets/css/bluedobie-developing-redesign.webflow.css" rel="stylesheet">
-  <link href="/assets/css/style.css" rel="stylesheet">
-
-  <!-- Google Verification -->
-  <meta name="google-site-verification" content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY">
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config', 'G-6B45D1C0L8');
-  </script>
-
-  <!-- Lazy load helper (non-blocking) -->
-  <script>
-    { /* small, safe lazy loader */ }
-    (function(){
-      function load(){
-        document.querySelectorAll("script[data-type='lazy']")
-          .forEach(el => el.src = el.dataset.src);
-        document.querySelectorAll("iframe[data-type='lazy']")
-          .forEach(el => el.src = el.dataset.src);
-      }
-      const timer = setTimeout(load, 5000);
-      ["mouseover","keydown","touchmove","touchstart"].forEach(evt=>{
-        window.addEventListener(evt, ()=>{ load(); clearTimeout(timer); }, {once:true, passive:true});
-      });
-    })();
-  </script>
+  {% include head.html %}
 </head>
+
 <body>
   {% include nav.html %}
-
-  <div class="container">
-    <main>
-      {{ content }}
-    </main>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="/about.html" class="footer-link">About Us</a>
-        <a href="/services.html" class="footer-link">Services</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="/FAQ.html" class="footer-link">FAQ’s</a>
-        <a href="/business-links.html" class="footer-link">Our Links</a>
-        <a href="/privacy.html" class="footer-link">Privacy Policy</a>
-      </div>
-      <div class="footer-brand">
-        <a href="/"><img src="/assets/images/bluedobielogo_1.webp" alt="Bluedobie Developing Logo" class="footer-logo" width="120" height="120" loading="lazy"></a>
-        <p class="footer-text">&copy; {{ "now" | date: "%Y" }} Bluedobie Developing. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <style>
-    .footer{background:#000;color:#fff;padding:2em 1em;text-align:center}
-    .footer-container{display:flex;flex-direction:column;align-items:center;gap:1em}
-    .footer-links{display:flex;gap:1.5em;flex-wrap:wrap;justify-content:center}
-    .footer-link{color:#fff;text-decoration:none;font-size:.9em;transition:color .2s}
-    .footer-link:hover{color:#ffd700}
-    .footer-logo{width:120px;height:auto;margin-bottom:.5em}
-    .footer-text{font-size:.8em;margin:0}
-  </style>
-  
-{% include footer.html %}
-{% include footer-scripts.html %}
-
-  
-  <!-- App scripts (defer to avoid blocking) -->
+  <main class="container">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  {% include footer-scripts.html %}
   <script src="/assets/js/dropdown.js" defer></script>
   <script src="/assets/js/webflow.js" defer></script>
 </body>
+
 </html>

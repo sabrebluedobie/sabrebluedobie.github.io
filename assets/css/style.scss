@@ -14,4 +14,26 @@ scss
 .footer-link:hover{color:#ffd700}
 .footer-logo{width:120px;height:auto;margin-bottom:.5em;display:block}
 .footer-text{margin:0;font-size:.85rem;color:#e5e7eb}
+.post-wrap{max-width:860px;margin:0 auto;padding:1.25rem}
+.post-hero{margin:1rem 0 1.25rem}
+.post-cover{margin:0 0 1rem;border-radius:16px;overflow:hidden}
+.post-cover img{width:100%;height:auto;display:block}
+.post-title{font-family:"Instrument Serif",serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:.25rem 0}
+.post-meta{color:#64748b;font-size:.95rem;margin:.25rem 0 1rem}
+.post-excerpt{font-size:1.1rem;color:#334155;margin:.5rem 0 0}
+.post-content{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:1.05rem;line-height:1.7;color:#0f172a}
+.post-content h2{margin-top:2rem}
+.post-content img{max-width:100%;height:auto;border-radius:12px}
+.post-content pre{overflow:auto;background:#0f172a;color:#fff;padding:1rem;border-radius:12px}
+.post-content code{background:#f1f5f9;padding:.1rem .25rem;border-radius:6px}
+.post-toc{border:1px solid #e5e7eb;border-radius:12px;padding:.75rem 1rem;margin:1rem 0}
+.post-toc ul{margin:.5rem 0 0;padding-left:1rem}
+.post-tags{margin:1.25rem 0;display:flex;gap:.5rem;flex-wrap:wrap}
+.post-tags .tag{border:1px solid #94a3b8;border-radius:999px;padding:.25rem .55rem;font-size:.9rem;color:#334155;text-decoration:none}
+.post-tags .tag:hover{border-color:#0f172a;color:#0f172a}
+.post-share{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.post-share .btn{border:1px solid #0f172a;border-radius:10px;padding:.45rem .7rem;text-decoration:none;color:#0f172a}
+.post-nav{display:flex;justify-content:space-between;margin:2rem 0}
+.post-nav a{text-decoration:none;color:#0f172a}
+
 

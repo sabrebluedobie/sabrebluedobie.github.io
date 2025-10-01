@@ -1,0 +1,116 @@
+---
+layout: post
+title: "How CaptionCraft Helps You Post in 5 Minutes"
+date: 2025-10-01
+updated: 2025-10-01
+author: "Melanie Brown"
+excerpt: "A quick tour of how we build consistent, on-brand posts with CaptionCraft."
+image: /assets/blog/captioncraft-hero.jpg
+tags: [dobiecore, captioncraft, social]
+toc: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% include nav.html %}
+
+  <article class="post-wrap" itemscope itemtype="https://schema.org/BlogPosting">
+    {%- assign cover = page.image | default: nil -%}
+
+    <!-- Hero -->
+    <header class="post-hero">
+      {%- if cover -%}
+      <figure class="post-cover">
+        <img src="{{ cover | relative_url }}" alt="{{ page.title | escape }}" loading="eager" width="1600" height="900">
+      </figure>
+      {%- endif -%}
+
+      <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: "%B %e, %Y" }}
+        </time>
+        {%- if page.author or site.author -%}
+        · <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{{ page.author | default: site.author | default: "Bluedobie Developing" }}</span>
+          </span>
+        {%- endif -%}
+        {%- if page.updated -%}
+        · <span class="updated" itemprop="dateModified">{{ page.updated | date: "%B %e, %Y" }}</span>
+        {%- endif -%}
+        · <span class="reading-time">
+          {{ page.content | number_of_words | divided_by:200 | at_least:1 }} min read
+        </span>
+      </div>
+
+      {%- if page.excerpt -%}
+      <p class="post-excerpt">{{ page.excerpt | strip_html }}</p>
+      {%- endif -%}
+    </header>
+
+    <!-- Optional Table of Contents -->
+    {%- if page.toc == true -%}
+    <nav class="post-toc" aria-label="Table of contents">
+      <strong>On this page</strong>
+      <ul>
+        {%- assign headers = content | split:"\n" | where_exp:"h","h contains '## '" -%}
+        {%- for h in headers -%}
+          {%- assign id = h | strip_html | strip | downcase | replace:' ','-' | replace:'/','-' -%}
+          <li><a href="#{{ id }}">{{ h | remove: '## ' }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+    {%- endif -%}
+
+    <!-- Content -->
+    <div class="post-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    <!-- Tags -->
+    {%- if page.tags and page.tags.size > 0 -%}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <a class="tag" href="{{ '/tags/' | append: tag | slugify | append: '/' | relative_url }}">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {%- endif -%}
+
+    <!-- Share -->
+    <div class="post-share">
+      <a class="btn share"
+         href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ page.url | absolute_url | uri_escape }}"
+         target="_blank" rel="noopener">Share on X</a>
+      <a class="btn share"
+         href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | uri_escape }}"
+         target="_blank" rel="noopener">Share on Facebook</a>
+      <a class="btn share"
+         href="mailto:?subject={{ page.title | uri_escape }}&body={{ page.url | absolute_url | uri_escape }}">Email</a>
+    </div>
+
+    <!-- Prev/Next -->
+    <nav class="post-nav" aria-label="Post navigation">
+      {%- if page.previous -%}
+        <a class="prev" href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
+      {%- endif -%}
+      {%- if page.next -%}
+        <a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
+      {%- endif -%}
+    </nav>
+
+    <!-- Structured data (enhanced) -->
+    <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
+    <meta itemprop="image" content="{{ (page.image | default: '/assets/images/bluedobielogo_1.webp') | absolute_url }}">
+  </article>
+
+  {% include footer.html %}
+  {% include footer-scripts.html %}
+  <script src="/assets/js/dropdown.js" defer></script>
+  <script src="/assets/js/webflow.js" defer></script>
+</body>
+</html>
