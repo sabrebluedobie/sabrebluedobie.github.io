@@ -1,142 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sales Page | Bluedobie Developing</title>
-
-  <!-- Fonts: Instrument Serif (titles) + Inter (body) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales | Bluedobie Developing</title>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Lightweight styles -->
-  <style>
-    :root{
-      --brand:#042d4d; --text:#222; --muted:#666; --bg:#5a666f;
-      --card:#fff; --border:#e6e6e6; --shadow:0 2px 6px rgba(0,0,0,.05);
-    }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text);}
-    .wrap{max-width:960px; margin:24px auto; padding:0 16px;}
-    .site-header{display:flex; align-items:center; gap:12px; padding:16px; background:#fff; border-bottom:1px solid var(--border);}
-    .site-header img{height:56px; width:auto;}
-    .site-title{font-family:'Instrument Serif',serif; font-size:1.5rem; margin:0;}
-    .content{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin:18px 0; box-shadow:var(--shadow);}
-    h1,h2,h3{font-family:'Instrument Serif',serif; margin:.25rem 0 .75rem;}
-    .muted{color:var(--muted)}
-    .cta-button{display:inline-block; padding:.75rem 1.25rem; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; border-radius:8px; border:none; cursor:pointer;}
-    .cta-button:hover{filter:brightness(1.05)}
-    .tiers{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-top:1rem;}
-    .card{background:#ececec; border:1px solid #e5e5e5; border-radius:12px; padding:1.25rem; text-align:center; box-shadow:var(--shadow); transition:transform .2s;}
-    .card:hover{transform:translateY(-4px)}
-    .price{font-weight:800; font-size:1.25rem; margin:.5rem 0 1rem;}
-    .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
-    .sabre{display:grid; grid-template-columns: 100px 1fr; gap:14px; align-items:center;}
-    .sabre img{width:100px; height:100px; object-fit:cover; border-radius:12px; border:1px solid var(--border);}
-    @media (max-width:640px){ .sabre{grid-template-columns:1fr} .sabre img{width:100%; height:160px}}
-  </style>
+  <link href="/css/app.css" rel="stylesheet">
+  <link href="/css/sales.css" rel="stylesheet">
 </head>
 <body>
   <header class="site-header">
-    <img src="images/logo-nobkg_1.webp" alt="Bluedobie Logo">
-    <h1 class="site-title">Bluedobie Developing</h1>
-    <a href="index.html" style="margin-left:auto; text-decoration:none;">Home</a>
+    <img src="images/logo-nobkg_1.webp" alt="Bluedobie Logo" />
+    <div class="site-title">Bluedobie Developing — Offers</div>
+    <a href="index.html" class="back-link">→ Go to QuickSpin</a>
   </header>
 
   <div class="wrap">
-    <section class="content">
-      <h2>Why Choose Bluedobie Developing?</h2>
-      <ul>
-        <li><strong>Affordable, No-Nonsense Web Design</strong> – professional sites without inflated costs.</li>
-        <li><strong>Fast Setup, Stress-Free</strong> – streamlined builds so you can focus on your business.</li>
-        <li><strong>Local Support You Can Trust</strong> – direct help from someone who understands small biz needs.</li>
-      </ul>
+    <section class="content" aria-labelledby="store-intro">
+      <h2 id="store-intro">Pick your tool, grow your reach</h2>
+      <p class="muted">Cards below link to focused landing pages. Keep it simple now; scale into a full store later.</p>
+      <div class="filters">
+        <button class="pill active" data-filter="all">All</button>
+        <button class="pill" data-filter="social">Social</button>
+        <button class="pill" data-filter="branding">Branding</button>
+        <button class="pill" data-filter="analytics">Analytics</button>
+      </div>
     </section>
 
-    <!-- <section class="content" id="quickspin"style="box-shadow:0 7px 20px rgba(0,0,0,.5);">
-      <h2>DobieCore ContentCraft: AI Social Posts in Seconds</h2>
-      <p class="muted">Generate clean, on-brand post ideas in seconds. Perfect for busy small businesses.</p>
+    <section class="content">
+      <div class="card-grid" id="product-grid">
+        <!-- Product Card: QuickSpin Starter -->
+        <article class="card" data-tags="social">
+          <img src="images/quickspin-card.webp" alt="QuickSpin Starter preview" class="card-img"/>
+          <div class="card-body">
+            <h3 class="card-title">QuickSpin Starter</h3>
+            <p class="card-text">AI captions, clean hashtags, lifetime access. Show up consistently without burnout.</p>
+            <div class="card-meta">
+              <span class="price">$29 one-time</span>
+              <span class="badge">Social</span>
+            </div>
+            <div class="card-actions">
+              <a href="quickspin.html" class="cta-button">Open Tool</a>
+              <a href="quickspin-landing.html" class="cta-button cta-ghost">Learn More</a>
+            </div>
+          </div>
+        </article>
 
-      <div class="tiers">
-        <div class="card">
-          <h3>ContentCraft (formerly Quickspin) Starter</h3>
-          <p style="color: rgb(186, 4, 4);">One-time purchase • Lifetime access</p>
-          <ul style="text-align:left; line-height:1.5;">
-            <li>AI captions (short + medium)</li>
-            <li>Smart, no-spam hashtags</li>
-            <li>Clear CTA to your services</li>
-          </ul>
-          <p class="price">$29</p>
-          <p class="cta-row">
-             Your live Stripe link
-            <a class="cta-button" href="https://buy.stripe.com/8x25kE8x14jd5OI5Zn0x200" target="_blank" rel="noopener">Get DobieCare ContentCraft Starter</a>
-            <a class="cta-button" href="quickspin.html">Try the Tool</a>
-          </p>
-          <p class="muted" style="margin-top:.5rem;">Sabre-approved: fast, loyal, always on watch.</p>
-        </div>-->
+        <!-- Product Card: Gridiron Gazette -->
+        <article class="card" data-tags="social analytics">
+          <img src="images/gazette-card.webp" alt="Gridiron Gazette preview" class="card-img"/>
+          <div class="card-body">
+            <h3 class="card-title">Gridiron Gazette</h3>
+            <p class="card-text">Weekly fantasy recap PDFs + Sabre’s snark. Engagement rocket fuel for your league.</p>
+            <div class="card-meta">
+              <span class="price">$9/week per league</span>
+              <span class="badge">Social</span><span class="badge">Analytics</span>
+            </div>
+            <div class="card-actions">
+              <a href="gazette.html" class="cta-button">Get Started</a>
+              <a href="gazette-landing.html" class="cta-button cta-ghost">See Sample</a>
+            </div>
+          </div>
+        </article>
 
-        <!-- Gridiron Gazette Product Card -->
-<section class="gg-section gg-wrap card" id="gazette">
-  <div class="gg-container">
-  <h2>Gridiron Gazette — Weekly Fantasy League Newsletter</h2>
-  <h2 class="gg-h2">Season pricing</h2>
-
-    <div class="gg-grid" style="margin-top:12px;">
-      <!-- Starter -->
-      <div class="gg-card">
-        <h3 style="margin:0 0 4px;">Starter</h3>
-        <div style="margin:8px 0 14px;"><strong>$29 / season</strong></div>
-        <ul class="gg-small" style="margin:0 0 12px; padding-left:0; list-style:none;">
-          <li>League intro</li>
-          <li>Per-team recaps (text)</li>
-          <li>Standings &amp; results</li>
-        </ul>
-        <a class="gg-btn cta-button" data-gg-cta data-plan="starter" href="https://zc.vg/bCUxg">Join the Waitlist</a>
+        <!-- Product Card: Logo Sprint -->
+        <article class="card" data-tags="branding">
+          <img src="images/logo-sprint-card.webp" alt="Logo Sprint preview" class="card-img"/>
+          <div class="card-body">
+            <h3 class="card-title">Logo Sprint</h3>
+            <p class="card-text">Rapid AI-assisted logo iterations + vector polish. From mood to mark in days.</p>
+            <div class="card-meta">
+              <span class="price">$99 flat</span>
+              <span class="badge">Branding</span>
+            </div>
+            <div class="card-actions">
+              <a href="logo-sprint.html" class="cta-button">Start Sprint</a>
+              <a href="logo-sprint-landing.html" class="cta-button cta-ghost">What You Get</a>
+            </div>
+          </div>
+        </article>
       </div>
-
-      <!-- Plus -->
-      <div class="gg-card">
-        <h3 style="margin:0 0 4px; margin-top: 10px">Plus</h3>
-        <div style="margin:8px 0 14px;"><strong>$49 / season</strong></div>
-        <ul class="gg-small" style="margin:0 0 12px; padding-left:0; list-style:none;">
-  <li>Everything in Starter</li>
-  <li>Mascot personas</li>
-  <li>1× mascot image per team</li>
-</ul>
-        <a class="gg-btn cta-button" data-gg-cta data-plan="plus" href="https://zc.vg/bCUxg" title="Join the Waitlist">Join the Waitlist</a>
-      </div>
-    </div>
-
-    <p class="gg-small" style="margin-top:14px;">Beta pricing. Limited early-adopter slots.</p>
+    </section>
   </div>
-</section>
-<hr>
 
-        <div class="card">
-          <h3>Templates Bundle (Coming Soon)</h3>
-          <p>Plug-and-play Canva templates</p>
-          <p class="muted">Launching after ContentCraft.</p>
-        </div>
-      </div>
-    
-
-    <!-- Sabre Story -->
-    <section class="content">
-      <div class="sabre">
-        <!-- Optional: replace with a smaller, web-optimized image of Sabre if you add one to /images -->
-        <img src="images/sabresmile-p-500.webp" alt="Sabre badge">
-        <div>
-          <h3>🐾 Sabre-Approved</h3>
-          <p>Gridiron Gazette is inspired by Sabre—our blue (grey) Doberman and snarky sideline reporter. We turn your ESPN league data into polished, weekly recaps so you spend less time wrangling box scores and more time enjoying the season.</p>
-<p class="muted">Sabre brings the bite; Gridiron Gazette brings the recap.</p>
-        </div>
-      </div>
-    </section>
-    <!-- Contact / Consultation -->
-
-
-    <section class="content">
-      <h3>Questions?</h3>
-      <p><a href="https://bluedobiedev.com/contact" class="cta-button">Book Your Free 30-Minute Consultation</a></p>
-    </section>
+  <script>
+    // Simple tag filter
+    const grid = document.getElementById('product-grid');
+    const pills = document.querySelectorAll('.pill');
+    pills.forEach(p => p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const tag = p.dataset.filter;
+      grid.querySelectorAll('.card').forEach(card => {
+        if (tag === 'all') { card.style.display = ''; return; }
+        const tags = (card.getAttribute('data-tags')||'').split(/\s+/);
+        card.style.display = tags.includes(tag) ? '' : 'none';
+      });
+    }));
+  </script>
 </body>
 </html>
