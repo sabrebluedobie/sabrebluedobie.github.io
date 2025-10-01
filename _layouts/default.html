@@ -104,20 +104,11 @@
     .footer-logo{width:120px;height:auto;margin-bottom:.5em}
     .footer-text{font-size:.8em;margin:0}
   </style>
+  
+{% include footer.html %}
+{% include footer-scripts.html %}
 
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
-      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','776246200615205'); fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1" alt=""></noscript>
-
+  
   <!-- App scripts (defer to avoid blocking) -->
   <script src="/assets/js/dropdown.js" defer></script>
   <script src="/assets/js/webflow.js" defer></script>

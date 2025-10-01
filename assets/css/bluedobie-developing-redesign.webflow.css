@@ -11156,3 +11156,12 @@ div.description {
     aspect-ratio: 16 / 9; /* Maintains correct ratio */
     display: block;
 }
+
+.booking-iframe {
+  width: 90%; /* Adjusts width based on screen */
+    max-width: 1294px; /* Keeps Shorts format */
+    height: 800px;
+    display: block;
+    border: none;
+    margin: 20px auto;
+}
