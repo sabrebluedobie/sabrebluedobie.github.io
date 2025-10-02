@@ -103,6 +103,7 @@
       line-height: 1.2;
       margin: 0 0 20px 0;
       font-weight: 400;
+      color: #fff6ec;
       text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.5);
     }
     
@@ -279,10 +280,17 @@
     @media (max-width: 768px) {
       .hero-buttons {
         flex-direction: column;
+        gap: 10px;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
       }
       
       .section {
-        padding: 60px 20px;
+        padding: 50px 15px;
       }
       
       .container {
@@ -292,6 +300,30 @@
       .services-grid,
       .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .intro-text {
+        font-size: 1.05rem;
+      }
+      
+      .why-list {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+      
+      .service-card,
+      .testimonial {
+        padding: 20px;
       }
       
       img {
