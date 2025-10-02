@@ -53,6 +53,46 @@ p, li{ font-size: var(--step-0); line-height: 1.6; }
 .site-nav .nav-menu{
   display: flex; gap: 18px; flex-wrap: wrap;
 }
+
+/* 3-up -> 2-up -> 1-up */
+.three-up{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+}
+
+/* tablet */
+@media (max-width: 1024px){
+  .three-up{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* phone */
+@media (max-width: 640px){
+  .three-up{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* make card internals behave */
+.three-up .card,
+.three-up article{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  margin: 0 5px;
+  box-sizing: border-box;
+}
+.three-up .card img{
+  width: 100%;
+  height: auto;               /* or use aspect-ratio if you want a fixed tile */
+  object-fit: cover;
+  display: block;
+}
+
 @media (max-width: 860px){
   .site-nav .nav-menu{
     gap: 10px;
