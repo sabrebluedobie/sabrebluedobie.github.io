@@ -1,104 +1,50 @@
-# =========================================
-# Bluedobie Developing — Jekyll config
-# Drop-in ready
-# =========================================
+title: "Bluedobie Developing"
+url: "https://www.bluedobiedev.com"
+baseurl: ""   # leave empty at domain root
 
-# Site
-title: "Bluedobie Developing"          # Used across the site (footer, etc.)
-description: >
-  A look at web design for small business by a web designer.
-  Learn about topics that can help your business grow!
-email: "melanie.brown@bluedobiedev.com"
-url: "https://www.bluedobiedev.com"    # Full site URL (no trailing slash)
-baseurl: ""                            # Keep empty when deploying at the root
-
-# Optional brand variables (handy in includes)
-brand:
-  blog_name: "Bluedobie Dialogues"
-
-# Where the generated site goes
-destination: "_site"
-
-# -----------------------------------------
-# Collections
-# -----------------------------------------
+# Blog posts (Bluedobie Dialogues)
 collections:
   posts:
     output: true
     permalink: /blog/:title/
 
-  # Keeping your extra collection; name must match folder
-  "Bluedobie--Dialogues":
-    output: true
-    permalink: /Bluedobie--Dialogues/:title/
+# Plugins (GH Pages friendly)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-redirect-from
 
-# -----------------------------------------
-# Defaults (layouts, etc.)
-# -----------------------------------------
-defaults:
-  # Blog posts (/_posts)
-  - scope:
-      path: "_posts"
-      type: "posts"
-    values:
-      layout: "post"            # Use our new _layouts/post.html
-
-  # “Bluedobie--Dialogues” posts (Bluedobie--Dialogues/_posts)
-  - scope:
-      path: "Bluedobie--Dialogues/_posts"
-    values:
-      layout: "post"            # Also use our post layout
-
-# -----------------------------------------
-# Markdown / Sass / Theme
-# -----------------------------------------
+# Markdown/Sass (optional)
 markdown: kramdown
-highlighter: rouge
-
-kramdown:
-  input: GFM
-  hard_wrap: false
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  syntax_highlighter_opts:
-    block:
-      line_numbers: false
-
 sass:
   sass_dir: _sass
   style: compressed
 
-theme: minima   # You can keep this; your custom includes & CSS will override as needed
+# Defaults: use our layouts
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "gazette"
+    values:
+      layout: "gazette"
+      section: "gazette"   # we can use this to pick the nav or styles
+  - scope:
+      path: ""
+    values:
+      layout: "default"
 
-# -----------------------------------------
-# Plugins (GitHub Pages–friendly)
-# -----------------------------------------
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
+include: ['.well-known']
 
-feed:
-  path: feed.xml
-  collections:
-    - posts
-
-# -----------------------------------------
-# Social handles (optional)
-# -----------------------------------------
-twitter_username: "sabrebluedobie"
-github_username: "sabrebluedobie"
-
-# -----------------------------------------
-# Exclusions
-# -----------------------------------------
+# Exclude build clutter
 exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - Gemfile
-  - Gemfile.lock
   - node_modules/
   - vendor/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - "*.erb"
+  - .bundle/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - Bluedobie--Dialogues/vendor/

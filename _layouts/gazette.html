@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>{% include head.html %}</head>
-<body class="site {{ page.section | default: 'main' }}">
-  {% include nav.html %}
+<body class="site gazette">
+  {% include nav-gazette.html %}
   <main class="container">{{ content }}</main>
   {% include footer.html %}{% include footer-scripts.html %}
   <script src="/assets/js/dropdown.js" defer></script>
   <script src="/assets/js/webflow.js" defer></script>
 </body>
-
 </html>

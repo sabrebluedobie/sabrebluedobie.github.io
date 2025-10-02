@@ -8,31 +8,37 @@
   <link href="/css/app.css" rel="stylesheet">
   <link href="/css/sales.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/bluedobie-developing-redesign.webflow.css" type="text/css" />
+  <style>
+    .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px; box-shadow:0 8px 12px rgba(0,0,0,.5);background:#fff}
+    @media (max-width:900px) {.back-link {float:none;display:block;margin:0 auto 20px auto; top: 0;left: 5vw; position: relative; }
+  .card-img { width:100%; height:auto; object-fit:cover; display:block; }}
+  </style>
 </head>
 <body>
   <header class="site-header">
     <a class="brand-link w-nav-brand" href="https://bit.ly/4aOSYq4"><img alt="The blue dobie logo on a white background" class="brand-logo" height="100" loading="lazy" src="images/bluedobielogo_1.webp" width="100"/></a>
-    <div class="site-title">Bluedobie Developing — Offers</div>
-    <a href="index.html" class="back-link">→ Go to Bluedobie Home</a>
+    <div  class="site-title" ><h1 style="font-size: 2.75rem; display: inline; float:right;margin-right: 20px;">Bluedobie Developing — Offers</h1></div>
+    <a href="index.html" class="back-link" style="margin-left: 20px;">→ Go to Bluedobie Home</a>
   </header>
-
   <div class="wrap">
-    <section class="content" aria-labelledby="store-intro">
-      <h2 id="store-intro">Pick your tool, grow your reach</h2>
-      <p class="muted">Cards below link to focused landing pages. Keep it simple now; scale into a full store later.</p>
-      <div class="filters">
+    <section class="content" style="display: inline; justify-content: space-between; align-items: center;" aria-labelledby="store-intro">
+      <h2 id="store-intro" style="font-size: 2.25rem; display: block; margin-left: 20px">Pick your tool, grow your reach</h2>
+      <p class="muted" style="width: 35%;margin-left: 20px">Cards below link to focused landing pages. Keep it simple now; scale into a full store later.</p><br>
+      <div style="margin-left: 20px;" class="filters">
         <button class="pill active" data-filter="all">All</button>
         <button class="pill" data-filter="social">Social</button>
         <button class="pill" data-filter="branding">Branding</button>
         <button class="pill" data-filter="analytics">Analytics</button>
       </div>
     </section>
+    
 
     <section class="content">
+     
       <div class="card-grid" id="product-grid">
         <!-- Product Card: DobieCore CaptionCraft -->
-        <article class="card" data-tags="social">
-          <img src="images/dobiecore/captioncraftlogo.png" style=" height: 60%; width: 100%" alt="CaptionCraft Starter preview" class="card-img"/>
+        <article class="card" style="display: flex; align-items: center;" data-tags="social">
+          <img src="/assets/images/dobiecore/captioncraftlogo.png" alt="CaptionCraft Starter preview" class="card-img" style="align-items: center;justify-content: center; height: 240px; width:240px; object-fit: contain;" />
           <div class="card-body">
             <h3 class="card-title">DobieCore CaptionCraft</h3>
             <p class="card-text">AI captions, clean hashtags, lifetime access. Show up consistently without burnout.</p>
@@ -47,40 +53,57 @@
           </div>
         </article>
 
-        <!-- Product Card: Gridiron Gazette -->
-        <article class="card" data-tags="social analytics">
-          <img src="images/gazette/SabreReporter.png" style=" height: 60%; width: 100%" alt="Gridiron Gazette preview" class="card-img"/>
-          <div class="card-body">
-            <h3 class="card-title">Gridiron Gazette</h3>
-            <p class="card-text">Weekly fantasy recap PDFs + Sabre’s snark. Engagement rocket fuel for your league.</p>
-            <div class="card-meta">
-              <span class="price">$29/season Basic<br>
-              $49/season Plus</span>
-              <span class="badge">Social</span><span class="badge">Analytics</span>
-            </div>
-            <div class="card-actions">
-              <a href="gazette.html" class="cta-button">Get Started</a>
-              <a href="gazette.html" class="cta-button cta-ghost">See Sample</a>
-            </div>
-          </div>
-        </article>
+  
+    <!-- Product Card: Gridiron Gazette (updated to microsite links) -->
 
-        <!-- Product Card: Logo Sprint -->
-        <article class="card" data-tags="branding">
-          <img src="images/logo-sprint-card.webp" alt="Logo Sprint preview" class="card-img"/>
-          <div class="card-body">
-            <h3 class="card-title">Logo Sprint</h3>
-            <p class="card-text">Rapid AI-assisted logo iterations + vector polish. From mood to mark faster than Sabre.</p>
-            <div class="card-meta">
-              <span class="price">$99 flat</span>
-              <span class="badge">Branding</span>
-            </div>
-            <div class="card-actions">
-              <a href="logo-sprint.html" class="cta-button">Start Sprint</a>
-              <a href="logo-sprint-landing.html" class="cta-button cta-ghost">What You Get</a>
-            </div>
-          </div>
-        </article>
+<article class="card" data-tags="social analytics">
+  
+  <img
+    class="card-img"
+    src="/assets/images/gazette/SabreReporter.png"
+    width="240" height="240"
+    alt="Gridiron Gazette"
+  />
+  <div class="card-body">
+    <h3 class="card-title">Gridiron Gazette</h3>
+    <p class="card-text">
+      Weekly fantasy recap PDFs + Sabre’s snark. Engagement rocket fuel for your league.
+    </p>
+    <div class="card-meta">
+      <span class="badge">Social</span>
+      <span class="badge">Analytics</span>
+    </div>
+    <div class="card-actions">
+      <a href="/gazette/" class="cta-button">Visit Gazette</a>
+      <a href="/gazette/sample/" class="cta-button cta-ghost">See Sample</a>
+    </div>
+  </div>
+</article>
+
+        <!-- Product Card: Logo Sprint (photoreal Sabre) -->
+<article class="card" data-tags="branding">
+  <img
+    class="card-img"
+    src="/assets/images/logo-sprint/card-480.webp"
+    srcset="/assets/images/logo-sprint/card-480.webp 480w,
+            /assets/images/logo-sprint/card-360.webp 360w,
+            /assets/images/logo-sprint/card-240.webp 240w"
+    sizes="(max-width: 480px) 240px, (max-width: 768px) 360px, 480px"
+    alt="Logo Sprint — Sabre sprinting at golden hour">
+  <div class="card-body">
+    <h3 class="card-title">Logo Sprint</h3>
+    <p class="card-text">Rapid AI-assisted logo iterations + vector polish. From mood to mark faster than Sabre.</p>
+    <div class="card-meta">
+      <span class="price">$99 flat</span>
+      <span class="badge">Branding</span>
+    </div>
+    <div class="card-actions">
+      <a href="/logo-sprint.html" class="cta-button">Start Sprint</a>
+      <a href="/logo-sprint-landing.html" class="cta-button cta-ghost">What You Get</a>
+    </div>
+  </div>
+</article>
+
       </div>
     </section>
   </div>

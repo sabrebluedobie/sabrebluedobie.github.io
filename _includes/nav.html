@@ -35,18 +35,25 @@
             <div class="dropdown-menu" id="more-menu" role="menu">
               <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
               <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
-              <a href="/blog-home.html" class="nav-link" role="menuitem">Blog</a>
+              <!-- If you prefer Blog only in the group below, delete this next line -->
+              <!-- <a href="/blog/" class="nav-link" role="menuitem">Blog</a> -->
               <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
               <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ’s</a>
               <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
             </div>
           </div>
 
-          <!-- DobieCore group -->
+          <!-- Products / Projects group -->
           <div class="nav-link-holder nav-group">
             <a href="/sales.html" class="nav-link">Offers</a>
             <a href="/dobiecore/contracts/" class="nav-link">ContractKit</a>
             <a href="/dobiecore/captioncraft/" class="nav-link">CaptionCraft</a>
+            <!-- NEW: Gridiron Gazette microsite -->
+            <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+            <!-- NEW: Blog index (Bluedobie Dialogues) -->
+            <a href="/blog/" class="nav-link">Dialogues</a>
+            <!-- If your current blog index is /blog-home.html, use that instead: -->
+            <!-- <a href="/blog-home.html" class="nav-link">Dialogues</a> -->
           </div>
         </div>
 
@@ -78,3 +85,5 @@
     </div>
   </div>
 </nav>
+
+<a href="/gazette/" class="nav-link{% if page.url == '/gazette/' or page.url contains '/gazette/' %} active{% endif %}">Gridiron Gazette</a>

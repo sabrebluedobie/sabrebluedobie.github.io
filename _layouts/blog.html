@@ -1,0 +1,49 @@
+<!-- _layouts/blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>{% include head.html %}</head>
+<body>
+  {% include nav.html %}
+
+  <article class="post-wrap" itemscope itemtype="https://schema.org/BlogPosting">
+    <header class="post-hero">
+      {% if page.image %}
+      <figure class="post-cover">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" width="1600" height="900" loading="eager">
+      </figure>
+      {% endif %}
+      <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: "%B %e, %Y" }}
+        </time>
+        · <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{{ page.author | default: site.author | default: "Bluedobie Developing" }}</span>
+          </span>
+        {% if page.updated %} · <span class="updated" itemprop="dateModified">{{ page.updated | date: "%B %e, %Y" }}</span>{% endif %}
+      </div>
+      {% if page.excerpt %}<p class="post-excerpt">{{ page.excerpt | strip_html }}</p>{% endif %}
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+      <a class="tag" href="{{ '/tags/' | append: tag | slugify | append: '/' | relative_url }}">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <nav class="post-nav" aria-label="Post navigation">
+      {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>{% endif %}
+      {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>{% endif %}
+    </nav>
+  </article>
+
+  {% include footer.html %}
+  {% include footer-scripts.html %}
+</body>
+</html>

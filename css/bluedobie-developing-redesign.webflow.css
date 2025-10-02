@@ -774,3 +774,11 @@ margin: 0;
     padding: 0 15px;
     background-color: #f8f8fa;
 }
+
+.card-img{
+  width:100%;
+  height:auto;
+  aspect-ratio:1/1;     /* keeps logos/art square */
+  object-fit:contain;   /* no cropping */
+  display:block;
+}
