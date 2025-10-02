@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Contact Form Test - Simple Version</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    padding: 40px 20px;
+    background: #f5f5f5;
+  }
+  .test-banner {
+    background: #ff9800;
+    color: #000;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-radius: 5px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  p {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+  }
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  .required {
+    color: #d00;
+  }
+  .form-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: -15px;
+    margin-bottom: 20px;
+  }
+  button {
+    background-color: #042d4d;
+    color: #fff;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:hover {
+    background-color: #063a62;
+  }
+</style>
+</head>
+<body>
+<div class="test-banner">
+  ⚠️ TEST VERSION - Direct Form Submission (No CORS Issues) ⚠️
+</div>
+
+<div class="container">
+  <h1>Test Contact Form</h1>
+  <p>This will submit directly to Zoho Flow. After submitting, you'll see Zoho Flow's response page.</p>
+  
+  <form action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" method="POST">
+    
+    <label for="first-name">First Name <span class="required">*</span></label>
+    <input type="text" id="first-name" name="first-name" value="Test" required />
+
+    <label for="last-name">Last Name <span class="required">*</span></label>
+    <input type="text" id="last-name" name="last-name" value="User" required />
+
+    <label for="email">Email <span class="required">*</span></label>
+    <input type="email" id="email" name="email" value="melanie.test@bluedobiedev.com" required />
+
+    <label for="company">Company/Business Name <span class="required">*</span></label>
+    <input type="text" id="company" name="company" value="Test Company" required />
+    <p class="form-note">Don't have a business name yet? Just put "Personal Project"</p>
+
+    <label for="message">Message <span class="required">*</span></label>
+    <textarea id="message" name="message" required>This is a test message to verify Zoho Flow integration.</textarea>
+
+    <!-- Honeypot -->
+    <input type="text" name="company_website" style="display:none;" />
+
+    <button type="submit">Send Test to Zoho Flow</button>
+  </form>
+</div>
+
+</body>
+</html>
