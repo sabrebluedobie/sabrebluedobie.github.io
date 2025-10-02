@@ -1,58 +1,101 @@
-scss
----
-
----
-
-@import "bluedobie-developing-redesign.webflow"; // Import other styles if needed
-@import "normalize";
-@import "webflow";
-
-/* Active nav state */
-.nav-link.active,
-.nav-link[aria-current="page"],
-.nav-link[aria-current="true"] {
-  color: #0f172a;
-  font-weight: 600;
-  position: relative;
+/* 1) Global resets for images/media */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
-.nav-link.active::after,
-.nav-link[aria-current="page"]::after,
-.nav-link[aria-current="true"]::after {
-  content: "";
+picture { display: block; }
+iframe { max-width: 100%; }
+
+/* 2) Container + spacing */
+.container {
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 24px);
+}
+
+/* 3) Responsive type scale with clamp() */
+:root{
+  --step--1: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+  --step-0:  clamp(1rem, 1.2vw + 0.6rem, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.6vw + 0.6rem, 1.5rem);
+  --step-2:  clamp(1.5rem, 2.2vw + 0.6rem, 1.875rem);
+  --step-3:  clamp(1.9rem, 3.2vw + 0.6rem, 2.4rem);
+  --step-4:  clamp(2.4rem, 4.5vw + 0.6rem, 3rem);
+}
+h1{ font-size: var(--step-4); line-height: 1.1; }
+h2{ font-size: var(--step-3); line-height: 1.2; }
+h3{ font-size: var(--step-2); line-height: 1.25; }
+p, li{ font-size: var(--step-0); line-height: 1.6; }
+
+/* 4) Card grid that doesn’t break on mobile */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+.card-img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;   /* or 'contain' for logos */
+  border-radius: 12px;
+}
+
+/* 5) Hero images keep ratio (reduce CLS) */
+.hero picture, .hero img{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* 6) Nav: wrap neatly on small screens */
+.site-nav .nav-menu{
+  display: flex; gap: 18px; flex-wrap: wrap;
+}
+@media (max-width: 860px){
+  .site-nav .nav-menu{
+    gap: 10px;
+  }
+  .social-links-column{ display:none; } /* optional to declutter */
+}
+
+/* 7) Buttons: large tap targets on mobile */
+.button, .btn, .cta-button{
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 10px;
+}
+
+/* 8) Forms: inputs fill width on phones */
+input[type=text], input[type=email], textarea, select{
+  width: 100%;
+  max-width: 100%;
+  font-size: var(--step-0);
+}
+
+/* 9) Prevent horizontal scroll from rogue elements */
+html, body { overflow-x: hidden; }
+[class*="row"], [class*="grid"] { min-width: 0; }
+img[style*="width:100vw"]{ width:100% !important; } /* guardrail */
+
+/* 10) Footer wraps cleanly */
+.footer-links{
+  display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+}
+.footer-link{ white-space: nowrap; }
+
+/* 11) Dropdown menu stays within viewport on mobile */
+.dropdown-menu{
   position: absolute;
-  left: 0; right: 0; bottom: -4px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
+  inset-inline-start: 0;
+  min-width: 220px;
+  z-index: 1000;
 }
-
-.footer{background:#000;color:#fff;text-align:center;padding:2em 1em}
-.footer-container{display:flex;flex-direction:column;align-items:center;gap:1em}
-.footer-links{display:flex;gap:1.25em;flex-wrap:wrap;justify-content:center}
-.footer-link{color:#fff;text-decoration:none;font-size:.95rem;transition:color .2s}
-.footer-link:hover{color:#ffd700}
-.footer-logo{width:120px;height:auto;margin-bottom:.5em;display:block}
-.footer-text{margin:0;font-size:.85rem;color:#e5e7eb}
-.post-wrap{max-width:860px;margin:0 auto;padding:1.25rem}
-.post-hero{margin:1rem 0 1.25rem}
-.post-cover{margin:0 0 1rem;border-radius:16px;overflow:hidden}
-.post-cover img{width:100%;height:auto;display:block}
-.post-title{font-family:"Instrument Serif",serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:.25rem 0}
-.post-meta{color:#64748b;font-size:.95rem;margin:.25rem 0 1rem}
-.post-excerpt{font-size:1.1rem;color:#334155;margin:.5rem 0 0}
-.post-content{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:1.05rem;line-height:1.7;color:#0f172a}
-.post-content h2{margin-top:2rem}
-.post-content img{max-width:100%;height:auto;border-radius:12px}
-.post-content pre{overflow:auto;background:#0f172a;color:#fff;padding:1rem;border-radius:12px}
-.post-content code{background:#f1f5f9;padding:.1rem .25rem;border-radius:6px}
-.post-toc{border:1px solid #e5e7eb;border-radius:12px;padding:.75rem 1rem;margin:1rem 0}
-.post-toc ul{margin:.5rem 0 0;padding-left:1rem}
-.post-tags{margin:1.25rem 0;display:flex;gap:.5rem;flex-wrap:wrap}
-.post-tags .tag{border:1px solid #94a3b8;border-radius:999px;padding:.25rem .55rem;font-size:.9rem;color:#334155;text-decoration:none}
-.post-tags .tag:hover{border-color:#0f172a;color:#0f172a}
-.post-share{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
-.post-share .btn{border:1px solid #0f172a;border-radius:10px;padding:.45rem .7rem;text-decoration:none;color:#0f172a}
-.post-nav{display:flex;justify-content:space-between;margin:2rem 0}
-.post-nav a{text-decoration:none;color:#0f172a}
-
-
+@media (max-width: 640px){
+  .dropdown-menu{
+    position: fixed;
+    top: 64px; left: 12px; right: 12px;
+    max-height: 70vh; overflow:auto;
+  }
+}
