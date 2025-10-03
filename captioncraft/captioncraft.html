@@ -1,354 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DobieCore CaptionCraft — Your social content generator</title>
-  <meta name="description" content="Generate hooks, captions, and clean hashtags from a simple brief. Everything runs in your browser — no signups, no tracking." />
+  <title>CaptionCraft — your social content generator</title>
   <link rel="stylesheet" href="captioncraft.css" />
-  <meta property="og:title" content="DobieCore CaptionCraft" />
-  <meta property="og:description" content="Your social content generator — hooks, captions, and hashtags in seconds." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.bluedobiedev.com/captioncraft/captioncraft.html" />
+  <style>
+    /* minimal safety styles in case your CSS is lighter in places */
+    :root { --ink:#0f172a; --muted:#667085; --bg:#f7f8fb; --card:#ffffff; --border:#e8ebf0; }
+    body { margin:0; color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
+    h1 { font-size:40px; margin:14px 0 12px; }
+    p.lead { color:#475467; max-width:720px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
+    .field { display:flex; flex-direction:column; gap:6px; }
+    label { font-weight:600; font-size:14px; }
+    input[type="text"], select, textarea {
+      border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:14px; background:#fff;
+    }
+    textarea { resize:vertical; min-height:160px; background:#fafbfc; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .actions { display:flex; gap:10px; margin-top:8px; }
+    .btn { border:1px solid var(--border); background:#0f172a; color:#fff; border-radius:10px; padding:10px 14px; cursor:pointer; }
+    .btn.secondary { background:#f8fafc; color:#0f172a; }
+    .muted { color:var(--muted); font-size:12px; }
+    .results { margin-top:22px; display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
+    .caption-card { grid-column: span 4; background:#fff; border:1px solid var(--border); border-radius:16px; padding:14px; display:flex; flex-direction:column; gap:10px; }
+    .caption-card h3 { margin:0; font-size:16px; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .meta { color:var(--muted); font-size:12px; }
+    .hint { margin-top:6px; }
+    .first-comment { margin-top:8px; }
+    @media (max-width: 980px){ .caption-card{ grid-column: span 6;} }
+    @media (max-width: 680px){ .grid{ grid-template-columns: repeat(6, 1fr);} .caption-card{ grid-column: span 6;} }
+  </style>
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="https://www.bluedobiedev.com">
-        <img src="/assets/images/dobiecore/captioncraftlogo.webp" alt="DobieCore CaptionCraft logo" style="height:42px">
-      </a>
-      <nav class="top-nav">
-        <a href="/sales.html">Back to Sales</a>
-        <a href="/contentcraft/contentcraft.html">ContentCraft (extras)</a>
-        <a href="/contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" style="padding-top:28px;padding-bottom:12px;">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1><span class="accent">CaptionCraft</span> — your social content generator</h1>
-          <p class="lead">Turn a quick brief into 3 ready-to-post captions with tailored hooks and clean hashtags. Built for tiny teams, rural markets, and tight schedules.</p>
-          <ul class="ticks">
-            <li>Platform modes: Facebook, Instagram, TikTok, LinkedIn</li>
-            <li>Tone slider: professional → playful</li>
-            <li>Hashtag cleaner with smart density</li>
-          </ul>
-        </div>
+  <div class="wrap">
+    <header>
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <a href="/sales.html" class="muted">Back to Sales</a>
+        <nav class="muted">
+          <a href="/contentcraft/contentcraft.html" class="muted" style="margin-right:14px;">ContentCraft (extras)</a>
+          <a href="/contact" class="muted">Contact</a>
+        </nav>
       </div>
-    </section>
-
-    <section class="tool">
-      <div class="container">
-        <form id="brief" class="brief" onsubmit="return false;" aria-label="Caption brief form">
-          <div class="row">
-            <label>Audience
-              <input type="text" id="audience" placeholder="busy homeowners in Western Kentucky">
-            </label>
-            <label>Offer
-              <input type="text" id="offer" placeholder="$99 deep-clean special (new clients)">
-            </label>
-          </div>
-
-          <div class="row">
-            <label>Problem
-              <input type="text" id="problem" placeholder="no time to scrub baseboards or blinds">
-            </label>
-            <label>Outcome
-              <input type="text" id="outcome" placeholder="a sparkling house and one free weekend back">
-            </label>
-          </div>
-
-          <div class="row">
-            <label>Call to action
-              <input type="text" id="cta" placeholder="Book your spot by Friday">
-            </label>
-            <label>Niche keywords (for hashtags)
-              <input type="text" id="keywords" placeholder="cleaning, kentucky, small business">
-            </label>
-          </div>
-
-          <div class="row third">
-            <label>Platform
-              <select id="platform">
-                <option>Instagram</option>
-                <option>Facebook</option>
-                <option>TikTok</option>
-                <option>LinkedIn</option>
-              </select>
-            </label>
-
-            <label>Tone <small id="toneLabel" style="opacity:.7;margin-left:6px;">Balanced</small>
-              <input type="range" id="tone" min="0" max="100" value="50" />
-            </label>
-
-            <label>Caption length
-              <select id="length">
-                <option value="short">Short</option>
-                <option value="medium" selected>Medium</option>
-                <option value="long">Long</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="row third">
-            <label>Hashtag density
-              <select id="density">
-                <option value="light">Light</option>
-                <option value="standard" selected>Standard</option>
-                <option value="heavy">Heavy</option>
-              </select>
-            </label>
-
-            <label style="align-self:end;">
-              <input type="checkbox" id="cleanHashtags" checked />
-              Clean hashtags (lowercase, no repeats, no punctuation)
-            </label>
-
-            <div></div>
-          </div>
-
-          <div class="cta-row">
-            <button class="btn primary" type="submit" id="generateBtn">Generate 3 Captions</button>
-            <button class="btn ghost" id="clearBtn" type="button">Clear</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="results">
-      <div class="container">
-        <h2>Results</h2>
-        <div id="output" class="cards" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section class="faq">
-      <div class="container">
-        <details>
-          <summary>How the tone slider works</summary>
-          <p>0–30: professional & concise. 31–70: balanced & friendly. 71–100: playful & conversational. Platform choice also nudges phrasing (LinkedIn trims slang; TikTok leans hook-first).</p>
-        </details>
-        <details>
-          <summary>Privacy</summary>
-          <p>Everything runs in your browser. No tracking, no cookies, no uploads.</p>
-        </details>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="brand-stack">
-        <img src="/assets/images/dobiecore/captioncraftlogo.webp" alt="" style="height:28px">
-        <p>Bluedobie Developing</p>
-      </div>
-      <ul class="footer-contact">
-        <li><a href="tel:12703883535">270-388-3535</a></li>
-        <li><a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></li>
-        <li><a href="/contact">Contact form</a></li>
+      <h1><span style="color:#3b82f6;">CaptionCraft</span> — your social content generator</h1>
+      <p class="lead">
+        Turn a quick brief into platform-ready captions. Now with platform <em>and</em> format awareness,
+        first-comment helpers, and automatic UTM links for clean analytics.
+      </p>
+      <ul class="muted" style="margin:10px 0 24px;">
+        <li>Platform modes: Facebook/Instagram (Post, Story, Reel), X (280), LinkedIn (Profile/Page), TikTok, YT Shorts, YouTube, GMB</li>
+        <li>Tone slider: professional → playful</li>
+        <li>Hashtag cleaner with smart density + first-comment option</li>
       </ul>
-      <p class="legal">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
-    </div>
-  </footer>
+    </header>
 
-  <script src="/captioncraft/captioncraft.js"></script>
-
-  <script>
-    // Year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Tone label updates
-    const tone = document.getElementById('tone');
-    const toneLabel = document.getElementById('toneLabel');
-    function toneWord(val){
-      if(val <= 30) return 'Professional';
-      if(val <= 70) return 'Balanced';
-      return 'Playful';
-    }
-    tone.addEventListener('input', () => toneLabel.textContent = toneWord(+tone.value));
-    toneLabel.textContent = toneWord(+tone.value);
-
-    // Core generation helpers
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-    function platformStyle(p){
-      switch(p){
-        case 'LinkedIn': return {emoji:false, lineBreaks:true, hashCap:6};
-        case 'TikTok':   return {emoji:true,  lineBreaks:false, hashCap:8};
-        case 'Facebook': return {emoji:true,  lineBreaks:true,  hashCap:8};
-        default:         return {emoji:true,  lineBreaks:true,  hashCap:12}; // Instagram
-      }
-    }
-
-    function toneStyle(val){
-      if(val <= 30) return {temp:0.1, fluff:0, slang:0};
-      if(val <= 70) return {temp:0.25, fluff:1, slang:0.5};
-      return {temp:0.4, fluff:2, slang:1};
-    }
-
-    function makeHook({audience, problem, outcome, offer, platform, toneVal}){
-      const t = toneStyle(toneVal);
-      const p = platformStyle(platform);
-      const emojis = ['💡','✨','✅','🧰','⚡','🚀','🌟','🎯','🧽','⏱️','🏠'];
-      const starters = [
-        `Tired of ${problem}?`,
-        `What if ${outcome}?`,
-        `${audience[0].toUpperCase()+audience.slice(1)}, this is for you.`,
-        `Stop letting ${problem} win.`,
-        `Small change → big result: ${outcome}.`
-      ];
-      let hook = pick(starters);
-      if(p.emoji && Math.random()<0.6){ hook = pick(emojis)+' '+hook; }
-      if(t.slang && Math.random()<0.4){ hook = hook.replace('Tired of','Done with'); }
-      return hook;
-    }
-
-    function makeBody({audience, problem, outcome, offer, cta, platform, toneVal, length}){
-      const t = toneStyle(toneVal);
-      const p = platformStyle(platform);
-
-      // Sentences pool (assembled based on tone/length)
-      const bits = [];
-      bits.push(`For ${audience}, ${problem} steals time you can’t get back.`);
-      bits.push(`We’re fixing that with ${offer}.`);
-      bits.push(`Result: ${outcome}.`);
-      if(t.fluff>=1) bits.push(`Built for real life, not ad-speak.`);
-      if(t.fluff>=2) bits.push(`Simple, fast, and surprisingly satisfying.`);
-      bits.push(`${cta}.`);
-
-      // Length control
-      let keep = 3;
-      if(length==='short') keep = 2;
-      if(length==='medium') keep = 3;
-      if(length==='long') keep = Math.min(bits.length, 5);
-
-      const chosen = [];
-      while(chosen.length<keep && bits.length){
-        chosen.push(bits.splice(Math.floor(Math.random()*bits.length),1)[0]);
-      }
-
-      let body = chosen.join(p.lineBreaks ? '\n' : ' ');
-      if(p.platform==='LinkedIn'){
-        body = body.replace(/can’t/g,"can't");
-      }
-      return body;
-    }
-
-    function cleanTag(s){
-      return s.toLowerCase()
-        .replace(/&/g,'and')
-        .replace(/[^\p{L}\p{N}\s]/gu,'')
-        .trim()
-        .replace(/\s+/g,'');
-    }
-
-    function makeHashtags({keywords, platform, density, clean, platformCap}){
-      if(!keywords.trim()) return '';
-      const base = keywords.split(',').map(k=>cleanTag(k)).filter(Boolean);
-      // Expand with common marketing tags
-      const add = ['smallbusiness','shoplocal','supportlocal','marketing','content','socialmedia','ontheblog','today','tips','howto'];
-      const pool = [...new Set([...base, ...add])];
-
-      let count = 0;
-      if(density==='light') count = 4;
-      if(density==='standard') count = 7;
-      if(density==='heavy') count = 12;
-
-      const p = platformStyle(platform);
-      count = Math.min(count, p.hashCap);
-
-      const pickTags = [];
-      while(pickTags.length < count && pool.length){
-        const tag = pool.splice(Math.floor(Math.random()*pool.length),1)[0];
-        if(tag && !pickTags.includes(tag)) pickTags.push(tag);
-      }
-
-      const prefix = '#';
-      const out = pickTags.map(t => prefix + (clean ? cleanTag(t) : t));
-      return out.join(' ');
-    }
-
-    function assembleCaption(opts){
-      const hook = makeHook(opts);
-      const body = makeBody(opts);
-      const hashtags = makeHashtags(opts);
-      return hook + '\n\n' + body + (hashtags ? '\n\n' + hashtags : '');
-    }
-
-    // UI wiring
-    const output = document.getElementById('output');
-    const genBtn = document.getElementById('generateBtn');
-    const clearBtn = document.getElementById('clearBtn');
-
-    function readBrief(){
-      return {
-        audience: document.getElementById('audience').value || 'local customers',
-        offer: document.getElementById('offer').value || 'a limited-time offer',
-        problem: document.getElementById('problem').value || 'not enough time',
-        outcome: document.getElementById('outcome').value || 'more free hours and less stress',
-        cta: document.getElementById('cta').value || 'Message us to get started',
-        keywords: document.getElementById('keywords').value || 'local, small business',
-        platform: document.getElementById('platform').value,
-        toneVal: +document.getElementById('tone').value,
-        length: document.getElementById('length').value,
-        density: document.getElementById('density').value,
-        clean: document.getElementById('cleanHashtags').checked
-      };
-    }
-
-    function cardTemplate(text, idx){
-      const id = 'cap'+idx;
-      const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      return `
-        <article class="card">
-          <h3>Caption ${idx+1}</h3>
-          <pre style="white-space:pre-wrap;word-break:break-word;">${safe}</pre>
-          <div class="actions">
-            <button class="btn" data-copy="${id}">Copy</button>
+    <main>
+      <form class="card">
+        <div class="grid">
+          <div class="field" style="grid-column: span 6;">
+            <label for="audience">Audience</label>
+            <input id="audience" type="text" placeholder="busy, overwhelmed business owners" />
           </div>
-          <textarea id="${id}" style="position:absolute;left:-9999px;opacity:0;">${text}</textarea>
-        </article>
-      `;
-    }
+          <div class="field" style="grid-column: span 6;">
+            <label for="offer">Offer</label>
+            <input id="offer" type="text" placeholder="$299 three-page website special" />
+          </div>
 
-    function copyFromHidden(id){
-      const t = document.getElementById(id);
-      t.select();
-      t.setSelectionRange(0, 99999);
-      document.execCommand('copy');
-    }
+          <div class="field" style="grid-column: span 6;">
+            <label for="problem">Problem</label>
+            <input id="problem" type="text" placeholder="customers can’t find your business online" />
+          </div>
+          <div class="field" style="grid-column: span 6;">
+            <label for="outcome">Outcome</label>
+            <input id="outcome" type="text" placeholder="more qualified leads in your inbox" />
+          </div>
 
-    genBtn.addEventListener('click', () => {
-      const brief = readBrief();
-      output.innerHTML = '';
-      // Generate 3 slightly different variants
-      for(let i=0;i<3;i++){
-        const opts = {...brief};
-        // tiny random wobble
-        opts.toneVal = Math.max(0, Math.min(100, opts.toneVal + Math.floor((Math.random()*8)-4)));
-        const text = assembleCaption(opts);
-        output.insertAdjacentHTML('beforeend', cardTemplate(text, i));
-      }
-    });
+          <div class="field" style="grid-column: span 8;">
+            <label for="cta">Call to action</label>
+            <input id="cta" type="text" placeholder="Book now at https://bluedobiedev.com/contact" />
+            <small class="muted">Paste one URL if you want UTM parameters added automatically.</small>
+          </div>
+          <div class="field" style="grid-column: span 4;">
+            <label for="keywords">Niche keywords (for hashtags)</label>
+            <input id="keywords" type="text" placeholder="marketing, webdesign, bluedobiedev" />
+          </div>
 
-    clearBtn.addEventListener('click', () => {
-      document.getElementById('brief').reset();
-      toneLabel.textContent = toneWord(+tone.value);
-      output.innerHTML = '';
-    });
+          <div class="field" style="grid-column: span 4;">
+            <label for="platform">Platform</label>
+            <select id="platform" name="platform">
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>Twitter</option>
+              <option>LinkedIn</option>
+              <option>GMB</option>
+              <option>TikTok</option>
+              <option>YTShorts</option>
+              <option>YouTube</option>
+            </select>
+          </div>
 
-    output.addEventListener('click', (e)=>{
-      const btn = e.target.closest('button[data-copy]');
-      if(!btn) return;
-      const id = btn.getAttribute('data-copy');
-      copyFromHidden(id);
-      btn.textContent = 'Copied!';
-      setTimeout(()=>{ btn.textContent = 'Copy'; }, 900);
-    });
-  </script>
+          <div class="field" style="grid-column: span 4;">
+            <label for="format">Format</label>
+            <select id="format" name="format"><!-- populated by JS --></select>
+            <small id="formatHint" class="muted"></small>
+          </div>
+
+          <div class="field" style="grid-column: span 4;">
+            <label for="captionLength">Caption length</label>
+            <select id="captionLength">
+              <option>Short</option>
+              <option selected>Medium</option>
+              <option>Long</option>
+            </select>
+          </div>
+
+          <div class="field" style="grid-column: span 4;">
+            <label for="tone">Tone</label>
+            <input id="tone" type="range" min="0" max="1" step="0.01" />
+            <small class="muted">Left = professional • Right = playful</small>
+          </div>
+
+          <div class="field" style="grid-column: span 4;">
+            <label for="hashtagDensity">Hashtag density</label>
+            <select id="hashtagDensity">
+              <option>Light</option>
+              <option selected>Standard</option>
+              <option>Heavy</option>
+            </select>
+          </div>
+
+          <div class="field" style="grid-column: span 4;">
+            <label><input id="cleanHashtags" type="checkbox" checked /> Clean hashtags (lowercase, no repeats, no punctuation)</label>
+          </div>
+
+          <div class="actions" style="grid-column: span 12;">
+            <button class="btn" type="submit">Generate 3 Captions</button>
+            <button class="btn secondary" type="button" id="clearBtn">Clear</button>
+          </div>
+        </div>
+      </form>
+
+      <section class="results" id="results"></section>
+    </main>
+
+    <footer style="margin-top:36px;">
+      <div class="muted">© 2025 Bluedobie Developing. All rights reserved. • 270-388-3535 • melanie.brown@bluedobiedev.com</div>
+    </footer>
+  </div>
+
+  <script src="captioncraft.js"></script>
 </body>
 </html>
