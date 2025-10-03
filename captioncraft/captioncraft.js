@@ -1,87 +1,293 @@
-// captioncraft.js
+/* CaptionCraft — Humanized, platform-specific caption builder
+   Drop-in replacement for your generator logic.
+   Author: Bluedobie Developing (Mel + the friendly robot)
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
+  const $ = (sel) => document.querySelector(sel);
   const form = document.querySelector("form");
-  const resultsContainer = document.getElementById("results");
+  const results = $("#results");
 
-  function generateCaptions(inputs) {
-    const { audience, offer, outcome, problem, cta, keywords, platform } = inputs;
+  // ---------- Helpers ----------
+  const sentenceCase = (s) =>
+    s
+      .toString()
+      .trim()
+      .replace(/\s+/g, " ")
+      .replace(/(^\w)|([.!?]\s+\w)/g, (m) => m.toUpperCase());
 
-    // Hashtags cleaned
-    const hashtags = keywords
+  const ensurePeriod = (s) => (/[.!?]$/.test(s.trim()) ? s.trim() : s.trim() + ".");
+  const stripTrailingPunct = (s) => s.replace(/[.!\s]+$/g, "");
+
+  const extractUrl = (s) => {
+    const m = s.match(
+      /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/i
+    );
+    return m ? m[0] : null;
+  };
+
+  const removeUrl = (s) => s.replace(
+    /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/gi,
+    ""
+  ).trim();
+
+  const clip = (s, n) => (s.length <= n ? s : s.slice(0, n - 1).trim() + "…");
+
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+  // Hashtag cleaner with density control
+  function buildHashtags(keywords, density = "standard", clean = true, platform = "default") {
+    if (platform === "gmb") return ""; // GMB: no hashtags
+    let tags = keywords
       .split(",")
-      .map((tag) => "#" + tag.trim().toLowerCase().replace(/\s+/g, ""))
-      .filter((tag, index, self) => self.indexOf(tag) === index) // no repeats
-      .join(" ");
+      .map((t) => t.trim())
+      .filter(Boolean);
 
-    // Template map
-    const templates = {
-      facebook: [
-        `🚀 ${offer} = big payoff.\n\nMost ${audience} struggle with this: ${problem}. That’s lost time, lost money.\n\n✨ With ${offer}, you’ll finally have ${outcome}.\n\n${cta}\n\n${hashtags}`,
-        `📢 Struggling to get noticed? ${problem}.\n\nOur ${offer} is built to fix that. ${outcome}.\n\n⏳ ${cta}\n\n${hashtags}`,
-        `✨ Ready for a change?\n${problem} steals your time.\n\nOur ${offer} delivers ${outcome}.\n\n${cta}\n\n${hashtags}`,
-      ],
-      instagram: [
-        `🚀 ${offer} = big results.\n\n${problem}?\n\nWe’re fixing that → ${outcome}.\n\n${cta}\n\n${hashtags}`,
-        `✨ Tired of being invisible online?\n\nOur ${offer} is designed for ${audience}.\n\n${outcome}\n\n${cta}\n\n${hashtags}`,
-        `🎯 Stop letting ${problem} win.\n\nWith ${offer}, you’ll get ${outcome}.\n\n${cta}\n\n${hashtags}`,
-      ],
-      twitter: [
-        `${problem}? ${offer} = ${outcome}. ${cta} ${hashtags}`,
-        `Your customers are searching. Can they *find you*?\n\n${offer} → ${outcome}.\n⏳ ${cta} ${hashtags}`,
-        `Small upgrade, huge impact: ${offer}. Result: ${outcome}. ${cta} ${hashtags}`,
-      ],
-      gmb: [
-        `**Special Offer: ${offer}**\n\n${problem}. ${offer} fixes that — delivering ${outcome}.\n\n${cta}\n\n📞 Call us: 270-388-3535\n🔗 bluedobiedev.com/contact`,
-        `${offer} available now.\n\nFor ${audience}, ${problem}. We help fix it with ${offer}.\n\nResult: ${outcome}.\n\n${cta}\n\n📞 270-388-3535 • bluedobiedev.com/contact`,
-        `Get found online with our ${offer}.\n\n${problem}. ${offer} ensures ${outcome}.\n\n${cta}\n\n📞 270-388-3535 • bluedobiedev.com/contact`,
-      ],
-      default: [
-        `${problem}\n\nResult: ${outcome}\n\n${offer}\n\n${cta}\n\n${hashtags}`,
-        `Small change → big result.\n\n${problem}\n\nWe fix it with ${offer}.\n\n${cta}\n\n${hashtags}`,
-        `Stop letting ${problem} win.\n\nOur solution: ${offer}.\n\nOutcome: ${outcome}.\n\n${cta}\n\n${hashtags}`,
-      ],
-    };
+    if (clean) {
+      tags = tags.map((t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ""));
+      // Dedup
+      tags = [...new Set(tags)];
+    }
 
-    const chosenTemplates = templates[platform?.toLowerCase()] || templates.default;
+    // Platform norms
+    let maxTags = 0;
+    if (["facebook", "instagram"].includes(platform)) {
+      maxTags = density === "heavy" ? 10 : density === "light" ? 4 : 7;
+    } else if (platform === "twitter") {
+      maxTags = density === "heavy" ? 3 : 2; // X hates hashtag soup
+    } else if (platform === "linkedin") {
+      maxTags = density === "heavy" ? 5 : density === "light" ? 2 : 3;
+    } else {
+      maxTags = 5;
+    }
 
-    return chosenTemplates.map((template) => template);
+    tags = tags.slice(0, maxTags).map((t) => (t.startsWith("#") ? t : `#${t}`));
+    return tags.join(" ");
   }
 
+  // Tone pack swaps a few phrases to shift voice.
+  function tonePack(level /* 0..1 */) {
+    if (level < 0.33) {
+      return {
+        hookLead: ["Heads up", "Quick win", "A small upgrade = a big payoff"],
+        urgency: ["Book now", "Let’s get you visible", "Ready when you are"],
+        verb: ["get", "earn", "bring in"],
+      };
+    } else if (level < 0.66) {
+      return {
+        hookLead: ["🚀 Small change, big result", "✨ Level up your presence", "📣 Time to get found"],
+        urgency: ["Book this week", "Grab a slot in the next 3 days", "Let’s start today"],
+        verb: ["drive", "win", "unlock"],
+      };
+    } else {
+      return {
+        hookLead: ["🚀 Your next move, now", "🎯 Stop leaking time and leads", "⚡ Visibility that pays for itself"],
+        urgency: ["⏳ Limited availability—lock it in", "Last call this week", "Start now for the fastest impact"],
+        verb: ["accelerate", "multiply", "amplify"],
+      };
+    }
+  }
+
+  // Length shaping: affects sentence count and optional extras
+  function lengthProfile(len) {
+    const m = (len || "").toLowerCase();
+    if (m === "short") return { maxChars: 180, details: false, spacing: false };
+    if (m === "long") return { maxChars: 900, details: true, spacing: true };
+    return { maxChars: 400, details: true, spacing: false };
+  }
+
+  // Naturalize inputs (avoid robotic phrasing)
+  function humanizeProblem(p) {
+    // kill “It is difficult for customers to find our business.” repetition
+    let s = p
+      .replace(/\bis\b/gi, "’s")
+      .replace(/\bour business\b/gi, "your business")
+      .replace(/\bno time to\b/gi, "no time to")
+      .trim();
+
+    // De-stiffen
+    s = s.replace(/^for\s+busy.*?,\s*/i, "");
+    s = sentenceCase(s);
+    return ensurePeriod(s);
+  }
+
+  function humanizeOutcome(o) {
+    let s = o.replace(/\bin your box\b/gi, "in your inbox").trim();
+    s = sentenceCase(s);
+    return ensurePeriod(s);
+  }
+
+  function humanizeOffer(o) {
+    let s = o.trim();
+    s = s.replace(/\s+special$/i, " special");
+    return s;
+  }
+
+  // ---------- Platform templates ----------
+  const TPL = {
+    facebook({ hook, audience, problem, offer, outcome, cta, tags, details, spacing }) {
+      const intro = `${hook}.`;
+      const pain = `Most ${audience} know this pain: ${problem}`;
+      const sol = details
+        ? `With ${offer}, you’ll have a clean, professional presence working 24/7.`
+        : `Try ${offer} to fix it fast.`;
+      const res = `Result: ${outcome}`;
+      const call = cta;
+
+      let body = [intro, pain, sol, res, call].join(spacing ? "\n\n" : " ");
+      body = clip(body, 900);
+      return tags ? `${body}\n\n${tags}` : body;
+    },
+
+    instagram({ hook, problem, offer, outcome, cta, tags, details, spacing }) {
+      const p1 = `${hook}`;
+      const p2 = details ? `${problem}` : problem.replace(/\.?$/, "");
+      const p3 = details
+        ? `We’re fixing that with ${offer}.`
+        : `${offer} → ${outcome}`;
+      const p4 = `📬 ${outcome}`;
+      const p5 = cta;
+
+      let body = [p1, p2, p3, p4, p5].join(spacing ? "\n\n" : "\n");
+      body = clip(body, 900);
+      return tags ? `${body}\n\n${tags}` : body;
+    },
+
+    twitter({ problem, offer, outcome, cta, tags }) {
+      // Keep it punchy
+      let line = `${stripTrailingPunct(problem)}? ${offer} → ${outcome} ${stripTrailingPunct(cta)}.`;
+      line = clip(line, 260);
+      return tags ? `${line} ${tags}` : line;
+    },
+
+    linkedin({ audience, problem, offer, outcome, cta, tags, details }) {
+      const opener = details
+        ? `For ${audience}: ${problem}`
+        : `${problem}`;
+      const body = `We built ${offer} to solve this. ${outcome}`;
+      const close = cta;
+
+      let out = [opener, body, close].join("\n\n");
+      out = clip(out, 900);
+      // Fewer, purposeful hashtags on LinkedIn
+      return tags ? `${out}\n\n${tags}` : out;
+    },
+
+    gmb({ problem, offer, outcome, cta }) {
+      const head = `**${offer}**`;
+      const p = `${problem} ${offer} fixes that, delivering ${outcome}`;
+      const call = `${cta}`;
+      const contact = `Call **270-388-3535** or visit **bluedobiedev.com/contact**`;
+      return [head, "", p, "", call, "", contact].join("\n");
+    },
+
+    default({ problem, offer, outcome, cta, tags }) {
+      let body = `Small change → big result.\n\n${problem}\n\nWe fix it with ${offer}.\n\n${cta}`;
+      return tags ? `${body}\n\n${tags}` : body;
+    },
+  };
+
+  // Build three variants with slight hook/wording changes for variety
+  function buildVariants(ctx, platform) {
+    const plat = (platform || "default").toLowerCase();
+    const make = TPL[plat] || TPL.default;
+
+    const variants = [];
+    for (let i = 0; i < 3; i++) {
+      variants.push(make(ctx));
+      // Rotate the hook/verb for variety between captions
+      ctx.hook = pick(ctx.hookPool);
+    }
+    return variants;
+  }
+
+  // ---------- Form handling ----------
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    resultsContainer.innerHTML = "";
+    results.innerHTML = "";
 
-    const inputs = {
-      audience: form.querySelector("#audience").value || "business owners",
-      offer: form.querySelector("#offer").value || "our service",
-      outcome: form.querySelector("#outcome").value || "better results",
-      problem: form.querySelector("#problem").value || "customers can’t find your business",
-      cta: form.querySelector("#cta").value || "Book now!",
-      keywords: form.querySelector("#keywords").value || "webdesign, marketing",
-      platform: form.querySelector("#platform").value || "default",
+    // Collect inputs (IDs: adjust if needed)
+    const audience = ($("#audience")?.value || "small business owners").trim();
+    const offer = humanizeOffer($("#offer")?.value || "our $299 three-page website special");
+    const outcome = humanizeOutcome($("#outcome")?.value || "more qualified leads in your inbox");
+    const problem = humanizeProblem($("#problem")?.value || "customers can’t find your business online");
+    const rawCTA = ($("#cta")?.value || "Book your consultation this week.").trim();
+    const keywords = ($("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
+    const platform = ($("#platform")?.value || "facebook").trim().toLowerCase();
+
+    // Tone slider assumed 0..1
+    const toneVal = parseFloat($("#tone")?.value ?? "0.5"); // default middle
+    const tone = tonePack(isNaN(toneVal) ? 0.5 : toneVal);
+
+    const length = ($("#length")?.value || $("#captionLength")?.value || "medium").toLowerCase();
+    const density = ($("#hashtagDensity")?.value || "standard").toLowerCase();
+    const clean = $("#cleanHashtags")?.checked ?? true;
+
+    // Handle URL once: extract from CTA and append at end for certain platforms
+    const url = extractUrl(rawCTA);
+    const ctaNoUrl = ensurePeriod(removeUrl(rawCTA));
+    const urlSuffix = url ? `\n${url}` : "";
+
+    // Hashtags (per platform rules)
+    const tags = buildHashtags(keywords, density, clean, platform);
+
+    const { maxChars, details, spacing } = lengthProfile(length);
+
+    // Hook & copy pool tuned by tone
+    const hookPool = tone.hookLead;
+    const hook = pick(hookPool);
+
+    // Context for template
+    let ctx = {
+      hook,
+      hookPool,
+      audience,
+      problem,
+      offer,
+      outcome,
+      cta: ctaNoUrl,
+      tags,
+      details,
+      spacing,
     };
 
-    const captions = generateCaptions(inputs);
-
-    captions.forEach((caption, i) => {
-      const captionBlock = document.createElement("div");
-      captionBlock.classList.add("caption-result");
-      captionBlock.innerHTML = `
-        <h3>Caption ${i + 1}</h3>
-        <textarea readonly>${caption}</textarea>
-        <button class="copy-btn">Copy</button>
-      `;
-      resultsContainer.appendChild(captionBlock);
+    // Build captions
+    let captions = buildVariants(ctx, platform).map((c) => {
+      // Respect length cap; add URL where it helps
+      let out = c;
+      // For GMB/LinkedIn, keep URL inside the body cleanly; for others, append if space
+      if (url && platform !== "gmb") {
+        const canAppend = out.length + ("\n" + url).length <= maxChars;
+        out = canAppend ? `${out}${urlSuffix}` : out; // if too long, we already clipped earlier
+      }
+      // Final hard clip to maxChars
+      out = clip(out, maxChars);
+      return out;
     });
 
-    // Add copy functionality
-    document.querySelectorAll(".copy-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const textarea = e.target.previousElementSibling;
-        textarea.select();
+    // ---------- Render ----------
+    captions.forEach((text, i) => {
+      const card = document.createElement("div");
+      card.className = "caption-card";
+      card.innerHTML = `
+        <h3>Caption ${i + 1}</h3>
+        <textarea readonly>${text}</textarea>
+        <div class="row">
+          <button type="button" class="copy-btn">Copy</button>
+          <span class="meta">${platform.toUpperCase()} • ${length.toUpperCase()}</span>
+        </div>
+      `;
+      results.appendChild(card);
+    });
+
+    // Copy buttons
+    results.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const ta = btn.closest(".caption-card").querySelector("textarea");
+        ta.select();
         document.execCommand("copy");
         btn.textContent = "Copied!";
-        setTimeout(() => (btn.textContent = "Copy"), 2000);
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
       });
     });
   });
