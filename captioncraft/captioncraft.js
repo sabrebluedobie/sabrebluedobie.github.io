@@ -1,13 +1,5 @@
-/* CaptionCraft — Platform + Format aware, with First Comment + UTM links
-   Platforms & Formats:
-   - Facebook: Post, Story, Reel
-   - Instagram: Post, Story, Reel
-   - Twitter (X): Post (280)
-   - LinkedIn: Profile, Page
-   - GMB: Post
-   - TikTok: Video
-   - YTShorts: Short
-   - YouTube: Video (title + description)
+/* CaptionCraft — Platform + Format aware, with First Comment + UTM + Fragment Fixer
+   (Drop-in replacement for the version I sent just before this one.)
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,19 +24,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const FORMAT_HINT = {
-    "facebook:post": "1–3 short paragraphs + 4–7 hashtags.",
-    "facebook:story": "2–3 punchy lines; no hashtags; CTA and URL.",
-    "facebook:reel": "Hook line + 1–2 lines; 3–5 hashtags.",
-    "instagram:post": "Hook + 2–3 lines; 5–9 hashtags.",
-    "instagram:story": "Very short; no hashtag soup; add URL/Sticker.",
-    "instagram:reel": "Hook + one benefit + CTA; 3–7 hashtags.",
-    "twitter:post": "Under 280 characters, ≤2 hashtags.",
-    "linkedin:profile": "3–6 lines; business tone; ≤3 hashtags.",
-    "linkedin:page": "Similar to profile; brand voice; ≤3 hashtags.",
-    "gmb:post": "Plain, local keywords; no hashtags.",
-    "tiktok:video": "Hook + 2 lines + CTA; 6–10 hashtags.",
-    "ytshorts:short": "2–3 lines + 3–5 hashtags.",
-    "youtube:video": "Title + description; no hashtag soup."
+    "facebook:post": "1–3 short paragraphs • 4–7 hashtags",
+    "facebook:story": "2–3 punchy lines • no hashtags • link sticker",
+    "facebook:reel": "Hook + 1–2 lines • 3–5 hashtags",
+    "instagram:post": "Hook + 2–3 lines • 5–9 hashtags",
+    "instagram:story": "Very short • no hashtag soup • link sticker",
+    "instagram:reel": "Hook + benefit + CTA • 3–7 hashtags",
+    "twitter:post": "<280 chars • ≤2 hashtags",
+    "linkedin:profile": "3–6 lines • business tone • ≤3 hashtags",
+    "linkedin:page": "Brand voice • ≤3 hashtags",
+    "gmb:post": "Plain, local keywords • no hashtags",
+    "tiktok:video": "Hook + 2 lines + CTA • 6–10 hashtags",
+    "ytshorts:short": "2–3 lines • 3–5 hashtags",
+    "youtube:video": "Title + description • no hashtag soup",
   };
 
   function refreshFormats() {
@@ -72,10 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const stripTrailingPunct = (s) => s.replace(/[.!\s]+$/g, "");
   const clip = (s, n) => (s.length <= n ? s : s.slice(0, n - 1).trim() + "…");
   const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const isUrl = (t) => /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/i.test(t);
+  const isHashtagLine = (t) => t.trim().startsWith("#");
+  const isTitleLine = (t) => /^title:/i.test(t.trim());
 
   const URL_RE = /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/i;
   const URL_RE_GLOBAL = /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/gi;
-
   const extractUrl = (s) => { const m = (s || "").match(URL_RE); return m ? m[0] : null; };
   const removeUrl = (s) => (s || "").replace(URL_RE_GLOBAL, "").trim();
 
@@ -85,16 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const hasProto = /^https?:\/\//i.test(url);
       const full = hasProto ? url : `https://${url}`;
       const u = new URL(full);
-      // Only add if not already present
       if (![...u.searchParams.keys()].some(k => k.toLowerCase().startsWith("utm_"))) {
         u.searchParams.set("utm_source", platform.toLowerCase());
         u.searchParams.set("utm_medium", (format || "post").toLowerCase());
         u.searchParams.set("utm_campaign", "captioncraft");
       }
       return u.toString();
-    } catch {
-      return url; // if parsing fails, return original
-    }
+    } catch { return url; }
   }
 
   function buildHashtags(keywords, density = "standard", clean = true, platform = "default", format = "post") {
@@ -152,44 +143,69 @@ document.addEventListener("DOMContentLoaded", () => {
     return { maxChars: 450, details: true, spacing: false };
   }
 
-  function humanizeProblem(p) {
-    let s = (p || "").replace(/\bis\b/gi, "’s").replace(/\bour business\b/gi, "your business").trim();
-    s = s.replace(/^for\s+busy.*?,\s*/i, "");
-    s = sentenceCase(s);
-    return ensurePeriod(s);
-  }
-  function humanizeOutcome(o) {
-    let s = (o || "").replace(/\bin your box\b/gi, "in your inbox").trim();
-    s = sentenceCase(s);
-    return ensurePeriod(s);
-  }
-  function humanizeOffer(o) {
-    let s = (o || "").trim();
-    s = s.replace(/\s+special$/i, " special");
+  // ---------- Fragment/grammar fixer ----------
+  const COMMON_VERBS = /(?:get|have|be|is|are|was|were|do|make|build|grow|find|fix|help|win|drive|boost|book|buy|claim|start|learn|see|save|earn|bring)/i;
+
+  function cleanLine(line) {
+    // No changes for tags/urls/title lines
+    if (isHashtagLine(line) || isUrl(line) || isTitleLine(line)) return line.trim();
+
+    // kill doubled spaces & triple dots
+    let s = line.replace(/\s{2,}/g, " ").replace(/\.{4,}/g, "…").trim();
+
+    // collapse accidental doubled words (e.g., "the the")
+    s = s.replace(/\b(\w+)\s+\1\b/gi, "$1");
+
+    // capitalize sentence starts
+    if (s.length > 0) s = s[0].toUpperCase() + s.slice(1);
+
     return s;
   }
 
-  function calendarMeta(platform, format) {
-    const key = `${platform}:${format}`.toLowerCase();
-    const BASE = {
-      "facebook:post": "Best: 9–11am or 1–3pm • 1–3 short paragraphs • 4–7 hashtags",
-      "facebook:story": "Best: mornings/evenings • 2–3 lines • add link sticker",
-      "facebook:reel": "Best: afternoons • hook + 1–2 lines • 3–5 hashtags",
-      "instagram:post": "Best: late morning • hook + 2–3 lines • 5–9 hashtags",
-      "instagram:story": "Best: when active • 1–2 lines • link sticker",
-      "instagram:reel": "Best: evenings • hook + benefit + CTA • 3–7 hashtags",
-      "twitter:post": "Best: commute hours • keep <280 • ≤2 hashtags",
-      "linkedin:profile": "Best: Tue–Thu mornings • 3–6 lines • ≤3 hashtags",
-      "linkedin:page": "Best: business hours • brand tone • ≤3 hashtags",
-      "gmb:post": "Best: business hours • plain language • no hashtags",
-      "tiktok:video": "Best: evenings/weekends • 3–4 lines • 6–10 hashtags",
-      "ytshorts:short": "Best: evenings • 2–3 lines • 3–5 hashtags",
-      "youtube:video": "Best: consistent weekly slot • title + description • no hashtag soup"
-    };
-    return BASE[key] || "";
+  function looksFragmentary(line) {
+    const s = line.trim();
+    if (!s) return false;
+    if (isHashtagLine(s) || isUrl(s) || isTitleLine(s)) return false;
+    // very short non-question line or no verb signal
+    const short = s.length < 25 && !/[!?]$/.test(s);
+    const noVerb = !COMMON_VERBS.test(s);
+    return short || noVerb;
   }
 
-  // ---------- Platform + Format templates ----------
+  function fixFragmentsMultiline(text) {
+    const original = text;
+    let changed = false;
+
+    // Split on lines, clean each, then merge fragments forward
+    let lines = text.split(/\n+/).map(cleanLine).filter((l) => l.length);
+
+    const merged = [];
+    for (let i = 0; i < lines.length; i++) {
+      let cur = lines[i];
+
+      if (looksFragmentary(cur)) {
+        const next = lines[i + 1];
+        if (next && !isHashtagLine(next) && !isTitleLine(next)) {
+          // Join with space; preserve URL/newline if next is URL
+          cur = (cur + " " + next).replace(/\s{2,}/g, " ").trim();
+          i += 1;
+          changed = true;
+        }
+      }
+
+      // Ensure punctuation if not hashtags/URL/title
+      if (!isHashtagLine(cur) && !isUrl(cur) && !isTitleLine(cur)) {
+        if (!/[.!?]$/.test(cur)) cur = cur + ".";
+      }
+
+      merged.push(cur);
+    }
+
+    const out = merged.join("\n");
+    return { out, changed: changed || out !== original };
+  }
+
+  // ---------- Templates ----------
   const TPL = {
     "facebook:post"({ hook, audience, problem, offer, outcome, cta, tags, details, spacing }) {
       const intro = `${hook}.`;
@@ -217,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         details ? `${problem}` : stripTrailingPunct(problem),
         details ? `We’re fixing that with ${offer}.` : `${offer} → ${outcome}`,
         `📬 ${outcome}`,
-        cta
+        cta,
       ];
       let body = lines.join("\n\n");
       body = clip(body, 900);
@@ -282,10 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
         `${cta}`,
         "",
         `—`,
-        `Bluedobie Developing • 270-388-3535 • bluedobiedev.com/contact`
+        `Bluedobie Developing • 270-388-3535 • bluedobiedev.com/contact`,
       ];
       return `Title: ${title}\n\nDescription:\n${descLines.join("\n")}`;
-    }
+    },
   };
 
   function buildVariants(ctx, platform, format) {
@@ -304,22 +320,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const p = (platform || "").toLowerCase();
     const f = (format || "").toLowerCase();
     if (p === "instagram") {
-      // IG: park extra hashtags or short CTA in first comment
       const lines = [];
       if (utmUrl) lines.push(`🔗 ${utmUrl}`);
       if (tags) lines.push(tags);
-      if (!lines.length) return "";
       return lines.join("\n");
     }
     if (p === "linkedin") {
-      // LI: quick CTA + link, no hashtag soup
       const pieces = [];
       if (utmUrl) pieces.push(`Quick link: ${utmUrl}`);
-      pieces.push("Have a question? Drop a comment and I’ll reply.");
+      pieces.push("Questions? Drop a comment and I’ll reply.");
       return pieces.join("\n");
     }
-    // Others: keep empty
     return "";
+  }
+
+  // ---- Soft validation banner ----
+  function qcIssues({ audience, offer, problem, outcome, cta }) {
+    const issues = [];
+    if (!offer || offer.length < 5) issues.push("Offer looks empty/too short.");
+    if (!problem || problem.length < 5) issues.push("Problem looks empty/too short.");
+    if (!outcome || outcome.length < 5) issues.push("Outcome looks empty/too short.");
+    if (!cta || cta.length < 4) issues.push("CTA looks empty/too short.");
+    return issues;
   }
 
   // ---------- Form handling ----------
@@ -358,30 +380,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let ctx = { hook, hookPool, audience, problem, offer, outcome, cta: ctaNoUrl, tags, details, spacing };
 
+    // QC banner if needed
+    const issues = qcIssues({ audience, offer, problem, outcome, cta: ctaNoUrl });
+    if (issues.length) {
+      const warn = document.createElement("div");
+      warn.className = "card";
+      warn.style.margin = "12px 0";
+      warn.style.background = "#fff7ed";
+      warn.style.borderColor = "#fdba74";
+      warn.innerHTML = `<strong>Heads up:</strong> ${issues.join(" ")} — captions will still be generated, and we’ll auto-fix obvious fragments.`;
+      results.appendChild(warn);
+    }
+
     // Build captions
     let captions = buildVariants(ctx, platform, format).map((c) => {
       let out = c;
+
       // Append UTM’d URL where appropriate (not for GMB/YouTube, and not Stories)
       if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
         const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
         out = canAppend ? `${out}${urlSuffix}` : out;
       }
+
+      // Fragment fixer pass (skip for YouTube "Title/Description" blocks)
+      let fixed = { out, changed: false };
+      if (platform !== "youtube") fixed = fixFragmentsMultiline(out);
+
+      // Respect cap
       const cap = platform === "youtube" ? 1200 : maxChars;
-      out = clip(out, cap);
-      return out;
+      fixed.out = clip(fixed.out, cap);
+
+      return fixed;
     });
 
     // Build First Comment (IG + LinkedIn)
     const firstComment = buildFirstComment(platform, format, tags, utmUrl);
 
     // ---------- Render ----------
-    captions.forEach((text, i) => {
+    captions.forEach((obj, i) => {
+      const text = obj.out;
+      const changed = obj.changed;
       const card = document.createElement("div");
       card.className = "caption-card";
       const meta = `${platform.toUpperCase()} • ${format.toUpperCase()}`;
       const cal = calendarMeta(platform, format);
+      const badge = changed ? `<span class="meta" style="color:#b45309;">Auto-fixed formatting</span>` : "";
 
-      // First-comment block appears only when available
       const fcBlock = firstComment
         ? `
         <div class="first-comment">
@@ -402,6 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="meta">${meta}</span>
         </div>
         <div class="hint muted">${cal}</div>
+        ${badge ? `<div class="hint">${badge}</div>` : ""}
         ${fcBlock}
       `;
       results.appendChild(card);
@@ -424,6 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Clear
   clearBtn.addEventListener("click", () => {
     ["audience","offer","outcome","problem","cta","keywords"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
     document.getElementById("captionLength").value = "Medium";
@@ -432,4 +478,25 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("tone").value = 0.5;
     results.innerHTML = "";
   });
+
+  // --- utilities reused below ---
+  function calendarMeta(platform, format) {
+    const key = `${platform}:${format}`.toLowerCase();
+    const BASE = {
+      "facebook:post": "Best: 9–11am or 1–3pm • 1–3 short paragraphs • 4–7 hashtags",
+      "facebook:story": "Best: mornings/evenings • 2–3 lines • link sticker",
+      "facebook:reel": "Best: afternoons • hook + 1–2 lines • 3–5 hashtags",
+      "instagram:post": "Best: late morning • hook + 2–3 lines • 5–9 hashtags",
+      "instagram:story": "Best: when active • 1–2 lines • link sticker",
+      "instagram:reel": "Best: evenings • hook + benefit + CTA • 3–7 hashtags",
+      "twitter:post": "Best: commute hours • keep <280 • ≤2 hashtags",
+      "linkedin:profile": "Best: Tue–Thu mornings • 3–6 lines • ≤3 hashtags",
+      "linkedin:page": "Best: business hours • brand tone • ≤3 hashtags",
+      "gmb:post": "Best: business hours • plain language • no hashtags",
+      "tiktok:video": "Best: evenings/weekends • 3–4 lines • 6–10 hashtags",
+      "ytshorts:short": "Best: evenings • 2–3 lines • 3–5 hashtags",
+      "youtube:video": "Best: consistent weekly slot • title + description • no hashtag soup",
+    };
+    return BASE[key] || "";
+  }
 });
