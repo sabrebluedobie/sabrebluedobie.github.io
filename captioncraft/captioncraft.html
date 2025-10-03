@@ -3,160 +3,138 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ContentCraft — Free AI-Powered Marketing Prompts & Templates | Bluedobie Developing</title>
-  <meta name="description" content="ContentCraft is a free, lightweight toolkit from Bluedobie Developing that helps small businesses spin up better marketing content fast—prompts, templates, and swipe files." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+  <title>DobieCore CaptionCraft — Your social content generator</title>
+  <meta name="description" content="Generate hooks, captions, and clean hashtags from a simple brief. Everything runs in your browser — no signups, no tracking." />
   <link rel="stylesheet" href="captioncraft.css" />
-  <meta property="og:title" content="ContentCraft — Free AI-Powered Marketing Prompts & Templates" />
-  <meta property="og:description" content="Spin up better posts, emails, and landing copy in minutes with free prompts and templates." />
+  <meta property="og:title" content="DobieCore CaptionCraft" />
+  <meta property="og:description" content="Your social content generator — hooks, captions, and hashtags in seconds." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.bluedobiedev.com/captioncraft/" />
-  <meta property="og:image" content="https://www.bluedobiedev.com/assets/og-captioncraft.jpg" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "captioncraft",
-    "brand": {"@type": "Organization","name": "Bluedobie Developing"},
-    "description": "Free prompts and templates for fast, clear marketing content.",
-    "offers": {"@type": "Offer","price": "0","priceCurrency": "USD","availability": "https://schema.org/InStock"},
-    "url": "https://www.bluedobiedev.com/captioncraft/captioncraft/"
-  }
-  </script>
+  <meta property="og:url" content="https://www.bluedobiedev.com/captioncraft/captioncraft.html" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="https://www.bluedobiedev.com">
-      <img src="/assets/images/bluedobielogo_1.webp" alt="Bluedobie Developing logo" />
+        <img src="/assets/images/dobiecore/captioncraftlogo.webp" alt="DobieCore CaptionCraft logo" style="height:42px">
       </a>
       <nav class="top-nav">
+        <a href="/sales.html">Back to Sales</a>
+        <a href="/contentcraft/contentcraft.html">ContentCraft (extras)</a>
         <a href="/contact">Contact</a>
-        <a href="/sales.html">Services</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" style="padding-top:28px;padding-bottom:12px;">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1><span class="accent">ContentCraft</span> — free AI-powered prompts & templates for small businesses</h1>
-          <p class="lead">Tiny town? Tiny budget? No problem. Grab clean, ready-to-use prompts, post ideas, and landing-page blocks that punch above their weight.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="#get-free">Get ContentCraft Free</a>
-            <a class="btn ghost" href="/contact">Book a 30‑minute consult</a>
-          </div>
+          <h1><span class="accent">CaptionCraft</span> — your social content generator</h1>
+          <p class="lead">Turn a quick brief into 3 ready-to-post captions with tailored hooks and clean hashtags. Built for tiny teams, rural markets, and tight schedules.</p>
           <ul class="ticks">
-            <li>Plain‑English prompts for posts, emails, and ads</li>
-            <li>High‑convert landing page sections</li>
-            <li>Rural/small‑market angles that actually work</li>
+            <li>Platform modes: Facebook, Instagram, TikTok, LinkedIn</li>
+            <li>Tone slider: professional → playful</li>
+            <li>Hashtag cleaner with smart density</li>
           </ul>
         </div>
-        <div class="hero-art">
-          <!-- Placeholder art block; replace with approved Sabre image if desired (no clothing, true to brand). -->
-          <div class="art-card">
-            <div class="art-badge">Free</div>
-            <h3>What's inside</h3>
-            <ul>
-              <li>50+ social prompts (local + authority)</li>
-              <li>10 ad angles (problem → promise)</li>
-              <li>Landing page blocks (hero, offer, FAQ)</li>
-              <li>Swipeable CTA & hooks library</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
 
-    <section class="how">
+    <section class="tool">
       <div class="container">
-        <h2>How it works</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="num">1</div>
-            <h3>Pick a goal</h3>
-            <p>Leads, bookings, or sales? Choose the goal and grab the matching prompt bundle.</p>
+        <form id="brief" class="brief" onsubmit="return false;" aria-label="Caption brief form">
+          <div class="row">
+            <label>Audience
+              <input type="text" id="audience" placeholder="busy homeowners in Western Kentucky">
+            </label>
+            <label>Offer
+              <input type="text" id="offer" placeholder="$99 deep-clean special (new clients)">
+            </label>
           </div>
-          <div class="step">
-            <div class="num">2</div>
-            <h3>Copy → paste → personalize</h3>
-            <p>Drop the prompt into your AI tool, add your offer details, hit generate. No jargon, no fluff.</p>
+
+          <div class="row">
+            <label>Problem
+              <input type="text" id="problem" placeholder="no time to scrub baseboards or blinds">
+            </label>
+            <label>Outcome
+              <input type="text" id="outcome" placeholder="a sparkling house and one free weekend back">
+            </label>
           </div>
-          <div class="step">
-            <div class="num">3</div>
-            <h3>Post and iterate</h3>
-            <p>Ship three versions, keep the winner, and roll it into your weekly rhythm.</p>
+
+          <div class="row">
+            <label>Call to action
+              <input type="text" id="cta" placeholder="Book your spot by Friday">
+            </label>
+            <label>Niche keywords (for hashtags)
+              <input type="text" id="keywords" placeholder="cleaning, kentucky, small business">
+            </label>
           </div>
-        </div>
+
+          <div class="row third">
+            <label>Platform
+              <select id="platform">
+                <option>Instagram</option>
+                <option>Facebook</option>
+                <option>TikTok</option>
+                <option>LinkedIn</option>
+              </select>
+            </label>
+
+            <label>Tone <small id="toneLabel" style="opacity:.7;margin-left:6px;">Balanced</small>
+              <input type="range" id="tone" min="0" max="100" value="50" />
+            </label>
+
+            <label>Caption length
+              <select id="length">
+                <option value="short">Short</option>
+                <option value="medium" selected>Medium</option>
+                <option value="long">Long</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row third">
+            <label>Hashtag density
+              <select id="density">
+                <option value="light">Light</option>
+                <option value="standard" selected>Standard</option>
+                <option value="heavy">Heavy</option>
+              </select>
+            </label>
+
+            <label style="align-self:end;">
+              <input type="checkbox" id="cleanHashtags" checked />
+              Clean hashtags (lowercase, no repeats, no punctuation)
+            </label>
+
+            <div></div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn primary" id="generateBtn">Generate 3 Captions</button>
+            <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+          </div>
+        </form>
       </div>
     </section>
 
-    <section class="kits" id="get-free">
+    <section class="results">
       <div class="container">
-        <h2>Download the kits</h2>
-        <p class="sub">Each kit is a lightweight, printable PDF plus a copy‑paste sheet.</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Social Media Kit</h3>
-            <p>50+ prompts across: local flavor, authority, behind‑the‑scenes, client stories, and quick wins.</p>
-            <a class="btn primary" href="/assets/captioncraft/social-media-kit.pdf">Download PDF</a>
-          </article>
-          <article class="card">
-            <h3>Ad & Offer Angles</h3>
-            <p>Ten proven angles with matching hooks, designed for rural/small‑population reach.</p>
-            <a class="btn primary" href="/assets/captioncraft/ad-angles.pdf">Download PDF</a>
-          </article>
-          <article class="card">
-            <h3>Landing Page Blocks</h3>
-            <p>Hero, benefits, proof, FAQ, and CTA sections you can paste into your site builder.</p>
-            <a class="btn primary" href="/assets/captioncraft/landing-blocks.pdf">Download PDF</a>
-          </article>
-        </div>
-        <p class="note">No email gate. No QR codes. Just useful stuff.</p>
-      </div>
-    </section>
-
-    <section class="proof">
-      <div class="container">
-        <h2>Built for small places with big ambition</h2>
-        <div class="grid-2">
-          <div>
-            <h3>Why it works</h3>
-            <ul class="ticks">
-              <li>Local‑first angles that punch beyond county lines</li>
-              <li>Short‑form hooks that travel well on social</li>
-              <li>Lean structure: reduce friction, increase posting cadence</li>
-            </ul>
-          </div>
-          <div>
-            <h3>What you’ll get</h3>
-            <ul class="ticks">
-              <li>Clear prompts that avoid generic AI sludge</li>
-              <li>Templates that focus on outcomes, not adjectives</li>
-              <li>A repeatable weekly flow you can actually keep</li>
-            </ul>
-          </div>
-        </div>
+        <h2>Results</h2>
+        <div id="output" class="cards" aria-live="polite"></div>
       </div>
     </section>
 
     <section class="faq">
       <div class="container">
-        <h2>FAQ</h2>
         <details>
-          <summary>Is this really free?</summary>
-          <p>Yes. ContentCraft is a free public resource from Bluedobie Developing. Use it, share it, improve it.</p>
+          <summary>How the tone slider works</summary>
+          <p>0–30: professional & concise. 31–70: balanced & friendly. 71–100: playful & conversational. Platform choice also nudges phrasing (LinkedIn trims slang; TikTok leans hook-first).</p>
         </details>
         <details>
-          <summary>Do I need a specific AI tool?</summary>
-          <p>No. The prompts are tool‑agnostic. Use ChatGPT, Claude, Gemini—whatever you like.</p>
-        </details>
-        <details>
-          <summary>Can you set this up for me?</summary>
-          <p>Yes—book a 30‑minute consult and we’ll tailor a weekly content rhythm for your business.</p>
+          <summary>Privacy</summary>
+          <p>Everything runs in your browser. No tracking, no cookies, no uploads.</p>
         </details>
       </div>
     </section>
@@ -165,20 +143,210 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="brand-stack">
-        <img src="/assets/images/bluedobielogo_1.webp" alt="Bluedobie Developing logo" />
+        <img src="/assets/images/dobiecore/captioncraftlogo.webp" alt="" style="height:28px">
         <p>Bluedobie Developing</p>
       </div>
       <ul class="footer-contact">
-        <li><a href="tel:12703883535">270‑388‑3535</a></li>
+        <li><a href="tel:12703883535">270-388-3535</a></li>
         <li><a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></li>
-        <li><a href="https://bluedobiedev.com/contact">Contact form</a></li>
+        <li><a href="/contact">Contact form</a></li>
       </ul>
       <p class="legal">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
+    // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tone label updates
+    const tone = document.getElementById('tone');
+    const toneLabel = document.getElementById('toneLabel');
+    function toneWord(val){
+      if(val <= 30) return 'Professional';
+      if(val <= 70) return 'Balanced';
+      return 'Playful';
+    }
+    tone.addEventListener('input', () => toneLabel.textContent = toneWord(+tone.value));
+    toneLabel.textContent = toneWord(+tone.value);
+
+    // Core generation helpers
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function platformStyle(p){
+      switch(p){
+        case 'LinkedIn': return {emoji:false, lineBreaks:true, hashCap:6};
+        case 'TikTok':   return {emoji:true,  lineBreaks:false, hashCap:8};
+        case 'Facebook': return {emoji:true,  lineBreaks:true,  hashCap:8};
+        default:         return {emoji:true,  lineBreaks:true,  hashCap:12}; // Instagram
+      }
+    }
+
+    function toneStyle(val){
+      if(val <= 30) return {temp:0.1, fluff:0, slang:0};
+      if(val <= 70) return {temp:0.25, fluff:1, slang:0.5};
+      return {temp:0.4, fluff:2, slang:1};
+    }
+
+    function makeHook({audience, problem, outcome, offer, platform, toneVal}){
+      const t = toneStyle(toneVal);
+      const p = platformStyle(platform);
+      const emojis = ['💡','✨','✅','🧰','⚡','🚀','🌟','🎯','🧽','⏱️','🏠'];
+      const starters = [
+        `Tired of ${problem}?`,
+        `What if ${outcome}?`,
+        `${audience[0].toUpperCase()+audience.slice(1)}, this is for you.`,
+        `Stop letting ${problem} win.`,
+        `Small change → big result: ${outcome}.`
+      ];
+      let hook = pick(starters);
+      if(p.emoji && Math.random()<0.6){ hook = pick(emojis)+' '+hook; }
+      if(t.slang && Math.random()<0.4){ hook = hook.replace('Tired of','Done with'); }
+      return hook;
+    }
+
+    function makeBody({audience, problem, outcome, offer, cta, platform, toneVal, length}){
+      const t = toneStyle(toneVal);
+      const p = platformStyle(platform);
+
+      // Sentences pool (assembled based on tone/length)
+      const bits = [];
+      bits.push(`For ${audience}, ${problem} steals time you can’t get back.`);
+      bits.push(`We’re fixing that with ${offer}.`);
+      bits.push(`Result: ${outcome}.`);
+      if(t.fluff>=1) bits.push(`Built for real life, not ad-speak.`);
+      if(t.fluff>=2) bits.push(`Simple, fast, and surprisingly satisfying.`);
+      bits.push(`${cta}.`);
+
+      // Length control
+      let keep = 3;
+      if(length==='short') keep = 2;
+      if(length==='medium') keep = 3;
+      if(length==='long') keep = Math.min(bits.length, 5);
+
+      const chosen = [];
+      while(chosen.length<keep && bits.length){
+        chosen.push(bits.splice(Math.floor(Math.random()*bits.length),1)[0]);
+      }
+
+      let body = chosen.join(p.lineBreaks ? '\n' : ' ');
+      if(p.platform==='LinkedIn'){
+        body = body.replace(/can’t/g,"can't");
+      }
+      return body;
+    }
+
+    function cleanTag(s){
+      return s.toLowerCase()
+        .replace(/&/g,'and')
+        .replace(/[^\p{L}\p{N}\s]/gu,'')
+        .trim()
+        .replace(/\s+/g,'');
+    }
+
+    function makeHashtags({keywords, platform, density, clean, platformCap}){
+      if(!keywords.trim()) return '';
+      const base = keywords.split(',').map(k=>cleanTag(k)).filter(Boolean);
+      // Expand with common marketing tags
+      const add = ['smallbusiness','shoplocal','supportlocal','marketing','content','socialmedia','ontheblog','today','tips','howto'];
+      const pool = [...new Set([...base, ...add])];
+
+      let count = 0;
+      if(density==='light') count = 4;
+      if(density==='standard') count = 7;
+      if(density==='heavy') count = 12;
+
+      const p = platformStyle(platform);
+      count = Math.min(count, p.hashCap);
+
+      const pickTags = [];
+      while(pickTags.length < count && pool.length){
+        const tag = pool.splice(Math.floor(Math.random()*pool.length),1)[0];
+        if(tag && !pickTags.includes(tag)) pickTags.push(tag);
+      }
+
+      const prefix = '#';
+      const out = pickTags.map(t => prefix + (clean ? cleanTag(t) : t));
+      return out.join(' ');
+    }
+
+    function assembleCaption(opts){
+      const hook = makeHook(opts);
+      const body = makeBody(opts);
+      const hashtags = makeHashtags(opts);
+      return hook + '\n\n' + body + (hashtags ? '\n\n' + hashtags : '');
+    }
+
+    // UI wiring
+    const output = document.getElementById('output');
+    const genBtn = document.getElementById('generateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function readBrief(){
+      return {
+        audience: document.getElementById('audience').value || 'local customers',
+        offer: document.getElementById('offer').value || 'a limited-time offer',
+        problem: document.getElementById('problem').value || 'not enough time',
+        outcome: document.getElementById('outcome').value || 'more free hours and less stress',
+        cta: document.getElementById('cta').value || 'Message us to get started',
+        keywords: document.getElementById('keywords').value || 'local, small business',
+        platform: document.getElementById('platform').value,
+        toneVal: +document.getElementById('tone').value,
+        length: document.getElementById('length').value,
+        density: document.getElementById('density').value,
+        clean: document.getElementById('cleanHashtags').checked
+      };
+    }
+
+    function cardTemplate(text, idx){
+      const id = 'cap'+idx;
+      const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `
+        <article class="card">
+          <h3>Caption ${idx+1}</h3>
+          <pre style="white-space:pre-wrap;word-break:break-word;">${safe}</pre>
+          <div class="actions">
+            <button class="btn" data-copy="${id}">Copy</button>
+          </div>
+          <textarea id="${id}" style="position:absolute;left:-9999px;opacity:0;">${text}</textarea>
+        </article>
+      `;
+    }
+
+    function copyFromHidden(id){
+      const t = document.getElementById(id);
+      t.select();
+      t.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+    }
+
+    genBtn.addEventListener('click', () => {
+      const brief = readBrief();
+      output.innerHTML = '';
+      // Generate 3 slightly different variants
+      for(let i=0;i<3;i++){
+        const opts = {...brief};
+        // tiny random wobble
+        opts.toneVal = Math.max(0, Math.min(100, opts.toneVal + Math.floor((Math.random()*8)-4)));
+        const text = assembleCaption(opts);
+        output.insertAdjacentHTML('beforeend', cardTemplate(text, i));
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      document.getElementById('brief').reset();
+      toneLabel.textContent = toneWord(+tone.value);
+      output.innerHTML = '';
+    });
+
+    output.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-copy]');
+      if(!btn) return;
+      const id = btn.getAttribute('data-copy');
+      copyFromHidden(id);
+      btn.textContent = 'Copied!';
+      setTimeout(()=>{ btn.textContent = 'Copy'; }, 900);
+    });
   </script>
 </body>
 </html>
