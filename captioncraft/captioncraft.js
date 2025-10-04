@@ -1,5 +1,8 @@
-/* CaptionCraft — Platform + Format aware, with First Comment + UTM + Fragment Fixer + Emoji De-AI-ifier
-   This file supersedes the previous JS I sent.
+/* CaptionCraft — Platform + Format aware
+   Features: First Comment • UTM links • Fragment Fixer • Emoji De-AI-ifier
+             Audience-Intent steering • Domain-aware angles (non-repetitive)
+             Voice Mode (leadgen / community / authority) with smart fallback
+   Full replacement for captioncraft.js
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -163,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Fragment fixer
-  const COMMON_VERBS = /(?:get|have|be|is|are|was|were|do|make|build|grow|find|fix|help|win|drive|boost|book|buy|claim|start|learn|see|save|earn|bring)/i;
+  const COMMON_VERBS = /(?:get|have|be|is|are|was|were|do|make|build|grow|find|fix|help|win|drive|boost|book|buy|claim|start|learn|see|save|earn|bring|keep|write|post|plan|schedule|recap)/i;
   function cleanLine(line) {
     if (isHashtagLine(line) || isUrl(line) || isTitleLine(line)) return line.trim();
     let s = line.replace(/\s{2,}/g, " ").replace(/\.{4,}/g, "…").trim();
@@ -203,66 +206,36 @@ document.addEventListener("DOMContentLoaded", () => {
     return { out, changed: changed || out !== original };
   }
 
-  // ---------- EMOJI DE-AI-IFIER ----------
+  // ---------- Emoji De-AI-ifier ----------
   const GENERIC_AI_EMOJIS = ["🚀","🎯","✨","📣","⚡","💡","🔥","✅","📈"];
-  const EMOJI_REGEX = /([\u231A-\uD83E\uDDFF\u2600-\u27BF]|\uFE0F)/g; // broad capture
+  const EMOJI_REGEX = /([\u231A-\uD83E\uDDFF\u2600-\u27BF]|\uFE0F)/g;
 
-  function extractEmojis(text) {
-    return (text.match(EMOJI_REGEX) || []).filter(Boolean);
-  }
-
-  function startsWithEmoji(line) {
-    const s = line.trim();
-    return !!(s && EMOJI_REGEX.test(s[0]));
-  }
-
+  function extractEmojis(text) { return (text.match(EMOJI_REGEX) || []).filter(Boolean); }
+  function startsWithEmoji(line) { const s = line.trim(); return !!(s && EMOJI_REGEX.test(s[0])); }
   function emojiIssues(text) {
     const lines = text.split(/\n+/).filter((l) => l.trim().length);
     const all = extractEmojis(text);
     const genericCount = all.filter((e) => GENERIC_AI_EMOJIS.includes(e)).length;
-
     const frontLoaded = lines.length && lines.every((l) => {
-      const trimmed = l.trim();
-      if (!trimmed) return true;
-      // ignore hashtag / title lines
-      if (isHashtagLine(trimmed) || isTitleLine(trimmed)) return true;
-      return startsWithEmoji(trimmed);
+      const t = l.trim();
+      if (!t || isHashtagLine(t) || isTitleLine(t)) return true;
+      return startsWithEmoji(t);
     });
-
-    const onePerLine = lines.length && lines.every((l) => {
-      const em = extractEmojis(l);
-      const nonEmpty = l.trim().length > 0 && !isHashtagLine(l) && !isTitleLine(l);
-      return !nonEmpty || em.length <= 1;
-    });
-
     const bookended = lines.some((l) => {
       const t = l.trim();
       if (!t || isHashtagLine(t) || isTitleLine(t)) return false;
       const em = extractEmojis(t);
       return em.length >= 2 && em[0] === em[em.length - 1];
     });
-
-    return {
-      total: all.length,
-      genericCount,
-      frontLoaded,
-      onePerLine,
-      bookended,
-      looksAIish:
-        genericCount >= 2 ||
-        (frontLoaded && all.length >= 1) ||
-        bookended,
-    };
+    return { total: all.length, genericCount, frontLoaded, bookended,
+      looksAIish: genericCount >= 2 || (frontLoaded && all.length >= 1) || bookended };
   }
-
-  // Contextual suggestions from keywords/audience/platform
   function suggestEmojiPool(keywords, audience, platform) {
     const k = (keywords || "").toLowerCase();
     const a = (audience || "").toLowerCase();
     const p = (platform || "").toLowerCase();
-
     const pool = [];
-
+    if (/(fantasy|espn|league|commish|commissioner)/.test(k+a)) pool.push("🏈","😂","🎙️","📣");
     if (k.includes("web") || k.includes("design")) pool.push("🖥️","🎨","🛠️","🧩");
     if (k.includes("marketing") || k.includes("growth")) pool.push("📈","📊","🧲","📌");
     if (k.includes("local") || a.includes("local")) pool.push("📍","🏘️","🛣️");
@@ -272,57 +245,220 @@ document.addEventListener("DOMContentLoaded", () => {
     if (k.includes("food") || k.includes("cafe")) pool.push("☕","🍔","🥗");
     if (p === "tiktok") pool.push("🎬","🎵");
     if (p === "instagram") pool.push("📸");
-    if (pool.length === 0) pool.push("📌","🧭","🤝"); // mild, neutral
-
-    // Dedup and cap
+    if (pool.length === 0) pool.push("📌","🧭","🤝");
     return [...new Set(pool)].slice(0, 6);
   }
-
-  // Rewrite emojis: swap generics, randomize placement, trim counts
   function deAIifyEmojis(text, suggestions, platform) {
     const allowMore = ["tiktok","instagram"].includes((platform || "").toLowerCase());
     const maxKeep = allowMore ? 2 : 1;
-
     const lines = text.split(/\n/);
     const out = lines.map((line) => {
       const trimmed = line.trim();
       if (!trimmed || isHashtagLine(trimmed) || isTitleLine(trimmed)) return line;
-
-      // Replace generic emojis with suggestions (rotate)
-      let replaced = trimmed.replace(EMOJI_REGEX, (m) => {
-        if (!GENERIC_AI_EMOJIS.includes(m)) return m;
-        return pick(suggestions);
-      });
-
-      // If still too many emojis, keep up to maxKeep
+      let replaced = trimmed.replace(EMOJI_REGEX, (m) => GENERIC_AI_EMOJIS.includes(m) ? pick(suggestions) : m);
       const ems = extractEmojis(replaced);
       if (ems.length > maxKeep) {
         let count = 0;
-        replaced = replaced.replace(EMOJI_REGEX, (m) => {
-          if (count < maxKeep) { count++; return m; }
-          return ""; // drop extras
-        }).replace(/\s{2,}/g, " ").trim();
+        replaced = replaced.replace(EMOJI_REGEX, (m) => (count++ < maxKeep ? m : "")).replace(/\s{2,}/g, " ").trim();
       }
-
-      // Randomize placement: 0 start, 1 end, 2 mid, 3 none (if already has one we won’t force another)
-      const hasEmoji = extractEmojis(replaced).length > 0;
-      if (!hasEmoji && Math.random() < 0.6) {
+      if (extractEmojis(replaced).length === 0 && Math.random() < 0.6) {
         const em = pick(suggestions);
-        const mode = Math.floor(Math.random() * 3);
-        if (mode === 0) replaced = `${em} ${replaced}`;
-        else if (mode === 1) replaced = `${replaced} ${em}`;
-        else {
-          const words = replaced.split(" ");
-          const pos = Math.max(1, Math.min(words.length - 1, Math.floor(words.length / 2)));
-          words.splice(pos, 0, em);
-          replaced = words.join(" ");
-        }
+        const words = replaced.split(" ");
+        const pos = Math.max(1, Math.min(words.length - 1, Math.floor(words.length / 2)));
+        words.splice(pos, 0, em);
+        replaced = words.join(" ");
       }
-
       return replaced;
     });
-
     return out.join("\n");
+  }
+
+  // ---------- Audience Intent + Need ----------
+  function audienceIntent(audience, keywords) {
+    const blob = `${(audience||"").toLowerCase()} ${(keywords||"").toLowerCase()}`;
+    if (/(fantasy|espn|commish|commissioner|league|sleeper|yahoo)/.test(blob)) {
+      return { persona: "fantasy_commissioners", voice: "casual", emojiBias: ["🏈","😂","🎙️","📣"], needs: ["save time", "keep the league chat active", "funny recaps"] };
+    }
+    if (/(contractor|plumber|hvac|electrician|roof|remodel)/.test(blob)) {
+      return { persona: "contractors", voice: "direct", emojiBias: ["🛠️","🏠","📍","⏱️"], needs: ["book jobs", "look legit locally", "save admin time"] };
+    }
+    if (/(realtor|real estate|broker|agent)/.test(blob)) {
+      return { persona: "realtors", voice: "polished", emojiBias: ["🏡","📍","🗝️","📆"], needs: ["book showings", "grow referrals", "post consistently"] };
+    }
+    if (/(restaurant|cafe|coffee|food|bakery)/.test(blob)) {
+      return { persona: "food_service", voice: "warm", emojiBias: ["🍔","☕","🥗","📸"], needs: ["foot traffic", "repeat visits", "local visibility"] };
+    }
+    return { persona: "general_smallbiz", voice: "friendly", emojiBias: ["📌","🤝","📈","🧭"], needs: ["save time", "post consistently", "sound human"] };
+  }
+  function extractNeed(problem, outcome, intent) {
+    const p = (problem||"").toLowerCase();
+    const o = (outcome||"").toLowerCase();
+    if (/time|busy|no time|save time|faster/.test(p+o)) return "save time";
+    if (/engage|chat|banter|conversation|quiet|silent|crickets/.test(p+o)) return "keep the conversation going";
+    if (/leads|book|sales|call|inbox/.test(p+o)) return "get more inquiries";
+    if (/consistent|presence|on-brand|look/.test(p+o)) return "stay consistent without sounding robotic";
+    return intent.needs[0] || "get results faster";
+  }
+  function whoAndNeedLine(audience, need, intent) {
+    const who = (audience || "your audience").trim();
+    switch (intent.persona) {
+      case "fantasy_commissioners": return `${who} need to ${need} (and keep the league chat alive).`;
+      case "contractors":          return `${who} need to ${need} and look legit locally.`;
+      case "realtors":             return `${who} need to ${need} and show up consistently.`;
+      case "food_service":         return `${who} need to ${need} and bring people in the door.`;
+      default:                     return `${who} need to ${need}.`;
+    }
+  }
+
+  // ---------- Voice Mode (UI or fallback) ----------
+  function resolveVoiceMode(intent, platform) {
+    const uiVal = document.getElementById("voiceMode")?.value;
+    if (uiVal) return uiVal; // "leadgen" | "community" | "authority"
+    // Fallback heuristics
+    if (intent.persona === "fantasy_commissioners") return "community";
+    if ((platform || "").toLowerCase() === "linkedin") return "authority";
+    return "leadgen";
+  }
+
+  // ---------- Domain-aware angles (variety; no boilerplate) ----------
+  function domainProfile(audience, keywords, offer) {
+    const blob = (audience + " " + keywords + " " + offer).toLowerCase();
+    const isFantasy = /fantasy|espn|sleeper|yahoo|commissioner|commish|league/.test(blob);
+    if (isFantasy) {
+      return {
+        domain: "fantasy",
+        pains: [
+          "no time to write weekly recaps",
+          "Sunday-night scramble to sound witty",
+          "league chat going quiet by mid-season"
+        ],
+        benefits_time: [
+          "you get your Sunday night back",
+          "skip the scramble—recaps arrive done",
+          "automation handles the recap grind"
+        ],
+        benefits_social: [
+          "your group chat stays loud past Week 6",
+          "friends keep the trash talk going",
+          "the league actually reads the recaps"
+        ],
+        benefits_status: [
+          "you look like an MVP commissioner",
+          "your league treats you like a pro",
+          "everyone thinks you hired a writer"
+        ],
+        result_verbs: ["Result", "Outcome", "Bottom line"]
+      };
+    }
+    // default (general)
+    return {
+      domain: "generic",
+      pains: [
+        "hard to keep up with posts",
+        "content takes too long to write",
+        "ideas run out mid-week"
+      ],
+      benefits_time: [
+        "you get hours back each week",
+        "no more blank-page panic",
+        "posts are ready when you are"
+      ],
+      benefits_social: [
+        "your audience actually engages",
+        "comments don’t fizzle out",
+        "more saves and shares"
+      ],
+      benefits_status: [
+        "you look consistent and on-brand",
+        "you sound like a real person",
+        "you ship content without stress"
+      ],
+      result_verbs: ["Result", "Outcome", "Bottom line"]
+    };
+  }
+
+  // VOICE MODE aware angle selection
+  function angleLines(profile, variantIndex, problemInput, outcomeInput, offer, voiceMode) {
+    const pv = profile.result_verbs;
+
+    // Voice: COMMUNITY / FUN (groups, leagues, clubs)
+    if (voiceMode === "community") {
+      const pains = profile.pains;
+      const social = profile.benefits_social;
+      const time = profile.benefits_time;
+
+      if (variantIndex % 3 === 0) {
+        return {
+          pain: problemInput || `No time to keep your group lively: ${pains[0]}.`,
+          benefit: `With ${offer}, ${time[variantIndex % time.length]}.`,
+          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
+        };
+      }
+      if (variantIndex % 3 === 1) {
+        return {
+          pain: problemInput || `It’s easy to burn out: ${pains[1]}.`,
+          benefit: `We handle the words so you don’t have to—${social[variantIndex % social.length]}.`,
+          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
+        };
+      }
+      return {
+        pain: problemInput || `Keeping momentum is hard: ${pains[2]}.`,
+        benefit: `${offer} means ${social[variantIndex % social.length]}.`,
+        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || time[(variantIndex+1) % time.length]}.`
+      };
+    }
+
+    // Voice: AUTHORITY / PRO (LinkedIn, consultants)
+    if (voiceMode === "authority") {
+      const pains = profile.pains;
+      const status = profile.benefits_status;
+      const time = profile.benefits_time;
+
+      if (variantIndex % 3 === 0) {
+        return {
+          pain: problemInput || `Credibility slips when content lags: ${pains[0]}.`,
+          benefit: `With ${offer}, you show up reliably and on-message.`,
+          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || status[(variantIndex+1) % status.length]}.`
+        };
+      }
+      if (variantIndex % 3 === 1) {
+        return {
+          pain: problemInput || `Consistency is heavy lift: ${pains[1]}.`,
+          benefit: `${offer} cuts the lift so your expertise stays front and center.`,
+          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || time[(variantIndex+1) % time.length]}.`
+        };
+      }
+      return {
+        pain: problemInput || `The job’s bigger than it looks: ${pains[2]}.`,
+        benefit: `${offer} helps you communicate like a trusted voice.`,
+        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || status[(variantIndex+1) % status.length]}.`
+      };
+    }
+
+    // Default: LEAD GEN / SALES
+    const pains = profile.pains;
+    const time = profile.benefits_time;
+    const social = profile.benefits_social;
+
+    if (variantIndex % 3 === 0) {
+      return {
+        pain: problemInput || `It’s tough when people can’t find you: ${pains[0]}.`,
+        benefit: `With ${offer}, you save hours and stay visible.`,
+        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || "more inquiries without the scramble"}.`
+      };
+    }
+    if (variantIndex % 3 === 1) {
+      return {
+        pain: problemInput || `Content eats your time: ${pains[1]}.`,
+        benefit: `${offer} handles the heavy lifting—${time[variantIndex % time.length]}.`,
+        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
+      };
+    }
+    return {
+      pain: problemInput || `Ideas run out mid-week: ${pains[2]}.`,
+      benefit: `${offer} keeps you shipping, stress-free.`,
+      result: `${pv[variantIndex % pv.length]}: ${outcomeInput || "consistent posts that sound human"}.`
+    };
   }
 
   // Calendar hint meta
@@ -346,94 +482,103 @@ document.addEventListener("DOMContentLoaded", () => {
     return BASE[key] || "";
   }
 
-  // ---------- Templates ----------
+  // ---------- Templates (Audience/Need + Angles + Voice Mode) ----------
   const TPL = {
-    "facebook:post"({ hook, audience, problem, offer, outcome, cta, tags, details, spacing }) {
-      const intro = `${hook}.`;
-      const pain = `Most ${audience} know this pain: ${problem}`;
-      const sol = details ? `With ${offer}, you’ll have a clean, professional presence working 24/7.` : `Try ${offer} to fix it fast.`;
-      const res = `Result: ${outcome}`;
+    _assemble({ variantIndex, profile, voiceMode, hook, whoNeed, offer, outcome, cta, tags, details, spacing, problem }) {
+      const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
+      const intro = hook ? `${hook}.` : "";
+      const open = whoNeed;
+      const sol  = a.benefit;
+      const res  = a.result;
       const call = cta;
-      let body = [intro, pain, sol, res, call].join(spacing ? "\n\n" : " ");
-      body = clip(body, 900);
+      let body = [intro, open, sol, res, call].filter(Boolean).join(spacing ? "\n\n" : " ");
       return tags ? `${body}\n\n${tags}` : body;
     },
-    "facebook:story"({ problem, offer, outcome, cta }) {
-      let body = `${stripTrailingPunct(problem)}?\n${offer}\n${outcome}\n${cta}`;
-      return clip(body, 220);
+
+    // ---- Facebook ----
+    "facebook:post"(ctx) { return this._assemble(ctx); },
+    "facebook:story"({ profile, voiceMode, variantIndex, whoNeed, offer, outcome, cta }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let body = `${whoNeed.replace(/[.]+$/, "")}?\n${offer}\n${a.result}\n${cta}`;
+      return body;
     },
-    "facebook:reel"({ hook, offer, outcome, cta, tags }) {
-      let body = `${hook}\n${offer} → ${outcome}\n${cta}`;
+    "facebook:reel"({ profile, voiceMode, variantIndex, hook, offer, outcome, cta, tags }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let body = `${hook}\n${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
       body = clip(body, 300);
       return tags ? `${body}\n${tags}` : body;
     },
 
-    "instagram:post"({ hook, problem, offer, outcome, cta, tags, details }) {
-      const lines = [
-        `${hook}`,
-        details ? `${problem}` : stripTrailingPunct(problem),
-        details ? `We’re fixing that with ${offer}.` : `${offer} → ${outcome}`,
-        `📬 ${outcome}`,
-        cta,
-      ];
-      let body = lines.join("\n\n");
+    // ---- Instagram ----
+    "instagram:post"({ profile, voiceMode, variantIndex, hook, whoNeed, offer, outcome, cta, tags, details, problem }) {
+      const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
+      const lines = details
+        ? [ hook, whoNeed, `We’re handling it with ${offer}.`, a.result, cta ]
+        : [ hook, `${offer} → ${a.result.replace(/^.*?:\s*/,"")}`, cta ];
+      let body = lines.filter(Boolean).join("\n\n");
       body = clip(body, 900);
       return tags ? `${body}\n\n${tags}` : body;
     },
-    "instagram:story"({ problem, offer, cta }) {
-      let body = `${stripTrailingPunct(problem)}?\n${offer}\n${cta}`;
+    "instagram:story"({ whoNeed, offer, cta }) {
+      let body = `${whoNeed.replace(/[.]+$/, "")}?\n${offer}\n${cta}`;
       return clip(body, 220);
     },
-    "instagram:reel"({ hook, offer, outcome, cta, tags }) {
-      let body = `${hook}\n${offer} → ${outcome}\n${cta}`;
+    "instagram:reel"({ profile, voiceMode, variantIndex, hook, offer, outcome, cta, tags }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let body = `${hook}\n${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
       body = clip(body, 300);
       return tags ? `${body}\n${tags}` : body;
     },
 
-    "twitter:post"({ problem, offer, outcome, cta, tags }) {
-      let line = `${stripTrailingPunct(problem)}? ${offer} → ${outcome} ${stripTrailingPunct(cta)}.`;
+    // ---- Twitter (X) ----
+    "twitter:post"({ whoNeed, offer, outcome, cta, tags, profile, voiceMode, variantIndex }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let line = `${whoNeed} ${offer} → ${a.result.replace(/^.*?:\s*/,"")}. ${stripTrailingPunct(cta)}.`;
       line = clip(line, 280);
       return tags ? `${line} ${tags}` : line;
     },
 
-    "linkedin:profile"({ audience, problem, offer, outcome, cta, tags, details }) {
-      const opener = details ? `For ${audience}: ${problem}` : `${problem}`;
-      const body = `We built ${offer} to solve this. ${outcome}`;
-      const close = cta;
-      let out = [opener, body, close].join("\n\n");
-      out = clip(out, 1200);
-      return tags ? `${out}\n\n${tags}` : out;
-    },
-    "linkedin:page"(ctx) { return TPL["linkedin:profile"](ctx); },
+    // ---- LinkedIn ----
+    "linkedin:profile"(ctx) { return this._assemble(ctx); },
+    "linkedin:page"(ctx)    { return this._assemble(ctx); },
 
-    "gmb:post"({ problem, offer, outcome, cta }) {
+    // ---- Google My Business ----
+    "gmb:post"({ whoNeed, offer, outcome, cta }) {
       const head = `**${offer}**`;
-      const p = `${problem} ${offer} fixes that, delivering ${outcome}`;
-      const call = `${cta}`;
+      const p = whoNeed;
+      const res = outcome ? outcome : "";
+      const call = cta;
       const contact = `Call **270-388-3535** or visit **bluedobiedev.com/contact**`;
-      return [head, "", p, "", call, "", contact].join("\n");
+      return [head, "", p, res ? `\n${res}` : "", call, "", contact].join("\n");
     },
 
-    "tiktok:video"({ hook, problem, offer, outcome, cta, tags }) {
-      const h = hook.replace(/\.$/, "");
-      let body = `${h}\n${problem}\n${offer} → ${outcome}\n${cta}`;
+    // ---- TikTok ----
+    "tiktok:video"({ whoNeed, offer, profile, voiceMode, variantIndex, outcome, cta, tags }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let body = `${whoNeed}\n${offer}\n${a.result}\n${cta}`;
       body = clip(body, 500);
       return tags ? `${body}\n${tags}` : body;
     },
 
-    "ytshorts:short"({ problem, offer, outcome, cta, tags }) {
-      let body = `${stripTrailingPunct(problem)}?\n${offer} → ${outcome}\n${cta}`;
+    // ---- YouTube Shorts ----
+    "ytshorts:short"({ whoNeed, offer, profile, voiceMode, variantIndex, outcome, cta, tags }) {
+      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
+      let body = `${whoNeed}\n${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
       body = clip(body, 300);
       return tags ? `${body}\n${tags}` : body;
     },
 
-    "youtube:video"({ problem, offer, outcome, cta }) {
-      const title = clip(`${offer}: ${outcome.replace(/^[A-Z]/, (m) => m.toLowerCase())}`, 100);
+    // ---- YouTube longform ----
+    "youtube:video"({ whoNeed, offer, outcome, cta }) {
+      const title = clip(`${offer}: ${ (outcome || whoNeed).replace(/^[A-Z]/, (m) => m.toLowerCase()) }`, 100);
       const descLines = [
+        `【 Who this is for 】`,
+        `${whoNeed}`,
+        "",
         `【 What you’ll learn 】`,
-        `• ${problem}`,
+        `• Why this matters`,
         `• How ${offer} solves it`,
-        `• What changes: ${outcome}`,
+        `• What changes: ${outcome || "less stress, better results"}`,
         "",
         `【 Next step 】`,
         `${cta}`,
@@ -445,12 +590,14 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
+  // Build three variants with rotating angles & hooks
   function buildVariants(ctx, platform, format) {
     const key = `${platform}:${format}`.toLowerCase();
     const make = TPL[key] || TPL["facebook:post"];
     const variants = [];
     for (let i = 0; i < 3; i++) {
-      variants.push(make(ctx));
+      const ctxWithVariant = { ...ctx, variantIndex: i };
+      variants.push(make(ctxWithVariant));
       ctx.hook = pick(ctx.hookPool);
     }
     return variants;
@@ -459,7 +606,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- First Comment generator (Instagram + LinkedIn) ----
   function buildFirstComment(platform, format, tags, utmUrl) {
     const p = (platform || "").toLowerCase();
-    const f = (format || "").toLowerCase();
     if (p === "instagram") {
       const lines = [];
       if (utmUrl) lines.push(`🔗 ${utmUrl}`);
@@ -519,7 +665,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const hookPool = tone.hookLead;
     const hook = pick(hookPool);
 
-    let ctx = { hook, hookPool, audience, problem, offer, outcome, cta: ctaNoUrl, tags, details, spacing };
+    // Audience intent + needs + who/need line
+    const intent = audienceIntent(audience, keywords);
+    const need = extractNeed(problem, outcome, intent);
+    const whoNeed = whoAndNeedLine(audience, need, intent);
+
+    // Voice Mode (UI or fallback)
+    const voiceMode = resolveVoiceMode(intent, platform);
+
+    // Domain profile for angle variety
+    const profile = domainProfile(audience, keywords, offer);
 
     // QC banner
     const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
@@ -532,6 +687,15 @@ document.addEventListener("DOMContentLoaded", () => {
       warn.innerHTML = `<strong>Heads up:</strong> ${issues.join(" ")} We’ll auto-fix obvious fragments.`;
       results.appendChild(warn);
     }
+
+    // Shared context for templates
+    let ctx = {
+      hook, hookPool,
+      audience, problem, offer, outcome,
+      cta: ctaNoUrl,
+      tags, details, spacing,
+      intent, need, whoNeed, profile, voiceMode
+    };
 
     // Build raw captions
     let caps = buildVariants(ctx, platform, format).map((c) => {
@@ -557,24 +721,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // First comment (IG + LI)
     const firstComment = buildFirstComment(platform, format, tags, utmUrl);
 
-    // ---------- Render ----------
     // Emoji uniformity check across the set
     const allEmojis = caps.flatMap(c => extractEmojis(c.out));
     const dominantGeneric = allEmojis.filter(e => GENERIC_AI_EMOJIS.includes(e));
     const setUniformWarning = dominantGeneric.length >= 3;
 
+    // ---------- Render ----------
     caps.forEach((obj, i) => {
       let text = obj.out;
       const fragFixed = obj.changed;
 
-      // Analyze emojis
+      // Analyze emojis & prepare suggestions
       const issuesE = emojiIssues(text);
       const suggestPool = suggestEmojiPool(keywords, audience, platform);
       const looksAIish = issuesE.looksAIish || setUniformWarning;
 
       const card = document.createElement("div");
       card.className = "caption-card";
-      const meta = `${platform.toUpperCase()} • ${format.toUpperCase()}`;
+      const meta = `${platform.toUpperCase()} • ${format.toUpperCase()} • ${voiceMode.toUpperCase()}`;
       const cal = calendarMeta(platform, format);
 
       const warning = looksAIish
@@ -621,7 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       emojiBtn.addEventListener("click", () => {
-        const newText = deAIifyEmojis(ta.value, suggestPool, platform);
+        const newText = deAIifyEmojis(ta.value, suggestEmojiPool(keywords, audience, platform), platform);
         ta.value = newText;
         emojiBtn.textContent = "Emojis humanized";
         setTimeout(() => (emojiBtn.textContent = "Humanize emojis"), 1800);
@@ -640,12 +804,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Clear
-  clearBtn.addEventListener("click", () => {
+  clearBtn?.addEventListener("click", () => {
     ["audience","offer","outcome","problem","cta","keywords"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
-    document.getElementById("captionLength").value = "Medium";
-    document.getElementById("hashtagDensity").value = "Standard";
-    document.getElementById("cleanHashtags").checked = true;
-    document.getElementById("tone").value = 0.5;
+    const lenEl = document.getElementById("captionLength"); if (lenEl) lenEl.value = "Medium";
+    const denEl = document.getElementById("hashtagDensity"); if (denEl) denEl.value = "Standard";
+    const cleanEl = document.getElementById("cleanHashtags"); if (cleanEl) cleanEl.checked = true;
+    const toneEl = document.getElementById("tone"); if (toneEl) toneEl.value = 0.5;
+    const voiceEl = document.getElementById("voiceMode"); if (voiceEl) voiceEl.value = voiceEl.value || "leadgen";
     results.innerHTML = "";
   });
 });
