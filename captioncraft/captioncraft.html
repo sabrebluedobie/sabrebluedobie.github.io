@@ -116,6 +116,17 @@
               <option>Long</option>
             </select>
           </div>
+          
+          <div id="writerPersonaGroup" class="field" style="grid-column: span 4;">
+            <label for="writerPersona">Writer Persona</label>
+            <select id="writerPersona"></select>
+            <small class="muted">If you only set one persona in onboarding, this control will be hidden automatically.</small>
+          </div>
+
+          <div id="mascotNameGroup" class="field" style="grid-column: span 4; display:none;">
+            <label for="mascotName">Mascot / Character name</label>
+            <input id="mascotName" type="text" placeholder="Sabre">
+          </div>
           <div class="field" style="grid-column: span 4;">
             <label for="voiceMode">Voice Mode</label>
             <select id="voiceMode">
@@ -160,5 +171,13 @@
   </div>
 
   <script src="captioncraft.js"></script>
+  <script>
+  // Example: three personas; will reveal the toggle and set default
+  window.CaptionCraft?.saveOnboardingPersonas?.([
+    {id:'owner',  label:'Me (personal)'},
+    {id:'brand',  label:'Bluedobie (we/us)'},
+    {id:'mascot', label:'Mascot/Character', name:'Sabre'}
+  ]);
+</script>
 </body>
 </html>
