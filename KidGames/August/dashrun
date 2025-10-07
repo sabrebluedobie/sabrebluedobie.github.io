@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CRUCIAL FOR TABLETS: This ensures the game fills the screen and prevents pinch-zoom/scrolling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+    <title>Dash's Hyper-Focus Stick Run</title>
+    <!-- Load Tailwind for quick UI elements outside the canvas -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use a custom font and snowy background theme */
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Inter:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1a26;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            /* Prevent touch delays and selection */
+            -ms-touch-action: none; 
+            touch-action: none;
+            user-select: none;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #1a2b3c;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Needed for the modal overlay */
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 450px;
+            background-color: #b3cdd1; /* Light sky color for snowy path */
+            cursor: pointer;
+            touch-action: none; 
+        }
+
+        .ui-panel {
+            padding: 15px;
+            background-color: #0f2430;
+            color: #e0f2f1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 5px solid #00c1e3;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px 10px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #8899a6;
+        }
+
+        .stat-value {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 1.5rem;
+            color: #00e3a6;
+        }
+
+        #focus-bar-container {
+            flex-grow: 1;
+            margin: 0 20px;
+            height: 25px;
+            background-color: #3d5a73;
+            border-radius: 12px;
+            border: 2px solid #00c1e3;
+            overflow: hidden;
+        }
+
+        #focus-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f472b6, #ef4444);
+            transition: width 0.1s ease-out;
+        }
+
+        /* Modal Styling */
+        #message-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #e0f2f1;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 5px solid #00c1e3;
+            color: #0d1a26;
+        }
+        
+        .modal-content h2 {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 2rem;
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+
+        .modal-button {
+            background-color: #00e3a6;
+            color: #0d1a26;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .modal-button:hover {
+            background-color: #00c1e3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <!-- Game UI Panel -->
+    <div class="ui-panel">
+        <div class="stat-item">
+            <span class="stat-label">SCORE</span>
+            <span id="score-value" class="stat-value">0</span>
+        </div>
+        
+        <div class="stat-item flex-grow">
+            <span class="stat-label text-center w-full">FOCUS METER (TAP TO BOOST!)</span>
+            <div id="focus-bar-container">
+                <div id="focus-bar"></div>
+            </div>
+        </div>
+
+        <div class="stat-item">
+            <span class="stat-label">BEST</span>
+            <span id="best-score-value" class="stat-value">0</span>
+        </div>
+    </div>
+    
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Message Box (Modal) -->
+    <div id="message-box">
+        <div class="modal-content">
+            <h2 id="modal-title">Dash's Hyper-Focus Stick Run!</h2>
+            <p id="modal-text">Dash the Doberman loves running, especially with his favorite stick! But he needs to FOCUS!</p>
+            <p class="mt-4 text-sm font-semibold">
+                **TABLET CONTROLS:**<br>
+                **TAP LEFT/RIGHT** on the path to dodge logs/rocks.<br>
+                **Collect Tennis Balls** to fill the Focus Meter.<br>
+                When FULL, **TAP the FOCUS METER** for a huge speed BOOST!
+            </p>
+            <button id="start-button" class="modal-button">Start the Run!</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const messageBox = document.getElementById('message-box');
+    const startButton = document.getElementById('start-button');
+    const modalTitle = document.getElementById('modal-title');
+    const modalText = document.getElementById('modal-text');
+    const focusBar = document.getElementById('focus-bar');
+    const scoreValue = document.getElementById('score-value');
+    const bestScoreValue = document.getElementById('best-score-value');
+
+    let animationFrameId;
+    let gameState = 'ready'; // 'ready', 'playing', 'gameover'
+    
+    // Game Constants
+    const LANE_WIDTH = 150;
+    const TOTAL_LANES = 3;
+    const MAX_FOCUS = 100;
+
+    // --- Image Setup for Dash (Using the uploaded filename) ---
+    const dashImage = new Image();
+    // Assuming 'workplay.webp' is in the same folder as this HTML file
+    dashImage.src = 'workplay.webp'; 
+    let dashImageLoaded = false;
+
+    dashImage.onload = () => {
+        dashImageLoaded = true;
+        // Update the modal text to confirm the image is loaded
+        document.getElementById('modal-text').innerHTML = 
+            'Dash the Doberman loves running, especially with his favorite stick! But he needs to FOCUS! **(Image Loaded!)**';
+    };
+
+    dashImage.onerror = () => {
+        // Fallback if image fails to load
+        console.error("Could not load Dash's image. Falling back to simple shape.");
+        dashImageLoaded = false;
+        document.getElementById('modal-text').innerHTML = 
+            'Dash the Doberman loves running, especially with his favorite stick! But he needs to FOCUS! **(Using fallback shape)**';
+    };
+
+
+    // Game Variables
+    let score = 0;
+    let baseSpeed = 4;
+    let currentSpeed = baseSpeed;
+    let lanePosition = 1; // 0, 1, 2
+    let focus = 0;
+    let obstacles = [];
+    let collectibles = [];
+    let lastTime = 0;
+    let obstacleSpawnTimer = 0;
+    let spawnInterval = 300; // milliseconds
+
+    // Load best score from local storage (acting as a simple high score system)
+    let bestScore = localStorage.getItem('dashBestScore') || 0;
+    bestScoreValue.textContent = bestScore;
+
+    // --- Player (Dash) Object ---
+    const Dash = {
+        width: 50, 
+        height: 80,
+        color: '#333333', 
+        stickColor: '#964B00', 
+        get x() {
+            return canvas.width / 2 + (lanePosition - 1) * LANE_WIDTH - this.width / 2;
+        },
+        y: canvas.height - 100,
+        draw() {
+            if (dashImageLoaded) {
+                // Draw the actual image
+                ctx.drawImage(dashImage, this.x, this.y, this.width, this.height);
+            } else {
+                // Draw fallback shape (original rectangle)
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                
+                // Draw the Stick (visual stimulus)
+                ctx.fillStyle = this.stickColor;
+                ctx.fillRect(this.x + this.width / 4, this.y + this.height * 0.25, this.width / 2, 5);
+            }
+        }
+    };
+
+    // --- Obstacle/Collectible Classes ---
+
+    class Obstacle {
+        constructor(lane) {
+            this.lane = lane;
+            this.size = 30;
+            this.y = -this.size;
+            this.color = '#784530'; 
+            this.isLog = true;
+        }
+
+        draw() {
+            let x = canvas.width / 2 + (this.lane - 1) * LANE_WIDTH - this.size / 2;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(x + this.size / 2, this.y + this.size / 2, this.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        update() {
+            this.y += currentSpeed;
+        }
+    }
+
+    class Collectible {
+        constructor(lane) {
+            this.lane = lane;
+            this.size = 20;
+            this.y = -this.size;
+            this.color = '#ffff00'; 
+            this.isBall = true;
+        }
+
+        draw() {
+            let x = canvas.width / 2 + (this.lane - 1) * LANE_WIDTH - this.size / 2;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(x + this.size / 2, this.y + this.size / 2, this.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        update() {
+            this.y += currentSpeed;
+        }
+    }
+
+    // --- Game Functions ---
+
+    function resetGame() {
+        score = 0;
+        currentSpeed = baseSpeed;
+        lanePosition = 1;
+        focus = 0;
+        obstacles = [];
+        collectibles = [];
+        obstacleSpawnTimer = 0;
+        lastTime = 0;
+        gameState = 'playing';
+        messageBox.style.display = 'none';
+        
+        scoreValue.textContent = score;
+        updateFocusBar();
+    }
+
+    function updateFocusBar() {
+        focus = Math.min(MAX_FOCUS, Math.max(0, focus));
+        focusBar.style.width = `${(focus / MAX_FOCUS) * 100}%`;
+        
+        if (focus >= MAX_FOCUS) {
+            focusBar.style.background = 'linear-gradient(90deg, #00e3a6, #00c1e3)';
+        } else {
+            focusBar.style.background = 'linear-gradient(90deg, #f472b6, #ef4444)';
+        }
+    }
+
+    function activateBoost() {
+        if (gameState === 'playing' && focus >= MAX_FOCUS) {
+            focus = 0;
+            currentSpeed = baseSpeed * 2.5; 
+            setTimeout(() => {
+                currentSpeed = baseSpeed;
+            }, 1000); 
+        }
+    }
+
+    function spawnRandomItem() {
+        const lane = Math.floor(Math.random() * TOTAL_LANES);
+        if (Math.random() < 0.6) { 
+            obstacles.push(new Obstacle(lane));
+        } else { 
+            collectibles.push(new Collectible(lane));
+        }
+    }
+
+    function gameLoop(timestamp) {
+        if (gameState !== 'playing') return;
+
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
+
+        // 1. Update Game State
+        score += Math.round(currentSpeed / 10);
+        scoreValue.textContent = score;
+        
+        if (focus > 0 && currentSpeed === baseSpeed) {
+            focus -= 0.05;
+        }
+        updateFocusBar();
+
+        baseSpeed += 0.0005;
+
+        // 2. Draw Background
+        ctx.fillStyle = '#b3cdd1';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw lanes
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.lineWidth = 5;
+        for (let i = 0; i <= TOTAL_LANES; i++) {
+            let x = canvas.width / 2 + (i - 1.5) * LANE_WIDTH;
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // 3. Spawn Items
+        obstacleSpawnTimer += deltaTime;
+        if (obstacleSpawnTimer > spawnInterval) {
+            spawnRandomItem();
+            spawnInterval = Math.max(150, spawnInterval - 0.5); 
+            obstacleSpawnTimer = 0;
+        }
+
+        // 4. Update and Draw Items 
+        
+        // Obstacles
+        obstacles.forEach((obs, index) => {
+            obs.update();
+            obs.draw();
+            
+            // Collision detection
+            if (obs.lane === lanePosition && obs.y + obs.size > Dash.y && obs.y < Dash.y + Dash.height) {
+                // Collision!
+                currentSpeed = Math.max(baseSpeed * 0.8, currentSpeed * 0.95);
+                focus = Math.max(0, focus - 10);
+                obstacles.splice(index, 1);
+                updateFocusBar();
+                canvas.style.opacity = 0.8;
+                setTimeout(() => canvas.style.opacity = 1, 50);
+            }
+        });
+        obstacles = obstacles.filter(obs => obs.y < canvas.height + 50);
+
+        // Collectibles
+        collectibles.forEach((coll, index) => {
+            coll.update();
+            coll.draw();
+
+            // Collision detection (collecting the tennis ball)
+            if (coll.lane === lanePosition && coll.y + coll.size > Dash.y && coll.y < Dash.y + Dash.height) {
+                // Collected!
+                focus += 25; 
+                score += 50; 
+                collectibles.splice(index, 1);
+                updateFocusBar();
+            }
+        });
+        collectibles = collectibles.filter(coll => coll.y < canvas.height + 50);
+
+        // 5. Draw Player (Dash)
+        Dash.draw();
+        
+        animationFrameId = requestAnimationFrame(gameLoop);
+    }
+
+    // --- Event Handlers (Tablet Optimized) ---
+
+    function handleResize() {
+        canvas.width = document.getElementById('game-container').offsetWidth;
+        canvas.height = Math.min(window.innerHeight * 0.7, 450); 
+        Dash.y = canvas.height - 100;
+        if (gameState === 'ready' || gameState === 'gameover') {
+            showModal(modalTitle.textContent, modalText.innerHTML, 'Start the Run!');
+        }
+    }
+
+    function handleKeyDown(event) {
+        if (gameState !== 'playing') return;
+
+        if (event.key === 'ArrowLeft' && lanePosition > 0) {
+            lanePosition--;
+        } else if (event.key === 'ArrowRight' && lanePosition < TOTAL_LANES - 1) {
+            lanePosition++;
+        } else if (event.key === ' ' || event.key === 'Spacebar') {
+            event.preventDefault(); 
+            activateBoost();
+        }
+    }
+
+    function handleTouch(event) {
+        if (gameState !== 'playing') return;
+        
+        const touchPoint = event.touches ? event.touches[0] : event;
+        const touchX = touchPoint.clientX;
+        const touchY = touchPoint.clientY;
+        const canvasRect = canvas.getBoundingClientRect();
+
+        // Prevents the browser from scrolling/zooming while tapping the game area
+        event.preventDefault(); 
+
+        // Detect tap on the focus bar for boost
+        const focusBarContainer = document.getElementById('focus-bar-container');
+        const focusBarRect = focusBarContainer.getBoundingClientRect();
+
+        if (touchX > focusBarRect.left && touchX < focusBarRect.right &&
+            touchY > focusBarRect.top && 
+            touchY < focusBarRect.bottom) {
+                activateBoost();
+                return;
+        }
+
+        // Detect lane change by dividing the canvas area (left half vs right half tap)
+        const centerLine = canvasRect.left + canvasRect.width / 2;
+        if (touchX < centerLine && lanePosition > 0) {
+            lanePosition--;
+        } else if (touchX >= centerLine && lanePosition < TOTAL_LANES - 1) {
+            lanePosition++;
+        }
+    }
+
+    function showModal(title, text, buttonText) {
+        modalTitle.textContent = title;
+        modalText.innerHTML = text;
+        startButton.textContent = buttonText;
+        messageBox.style.display = 'flex';
+    }
+
+    function stopGame() {
+        gameState = 'gameover';
+        cancelAnimationFrame(animationFrameId);
+
+        if (score > bestScore) {
+            bestScore = score;
+            localStorage.setItem('dashBestScore', bestScore);
+            bestScoreValue.textContent = bestScore;
+            showModal(
+                "NEW HIGH SCORE! " + score, 
+                "Incredible focus, Dash! Ready for another hyper-speed run?",
+                "Play Again!"
+            );
+        } else {
+            showModal(
+                "TIME OUT! Score: " + score, 
+                "Great run! That stick is safe, but can you beat your best of **" + bestScore + "**?",
+                "Try Again!"
+            );
+        }
+    }
+
+    // --- Initialization ---
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleKeyDown);
+    // Use touchstart for tablet optimization
+    canvas.addEventListener('touchstart', handleTouch, { passive: false }); 
+
+    startButton.addEventListener('click', () => {
+        resetGame();
+        if (!animationFrameId) {
+            animationFrameId = requestAnimationFrame(gameLoop);
+        }
+    });
+
+    window.addEventListener('beforeunload', () => {
+        if (gameState === 'playing' && score > bestScore) {
+            localStorage.setItem('dashBestScore', score);
+        }
+    });
+
+    document.getElementById('modal-title').addEventListener('click', () => {
+        if (gameState === 'playing') {
+             stopGame();
+        }
+    });
+
+    handleResize();
+
+    showModal(
+        "Dash's Hyper-Focus Stick Run!",
+        "Dash the Doberman loves running, especially with his favorite stick! But he needs to FOCUS!",
+        "Start the Run!"
+    );
+
+</script>
