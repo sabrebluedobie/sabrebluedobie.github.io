@@ -724,14 +724,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Soft validation
-  function qcIssues({ offer, problem, outcome, cta }) {
-    const issues = [];
-    if (!offer || offer.length < 5) issues.push("Offer looks empty/too short.");
-    if (!problem || problem.length < 5) issues.push("Problem looks empty/too short.");
-    if (!outcome || outcome.length < 5) issues.push("Outcome looks empty/too short.");
-    if (!cta || cta.length < 4) issues.push("CTA looks empty/too short.");
-    return issues;
-  }
+function qcIssues({ offer, problem, outcome, cta }) {
+  const issues = [];
+  if (!offer || offer.length < 2) issues.push("Offer looks empty/too short.");
+  if (!problem || problem.length < 3) issues.push("Problem looks empty/too short.");
+  if (!outcome || outcome.length < 3) issues.push("Outcome looks empty/too short.");
+  if (!cta || cta.length < 2) issues.push("CTA looks empty/too short.");
+  return issues;
+}
 
   // ---------- Form handling ----------
   form?.addEventListener("submit", (e) => {
