@@ -335,36 +335,93 @@
 </head>
 
 <body>
-  <!-- Navigation (keep your existing nav) -->
-  <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-doc-height="1" data-duration="500" data-easing="ease" data-easing2="ease" data-no-scroll="1" data-w-id="e0b516b2-bf57-08a9-1f3c-0329245b60b9" role="banner">
-    <div class="container nav-container">
-      <div class="nav-elements-holder">
-        <div class="nav-menu-container">
-          <a class="brand-link w-nav-brand" href="/"><img alt="Bluedobie Developing logo" class="brand-logo" height="100" loading="lazy" src="images/bluedobielogo_1.webp" width="100"/></a>
-          <nav class="nav-menu w-nav-menu">
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="index.html">Home</a></div>
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="about.html">About</a></div>
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="services.html">Services</a></div>
-            <div class="nav-link-holder dropdown">
-              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
-              <div class="dropdown-menu" id="dropdown-menu">
-                <a class="nav-link" href="our-portfolio.html">Portfolio</a>
-                <a class="nav-link" href="meet-sabre.html">Meet Sabre</a>
-                <a class="nav-link" href="blog-home.html">Blog</a>
-                <a class="nav-link" href="contact.html">Contact</a>
-                <a class="nav-link" href="FAQ.html">FAQ's</a>
-                <a class="nav-link" href="business-links.html">Our Links</a>
-              </div>
-            </div>
-            <div class="nav-link-holder nav-button-holder _2">
-              <a class="button nav w-inline-block" href="contact.html"><div>Contact Us</div></a>
-            </div>
-          </nav>
-          <div class="menu-button w-nav-button"><img alt="menu icon" class="menu-icon" loading="lazy" src="/assets/images/menu-icon.svg"/></div>
+<!-- _includes/nav.html -->
+<nav class="site-nav w-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-container">
+    <div class="nav-elements-holder">
+      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+        <img src="/assets/images/bluedobielogo_1.webp"
+             width="64" height="64"
+             alt="Bluedobie Developing logo"
+             class="brand-logo">
+      </a>
+
+      <!-- main links -->
+      <div class="nav-menu-container">
+        <div class="nav-menu w-nav-menu" id="mainmenu">
+          <div class="nav-link-holder">
+            <a href="/" class="nav-link w-inline-block">Home</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/about.html" class="nav-link w-inline-block">About</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/services.html" class="nav-link w-inline-block">Services</a>
+          </div>
+
+          <!-- dropdown -->
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle"
+                    id="dropdown-toggle">More</button>
+              
+            <section class="dropdown-menu" id="dropdown-menu" >
+          <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+              <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+              <!-- If you prefer Blog only in the group below, delete this next line -->
+              <!-- <a href="/blog/" class="nav-link" role="menuitem">Blog</a> -->
+              <a href="/contact.html" class="nav-link">Contact</a>
+              <a href="/FAQ.html" class="nav-link">FAQ’s</a>
+              <a href="/business-links.html" class="nav-link">Our Links</a>
+          </section>
         </div>
+
+          <!-- Products / Projects group -->
+           <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle"
+                    id="dropdown-toggle">Our Products</button>
+              
+          <section class="dropdown-menu" id="dropdown-menu" >
+          <div class="nav-link-holder nav-group">
+            <a href="/sales.html" class="nav-link">Offers</a>
+            <a href="/dobiecore/contracts/" class="nav-link">ContractKit</a>
+            <a href="/dobiecore/captioncraft/" class="nav-link">DobieCore Caption</a>
+            <!-- NEW: Gridiron Gazette microsite -->
+            <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+            <!-- NEW: Blog index (Bluedobie Dialogues) -->
+            <a href="/blog/" class="nav-link">Dialogues</a>
+            <!-- If your current blog index is /blog-home.html, use that instead: -->
+            <!-- <a href="/blog-home.html" class="nav-link">Dialogues</a> -->
+          </div>
+        </div>
+
+        <!-- social -->
+        <div class="social-links-column">
+          <span class="label">Follow:</span>
+          <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+          <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+          <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+          <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="nav-link-holder nav-button-holder">
+          <a href="/contact.html" class="button nav w-inline-block">
+            <div>Contact Us</div>
+          </a>
+        </div>
+
+        <!-- mobile menu button -->
+        <button class="menu-button w-nav-button"
+                id="menu-button"
+                aria-controls="mainmenu"
+                aria-expanded="false"
+                aria-label="Toggle menu">
+          <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+        </button>
       </div>
     </div>
   </div>
+</nav>
 
   <!-- Hero Section -->
   <section class="hero-section">
