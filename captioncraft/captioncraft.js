@@ -582,7 +582,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Templates (Audience/Need + Angles + Voice Mode + Writer) ----------
   const TPL = {
-    _assemble({ writerLine, variantIndex, profile, voiceMode, hook, whoNeed, offer, outcome, cta, tags, details, spacing, problem }) {
+    _assemble(ctx) {
+    const { writerLine, variantIndex, profile, voiceMode, hook, whoNeed, offer, outcome, cta, tags, details, spacing, problem } = ctx;
       const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
       const intro = hook ? `${hook}.` : "";
       const speaker = writerLine ? `${writerLine}` : "";
@@ -595,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     // ---- Facebook ----
-    "facebook:post"(ctx) { return this._assemble(ctx); },
+    "facebook:post"(ctx) { return TPL._assemble(ctx); },
     "facebook:story"({ writerLine, profile, voiceMode, variantIndex, whoNeed, offer, outcome, cta }) {
       const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
       let body = `${writerLine ? writerLine + "\n" : ""}${whoNeed.replace(/[.]+$/, "")}?\n${offer}\n${a.result}\n${cta}`;
@@ -638,8 +639,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     // ---- LinkedIn ----
-    "linkedin:profile"(ctx) { return this._assemble(ctx); },
-    "linkedin:page"(ctx)    { return this._assemble(ctx); },
+    "linkedin:profile"(ctx) { return TPL._assemble(ctx); },
+    "linkedin:page"(ctx)    { return TPL._assemble(ctx); },
 
     // ---- Google My Business ----
     "gmb:post"({ writerLine, whoNeed, offer, outcome, cta }) {
