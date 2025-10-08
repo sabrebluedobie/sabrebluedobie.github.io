@@ -6,185 +6,201 @@
   <title>DobieCore Captions — your social content generator</title>
   <link rel="stylesheet" href="captioncraft.css" />
   <style>
-    /* minimal safety styles in case your CSS is lighter in places */
-    :root { --ink:#0f172a; --muted:#667085; --bg:#f7f8fb; --card:#ffffff; --border:#e8ebf0; }
-    body { margin:0; color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; }
-    .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
-    h1 { font-size:40px; margin:14px 0 12px; }
-    p.lead { color:#475467; max-width:720px; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; }
-    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
-    .field { display:flex; flex-direction:column; gap:6px; }
-    label { font-weight:600; font-size:14px; }
-    input[type="text"], select, textarea {
-      border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:14px; background:#fff;
+    /* Simplified form styles */
+    .simple-form { max-width: 600px; margin: 0 auto; }
+    .field-group { margin-bottom: 20px; }
+    .field-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+    .field-group input[type="text"], .field-group select {
+      width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; background: #fff;
     }
-    .solid { 
-       
-      border-radius: 0px; 
-      border: 0px solid var(--border); 
-      box-shadow: 5px 5px 10px -3px #667085;
-    } 
-    textarea { resize:vertical; min-height:160px; background:#fafbfc; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .actions { display:flex; gap:10px; margin-top:8px; }
-    .btn { border:1px solid var(--border); background:#0f172a; color:#fff; border-radius:10px; padding:10px 14px; cursor:pointer; }
-    .btn.secondary { background:#f8fafc; color:#0f172a; }
-    .muted { color:var(--muted); font-size:12px; }
-    .results { margin-top:22px; display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; }
-    .caption-card { grid-column: span 4; background:#fff; border:1px solid var(--border); border-radius:16px; padding:14px; display:flex; flex-direction:column; gap:10px; }
-    .caption-card h3 { margin:0; font-size:16px; }
-    .row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-    .meta { color:var(--muted); font-size:12px; }
-    .hint { margin-top:6px; }
-    .first-comment { margin-top:8px; }
-    @media (max-width: 980px){ .caption-card{ grid-column: span 6;} }
-    @media (max-width: 680px){ .grid{ grid-template-columns: repeat(6, 1fr);} .caption-card{ grid-column: span 6;} }
+    .tone-control { display: flex; align-items: center; gap: 12px; }
+    .tone-control input[type="range"] { flex: 1; }
+    .tone-label { font-size: 14px; color: #666; white-space: nowrap; }
+    .advanced-toggle { background: #f0f2f5; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 20px 0; cursor: pointer; -webkit-user-select: none; user-select: none; }
+    .advanced-toggle:hover { background: #e8eaed; }
+    .advanced-toggle summary { font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .advanced-toggle summary::-webkit-details-marker { display: none; }
+    .advanced-content { margin-top: 16px; padding-top: 16px; border-top: 1px solid #ddd; }
+    .generate-btn { width: 100%; padding: 16px; background: #042d4d; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all .3s; }
+    .generate-btn:hover { background: #0a4d7a; transform: translateY(-2px); }
+    .generate-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Upgrade Modal */
+    .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: rgba(0,0,0,0.5); }
+    .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 16px; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .modal h2 { margin-top: 0; color: #042d4d; }
+    .modal .benefits { list-style: none; padding: 0; margin: 20px 0; }
+    .modal .benefits li { padding: 8px 0; }
+    .modal .benefits li::before { content: "✓ "; color: #28a745; font-weight: bold; }
+    .modal .price { font-size: 32px; font-weight: 700; color: #042d4d; margin: 20px 0; }
+    .modal .buttons { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .modal .btn { flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; font-size: 16px; }
+    .modal .btn-primary { background: #042d4d; color: white; }
+    .modal .btn-secondary { background: #f0f2f5; color: #333; }
+    .modal small { display:block; margin-top:8px; color:#666 }
+    .muted { color:#666 }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="row" style="justify-content:space-between;align-items:center;">
-        <img class="solid" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions logo" height="80" style="object-fit:contain;" />
-        <a href="/sales.html" class="muted">Back to Sales</a>
-        <nav class="muted">
-          <a href="/contentcraft/contentcraft.html" class="muted" style="margin-right:14px;">DobieCore Captions (extras)</a>
-          <a href="/contact" class="muted">Contact</a>
-        </nav>
-      </div>
-      <h1><span style="color:#3b82f6;">DobieCore Captions</span> — your social content generator</h1>
-      <p class="lead">
-        Turn a quick brief into platform-ready captions. Now with platform <em>and</em> format awareness,
-        first-comment helpers, and automatic UTM links for clean analytics.
-      </p>
-      <ul class="muted" style="margin:10px 0 24px;">
-        <li>Platform modes: Facebook/Instagram (Post, Story, Reel), X (280), LinkedIn (Profile/Page), TikTok, YT Shorts, YouTube, GMB</li>
-        <li>Tone slider: professional → playful</li>
-        <li>Hashtag cleaner with smart density + first-comment option</li>
-      </ul>
-    </header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="https://www.bluedobiedev.com">
+        <img src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions logo" style="height:42px">
+      </a>
+      <nav class="top-nav">
+        <a href="/sales.html">Back to Sales</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <form class="card">
-        <div class="grid">
-          <div class="field" style="grid-column: span 6;">
-            <label for="audience">Audience</label>
-            <input id="audience" type="text" placeholder="busy, overwhelmed business owners" />
-          </div>
-          <div class="field" style="grid-column: span 6;">
-            <label for="offer">Offer</label>
-            <input id="offer" type="text" placeholder="$299 three-page website special" />
-          </div>
-
-          <div class="field" style="grid-column: span 6;">
-            <label for="problem">Problem</label>
-            <input id="problem" type="text" placeholder="customers can’t find your business online" />
-          </div>
-          <div class="field" style="grid-column: span 6;">
-            <label for="outcome">Outcome</label>
-            <input id="outcome" type="text" placeholder="more qualified leads in your inbox" />
-          </div>
-
-          <div class="field" style="grid-column: span 8;">
-            <label for="cta">Call to action</label>
-            <input id="cta" type="text" placeholder="Book now at https://bluedobiedev.com/contact" />
-            <small class="muted">Paste one URL if you want UTM parameters added automatically.</small>
-          </div>
-          <div class="field" style="grid-column: span 4;">
-            <label for="keywords">Niche keywords (for hashtags)</label>
-            <input id="keywords" type="text" placeholder="marketing, webdesign, bluedobiedev" />
-          </div>
-
-          <div class="field" style="grid-column: span 4;">
-            <label for="platform">Platform</label>
-            <select id="platform" name="platform">
-              <option>Facebook</option>
-              <option>Instagram</option>
-              <option>Twitter</option>
-              <option>LinkedIn</option>
-              <option>GMB</option>
-              <option>TikTok</option>
-              <option>YTShorts</option>
-              <option>YouTube</option>
-            </select>
-          </div>
-
-          <div class="field" style="grid-column: span 4;">
-            <label for="format">Format</label>
-            <select id="format" name="format"><!-- populated by JS --></select>
-            <small id="formatHint" class="muted"></small>
-          </div>
-
-          <div class="field" style="grid-column: span 4;">
-            <label for="captionLength">Caption length</label>
-            <select id="captionLength">
-              <option>Short</option>
-              <option selected>Medium</option>
-              <option>Long</option>
-            </select>
-          </div>
-          
-          <div id="writerPersonaGroup" class="field" style="grid-column: span 4;">
-            <label for="writerPersona">Writer Persona</label>
-            <select id="writerPersona"></select>
-            <small class="muted">If you only set one persona in onboarding, this control will be hidden automatically.</small>
-          </div>
-
-          <div id="mascotNameGroup" class="field" style="grid-column: span 4; display:none;">
-            <label for="mascotName">Mascot / Character name</label>
-            <input id="mascotName" type="text" placeholder="Sabre">
-          </div>
-          <div class="field" style="grid-column: span 4;">
-            <label for="voiceMode">Voice Mode</label>
-            <select id="voiceMode">
-            <option value="leadgen">Lead Gen / Sales</option>
-            <option value="community">Community / Fun</option>
-            <option value="authority">Authority / Pro</option>
-            </select>
-            <small class="muted">Don’t see this? No problem—CaptionCraft picks a smart default.</small>
-          </div>
-          <div class="field" style="grid-column: span 4;">
-            <label for="tone">Tone</label>
-            <input id="tone" type="range" min="0" max="1" step="0.01" />
-            <small class="muted">Left = professional • Right = playful</small>
-          </div>
-
-          <div class="field" style="grid-column: span 4;">
-            <label for="hashtagDensity">Hashtag density</label>
-            <select id="hashtagDensity">
-              <option>Light</option>
-              <option selected>Standard</option>
-              <option>Heavy</option>
-            </select>
-          </div>
-
-          <div class="field" style="grid-column: span 4;">
-            <label><input id="cleanHashtags" type="checkbox" checked /> Clean hashtags (lowercase, no repeats, no punctuation)</label>
-          </div>
-
-          <div class="actions" style="grid-column: span 12;">
-            <button class="btn" type="submit">Generate 3 Captions</button>
-            <button class="btn secondary" type="button" id="clearBtn">Clear</button>
-          </div>
+  <main>
+    <section class="hero" style="padding-top:28px;padding-bottom:12px;">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
+          <p class="lead">Turn a quick brief into 3 ready-to-post captions with tailored hooks and clean hashtags. Built for busy business owners.</p>
+          <ul class="ticks">
+            <li>Platform-optimized for Instagram, Facebook, LinkedIn, TikTok & more</li>
+            <li>Professional → Playful tone control</li>
+            <li>3 free captions per day, unlimited with Pro</li>
+          </ul>
         </div>
-      </form>
+      </div>
+    </section>
 
-      <section class="results" id="results">Results</section>
-    </main>
+    <section class="tool">
+      <div class="container">
+        <form id="captionForm" class="brief simple-form">
+          <div class="field-group">
+            <label for="offer">What are you promoting? *</label>
+            <input type="text" id="offer" placeholder="e.g., Fall cleaning special - $99 for new clients" required>
+          </div>
 
-    <footer style="margin-top:36px;">
-      <div class="muted">© 2025 Bluedobie Developing. All rights reserved. • 270-388-3535 • melanie.brown@bluedobiedev.com</div>
-    </footer>
+          <div class="field-group">
+            <label for="platform">Platform *</label>
+            <select id="platform">
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>LinkedIn</option>
+              <option>Twitter</option>
+              <option>TikTok</option>
+              <option>GMB</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="tone">Tone</label>
+            <div class="tone-control">
+              <span class="tone-label">Professional</span>
+              <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5">
+              <span class="tone-label">Playful</span>
+            </div>
+          </div>
+
+          <details class="advanced-toggle">
+            <summary>Advanced Options (optional) <span>▼</span></summary>
+            <div class="advanced-content">
+              <div class="field-group">
+                <label for="audience">Who's your audience?</label>
+                <input type="text" id="audience" placeholder="e.g., busy homeowners in Western Kentucky">
+              </div>
+              <div class="field-group">
+                <label for="problem">What problem do you solve?</label>
+                <input type="text" id="problem" placeholder="e.g., no time to clean">
+              </div>
+              <div class="field-group">
+                <label for="outcome">What outcome do they get?</label>
+                <input type="text" id="outcome" placeholder="e.g., a sparkling home and free weekend">
+              </div>
+              <div class="field-group">
+                <label for="cta">Call to action</label>
+                <input type="text" id="cta" placeholder="e.g., Book now at https://yoursite.com">
+              </div>
+              <div class="field-group">
+                <label for="keywords">Keywords (for hashtags)</label>
+                <input type="text" id="keywords" placeholder="e.g., cleaning, local, kentucky">
+              </div>
+              <div class="field-group">
+                <label for="format">Format</label>
+                <select id="format">
+                  <option>Post</option><option>Story</option><option>Reel</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="captionLength">Caption length</label>
+                <select id="captionLength">
+                  <option>Short</option><option selected>Medium</option><option>Long</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="voiceMode">Voice Mode</label>
+                <select id="voiceMode">
+                  <option value="leadgen">Lead Gen / Sales</option>
+                  <option value="community">Community / Fun</option>
+                  <option value="authority">Authority / Pro</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label><input type="checkbox" id="cleanHashtags" checked> Clean hashtags (lowercase, no repeats)</label>
+              </div>
+            </div>
+          </details>
+
+          <button type="submit" class="generate-btn" id="generateBtn">Generate 3 Captions</button>
+          <div style="text-align:center; margin-top: 12px;">
+            <small class="muted" id="usageCounter"></small>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="container">
+        <h2>Results</h2>
+        <div id="results" class="cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand-stack">
+        <img src="/assets/images/dobiecore/Caption.webp" alt="" style="height:28px">
+        <p>Bluedobie Developing</p>
+      </div>
+      <ul class="footer-contact">
+        <li><a href="tel:12703883535">270-388-3535</a></li>
+        <li><a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></li>
+      </ul>
+      <p class="legal">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Upgrade Modal -->
+  <div id="upgradeModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="upgradeTitle">
+    <div class="modal-content">
+      <h2 id="upgradeTitle">🎯 You've used your 3 free captions today!</h2>
+      <p>Ready for unlimited access?</p>
+      <div class="price">$9<span style="font-size:18px; font-weight:400;">/month</span></div>
+      <ul class="benefits">
+        <li>Unlimited caption generation</li>
+        <li>All platforms & formats</li>
+        <li>Priority support</li>
+        <li>Early access to new features</li>
+      </ul>
+      <div class="buttons">
+        <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
+        <button class="btn btn-secondary" id="alreadyProBtn">I already upgraded</button>
+        <button class="btn btn-secondary" id="closeModalBtn">Maybe Later</button>
+      </div>
+      <small>Resets tomorrow at midnight</small>
+    </div>
   </div>
 
   <script src="captioncraft.js"></script>
   <script>
-  // Example: three personas; will reveal the toggle and set default
-  window.CaptionCraft?.saveOnboardingPersonas?.([
-    {id:'owner',  label:'Me (personal)'},
-    {id:'brand',  label:'Bluedobie (we/us)'},
-    {id:'mascot', label:'Mascot/Character', name:'Sabre'}
-  ]);
-</script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

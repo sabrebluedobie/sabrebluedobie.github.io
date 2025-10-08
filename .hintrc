@@ -11,6 +11,7 @@
           "video[playsinline]"
         ]
       }
-    ]
+    ],
+    "meta-viewport": "off"
   }
 }

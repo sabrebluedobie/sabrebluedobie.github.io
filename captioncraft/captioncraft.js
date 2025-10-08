@@ -5,15 +5,16 @@
              Writer Persona onboarding + toggle + persistence
    Full replacement for captioncraft.js
 */
-
+(() => {
 document.addEventListener("DOMContentLoaded", () => {
-  const $ = (sel) => document.querySelector(sel);
+  const qs = (sel, r = document) => r.querySelector(sel);
+  const qsa = (sel, r = document) => Array.from(r.querySelectorAll(sel));
   const form = document.querySelector("form");
-  const results = $("#results");
-  const platformEl = $("#platform");
-  const formatEl = $("#format");
-  const formatHint = $("#formatHint");
-  const clearBtn = $("#clearBtn");
+  const results = qs("#results");
+  const platformEl = qs("#platform");
+  const formatEl = qs("#format");
+  const formatHint = qs("#formatHint");
+  const clearBtn = qs("#clearBtn");
 
   // ----- Format options by platform -----
   const FORMAT_MAP = {
@@ -579,6 +580,216 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return `At Bluedobie, we get it.`;
   }
+/* DobieCore Captions – gating + helpers */
+// -------------------- tiny utilities
+// Use shared selector helpers defined above to avoid redeclaration
+// qs: r.querySelector(s), qsa: Array.from(r.querySelectorAll(s))
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+function todayKey() {
+  const d = new Date();
+  // Local midnight behavior by storing local date (YYYY-MM-DD)
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function getUsage() {
+  try { return JSON.parse(localStorage.getItem('dcc_usage') || '{}'); }
+  catch { return {}; }
+}
+function setUsage(obj) {
+  localStorage.setItem('dcc_usage', JSON.stringify(obj));
+}
+function incrementUsage() {
+  const key = todayKey();
+  const u = getUsage();
+  u[key] = (u[key] || 0) + 1;
+  setUsage(u);
+  return u[key];
+}
+function countToday() {
+  const u = getUsage(); return u[todayKey()] || 0;
+}
+
+function getParam(name) {
+  const params = new URLSearchParams(location.search);
+  return params.get(name);
+}
+
+function isPro() {
+  if (getParam('pro') === '1') return true;                // dev override
+  if (localStorage.getItem('dcc_pro') === '1') return true;
+  const email = localStorage.getItem('dcc_pro_email');
+  return !!email; // lightweight client-side "verification"
+}
+
+// -------------------- UI bits
+const modal = qs('#upgradeModal');
+function openModal() { if (modal) modal.style.display = 'block'; }
+function closeModal() { if (modal) modal.style.display = 'none'; }
+
+function updateUsageCounter() {
+  const cap = isPro() ? '∞' : '3';
+  const used = isPro() ? 0 : countToday();
+  const el = qs('#usageCounter');
+  if (el) el.textContent = isPro()
+    ? 'Pro: unlimited generations'
+    : `Free: ${Math.max(0, 3 - used)} of 3 left today`;
+}
+
+// -------------------- content helpers
+const DEFAULT_CTAS = [
+  'Book now', 'Grab your spot', 'Message us to claim', 'Call today',
+  'Learn more', 'Get a free quote', 'Schedule today'
+];
+
+function sentenceSafe(str) {
+  // Remove double periods and ensure punctuation is neat
+  if (!str) return '';
+  // Replace triple+ punctuation with single
+  str = str.replace(/[.!?]{2,}/g, m => m[0]);
+  // Remove space before punctuation, collapse duplicates
+  str = str.replace(/\s+([,.;!?])/g, '$1').replace(/([,.;!?])\1+/g, '$1');
+  // Trim stray punctuation at start
+  return str.trim().replace(/^([,.;!?]+)/, '').replace(/\s{2,}/g, ' ');
+}
+
+function pickCTAs(userCTA) {
+  // Build 3 CTA variants; if user provided a CTA, include it once and vary others
+  const pool = [...DEFAULT_CTAS];
+  const out = [];
+  if (userCTA) out.push(userCTA);
+  while (out.length < 3 && pool.length) {
+    const i = Math.floor(Math.random() * pool.length);
+    out.push(pool.splice(i,1)[0]);
+  }
+  // ensure uniqueness
+  return Array.from(new Set(out)).slice(0,3);
+}
+
+// -------------------- brief reader
+function readBrief() {
+  return {
+    offer: qs('#offer')?.value?.trim(),
+    platform: qs('#platform')?.value,
+    tone: parseFloat(qs('#tone')?.value || '0.5'),
+    audience: qs('#audience')?.value?.trim(),
+    problem: qs('#problem')?.value?.trim(),
+    outcome: qs('#outcome')?.value?.trim(),
+    cta: qs('#cta')?.value?.trim(),
+    keywords: qs('#keywords')?.value?.trim(),
+    format: qs('#format')?.value,
+    length: qs('#captionLength')?.value || 'Medium',
+    voice: qs('#voiceMode')?.value || 'leadgen',
+    cleanHashtags: qs('#cleanHashtags')?.checked ?? true
+  };
+}
+
+// -------------------- generation glue (plug your existing logic here)
+function generateCaptionVariants(brief) {
+  // TODO: replace this stub with your existing assemble functions.
+  // For now, we return 3 playful-but-sane placeholders using CTA variety.
+  const ctas = pickCTAs(brief.cta);
+  const variants = [];
+  for (let i = 0; i < 3; i++) {
+    const toneWord = brief.tone <= 0.3 ? 'professional' :
+                     brief.tone <= 0.7 ? 'balanced' : 'playful';
+    let text =
+      `${brief.offer || 'Your offer here'} — for ${brief.audience || 'your ideal customers'}. ` +
+      `We tackle ${brief.problem || 'the hard stuff'} so you get ${brief.outcome || 'better results'}. ` +
+      `${ctas[i] || 'Learn more'}${brief.cta ? `: ${brief.cta}` : ''}`;
+    variants.push(sentenceSafe(text));
+  }
+  return variants;
+}
+
+// -------------------- render
+function renderCards(texts) {
+  const box = qs('#results');
+  if (!box) return;
+  box.innerHTML = '';
+  texts.forEach((t, i) => {
+    const id = `copy-${Date.now()}-${i}`;
+    box.insertAdjacentHTML('beforeend', `
+      <article class="card">
+        <div class="card-body">
+          <p>${t}</p>
+          <button class="btn" data-copy="${id}" aria-label="Copy caption">Copy</button>
+        </div>
+        <textarea id="${id}" style="position:absolute;left:-9999px;opacity:0;">${t}</textarea>
+      </article>
+    `);
+  });
+}
+
+function copyFromHidden(id){
+  const t = document.getElementById(id);
+  t.select();
+  t.setSelectionRange(0, 99999);
+  document.execCommand('copy');
+}
+
+// -------------------- wiring
+window.addEventListener('DOMContentLoaded', () => {
+  const form = qs('#captionForm');
+  const results = qs('#results');
+
+  // Modal buttons
+  qs('#upgradeBtn')?.addEventListener('click', () => {
+    // Stripe link from your HTML
+    window.location.href = 'https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203';
+  });
+  qs('#alreadyProBtn')?.addEventListener('click', async () => {
+    const email = prompt('Enter the email you used to upgrade (temporary local unlock):');
+    if (email && /\S+@\S+\.\S+/.test(email)) {
+      localStorage.setItem('dcc_pro_email', email);
+      localStorage.setItem('dcc_pro', '1'); // convenience flag
+      closeModal();
+      updateUsageCounter();
+      alert('Pro unlocked on this browser.');
+    } else {
+      alert('That email doesn’t look valid.');
+    }
+  });
+  qs('#closeModalBtn')?.addEventListener('click', closeModal);
+  window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+  // Copy events
+  results?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-copy]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-copy');
+    copyFromHidden(id);
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 900);
+  });
+
+  // Submit handler with gating
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!isPro()) {
+      const used = countToday();
+      if (used >= 3) {
+        openModal();
+        return;
+      }
+    }
+
+    const brief = readBrief();
+    const texts = generateCaptionVariants(brief);
+    renderCards(texts);
+
+    if (!isPro()) {
+      incrementUsage();
+      updateUsageCounter();
+    }
+  });
+
+  updateUsageCounter();
+});
 
   // ---------- Templates (Audience/Need + Angles + Voice Mode + Writer) ----------
   const TPL = {
@@ -740,22 +951,22 @@ function qcIssues({ offer, problem, outcome, cta }) {
     if (!results) return;
     results.innerHTML = "";
 
-    const audience = ($("#audience")?.value || "small business owners").trim();
-    const offer = humanizeOffer($("#offer")?.value || "our $299 three-page website special");
-    const outcome = humanizeOutcome($("#outcome")?.value || "more qualified leads in your inbox");
-    const problem = humanizeProblem($("#problem")?.value || "customers can’t find your business online");
-    const rawCTA = ($("#cta")?.value || "Book your consultation this week.").trim();
-    const keywords = ($("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
+    const audience = (qs("#audience")?.value || "small business owners").trim();
+    const offer = humanizeOffer(qs("#offer")?.value || "our $299 three-page website special");
+    const outcome = humanizeOutcome(qs("#outcome")?.value || "more qualified leads in your inbox");
+    const problem = humanizeProblem(qs("#problem")?.value || "customers can’t find your business online");
+    const rawCTA = (qs("#cta")?.value || "Book your consultation this week.").trim();
+    const keywords = (qs("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
 
     const platform = (platformEl?.value || "Facebook").trim().toLowerCase();
     const format = (formatEl?.value || "Post").trim().toLowerCase();
 
-    const toneVal = parseFloat($("#tone")?.value ?? "0.5");
+    const toneVal = parseFloat(qs("#tone")?.value ?? "0.5");
     const tone = tonePack(isNaN(toneVal) ? 0.5 : toneVal);
 
-    const length = ($("#captionLength")?.value || "medium").toLowerCase();
-    const density = ($("#hashtagDensity")?.value || "standard").toLowerCase();
-    const clean = $("#cleanHashtags")?.checked ?? true;
+    const length = (qs("#captionLength")?.value || "medium").toLowerCase();
+    const density = (qs("#hashtagDensity")?.value || "standard").toLowerCase();
+    const clean = qs("#cleanHashtags")?.checked ?? true;
 
     // URL + UTM
     const rawUrl = extractUrl(rawCTA);
@@ -919,7 +1130,9 @@ function qcIssues({ offer, problem, outcome, cta }) {
     const denEl = document.getElementById("hashtagDensity"); if (denEl) denEl.value = "Standard";
     const cleanEl = document.getElementById("cleanHashtags"); if (cleanEl) cleanEl.checked = true;
     const toneEl = document.getElementById("tone"); if (toneEl) toneEl.value = 0.5;
-    const voiceEl = document.getElementById("voiceMode"); if (voiceEl) voiceEl.value = voiceEl.value || "leadgen";
     results.innerHTML = "";
   });
-});
+
+  }); // close initial DOMContentLoaded
+
+  })();
