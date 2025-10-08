@@ -683,7 +683,7 @@ async function maybeRemixWithAI(texts, brief) {
       ctaOptions: pickCTAs(brief.cta),
       hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity || 'standard').toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
     };
-    const res = await fetch('https://dobiecore-remix.melanie-brown.workers.dev', {
+    const res = await fetch('https://www.bluedobiedev.com/api/remix', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
