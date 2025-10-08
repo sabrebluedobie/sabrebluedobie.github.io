@@ -669,36 +669,34 @@ function pickCTAs(userCTA) {
   return Array.from(new Set(out)).slice(0,3);
 }
 
-async function maybeRemixWithAI(texts, brief) {
-  // Gate: Pro users get remix; Free can be false or 1/day if you later add KV on the Worker
-  const allowAI = isPro();
-  if (!allowAI) return texts;
 
+// -------------------- AI Remix (Cloudflare Worker)
+async function maybeRemixWithAI(texts, brief) {
+  const allowAI = isPro(); // Pro unlock; set true to test
+  if (!allowAI) return texts;
   try {
+    const payload = {
+      drafts: texts.map((t, i) => ({ id: String(i+1), text: t })),
+      platform: (brief.platform || 'instagram'),
+      tone: typeof brief.tone === 'number' ? brief.tone : 0.5,
+      length: (brief.length || 'medium').toLowerCase(),
+      ctaOptions: pickCTAs(brief.cta),
+      hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity || 'standard').toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
+    };
     const res = await fetch('https://dobiecore-remix.melanie-brown.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        drafts: texts.map((t, i) => ({ id: String(i+1), text: t })),
-        platform: (brief.platform || 'instagram'),
-        tone: typeof brief.tone === 'number' ? brief.tone : 0.5,
-        length: (brief.length || 'medium').toLowerCase(),
-        ctaOptions: pickCTAs(brief.cta),
-        hashtags: buildHashtags(brief.keywords, brief.hashtagDensity || 'standard', brief.cleanHashtags !== false, brief.platform, brief.format)
-      })
+      body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('remix failed');
     const data = await res.json();
     if (!Array.isArray(data) || !data.length) return texts;
     return data.map(d => String(d.text || '')).filter(Boolean);
-  } catch (e) {
-    console.warn('AI remix unavailable, using local drafts', e);
+  } catch (err) {
+    console.warn('AI remix unavailable, using local drafts', err);
     return texts;
   }
 }
-
-
-
 // -------------------- brief reader
 function readBrief() {
   return {
@@ -762,6 +760,10 @@ function copyFromHidden(id){
 }
 
 // -------------------- wiring
+window.addEventListener('DOMContentLoaded', () => {
+  const form = qs('#captionForm');
+  const results = qs('#results');
+
   // Modal buttons
   qs('#upgradeBtn')?.addEventListener('click', () => {
     // Stripe link from your HTML
@@ -792,27 +794,7 @@ function copyFromHidden(id){
     setTimeout(() => btn.textContent = 'Copy', 900);
   });
 
-  // Submit handler with gating
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (!isPro()) {
-      const used = countToday();
-      if (used >= 3) {
-        openModal();
-        return;
-      }
-    }
-
-    const brief = readBrief();
-    const texts = generateCaptionVariants(brief);
-    renderCards(texts);
-
-    if (!isPro()) {
-      incrementUsage();
-      updateUsageCounter();
-    }
-  });
+  
 
   updateUsageCounter();
 });
@@ -971,134 +953,27 @@ function qcIssues({ offer, problem, outcome, cta }) {
   return issues;
 }
 
+
   // ---------- Form handling ----------
   form?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (!results) return;
-  results.innerHTML = "";
+    e.preventDefault();
+    if (!results) return;
+    results.innerHTML = "";
 
-  // --- Gating (3/day for Free) ---
-  if (!isPro()) {
-    const used = countToday();
-    if (used >= 3) { openModal(); return; }
-  }
-
-  const audience = (qs("#audience")?.value || "small business owners").trim();
-  const offer = humanizeOffer(qs("#offer")?.value || "our $299 three-page website special");
-  const outcome = humanizeOutcome(qs("#outcome")?.value || "more qualified leads in your inbox");
-  const problem = humanizeProblem(qs("#problem")?.value || "customers can’t find your business online");
-  const rawCTA = (qs("#cta")?.value || "Book your consultation this week.").trim();
-  const keywords = (qs("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
-
-  const platform = (platformEl?.value || "Facebook").trim().toLowerCase();
-  const format = (formatEl?.value || "Post").trim().toLowerCase();
-
-  const toneVal = parseFloat(qs("#tone")?.value ?? "0.5");
-  const tone = tonePack(isNaN(toneVal) ? 0.5 : toneVal);
-
-  const length = (qs("#captionLength")?.value || "medium").toLowerCase();
-  const density = (qs("#hashtagDensity")?.value || "standard").toLowerCase();
-  const clean = qs("#cleanHashtags")?.checked ?? true;
-
-  // URL + UTM
-  const rawUrl = extractUrl(rawCTA);
-  const utmUrl = rawUrl ? addUtm(rawUrl, platform, format) : null;
-  const ctaNoUrl = ensurePeriod(removeUrl(rawCTA));
-  const urlSuffix = utmUrl ? `\n${utmUrl}` : "";
-
-  const { maxChars, details, spacing } = lengthProfile(length, platform, format);
-  const tags = buildHashtags(keywords, density, clean, platform, format);
-
-  const hookPool = tone.hookLead;
-  const hook = pick(hookPool);
-
-  // Audience intent + needs + who/need line
-  const intent = audienceIntent(audience, keywords);
-  const need = extractNeed(problem, outcome, intent);
-  const whoNeed = whoAndNeedLine(audience, need, intent);
-
-  // Voice Mode (UI or fallback)
-  const voiceMode = resolveVoiceMode(intent, platform);
-
-  // Domain profile for angle variety
-  const profile = domainProfile(audience, keywords, offer);
-
-  // Writer persona (from onboarding or toggle)
-  const writerId = resolveWriterPersona();
-  const writerLine = writerPrefix(writerId, audience);
-
-  // QC banner
-  const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
-  if (issues.length) {
-    const warn = document.createElement("div");
-    warn.className = "card";
-    warn.style.margin = "12px 0";
-    warn.style.background = "#fff7ed";
-    warn.style.borderColor = "#fdba74";
-    warn.innerHTML = `<strong>Heads up:</strong> ${issues.join(" ")} We’ll auto-fix obvious fragments.`;
-    results.appendChild(warn);
-  }
-
-  // Shared context for templates
-  let ctx = {
-    hook, hookPool,
-    audience, problem, offer, outcome,
-    cta: ctaNoUrl,
-    tags, details, spacing,
-    intent, need, whoNeed, profile, voiceMode,
-    writerId, writerLine
-  };
-
-  // Build raw captions (3)
-  let caps = buildVariants(ctx, platform, format).map((c) => {
-    let out = c;
-    // Append UTM’d URL when allowed (not GMB/YouTube/Stories)
-    if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
-      const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
-      out = canAppend ? `${out}${urlSuffix}` : out;
+    // --- Free/Pro gate: 3/day for Free ---
+    if (!isPro()) {
+      const used = countToday();
+      if (used >= 3) {
+        openModal();
+        return;
+      }
     }
-    // Fragment fixer (skip YouTube long description)
-    let fixed = { out, changed: false };
-    if (platform !== "youtube") fixed = fixFragmentsMultiline(out);
-    // Clip
-    const cap = platform === "youtube" ? 1200 : maxChars;
-    fixed.out = clip(fixed.out, cap);
-    return fixed;
-  });
 
-  // First comment (IG + LI)
-  const firstComment = buildFirstComment(platform, format, tags, utmUrl);
-
-  // Prepare text array for AI remix
-  const localTexts = caps.map(c => c.out);
-
-  // --- AI Remix (Pro only by default) ---
-  const remixed = await maybeRemixWithAI(localTexts, {
-    platform,
-    tone: parseFloat(qs('#tone')?.value || '0.5'),
-    length,
-    cta: rawCTA,
-    keywords,
-    hashtagDensity: density,
-    cleanHashtags: clean,
-    format
-  });
-
-  // Render
-  renderCards(remixed);
-
-  // Update usage for Free
-  if (!isPro()) {
-    incrementUsage();
-    updateUsageCounter();
-  }
-});
-
-
+    // --- Read inputs ---
     const audience = (qs("#audience")?.value || "small business owners").trim();
-    const offer = humanizeOffer(qs("#offer")?.value || "our $299 three-page website special");
-    const outcome = humanizeOutcome(qs("#outcome")?.value || "more qualified leads in your inbox");
-    const problem = humanizeProblem(qs("#problem")?.value || "customers can’t find your business online");
+    const offerRaw = (qs("#offer")?.value || "our $299 three-page website special").trim();
+    const outcomeRaw = (qs("#outcome")?.value || "more qualified leads in your inbox").trim();
+    const problemRaw = (qs("#problem")?.value || "customers can’t find your business online").trim();
     const rawCTA = (qs("#cta")?.value || "Book your consultation this week.").trim();
     const keywords = (qs("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
 
@@ -1112,34 +987,33 @@ function qcIssues({ offer, problem, outcome, cta }) {
     const density = (qs("#hashtagDensity")?.value || "standard").toLowerCase();
     const clean = qs("#cleanHashtags")?.checked ?? true;
 
-    // URL + UTM
+    // --- Normalize ---
+    const offer = humanizeOffer(offerRaw);
+    const outcome = humanizeOutcome(outcomeRaw);
+    const problem = humanizeProblem(problemRaw);
+
+    // --- URL + UTM ---
     const rawUrl = extractUrl(rawCTA);
     const utmUrl = rawUrl ? addUtm(rawUrl, platform, format) : null;
     const ctaNoUrl = ensurePeriod(removeUrl(rawCTA));
     const urlSuffix = utmUrl ? `\n${utmUrl}` : "";
 
+    // --- Length profile & hashtags ---
     const { maxChars, details, spacing } = lengthProfile(length, platform, format);
     const tags = buildHashtags(keywords, density, clean, platform, format);
 
+    // --- Hook / audience need / persona ---
     const hookPool = tone.hookLead;
     const hook = pick(hookPool);
-
-    // Audience intent + needs + who/need line
     const intent = audienceIntent(audience, keywords);
     const need = extractNeed(problem, outcome, intent);
     const whoNeed = whoAndNeedLine(audience, need, intent);
-
-    // Voice Mode (UI or fallback)
     const voiceMode = resolveVoiceMode(intent, platform);
-
-    // Domain profile for angle variety
     const profile = domainProfile(audience, keywords, offer);
-
-    // Writer persona (from onboarding or toggle)
     const writerId = resolveWriterPersona();
     const writerLine = writerPrefix(writerId, audience);
 
-    // QC banner
+    // --- QC banner ---
     const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
     if (issues.length) {
       const warn = document.createElement("div");
@@ -1151,7 +1025,7 @@ function qcIssues({ offer, problem, outcome, cta }) {
       results.appendChild(warn);
     }
 
-    // Shared context for templates
+    // --- Shared context for templates ---
     let ctx = {
       hook, hookPool,
       audience, problem, offer, outcome,
@@ -1161,111 +1035,45 @@ function qcIssues({ offer, problem, outcome, cta }) {
       writerId, writerLine
     };
 
-    // Build raw captions
+    // --- Build local variants (3) ---
     let caps = buildVariants(ctx, platform, format).map((c) => {
       let out = c;
-
-      // Append UTM’d URL (not for GMB/YouTube; not for Stories)
       if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
         const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
         out = canAppend ? `${out}${urlSuffix}` : out;
       }
-
-      // Fragment fixer (skip YouTube long description)
       let fixed = { out, changed: false };
       if (platform !== "youtube") fixed = fixFragmentsMultiline(out);
-
-      // Cap
-      const cap = platform === "youtube" ? 1200 : maxChars;
-      fixed.out = clip(fixed.out, cap);
-
+      const hardCap = platform === "youtube" ? 1200 : maxChars;
+      fixed.out = clip(fixed.out, hardCap);
       return fixed;
     });
 
-    // First comment (IG + LI)
     const firstComment = buildFirstComment(platform, format, tags, utmUrl);
 
-    // Emoji uniformity check across the set
-    const allEmojis = caps.flatMap(c => extractEmojis(c.out));
-    const dominantGeneric = allEmojis.filter(e => GENERIC_AI_EMOJIS.includes(e));
-    const setUniformWarning = dominantGeneric.length >= 3;
-
-    // ---------- Render ----------
-    caps.forEach((obj, i) => {
-      let text = obj.out;
-      const fragFixed = obj.changed;
-
-      // Analyze emojis & prepare suggestions
-      const issuesE = emojiIssues(text);
-      const suggestPool = suggestEmojiPool(keywords, audience, platform);
-      const looksAIish = issuesE.looksAIish || setUniformWarning;
-
-      const card = document.createElement("div");
-      card.className = "caption-card";
-      const meta = `${platform.toUpperCase()} • ${format.toUpperCase()} • ${voiceMode.toUpperCase()}`;
-      const cal = calendarMeta(platform, format);
-
-      const warning = looksAIish
-        ? `<div class="hint" style="color:#b45309;">⚠️ Emoji pattern looks AI-ish (generic or front-loaded). Try “Humanize emojis”.</div>`
-        : "";
-
-      const fcBlock = firstComment
-        ? `
-        <div class="first-comment">
-          <div class="muted" style="margin:6px 0 4px;">First comment (for reach):</div>
-          <textarea readonly>${firstComment}</textarea>
-          <div class="row">
-            <button type="button" class="copy-first-btn">Copy first comment</button>
-            <span class="meta">Optional</span>
-          </div>
-        </div>`
-        : "";
-
-      const fixedBadge = fragFixed ? `<span class="meta" style="color:#b45309;">Auto-fixed formatting</span>` : "";
-
-      card.innerHTML = `
-        <h3>Caption ${i + 1}</h3>
-        <textarea readonly>${text}</textarea>
-        <div class="row" style="gap:8px; flex-wrap:wrap;">
-          <button type="button" class="copy-btn">Copy</button>
-          <button type="button" class="emoji-btn" title="Swap generic emojis, randomize placement">Humanize emojis</button>
-          <span class="meta">${meta}</span>
-        </div>
-        <div class="hint muted">${cal}</div>
-        ${fixedBadge ? `<div class="hint">${fixedBadge}</div>` : ""}
-        ${warning}
-        ${fcBlock}
-      `;
-      results.appendChild(card);
-
-      // Wire buttons
-      const copyBtn = card.querySelector(".copy-btn");
-      const emojiBtn = card.querySelector(".emoji-btn");
-      const ta = card.querySelector("textarea");
-
-      copyBtn?.addEventListener("click", () => {
-        ta.select(); document.execCommand("copy");
-        copyBtn.textContent = "Copied!"; setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
-      });
-
-      emojiBtn?.addEventListener("click", () => {
-        const newText = deAIifyEmojis(ta.value, suggestEmojiPool(keywords, audience, platform), platform);
-        ta.value = newText;
-        emojiBtn.textContent = "Emojis humanized";
-        setTimeout(() => (emojiBtn.textContent = "Humanize emojis"), 1800);
-      });
-
-      // First comment copy
-      const fcCopy = card.querySelector(".copy-first-btn");
-      if (fcCopy) {
-        fcCopy.addEventListener("click", () => {
-          const fta = card.querySelector(".first-comment textarea");
-          fta.select(); document.execCommand("copy");
-          fcCopy.textContent = "Copied!"; setTimeout(() => (fcCopy.textContent = "Copy first comment"), 1500);
-        });
-      }
+    // --- AI Remix (Pro only by default) ---
+    const localTexts = caps.map(c => c.out);
+    const remixed = await maybeRemixWithAI(localTexts, {
+      platform,
+      tone: parseFloat(qs("#tone")?.value || "0.5"),
+      length,
+      cta: rawCTA,
+      keywords,
+      hashtagDensity: density,
+      cleanHashtags: clean,
+      format
     });
-  });
+
+    // --- Render ---
+    renderCards(remixed);
+
+    // --- Update usage for Free ---
+    if (!isPro()) {
+      incrementUsage();
+      updateUsageCounter();
+    }
+  
+});
 
   // Clear
   clearBtn?.addEventListener("click", () => {
