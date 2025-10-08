@@ -669,6 +669,36 @@ function pickCTAs(userCTA) {
   return Array.from(new Set(out)).slice(0,3);
 }
 
+async function maybeRemixWithAI(texts, brief) {
+  // Gate: Pro users get remix; Free can be false or 1/day if you later add KV on the Worker
+  const allowAI = isPro();
+  if (!allowAI) return texts;
+
+  try {
+    const res = await fetch('https://dobiecore-remix.melanie-brown.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        drafts: texts.map((t, i) => ({ id: String(i+1), text: t })),
+        platform: (brief.platform || 'instagram'),
+        tone: typeof brief.tone === 'number' ? brief.tone : 0.5,
+        length: (brief.length || 'medium').toLowerCase(),
+        ctaOptions: pickCTAs(brief.cta),
+        hashtags: buildHashtags(brief.keywords, brief.hashtagDensity || 'standard', brief.cleanHashtags !== false, brief.platform, brief.format)
+      })
+    });
+    if (!res.ok) throw new Error('remix failed');
+    const data = await res.json();
+    if (!Array.isArray(data) || !data.length) return texts;
+    return data.map(d => String(d.text || '')).filter(Boolean);
+  } catch (e) {
+    console.warn('AI remix unavailable, using local drafts', e);
+    return texts;
+  }
+}
+
+
+
 // -------------------- brief reader
 function readBrief() {
   return {
@@ -732,10 +762,6 @@ function copyFromHidden(id){
 }
 
 // -------------------- wiring
-window.addEventListener('DOMContentLoaded', () => {
-  const form = qs('#captionForm');
-  const results = qs('#results');
-
   // Modal buttons
   qs('#upgradeBtn')?.addEventListener('click', () => {
     // Stripe link from your HTML
@@ -946,10 +972,128 @@ function qcIssues({ offer, problem, outcome, cta }) {
 }
 
   // ---------- Form handling ----------
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!results) return;
-    results.innerHTML = "";
+  form?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!results) return;
+  results.innerHTML = "";
+
+  // --- Gating (3/day for Free) ---
+  if (!isPro()) {
+    const used = countToday();
+    if (used >= 3) { openModal(); return; }
+  }
+
+  const audience = (qs("#audience")?.value || "small business owners").trim();
+  const offer = humanizeOffer(qs("#offer")?.value || "our $299 three-page website special");
+  const outcome = humanizeOutcome(qs("#outcome")?.value || "more qualified leads in your inbox");
+  const problem = humanizeProblem(qs("#problem")?.value || "customers can’t find your business online");
+  const rawCTA = (qs("#cta")?.value || "Book your consultation this week.").trim();
+  const keywords = (qs("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
+
+  const platform = (platformEl?.value || "Facebook").trim().toLowerCase();
+  const format = (formatEl?.value || "Post").trim().toLowerCase();
+
+  const toneVal = parseFloat(qs("#tone")?.value ?? "0.5");
+  const tone = tonePack(isNaN(toneVal) ? 0.5 : toneVal);
+
+  const length = (qs("#captionLength")?.value || "medium").toLowerCase();
+  const density = (qs("#hashtagDensity")?.value || "standard").toLowerCase();
+  const clean = qs("#cleanHashtags")?.checked ?? true;
+
+  // URL + UTM
+  const rawUrl = extractUrl(rawCTA);
+  const utmUrl = rawUrl ? addUtm(rawUrl, platform, format) : null;
+  const ctaNoUrl = ensurePeriod(removeUrl(rawCTA));
+  const urlSuffix = utmUrl ? `\n${utmUrl}` : "";
+
+  const { maxChars, details, spacing } = lengthProfile(length, platform, format);
+  const tags = buildHashtags(keywords, density, clean, platform, format);
+
+  const hookPool = tone.hookLead;
+  const hook = pick(hookPool);
+
+  // Audience intent + needs + who/need line
+  const intent = audienceIntent(audience, keywords);
+  const need = extractNeed(problem, outcome, intent);
+  const whoNeed = whoAndNeedLine(audience, need, intent);
+
+  // Voice Mode (UI or fallback)
+  const voiceMode = resolveVoiceMode(intent, platform);
+
+  // Domain profile for angle variety
+  const profile = domainProfile(audience, keywords, offer);
+
+  // Writer persona (from onboarding or toggle)
+  const writerId = resolveWriterPersona();
+  const writerLine = writerPrefix(writerId, audience);
+
+  // QC banner
+  const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
+  if (issues.length) {
+    const warn = document.createElement("div");
+    warn.className = "card";
+    warn.style.margin = "12px 0";
+    warn.style.background = "#fff7ed";
+    warn.style.borderColor = "#fdba74";
+    warn.innerHTML = `<strong>Heads up:</strong> ${issues.join(" ")} We’ll auto-fix obvious fragments.`;
+    results.appendChild(warn);
+  }
+
+  // Shared context for templates
+  let ctx = {
+    hook, hookPool,
+    audience, problem, offer, outcome,
+    cta: ctaNoUrl,
+    tags, details, spacing,
+    intent, need, whoNeed, profile, voiceMode,
+    writerId, writerLine
+  };
+
+  // Build raw captions (3)
+  let caps = buildVariants(ctx, platform, format).map((c) => {
+    let out = c;
+    // Append UTM’d URL when allowed (not GMB/YouTube/Stories)
+    if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
+      const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
+      out = canAppend ? `${out}${urlSuffix}` : out;
+    }
+    // Fragment fixer (skip YouTube long description)
+    let fixed = { out, changed: false };
+    if (platform !== "youtube") fixed = fixFragmentsMultiline(out);
+    // Clip
+    const cap = platform === "youtube" ? 1200 : maxChars;
+    fixed.out = clip(fixed.out, cap);
+    return fixed;
+  });
+
+  // First comment (IG + LI)
+  const firstComment = buildFirstComment(platform, format, tags, utmUrl);
+
+  // Prepare text array for AI remix
+  const localTexts = caps.map(c => c.out);
+
+  // --- AI Remix (Pro only by default) ---
+  const remixed = await maybeRemixWithAI(localTexts, {
+    platform,
+    tone: parseFloat(qs('#tone')?.value || '0.5'),
+    length,
+    cta: rawCTA,
+    keywords,
+    hashtagDensity: density,
+    cleanHashtags: clean,
+    format
+  });
+
+  // Render
+  renderCards(remixed);
+
+  // Update usage for Free
+  if (!isPro()) {
+    incrementUsage();
+    updateUsageCounter();
+  }
+});
+
 
     const audience = (qs("#audience")?.value || "small business owners").trim();
     const offer = humanizeOffer(qs("#offer")?.value || "our $299 three-page website special");
