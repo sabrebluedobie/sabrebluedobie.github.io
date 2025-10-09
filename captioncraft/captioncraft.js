@@ -574,17 +574,46 @@ document.addEventListener("DOMContentLoaded", () => {
     if (writerId === "owner") {
       return `As a fellow ${who}, I get it:`;
     }
-    if (writerId === "mascot") {
-      const name = getMascotName() || "your mascot";
-      return `${name} here — quick reality check:`;
-    }
-    return `At Bluedobie, we get it.`;
+    function writerPrefix(id, audience, company) {
+  if (id === "mascot") {
+    const name = getMascotName() || "your mascot";
+    return `${name} here — quick reality check:`;
   }
+  // Default, brand-aware lead:
+  return `${brandLead(company)}we get it.`;
+}
+
 /* DobieCore Captions – gating + helpers */
 // -------------------- tiny utilities
 // Use shared selector helpers defined above to avoid redeclaration
 // qs: r.querySelector(s), qsa: Array.from(r.querySelectorAll(s))
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+function brandLead(company) {
+  // If present, returns "At Company, "; else empty string
+  return company ? `At ${company}, ` : "";
+}
+
+function applyBrand(text, company) {
+  if (!company) {
+    // Remove any leftover “At Bluedobie” if a template still includes it
+    return text.replace(/\bAt Bluedobie\b[,:]?\s*/gi, '');
+  }
+  // Replace “At Bluedobie” with the user’s brand if present
+  return text.replace(/\bAt Bluedobie\b/gi, `At ${company}`);
+}
+
+function cleanPunctuation(s) {
+  return s
+    .replace(/([.!?]){2,}/g, '$1')          // collapse “..” “!!”
+    .replace(/,([!?])/g, '$1')              // “,!” → “!”
+    .replace(/!\s*,\s*/g, '! ')             // “FAST!, you” → “FAST! You”
+    .replace(/\s+([,.!?])/g, '$1')          // space before punctuation
+    .replace(/([.!?]\s+)([a-z])/g, (_, a, b) => a + b.toUpperCase()) // cap after period
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 
 function todayKey() {
   const d = new Date();
@@ -804,7 +833,10 @@ window.addEventListener('DOMContentLoaded', () => {
     _assemble(ctx) {
     const { writerLine, variantIndex, profile, voiceMode, hook, whoNeed, offer, outcome, cta, tags, details, spacing, problem } = ctx;
       const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
-      const intro = hook ? `${hook}.` : "";
+      const intro = hook
+  ? `${hook}\n${brandLead(company)}we get it—small business owners need more traffic.`
+  : `${brandLead(company)}we get it—small business owners need more responses.`;
+
       const speaker = writerLine ? `${writerLine}` : "";
       const open = whoNeed;
       const sol  = a.benefit;
@@ -912,18 +944,49 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   };
 
-  // Build three variants with rotating angles & hooks
-  function buildVariants(ctx, platform, format) {
-    const key = `${platform}:${format}`.toLowerCase();
-    const make = TPL[key] || TPL["facebook:post"];
-    const variants = [];
-    for (let i = 0; i < 3; i++) {
-      const ctxWithVariant = { ...ctx, variantIndex: i };
-      variants.push(make(ctxWithVariant));
-      ctx.hook = pick(ctx.hookPool);
-    }
-    return variants;
+  // Build three variants with rotating angles & hooks → STRINGS
+const key = `${platform}:${format}`.toLowerCase();
+const make = TPL[key] || TPL["facebook:post"];
+
+// 1) Compose the three raw variants
+const rawVariants = Array.from({ length: 3 }, (_, i) => {
+  const ctxWithVariant = { ...ctx, variantIndex: i };
+  const txt = make(ctxWithVariant);
+  // rotate hook for the next variant
+  ctx.hook = pick(ctx.hookPool);
+  return txt; // <-- string
+});
+
+// 2) Polish each (URL append, fragment fix, brand, punctuation, clip)
+const localTexts = rawVariants.map((txt) => {
+  let out = txt;
+
+  // Append UTM’d URL when allowed (skip GMB/YouTube/Stories)
+  if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
+    const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
+    out = canAppend ? `${out}\n${utmUrl}` : out;
   }
+
+  // Fragment fixer (skip YouTube long description rules)
+  if (platform !== "youtube") {
+    const fixed = fixFragmentsMultiline(out);
+    out = fixed.out;
+  }
+
+  // Brand safety + punctuation polish
+  out = typeof applyBrand === "function" ? applyBrand(out, company) : out;
+  out = cleanPunctuation(out);
+
+  // Clip to platform limits
+  const hardCap = platform === "youtube" ? 1200 : maxChars;
+  out = clip(out, hardCap);
+
+  return out; // <-- string
+});
+
+// 3) (Elsewhere below) pass `localTexts` to AI remix / render:
+// const remixed = await maybeRemixWithAI(localTexts, {...});
+// renderCards(remixed);
 
   // ---- First Comment generator (Instagram + LinkedIn) ----
   function buildFirstComment(platform, format, tags, utmUrl) {
@@ -970,6 +1033,7 @@ function qcIssues({ offer, problem, outcome, cta }) {
     }
 
     // --- Read inputs ---
+    const company = (qs("#company")?.value || "").trim();
     const audience = (qs("#audience")?.value || "small business owners").trim();
     const offerRaw = (qs("#offer")?.value || "our $299 three-page website special").trim();
     const outcomeRaw = (qs("#outcome")?.value || "more qualified leads in your inbox").trim();
@@ -1011,7 +1075,7 @@ function qcIssues({ offer, problem, outcome, cta }) {
     const voiceMode = resolveVoiceMode(intent, platform);
     const profile = domainProfile(audience, keywords, offer);
     const writerId = resolveWriterPersona();
-    const writerLine = writerPrefix(writerId, audience);
+    const writerLine = writerPrefix(writerId, audience, company);
 
     // --- QC banner ---
     const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
