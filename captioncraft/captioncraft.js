@@ -1,1154 +1,330 @@
-/* CaptionCraft — Platform + Format aware
-   Features: First Comment • UTM links • Fragment Fixer • Emoji De-AI-ifier
-             Audience-Intent steering • Domain-aware angles (non-repetitive)
-             Voice Mode (leadgen/community/authority) with smart fallback
-             Writer Persona onboarding + toggle + persistence
-   Full replacement for captioncraft.js
-*/
-(() => {
-document.addEventListener("DOMContentLoaded", () => {
-  const qs = (sel, r = document) => r.querySelector(sel);
-  const qsa = (sel, r = document) => Array.from(r.querySelectorAll(sel));
-  const form = document.querySelector("form");
-  const results = qs("#results");
-  const platformEl = qs("#platform");
-  const formatEl = qs("#format");
-  const formatHint = qs("#formatHint");
-  const clearBtn = qs("#clearBtn");
+// @ts-nocheck
+// DobieCore CaptionCraft — clean HTML form, 3/day gating, optional AI remix via Worker
+// This is a full-drop replacement for /captioncraft/captioncraft.js
 
-  // ----- Format options by platform -----
-  const FORMAT_MAP = {
-    facebook: ["Post", "Story", "Reel"],
-    instagram: ["Post", "Story", "Reel"],
-    twitter: ["Post"],
-    linkedin: ["Profile", "Page"],
-    gmb: ["Post"],
-    tiktok: ["Video"],
-    ytshorts: ["Short"],
-    youtube: ["Video"],
-  };
+// ---------- tiny DOM helpers (avoid '$ already declared' issues)
+const qs = (sel, root = document) => root.querySelector(sel);
+const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  const FORMAT_HINT = {
-    "facebook:post": "1–3 short paragraphs • 4–7 hashtags",
-    "facebook:story": "2–3 lines • no hashtags • link sticker",
-    "facebook:reel": "Hook + 1–2 lines • 3–5 hashtags",
-    "instagram:post": "Hook + 2–3 lines • 5–9 hashtags",
-    "instagram:story": "Very short • no hashtag soup • link sticker",
-    "instagram:reel": "Hook + benefit + CTA • 3–7 hashtags",
-    "twitter:post": "<280 chars • ≤2 hashtags",
-    "linkedin:profile": "3–6 lines • business tone • ≤3 hashtags",
-    "linkedin:page": "Brand voice • ≤3 hashtags",
-    "gmb:post": "Plain, local keywords • no hashtags",
-    "tiktok:video": "Hook + 2 lines + CTA • 6–10 hashtags",
-    "ytshorts:short": "2–3 lines • 3–5 hashtags",
-    "youtube:video": "Title + description • no hashtag soup",
-  };
-
-  function refreshFormats() {
-    const platform = (platformEl?.value || "Facebook").toLowerCase();
-    const options = FORMAT_MAP[platform] || ["Post"];
-    if (formatEl) {
-      formatEl.innerHTML = "";
-      options.forEach((opt) => {
-        const o = document.createElement("option");
-        o.textContent = opt;
-        formatEl.appendChild(o);
-      });
-    }
-    updateFormatHint();
-  }
-  function updateFormatHint() {
-    if (!formatHint) return;
-    const key = `${(platformEl?.value || "Facebook").toLowerCase()}:${(formatEl?.value || "Post").toLowerCase()}`;
-    formatHint.textContent = FORMAT_HINT[key] || "";
-  }
-  platformEl?.addEventListener("change", refreshFormats);
-  formatEl?.addEventListener("change", updateFormatHint);
-  refreshFormats();
-
-  // ---------- Helpers ----------
-  const sentenceCase = (s) => s.toString().trim().replace(/\s+/g, " ").replace(/(^\w)|([.!?]\s+\w)/g, (m) => m.toUpperCase());
-  const ensurePeriod = (s) => (/[.!?]$/.test(s.trim()) ? s.trim() : s.trim() + ".");
-  const stripTrailingPunct = (s) => s.replace(/[.!\s]+$/g, "");
-  const clip = (s, n) => (s.length <= n ? s : s.slice(0, n - 1).trim() + "…");
-  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-  const isUrl = (t) => /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/i.test(t);
-  const isHashtagLine = (t) => t.trim().startsWith("#");
-  const isTitleLine = (t) => /^title:/i.test(t.trim());
-
-  const URL_RE = /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/i;
-  const URL_RE_GLOBAL = /(https?:\/\/[^\s)]+)|(www\.[^\s)]+)/gi;
-  const extractUrl = (s) => { const m = (s || "").match(URL_RE); return m ? m[0] : null; };
-  const removeUrl = (s) => (s || "").replace(URL_RE_GLOBAL, "").trim();
-
-  // UTM adder
-  function addUtm(url, platform, format) {
-    try {
-      const hasProto = /^https?:\/\//i.test(url);
-      const full = hasProto ? url : `https://${url}`;
-      const u = new URL(full);
-      if (![...u.searchParams.keys()].some(k => k.toLowerCase().startsWith("utm_"))) {
-        u.searchParams.set("utm_source", (platform||"").toLowerCase());
-        u.searchParams.set("utm_medium", (format || "post").toLowerCase());
-        u.searchParams.set("utm_campaign", "captioncraft");
-      }
-      return u.toString();
-    } catch { return url; }
-  }
-
-  // Hashtags by platform/format
-  function buildHashtags(keywords, density = "standard", clean = true, platform = "default", format = "post") {
-    const p = (platform||"").toLowerCase();
-    const f = (format||"").toLowerCase();
-    if (p === "gmb" || p === "youtube" || f === "story") return "";
-
-    let tags = (keywords || "").split(",").map((t) => t.trim()).filter(Boolean);
-    if (clean) {
-      tags = tags.map((t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ""));
-      tags = [...new Set(tags)];
-    }
-
-    let maxTags = 5;
-    if (p === "instagram" || p === "facebook") {
-      if (f === "reel") maxTags = 7;
-      else maxTags = density === "heavy" ? 10 : density === "light" ? 4 : 7;
-    } else if (p === "twitter") {
-      maxTags = density === "heavy" ? 3 : 2;
-    } else if (p === "linkedin") {
-      maxTags = density === "heavy" ? 5 : density === "light" ? 2 : 3;
-    } else if (p === "tiktok") {
-      maxTags = density === "heavy" ? 15 : density === "light" ? 6 : 10;
-    } else if (p === "ytshorts") {
-      maxTags = density === "heavy" ? 7 : density === "light" ? 3 : 5;
-    }
-
-    tags = tags.slice(0, maxTags).map((t) => (t.startsWith("#") ? t : `#${t}`));
-    return tags.join(" ");
-  }
-
-  // Tone + length
-  function tonePack(level) {
-    if (level < 0.33) {
-      return { hookLead: ["Quick win", "Heads up", "A small upgrade = a big payoff"], urgency: ["Book now", "Ready when you are", "Let’s get you visible"] };
-    } else if (level < 0.66) {
-      return { hookLead: ["Small change, big result", "Level up your presence", "Time to get found"], urgency: ["Book this week", "Grab a slot in the next 3 days", "Let’s start today"] };
-    } else {
-      return { hookLead: ["Your next move, now", "Stop leaking time and leads", "Visibility that pays for itself"], urgency: ["Limited availability—lock it in", "Last call this week", "Start now for the fastest impact"] };
-    }
-  }
-  function lengthProfile(len, platform, format) {
-    const m = (len || "").toLowerCase();
-    const p = (platform || "").toLowerCase();
-    const f = (format || "").toLowerCase();
-
-    if (p === "twitter") return { maxChars: 280, details: false, spacing: false };
-    if (p === "ytshorts") return { maxChars: 300, details: false, spacing: false };
-    if (p === "tiktok") return { maxChars: 500, details: false, spacing: false };
-    if (p === "youtube") return { maxChars: 1200, details: true, spacing: true };
-    if (f === "story") return { maxChars: 220, details: false, spacing: false };
-
-    if (m === "short") return { maxChars: 180, details: false, spacing: false };
-    if (m === "long") return { maxChars: 1100, details: true, spacing: true };
-    return { maxChars: 450, details: true, spacing: false };
-  }
-
-  // De-robotify inputs
-  function humanizeProblem(p) {
-    let s = (p || "").replace(/\bis\b/gi, "’s").replace(/\bour business\b/gi, "your business").trim();
-    s = s.replace(/^for\s+busy.*?,\s*/i, "");
-    s = sentenceCase(s);
-    return ensurePeriod(s);
-  }
-  function humanizeOutcome(o) {
-    let s = (o || "").replace(/\bin your box\b/gi, "in your inbox").trim();
-    s = sentenceCase(s);
-    return ensurePeriod(s);
-  }
-  function humanizeOffer(o) {
-    let s = (o || "").trim();
-    s = s.replace(/\s+special$/i, " special");
-    return s;
-  }
-
-  // Fragment fixer
-  const COMMON_VERBS = /(?:get|have|be|is|are|was|were|do|make|build|grow|find|fix|help|win|drive|boost|book|buy|claim|start|learn|see|save|earn|bring|keep|write|post|plan|schedule|recap)/i;
-  function cleanLine(line) {
-    if (isHashtagLine(line) || isUrl(line) || isTitleLine(line)) return line.trim();
-    let s = line.replace(/\s{2,}/g, " ").replace(/\.{4,}/g, "…").trim();
-    s = s.replace(/\b(\w+)\s+\1\b/gi, "$1");
-    if (s.length > 0) s = s[0].toUpperCase() + s.slice(1);
-    return s;
-  }
-  function looksFragmentary(line) {
-    const s = line.trim();
-    if (!s) return false;
-    if (isHashtagLine(s) || isUrl(s) || isTitleLine(s)) return false;
-    const short = s.length < 25 && !/[!?]$/.test(s);
-    const noVerb = !COMMON_VERBS.test(s);
-    return short || noVerb;
-  }
-  function fixFragmentsMultiline(text) {
-    const original = text;
-    let changed = false;
-    let lines = text.split(/\n+/).map(cleanLine).filter((l) => l.length);
-    const merged = [];
-    for (let i = 0; i < lines.length; i++) {
-      let cur = lines[i];
-      if (looksFragmentary(cur)) {
-        const next = lines[i + 1];
-        if (next && !isHashtagLine(next) && !isTitleLine(next)) {
-          cur = (cur + " " + next).replace(/\s{2,}/g, " ").trim();
-          i += 1;
-          changed = true;
-        }
-      }
-      if (!isHashtagLine(cur) && !isUrl(cur) && !isTitleLine(cur)) {
-        if (!/[.!?]$/.test(cur)) cur = cur + ".";
-      }
-      merged.push(cur);
-    }
-    const out = merged.join("\n");
-    return { out, changed: changed || out !== original };
-  }
-
-  // ---------- Emoji De-AI-ifier ----------
-  const GENERIC_AI_EMOJIS = ["🚀","🎯","✨","📣","⚡","💡","🔥","✅","📈"];
-  const EMOJI_REGEX = /([\u231A-\uD83E\uDDFF\u2600-\u27BF]|\uFE0F)/g;
-
-  function extractEmojis(text) { return (text.match(EMOJI_REGEX) || []).filter(Boolean); }
-  function startsWithEmoji(line) { const s = line.trim(); return !!(s && EMOJI_REGEX.test(s[0])); }
-  function emojiIssues(text) {
-    const lines = text.split(/\n+/).filter((l) => l.trim().length);
-    const all = extractEmojis(text);
-    const genericCount = all.filter((e) => GENERIC_AI_EMOJIS.includes(e)).length;
-    const frontLoaded = lines.length && lines.every((l) => {
-      const t = l.trim();
-      if (!t || isHashtagLine(t) || isTitleLine(t)) return true;
-      return startsWithEmoji(t);
-    });
-    const bookended = lines.some((l) => {
-      const t = l.trim();
-      if (!t || isHashtagLine(t) || isTitleLine(t)) return false;
-      const em = extractEmojis(t);
-      return em.length >= 2 && em[0] === em[em.length - 1];
-    });
-    return { total: all.length, genericCount, frontLoaded, bookended,
-      looksAIish: genericCount >= 2 || (frontLoaded && all.length >= 1) || bookended };
-  }
-  function suggestEmojiPool(keywords, audience, platform) {
-    const k = (keywords || "").toLowerCase();
-    const a = (audience || "").toLowerCase();
-    const p = (platform || "").toLowerCase();
-    const pool = [];
-    if (/(fantasy|espn|league|commish|commissioner)/.test(k+a)) pool.push("🏈","😂","🎙️","📣");
-    if (k.includes("web") || k.includes("design")) pool.push("🖥️","🎨","🛠️","🧩");
-    if (k.includes("marketing") || k.includes("growth")) pool.push("📈","📊","🧲","📌");
-    if (k.includes("local") || a.includes("local")) pool.push("📍","🏘️","🛣️");
-    if (a.includes("owners") || a.includes("small")) pool.push("🏪","🧑‍💼","🧾");
-    if (k.includes("health")) pool.push("🩺","🏥");
-    if (k.includes("pet") || a.includes("pet")) pool.push("🐾","🐶","🐱");
-    if (k.includes("food") || k.includes("cafe")) pool.push("☕","🍔","🥗");
-    if (p === "tiktok") pool.push("🎬","🎵");
-    if (p === "instagram") pool.push("📸");
-    if (pool.length === 0) pool.push("📌","🧭","🤝");
-    return [...new Set(pool)].slice(0, 6);
-  }
-  function deAIifyEmojis(text, suggestions, platform) {
-    const allowMore = ["tiktok","instagram"].includes((platform || "").toLowerCase());
-    const maxKeep = allowMore ? 2 : 1;
-    const lines = text.split(/\n/);
-    const out = lines.map((line) => {
-      const trimmed = line.trim();
-      if (!trimmed || isHashtagLine(trimmed) || isTitleLine(trimmed)) return line;
-      let replaced = trimmed.replace(EMOJI_REGEX, (m) => GENERIC_AI_EMOJIS.includes(m) ? pick(suggestions) : m);
-      const ems = extractEmojis(replaced);
-      if (ems.length > maxKeep) {
-        let count = 0;
-        replaced = replaced.replace(EMOJI_REGEX, (m) => (count++ < maxKeep ? m : "")).replace(/\s{2,}/g, " ").trim();
-      }
-      if (extractEmojis(replaced).length === 0 && Math.random() < 0.6) {
-        const em = pick(suggestions);
-        const words = replaced.split(" ");
-        const pos = Math.max(1, Math.min(words.length - 1, Math.floor(words.length / 2)));
-        words.splice(pos, 0, em);
-        replaced = words.join(" ");
-      }
-      return replaced;
-    });
-    return out.join("\n");
-  }
-
-  // ---------- Audience Intent + Need ----------
-  function audienceIntent(audience, keywords) {
-    const blob = `${(audience||"").toLowerCase()} ${(keywords||"").toLowerCase()}`;
-    if (/(fantasy|espn|commish|commissioner|league|sleeper|yahoo)/.test(blob)) {
-      return { persona: "fantasy_commissioners", voice: "casual", emojiBias: ["🏈","😂","🎙️","📣"], needs: ["save time", "keep the league chat active", "funny recaps"] };
-    }
-    if (/(contractor|plumber|hvac|electrician|roof|remodel)/.test(blob)) {
-      return { persona: "contractors", voice: "direct", emojiBias: ["🛠️","🏠","📍","⏱️"], needs: ["book jobs", "look legit locally", "save admin time"] };
-    }
-    if (/(realtor|real estate|broker|agent)/.test(blob)) {
-      return { persona: "realtors", voice: "polished", emojiBias: ["🏡","📍","🗝️","📆"], needs: ["book showings", "grow referrals", "post consistently"] };
-    }
-    if (/(restaurant|cafe|coffee|food|bakery)/.test(blob)) {
-      return { persona: "food_service", voice: "warm", emojiBias: ["🍔","☕","🥗","📸"], needs: ["foot traffic", "repeat visits", "local visibility"] };
-    }
-    return { persona: "general_smallbiz", voice: "friendly", emojiBias: ["📌","🤝","📈","🧭"], needs: ["save time", "post consistently", "sound human"] };
-  }
-  function extractNeed(problem, outcome, intent) {
-    const p = (problem||"").toLowerCase();
-    const o = (outcome||"").toLowerCase();
-    if (/time|busy|no time|save time|faster/.test(p+o)) return "save time";
-    if (/engage|chat|banter|conversation|quiet|silent|crickets/.test(p+o)) return "keep the conversation going";
-    if (/leads|book|sales|call|inbox/.test(p+o)) return "get more inquiries";
-    if (/consistent|presence|on-brand|look/.test(p+o)) return "stay consistent without sounding robotic";
-    return intent.needs[0] || "get results faster";
-  }
-  function whoAndNeedLine(audience, need, intent) {
-    const who = (audience || "your audience").trim();
-    switch (intent.persona) {
-      case "fantasy_commissioners": return `${who} need to ${need} (and keep the league chat alive).`;
-      case "contractors":          return `${who} need to ${need} and look legit locally.`;
-      case "realtors":             return `${who} need to ${need} and show up consistently.`;
-      case "food_service":         return `${who} need to ${need} and bring people in the door.`;
-      default:                     return `${who} need to ${need}.`;
-    }
-  }
-
-  // ---------- Voice Mode (UI or fallback) ----------
-  function resolveVoiceMode(intent, platform) {
-    const uiVal = document.getElementById("voiceMode")?.value;
-    if (uiVal) return uiVal; // "leadgen" | "community" | "authority"
-    if (intent.persona === "fantasy_commissioners") return "community";
-    if ((platform || "").toLowerCase() === "linkedin") return "authority";
-    return "leadgen";
-  }
-
-  // ---------- Domain-aware angles (variety; no boilerplate) ----------
-  function domainProfile(audience, keywords, offer) {
-    const blob = (audience + " " + keywords + " " + offer).toLowerCase();
-    const isFantasy = /fantasy|espn|sleeper|yahoo|commissioner|commish|league/.test(blob);
-    if (isFantasy) {
-      return {
-        domain: "fantasy",
-        pains: [
-          "no time to write weekly recaps",
-          "Sunday-night scramble to sound witty",
-          "league chat going quiet by mid-season"
-        ],
-        benefits_time: [
-          "you get your Sunday night back",
-          "skip the scramble—recaps arrive done",
-          "automation handles the recap grind"
-        ],
-        benefits_social: [
-          "your group chat stays loud past Week 6",
-          "friends keep the trash talk going",
-          "the league actually reads the recaps"
-        ],
-        benefits_status: [
-          "you look like an MVP commissioner",
-          "your league treats you like a pro",
-          "everyone thinks you hired a writer"
-        ],
-        result_verbs: ["Result", "Outcome", "Bottom line"]
-      };
-    }
-    // default (general)
-    return {
-      domain: "generic",
-      pains: [
-        "hard to keep up with posts",
-        "content takes too long to write",
-        "ideas run out mid-week"
-      ],
-      benefits_time: [
-        "you get hours back each week",
-        "no more blank-page panic",
-        "posts are ready when you are"
-      ],
-      benefits_social: [
-        "your audience actually engages",
-        "comments don’t fizzle out",
-        "more saves and shares"
-      ],
-      benefits_status: [
-        "you look consistent and on-brand",
-        "you sound like a real person",
-        "you ship content without stress"
-      ],
-      result_verbs: ["Result", "Outcome", "Bottom line"]
-    };
-  }
-
-  // VOICE MODE aware angle selection
-  function angleLines(profile, variantIndex, problemInput, outcomeInput, offer, voiceMode) {
-    const pv = profile.result_verbs;
-
-    // Voice: COMMUNITY / FUN
-    if (voiceMode === "community") {
-      const pains = profile.pains;
-      const social = profile.benefits_social;
-      const time = profile.benefits_time;
-
-      if (variantIndex % 3 === 0) {
-        return {
-          pain: problemInput || `No time to keep your group lively: ${pains[0]}.`,
-          benefit: `With ${offer}, ${time[variantIndex % time.length]}.`,
-          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
-        };
-      }
-      if (variantIndex % 3 === 1) {
-        return {
-          pain: problemInput || `It’s easy to burn out: ${pains[1]}.`,
-          benefit: `We handle the words so you don’t have to—${social[variantIndex % social.length]}.`,
-          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
-        };
-      }
-      return {
-        pain: problemInput || `Keeping momentum is hard: ${pains[2]}.`,
-        benefit: `${offer} means ${social[variantIndex % social.length]}.`,
-        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || time[(variantIndex+1) % time.length]}.`
-      };
-    }
-
-    // Voice: AUTHORITY / PRO
-    if (voiceMode === "authority") {
-      const pains = profile.pains;
-      const status = profile.benefits_status;
-      const time = profile.benefits_time;
-
-      if (variantIndex % 3 === 0) {
-        return {
-          pain: problemInput || `Credibility slips when content lags: ${pains[0]}.`,
-          benefit: `With ${offer}, you show up reliably and on-message.`,
-          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || status[(variantIndex+1) % status.length]}.`
-        };
-      }
-      if (variantIndex % 3 === 1) {
-        return {
-          pain: problemInput || `Consistency is a heavy lift: ${pains[1]}.`,
-          benefit: `${offer} cuts the lift so your expertise stays front and center.`,
-          result: `${pv[variantIndex % pv.length]}: ${outcomeInput || time[(variantIndex+1) % time.length]}.`
-        };
-      }
-      return {
-        pain: problemInput || `The job’s bigger than it looks: ${pains[2]}.`,
-        benefit: `${offer} helps you communicate like a trusted voice.`,
-        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || status[(variantIndex+1) % status.length]}.`
-      };
-    }
-
-    // Default: LEAD GEN / SALES
-    const pains = profile.pains;
-    const time = profile.benefits_time;
-    const social = profile.benefits_social;
-
-    if (variantIndex % 3 === 0) {
-      return {
-        pain: problemInput || `It’s tough when people can’t find you: ${pains[0]}.`,
-        benefit: `With ${offer}, you save hours and stay visible.`,
-        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || "more inquiries without the scramble"}.`
-      };
-    }
-    if (variantIndex % 3 === 1) {
-      return {
-        pain: problemInput || `Content eats your time: ${pains[1]}.`,
-        benefit: `${offer} handles the heavy lifting—${time[variantIndex % time.length]}.`,
-        result: `${pv[variantIndex % pv.length]}: ${outcomeInput || social[(variantIndex+1) % social.length]}.`
-      };
-    }
-    return {
-      pain: problemInput || `Ideas run out mid-week: ${pains[2]}.`,
-      benefit: `${offer} keeps you shipping, stress-free.`,
-      result: `${pv[variantIndex % pv.length]}: ${outcomeInput || "consistent posts that sound human"}.`
-    };
-  }
-
-  // Calendar hint meta
-  function calendarMeta(platform, format) {
-    const key = `${platform}:${format}`.toLowerCase();
-    const BASE = {
-      "facebook:post": "Best: 9–11am or 1–3pm • 1–3 short paragraphs • 4–7 hashtags",
-      "facebook:story": "Best: mornings/evenings • 2–3 lines • link sticker",
-      "facebook:reel": "Best: afternoons • hook + 1–2 lines • 3–5 hashtags",
-      "instagram:post": "Best: late morning • hook + 2–3 lines • 5–9 hashtags",
-      "instagram:story": "Best: when active • 1–2 lines • link sticker",
-      "instagram:reel": "Best: evenings • hook + benefit + CTA • 3–7 hashtags",
-      "twitter:post": "Best: commute hours • keep <280 • ≤2 hashtags",
-      "linkedin:profile": "Best: Tue–Thu mornings • 3–6 lines • ≤3 hashtags",
-      "linkedin:page": "Best: business hours • brand tone • ≤3 hashtags",
-      "gmb:post": "Best: business hours • plain language • no hashtags",
-      "tiktok:video": "Best: evenings/weekends • 3–4 lines • 6–10 hashtags",
-      "ytshorts:short": "Best: evenings • 2–3 lines • 3–5 hashtags",
-      "youtube:video": "Best: consistent weekly slot • title + description • no hashtag soup",
-    };
-    return BASE[key] || "";
-  }
-
-  // ---------- Writer Persona: onboarding + toggle + persistence ----------
-  const LS_PERSONAS = "cc_onboarding_personas";      // JSON: [{id:'owner'|'brand'|'mascot', label:'...', name?:'Sabre'}]
-  const LS_SELECTED  = "cc_writer_persona_selected"; // 'owner'|'brand'|'mascot'
-  const LS_MASCOT    = "cc_mascot_name";             // string
-
-  function seedPersonaDefaultsIfMissing() {
-    if (!localStorage.getItem(LS_PERSONAS)) {
-      const defaults = [{ id: "brand", label: "My Brand (we/us)" }];
-      localStorage.setItem(LS_PERSONAS, JSON.stringify(defaults));
-      localStorage.setItem(LS_SELECTED, "brand");
-    }
-  }
-  seedPersonaDefaultsIfMissing();
-
-  // Public API for onboarding screen
-  window.CaptionCraft = window.CaptionCraft || {};
-  window.CaptionCraft.saveOnboardingPersonas = function(personas) {
-    try {
-      if (!Array.isArray(personas) || personas.length === 0) return;
-      localStorage.setItem(LS_PERSONAS, JSON.stringify(personas));
-      const sel = localStorage.getItem(LS_SELECTED);
-      const ids = new Set(personas.map(p => p.id));
-      if (!sel || !ids.has(sel)) {
-        localStorage.setItem(LS_SELECTED, personas[0].id);
-      }
-      const m = personas.find(p => p.id === "mascot" && p.name);
-      if (m && m.name) localStorage.setItem(LS_MASCOT, m.name);
-      initWriterPersonaUI();
-    } catch (_) {}
-  };
-
-  function getOnboardedPersonas() {
-    try { return JSON.parse(localStorage.getItem(LS_PERSONAS) || "[]"); }
-    catch { return []; }
-  }
-  function getSelectedPersona() { return localStorage.getItem(LS_SELECTED) || "brand"; }
-  function setSelectedPersona(id) { localStorage.setItem(LS_SELECTED, id); }
-  function getMascotName() { return localStorage.getItem(LS_MASCOT) || ""; }
-  function setMascotName(name) { localStorage.setItem(LS_MASCOT, (name || "").trim()); }
-
-  function initWriterPersonaUI() {
-    const personas = getOnboardedPersonas();
-    const group = document.getElementById("writerPersonaGroup");
-    const select = document.getElementById("writerPersona");
-    const mGroup = document.getElementById("mascotNameGroup");
-    const mInput = document.getElementById("mascotName");
-    if (!group || !select) return;
-
-    if (!personas || personas.length <= 1) {
-      group.style.display = "none";
-    } else {
-      group.style.display = "";
-      select.innerHTML = "";
-      personas.forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p.id;
-        opt.textContent = p.label || p.id;
-        select.appendChild(opt);
-      });
-      select.value = getSelectedPersona();
-
-      const hasMascot = personas.some(p => p.id === "mascot");
-      const sel = select.value;
-      if (mGroup) mGroup.style.display = (hasMascot && sel === "mascot") ? "" : "none";
-      if (mInput && hasMascot) {
-        const onboardMascot = personas.find(p => p.id === "mascot" && p.name)?.name;
-        mInput.value = onboardMascot || getMascotName() || "";
-        mInput.addEventListener("input", () => setMascotName(mInput.value));
-      }
-      select.addEventListener("change", () => {
-        setSelectedPersona(select.value);
-        if (mGroup) mGroup.style.display = (select.value === "mascot") ? "" : "none";
-      });
-    }
-  }
-  initWriterPersonaUI();
-
-  function resolveWriterPersona() {
-    const personas = getOnboardedPersonas();
-    const sel = getSelectedPersona();
-    const exists = personas.some(p => p.id === sel);
-    return exists ? sel : (personas[0]?.id || "brand");
-  }
-  function writerPrefix(writerId, audience) {
-    const who = (audience || "your audience").toString().trim();
-    if (writerId === "owner") {
-      return `As a fellow ${who}, I get it:`;
-    }
-    function writerPrefix(id, audience, company) {
-  if (id === "mascot") {
-    const name = getMascotName() || "your mascot";
-    return `${name} here — quick reality check:`;
-  }
-  // Default, brand-aware lead:
-  return `${brandLead(company)}we get it.`;
-}
-
-/* DobieCore Captions – gating + helpers */
-// -------------------- tiny utilities
-// Use shared selector helpers defined above to avoid redeclaration
-// qs: r.querySelector(s), qsa: Array.from(r.querySelectorAll(s))
-const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-
-function brandLead(company) {
-  // If present, returns "At Company, "; else empty string
-  return company ? `At ${company}, ` : "";
-}
-
-function applyBrand(text, company) {
-  if (!company) {
-    // Remove any leftover “At Bluedobie” if a template still includes it
-    return text.replace(/\bAt Bluedobie\b[,:]?\s*/gi, '');
-  }
-  // Replace “At Bluedobie” with the user’s brand if present
-  return text.replace(/\bAt Bluedobie\b/gi, `At ${company}`);
-}
-
-function cleanPunctuation(s) {
-  return s
-    .replace(/([.!?]){2,}/g, '$1')          // collapse “..” “!!”
-    .replace(/,([!?])/g, '$1')              // “,!” → “!”
-    .replace(/!\s*,\s*/g, '! ')             // “FAST!, you” → “FAST! You”
-    .replace(/\s+([,.!?])/g, '$1')          // space before punctuation
-    .replace(/([.!?]\s+)([a-z])/g, (_, a, b) => a + b.toUpperCase()) // cap after period
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
-
-
+// ---------- usage gating (3/day for Free)
 function todayKey() {
   const d = new Date();
-  // Local midnight behavior by storing local date (YYYY-MM-DD)
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
+  return `dcc_usage_${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
 }
-
 function getUsage() {
-  try { return JSON.parse(localStorage.getItem('dcc_usage') || '{}'); }
-  catch { return {}; }
-}
-function setUsage(obj) {
-  localStorage.setItem('dcc_usage', JSON.stringify(obj));
+  const key = todayKey();
+  const n = parseInt(localStorage.getItem(key) || "0", 10);
+  return { key, n };
 }
 function incrementUsage() {
-  const key = todayKey();
-  const u = getUsage();
-  u[key] = (u[key] || 0) + 1;
-  setUsage(u);
-  return u[key];
+  const { key, n } = getUsage();
+  localStorage.setItem(key, String(n + 1));
 }
-function countToday() {
-  const u = getUsage(); return u[todayKey()] || 0;
+function resetIfNewDay() {
+  // noop by design: different key per day
+  return;
 }
-
-function getParam(name) {
-  const params = new URLSearchParams(location.search);
-  return params.get(name);
-}
-
 function isPro() {
-  if (getParam('pro') === '1') return true;                // dev override
-  if (localStorage.getItem('dcc_pro') === '1') return true;
-  const email = localStorage.getItem('dcc_pro_email');
-  return !!email; // lightweight client-side "verification"
+  // Local dev/pro unlocks
+  return localStorage.getItem("dcc_pro") === "1" || !!localStorage.getItem("dcc_pro_email");
 }
-
-// -------------------- UI bits
-const modal = qs('#upgradeModal');
-function openModal() { if (modal) modal.style.display = 'block'; }
-function closeModal() { if (modal) modal.style.display = 'none'; }
-
 function updateUsageCounter() {
-  const cap = isPro() ? '∞' : '3';
-  const used = isPro() ? 0 : countToday();
-  const el = qs('#usageCounter');
-  if (el) el.textContent = isPro()
-    ? 'Pro: unlimited generations'
-    : `Free: ${Math.max(0, 3 - used)} of 3 left today`;
-}
-
-// -------------------- content helpers
-const DEFAULT_CTAS = [
-  'Book now', 'Grab your spot', 'Message us to claim', 'Call today',
-  'Learn more', 'Get a free quote', 'Schedule today'
-];
-
-function sentenceSafe(str) {
-  // Remove double periods and ensure punctuation is neat
-  if (!str) return '';
-  // Replace triple+ punctuation with single
-  str = str.replace(/[.!?]{2,}/g, m => m[0]);
-  // Remove space before punctuation, collapse duplicates
-  str = str.replace(/\s+([,.;!?])/g, '$1').replace(/([,.;!?])\1+/g, '$1');
-  // Trim stray punctuation at start
-  return str.trim().replace(/^([,.;!?]+)/, '').replace(/\s{2,}/g, ' ');
-}
-
-function pickCTAs(userCTA) {
-  // Build 3 CTA variants; if user provided a CTA, include it once and vary others
-  const pool = [...DEFAULT_CTAS];
-  const out = [];
-  if (userCTA) out.push(userCTA);
-  while (out.length < 3 && pool.length) {
-    const i = Math.floor(Math.random() * pool.length);
-    out.push(pool.splice(i,1)[0]);
+  const el = qs("#usageCounter");
+  if (!el) return;
+  if (isPro()) {
+    el.textContent = "Pro: unlimited captions";
+    return;
   }
-  // ensure uniqueness
+  const { n } = getUsage();
+  el.textContent = `Free today: ${Math.max(0, 3 - n)} of 3 left`;
+}
+function showUpgrade() {
+  qs("#upgradeModal").style.display = "block";
+}
+function closeModal() {
+  qs("#upgradeModal").style.display = "none";
+}
+
+// ---------- platform utilities
+function platformKey(p = "Instagram", f = "Post") {
+  return `${String(p||"").toLowerCase()}:${String(f||"").toLowerCase()}`;
+}
+function platformStyle(p) {
+  switch ((p||"").toLowerCase()) {
+    case "linkedin": return { emoji:false, lineBreaks:true, hashCap:6 };
+    case "tiktok":   return { emoji:true,  lineBreaks:false, hashCap:8 };
+    case "facebook": return { emoji:true,  lineBreaks:true,  hashCap:8 };
+    case "twitter":  return { emoji:false, lineBreaks:true,  hashCap:4 };
+    default:         return { emoji:true,  lineBreaks:true,  hashCap:12 }; // Instagram et al.
+  }
+}
+
+// ---------- punctuation + basics
+function cleanPunctuation(s="") {
+  return s
+    .replace(/\s{2,}/g, " ")
+    .replace(/([.!?])\1{1,}/g, "$1")      // ... -> . / !! -> !
+    .replace(/([.!?])\s*([.!?])/g, "$1 ") // prevent back-to-back
+    .replace(/\s+([,.;:!?])/g, "$1")      // trim space before punctuation
+    .replace(/([,.;:!?])([^\s])/g, "$1 $2")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+const COMMON_VERBS = /(?:get|have|be|is|are|was|were|do|make|build|grow|find|fix|help|win|drive|boost|book|buy|claim|start|learn|see|save|earn|bring|keep|write|post|plan|schedule|recap)/i;
+function isHashtagLine(line){ return /^#\w/.test(line.trim()); }
+function isUrl(s){ return /^https?:\/\//i.test(s); }
+function isTitleLine(line){ return /^caption\s+\d+/i.test(line.trim()); }
+function cleanLine(line){
+  if (isHashtagLine(line) || isUrl(line) || isTitleLine(line)) return line.trim();
+  let s = line.replace(/\s{2,}/g," ").replace(/\.{4,}/g,"…").trim();
+  s = s.replace(/\b(\w+)\s+\1\b/gi,"$1");
+  if (s.length>0) s = s[0].toUpperCase()+s.slice(1);
+  const tooShort = s.length<25 && !/[!?]$/.test(s);
+  const noVerb   = !COMMON_VERBS.test(s);
+  if (tooShort || noVerb) return s; // keep short lines if intentionally short
+  return s;
+}
+
+// ---------- hashtags
+function cleanTag(s){
+  return s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"").replace(/^#+/,"");
+}
+function buildHashtags(keywords="", density="standard", clean=true, platform="instagram", format="post"){
+  const p = String(platform||"").toLowerCase();
+  const f = String(format||"").toLowerCase();
+  if (p==="gmb" || p==="youtube" || f==="story") return "";
+  let parts = String(keywords||"").split(",").map(t => t.trim()).filter(Boolean);
+  if (clean) parts = parts.map(cleanTag);
+  parts = [...new Set(parts)].filter(Boolean);
+  let cap = 5;
+  if (p==="instagram" || p==="facebook") cap = (f==="reel") ? 7 : (density==="heavy" ? 10 : density==="light" ? 4 : 7);
+  else if (p==="twitter") cap = (density==="heavy" ? 3 : 2);
+  else if (p==="linkedin") cap = (density==="heavy" ? 5 : density==="light" ? 2 : 3);
+  else if (p==="tiktok") cap = (density==="heavy" ? 15 : density==="light" ? 6 : 10);
+  else if (p==="ytshorts") cap = (density==="heavy" ? 7 : density==="light" ? 3 : 5);
+  return parts.slice(0, cap).map(t => t ? `#${t}` : "").filter(Boolean).join(" ");
+}
+
+// ---------- company intro
+function brandLead(company){
+  const c = (company||"").trim();
+  if (!c) return ""; // no default "At Bluedobie" if empty
+  return Math.random()<0.5 ? `At ${c}, ` : `${c} — `;
+}
+
+// ---------- local templates
+const TPL = {
+  "facebook:post": makeTemplate,
+  "facebook:story": makeTemplate,
+  "facebook:reel": makeTemplate,
+  "instagram:post": makeTemplate,
+  "instagram:story": makeTemplate,
+  "instagram:reel": makeTemplate,
+  "twitter:post": makeTemplate,
+  "linkedin:post": makeTemplate,
+  "gmb:post": makeTemplate,
+  "tiktok:video": makeTemplate,
+  "ytshorts:short": makeTemplate
+};
+
+function makeTemplate(ctx){
+  const { company, audience, problem, outcome, offer, cta, platform, tone, length, keywords, format, voiceMode } = ctx;
+  const p = platformStyle(platform);
+  const intro = `${brandLead(company)}we get it—small business owners need more inquiries.`;
+  const hooks = [
+    `Quick win: ${outcome || "better results, less stress"}.`,
+    `Tired of ${problem || "content taking too long"}?`,
+    `${(audience||"Busy owners")[0].toUpperCase()+(audience||"Busy owners").slice(1)}, this is for you.`
+  ];
+  let hook = hooks[Math.floor(Math.random()*hooks.length)];
+  const bodyBits = [
+    offer ? `We built ${offer} for real‑world schedules.` : `We built a tool for real‑world schedules.`,
+    `Get captions done fast so you can stay visible.`,
+    outcome ? `Bottom line: ${outcome}.` : ``,
+    cta ? `${cta}` : ``
+  ].filter(Boolean);
+
+  // length control
+  let keep = 3;
+  const L = String(length||"medium").toLowerCase();
+  if (L==="short") keep = 2;
+  if (L==="medium") keep = 3;
+  if (L==="long") keep = Math.min(bodyBits.length, 5);
+  const chosen = [];
+  let pool = bodyBits.slice();
+  while (chosen.length<keep && pool.length) chosen.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+
+  let text = [hook, intro, chosen.join(p.lineBreaks? "\n" : " ")].filter(Boolean).join(p.lineBreaks? "\n\n" : " ");
+  const tags = buildHashtags(keywords, qs("#hashtagDensity")?.value?.toLowerCase() || "standard", !!qs("#cleanHashtags")?.checked, platform, format);
+  if (tags) text = p.lineBreaks ? `${text}\n\n${tags}` : `${text} ${tags}`;
+  text = cleanPunctuation(text);
+  return text;
+}
+
+// ---------- CTA helpers
+const CTA_POOL = [
+  "Book now", "Call today", "Message us to claim", "Learn more", "See how it works", "Get your free consult"
+];
+function pickCTAs(userCTA){
+  const out = [];
+  if (userCTA && userCTA.trim()) out.push(userCTA.trim());
+  while (out.length<3) {
+    const x = CTA_POOL[Math.floor(Math.random()*CTA_POOL.length)];
+    if (!out.includes(x)) out.push(x);
+  }
   return Array.from(new Set(out)).slice(0,3);
 }
 
+// ---------- AI Remix (Cloudflare Worker) optional
+const WORKER_URLS = [
+  "https://www.bluedobiedev.com/api/remix",
+  "https://dobiecore-remix.melanie-brown.workers.dev"
+];
 
-// -------------------- AI Remix (Cloudflare Worker)
-async function maybeRemixWithAI(texts, brief) {
-  const allowAI = isPro(); // Pro unlock; set true to test
+async function maybeRemixWithAI(texts, brief){
+  const allowAI = isPro(); // set localStorage dcc_pro=1 to force-enable
   if (!allowAI) return texts;
-  try {
-    const payload = {
-      drafts: texts.map((t, i) => ({ id: String(i+1), text: t })),
-      platform: (brief.platform || 'instagram'),
-      tone: typeof brief.tone === 'number' ? brief.tone : 0.5,
-      length: (brief.length || 'medium').toLowerCase(),
-      ctaOptions: pickCTAs(brief.cta),
-      hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity || 'standard').toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
-    };
-    const res = await fetch('https://www.bluedobiedev.com/api/remix', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('remix failed');
-    const data = await res.json();
-    if (!Array.isArray(data) || !data.length) return texts;
-    return data.map(d => String(d.text || '')).filter(Boolean);
-  } catch (err) {
-    console.warn('AI remix unavailable, using local drafts', err);
-    return texts;
+  const payload = {
+    drafts: texts.map((t,i)=>({ id:String(i+1), text:t })),
+    platform: (brief.platform||"instagram"),
+    tone: typeof brief.tone === "number" ? brief.tone : 0.5,
+    length: (brief.length||"medium").toLowerCase(),
+    ctaOptions: pickCTAs(brief.cta),
+    hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity||"standard").toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
+  };
+  for (const url of WORKER_URLS){
+    try{
+      const res = await fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+      if (!res.ok) continue;
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) {
+        return data.map(d => String(d.text || "")).filter(Boolean);
+      }
+    }catch{ /* try next url */ }
   }
+  console.warn("AI remix unavailable; using local drafts");
+  return texts;
 }
-// -------------------- brief reader
-function readBrief() {
+
+// ---------- render
+function renderCards(texts){
+  const results = qs("#results");
+  results.innerHTML = "";
+  texts.forEach((text, i) => {
+    const card = document.createElement("article");
+    card.className = "caption-card";
+    const hashtagsOnly = text.split("\n").filter(l => l.trim().startsWith("#")).join(" ");
+    const fcBlock = hashtagsOnly ? `<div class="first-comment"><div class="muted">First comment</div><textarea readonly>${hashtagsOnly}</textarea><div class="actions"><button type="button" class="copy-first-btn">Copy first comment</button></div></div>` : "";
+    card.innerHTML = `
+      <h3>Caption ${i+1}</h3>
+      <textarea readonly>${text}</textarea>
+      <div class="row" style="gap:8px;flex-wrap:wrap;">
+        <button type="button" class="copy-btn">Copy</button>
+        <span class="meta">Platform-ready</span>
+      </div>
+      ${fcBlock}
+    `;
+    results.appendChild(card);
+
+    const copyBtn = card.querySelector(".copy-btn");
+    const ta = card.querySelector("textarea");
+    copyBtn?.addEventListener("click", () => { ta.select(); document.execCommand("copy"); copyBtn.textContent="Copied!"; setTimeout(()=>copyBtn.textContent="Copy",1200); });
+    const fcCopy = card.querySelector(".copy-first-btn");
+    if (fcCopy){
+      const fta = card.querySelector(".first-comment textarea");
+      fcCopy.addEventListener("click", ()=>{ fta.select(); document.execCommand("copy"); fcCopy.textContent="Copied!"; setTimeout(()=>fcCopy.textContent="Copy first comment",1200); });
+    }
+  });
+}
+
+// ---------- brief reader
+function readBrief(){
   return {
-    offer: qs('#offer')?.value?.trim(),
-    platform: qs('#platform')?.value,
-    tone: parseFloat(qs('#tone')?.value || '0.5'),
-    audience: qs('#audience')?.value?.trim(),
-    problem: qs('#problem')?.value?.trim(),
-    outcome: qs('#outcome')?.value?.trim(),
-    cta: qs('#cta')?.value?.trim(),
-    keywords: qs('#keywords')?.value?.trim(),
-    format: qs('#format')?.value,
-    length: qs('#captionLength')?.value || 'Medium',
-    voice: qs('#voiceMode')?.value || 'leadgen',
-    cleanHashtags: qs('#cleanHashtags')?.checked ?? true
+    company: qs("#company")?.value || "",
+    audience: qs("#audience")?.value || "",
+    offer: qs("#offer")?.value || "",
+    problem: qs("#problem")?.value || "",
+    outcome: qs("#outcome")?.value || "",
+    cta: qs("#cta")?.value || "",
+    keywords: qs("#keywords")?.value || "",
+    platform: qs("#platform")?.value || "Instagram",
+    format: qs("#format")?.value || "Post",
+    length: qs("#captionLength")?.value || "Medium",
+    tone: parseFloat(qs("#tone")?.value || "0.5"),
+    hashtagDensity: qs("#hashtagDensity")?.value || "Standard",
+    cleanHashtags: !!qs("#cleanHashtags")?.checked,
+    voiceMode: qs("#voiceMode")?.value || "leadgen"
   };
 }
 
-// -------------------- generation glue (plug your existing logic here)
-function generateCaptionVariants(brief) {
-  // TODO: replace this stub with your existing assemble functions.
-  // For now, we return 3 playful-but-sane placeholders using CTA variety.
-  const ctas = pickCTAs(brief.cta);
-  const variants = [];
-  for (let i = 0; i < 3; i++) {
-    const toneWord = brief.tone <= 0.3 ? 'professional' :
-                     brief.tone <= 0.7 ? 'balanced' : 'playful';
-    let text =
-      `${brief.offer || 'Your offer here'} — for ${brief.audience || 'your ideal customers'}. ` +
-      `We tackle ${brief.problem || 'the hard stuff'} so you get ${brief.outcome || 'better results'}. ` +
-      `${ctas[i] || 'Learn more'}${brief.cta ? `: ${brief.cta}` : ''}`;
-    variants.push(sentenceSafe(text));
-  }
-  return variants;
-}
+// ---------- wiring
+window.addEventListener("DOMContentLoaded", () => {
+  resetIfNewDay();
+  updateUsageCounter();
 
-// -------------------- render
-function renderCards(texts) {
-  const box = qs('#results');
-  if (!box) return;
-  box.innerHTML = '';
-  texts.forEach((t, i) => {
-    const id = `copy-${Date.now()}-${i}`;
-    box.insertAdjacentHTML('beforeend', `
-      <article class="card">
-        <div class="card-body">
-          <p>${t}</p>
-          <button class="btn" data-copy="${id}" aria-label="Copy caption">Copy</button>
-        </div>
-        <textarea id="${id}" style="position:absolute;left:-9999px;opacity:0;">${t}</textarea>
-      </article>
-    `);
+  const form = qs("#captionForm");
+  const results = qs("#results");
+  const clearBtn = qs("#clearBtn");
+
+  // Modal controls
+  qs("#upgradeBtn")?.addEventListener("click", () => {
+    window.location.href = "https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203";
   });
-}
-
-function copyFromHidden(id){
-  const t = document.getElementById(id);
-  t.select();
-  t.setSelectionRange(0, 99999);
-  document.execCommand('copy');
-}
-
-// -------------------- wiring
-window.addEventListener('DOMContentLoaded', () => {
-  const form = qs('#captionForm');
-  const results = qs('#results');
-
-  // Modal buttons
-  qs('#upgradeBtn')?.addEventListener('click', () => {
-    // Stripe link from your HTML
-    window.location.href = 'https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203';
-  });
-  qs('#alreadyProBtn')?.addEventListener('click', async () => {
-    const email = prompt('Enter the email you used to upgrade (temporary local unlock):');
+  qs("#alreadyProBtn")?.addEventListener("click", () => {
+    const email = prompt("Enter the email you used to upgrade (temporary local unlock):");
     if (email && /\S+@\S+\.\S+/.test(email)) {
-      localStorage.setItem('dcc_pro_email', email);
-      localStorage.setItem('dcc_pro', '1'); // convenience flag
+      localStorage.setItem("dcc_pro_email", email);
+      localStorage.setItem("dcc_pro", "1");
       closeModal();
       updateUsageCounter();
-      alert('Pro unlocked on this browser.');
+      alert("Pro unlocked on this browser.");
     } else {
-      alert('That email doesn’t look valid.');
+      alert("That email doesn’t look valid.");
     }
   });
-  qs('#closeModalBtn')?.addEventListener('click', closeModal);
-  window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  qs("#closeModalBtn")?.addEventListener("click", closeModal);
+  window.addEventListener("click", (e) => { const modal = qs("#upgradeModal"); if (e.target === modal) closeModal(); });
 
-  // Copy events
-  results?.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-copy]');
-    if (!btn) return;
-    const id = btn.getAttribute('data-copy');
-    copyFromHidden(id);
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy', 900);
-  });
-
-  
-
-  updateUsageCounter();
-});
-
-  // ---------- Templates (Audience/Need + Angles + Voice Mode + Writer) ----------
-  const TPL = {
-    _assemble(ctx) {
-    const { writerLine, variantIndex, profile, voiceMode, hook, whoNeed, offer, outcome, cta, tags, details, spacing, problem } = ctx;
-      const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
-      const intro = hook
-  ? `${hook}\n${brandLead(company)}we get it—small business owners need more traffic.`
-  : `${brandLead(company)}we get it—small business owners need more responses.`;
-
-      const speaker = writerLine ? `${writerLine}` : "";
-      const open = whoNeed;
-      const sol  = a.benefit;
-      const res  = a.result;
-      const call = cta;
-      let body = [intro, speaker, open, sol, res, call].filter(Boolean).join(spacing ? "\n\n" : " ");
-      return tags ? `${body}\n\n${tags}` : body;
-    },
-
-    // ---- Facebook ----
-    "facebook:post"(ctx) { return TPL._assemble(ctx); },
-    "facebook:story"({ writerLine, profile, voiceMode, variantIndex, whoNeed, offer, outcome, cta }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let body = `${writerLine ? writerLine + "\n" : ""}${whoNeed.replace(/[.]+$/, "")}?\n${offer}\n${a.result}\n${cta}`;
-      return body;
-    },
-    "facebook:reel"({ writerLine, profile, voiceMode, variantIndex, hook, offer, outcome, cta, tags }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let body = `${hook}\n${writerLine ? writerLine + "\n" : ""}${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
-      body = clip(body, 300);
-      return tags ? `${body}\n${tags}` : body;
-    },
-
-    // ---- Instagram ----
-    "instagram:post"({ writerLine, profile, voiceMode, variantIndex, hook, whoNeed, offer, outcome, cta, tags, details, problem }) {
-      const a = angleLines(profile, variantIndex, problem, outcome, offer, voiceMode);
-      const lines = details
-        ? [ hook, writerLine, whoNeed, `We’re handling it with ${offer}.`, a.result, cta ]
-        : [ hook, writerLine, `${offer} → ${a.result.replace(/^.*?:\s*/,"")}`, cta ];
-      let body = lines.filter(Boolean).join("\n\n");
-      body = clip(body, 900);
-      return tags ? `${body}\n\n${tags}` : body;
-    },
-    "instagram:story"({ writerLine, whoNeed, offer, cta }) {
-      let body = `${writerLine ? writerLine + "\n" : ""}${whoNeed.replace(/[.]+$/, "")}?\n${offer}\n${cta}`;
-      return clip(body, 220);
-    },
-    "instagram:reel"({ writerLine, profile, voiceMode, variantIndex, hook, offer, outcome, cta, tags }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let body = `${hook}\n${writerLine ? writerLine + "\n" : ""}${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
-      body = clip(body, 300);
-      return tags ? `${body}\n${tags}` : body;
-    },
-
-    // ---- Twitter (X) ----
-    "twitter:post"({ writerLine, whoNeed, offer, outcome, cta, tags, profile, voiceMode, variantIndex }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let line = `${writerLine ? writerLine + " " : ""}${whoNeed} ${offer} → ${a.result.replace(/^.*?:\s*/,"")}. ${stripTrailingPunct(cta)}.`;
-      line = clip(line, 280);
-      return tags ? `${line} ${tags}` : line;
-    },
-
-    // ---- LinkedIn ----
-    "linkedin:profile"(ctx) { return TPL._assemble(ctx); },
-    "linkedin:page"(ctx)    { return TPL._assemble(ctx); },
-
-    // ---- Google My Business ----
-    "gmb:post"({ writerLine, whoNeed, offer, outcome, cta }) {
-      const head = `**${offer}**`;
-      const p = `${writerLine ? writerLine + "\n" : ""}${whoNeed}`;
-      const res = outcome ? outcome : "";
-      const call = cta;
-      const contact = `Call **270-388-3535** or visit **bluedobiedev.com/contact**`;
-      return [head, "", p, res ? `\n${res}` : "", call, "", contact].join("\n");
-    },
-
-    // ---- TikTok ----
-    "tiktok:video"({ writerLine, whoNeed, offer, profile, voiceMode, variantIndex, outcome, cta, tags }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let body = `${writerLine ? writerLine + "\n" : ""}${whoNeed}\n${offer}\n${a.result}\n${cta}`;
-      body = clip(body, 500);
-      return tags ? `${body}\n${tags}` : body;
-    },
-
-    // ---- YouTube Shorts ----
-    "ytshorts:short"({ writerLine, whoNeed, offer, profile, voiceMode, variantIndex, outcome, cta, tags }) {
-      const a = angleLines(profile, variantIndex, "", outcome, offer, voiceMode);
-      let body = `${writerLine ? writerLine + "\n" : ""}${whoNeed}\n${offer} → ${a.result.replace(/^.*?:\s*/,"")}\n${cta}`;
-      body = clip(body, 300);
-      return tags ? `${body}\n${tags}` : body;
-    },
-
-    // ---- YouTube longform ----
-    "youtube:video"({ writerLine, whoNeed, offer, outcome, cta }) {
-      const title = clip(`${offer}: ${ (outcome || whoNeed).replace(/^[A-Z]/, (m) => m.toLowerCase()) }`, 100);
-      const descLines = [
-        `【 Speaker 】`,
-        writerLine || "—",
-        "",
-        `【 Who this is for 】`,
-        `${whoNeed}`,
-        "",
-        `【 What you’ll learn 】`,
-        `• Why this matters`,
-        `• How ${offer} solves it`,
-        `• What changes: ${outcome || "less stress, better results"}`,
-        "",
-        `【 Next step 】`,
-        `${cta}`,
-        "",
-        `—`,
-        `Bluedobie Developing • 270-388-3535 • bluedobiedev.com/contact`,
-      ];
-      return `Title: ${title}\n\nDescription:\n${descLines.join("\n")}`;
-    },
-  };
-
-  // Build three variants with rotating angles & hooks → STRINGS
-const key = `${platform}:${format}`.toLowerCase();
-const make = TPL[key] || TPL["facebook:post"];
-
-// 1) Compose the three raw variants
-const rawVariants = Array.from({ length: 3 }, (_, i) => {
-  const ctxWithVariant = { ...ctx, variantIndex: i };
-  const txt = make(ctxWithVariant);
-  // rotate hook for the next variant
-  ctx.hook = pick(ctx.hookPool);
-  return txt; // <-- string
-});
-
-// 2) Polish each (URL append, fragment fix, brand, punctuation, clip)
-const localTexts = rawVariants.map((txt) => {
-  let out = txt;
-
-  // Append UTM’d URL when allowed (skip GMB/YouTube/Stories)
-  if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
-    const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
-    out = canAppend ? `${out}\n${utmUrl}` : out;
-  }
-
-  // Fragment fixer (skip YouTube long description rules)
-  if (platform !== "youtube") {
-    const fixed = fixFragmentsMultiline(out);
-    out = fixed.out;
-  }
-
-  // Brand safety + punctuation polish
-  out = typeof applyBrand === "function" ? applyBrand(out, company) : out;
-  out = cleanPunctuation(out);
-
-  // Clip to platform limits
-  const hardCap = platform === "youtube" ? 1200 : maxChars;
-  out = clip(out, hardCap);
-
-  return out; // <-- string
-});
-
-// 3) (Elsewhere below) pass `localTexts` to AI remix / render:
-// const remixed = await maybeRemixWithAI(localTexts, {...});
-// renderCards(remixed);
-
-  // ---- First Comment generator (Instagram + LinkedIn) ----
-  function buildFirstComment(platform, format, tags, utmUrl) {
-    const p = (platform || "").toLowerCase();
-    if (p === "instagram") {
-      const lines = [];
-      if (utmUrl) lines.push(`🔗 ${utmUrl}`);
-      if (tags) lines.push(tags);
-      return lines.join("\n");
-    }
-    if (p === "linkedin") {
-      const pieces = [];
-      if (utmUrl) pieces.push(`Quick link: ${utmUrl}`);
-      pieces.push("Questions? Drop a comment and I’ll reply.");
-      return pieces.join("\n");
-    }
-    return "";
-  }
-
-  // Soft validation
-function qcIssues({ offer, problem, outcome, cta }) {
-  const issues = [];
-  if (!offer || offer.length < 2) issues.push("Offer looks empty/too short.");
-  if (!problem || problem.length < 3) issues.push("Problem looks empty/too short.");
-  if (!outcome || outcome.length < 3) issues.push("Outcome looks empty/too short.");
-  if (!cta || cta.length < 2) issues.push("CTA looks empty/too short.");
-  return issues;
-}
-
-
-  // ---------- Form handling ----------
+  // Submit → generate
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!results) return;
-    results.innerHTML = "";
 
-    // --- Free/Pro gate: 3/day for Free ---
+    // gating
     if (!isPro()) {
-      const used = countToday();
-      if (used >= 3) {
-        openModal();
+      const { n } = getUsage();
+      if (n >= 3) {
+        showUpgrade();
         return;
       }
     }
 
-    // --- Read inputs ---
-    const company = (qs("#company")?.value || "").trim();
-    const audience = (qs("#audience")?.value || "small business owners").trim();
-    const offerRaw = (qs("#offer")?.value || "our $299 three-page website special").trim();
-    const outcomeRaw = (qs("#outcome")?.value || "more qualified leads in your inbox").trim();
-    const problemRaw = (qs("#problem")?.value || "customers can’t find your business online").trim();
-    const rawCTA = (qs("#cta")?.value || "Book your consultation this week.").trim();
-    const keywords = (qs("#keywords")?.value || "webdesign, marketing, bluedobiedev").trim();
-
-    const platform = (platformEl?.value || "Facebook").trim().toLowerCase();
-    const format = (formatEl?.value || "Post").trim().toLowerCase();
-
-    const toneVal = parseFloat(qs("#tone")?.value ?? "0.5");
-    const tone = tonePack(isNaN(toneVal) ? 0.5 : toneVal);
-
-    const length = (qs("#captionLength")?.value || "medium").toLowerCase();
-    const density = (qs("#hashtagDensity")?.value || "standard").toLowerCase();
-    const clean = qs("#cleanHashtags")?.checked ?? true;
-
-    // --- Normalize ---
-    const offer = humanizeOffer(offerRaw);
-    const outcome = humanizeOutcome(outcomeRaw);
-    const problem = humanizeProblem(problemRaw);
-
-    // --- URL + UTM ---
-    const rawUrl = extractUrl(rawCTA);
-    const utmUrl = rawUrl ? addUtm(rawUrl, platform, format) : null;
-    const ctaNoUrl = ensurePeriod(removeUrl(rawCTA));
-    const urlSuffix = utmUrl ? `\n${utmUrl}` : "";
-
-    // --- Length profile & hashtags ---
-    const { maxChars, details, spacing } = lengthProfile(length, platform, format);
-    const tags = buildHashtags(keywords, density, clean, platform, format);
-
-    // --- Hook / audience need / persona ---
-    const hookPool = tone.hookLead;
-    const hook = pick(hookPool);
-    const intent = audienceIntent(audience, keywords);
-    const need = extractNeed(problem, outcome, intent);
-    const whoNeed = whoAndNeedLine(audience, need, intent);
-    const voiceMode = resolveVoiceMode(intent, platform);
-    const profile = domainProfile(audience, keywords, offer);
-    const writerId = resolveWriterPersona();
-    const writerLine = writerPrefix(writerId, audience, company);
-
-    // --- QC banner ---
-    const issues = qcIssues({ offer, problem, outcome, cta: ctaNoUrl });
-    if (issues.length) {
-      const warn = document.createElement("div");
-      warn.className = "card";
-      warn.style.margin = "12px 0";
-      warn.style.background = "#fff7ed";
-      warn.style.borderColor = "#fdba74";
-      warn.innerHTML = `<strong>Heads up:</strong> ${issues.join(" ")} We’ll auto-fix obvious fragments.`;
-      results.appendChild(warn);
+    const brief = readBrief();
+    if (!brief.offer.trim()) {
+      alert("Please enter your Offer.");
+      return;
     }
 
-    // --- Shared context for templates ---
-    let ctx = {
-      hook, hookPool,
-      audience, problem, offer, outcome,
-      cta: ctaNoUrl,
-      tags, details, spacing,
-      intent, need, whoNeed, profile, voiceMode,
-      writerId, writerLine
-    };
+    // build 3 local variants
+    const key = platformKey(brief.platform, brief.format);
+    const make = TPL[key] || makeTemplate;
+    const local = [];
+    for (let i=0;i<3;i++) local.push(make(brief));
 
-    // --- Build local variants (3) ---
-    let caps = buildVariants(ctx, platform, format).map((c) => {
-      let out = c;
-      if (utmUrl && !["gmb", "youtube"].includes(platform) && format !== "story") {
-        const canAppend = out.length + ("\n" + utmUrl).length <= maxChars;
-        out = canAppend ? `${out}${urlSuffix}` : out;
-      }
-      let fixed = { out, changed: false };
-      if (platform !== "youtube") fixed = fixFragmentsMultiline(out);
-      const hardCap = platform === "youtube" ? 1200 : maxChars;
-      fixed.out = clip(fixed.out, hardCap);
-      return fixed;
-    });
+    // optional AI remix
+    const remixed = await maybeRemixWithAI(local, brief);
 
-    const firstComment = buildFirstComment(platform, format, tags, utmUrl);
-
-    // --- AI Remix (Pro only by default) ---
-    const localTexts = caps.map(c => c.out);
-    const remixed = await maybeRemixWithAI(localTexts, {
-      platform,
-      tone: parseFloat(qs("#tone")?.value || "0.5"),
-      length,
-      cta: rawCTA,
-      keywords,
-      hashtagDensity: density,
-      cleanHashtags: clean,
-      format
-    });
-
-    // --- Render ---
+    // render
     renderCards(remixed);
 
-    // --- Update usage for Free ---
     if (!isPro()) {
       incrementUsage();
       updateUsageCounter();
     }
-  
-});
-
-  // Clear
-  clearBtn?.addEventListener("click", () => {
-    ["audience","offer","outcome","problem","cta","keywords"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
-    const lenEl = document.getElementById("captionLength"); if (lenEl) lenEl.value = "Medium";
-    const denEl = document.getElementById("hashtagDensity"); if (denEl) denEl.value = "Standard";
-    const cleanEl = document.getElementById("cleanHashtags"); if (cleanEl) cleanEl.checked = true;
-    const toneEl = document.getElementById("tone"); if (toneEl) toneEl.value = 0.5;
-    results.innerHTML = "";
   });
 
-  }); // close initial DOMContentLoaded
-
-  })();
+  clearBtn?.addEventListener("click", () => {
+    qs("#captionForm").reset();
+    results.innerHTML = "";
+    updateUsageCounter();
+  });
+});
