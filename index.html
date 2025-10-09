@@ -33,6 +33,8 @@
     :root {
       --navy: #042d4d;
       --cream: #fff6ec;
+      --ink:#0e1726;
+      --accent:#2f6df6;
     }
     
     * {
@@ -48,6 +50,79 @@
       color: #0b0f14;
       max-width: 100%;
       overflow-x: hidden;
+    }
+
+    /* Social Bar Styles */
+    .social-bar {
+      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+      border-top: 1px solid #e9edf6;
+      border-bottom: 1px solid #e9edf6;
+      padding: 10px 0;
+    }
+
+    .social-bar-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .social-links-column {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      border: 1px solid #e9edf6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .social-links-column .label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .social-link {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      border: 2px solid #d9e0ee;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(47, 109, 246, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .social-bar-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .social-links-column {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
     .hero-section {
@@ -336,7 +411,7 @@
 </head>
 
 <body>
-<!-- _includes/nav.html -->
+<!-- Navigation -->
 <nav class="site-nav w-nav" role="navigation" aria-label="Primary">
   <div class="container nav-container">
     <div class="nav-elements-holder">
@@ -347,7 +422,6 @@
              class="brand-logo">
       </a>
 
-      <!-- main links -->
       <div class="nav-menu-container">
         <div class="nav-menu w-nav-menu" id="mainmenu">
           <div class="nav-link-holder">
@@ -360,65 +434,63 @@
             <a href="/services.html" class="nav-link w-inline-block">Services</a>
           </div>
 
-          <!-- dropdown -->
           <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle"
-                    id="dropdown-toggle2">More</button>
-
-            <section class="dropdown-menu" id="dropdown-menu2">
+            <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+            <section class="dropdown-menu" id="dropdown-menu">
               <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
               <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
-              <!-- If you prefer Blog only in the group below, delete this next line -->
-              <!-- <a href="/blog/" class="nav-link" role="menuitem">Blog</a> -->
               <a href="/contact.html" class="nav-link">Contact</a>
-              <a href="/FAQ.html" class="nav-link">FAQ’s</a>
+              <a href="/FAQ.html" class="nav-link">FAQ's</a>
               <a href="/business-links.html" class="nav-link">Our Links</a>
-          </section>
-        </div>
-
-          <!-- Products / Projects group -->
-           <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle"
-                    id="products-toggle">Our Products</button>
-              
-          <section class="dropdown-menu" id="products-menu" >
-          <div class="nav-link-holder nav-group">
-            <a href="/sales.html" class="nav-link">Offers</a>
-            <a href="/dobiecore/contracts/" class="nav-link">DobieCore Contracts (coming soon)</a>
-            <a href="/dobiecore/captioncraft/" class="nav-link">DobieCore Caption</a>
-            <!-- NEW: Gridiron Gazette microsite -->
-            <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
-            <!-- NEW: Blog index (Bluedobie Dialogues) -->
-            <a href="/blog/" class="nav-link">Dialogues</a>
-            <!-- If your current blog index is /blog-home.html, use that instead: -->
-            <!-- <a href="/blog-home.html" class="nav-link">Dialogues</a> -->
+            </section>
           </div>
-        </div>
 
-        <!-- social -->
-        <div class="social-links-column">
-          <span class="label">Follow:</span>
-          <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-          <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
-          <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-          <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-        </div>
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle">Our Products</button>
+            <section class="dropdown-menu" id="products-menu">
+              <div class="nav-link-holder nav-group">
+                <a href="/sales.html" class="nav-link">Offers</a>
+                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                <a href="/blog/" class="nav-link">Dialogues</a>
+              </div>
+            </section>
+          </div>
 
-        <!-- CTA -->
-        <div class="nav-link-holder nav-button-holder">
-          <a href="/contact.html" class="button nav w-inline-block">
-            <div>Contact Us</div>
-          </a>
-        </div>
+          <div class="nav-link-holder nav-button-holder">
+            <a href="/contact.html" class="button nav w-inline-block">
+              <div>Contact Us</div>
+            </a>
+          </div>
 
-        <!-- mobile menu button -->
-        <button class="menu-button w-nav-button"
-                id="menu-button"
-                aria-controls="mainmenu"
-                aria-expanded="false"
-                aria-label="Toggle menu">
-          <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
-        </button>
+          <button class="menu-button w-nav-button"
+                  id="menu-button"
+                  aria-controls="mainmenu"
+                  aria-expanded="false"
+                  aria-label="Toggle menu">
+            <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Social Links Bar (2nd row) -->
+  <div class="social-bar">
+    <div class="social-bar-inner">
+      <div class="social-links-column">
+        <span class="label">Follow Bluedobie:</span>
+        <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+        <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+        <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      </div>
+
+      <div class="social-links-column">
+        <span class="label">Follow Sabre:</span>
+        <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
       </div>
     </div>
   </div>
@@ -540,10 +612,8 @@
     </div>
     </div>
   </section>
-
-  <!-- Keep your existing contact form section if you want it -->
   
-  <!-- Footer (keep your existing footer) -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-links">
@@ -561,51 +631,56 @@
   </footer>
 
   <!-- Scripts -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  // First dropdown
-  const dropdownToggle = document.getElementById("dropdown-toggle");
-  const dropdownMenu = document.getElementById("dropdown-menu");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdownToggle = document.getElementById("dropdown-toggle");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+      const productsToggle = document.getElementById("products-toggle");
+      const productsMenu = document.getElementById("products-menu");
 
-  // Second dropdown (Products)
-  const productsToggle = document.getElementById("products-toggle");
-  const productsMenu = document.getElementById("products-menu");
+      if (dropdownToggle && dropdownMenu) {
+        dropdownToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = dropdownMenu.style.display === "block";
+          dropdownMenu.style.display = isOpen ? "none" : "block";
+          if (productsMenu) productsMenu.style.display = "none";
+        });
+      }
 
-  // Setup first dropdown
-  if (dropdownToggle && dropdownMenu) {
-    dropdownToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-      // Close the other dropdown
-      if (productsMenu) productsMenu.style.display = "none";
+      if (productsToggle && productsMenu) {
+        productsToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = productsMenu.style.display === "block";
+          productsMenu.style.display = isOpen ? "none" : "block";
+          if (dropdownMenu) dropdownMenu.style.display = "none";
+        });
+      }
+
+      document.addEventListener("click", (e) => {
+        if (dropdownToggle && dropdownMenu && 
+            !dropdownToggle.contains(e.target) && 
+            !dropdownMenu.contains(e.target)) {
+          dropdownMenu.style.display = "none";
+        }
+        if (productsToggle && productsMenu && 
+            !productsToggle.contains(e.target) && 
+            !productsMenu.contains(e.target)) {
+          productsMenu.style.display = "none";
+        }
+      });
+
+      const menuButton = document.getElementById("menu-button");
+      const mainMenu = document.getElementById("mainmenu");
+
+      if (menuButton && mainMenu) {
+        menuButton.addEventListener("click", () => {
+          const isOpen = mainMenu.classList.contains("active");
+          mainMenu.classList.toggle("active");
+          menuButton.setAttribute("aria-expanded", !isOpen);
+        });
+      }
     });
-  }
-
-  // Setup second dropdown
-  if (productsToggle && productsMenu) {
-    productsToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      productsMenu.style.display = productsMenu.style.display === "block" ? "none" : "block";
-      // Close the other dropdown
-      if (dropdownMenu) dropdownMenu.style.display = "none";
-    });
-  }
-
-  // Close both when clicking outside
-  document.addEventListener("click", (e) => {
-    if (dropdownToggle && dropdownMenu && 
-        !dropdownToggle.contains(e.target) && 
-        !dropdownMenu.contains(e.target)) {
-      dropdownMenu.style.display = "none";
-    }
-    if (productsToggle && productsMenu && 
-        !productsToggle.contains(e.target) && 
-        !productsMenu.contains(e.target)) {
-      productsMenu.style.display = "none";
-    }
-  });
-});
-</script>
+  </script>
   
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=661e91253937928082595f31" crossorigin="anonymous"></script>
   <script src="/assets/js/webflow.js"></script>
