@@ -5,16 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DobieCore Captions — your social content generator</title>
 
-  <!-- keep your sitewide styles -->
   <link rel="stylesheet" href="captioncraft.css" />
 
+  <link rel="stylesheet" href="/assets/css/bluedobie-developing-redesign.webflow.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/webflow.css" />
   <style>
-    /* Simple, tester-friendly form */
+    h1 {font-family: Georgia, 'Times New Roman', Times, serif;}
+    p.lead {
+      text-align: center;
+      margin: 0 auto;
+    }
     .simple-form { max-width: 640px; margin: 0 auto; }
     .field-group { margin-bottom: 18px; }
     .field-group label { display:block; font-weight:600; margin-bottom:8px; font-size:16px; }
-    .field-group input[type="text"],
-    .field-group select {
+    .field-group input[type="text"], .field-group select {
       width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:16px; background:#fff;
     }
     .tone-control { display:flex; align-items:center; gap:12px; }
@@ -26,25 +31,19 @@
     details.advanced-toggle summary::-webkit-details-marker { display:none; }
     .advanced-content { margin-top:12px; padding-top:12px; border-top:1px solid #e5e7eb; }
 
-    .generate-btn {
-      width:100%; padding:14px; background:#042d4d; color:#fff; border:none; border-radius:10px;
-      font-size:18px; font-weight:700; cursor:pointer; transition:.2s ease;
-    }
+    .generate-btn { width:100%; padding:14px; background:#042d4d; color:#fff; border:none; border-radius:10px;
+      font-size:18px; font-weight:700; cursor:pointer; transition:.2s ease; }
     .generate-btn:hover { background:#0a4d7a; transform:translateY(-1px); }
     .generate-btn:disabled { background:#cbd5e1; cursor:not-allowed; }
     .muted { color:#6b7280; }
 
-    /* Results */
-    .results .cards { display:grid; gap:12px; }
+    .results .cards { display:grid; gap:12px; max-width: 960px; margin: 0 auto; }
     .results .card { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
     .results textarea { width:100%; min-height:120px; border:1px solid #e5e7eb; border-radius:10px; padding:10px; }
 
-    /* Modal */
     .modal { display:none; position:fixed; z-index:1000; inset:0; background:rgba(0,0,0,.5); }
-    .modal-content {
-      background:#fff; margin:10% auto; padding:24px; border-radius:16px; max-width:520px;
-      box-shadow:0 20px 60px rgba(0,0,0,.25);
-    }
+    .modal-content { background:#fff; margin:10% auto; padding:24px; border-radius:16px; max-width:520px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25); }
     .modal .buttons { display:flex; gap:10px; margin-top:12px; }
     .modal .btn { flex:1; padding:12px; border-radius:10px; border:none; font-weight:700; cursor:pointer; }
     .modal .btn-primary { background:#042d4d; color:#fff; }
@@ -57,32 +56,103 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container header-inner" style="max-width:960px;margin:0 auto;padding:12px;">
-      <a class="brand" href="https://www.bluedobiedev.com">
-        <!-- use an asset that exists to avoid 404 -->
-        <img src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions logo" style="height:42px"/>
+  <!-- Exact site nav -->
+  <!-- _includes/nav.html -->
+<nav class="site-nav w-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-container">
+    <div class="nav-elements-holder">
+      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+        <img src="/assets/images/bluedobielogo_1.webp"
+             width="64" height="64"
+             alt="Bluedobie Developing logo"
+             class="brand-logo">
       </a>
-      <nav class="top-nav" style="float:right;">
-        <a href="/sales.html">Back to Sales</a>
-        <span style="margin:0 8px;">•</span>
-        <a href="/contact">Contact</a>
-      </nav>
+
+      <!-- main links -->
+      <div class="nav-menu-container">
+        <div class="nav-menu w-nav-menu" id="mainmenu">
+          <div class="nav-link-holder">
+            <a href="/" class="nav-link w-inline-block">Home</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/about.html" class="nav-link w-inline-block">About</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/services.html" class="nav-link w-inline-block">Services</a>
+          </div>
+
+          <!-- dropdown -->
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="dropdown-toggle2">More</button>
+            <section class="dropdown-menu" id="dropdown-menu2">
+              <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+              <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+              <a href="/contact.html" class="nav-link">Contact</a>
+              <a href="/FAQ.html" class="nav-link">FAQ's</a>
+              <a href="/business-links.html" class="nav-link">Our Links</a>
+            </section>
+          </div>
+
+          <!-- Products / Projects group -->
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle">Our Products</button>
+            <section class="dropdown-menu" id="products-menu">
+              <div class="nav-link-holder nav-group">
+                <a href="/sales.html" class="nav-link">Offers</a>
+                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                <a href="/blog/" class="nav-link">Dialogues</a>
+              </div>
+            </section>
+          </div>
+
+        <!-- Bluedobie social -->
+        <div class="social-links-column">
+          <span class="label"><strong>Follow Bluedobie:</strong></span>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;" href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;" href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;" href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;"  href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+        </div>
+
+        <!-- Sabre's social -->
+        <div class="social-links-column">
+          <span class="label"><strong>Follow Sabre:</strong></span>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;" href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+          <a style="border: 2px solid #666; padding: 2px; background-color: #fff;"  href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="nav-link-holder nav-button-holder">
+          <a href="/contact.html" class="button nav w-inline-block">
+            <div style="display: inline-block;text-align: center; margin-bottom: 5px;">Contact Us</div>
+          </a>
+        </div>
+
+        <!-- mobile menu button -->
+        <button class="menu-button w-nav-button"
+                id="menu-button"
+                aria-controls="mainmenu"
+                aria-expanded="false"
+                aria-label="Toggle menu">
+          <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+        </button>
+        </div>
+      </div>
     </div>
-  </header>
+  </div>
+</nav>
 
   <main>
-    <section class="hero" style="padding:20px 0;">
-      <div class="container" style="max-width:960px;margin:0 auto;">
-        <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
-        <p class="lead">3 quick captions, platform-aware, with optional AI variety. Built for busy owners, approved by Sabre.</p>
-      </div>
+    <section class="hero" style="padding:20px 0;max-width:960px;margin:0 auto;">
+      <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
+      <p class="lead">3 quick captions, platform-aware, with optional AI variety. Built for busy owners, approved by Sabre.</p>
     </section>
 
     <section class="tool">
       <div class="container" style="max-width:960px;margin:0 auto;">
         <form id="captionForm" class="brief simple-form">
-          <!-- 3 MAIN FIELDS (+ brand) -->
           <div class="field-group">
             <label for="company">Company / Brand (optional)</label>
             <input type="text" id="company" placeholder="e.g., Bluedobie Developing"/>
@@ -115,7 +185,6 @@
             </div>
           </div>
 
-          <!-- ADVANCED (collapsed by default) -->
           <details class="advanced-toggle">
             <summary>Advanced Options (optional)</summary>
             <div class="advanced-content">
@@ -185,6 +254,16 @@
               <div class="field-group">
                 <label><input type="checkbox" id="cleanHashtags" checked /> Clean hashtags (lowercase, no repeats)</label>
               </div>
+
+              <div class="field-group">
+                <label for="genMode">Generation mode</label>
+                <select id="genMode">
+                  <option value="auto" selected>Auto (Local; AI if Pro)</option>
+                  <option value="local">Local only (no AI)</option>
+                  <option value="ai">AI remix (Pro)</option>
+                </select>
+                <small class="muted">AI remix respects your facts (offers, URLs, prices). Requires Pro.</small>
+              </div>
             </div>
           </details>
 
@@ -218,7 +297,6 @@
     </div>
   </footer>
 
-  <!-- Upgrade Modal -->
   <div id="upgradeModal" class="modal">
     <div class="modal-content">
       <h2>🎯 You’ve used your 3 free captions today!</h2>
@@ -239,8 +317,8 @@
     </div>
   </div>
 
-  <!-- Your logic lives here (no jQuery needed) -->
   <script src="captioncraft.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/js/dropdown.js"></script>
 </body>
 </html>

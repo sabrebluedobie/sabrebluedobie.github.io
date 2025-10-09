@@ -22,30 +22,253 @@
     gtag('config', 'G-6B45D1C0L8');
   </script>
   
+  <!-- Navigation Styles -->
   <style>
+    /* Base Navigation Styles */
+    .navbar {
+      background: #042d4d;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-elements-holder {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 80px;
+    }
+
+    .nav-menu-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo {
+      height: 60px;
+      width: auto;
+    }
+
+    /* Desktop Navigation */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .nav-link-holder {
+      position: relative;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      display: block;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #ffd700;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+
+    /* Social Links Styling */
+    .social-links-column {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px;
+    }
+
+    .social-links-column .label {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .social-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .social-link:hover {
+      color: #ffd700;
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 18px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .dropdown-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #ffd700;
+      color: #ffd700;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #042d4d;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1001;
+      margin-top: 5px;
+    }
+
+    .dropdown-menu .nav-link {
+      display: block;
+      padding: 12px 20px;
+      border-radius: 0;
+    }
+
+    .dropdown-menu .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Contact Button */
+    .nav-button-holder .button {
+      background: #ffd700;
+      color: #042d4d;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .nav-button-holder .button:hover {
+      background: #ffed4e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Mobile Menu Button */
+    .menu-button {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 991px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #042d4d;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-link-holder {
+        width: 100%;
+      }
+
+      .nav-link {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-links-column {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+        gap: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-links-column .label {
+        margin-bottom: 5px;
+      }
+
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-left: 3px solid #ffd700;
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+
+      .nav-button-holder {
+        margin-top: 10px;
+      }
+
+      .nav-button-holder .button {
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+
+      .menu-button {
+        display: block;
+      }
+    }
+
     * {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       box-sizing: border-box;
-    }
-    
-    .navbar {
-      background: #042d4d;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .nav-link {
-      color: #fff !important;
-    }
-    
-    .nav-link:hover {
-      color: #ffd700 !important;
-    }
-    
-    .dropdown-toggle {
-      background: #042d4d;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
     }
     
     body {
@@ -236,36 +459,75 @@
 </head>
 
 <body>
-  <!-- Navigation (keep your existing nav structure) -->
-  <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-doc-height="1" data-duration="500" data-easing="ease" data-easing2="ease" data-no-scroll="1" role="banner">
-    <div class="container nav-container">
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
       <div class="nav-elements-holder">
         <div class="nav-menu-container">
-          <a class="brand-link w-nav-brand" href="/"><img alt="Bluedobie Developing logo" class="brand-logo" height="100" loading="lazy" src="images/bluedobielogo_1.webp" width="100"/></a>
-          <nav class="nav-menu w-nav-menu">
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="index.html">Home</a></div>
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="about.html">About</a></div>
-            <div class="nav-link-holder"><a class="nav-link w-inline-block" href="services.html">Services</a></div>
+          <!-- Logo -->
+          <a href="/" class="brand-link" aria-label="Bluedobie Developing Home">
+            <img src="/assets/images/bluedobielogo_1.webp" alt="Bluedobie Developing Logo" class="brand-logo">
+          </a>
+
+          <!-- Desktop/Mobile Menu -->
+          <div class="nav-menu" id="mainmenu">
+            <!-- Main nav links -->
+            <div class="nav-link-holder">
+              <a href="/index.html" class="nav-link">Home</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/services.html" class="nav-link">Services</a>
+            </div>
+
+            <!-- Dropdown -->
             <div class="nav-link-holder dropdown">
-              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
-              <div class="dropdown-menu" id="dropdown-menu">
-                <a class="nav-link" href="our-portfolio.html">Portfolio</a>
-                <a class="nav-link" href="meet-sabre.html">Meet Sabre</a>
-                <a class="nav-link" href="blog-home.html">Blog</a>
-                <a class="nav-link" href="contact.html">Contact</a>
-                <a class="nav-link" href="FAQ.html">FAQ's</a>
-                <a class="nav-link" href="business-links.html">Our Links</a>
+              <button class="dropdown-toggle"
+                      id="dropdown-toggle"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      aria-controls="dropdown-menu">
+                More
+              </button>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
+                <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
+                <a href="/blog-home.html" class="nav-link" role="menuitem">Blog</a>
+                <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
+                <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ's</a>
+                <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
               </div>
             </div>
-            <div class="nav-link-holder nav-button-holder _2">
-              <a class="button nav w-inline-block" href="contact.html"><div>Contact Us</div></a>
+
+            <!-- Sabre's social -->
+            <div class="social-links-column">
+              <span class="label">Follow Sabre:</span>
+              <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+              <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
             </div>
-          </nav>
-          <div class="menu-button w-nav-button"><img alt="menu icon" class="menu-icon" loading="lazy" src="images/menu-icon.svg"/></div>
+
+            <!-- CTA -->
+            <div class="nav-link-holder nav-button-holder">
+              <a href="/contact.html" class="button nav w-inline-block">
+                <div>Contact Us</div>
+              </a>
+            </div>
+
+            <!-- mobile menu button -->
+            <button class="menu-button w-nav-button"
+                    id="menu-button"
+                    aria-controls="mainmenu"
+                    aria-expanded="false"
+                    aria-label="Toggle menu">
+              <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 
   <!-- Hero -->
   <section class="hero-section">
@@ -365,21 +627,39 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Navigation Scripts -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const dropdownToggle = document.getElementById("dropdown-toggle");
-      const dropdownMenu = document.getElementById("dropdown-menu");
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dropdown functionality
+      const dropdownToggle = document.getElementById('dropdown-toggle');
+      const dropdownMenu = document.getElementById('dropdown-menu');
 
       if (dropdownToggle && dropdownMenu) {
-        dropdownToggle.addEventListener("click", () => {
-          dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        dropdownToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdownMenu.style.display === 'block';
+          dropdownMenu.style.display = isOpen ? 'none' : 'block';
+          dropdownToggle.setAttribute('aria-expanded', !isOpen);
         });
 
-        document.addEventListener("click", (e) => {
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
           if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-            dropdownMenu.style.display = "none";
+            dropdownMenu.style.display = 'none';
+            dropdownToggle.setAttribute('aria-expanded', 'false');
           }
+        });
+      }
+
+      // Mobile menu functionality
+      const menuButton = document.getElementById('menu-button');
+      const mainMenu = document.getElementById('mainmenu');
+
+      if (menuButton && mainMenu) {
+        menuButton.addEventListener('click', () => {
+          const isOpen = mainMenu.classList.contains('active');
+          mainMenu.classList.toggle('active');
+          menuButton.setAttribute('aria-expanded', !isOpen);
         });
       }
     });

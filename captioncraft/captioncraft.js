@@ -1,6 +1,5 @@
 // @ts-nocheck
-// DobieCore CaptionCraft — Simple, human, and fast.
-// Full drop-in replacement for /captioncraft/captioncraft.js
+// DobieCore CaptionCraft — Strict & human with optional AI remix (Pro).
 
 // ---------- tiny DOM helpers (no jQuery)
 const qs = (sel, root = document) => root.querySelector(sel);
@@ -34,51 +33,33 @@ function updateUsageCounter() {
     el.textContent = `Free today: ${Math.max(0, 3 - n)} of 3 left`;
   }
 }
-function showUpgrade() {
-  const m = qs("#upgradeModal");
-  if (m) m.style.display = "block";
-}
-function closeModal() {
-  const m = qs("#upgradeModal");
-  if (m) m.style.display = "none";
-}
+function showUpgrade() { const m = qs("#upgradeModal"); if (m) m.style.display = "block"; }
+function closeModal() { const m = qs("#upgradeModal"); if (m) m.style.display = "none"; }
 
 // ---------- punctuation + basics
 function cleanPunctuation(s = "") {
   return s
     .replace(/\s{2,}/g, " ")
-    .replace(/([.!?])\1{1,}/g, "$1")      // ... -> . / !! -> !
-    .replace(/([.!?])\s*([.!?])/g, "$1 ") // prevent back-to-back punctuation
-    .replace(/\s+([,.;:!?])/g, "$1")      // trim space before punctuation
+    .replace(/([.!?])\1{1,}/g, "$1")
+    .replace(/([.!?])\s*([.!?])/g, "$1 ")
+    .replace(/\s+([,.;:!?])/g, "$1")
     .replace(/([,.;:!?])([^\s])/g, "$1 $2")
+    .replace(/\s+”/g, "”")
+    .replace(/\s+'\b/g, "'")
+    .replace(/\.\s*([#])/g, ". $1")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
-
 function humanize(s, opts = {}) {
   if (!s) return s;
   let out = s.trim();
-
-  // Deduplicate adjacent lines (in case hot reload or hook repeats)
-  out = out
-    .split(/\n+/)
-    .filter((line, i, arr) => line.trim() !== (arr[i - 1] || "").trim())
-    .join("\n");
-
-  // Reduce the templatey phrase sometimes
-  out = out.replace(/\bwe get it[—-]?\s*/gi, (m) => (Math.random() < 0.4 ? m : ""));
-
-  // Keep only one "Bottom line:" if repeated
-  out = out.replace(/\bBottom line:\s*Bottom line:\s*/gi, "Bottom line: ");
-
-  // LinkedIn prefers fewer long blocks
+  out = out.split(/\n+/).filter((line, i, arr) => line.trim() !== (arr[i - 1] || "").trim()).join("\n");
+  out = out.replace(/!{2,}/g, "!");
+  out = cleanPunctuation(out);
   if ((opts.platform || "").toLowerCase() === "linkedin") {
     const lines = out.split("\n");
     if (lines.length > 6) out = lines.slice(0, 6).join("\n");
   }
-
-  // final tidy
-  out = cleanPunctuation(out);
   return out.trim();
 }
 
@@ -91,10 +72,7 @@ function buildHashtags(keywords = "", density = "standard", clean = true, platfo
   const f = String(format || "").toLowerCase();
   if (p === "gmb" || p === "youtube" || f === "story") return "";
 
-  let parts = String(keywords || "")
-    .split(",")
-    .map((t) => t.trim())
-    .filter(Boolean);
+  let parts = String(keywords || "").split(",").map(t => t.trim()).filter(Boolean);
   if (clean) parts = parts.map(cleanTag);
   parts = [...new Set(parts)].filter(Boolean);
 
@@ -106,125 +84,85 @@ function buildHashtags(keywords = "", density = "standard", clean = true, platfo
   else if (p === "tiktok") cap = density === "heavy" ? 15 : density === "light" ? 6 : 10;
   else if (p === "ytshorts") cap = density === "heavy" ? 7 : density === "light" ? 3 : 5;
 
-  return parts
-    .slice(0, cap)
-    .map((t) => (t ? `#${t}` : ""))
-    .filter(Boolean)
-    .join(" ");
+  return parts.slice(0, cap).map(t => (t ? `#${t}` : "")).filter(Boolean).join(" ");
 }
 
 // ---------- platform helpers
 function platformStyle(p) {
   switch ((p || "").toLowerCase()) {
-    case "linkedin":
-      return { emoji: false, lineBreaks: true };
-    case "tiktok":
-      return { emoji: true, lineBreaks: false };
-    case "facebook":
-      return { emoji: true, lineBreaks: true };
-    case "twitter":
-      return { emoji: false, lineBreaks: true };
-    default:
-      return { emoji: true, lineBreaks: true }; // Instagram etc.
+    case "linkedin": return { emoji: false, lineBreaks: true };
+    case "tiktok":   return { emoji: true,  lineBreaks: false };
+    case "facebook": return { emoji: true,  lineBreaks: true };
+    case "twitter":  return { emoji: false, lineBreaks: true };
+    default:         return { emoji: true,  lineBreaks: true }; // Instagram etc.
   }
 }
 function platformKey(p = "Instagram", f = "Post") {
   return `${String(p || "").toLowerCase()}:${String(f || "").toLowerCase()}`;
 }
 
-// ---------- brand intro
+// ---------- brief helpers
+function briefIsComplete(b) {
+  return !!(b.company && b.offer && b.platform && b.tone !== undefined);
+}
 function brandLead(company) {
   const c = (company || "").trim();
   return c ? `At ${c}, ` : "";
 }
 
-// ---------- local templates (human-forward, short)
-const TPL = {
-  "facebook:post": makeTemplate,
-  "facebook:story": makeTemplate,
-  "facebook:reel": makeTemplate,
-  "instagram:post": makeTemplate,
-  "instagram:story": makeTemplate,
-  "instagram:reel": makeTemplate,
-  "twitter:post": makeTemplate,
-  "linkedin:post": makeTemplate,
-  "gmb:post": makeTemplate,
-  "tiktok:video": makeTemplate,
-  "ytshorts:short": makeTemplate
-};
+// ---------- template map
+const TPL = new Proxy({}, {
+  get: (_, __) => makeTemplate
+});
 
+// ---------- core template
 function makeTemplate(ctx) {
   const {
     company, audience, problem, outcome, offer,
-    cta, platform, tone, length, keywords, format, voiceMode
+    cta, platform, tone, length, keywords, format
   } = ctx;
-
   const p = platformStyle(platform);
-  const brand = brandLead(company);
-  const who = (audience || "busy owners").replace(/^\w/, (c) => c.toUpperCase());
+  const who = (audience || "busy owners").replace(/^\w/, c => c.toUpperCase());
 
-  // Hooks
-  const hooks = [
-    `${who}, this is for you.`,
-    `Quick win: ${outcome || "better results, less stress"}.`,
-    `Still wrestling with ${problem || "content taking too long"}?`,
-    `${who}—you don’t need another app; you need momentum.`,
-    `Tiny change, big ripple: ${outcome || "more qualified leads"}.`
-  ];
+  // Deterministic pattern when the brief is complete
+  if (briefIsComplete(ctx)) {
+    const lines = [
+      `${who}—you don’t need another app; you need momentum.`,
+      `At ${company.trim()}, we know consistency is key.`,
+      offer ? `Our ${offer} fits real-world schedules.`
+            : `Our caption tools fit real-world schedules.`,
+      outcome ? `Get your posts out faster and ${outcome}.`
+              : `Get your posts out faster and keep the conversation alive.`
+    ].filter(Boolean);
 
-  // Empathy / Insight
-  const empathy = [
-    `${brand}we know the hardest part is showing up consistently.`,
-    `${brand}you’re juggling real work—marketing shouldn’t burn the day.`,
-    `${brand}consistency beats “perfect.” Tools should save time, not steal it.`
-  ];
-
-  // Offer / Proof
-  const priceLine = offer
-    ? `We built ${offer} for real-world schedules.`
-    : `We built a $29 caption generator that fits real-world schedules.`;
-  const proof = [
-    `3 platform-ready captions per run—no blank-page panic.`,
-    `Platform & format aware, so you post faster.`,
-    `First-comment hashtags ready when you need them.`
-  ];
-
-  // Outcomes
-  const outcomes = [
-    outcome || `More qualified inquiries—without the 90-minute caption spiral.`,
-    `Stay visible, stay booked.`,
-    `Less time typing, more time serving clients.`
-  ];
-
-  // CTA pool (fallback)
-  const ctas = cta ? [cta] : ["Book now", "Call today", "Message us to claim", "Learn more", "See how it works", "Get your free consult"];
-
-  const hook = pick(hooks);
-  const empath = pick(empathy);
-  const proofLine = pick(proof);
-  const resultLine = pick(outcomes);
-  const call = pick(ctas);
-
-  // Length shaping
-  const L = String(length || "medium").toLowerCase();
-  const blocksShort = [hook, priceLine, call];
-  const blocksMedium = [hook, empath, priceLine, proofLine, resultLine, call];
-  const blocksLong = [hook, empath, priceLine, proofLine, resultLine, call];
-
-  let blocks = L === "short" ? blocksShort : L === "long" ? blocksLong : blocksMedium;
-
-  // Tone trims: playful = shorter; pro = measured
-  const t = Number(tone) || 0.5;
-  if (t > 0.6) {
-    blocks = blocks.filter(Boolean).slice(0, 4);
-  } else if (t < 0.4 && blocks.length > 5) {
-    blocks = blocks.filter(Boolean).slice(0, 5);
+    let text = p.lineBreaks ? lines.join("\n") : lines.join(" ");
+    const tags = buildHashtags(
+      keywords,
+      (qs("#hashtagDensity")?.value || "Standard").toLowerCase(),
+      !!qs("#cleanHashtags")?.checked,
+      platform,
+      format
+    );
+    if (tags) text = p.lineBreaks ? `${text}\n\n${tags}` : `${text} ${tags}`;
+    return humanize(text, { platform });
   }
 
-  // Join respecting platform line break style
-  let text = blocks.filter(Boolean).join(p.lineBreaks ? "\n\n" : " ");
+  // Strict conservative fallback (no invention)
+  const intro = (company || "").trim()
+    ? `At ${company.trim()}, we help you stay consistent.`
+    : `Stay consistent and visible.`;
 
-  // Hashtags (first comment helper will pick them up from text)
+  const hook = who ? `${who}, this is for you.` : `Quick note to help you post faster.`;
+  const offerLine = offer ? `Offer: ${offer}.` : ``;
+  const resultLine = outcome ? `${outcome}.` : `Keep conversations alive.`;
+  const call = (cta && cta.trim()) ? cta.trim() : `Learn more`;
+
+  let blocks = [hook, intro, offerLine, resultLine, call].filter(Boolean);
+  const t = Number(tone) || 0.5;
+  if (t > 0.6) blocks = blocks.slice(0, 4); // playful: tighter
+  if (t < 0.4 && blocks.length > 5) blocks = blocks.slice(0, 5); // pro: trim
+
+  let text = blocks.join(p.lineBreaks ? "\n\n" : " ");
   const tags = buildHashtags(
     keywords,
     (qs("#hashtagDensity")?.value || "Standard").toLowerCase(),
@@ -233,21 +171,23 @@ function makeTemplate(ctx) {
     format
   );
   if (tags) text = p.lineBreaks ? `${text}\n\n${tags}` : `${text} ${tags}`;
-
-  // Final humanize
-  text = humanize(text, { platform, playful: t > 0.6, pro: t < 0.4 });
-  return text;
+  return humanize(text, { platform });
 }
 
-// ---------- AI Remix (Cloudflare Worker) optional, safe fallback
+// ---------- AI Remix (Cloudflare Worker) optional
 const WORKER_URLS = [
   "https://www.bluedobiedev.com/api/remix",
   "https://dobiecore-remix.melanie-brown.workers.dev"
 ];
 
 async function maybeRemixWithAI(texts, brief) {
-  // Pro-only by default; flip to `true` to force-enable during testing
-  const allowAI = isPro();
+  const mode = (brief.genMode || "auto").toLowerCase();
+  let allowAI = false;
+  if (mode === "ai") allowAI = true;
+  else if (mode === "local") allowAI = false;
+  else allowAI = isPro(); // auto
+
+  if (!isPro()) allowAI = false;
   if (!allowAI) return texts;
 
   const payload = {
@@ -260,7 +200,7 @@ async function maybeRemixWithAI(texts, brief) {
       const out = [];
       if (userCTA && userCTA.trim()) out.push(userCTA.trim());
       while (out.length < 3) {
-        const x = pick(base);
+        const x = base[Math.floor(Math.random()*base.length)];
         if (!out.includes(x)) out.push(x);
       }
       return Array.from(new Set(out)).slice(0, 3);
@@ -282,13 +222,11 @@ async function maybeRemixWithAI(texts, brief) {
         body: JSON.stringify(payload)
       });
       if (!res.ok) continue;
-      const data = await res.json();
+      const data = await res.json(); // Worker returns an ARRAY
       if (Array.isArray(data) && data.length) {
-        return data.map((d) => String(d.text || "")).filter(Boolean);
+        return data.map(d => String(d.text || "")).filter(Boolean);
       }
-    } catch {
-      // try next
-    }
+    } catch {}
   }
   console.warn("AI remix unavailable; using local drafts");
   return texts;
@@ -301,12 +239,10 @@ function renderCards(texts) {
   texts.forEach((text, i) => {
     const card = document.createElement("article");
     card.className = "card";
-
-    const hashtagsOnly = text.split("\n").filter((l) => l.trim().startsWith("#")).join(" ");
+    const hashtagsOnly = text.split("\n").filter(l => l.trim().startsWith("#")).join(" ");
     const fcBlock = hashtagsOnly
       ? `<div class="first-comment"><div class="muted">First comment</div><textarea readonly>${hashtagsOnly}</textarea><div class="actions"><button type="button" class="copy-first-btn">Copy first comment</button></div></div>`
       : "";
-
     card.innerHTML = `
       <h3 style="margin:0 0 6px;">Caption ${i + 1}</h3>
       <textarea readonly>${text}</textarea>
@@ -317,22 +253,18 @@ function renderCards(texts) {
       ${fcBlock}
     `;
     results.appendChild(card);
-
     const copyBtn = card.querySelector(".copy-btn");
     const ta = card.querySelector("textarea");
     copyBtn?.addEventListener("click", () => {
-      ta.select();
-      document.execCommand("copy");
+      ta.select(); document.execCommand("copy");
       copyBtn.textContent = "Copied!";
       setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
     });
-
     const fcCopy = card.querySelector(".copy-first-btn");
     if (fcCopy) {
       const fta = card.querySelector(".first-comment textarea");
       fcCopy.addEventListener("click", () => {
-        fta.select();
-        document.execCommand("copy");
+        fta.select(); document.execCommand("copy");
         fcCopy.textContent = "Copied!";
         setTimeout(() => (fcCopy.textContent = "Copy first comment"), 1200);
       });
@@ -356,7 +288,8 @@ function readBrief() {
     tone: parseFloat(qs("#tone")?.value || "0.5"),
     hashtagDensity: qs("#hashtagDensity")?.value || "Standard",
     cleanHashtags: !!qs("#cleanHashtags")?.checked,
-    voiceMode: qs("#voiceMode")?.value || "leadgen"
+    voiceMode: qs("#voiceMode")?.value || "leadgen",
+    genMode: (qs("#genMode")?.value || "auto").toLowerCase()
   };
 }
 
@@ -366,7 +299,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const form = qs("#captionForm");
   const results = qs("#results");
-  const clearBtn = qs("#clearBtn");
 
   // Modal controls
   qs("#upgradeBtn")?.addEventListener("click", () => {
@@ -396,10 +328,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (!isPro()) {
       const { n } = getUsage();
-      if (n >= 3) {
-        showUpgrade();
-        return;
-      }
+      if (n >= 3) { showUpgrade(); return; }
     }
 
     const brief = readBrief();
@@ -410,8 +339,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Build exactly three local variants
     results.innerHTML = "";
-    const key = platformKey(brief.platform, brief.format);
-    const make = TPL[key] || makeTemplate;
+    const make = TPL["any"] || makeTemplate;
     const local = [];
     for (let i = 0; i < 3; i++) local.push(make(brief));
 
@@ -425,11 +353,5 @@ window.addEventListener("DOMContentLoaded", () => {
       incrementUsage();
       updateUsageCounter();
     }
-  });
-
-  clearBtn?.addEventListener("click", () => {
-    form.reset();
-    results.innerHTML = "";
-    updateUsageCounter();
   });
 });
