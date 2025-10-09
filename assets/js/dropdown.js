@@ -1,33 +1,44 @@
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const dropdownToggle = document.getElementById("dropdown-toggle");
-      const dropdownMenu = document.getElementById("dropdown-menu");
-  
-      dropdownToggle.addEventListener("click", function () {
-          dropdownMenu.classList.toggle("show");
-      });
-  
-      // Close the dropdown if clicked outside
-      document.addEventListener("click", function (event) {
-          if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-              dropdownMenu.classList.remove("show");
-          }
-      });
-  });
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsibleButtons = document.querySelectorAll(".collapsible-btn");
+     document.addEventListener("DOMContentLoaded", () => {
+  // First dropdown
+  const dropdownToggle = document.getElementById("dropdown-toggle");
+  const dropdownMenu = document.getElementById("dropdown-menu");
 
-    collapsibleButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            let content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-            this.classList.toggle("active");
-        });
+  // Second dropdown (Products)
+  const productsToggle = document.getElementById("products-toggle");
+  const productsMenu = document.getElementById("products-menu");
+
+  // Setup first dropdown
+  if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+      // Close the other dropdown
+      if (productsMenu) productsMenu.style.display = "none";
     });
-});
+  }
 
+  // Setup second dropdown
+  if (productsToggle && productsMenu) {
+    productsToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      productsMenu.style.display = productsMenu.style.display === "block" ? "none" : "block";
+      // Close the other dropdown
+      if (dropdownMenu) dropdownMenu.style.display = "none";
+    });
+  }
+
+  // Close both when clicking outside
+  document.addEventListener("click", (e) => {
+    if (dropdownToggle && dropdownMenu && 
+        !dropdownToggle.contains(e.target) && 
+        !dropdownMenu.contains(e.target)) {
+      dropdownMenu.style.display = "none";
+    }
+    if (productsToggle && productsMenu && 
+        !productsToggle.contains(e.target) && 
+        !productsMenu.contains(e.target)) {
+      productsMenu.style.display = "none";
+    }
+  });
+});
