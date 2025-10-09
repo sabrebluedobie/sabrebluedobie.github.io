@@ -58,6 +58,123 @@ gtag('config', 'GTM-MCV3HH7L');
   <script defer="" data-type="lazy" data-src="https://www.googletagmanager.com/gtag/js?id=GTM-MCV3HH7L"></script>
 
   <style>
+  /* Social Bar Styles */
+  .social-bar {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 12px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .social-groups {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .social-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .social-label {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    filter: brightness(0) invert(1);
+  }
+
+  .social-links a:hover .social-icon {
+    transform: translateY(-2px);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .social-bar {
+      padding: 10px 0;
+    }
+
+    .social-groups {
+      gap: 20px;
+      flex-direction: column;
+    }
+
+    .social-group {
+      gap: 8px;
+    }
+
+    .social-label {
+      font-size: 13px;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* Dropdown Styles */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dropdown-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-width: 180px;
+    z-index: 1000;
+    margin-top: 8px;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .dropdown-menu a:hover {
+    background: #f5f5f5;
+  }
+
     body, html {
     overflow: visible;
     margin: 0;
@@ -263,7 +380,7 @@ gtag('config', 'GTM-MCV3HH7L');
         margin: 0;
         padding-bottom: 20vh;
       }
-      .hero-/image {
+      .hero-image {
         width: 90%; /* Reduce image size on smaller devices */
         margin: 0 auto; /* Center image */
         z-index: 100;
@@ -317,7 +434,7 @@ gtag('config', 'GTM-MCV3HH7L');
        }
       
         .blog-home-main-item img {
-          max-width: 100;
+          max-width: 100%;
           height: auto;
           display: block;
           margin: 0 auto;
@@ -418,69 +535,119 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '776246200615205');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
+
+</head>
+<body>
+  <noscript><img height="1" width="1" style="display:none" alt="no script"
 src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-</head>
-<body>
   <div data-animation="default" class="navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" data-w-id="e0b516b2-bf57-08a9-1f3c-0329245b60b9" role="banner" data-no-scroll="1" data-duration="500" data-doc-height="1">
     <div class="container nav-container">
       <div class="nav-elements-holder">
         <div class="nav-menu-container">
-          <a href="https://bit.ly/4aOSYq4" class="brand-link w-nav-brand"><img src="images/bluedobielogo_1.webp" loading="lazy" width="100" height="100" alt="The blue dobie logo on a white background" class="brand-logo"></a>
-          <nav role="navigation" class="nav-menu w-nav-menu">
-            <!-- Top-Level Navigation -->
-            <div class="nav-link-holder">
-                <a href="index.html" class="nav-link w-inline-block">Home</a>
-            </div>
-            <div class="nav-link-holder">
-                <a href="about.html" class="nav-link w-inline-block">About</a>
-            </div>
-            <div class="nav-link-holder">
-                <a href="services.html" class="nav-link w-inline-block">Services</a>
-            </div>
         
-            <!-- Dropdown for Additional Links -->
-    <div class="nav-link-holder dropdown">
-      <button class="dropdown-toggle" id="dropdown-toggle">More</button>
-      <div class="dropdown-menu" id="dropdown-menu">
-          <a href="our-portfolio.html" class="nav-link">Portfolio</a>
-          <a href="meet-sabre.html" class="nav-link">Meet Sabre</a>
-          <a href="blog-home.html" class="nav-link">Blog</a>
-          <a href="contact.html" class="nav-link">Contact</a> <a href="FAQ.html" class="nav-link">FAQ's</a>
-          <a href="business-links.html" class="nav-link">Our Links</a>
-      </div>
-    </div>
-
-  <!-- Social Links Column -->
-  <div class="social-links-column" style="padding-left: 2.5vw;">
-      <p class="follow">Follow Us:</p>
-             <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-      <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
-      <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-      <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-  </div>
-  <div class="nav-link-holder nav-button-holder _2">
-    <a href="contact.html" class="button nav w-inline-block">
-      <div>Contact Us</div>
-    </a>
-  </div>
-  <script src="js/dropdown.js" ></script>
-</nav>
-        
-          <div class="nav-menu-overlay-mobile"></div>
-          <div class="nav-link-holder nav-button-holder-copy">
-            <a data-w-id="21f763a3-44d0-e6a3-ac84-b9cf055e839b" href="contact.html" class="button nav w-inline-block">
-              <div>Contact Us</div>
-            </a>
-          </div>
-          <div class="menu-button w-nav-button"><img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" class="menu-icon"></div>
         </div>
       </div>
     </div>
   </div>
-  
+          <nav class="site-nav w-nav"  aria-label="Primary">
+  <div class="container nav-container">
+    <div class="nav-elements-holder">
+      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+        <img src="/assets/images/bluedobielogo_1.webp"
+             width="64" height="64"
+             alt="Bluedobie Developing logo"
+             class="brand-logo">
+      </a>
+
+      <div class="nav-menu-container">
+        <div class="nav-menu w-nav-menu" id="mainmenu">
+          <div class="nav-link-holder">
+            <a href="/" class="nav-link w-inline-block">Home</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/about.html" class="nav-link w-inline-block">About</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/services.html" class="nav-link w-inline-block">Services</a>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+            <section class="dropdown-menu" id="dropdown-menu">
+              <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+              <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+              <a href="/blog-home.html" class="nav-link">Blog</a>
+              <a href="/contact.html" class="nav-link">Contact</a>
+              <a href="/FAQ.html" class="nav-link">FAQ's</a>
+              <a href="/business-links.html" class="nav-link">Our Links</a>
+            </section>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle">Products</button>
+            <section class="dropdown-menu" id="products-menu">
+              <a href="/gazette.html" class="nav-link" target="_blank" rel="noopener">Gridiron Gazette</a>
+              <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Captions</a>
+            </section>
+          </div>
+        </div>
+
+        <button class="menu-button w-nav-button"
+                id="menu-button"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+          <div class="icon-2 w-icon-nav-menu"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Links Bar (NEW - separate row) -->
+  <div class="social-bar">
+    <div class="container">
+      <div class="social-groups">
+        <div class="social-group">
+          <span class="social-label">Bluedobie:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/bluedobiedev" target="_blank" rel="noopener" aria-label="Bluedobie Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/bluedobiedev/" target="_blank" rel="noopener" aria-label="Bluedobie Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/bluedobie-developing" target="_blank" rel="noopener" aria-label="Bluedobie LinkedIn">
+              <img src="/images/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+          </div>
+        </div>
+
+        <div class="social-group">
+          <span class="social-label">Sabre:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrethebluedobie" target="_blank" rel="noopener" aria-label="Sabre Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrethebluedobie" target="_blank" rel="noopener" aria-label="Sabre Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        
+          <div class="nav-menu-overlay-mobile"></div>
+          <div class="nav-link-holder nav-button-holder-copy">
+            <a data-w-id="21f763a3-44d0-e6a3-ac84-b9cf055e839b" href="/contact.html" class="button nav w-inline-block">
+              <div>Contact Us</div>
+            </a>
+          </div>
+          <div class="menu-button w-nav-button"><img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" class="menu-icon">
+            
+            </div>
+            </nav>
   <section>
     <div class="hero-section" style="position: relative; display: block;">
     <div class="container blog-container hero-container">
@@ -746,6 +913,56 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
     }
 
     document.addEventListener('DOMContentLoaded', loadArticles);
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdownToggle = document.getElementById("dropdown-toggle");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const productsToggle = document.getElementById("products-toggle");
+    const productsMenu = document.getElementById("products-menu");
+
+    if (dropdownToggle && dropdownMenu) {
+      dropdownToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dropdownMenu.style.display === "block";
+        dropdownMenu.style.display = isOpen ? "none" : "block";
+        if (productsMenu) productsMenu.style.display = "none";
+      });
+    }
+
+    if (productsToggle && productsMenu) {
+      productsToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = productsMenu.style.display === "block";
+        productsMenu.style.display = isOpen ? "none" : "block";
+        if (dropdownMenu) dropdownMenu.style.display = "none";
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (dropdownToggle && dropdownMenu &&
+          !dropdownToggle.contains(e.target) &&
+          !dropdownMenu.contains(e.target)) {
+        dropdownMenu.style.display = "none";
+      }
+      if (productsToggle && productsMenu &&
+          !productsToggle.contains(e.target) &&
+          !productsMenu.contains(e.target)) {
+        productsMenu.style.display = "none";
+      }
+    });
+
+    const menuButton = document.getElementById("menu-button");
+    const mainMenu = document.getElementById("mainmenu");
+
+    if (menuButton && mainMenu) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = mainMenu.classList.contains("active");
+        mainMenu.classList.toggle("active");
+        menuButton.setAttribute("aria-expanded", !isOpen);
+      });
+    }
+  });
 </script>
 
   

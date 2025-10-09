@@ -90,32 +90,77 @@
       border-radius: 4px;
     }
 
-    /* Social Links Styling */
+    /* Social Bar Styles */
+    .social-bar {
+      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+      border-top: 1px solid #e9edf6;
+      border-bottom: 1px solid #e9edf6;
+      padding: 10px 0;
+    }
+
+    .social-bar-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
     .social-links-column {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 0 10px;
+      gap: 6px;
+      flex-wrap: nowrap;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      border: 1px solid #e9edf6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
     .social-links-column .label {
-      color: #fff;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
+      color: #0e1726;
       white-space: nowrap;
+      margin-right: 8px;
     }
 
     .social-link {
-      color: #fff;
+      display: inline-block;
+      padding: 6px 12px;
+      background: #fff;
+      color: #0e1726;
       text-decoration: none;
-      padding: 8px 12px;
-      font-size: 14px;
-      transition: all 0.3s ease;
+      border: 2px solid #d9e0ee;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
       white-space: nowrap;
     }
 
     .social-link:hover {
-      color: #ffd700;
+      background: #2f6df6;
+      color: #fff;
+      border-color: #2f6df6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(47, 109, 246, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .social-bar-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .social-links-column {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* Dropdown Styles */
@@ -484,28 +529,26 @@
 
             <!-- Dropdown -->
             <div class="nav-link-holder dropdown">
-              <button class="dropdown-toggle"
-                      id="dropdown-toggle"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      aria-controls="dropdown-menu">
-                More
-              </button>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
-                <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
-                <a href="/blog-home.html" class="nav-link" role="menuitem">Blog</a>
-                <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
-                <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ's</a>
-                <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
+              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+                <a href="/contact.html" class="nav-link">Contact</a>
+                <a href="/FAQ.html" class="nav-link">FAQ's</a>
+                <a href="/business-links.html" class="nav-link">Our Links</a>
               </div>
             </div>
 
-            <!-- Sabre's social -->
-            <div class="social-links-column">
-              <span class="label">Follow Sabre:</span>
-              <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-              <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+            <!-- Products dropdown -->
+            <div class="nav-link-holder dropdown">
+              <button class="dropdown-toggle" id="products-toggle">Our Products</button>
+              <div class="dropdown-menu" id="products-menu">
+                <a href="/sales.html" class="nav-link">Offers</a>
+                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                <a href="/blog/" class="nav-link">Dialogues</a>
+              </div>
             </div>
 
             <!-- CTA -->
@@ -527,7 +570,27 @@
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+  
+  <!-- Social Links Bar (2nd row) -->
+  <div class="social-bar">
+    <div class="social-bar-inner">
+      <div class="social-links-column">
+        <span class="label">Follow Bluedobie:</span>
+        <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+        <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+        <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      </div>
+
+      <div class="social-links-column">
+        <span class="label">Follow Sabre:</span>
+        <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
   <!-- Hero -->
   <section class="hero-section">
@@ -630,28 +693,42 @@
   <!-- Navigation Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Dropdown functionality
       const dropdownToggle = document.getElementById('dropdown-toggle');
       const dropdownMenu = document.getElementById('dropdown-menu');
+      const productsToggle = document.getElementById('products-toggle');
+      const productsMenu = document.getElementById('products-menu');
 
       if (dropdownToggle && dropdownMenu) {
         dropdownToggle.addEventListener('click', (e) => {
           e.stopPropagation();
           const isOpen = dropdownMenu.style.display === 'block';
           dropdownMenu.style.display = isOpen ? 'none' : 'block';
-          dropdownToggle.setAttribute('aria-expanded', !isOpen);
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-          if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-            dropdownMenu.style.display = 'none';
-            dropdownToggle.setAttribute('aria-expanded', 'false');
-          }
+          if (productsMenu) productsMenu.style.display = 'none';
         });
       }
 
-      // Mobile menu functionality
+      if (productsToggle && productsMenu) {
+        productsToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = productsMenu.style.display === 'block';
+          productsMenu.style.display = isOpen ? 'none' : 'block';
+          if (dropdownMenu) dropdownMenu.style.display = 'none';
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        if (dropdownToggle && dropdownMenu && 
+            !dropdownToggle.contains(e.target) && 
+            !dropdownMenu.contains(e.target)) {
+          dropdownMenu.style.display = 'none';
+        }
+        if (productsToggle && productsMenu && 
+            !productsToggle.contains(e.target) && 
+            !productsMenu.contains(e.target)) {
+          productsMenu.style.display = 'none';
+        }
+      });
+
       const menuButton = document.getElementById('menu-button');
       const mainMenu = document.getElementById('mainmenu');
 
