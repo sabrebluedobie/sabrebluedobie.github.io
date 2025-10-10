@@ -6,11 +6,12 @@
   <title>DobieCore Captions — your social content generator</title>
 
   <link rel="stylesheet" href="captioncraft.css" />
-
   <link rel="stylesheet" href="/assets/css/bluedobie-developing-redesign.webflow.css" />
   <link rel="stylesheet" href="/assets/css/style.css" />
   <link rel="stylesheet" href="/assets/css/webflow.css" />
   <link rel="stylesheet" href="/css/mobile-nav.css" />
+  <link rel="stylesheet" href="footer-compact.css" />
+  
   <style>
     h1 {font-family: Georgia, 'Times New Roman', Times, serif;}
     p.lead {
@@ -44,14 +45,8 @@
 
     .modal { display:none; position:fixed; z-index:1000; top:0; right:0; bottom:0; left:0; background:rgba(0,0,0,.5); }
     @supports (inset: 0) {
-  .modal {
-    inset: 0;
-    top: unset;
-    right: unset;
-    bottom: unset;  
-    left: unset;
-  }
-} 
+      .modal { inset: 0; top: unset; right: unset; bottom: unset; left: unset; }
+    } 
     .modal-content { background:#fff; margin:10% auto; padding:24px; border-radius:16px; max-width:520px;
       box-shadow:0 20px 60px rgba(0,0,0,.25); }
     .modal .buttons { display:flex; gap:10px; margin-top:12px; }
@@ -62,311 +57,67 @@
     .benefits { list-style:none; padding:0; margin:8px 0; }
     .benefits li { padding:6px 0; }
     .benefits li::before { content:"✓ "; color:#22c55e; font-weight:700; }
-    /* Social Bar Styles */
-    .social-bar {
-      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
-      border-top: 1px solid #e9edf6;
-      border-bottom: 1px solid #e9edf6;
-      padding: 10px 0;
-    }
-
-    .social-bar-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .social-links-column {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: nowrap;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      border: 1px solid #e9edf6;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    }
-
-    .social-links-column .label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
-      margin-right: 8px;
-    }
-
-    .social-link {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #fff;
-      color: var(--ink);
-      text-decoration: none;
-      border: 2px solid #d9e0ee;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .social-link:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(47, 109, 246, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .social-bar {
-        display: none; /* Hide social bar on mobile to avoid clutter */
-      }
-      
-      .social-bar-inner {
-        flex-direction: column;
-        gap: 12px;
-      }
-      
-      .social-links-column {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      
-      .social-link {
-        font-size: 11px;
-        padding: 4px 8px;
-      }
-      
-      .social-links-column .label {
-        font-size: 12px;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 4px;
-      }
-      
-      /* ==== FOOTER v2 — compact, mobile-first, gremlin-proof ==== */
-.footer-v2{
-  --fz-body: 15px;         /* base text size */
-  --fz-small: 12.5px;      /* legal */
-  --gap-row: .6rem;        /* space between rows */
-  --gap-inner: .4rem;      /* space inside a row */
-  --logo: 7em;            /* logo size (mobile) */
-  --icon: 18px;            /* social icons */
-
-  background:#e4e5e7;
-  color:#1f2a37;
-  padding:12px 10px;
-  line-height:1.3;
-  font-size:var(--fz-body);
-
-  /* stop the “letter-per-line” nonsense */
-  word-break: normal;
-  overflow-wrap: break-word;
-}
-
-.footer-v2 .footer-rows{
-  display:grid;
-  grid-template-rows:auto auto auto;  /* 3 rows */
-  gap:var(--gap-row);
-  max-width:720px;
-  margin:0 auto;
-  text-align:center;
-}
-
-/* Row 1 — brand */
-.footer-v2 .logo{
-  width:var(--logo); height:auto; display:block; margin:0 auto .25rem;
-}
-.footer-v2 .brand-name{
-  margin:0;
-  font:600 1.05rem/1.2 "Instrument Serif", serif;
-  text-align: center;
-}
-.footer-v2 .tagline{
-  margin:.15rem 0 0;
-  color:#6b7280;
-  font-size:.92rem;
-  text-align: center;
-}
-
-/* Row 2 — info */
-.footer-v2 .info{ display:grid; gap:var(--gap-inner); padding-top:.25rem; position:relative; 
-text-align: center; justify-content: center;}
-.footer-v2 .info::before{          /* subtle thin divider */
-  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
-  width:44px; height:1px; background:#dfe3e7;
-}
-
-.footer-v2 .links ul{  margin:0; padding:0; list-style:none; text-align: center;}
-.footer-v2 .links li + li{ margin-top:.25rem; text-align: center; }
-.footer-v2 .links a{ color:inherit; text-decoration:none; transition:.2s ease;
-text-align: center; }
-
-.footer-v2 .contact{ font-style:var(--fz-body); line-height:1.4;
-text-align: center;
-.footer-v2 .contact p{
-  margin:.2rem 0;
-}
-.footer-v2 .no-break{ white-space:nowrap; }
-
-.footer-v2 .social{
-  display:inline-flex; gap: 0.4em; align-items:center; flex-wrap:wrap; min-width:0;
-}
-.footer-v2 .social .icon{ width:var(--icon); height:var(--icon); display:block; }
-
-/* Row 3 — legal */
-.footer-v2 .legal{
-  margin:.25rem 0 0;
-  color:#8b95a1;
-  font-size:var(--fz-small);
-}
-
-/* Nuke legacy footer gremlins if they exist anywhere */
-.footer, .site-footer, .captioncraft-footer{ word-break:normal; }
-.footer .col, .site-footer .col, .captioncraft-footer .col,
-.footer .contact, .site-footer .contact, .captioncraft-footer .contact{ min-width:0; }
-
-/* ====== DESKTOP TUNE (≥ 768px) ====== */
-@media (min-width:768px){
-  .footer-v2{
-    --fz-body: 16px;
-    --logo: 60px;
-    --icon: 20px;
-    padding:14px 16px;
-  }
-  .footer-v2 .footer-rows{ gap:.75rem; max-width:960px; }
-  .footer-v2 .brand-name{ font-size:1.15rem; }
-  .footer-v2 .tagline{ font-size:.95rem; }
-  .footer-v2 .links li + li{ margin-top:.2rem; }
-}
-
-/* ====== WIDE DESKTOP TUNE (≥ 1100px) — still stacked rows, just tighter ====== */
-@media (min-width:1100px){
-  .footer-v2{ padding:14px 18px; }
-  .footer-v2 .footer-rows{ max-width:1040px; }
-}
-
   </style>
 </head>
 
 <body>
-  <!-- Exact site nav -->
-  <!-- _includes/nav.html -->
-<nav class="site-nav w-nav" aria-label="Primary">
-  <div class="container nav-container">
-    <div class="nav-elements-holder">
-      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
-        <img src="/assets/images/bluedobielogo_1.webp"
-             width="64" height="64"
-             alt="Bluedobie Developing logo"
-             class="brand-logo">
-      </a>
+  <nav class="site-nav w-nav" aria-label="Primary">
+    <div class="container nav-container">
+      <div class="nav-elements-holder">
+        <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+          <img src="/assets/images/bluedobielogo_1.webp" width="64" height="64" alt="Bluedobie Developing logo" class="brand-logo">
+        </a>
 
-      <!-- main links -->
-      <div class="nav-menu-container">
-        <div class="nav-menu w-nav-menu" id="mainmenu">
-          <div class="nav-link-holder">
-            <a href="/" class="nav-link w-inline-block">Home</a>
-          </div>
-          <div class="nav-link-holder">
-            <a href="/about.html" class="nav-link w-inline-block">About</a>
-          </div>
-          <div class="nav-link-holder">
-            <a href="/services.html" class="nav-link w-inline-block">Services</a>
-          </div>
+        <div class="nav-menu-container">
+          <div class="nav-menu w-nav-menu" id="mainmenu">
+            <div class="nav-link-holder">
+              <a href="/" class="nav-link w-inline-block">Home</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/about.html" class="nav-link w-inline-block">About</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/services.html" class="nav-link w-inline-block">Services</a>
+            </div>
 
-          <!-- dropdown -->
-          <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle" id="dropdown-toggle">More</button>
-            <section class="dropdown-menu" id="dropdown-menu">
-              <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
-              <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
-              <a href="/contact.html" class="nav-link">Contact</a>
-              <a href="/FAQ.html" class="nav-link">FAQ's</a>
-              <a href="/business-links.html" class="nav-link">Our Links</a>
-            </section>
-          </div>
+            <div class="nav-link-holder dropdown">
+              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+              <section class="dropdown-menu" id="dropdown-menu">
+                <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+                <a href="/contact.html" class="nav-link">Contact</a>
+                <a href="/FAQ.html" class="nav-link">FAQ's</a>
+                <a href="/business-links.html" class="nav-link">Our Links</a>
+              </section>
+            </div>
 
-          <!-- Products / Projects group -->
-          <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle" id="products-toggle">Our Products</button>
-            <section class="dropdown-menu" id="products-menu">
-              <div class="nav-link-holder nav-group">
-                <a href="/sales.html" class="nav-link">Offers</a>
-                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
-                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
-                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
-                <a href="/blog/" class="nav-link">Dialogues</a>
-      <img class="hero-image" 
-     src="/assets/images/dobiecore/Caption.webp" 
-     alt="DobieCore Captions logo" 
-     style="display: block; 
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto; 
-            width: 300px; /* fallback width */
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.3);
-            margin-top: 16px;" />
-          <button class="menu-button w-nav-button"
-                  id="menu-button"
-                  aria-controls="mainmenu"
-                  aria-expanded="false"
-                  aria-label="Toggle menu">
-            <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
-          </button>
+            <div class="nav-link-holder dropdown">
+              <button class="dropdown-toggle" id="products-toggle">Our Products</button>
+              <section class="dropdown-menu" id="products-menu">
+                <div class="nav-link-holder nav-group">
+                  <a href="/sales.html" class="nav-link">Offers</a>
+                  <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                  <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                  <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                  <a href="/blog/" class="nav-link">Dialogues</a>
+                </div>
+              </section>
+            </div>
+
+            <button class="menu-button w-nav-button" id="menu-button" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle menu">
+              <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <!-- Social Links Bar (2nd row) -->
-  <div class="social-bar">
-    <div class="container">
-      <div class="social-bar-inner">
-        <!-- Bluedobie social -->
-        <div class="social-links-column">
-          <span class="label">Follow Bluedobie:</span>
-          <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-          <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
-          <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-          <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-        </div>
-
-        <!-- Sabre's social -->
-        <div class="social-links-column">
-          <span class="label">Follow Sabre:</span>
-          <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-          <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+  </nav>
 
   <main>
     <section class="hero" style="padding:20px 0;max-width:960px;margin:0 auto;">
       <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
       <p class="lead">3 quick captions, platform-aware, with optional AI variety. Built for busy owners, approved by Sabre.</p>
-      <img class="hero-image" 
-     src="/assets/images/dobiecore/Caption.webp" 
-     alt="DobieCore Captions logo" 
-     style="display: block; 
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto; 
-            width: 300px; /* fallback width */
-            aspect-ratio: 1/1;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.3);
-            margin-top: 16px;" />
+      <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions logo" style="display: block; margin: 16px auto 0; max-width: 100%; height: auto; width: 300px; aspect-ratio: 1/1; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.3);" />
     </section>
 
     <section class="tool">
@@ -503,46 +254,48 @@ text-align: center;
   </main>
 
   <footer class="site-footer footer-v2">
-  <div class="footer-rows footer-v2">
-    <!-- Row 1: Title / brand -->
-    <section class="brand">
-      <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo footer-v2">
-      <h2 class="brand-name footer-v2">Bluedobie Developing</h2>
-      <p class="tagline footer-v2">Web design that feels human.</p>
-    </section>
+    <div class="footer-rows">
+      <!-- Brand -->
+      <section class="brand">
+        <a href="/index.html" aria-label="Back to homepage">
+          <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo">
+        </a>
+        <h2 class="brand-name">Bluedobie Developing</h2>
+        <p class="tagline">Web design that feels human.</p>
+      </section>
 
-    <!-- Row 2: Info (nav + contact + socials) -->
-    <section class="info footer-v2" aria-label="Footer information">
-      <nav class="links footer-v2" aria-label="Footer navigation">
-        <ul>
-          <li><a href="/work">Work</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
+      <!-- Info (nav + contact + socials) -->
+      <section class="info" aria-label="Footer information">
+        <nav class="links" aria-label="Footer navigation">
+          <ul>
+            <li><a href="/our-portfolio.html">Work</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
 
-      <address class="contact footer-v2" aria-label="Contact information">
-        <p>
-          <span class="no-break">270-388-3535</span><br>
-          <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
-        </p>
-        <div class="social footer-v2" aria-label="Social media links">
-          <a href="https://facebook.com/bluedobiedev" aria-label="Facebook"><img src="/images/facebook.svg" width="24" height="24" alt=""></a>
-          <a href="https://instagram.com/bluedobiedev" aria-label="Instagram"><img src="/images/instagram.svg" width="24" height="24" alt=""></a>
-          <a href="https://linkedin.com/company/bluedobie-developing" aria-label="LinkedIn"><img src="/images/linkedin.svg" width="24" height="24" alt=""></a>
+        <address class="contact" aria-label="Contact information">
+          <p>
+            <span class="no-break">270-388-3535</span>
+            <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+          </p>
+        </address>
+
+        <div class="social" aria-label="Social media links">
+          <a href="https://facebook.com/bluedobiedev" aria-label="Facebook"><img src="/images/facebook.svg" width="32" height="32" alt=""></a>
+          <a href="https://instagram.com/bluedobiedev" aria-label="Instagram"><img src="/images/instagram.svg" width="32" height="32" alt=""></a>
+          <a href="https://linkedin.com/company/bluedobie-developing" aria-label="LinkedIn"><img src="/images/linkedin.svg" width="32" height="32" alt=""></a>
         </div>
-      </address>
-    </section>
+      </section>
 
-    <!-- Row 3: Copyright -->
-    <p class="legal footer-v2">© 2025 Bluedobie Developing. All rights reserved.</p>
-  </div>
-</footer>
-
+      <!-- Copyright -->
+      <p class="legal">© 2025 Bluedobie Developing. All rights reserved.</p>
+    </div>
+  </footer>
 
   <div id="upgradeModal" class="modal">
     <div class="modal-content">
-      <h2>🎯 You’ve used your 3 free captions today!</h2>
+      <h2>🎯 You've used your 3 free captions today!</h2>
       <p>Ready for unlimited access?</p>
       <div class="price">$9<span style="font-size:18px;font-weight:400;">/month</span></div>
       <ul class="benefits">
@@ -554,13 +307,13 @@ text-align: center;
       <div class="buttons">
         <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
         <button class="btn btn-secondary" id="closeModalBtn">Maybe Later</button>
-        <button class="btn btn-secondary" id="alreadyProBtn" title="Temporary local unlock">I’m already Pro</button>
+        <button class="btn btn-secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
       </div>
       <p class="muted" style="text-align:center;margin-top:8px;">Resets tomorrow at midnight</p>
     </div>
   </div>
+  
   <script src="captioncraft.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="/js/mobile-nav.js"></script>
 </body>
 </html>
