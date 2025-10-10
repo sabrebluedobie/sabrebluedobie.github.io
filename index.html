@@ -114,6 +114,10 @@
     }
 
     @media (max-width: 768px) {
+      .social-bar {
+        display: none; /* Hide social bar on mobile to avoid clutter */
+      }
+      
       .social-bar-inner {
         flex-direction: column;
         gap: 12px;
@@ -122,6 +126,19 @@
       .social-links-column {
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .social-link {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      
+      .social-links-column .label {
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 4px;
       }
     }
     

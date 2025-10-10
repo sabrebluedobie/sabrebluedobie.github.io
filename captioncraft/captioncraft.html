@@ -52,6 +52,95 @@
     .benefits { list-style:none; padding:0; margin:8px 0; }
     .benefits li { padding:6px 0; }
     .benefits li::before { content:"✓ "; color:#22c55e; font-weight:700; }
+    /* Social Bar Styles */
+    .social-bar {
+      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+      border-top: 1px solid #e9edf6;
+      border-bottom: 1px solid #e9edf6;
+      padding: 10px 0;
+    }
+
+    .social-bar-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .social-links-column {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      border: 1px solid #e9edf6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .social-links-column .label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .social-link {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      border: 2px solid #d9e0ee;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(47, 109, 246, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .social-bar {
+        display: none; /* Hide social bar on mobile to avoid clutter */
+      }
+      
+      .social-bar-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .social-links-column {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .social-link {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      
+      .social-links-column .label {
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+    }
   </style>
 </head>
 
