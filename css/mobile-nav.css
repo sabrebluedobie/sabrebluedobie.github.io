@@ -1,0 +1,254 @@
+/* Mobile Navigation Styles */
+
+/* Hamburger Icon Styling */
+.menu-button {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.menu-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+/* Mobile Navigation Overlay */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Mobile Menu Panel */
+.mobile-nav-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 320px;
+  height: 100%;
+  background: #ffffff;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-nav-panel.active {
+  right: 0;
+}
+
+/* Mobile Menu Header */
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e9edf6;
+  background: #f8f9fc;
+}
+
+.mobile-nav-logo {
+  width: 48px;
+  height: 48px;
+}
+
+.mobile-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  color: #042d4d;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Mobile Menu Content */
+.mobile-nav-content {
+  padding: 20px 0;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 14px 20px;
+  color: #042d4d;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: #f8f9fc;
+}
+
+/* Mobile Expandable Sections */
+.mobile-nav-expandable {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobile-nav-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  color: #042d4d;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mobile-nav-toggle:active {
+  background: #f8f9fc;
+}
+
+.mobile-nav-toggle-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-toggle.active .mobile-nav-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-submenu {
+  display: none;
+  background: #f8f9fc;
+  padding: 8px 0;
+}
+
+.mobile-nav-submenu.active {
+  display: block;
+}
+
+.mobile-nav-submenu .mobile-nav-link {
+  padding: 12px 20px 12px 40px;
+  font-size: 15px;
+  color: #1e293b;
+}
+
+/* Mobile CTA Button */
+.mobile-nav-cta {
+  margin: 20px;
+  padding: 14px;
+  background: #042d4d;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-cta:hover,
+.mobile-nav-cta:active {
+  background: #0a4d7a;
+}
+
+/* Mobile Social Links */
+.mobile-social-section {
+  padding: 20px;
+  border-top: 2px solid #e9edf6;
+  margin-top: 20px;
+}
+
+.mobile-social-section h4 {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.mobile-social-group {
+  margin-bottom: 20px;
+}
+
+.mobile-social-group:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mobile-social-link {
+  padding: 6px 12px;
+  background: #fff;
+  color: #042d4d;
+  text-decoration: none;
+  border: 2px solid #d9e0ee;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mobile-social-link:hover,
+.mobile-social-link:active {
+  background: #2f6df6;
+  color: #fff;
+  border-color: #2f6df6;
+}
+
+/* Show on mobile */
+@media (max-width: 991px) {
+  .menu-button {
+    display: block;
+  }
+  
+  /* Hide desktop nav items on mobile */
+  .nav-link-holder:not(.nav-button-holder) {
+    display: none;
+  }
+  
+  .nav-button-holder {
+    display: none;
+  }
+  
+  /* Show mobile elements */
+  .mobile-nav-overlay,
+  .mobile-nav-panel {
+    display: block;
+  }
+}
+
+/* Prevent body scroll when menu is open */
+body.mobile-nav-open {
+  overflow: hidden;
+}
