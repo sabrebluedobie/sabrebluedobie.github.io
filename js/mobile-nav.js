@@ -67,6 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
               <h4>Follow Bluedobie</h4>
               <div class="mobile-social-links">
                 <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="mobile-social-link">Facebook</a>
+                <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="mobile-social-link">Twitter</a>
+                <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="mobile-social-link">LinkedIn</a>
                 <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="mobile-social-link">Instagram</a>
               </div>
             </div>
