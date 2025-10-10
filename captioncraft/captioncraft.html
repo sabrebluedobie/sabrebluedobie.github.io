@@ -167,6 +167,54 @@
         word-break: break-word;
       }
     }
+    /* 1) Stop per-character breaking in the footer */
+.footer, .site-footer, .captioncraft-footer {
+  /* keep text wrapping normal */
+  word-break: normal;
+  overflow-wrap: break-word;    /* wrap at sensible points */
+}
+.footer a, .footer p, .footer li,
+.site-footer a, .site-footer p, .site-footer li,
+.captioncraft-footer a, .captioncraft-footer p, .captioncraft-footer li {
+  white-space: normal;          /* ensure normal multi-word wrapping */
+}
+
+/* Optional: keep phone/email on one line if you prefer */
+.no-break { white-space: nowrap; }
+
+/* 2) If your footer uses flex/grid, let the text column actually grow */
+.footer .col, .site-footer .col, .captioncraft-footer .col,
+.footer .contact, .site-footer .contact, .captioncraft-footer .contact {
+  min-width: 0;                 /* prevents the 1–2ch squeeze in Safari */
+}
+
+/* If you used an icon + text row with flex: */
+.footer .row, .site-footer .row, .captioncraft-footer .row {
+  display: flex;
+  align-items: start;
+  gap: .75rem;
+  flex-wrap: wrap;              /* allow wrapping instead of squishing */
+}
+.footer-v2 {
+  background:#f7f8fa; color:#1f2a37; padding:2rem 1rem; font-size:16px;
+  word-break: normal; overflow-wrap: break-word;
+}
+.footer-v2 .footer-rows { display:grid; grid-template-rows:auto auto auto; gap:1.25rem; text-align:center; }
+.footer-v2 .logo { width:56px; height:auto; display:block; margin:0 auto .5rem; }
+.footer-v2 .brand-name { margin:0; font-weight:700; font-size:1.25rem; }
+.footer-v2 .tagline { margin:.25rem 0 0; color:#4b5563; }
+
+.footer-v2 .info { display:grid; gap:1rem; }
+.footer-v2 .links ul { list-style:none; padding:0; margin:0; }
+.footer-v2 .links li + li { margin-top:.5rem; }
+
+.footer-v2 .contact { font-style:normal; }
+.footer-v2 .social { display:inline-flex; gap:.75rem; align-items:center; flex-wrap:wrap; min-width:0; }
+.footer-v2 .no-break { white-space:nowrap; }
+
+.footer-v2 .legal { margin:.5rem 0 0; color:#6b7280; font-size:14px; }
+
+
   </style>
 </head>
 
@@ -417,19 +465,43 @@
     </section>
   </main>
 
-  <footer class="site-footer" style="margin-top:16px;padding:40px 20px;background:#f8f9fc;">
-    <div class="container" style="max-width:960px;margin:0 auto;text-align:center;">
-      <div class="brand-stack" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;">
-        <img src="/assets/images/dobiecore/Caption.webp" alt="" style="height:28px"/>
-        <p style="margin:0;font-weight:600;">Bluedobie Developing</p>
-      </div>
-      <ul class="footer-contact" style="list-style:none;padding:0;margin:0 0 16px 0;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-        <li><a href="tel:12703883535" style="color:#042d4d;text-decoration:none;">270-388-3535</a></li>
-        <li><a href="mailto:melanie.brown@bluedobiedev.com" style="color:#042d4d;text-decoration:none;">melanie.brown@bluedobiedev.com</a></li>
-      </ul>
-      <p class="legal" style="margin:0;color:#6b7280;font-size:14px;">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
-    </div>
-  </footer>
+  <footer class="site-footer footer-v2">
+  <div class="footer-rows footer-v2">
+    <!-- Row 1: Title / brand -->
+    <section class="brand">
+      <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo footer-v2">
+      <h2 class="brand-name footer-v2">Bluedobie Developing</h2>
+      <p class="tagline footer-v2">Web design that feels human.</p>
+    </section>
+
+    <!-- Row 2: Info (nav + contact + socials) -->
+    <section class="info footer-v2" aria-label="Footer information">
+      <nav class="links footer-v2" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/work">Work</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <address class="contact footer-v2" aria-label="Contact information">
+        <p>
+          <span class="no-break">270-388-3535</span><br>
+          <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+        </p>
+        <div class="social footer-v2" aria-label="Social media links">
+          <a href="https://facebook.com/bluedobiedev" aria-label="Facebook"><img src="/images/facebook.svg" width="24" height="24" alt=""></a>
+          <a href="https://instagram.com/bluedobiedev" aria-label="Instagram"><img src="/images/instagram.svg" width="24" height="24" alt=""></a>
+          <a href="https://linkedin.com/company/bluedobie-developing" aria-label="LinkedIn"><img src="/images/linkedin.svg" width="24" height="24" alt=""></a>
+        </div>
+      </address>
+    </section>
+
+    <!-- Row 3: Copyright -->
+    <p class="legal footer-v2">© 2025 Bluedobie Developing. All rights reserved.</p>
+  </div>
+</footer>
+
 
   <div id="upgradeModal" class="modal">
     <div class="modal-content">
