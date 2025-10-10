@@ -542,16 +542,8 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-  <div data-animation="default" class="navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" data-w-id="e0b516b2-bf57-08a9-1f3c-0329245b60b9" role="banner" data-no-scroll="1" data-duration="500" data-doc-height="1">
-    <div class="container nav-container">
-      <div class="nav-elements-holder">
-        <div class="nav-menu-container">
-        
-        </div>
-      </div>
-    </div>
-  </div>
-          <nav class="site-nav w-nav"  aria-label="Primary">
+<!-- Navigation -->
+<nav class="site-nav w-nav" role="navigation" aria-label="Primary">
   <div class="container nav-container">
     <div class="nav-elements-holder">
       <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
@@ -578,7 +570,6 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
             <section class="dropdown-menu" id="dropdown-menu">
               <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
               <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
-              <a href="/blog-home.html" class="nav-link">Blog</a>
               <a href="/contact.html" class="nav-link">Contact</a>
               <a href="/FAQ.html" class="nav-link">FAQ's</a>
               <a href="/business-links.html" class="nav-link">Our Links</a>
@@ -586,68 +577,55 @@ src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1"
           </div>
 
           <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle" id="products-toggle">Products</button>
+            <button class="dropdown-toggle" id="products-toggle">Our Products</button>
             <section class="dropdown-menu" id="products-menu">
-              <a href="/gazette.html" class="nav-link" target="_blank" rel="noopener">Gridiron Gazette</a>
-              <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Captions</a>
+              <div class="nav-link-holder nav-group">
+                <a href="/sales.html" class="nav-link">Offers</a>
+                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                <a href="/blog/" class="nav-link">Dialogues</a>
+              </div>
             </section>
           </div>
-        </div>
 
-        <button class="menu-button w-nav-button"
-                id="menu-button"
-                aria-label="Toggle navigation menu"
-                aria-expanded="false">
-          <div class="icon-2 w-icon-nav-menu"></div>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Social Links Bar (NEW - separate row) -->
-  <div class="social-bar">
-    <div class="container">
-      <div class="social-groups">
-        <div class="social-group">
-          <span class="social-label">Bluedobie:</span>
-          <div class="social-links">
-            <a href="https://www.facebook.com/bluedobiedev" target="_blank" rel="noopener" aria-label="Bluedobie Facebook">
-              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
-            </a>
-            <a href="https://www.instagram.com/bluedobiedev/" target="_blank" rel="noopener" aria-label="Bluedobie Instagram">
-              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://www.linkedin.com/company/bluedobie-developing" target="_blank" rel="noopener" aria-label="Bluedobie LinkedIn">
-              <img src="/images/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
-          </div>
-        </div>
-
-        <div class="social-group">
-          <span class="social-label">Sabre:</span>
-          <div class="social-links">
-            <a href="https://www.facebook.com/sabrethebluedobie" target="_blank" rel="noopener" aria-label="Sabre Facebook">
-              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
-            </a>
-            <a href="https://www.instagram.com/sabrethebluedobie" target="_blank" rel="noopener" aria-label="Sabre Instagram">
-              <img src="/images/instagram.svg?ver=229512" alt="Instagram" class="social-icon">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-        
-          <div class="nav-menu-overlay-mobile"></div>
-          <div class="nav-link-holder nav-button-holder-copy">
-            <a data-w-id="21f763a3-44d0-e6a3-ac84-b9cf055e839b" href="/contact.html" class="button nav w-inline-block">
+          <div class="nav-link-holder nav-button-holder">
+            <a href="/contact.html" class="button nav w-inline-block">
               <div>Contact Us</div>
             </a>
           </div>
-          <div class="menu-button w-nav-button"><img src="images/menu-icon.svg" loading="lazy" alt="Webflow Template - Designed by Azwedo.com and Wedoflow.com" class="menu-icon">
-            
-            </div>
-            </nav>
+
+          <button class="menu-button w-nav-button"
+                  id="menu-button"
+                  aria-controls="mainmenu"
+                  aria-expanded="false"
+                  aria-label="Toggle menu">
+            <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Social Links Bar (2nd row) -->
+  <div class="social-bar">
+    <div class="social-bar-inner">
+      <div class="social-links-column">
+        <span class="label">Follow Bluedobie:</span>
+        <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
+        <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+        <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      </div>
+
+      <div class="social-links-column">
+        <span class="label">Follow Sabre:</span>
+        <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
+        <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+      </div>
+    </div>
+  </div>
+</nav>
   <section>
     <div class="hero-section" style="position: relative; display: block;">
     <div class="container blog-container hero-container">
