@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- More Dropdown -->
           <div class="mobile-nav-expandable">
-            <button class="mobile-nav-toggle" data-target="more-menu">
+            <button class="mobile-nav-toggle" data-target="mobile-more-menu">
               More
               <span class="mobile-nav-toggle-icon">▼</span>
             </button>
-            <div class="mobile-nav-submenu" id="more-menu">
+            <div class="mobile-nav-submenu" id="mobile-more-menu">
               <a href="/our-portfolio.html" class="mobile-nav-link">Portfolio</a>
               <a href="/meet-sabre.html" class="mobile-nav-link">Meet Sabre</a>
               <a href="/contact.html" class="mobile-nav-link">Contact</a>
@@ -45,11 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- Products Dropdown -->
           <div class="mobile-nav-expandable">
-            <button class="mobile-nav-toggle" data-target="products-menu">
+            <button class="mobile-nav-toggle" data-target="mobile-products-menu">
               Our Products
               <span class="mobile-nav-toggle-icon">▼</span>
             </button>
-            <div class="mobile-nav-submenu" id="products-menu">
+            <div class="mobile-nav-submenu" id="mobile-products-menu">
               <a href="/sales.html" class="mobile-nav-link">Offers</a>
               <a href="/dobiecore/contracts/index.html" class="mobile-nav-link">DobieCore Contracts (coming soon)</a>
               <a href="/captioncraft/captioncraft.html" class="mobile-nav-link">DobieCore Caption</a>
