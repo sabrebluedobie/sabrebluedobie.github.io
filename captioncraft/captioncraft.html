@@ -58,7 +58,7 @@
 <body>
   <!-- Exact site nav -->
   <!-- _includes/nav.html -->
-<nav class="site-nav w-nav" role="navigation" aria-label="Primary">
+<nav class="site-nav w-nav" aria-label="Primary">
   <div class="container nav-container">
     <div class="nav-elements-holder">
       <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
@@ -155,12 +155,22 @@
     <section class="hero" style="padding:20px 0;max-width:960px;margin:0 auto;">
       <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
       <p class="lead">3 quick captions, platform-aware, with optional AI variety. Built for busy owners, approved by Sabre.</p>
-      <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="CaptionCraft" style="justify-content: center;
-      margin: 0 auto;max-width:100%;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);margin-top:16px;"/>
+      <img class="hero-image" 
+     src="/assets/images/dobiecore/Caption.webp" 
+     alt="DobieCore Captions logo" 
+     style="display: block; 
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto; 
+            width: 300px; /* fallback width */
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.3);
+            margin-top: 16px;" />
     </section>
 
     <section class="tool">
-      <div class="container" style="width:80vw;margin:0 auto;">
+      <div class="container" style="width:100%;margin:0 auto;">
         <form id="captionForm" class="brief simple-form">
           <div class="field-group">
             <label for="company">Company / Brand (optional)</label>
