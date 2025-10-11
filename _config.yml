@@ -1,6 +1,7 @@
 title: "Bluedobie Developing"
 url: "https://www.bluedobiedev.com"
 baseurl: ""   # leave empty at domain root
+repository: "sabrebluedobie/sabrebluedobie.github.io"
 
 # Blog posts (Bluedobie Dialogues)
 collections:
@@ -47,4 +48,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - Bluedobie--Dialogues/vendor/
+  - Bluedobie--Dialogues/
