@@ -1,25 +1,45 @@
-<!-- _includes/footer.html -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-container">
-    <nav class="footer-links" aria-label="Footer">
-      <a href="/about.html" class="footer-link">About Us</a>
-      <a href="/services.html" class="footer-link">Services</a>
-      <a href="/contact.html" class="footer-link">Contact</a>
-      <a href="/FAQ.html" class="footer-link">FAQ’s</a>
-      <a href="/business-links.html" class="footer-link">Our Links</a>
-      <a href="/privacy.html" class="footer-link">Privacy Policy</a>
-    </nav>
-
-    <div class="footer-brand">
-      <a href="/" aria-label="Bluedobie Developing home">
-        <img src="/assets/images/bluedobielogo_1.webp"
-             width="120" height="120"
-             alt="Bluedobie Developing logo"
-             class="footer-logo" loading="lazy">
+<footer class="site-footer footer-v2" role="contentinfo">
+  <div class="footer-rows">
+    <!-- Brand -->
+    <section class="brand">
+      <a href="{{ '/index.html' | relative_url }}" aria-label="Back to homepage">
+        <img src="{{ '/images/bluedobielogo_1.webp' | relative_url }}" alt="Bluedobie Developing" class="logo">
       </a>
-      <p class="footer-text">
-        &copy; {{ "now" | date: "%Y" }} {{ site.title | default: "Bluedobie Developing" }}. All rights reserved.
-      </p>
-    </div>
+      <h2 class="brand-name">Bluedobie Developing</h2>
+      <p class="tagline">Web design that feels human.</p>
+    </section>
+
+    <!-- Info (nav + contact + socials) -->
+    <section class="info" aria-label="Footer information">
+      <nav class="links" aria-label="Footer navigation">
+        <ul>
+          <li><a href="{{ '/our-portfolio.html' | relative_url }}">Work</a></li>
+          <li><a href="{{ '/services.html' | relative_url }}">Services</a></li>
+          <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
+        </ul>
+      </nav>
+
+      <address class="contact" aria-label="Contact information">
+        <p>
+          <span class="no-break">270-388-3535</span>
+          <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+        </p>
+      </address>
+
+      <div class="social" aria-label="Social media links">
+        <a href="https://facebook.com/bluedobiedev" aria-label="Facebook">
+          <img src="{{ '/images/facebook.svg' | relative_url }}" width="32" height="32" alt="">
+        </a>
+        <a href="https://instagram.com/bluedobiedev" aria-label="Instagram">
+          <img src="{{ '/images/instagram.svg' | relative_url }}" width="32" height="32" alt="">
+        </a>
+        <a href="https://linkedin.com/company/bluedobie-developing" aria-label="LinkedIn">
+          <img src="{{ '/images/linkedin.svg' | relative_url }}" width="32" height="32" alt="">
+        </a>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <p class="legal">© {{ "now" | date: "%Y" }} Bluedobie Developing. All rights reserved.</p>
   </div>
 </footer>

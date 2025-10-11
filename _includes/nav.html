@@ -1,4 +1,11 @@
-<!-- _includes/nav.html -->
+{%- comment -%}
+Canonical navigation include, mirroring /captioncraft/captioncraft.html
+Adjusted per Melanie:
+- Dialogues → /blog-home.html
+- Product label: "DobieCore Captions"
+- Cleaned hrefs (removed angle-bracket markdown)
+{%- endcomment -%}
+
 <nav class="site-nav w-nav" role="navigation" aria-label="Primary">
   <div class="container nav-container">
     <div class="nav-elements-holder">
@@ -9,7 +16,6 @@
              class="brand-logo">
       </a>
 
-      <!-- main links -->
       <div class="nav-menu-container">
         <div class="nav-menu w-nav-menu" id="mainmenu">
           <div class="nav-link-holder">
@@ -22,68 +28,68 @@
             <a href="/services.html" class="nav-link w-inline-block">Services</a>
           </div>
 
-          <!-- dropdown -->
           <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle"
-                    id="more-toggle"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-controls="more-menu">
-              More
-              <span class="chev" aria-hidden="true">▾</span>
-            </button>
-            <div class="dropdown-menu" id="more-menu" role="menu">
+            <button class="dropdown-toggle" id="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">More</button>
+            <section class="dropdown-menu" id="dropdown-menu" role="menu">
               <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
               <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
-              <!-- If you prefer Blog only in the group below, delete this next line -->
-              <!-- <a href="/blog/" class="nav-link" role="menuitem">Blog</a> -->
+              <a href="/blog-home.html" class="nav-link" role="menuitem">Dialogues</a>
               <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
-              <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ’s</a>
+              <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ's</a>
               <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
-            </div>
+            </section>
           </div>
 
-          <!-- Products / Projects group -->
-          <div class="nav-link-holder nav-group">
-            <a href="/sales.html" class="nav-link">Offers</a>
-            <a href="/dobiecore/contracts/" class="nav-link">ContractKit</a>
-            <a href="/dobiecore/captioncraft/" class="nav-link">DobieCore Caption</a>
-            <!-- NEW: Gridiron Gazette microsite -->
-            <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
-            <!-- NEW: Blog index (Bluedobie Dialogues) -->
-            <a href="/blog/" class="nav-link">Dialogues</a>
-            <!-- If your current blog index is /blog-home.html, use that instead: -->
-            <!-- <a href="/blog-home.html" class="nav-link">Dialogues</a> -->
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="products-menu">Our Products</button>
+            <section class="dropdown-menu" id="products-menu" role="menu">
+              <a href="https://gridirongazette.bluedobiedev.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">Gridiron Gazette</a>
+              <a href="/captioncraft/captioncraft.html" class="nav-link" role="menuitem">DobieCore Captions</a>
+              <a href="/sales.html" class="nav-link" role="menuitem">Offers</a>
+            </section>
           </div>
         </div>
 
-        <!-- social -->
-        <div class="social-links-column">
-          <span class="label">Follow:</span>
-          <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-          <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
-          <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-          <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-        </div>
-
-        <!-- CTA -->
-        <div class="nav-link-holder nav-button-holder">
-          <a href="/contact.html" class="button nav w-inline-block">
-            <div>Contact Us</div>
-          </a>
-        </div>
-
-        <!-- mobile menu button -->
         <button class="menu-button w-nav-button"
                 id="menu-button"
-                aria-controls="mainmenu"
-                aria-expanded="false"
-                aria-label="Toggle menu">
-          <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+          <div class="icon-2 w-icon-nav-menu"></div>
         </button>
       </div>
     </div>
   </div>
-</nav>
 
-<a href="/gazette/" class="nav-link{% if page.url == '/gazette/' or page.url contains '/gazette/' %} active{% endif %}">Gridiron Gazette</a>
+  <!-- Social Links Bar (separate row) -->
+  <div class="social-bar">
+    <div class="container">
+      <div class="social-groups">
+        <div class="social-group">
+          <span class="social-label">Bluedobie:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrebluedobie" target="_blank" rel="noopener" aria-label="Bluedobie Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrebluedobie/" target="_blank" rel="noopener" aria-label="Bluedobie Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/bluedobiedeveloping/" target="_blank" rel="noopener" aria-label="Bluedobie LinkedIn">
+              <img style="width: 2em;" src="/images/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+          </div>
+        </div>
+
+        <div class="social-group">
+          <span class="social-label">Sabre:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,31 +1,7 @@
-<!-- _includes/footer-scripts.html -->
+{%- comment -%} Global site scripts {%- endcomment -%}
+<script src="/js/mobile-nav.js"></script>
 
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
-n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','776246200615205'); fbq('track','PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=776246200615205&ev=PageView&noscript=1" alt="">
-</noscript>
-
-<!-- Zoho SalesIQ -->
-<script type="text/javascript" id="zsiqchat">
-  var $zoho=$zoho || {};
-  $zoho.salesiq = $zoho.salesiq || {
-    widgetcode:"siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8",
-    values:{},ready:function(){ }
-  };
-  (function(){
-    var d=document,s=d.createElement("script");
-    s.type="text/javascript"; s.id="zsiqscript"; s.defer=true;
-    s.src="https://salesiq.zohopublic.com/widget";
-    var t=d.getElementsByTagName("script")[0]; t.parentNode.insertBefore(s,t);
-  })();
-</script>
+{%- comment -%} Optional per-page hook for extra scripts {%- endcomment -%}
+{% if page.extra_scripts %}
+  {{ page.extra_scripts }}
+{% endif %}

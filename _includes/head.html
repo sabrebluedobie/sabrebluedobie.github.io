@@ -1,117 +1,50 @@
-{%- comment -%}
-  _includes/head.html
-  - Centralized <head> for all pages
-  - Supports per-page overrides via front matter:
-    title: "Page Title"
-    description: "Custom meta description"
-    image: "/path/to/social-card.png"
-    og_type: "article" | "website"
-    canonical_url: "https://example.com/custom-canonical"
-    noindex: true
-    extra_css:
-      - /assets/css/this-page-only.css
-{%- endcomment -%}
+{%- comment -%} Centralized <head> {%- endcomment -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {%- assign _title   = page.title | default: site.title | default: "Bluedobie Developing" -%}
-{%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | truncate: 160 -%}
+{%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | normalize_whitespace | truncate: 160 -%}
 {%- assign _image   = page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
 {%- assign _canon   = page.canonical_url | default: page.url | absolute_url -%}
 {%- assign _og_type = page.og_type | default: (page.layout == "post" or page.collection == "posts") | ternary: "article", "website" -%}
 
 <title>{{ _title }}</title>
-
-{%- if page.noindex or site.noindex -%}
-<meta name="robots" content="noindex, nofollow">
-{%- endif -%}
-
-{#-- Primary meta --#}
-<meta name="description" content="{{ _desc }}">
-
-{#-- Open Graph --#}
-<meta property="og:title" content="{{ _title }}">
-<meta property="og:description" content="{{ _desc }}">
-<meta property="og:image" content="{{ _image }}">
-<meta property="og:url" content="{{ _canon }}">
-<meta property="og:type" content="{{ _og_type }}">
-
-{#-- Twitter --#}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ _title }}">
-<meta name="twitter:description" content="{{ _desc }}">
-<meta name="twitter:image" content="{{ _image }}">
-
-{#-- Canonical --#}
+{%- if _desc and _desc != "" -%}<meta name="description" content="{{ _desc }}">{%- endif -%}
 <link rel="canonical" href="{{ _canon }}">
 
-{#-- Favicons --#}
-<link rel="icon" href="/assets/images{{ '/assets/images/favicon.png' | relative_url }}" type="image/x-icon">
-<link rel="apple-touch-icon" href="/assets/images/webclip.png">
+<!-- Open Graph -->
+<meta property="og:title" content="{{ _title }}">
+{%- if _desc and _desc != "" -%}<meta property="og:description" content="{{ _desc }}">{%- endif -%}
+<meta property="og:type" content="{{ _og_type }}">
+<meta property="og:url" content="{{ _canon }}">
+<meta property="og:image" content="{{ _image }}">
 
-{#-- Google site verification --#}
-<meta name="google-site-verification" content="oM9Gpq0deMl-LE0qd_XOPBkH3ONaMBNVWnqjaajPmkY">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ _title }}">
+{%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc }}">{%- endif -%}
+<meta name="twitter:image" content="{{ _image }}">
 
-{#-- Fonts --#}
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-{#-- CSS (order: reset → framework → theme) --#}
-<link href="/assets/css/normalize.css" rel="stylesheet">
-<link href="/assets/css/webflow.css" rel="stylesheet">
-<link href="/assets/css/bluedobie-developing-redesign.webflow.css" rel="stylesheet">
-<link href="/assets/css/style.css" rel="stylesheet">
+<!-- CSS: reset → framework → theme → overrides -->
+<link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/webflow.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/css/nav-footer-shared.css' | relative_url }}"><!-- new shared -->
+<link rel="stylesheet" href="{{ '/css/app.css' | relative_url }}"><!-- your tweaks -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+
+
+<!-- Your site-level overrides -->
+
+
 {%- if page.extra_css -%}
-  {%- for css in page.extra_css -%}
-<link href="{{ css }}" rel="stylesheet">
+  {%- for href in page.extra_css -%}
+<link rel="stylesheet" href="{{ href | relative_url }}">
   {%- endfor -%}
-{%- endif -%}
-
-{#-- GA4 (keep Pixel & Zoho in footer-scripts include) --#}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config','G-6B45D1C0L8');
-</script>
-
-{#-- Tiny lazy loader (optional) --#}
-<script>
-  (function(){
-    function load(){
-      document.querySelectorAll("script[data-type='lazy']").forEach(el => el.src = el.dataset.src);
-      document.querySelectorAll("iframe[data-type='lazy']").forEach(el => el.src = el.dataset.src);
-    }
-    const t = setTimeout(load, 5000);
-    ["mouseover","keydown","touchmove","touchstart"].forEach(evt=>{
-      window.addEventListener(evt, ()=>{ load(); clearTimeout(t); }, {once:true, passive:true});
-    });
-  })();
-</script>
-
-{#-- JSON-LD (Article when a post; Website otherwise) --#}
-{%- if _og_type == "article" -%}
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Article",
-  "headline": {{ _title | jsonify }},
-  "description": {{ _desc | jsonify }},
-  "image": {{ _image | jsonify }},
-  "url": {{ _canon | jsonify }},
-  "author": { "@type": "Organization", "name": {{ site.title | default: "Bluedobie Developing" | jsonify }} },
-  "publisher": { "@type": "Organization", "name": {{ site.title | default: "Bluedobie Developing" | jsonify }} }
-}
-</script>
-{%- else -%}
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name": {{ site.title | default: "Bluedobie Developing" | jsonify }},
-  "url": {{ site.url | default: site.github.url | default: "/" | absolute_url | jsonify }}
-}
-</script>
 {%- endif -%}

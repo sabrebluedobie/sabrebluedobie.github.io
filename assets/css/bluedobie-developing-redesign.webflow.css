@@ -2525,7 +2525,7 @@ blockquote {
 .blog-item-summary {
   text-overflow: ellipsis;
   line-break: auto;
-  box-orient: vertical;
+  -webkit-box-orient: vertical;
   margin-bottom: 0;
   font-weight: 300;
   display: -webkit-box;
