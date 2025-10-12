@@ -24,9 +24,9 @@
 
   {% include footer.html %}
   
-  {%- comment -%} Load Webflow FIRST, then override with our mobile nav {%- endcomment -%}
-  <script src="{{ '/assets/js/webflow.js' | relative_url }}"></script>
+  {%- comment -%} Load scripts in correct order: jQuery → footer-scripts → Webflow → Mobile Nav {%- endcomment -%}
   {% include footer-scripts.html %}
-  <script src="{{ '/js/mobile-nav.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/webflow.js' | relative_url }}"></script>
+  <script src="{{ '/js/mobile-nav.js' | relative_url }}"></script>
 </body>
 </html>
