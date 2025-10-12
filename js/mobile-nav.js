@@ -1,10 +1,29 @@
-// Mobile Navigation JavaScript
-document.addEventListener("DOMContentLoaded", () => {
+// Mobile Navigation JavaScript - AGGRESSIVE VERSION
+console.log('🔵 Mobile nav script loading...');
+
+// Wait for EVERYTHING to load, then override Webflow
+window.addEventListener('load', function() {
+  console.log('🔵 Window loaded, initializing mobile nav...');
+  
+  // Small delay to ensure Webflow is done
+  setTimeout(function() {
+    initMobileNav();
+  }, 100);
+});
+
+function initMobileNav() {
+  console.log('🔵 Initializing mobile nav...');
+  
   // Create mobile navigation HTML structure
   const createMobileNav = () => {
     // Check if mobile nav already exists
-    if (document.getElementById('mobile-nav-panel')) return;
+    if (document.getElementById('mobile-nav-panel')) {
+      console.log('🔵 Mobile nav already exists');
+      return;
+    }
 
+    console.log('🔵 Creating mobile nav HTML...');
+    
     const mobileNavHTML = `
       <!-- Mobile Navigation Overlay -->
       <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
@@ -87,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Insert mobile nav into body
     document.body.insertAdjacentHTML('beforeend', mobileNavHTML);
+    console.log('🔵 Mobile nav HTML created');
   };
 
   // Initialize mobile nav
@@ -98,31 +118,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
   const mobileCloseBtn = document.getElementById('mobile-close-btn');
 
+  console.log('🔵 Elements found:', {
+    menuButton: !!menuButton,
+    mobileNavPanel: !!mobileNavPanel,
+    mobileNavOverlay: !!mobileNavOverlay,
+    mobileCloseBtn: !!mobileCloseBtn
+  });
+
   // Open mobile menu
   const openMobileMenu = () => {
+    console.log('🔵 Opening mobile menu...');
     mobileNavPanel.classList.add('active');
     mobileNavOverlay.classList.add('active');
     document.body.classList.add('mobile-nav-open');
-    menuButton.setAttribute('aria-expanded', 'true');
+    if (menuButton) menuButton.setAttribute('aria-expanded', 'true');
   };
 
   // Close mobile menu
   const closeMobileMenu = () => {
+    console.log('🔵 Closing mobile menu...');
     mobileNavPanel.classList.remove('active');
     mobileNavOverlay.classList.remove('active');
     document.body.classList.remove('mobile-nav-open');
-    menuButton.setAttribute('aria-expanded', 'false');
+    if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
   };
 
-  // Toggle mobile menu
+  // NUCLEAR OPTION: Remove ALL existing click handlers and add ours
   if (menuButton) {
-    menuButton.addEventListener('click', (e) => {
+    console.log('🔵 Setting up hamburger button...');
+    
+    // Clone the button to remove all event listeners
+    const newMenuButton = menuButton.cloneNode(true);
+    menuButton.parentNode.replaceChild(newMenuButton, menuButton);
+    
+    // Now add our handler to the clean button
+    newMenuButton.addEventListener('click', function(e) {
+      console.log('🔵 Hamburger clicked!');
       e.preventDefault();
       e.stopPropagation();
-      e.stopImmediatePropagation(); // Stop ALL event handlers
+      e.stopImmediatePropagation();
       
-      // Remove Webflow's class if it tries to add it
-      menuButton.classList.remove('w--open');
+      // Remove Webflow's class
+      newMenuButton.classList.remove('w--open');
       
       if (mobileNavPanel.classList.contains('active')) {
         closeMobileMenu();
@@ -130,8 +167,12 @@ document.addEventListener("DOMContentLoaded", () => {
         openMobileMenu();
       }
       
-      return false; // Extra insurance
-    }, true); // Use capture phase to run before Webflow
+      return false;
+    }, true);
+    
+    console.log('🔵 Hamburger button ready!');
+  } else {
+    console.error('❌ Menu button not found!');
   }
 
   // Close menu when clicking overlay
@@ -168,10 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Close menu when clicking links (optional, for better UX)
+  // Close menu when clicking links
   document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
     link.addEventListener('click', () => {
-      // Small delay to allow navigation
       setTimeout(closeMobileMenu, 100);
     });
   });
@@ -183,40 +223,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Desktop dropdown functionality (existing code preserved)
-  const dropdownToggle = document.getElementById("dropdown-toggle");
-  const dropdownMenu = document.getElementById("dropdown-menu");
-  const productsToggle = document.getElementById("products-toggle");
-  const productsMenu = document.getElementById("products-menu");
-
-  if (dropdownToggle && dropdownMenu) {
-    dropdownToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = dropdownMenu.style.display === "block";
-      dropdownMenu.style.display = isOpen ? "none" : "block";
-      if (productsMenu) productsMenu.style.display = "none";
-    });
-  }
-
-  if (productsToggle && productsMenu) {
-    productsToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = productsMenu.style.display === "block";
-      productsMenu.style.display = isOpen ? "none" : "block";
-      if (dropdownMenu) dropdownMenu.style.display = "none";
-    });
-  }
-
-  document.addEventListener("click", (e) => {
-    if (dropdownToggle && dropdownMenu && 
-        !dropdownToggle.contains(e.target) && 
-        !dropdownMenu.contains(e.target)) {
-      dropdownMenu.style.display = "none";
-    }
-    if (productsToggle && productsMenu && 
-        !productsToggle.contains(e.target) && 
-        !productsMenu.contains(e.target)) {
-      productsMenu.style.display = "none";
-    }
-  });
-});
+  console.log('🔵 Mobile nav fully initialized!');
+}
