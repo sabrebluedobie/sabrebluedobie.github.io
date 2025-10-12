@@ -119,12 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
     menuButton.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
+      e.stopImmediatePropagation(); // Stop ALL event handlers
+      
+      // Remove Webflow's class if it tries to add it
+      menuButton.classList.remove('w--open');
+      
       if (mobileNavPanel.classList.contains('active')) {
         closeMobileMenu();
       } else {
         openMobileMenu();
       }
-    });
+      
+      return false; // Extra insurance
+    }, true); // Use capture phase to run before Webflow
   }
 
   // Close menu when clicking overlay

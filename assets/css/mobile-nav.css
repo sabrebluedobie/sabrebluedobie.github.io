@@ -217,9 +217,26 @@ body.mobile-nav-open {
 
 /* Override Webflow default mobile menu behavior */
 @media (max-width: 991px) {
-  /* Hide the default Webflow dropdown nav menu on mobile */
-  .nav-menu.w-nav-menu {
+  /* Hide the default Webflow dropdown nav menu on mobile - FORCE IT */
+  .nav-menu.w-nav-menu,
+  [data-nav-menu-open],
+  .w--nav-link-open {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  /* Disable Webflow's nav overlay completely */
+  .w-nav-overlay {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  /* Stop Webflow from adding the w--open class behavior */
+  .menu-button.w-nav-button.w--open {
+    background-color: transparent !important;
+    color: inherit !important;
   }
   
   /* Ensure hamburger button is visible and clickable */
@@ -227,10 +244,6 @@ body.mobile-nav-open {
     display: block !important;
     position: relative;
     z-index: 1001;
-  }
-  
-  /* Disable any Webflow animations/transitions on the nav */
-  .w-nav-overlay {
-    display: none !important;
+    background: transparent !important;
   }
 }
