@@ -14,6 +14,17 @@ window.addEventListener('load', function() {
 function initMobileNav() {
   console.log('🔵 Initializing mobile nav...');
   
+  // DISABLE WEBFLOW NAVIGATION COMPLETELY ON MOBILE
+  if (window.Webflow && typeof window.Webflow === 'object') {
+    console.log('🔵 Disabling Webflow navigation...');
+    // Destroy Webflow's nav functionality
+    if (window.Webflow.destroy) {
+      window.Webflow.destroy();
+    }
+    // Override the ready function to prevent re-initialization
+    window.Webflow.ready = function() {};
+  }
+  
   // Create mobile navigation HTML structure
   const createMobileNav = () => {
     // Check if mobile nav already exists
