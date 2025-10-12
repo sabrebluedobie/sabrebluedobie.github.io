@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Mobile Navigation &amp; Footer Fixes</title><meta name="description" content="# Mobile Navigation & Footer Fixes Date: October 10, 2025 ## Issues Fixed ### 1. Mobile Dropdown Menu IDs Conflict ✅ **Problem:** "Our Products" and "More" d..."><link rel="canonical" href="https://www.bluedobiedev.com/MOBILE-FIXES-SUMMARY.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Mobile Navigation &amp; Footer Fixes"><meta property="og:description" content="# Mobile Navigation & Footer Fixes Date: October 10, 2025 ## Issues Fixed ### 1. Mobile Dropdown Menu IDs Conflict ✅ **Problem:** "Our Products" and "More" d..."><meta property="og:type" content="default">
+<meta property="og:url" content="https://www.bluedobiedev.com/MOBILE-FIXES-SUMMARY.html">
+<meta property="og:image" content="https://www.bluedobiedev.com/assets/images/bluedobielogo_1.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mobile Navigation &amp; Footer Fixes"><meta name="twitter:description" content="# Mobile Navigation & Footer Fixes Date: October 10, 2025 ## Issues Fixed ### 1. Mobile Dropdown Menu IDs Conflict ✅ **Problem:** "Our Products" and "More" d..."><meta name="twitter:image" content="https://www.bluedobiedev.com/assets/images/bluedobielogo_1.webp">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/webclip.png">
+
+<!-- CSS: reset → framework → theme → overrides -->
+<link rel="stylesheet" href="/assets/css/normalize.css">
+<link rel="stylesheet" href="/assets/css/webflow.css">
+<link rel="stylesheet" href="/assets/css/bluedobie-developing-redesign.webflow.css">
+<link rel="stylesheet" href="/css/nav-footer-shared.css"><!-- new shared -->
+<link rel="stylesheet" href="/css/app.css"><!-- your tweaks -->
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+<!-- Your site-level overrides --></head>
+<body class="site main">
+  <nav class="site-nav w-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-container">
+    <div class="nav-elements-holder">
+      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+        <img src="/assets/images/bluedobielogo_1.webp"
+             width="64" height="64"
+             alt="Bluedobie Developing logo"
+             class="brand-logo">
+      </a>
+
+      <div class="nav-menu-container">
+        <div class="nav-menu w-nav-menu" id="mainmenu">
+          <div class="nav-link-holder">
+            <a href="/" class="nav-link w-inline-block">Home</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/about.html" class="nav-link w-inline-block">About</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/services.html" class="nav-link w-inline-block">Services</a>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">More</button>
+            <section class="dropdown-menu" id="dropdown-menu" role="menu">
+              <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
+              <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
+              <a href="/blog-home.html" class="nav-link" role="menuitem">Dialogues</a>
+              <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
+              <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ's</a>
+              <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
+            </section>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="products-menu">Our Products</button>
+            <section class="dropdown-menu" id="products-menu" role="menu">
+              <a href="https://gridirongazette.bluedobiedev.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">Gridiron Gazette</a>
+              <a href="/captioncraft/captioncraft.html" class="nav-link" role="menuitem">DobieCore Captions</a>
+              <a href="/sales.html" class="nav-link" role="menuitem">Offers</a>
+            </section>
+          </div>
+        </div>
+
+        <button class="menu-button w-nav-button"
+                id="menu-button"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+          <div class="icon-2 w-icon-nav-menu"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Links Bar (separate row) -->
+  <div class="social-bar">
+    <div class="container">
+      <div class="social-groups">
+        <div class="social-group">
+          <span class="social-label">Bluedobie:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrebluedobie" target="_blank" rel="noopener" aria-label="Bluedobie Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrebluedobie/" target="_blank" rel="noopener" aria-label="Bluedobie Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/bluedobiedeveloping/" target="_blank" rel="noopener" aria-label="Bluedobie LinkedIn">
+              <img style="width: 2em;" src="/images/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+          </div>
+        </div>
+
+        <div class="social-group">
+          <span class="social-label">Sabre:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <main class="container"><h1 id="mobile-navigation--footer-fixes">Mobile Navigation &amp; Footer Fixes</h1>
+
+<p>Date: October 10, 2025</p>
+
+<h2 id="issues-fixed">Issues Fixed</h2>
+
+<h3 id="1-mobile-dropdown-menu-ids-conflict-">1. Mobile Dropdown Menu IDs Conflict ✅</h3>
+<p><strong>Problem:</strong> “Our Products” and “More” dropdowns not expanding on mobile
+<strong>Cause:</strong> Mobile nav IDs (<code class="language-plaintext highlighter-rouge">products-menu</code>, <code class="language-plaintext highlighter-rouge">more-menu</code>) conflicted with desktop nav IDs
+<strong>Fix:</strong> Renamed mobile nav IDs to <code class="language-plaintext highlighter-rouge">mobile-products-menu</code> and <code class="language-plaintext highlighter-rouge">mobile-more-menu</code>
+<strong>Files Changed:</strong> <code class="language-plaintext highlighter-rouge">/js/mobile-nav.js</code></p>
+
+<h3 id="2-mobile-footer-contact-info-">2. Mobile Footer Contact Info ✅</h3>
+<p><strong>Problem:</strong> Phone number and email wrapping awkwardly on mobile
+<strong>Cause:</strong> <code class="language-plaintext highlighter-rouge">display: flex</code> with <code class="language-plaintext highlighter-rouge">gap: 16px</code> not wrapping properly
+<strong>Fix:</strong> Added mobile media query to stack contact info vertically
+<strong>Files Changed:</strong> <code class="language-plaintext highlighter-rouge">/captioncraft/captioncraft.html</code></p>
+
+<h2 id="mobile-styles-added">Mobile Styles Added</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c">/* Mobile Footer Styles */</span>
+  <span class="nc">.site-footer</span> <span class="nc">.footer-contact</span> <span class="p">{</span>
+    <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">column</span> <span class="cp">!important</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">8px</span> <span class="cp">!important</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nc">.site-footer</span> <span class="nc">.footer-contact</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nc">.site-footer</span> <span class="nc">.footer-contact</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">word-break</span><span class="p">:</span> <span class="n">break-word</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="result">Result</h2>
+<p>✅ Mobile hamburger menu dropdowns now expand properly
+✅ Footer contact info stacks vertically on mobile
+✅ Professional mobile experience across the site</p>
+
+<h2 id="ready-for-video-recording-">Ready for Video Recording! 🎥</h2>
+<p>Mobile navigation is now fully functional and professional-looking.</p>
+</main>
+  <footer class="site-footer">
+  <div class="footer-rows">
+    <!-- Brand -->
+    <section class="brand">
+      <a href="/index.html" aria-label="Back to homepage">
+        <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo">
+      </a>
+      <h2 class="brand-name">Bluedobie Developing</h2>
+      <p class="tagline">Web design that feels human.</p>
+    </section>
+
+    <!-- Info (nav + contact + socials) -->
+    <section class="info" aria-label="Footer information">
+      <nav class="links" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/our-portfolio.html">Work</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <address class="contact">
+        <p>
+          <span class="no-break">270-388-3535</span>
+          <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+        </p>
+      </address>
+
+      <div class="social">
+        <a href="https://facebook.com/bluedobiedev" aria-label="Visit our Facebook page">
+          <img src="/images/facebook.svg" width="32" height="32" alt="Facebook">
+        </a>
+        <a href="https://instagram.com/bluedobiedev" aria-label="Visit our Instagram page">
+          <img src="/images/instagram.svg" width="32" height="32" alt="Instagram">
+        </a>
+        <a href="https://linkedin.com/company/bluedobie-developing" aria-label="Visit our LinkedIn page">
+          <img src="/images/linkedin.svg" width="32" height="32" alt="LinkedIn">
+        </a>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <p class="legal">© 2025 Bluedobie Developing. All rights reserved.</p>
+  </div>
+</footer>
+<script src="/js/mobile-nav.js"></script>
+<script src="/assets/js/dropdown.js"></script>
+
+  <script src="/assets/js/dropdown.js" defer></script>
+  <script src="/assets/js/webflow.js" defer></script>
+</body>
+
+</html>

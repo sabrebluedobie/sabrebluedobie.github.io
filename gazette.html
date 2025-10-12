@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/images/gg-favicon.ico" />
+  <title>Gridiron Gazette — Available NOW!</title>
+  <meta name="description" content="Your fantasy league's group chat dies by Week 6. The Gridiron Gazette keeps your league talking all season with weekly recaps and Sabre's hilarious commentary." />
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="/css/button-styles.css" rel="stylesheet">
+  <meta property="og:title" content="Gridiron Gazette — Keep Your Fantasy League Talking">
+  <meta property="og:description" content="Your fantasy league's group chat dies by Week 6. The Gridiron Gazette fixes that with automated weekly recaps.">
+  <meta property="og:image" content="/assets/og-gazette.jpg">
+  <meta property="og:type" content="website">
+
+  <style>
+    :root{
+      --gg-cream:#fff6ec;
+      --gg-navy:#042d4d;
+      --gg-blue:#406a9b;
+      --gg-slate:#86929b;
+      --gg-amber:#f59e0b;
+      --gg-ink:#0b0f14;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--gg-navy);background:#fff}
+    .brandbar{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--gg-slate);position:sticky;top:0;background:#fff;z-index:10}
+    .brandbar img{height:40px;width:auto}
+    .brandbar .wordmark{font-family:'Graduate',serif;font-size:1.15rem;letter-spacing:.5px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .hero{position:relative;padding:56px 0;border-bottom:1px solid var(--gg-slate);background:linear-gradient(135deg,#061a27 0%,#0a2a42 60%,#0e2f4b 100%),radial-gradient(80% 60% at 50% 20%,rgba(64,106,155,.25),transparent);color:#fff}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .badge{display:inline-block;background:var(--gg-amber);color:#111;border-radius:999px;padding:6px 12px;font-weight:700;margin-bottom:10px}
+    h1,h2,h3{font-family:'Graduate',serif;margin:0 0 .5rem}
+    h1{font-size:clamp(1.9rem,4.2vw,2.7rem);color:#fff}
+    .sub{font-size:1.15rem;opacity:.95;margin:.5rem 0 1rem;color:#e6edf5}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:.5rem}
+    .btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;border:2px solid #fff;color:#0f2537;background:#fff}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.ghost{background:transparent;color:#fff;border-color:#ffffff88}
+    .btn.ghost:hover{background:#ffffff14}
+    .hero-img{width:100%;border-radius:14px;border:3px solid #173a57;box-shadow:0 10px 30px rgba(0,0,0,.4);object-fit:cover}
+    .section{padding:48px 0}
+    .alt{background:var(--gg-cream)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px; box-shadow:0 8px 12px rgba(0,0,0,.5);background:#fff}
+    .card h3{margin-top:0}
+    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px}
+    .plan{border:1px solid var(--gg-slate);border-radius:12px;padding:20px;background:#fff}
+    .plan.highlight{border:2px solid var(--gg-blue)}
+    .price{font-size:1.9rem;font-weight:800;color:var(--gg-navy);margin:.25rem 0 1rem}
+    .fine{opacity:.8;font-size:.92rem}
+    .quote{border-left:4px solid var(--gg-amber);padding:8px 14px;background:#fff8f4;color:#7a503e;margin:16px 0;border-radius:8px}
+    .count{font:800 28px/1 system-ui;letter-spacing:1px}
+    .foot{padding:28px 0;border-top:1px solid var(--gg-slate);text-align:center}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','776246200615205'); fbq('track','PageView');
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date()); gtag('config','G-6B45D1C0L8');</script>
+  <!--Paramount Pixel-->
+<script src="https://qscripts.s3.amazonaws.com/pscript.js"></script>
+<script>
+qbit('event', 'site_visit', {
+  agid: '1480',
+  adid: '961532',
+  referrer: document.referrer,
+  site_url: window.location.href,
+  timestamp: Date.now()
+ });
+</script>
+</head>
+<body>
+  <div class="brandbar" role="banner">
+    <div class="wrap" style="display:flex;align-items:center;gap:12px">
+      <img src="/assets/images/logo.PNG" alt="Gridiron Gazette logo">
+      <div class="wordmark">Gridiron Gazette</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge">Available Now</span>
+        <h1>Your fantasy league's group chat dies by Week 6.</h1>
+        <p class="sub">The Gridiron Gazette keeps your league talking all season. Automated weekly recaps with Sabre's hilarious commentary—delivered every Tuesday.</p>
+        <p class="sub">$29/season. Less than the cost of keeping 12 people engaged all season.</p>
+        <div class="cta">
+          <a data-gg-cta href="https://buy.stripe.com/fZudRa8x17vp0uogE10x201" class="btn">Get the Gazette</a>
+          <a href="#learn" class="btn ghost">How it works</a>
+        </div>
+        <p class="fine">Compatible with all ESPN leagues — public or private.</p>
+      </div>
+      <div>
+        <img class="hero-img" src="/images/SabreReporter.webp" alt="Sabre reporting your fantasy mistakes with snark">
+      </div>
+    </div>
+  </header>
+
+  <!-- HOW -->
+  <section id="learn" class="section">
+    <div class="wrap">
+      <h2>How it works (3 clicks)</h2>
+      <ol>
+        <li><strong>League ID</strong> — tell us your ESPN league (private or public).</li>
+        <li><strong>Mascots</strong> — bring your own or let Sabre invent them. We will even give you tools to help.</li>
+        <li><strong>Tuesday delivery</strong> — polished PDF recap, straight to your inbox.</li>
+      </ol>
+      <p class="fine">Private leagues may require ESPN authentication (we'll guide you step by step).</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Inside your weekly Gazette</h2>
+      <div class="grid" role="list">
+        <div class="card" role="listitem"><h3>Recaps with bite</h3><p>Each team gets a breakdown, a key stat, and a respectful roast.</p></div>
+        <div class="card" role="listitem"><h3>Mascots & visuals</h3><p>Logos and optional images give your league personality.</p></div>
+        <div class="card" role="listitem"><h3>Standouts & stats</h3><p>Highest score, closest game, biggest flop — one tidy snapshot.</p></div>
+        <div class="card" role="listitem"><h3>Automatic delivery</h3><p>Pro PDF in your inbox every Tuesday. No lift required.</p></div>
+      </div>
+      <div class="quote">"Reliable. Snarky. On time. I don't skip recaps." — Sabre</div>
+    </div>
+    
+      <div style="display: flex;text-align:center;justify-content:center;
+   margin-top:15px;padding: 0;">
+      <a data-gg-cta href="https://buy.stripe.com/fZudRa8x17vp0uogE10x201" class="button" style="display: block;">Get the Gazette</a>
+      </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Season pricing</h2>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Starter</h3>
+          <p class="price">$29 / season</p>
+          <ul>
+            <li>League intro</li>
+            <li>Per-team recaps (text)</li>
+            <li>Standings & results</li>
+          </ul>
+          <a class="btn" data-gg-cta href="https://buy.stripe.com/fZudRa8x17vp0uogE10x201">Get the Gazette</a>
+        </div>
+
+        <div class="plan highlight">
+          <h3>Plus</h3>
+          <p class="price">$49 / season</p>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Mascot personas</li>
+            <li>1× mascot image per team</li>
+          </ul>
+          <a class="btn" data-gg-cta href="https://buy.stripe.com/28EfZidRl5nh3GAfzX0x202">Get the Gazette</a>
+        </div>
+
+        <div class="plan">
+          <h3>Commissioner</h3>
+          <p class="price">Not available in Beta</p>
+        </div>
+      </div>
+      <p class="fine">Beta pricing. Limited early-adopter slots.</p>
+    </div>
+  </section>
+
+  <!-- MASCOT BUILDER (optional note) -->
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Mascot Prompt Builder</h2>
+      <p class="fine">Included in the <strong>Plus</strong> plan during Beta.</p>
+      <iframe src="/mascot-builder.html" style="width:100%;height:70em;border:none;border-radius:12px;box-shadow:0 8px 12px rgba(0,0,0,.3)" title="Mascot Prompt Builder"></iframe>
+    </div>
+  </section>
+  
+  <footer class="foot">© <script>document.write(new Date().getFullYear());</script> Gridiron Gazette by Bluedobie</footer>
+
+  <!-- CTA flip script removed - now direct purchase links -->
+  <script>
+    // Track button clicks
+    document.querySelectorAll('[data-gg-cta]').forEach(btn=>{
+      btn.addEventListener('click', function() {
+        if(typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
+        if(typeof gtag !== 'undefined') gtag('event', 'begin_checkout');
+      });
+    });
+  </script>
+
+  <!-- Zoho chat -->
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}};</script>
+  <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq44e21acf5fc62c47a44060a0ec24ed1323783670d8c76b7ba1b54e7f63d57ce8" defer></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* Contact page specific styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #000;
+  color: #fff;
+  padding: 100px 20px 80px;
+  position: relative;
+}
+
+.second-home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.second-home-text-holder {
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  color: white;
+  font-family: 'Instrument Serif', serif;
+  margin: 20px 0;
+}
+
+.second-home-description {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* Animation Text */
+.animation-5-content {
+  margin-bottom: 20px;
+}
+
+.animation-5-text-line {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Booking Widget */
+.booking-widget-container {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f8f9fa;
+}
+
+.booking-widget-container p {
+  font-size: 1.5rem;
+  font-family: 'Instrument Serif', serif;
+  margin: 20px 0;
+}
+
+.booking-iframe {
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 20px auto;
+  display: block;
+}
+
+/* Clutch Widget */
+.clutch-widget {
+  margin: 20px auto;
+}
+
+hr.dashed {
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 40px 0;
+}
+
+/* Form Section */
+.section {
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#custom-form-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Multi-Step Form */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+.form-step h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+.form-step input,
+.form-step select,
+.form-step textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-step input:focus,
+.form-step select:focus,
+.form-step textarea:focus {
+  outline: none;
+  border-color: #042d4d;
+}
+
+.form-step textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-step button {
+  background: #042d4d;
+  color: #fff;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form-step button:hover {
+  background: #0a2a42;
+  transform: translateY(-2px);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-buttons button {
+  flex: 1;
+}
+
+.paragraph-46 {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.paragraph-46 a {
+  color: #042d4d;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .animation-5-text-line {
+    font-size: 1.5rem;
+  }
+  
+  .booking-iframe {
+    height: 500px;
+  }
+  
+  #custom-form-container {
+    padding: 25px 20px;
+  }
+  
+  .form-step h3 {
+    font-size: 1.4rem;
+  }
+  
+  .nav-buttons {
+    flex-direction: column;
+  }
+  
+  .nav-buttons button {
+    width: 100%;
+  }
+}

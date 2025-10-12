@@ -1,0 +1,39 @@
+/* Common Button Styles */
+.button {
+    background-color: #042d4d;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid #042d4d;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #042d4d;
+    color: #fff;
+}
+
+/* Dark Background Variation */
+.button-dark {
+    background-color: #042d4d;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.button-dark:hover {
+    background-color: #fff;
+    color: #042d4d;
+}

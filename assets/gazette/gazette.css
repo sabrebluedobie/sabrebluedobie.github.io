@@ -1,0 +1,6 @@
+:root { --gazette-accent: #0ea5e9; }
+.site-nav { border-bottom-color: #e5f4fb; }
+.btn { border-color: var(--gazette-accent); }
+.btn:hover { background: var(--gazette-accent); color: #fff; }
+a { color: #0f172a; }
+a:hover { color: var(--gazette-accent); }

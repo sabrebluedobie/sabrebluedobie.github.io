@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Bluedobie Repository Organization Plan</title><meta name="description" content="# Bluedobie Repository Organization Plan **Created:** October 4, 2025 **Status:** Planning Phase - DO NOT EXECUTE WITHOUT REVIEW --- ## 🎯 Purpose This docume..."><link rel="canonical" href="https://www.bluedobiedev.com/REPO_ORGANIZATION_PLAN.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Bluedobie Repository Organization Plan"><meta property="og:description" content="# Bluedobie Repository Organization Plan **Created:** October 4, 2025 **Status:** Planning Phase - DO NOT EXECUTE WITHOUT REVIEW --- ## 🎯 Purpose This docume..."><meta property="og:type" content="default">
+<meta property="og:url" content="https://www.bluedobiedev.com/REPO_ORGANIZATION_PLAN.html">
+<meta property="og:image" content="https://www.bluedobiedev.com/assets/images/bluedobielogo_1.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bluedobie Repository Organization Plan"><meta name="twitter:description" content="# Bluedobie Repository Organization Plan **Created:** October 4, 2025 **Status:** Planning Phase - DO NOT EXECUTE WITHOUT REVIEW --- ## 🎯 Purpose This docume..."><meta name="twitter:image" content="https://www.bluedobiedev.com/assets/images/bluedobielogo_1.webp">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/webclip.png">
+
+<!-- CSS: reset → framework → theme → overrides -->
+<link rel="stylesheet" href="/assets/css/normalize.css">
+<link rel="stylesheet" href="/assets/css/webflow.css">
+<link rel="stylesheet" href="/assets/css/bluedobie-developing-redesign.webflow.css">
+<link rel="stylesheet" href="/css/nav-footer-shared.css"><!-- new shared -->
+<link rel="stylesheet" href="/css/app.css"><!-- your tweaks -->
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+<!-- Your site-level overrides --></head>
+<body class="site main">
+  <nav class="site-nav w-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-container">
+    <div class="nav-elements-holder">
+      <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+        <img src="/assets/images/bluedobielogo_1.webp"
+             width="64" height="64"
+             alt="Bluedobie Developing logo"
+             class="brand-logo">
+      </a>
+
+      <div class="nav-menu-container">
+        <div class="nav-menu w-nav-menu" id="mainmenu">
+          <div class="nav-link-holder">
+            <a href="/" class="nav-link w-inline-block">Home</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/about.html" class="nav-link w-inline-block">About</a>
+          </div>
+          <div class="nav-link-holder">
+            <a href="/services.html" class="nav-link w-inline-block">Services</a>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">More</button>
+            <section class="dropdown-menu" id="dropdown-menu" role="menu">
+              <a href="/our-portfolio.html" class="nav-link" role="menuitem">Portfolio</a>
+              <a href="/meet-sabre.html" class="nav-link" role="menuitem">Meet Sabre</a>
+              <a href="/blog-home.html" class="nav-link" role="menuitem">Dialogues</a>
+              <a href="/contact.html" class="nav-link" role="menuitem">Contact</a>
+              <a href="/FAQ.html" class="nav-link" role="menuitem">FAQ's</a>
+              <a href="/business-links.html" class="nav-link" role="menuitem">Our Links</a>
+            </section>
+          </div>
+
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="products-menu">Our Products</button>
+            <section class="dropdown-menu" id="products-menu" role="menu">
+              <a href="https://gridirongazette.bluedobiedev.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">Gridiron Gazette</a>
+              <a href="/captioncraft/captioncraft.html" class="nav-link" role="menuitem">DobieCore Captions</a>
+              <a href="/sales.html" class="nav-link" role="menuitem">Offers</a>
+            </section>
+          </div>
+        </div>
+
+        <button class="menu-button w-nav-button"
+                id="menu-button"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+          <div class="icon-2 w-icon-nav-menu"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Links Bar (separate row) -->
+  <div class="social-bar">
+    <div class="container">
+      <div class="social-groups">
+        <div class="social-group">
+          <span class="social-label">Bluedobie:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrebluedobie" target="_blank" rel="noopener" aria-label="Bluedobie Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrebluedobie/" target="_blank" rel="noopener" aria-label="Bluedobie Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/bluedobiedeveloping/" target="_blank" rel="noopener" aria-label="Bluedobie LinkedIn">
+              <img style="width: 2em;" src="/images/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+          </div>
+        </div>
+
+        <div class="social-group">
+          <span class="social-label">Sabre:</span>
+          <div class="social-links">
+            <a href="https://www.facebook.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Facebook">
+              <img src="/images/facebook.svg" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/sabrethebluedobie/" target="_blank" rel="noopener" aria-label="Sabre Instagram">
+              <img src="/images/instagram.svg" alt="Instagram" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <main class="container"><h1 id="bluedobie-repository-organization-plan">Bluedobie Repository Organization Plan</h1>
+<p><strong>Created:</strong> October 4, 2025<br />
+<strong>Status:</strong> Planning Phase - DO NOT EXECUTE WITHOUT REVIEW</p>
+
+<hr />
+
+<h2 id="-purpose">🎯 Purpose</h2>
+<p>This document outlines recommended changes to organize the sabrebluedobie.github.io repository. <strong>NO FILES WILL BE MOVED until you’re ready to update links.</strong></p>
+
+<hr />
+
+<h2 id="-current-issues">🚨 Current Issues</h2>
+
+<h3 id="critical-fix-first">Critical (Fix First)</h3>
+<ol>
+  <li><strong>Git Repository Corruption</strong>
+    <ul>
+      <li>Multiple index files in <code class="language-plaintext highlighter-rouge">.git/</code> folder (index, index 2, index 3, etc.)</li>
+      <li>Lock files present (index 8.lock, index 9.lock)</li>
+      <li>Indicates merge conflicts and Git crashes</li>
+      <li><strong>Impact:</strong> Unstable version control, potential data loss</li>
+      <li><strong>Solution:</strong> Clean Git reset (see Git Cleanup section below)</li>
+    </ul>
+  </li>
+  <li><strong>73 Unresolved Merge Conflicts</strong> (from Notion tasks)
+    <ul>
+      <li>Blocks ability to commit/push changes safely</li>
+      <li><strong>Must resolve before any reorganization</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="moderate-organize-later">Moderate (Organize Later)</h3>
+<ol>
+  <li><strong>31 HTML Files at Root Level</strong>
+    <ul>
+      <li>Hard to find specific pages</li>
+      <li>Confusing for maintenance</li>
+      <li>No clear structure</li>
+    </ul>
+  </li>
+  <li><strong>Duplicate Folders</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Bluedobie--Dialogues/</code> (double dash)</li>
+      <li><code class="language-plaintext highlighter-rouge">Bluedobie-Dialogues/</code> (single dash)</li>
+      <li><strong>Decision needed:</strong> Which is active?</li>
+    </ul>
+  </li>
+  <li><strong>Test/Old Files Cluttering Root</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">about-old.html</code>, <code class="language-plaintext highlighter-rouge">index-old.html</code></li>
+      <li><code class="language-plaintext highlighter-rouge">contact-test-*.html</code> files</li>
+      <li><code class="language-plaintext highlighter-rouge">local.html</code>, <code class="language-plaintext highlighter-rouge">blank.html</code></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-current-file-inventory">📋 Current File Inventory</h2>
+
+<h3 id="root-level-html-files-31-total">Root Level HTML Files (31 total)</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Main Pages:
+- index.html (homepage)
+- about.html
+- services.html
+- contact.html
+- our-portfolio.html
+
+Duplicate/Version Files:
+- about-old.html
+- index-old.html
+- services-new.html
+- our-portfolio-new.html
+- contact-new.html
+- contact-final.html
+- contact-new-simple.html
+- landing-page.html
+- landing-page-original.html
+
+Test Files:
+- contact-test-nocaptcha.html
+- contact-test-simple.html
+- local.html
+- blank.html
+
+Product/Service Pages:
+- logo-sprint-landing.html
+- quickspin.html
+- mascot-builder.html
+- league-setup.html
+
+Newsletter/Blog:
+- newsletters.html
+- newsletter-1.html
+- newsletter-2.html
+- newsletter-3.html
+- blog-home.html
+- blogpost1.html
+- blogpost2.html
+- blogpost3.html
+- blogpost4.html
+- blog-details-2.html
+
+Gazette Related:
+- gazette.html
+- gazette-waitlist.html
+- gazette-thankyou.html
+
+Other:
+- meet-sabre.html
+- sales.html
+- resources.html
+- business-links.html
+- FAQ.html
+- referral-page.html
+- thank-you.html
+- order-confirmation.html
+- detail_monthly-newsletter.html
+- detail_post.html
+- detail_sku.html
+- sign-up.html
+- log-in.html
+- reset-password.html
+- update-password.html
+- user-account.html
+- form.html
+- sucuri.html
+- tags.html
+- access-denied.html
+- privacy.html
+- bluedobie-developing-terms-and-conditions.html
+
+Error Pages:
+- 401.html
+- 404.html
+</code></pre></div></div>
+
+<h3 id="project-folders">Project Folders</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ Well Organized:
+- gazette/ (4 .md files)
+- captioncraft/ (HTML, CSS, JS)
+- _posts/ (Jekyll blog posts)
+- _layouts/ (templates)
+- _includes/ (components)
+- assets/, css/, js/, images/, videos/
+
+🟡 Needs Review:
+- Bluedobie--Dialogues/ (12 HTML files)
+- Bluedobie-Dialogues/ (12 HTML files) 
+- blog/ (structure unclear)
+- documents/
+- dobiecore/
+- poll-backend/
+- template/
+
+📁 Standard:
+- .github/ (GitHub workflows)
+- .well-known/ (domain verification)
+- .vscode/ (editor config)
+- _site/ (Jekyll build output)
+</code></pre></div></div>
+
+<h3 id="utilitydev-files-at-root">Utility/Dev Files at Root</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- extract_urls.py
+- list_sprite.py
+- serp_summary.xlsx
+- urls.txt
+- b6133b0e4710441bbaa05d61a2aa424f.txt (what is this?)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-recommended-actions">🎯 Recommended Actions</h2>
+
+<h3 id="phase-1-git-cleanup-priority">Phase 1: Git Cleanup (PRIORITY)</h3>
+<p><strong>DO THIS FIRST - Doesn’t move any files</strong></p>
+
+<h4 id="steps">Steps:</h4>
+<ol>
+  <li><strong>Backup Current State</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a backup branch</span>
+git branch backup-before-cleanup
+   
+<span class="c"># Or zip the entire folder as backup</span>
+<span class="c"># (do this outside Git)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Check for Uncommitted Work</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+<span class="c"># If you have changes you want to keep, commit them first</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Nuclear Option: Fresh Git Start</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Navigate to repo</span>
+<span class="nb">cd</span> /Users/melaniebrown/Documents/sabrebluedobie.github.io
+   
+<span class="c"># Backup the .git folder (just in case)</span>
+<span class="nb">mv</span> .git .git-backup
+   
+<span class="c"># Initialize fresh Git</span>
+git init
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Fresh start - cleaned up Git repository"</span>
+   
+<span class="c"># Reconnect to GitHub (get URL from GitHub repo settings)</span>
+git remote add origin YOUR_GITHUB_URL
+git push <span class="nt">-u</span> origin main <span class="nt">--force</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Alternative: Try to Salvage</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Remove duplicate index files</span>
+<span class="nb">cd</span> .git
+<span class="nb">rm</span> <span class="s2">"index 2"</span> <span class="s2">"index 3"</span> <span class="s2">"index 4"</span> <span class="s2">"index 5"</span> <span class="s2">"index 6"</span> <span class="s2">"index 7"</span> <span class="s2">"index 8"</span> <span class="s2">"index 9"</span>
+<span class="nb">rm</span> <span class="s2">"index(1)"</span> <span class="s2">"index(2)"</span>
+<span class="nb">rm</span> <span class="s2">"index 8.lock"</span> <span class="s2">"index 9.lock"</span>
+<span class="nb">rm</span> <span class="s2">"ORIG_HEAD(1)"</span>
+   
+<span class="c"># Reset to clean state</span>
+<span class="nb">cd</span> ..
+git reset <span class="nt">--hard</span> HEAD
+git clean <span class="nt">-fd</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>RISK ASSESSMENT:</strong></p>
+<ul>
+  <li>✅ Low risk: Doesn’t touch your actual website files</li>
+  <li>⚠️ Medium risk: Loses commit history (if using nuclear option)</li>
+  <li>🛡️ Mitigated by: Backup branch/folder before starting</li>
+</ul>
+
+<hr />
+
+<h3 id="phase-2-identify--document-duplicates">Phase 2: Identify &amp; Document Duplicates</h3>
+<p><strong>Research only - no changes yet</strong></p>
+
+<h4 id="questions-to-answer">Questions to Answer:</h4>
+<ol>
+  <li><strong>Bluedobie Dialogues:</strong>
+    <ul>
+      <li>Which folder is active: <code class="language-plaintext highlighter-rouge">Bluedobie--Dialogues/</code> or <code class="language-plaintext highlighter-rouge">Bluedobie-Dialogues/</code>?</li>
+      <li>Are they identical or different content?</li>
+      <li>Which one does _config.yml reference?</li>
+    </ul>
+  </li>
+  <li><strong>Contact Pages:</strong>
+    <ul>
+      <li>Which is live: contact.html, contact-new.html, or contact-final.html?</li>
+      <li>Can we delete the others?</li>
+    </ul>
+  </li>
+  <li><strong>Services/Portfolio:</strong>
+    <ul>
+      <li>Are <code class="language-plaintext highlighter-rouge">-new</code> versions the current ones?</li>
+      <li>Can we delete old versions?</li>
+    </ul>
+  </li>
+  <li><strong>Test Files:</strong>
+    <ul>
+      <li>Are any test files still needed?</li>
+      <li>Can we delete: contact-test-*.html, local.html, blank.html?</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="how-to-check">How to Check:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Find which files are linked to from index.html</span>
+<span class="nb">grep</span> <span class="nt">-r</span> <span class="s2">"href="</span> index.html
+
+<span class="c"># Search all HTML files for internal links</span>
+<span class="nb">grep</span> <span class="nt">-r</span> <span class="s2">"</span><span class="se">\.</span><span class="s2">html"</span> <span class="k">*</span>.html | <span class="nb">grep </span>href
+
+<span class="c"># Check what _config.yml references</span>
+<span class="nb">cat </span>_config.yml
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="phase-3-safe-deletions-when-ready">Phase 3: Safe Deletions (When Ready)</h3>
+<p><strong>Only delete files confirmed as unused</strong></p>
+
+<h4 id="candidates-for-deletion">Candidates for Deletion:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Low Risk (Probably Safe):
+- blank.html
+- local.html
+- contact-test-nocaptcha.html
+- contact-test-simple.html
+
+Medium Risk (Check Links First):
+- about-old.html
+- index-old.html
+- landing-page-original.html
+
+To Archive (Move to /archive folder):
+- extract_urls.py
+- list_sprite.py
+- serp_summary.xlsx
+- urls.txt
+</code></pre></div></div>
+
+<h4 id="before-deleting">Before Deleting:</h4>
+<ol>
+  <li>Search for any references to the file:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-r</span> <span class="s2">"filename.html"</span> <span class="nb">.</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Check Google Analytics (if set up) for traffic to that page</li>
+  <li>Make a Git commit before deletion so you can recover if needed</li>
+</ol>
+
+<hr />
+
+<h3 id="phase-4-future-reorganization-do-last">Phase 4: Future Reorganization (DO LAST)</h3>
+<p><strong>Only after Phases 1-3 complete</strong></p>
+
+<h4 id="proposed-structure">Proposed Structure:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sabrebluedobie.github.io/
+├── index.html ✅ (stays at root)
+├── _config.yml ✅
+├── _includes/ ✅
+├── _layouts/ ✅
+├── _posts/ ✅ (Bluedobie Dialogues blog)
+│
+├── projects/ (NEW - when ready to move)
+│   ├── gazette/
+│   ├── captioncraft/
+│   ├── logo-sprint/
+│   └── quickspin/
+│
+├── pages/ (NEW - when ready to move)
+│   ├── about/
+│   ├── services/
+│   ├── portfolio/
+│   ├── contact/
+│   └── legal/
+│
+├── newsletters/ (NEW - consolidate newsletter files)
+│
+├── auth/ (NEW - user account pages)
+│   ├── sign-up.html
+│   ├── log-in.html
+│   ├── reset-password.html
+│   └── user-account.html
+│
+├── assets/ ✅
+├── css/ ✅
+├── js/ ✅
+├── images/ ✅
+├── videos/ ✅
+│
+├── archive/ (NEW)
+│   ├── old-versions/
+│   └── tests/
+│
+└── dev-tools/ (NEW)
+    └── scripts/
+</code></pre></div></div>
+
+<h4 id="migration-process-when-moving-files">Migration Process (When Moving Files):</h4>
+<ol>
+  <li><strong>Pick ONE file to move as a test</strong></li>
+  <li><strong>Update ALL links to that file</strong></li>
+  <li><strong>Test thoroughly</strong></li>
+  <li><strong>Commit</strong></li>
+  <li><strong>Repeat for next file</strong></li>
+</ol>
+
+<p><strong>DO NOT move multiple files at once - you’ll lose track of what broke.</strong></p>
+
+<hr />
+
+<h2 id="-link-update-strategy">🔗 Link Update Strategy</h2>
+
+<h3 id="when-youre-ready-to-move-files">When You’re Ready to Move Files:</h3>
+
+<h4 id="step-1-find-all-references">Step 1: Find All References</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Find all files linking to the file you want to move</span>
+<span class="nb">grep</span> <span class="nt">-r</span> <span class="s2">"old-location.html"</span> <span class="nb">.</span>
+
+<span class="c"># Or use this Python script to generate a report</span>
+python3 <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+import os
+import re
+
+target_file = "contact.html"  # File you want to move
+references = []
+
+for root, dirs, files in os.walk('.'):
+    # Skip .git and _site folders
+    if '.git' in root or '_site' in root:
+        continue
+    
+    for file in files:
+        if file.endswith(('.html', '.md', '.css', '.js')):
+            filepath = os.path.join(root, file)
+            try:
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    if target_file in content:
+                        # Find the actual line numbers
+                        lines = content.split('</span><span class="se">\n</span><span class="sh">')
+                        for i, line in enumerate(lines, 1):
+                            if target_file in line:
+                                references.append(f"{filepath}:{i} - {line.strip()}")
+            except:
+                pass
+
+print(f"References to {target_file}:")
+for ref in references:
+    print(ref)
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<h4 id="step-2-update-links">Step 2: Update Links</h4>
+<ul>
+  <li>Use find-and-replace in your editor</li>
+  <li>Test each page manually</li>
+  <li>Use relative paths (./pages/contact.html) not absolute (/pages/contact.html)</li>
+</ul>
+
+<h4 id="step-3-update-redirects">Step 3: Update Redirects</h4>
+<p>Add to your HTML files or .htaccess:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- In old location file --&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"refresh"</span> <span class="na">content=</span><span class="s">"0; url=/new-location.html"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-action-checklist">✅ Action Checklist</h2>
+
+<h3 id="immediate-this-week">Immediate (This Week)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Backup entire repository (zip file)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Create backup Git branch</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Fix Git repository (.git folder cleanup)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Commit all current work</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Test that Git push/pull works</li>
+</ul>
+
+<h3 id="short-term-next-2-weeks">Short Term (Next 2 Weeks)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Identify which Bluedobie-Dialogues folder is active</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Document which contact/services/portfolio file is live</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />List all files that can be safely deleted</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Search for references to files marked for deletion</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Create /archive folder and move deprecated files</li>
+</ul>
+
+<h3 id="long-term-when-you-have-time">Long Term (When You Have Time)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Plan file reorganization</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Create new folder structure</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Move files ONE at a time</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Update links after each move</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Test thoroughly after each change</li>
+</ul>
+
+<hr />
+
+<h2 id="-what-not-to-do">🚫 What NOT to Do</h2>
+
+<p>❌ Don’t move multiple files at once<br />
+❌ Don’t delete files without checking for links<br />
+❌ Don’t reorganize while Git is broken<br />
+❌ Don’t force push without a backup<br />
+❌ Don’t rename folders that Jekyll uses (_posts, _layouts, etc.)<br />
+❌ Don’t touch the Gridiron-Gazette repo (it’s separate - good!)</p>
+
+<hr />
+
+<h2 id="-notes">📝 Notes</h2>
+
+<h3 id="questions-to-answer-later">Questions to Answer Later:</h3>
+<ol>
+  <li>What is <code class="language-plaintext highlighter-rouge">b6133b0e4710441bbaa05d61a2aa424f.txt</code>?</li>
+  <li>What’s in <code class="language-plaintext highlighter-rouge">dobiecore/</code> folder?</li>
+  <li>Is <code class="language-plaintext highlighter-rouge">poll-backend/</code> active or deprecated?</li>
+  <li>What’s the difference between <code class="language-plaintext highlighter-rouge">blog/</code> and <code class="language-plaintext highlighter-rouge">_posts/</code>?</li>
+</ol>
+
+<h3 id="related-notion-tasks">Related Notion Tasks:</h3>
+<ul>
+  <li>Fix responsive issues on homepage grid</li>
+  <li>Resolve Git merge conflicts (73 conflicted files)</li>
+  <li>Clean up _config.yml and layouts</li>
+  <li>Ensure favicon.ico, video-poster.jpg are replaced</li>
+  <li>Add project separation: Bluedobie Dialogues, Gridiron Gazette, Sentinel Health</li>
+</ul>
+
+<hr />
+
+<h2 id="-emergency-recovery">🆘 Emergency Recovery</h2>
+
+<p>If something breaks:</p>
+
+<h3 id="restore-from-backup">Restore from Backup</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># If you have .git-backup folder</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> .git
+<span class="nb">mv</span> .git-backup .git
+
+<span class="c"># If you have backup branch</span>
+git checkout backup-before-cleanup
+
+<span class="c"># If you have zip file</span>
+<span class="c"># Unzip to a new location and copy files back</span>
+</code></pre></div></div>
+
+<h3 id="check-github-for-last-good-version">Check GitHub for Last Good Version</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch origin
+git reset <span class="nt">--hard</span> origin/main
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-need-help">📞 Need Help?</h2>
+
+<p>Before making major changes:</p>
+<ol>
+  <li>Commit current work</li>
+  <li>Create a backup</li>
+  <li>Test on a single file first</li>
+  <li>Ask for help if unsure</li>
+</ol>
+
+<p><strong>Remember:</strong> It’s easier to prevent problems than fix them!</p>
+
+<hr />
+
+<p><em>End of Document</em></p>
+</main>
+  <footer class="site-footer">
+  <div class="footer-rows">
+    <!-- Brand -->
+    <section class="brand">
+      <a href="/index.html" aria-label="Back to homepage">
+        <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo">
+      </a>
+      <h2 class="brand-name">Bluedobie Developing</h2>
+      <p class="tagline">Web design that feels human.</p>
+    </section>
+
+    <!-- Info (nav + contact + socials) -->
+    <section class="info" aria-label="Footer information">
+      <nav class="links" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/our-portfolio.html">Work</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <address class="contact">
+        <p>
+          <span class="no-break">270-388-3535</span>
+          <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+        </p>
+      </address>
+
+      <div class="social">
+        <a href="https://facebook.com/bluedobiedev" aria-label="Visit our Facebook page">
+          <img src="/images/facebook.svg" width="32" height="32" alt="Facebook">
+        </a>
+        <a href="https://instagram.com/bluedobiedev" aria-label="Visit our Instagram page">
+          <img src="/images/instagram.svg" width="32" height="32" alt="Instagram">
+        </a>
+        <a href="https://linkedin.com/company/bluedobie-developing" aria-label="Visit our LinkedIn page">
+          <img src="/images/linkedin.svg" width="32" height="32" alt="LinkedIn">
+        </a>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <p class="legal">© 2025 Bluedobie Developing. All rights reserved.</p>
+  </div>
+</footer>
+<script src="/js/mobile-nav.js"></script>
+<script src="/assets/js/dropdown.js"></script>
+
+  <script src="/assets/js/dropdown.js" defer></script>
+  <script src="/assets/js/webflow.js" defer></script>
+</body>
+
+</html>

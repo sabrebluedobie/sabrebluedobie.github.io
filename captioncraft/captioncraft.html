@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DobieCore Captions — your social content generator</title>
+
+  <link rel="stylesheet" href="captioncraft.css" />
+  <link rel="stylesheet" href="/assets/css/bluedobie-developing-redesign.webflow.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/webflow.css" />
+  <link rel="stylesheet" href="/css/mobile-nav.css" />
+  <link rel="stylesheet" href="footer-compact.css" />
+  
+  <style>
+    h1 {font-family: Georgia, 'Times New Roman', Times, serif;}
+    p.lead {
+      text-align: center;
+      margin: 0 auto;
+    }
+    .simple-form { max-width: 640px; margin: 0 auto; }
+    .field-group { margin-bottom: 18px; }
+    .field-group label { display:block; font-weight:600; margin-bottom:8px; font-size:16px; }
+    .field-group input[type="text"], .field-group select {
+      width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:16px; background:#fff;
+    }
+    .tone-control { display:flex; align-items:center; gap:12px; }
+    .tone-control input[type="range"] { flex:1; }
+    .tone-label { font-size:14px; color:#666; white-space:nowrap; }
+
+    details.advanced-toggle { background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px; padding:12px; }
+    details.advanced-toggle summary { font-weight:600; list-style:none; cursor:pointer; }
+    details.advanced-toggle summary::-webkit-details-marker { display:none; }
+    .advanced-content { margin-top:12px; padding-top:12px; border-top:1px solid #e5e7eb; }
+
+    .generate-btn { width:100%; padding:14px; background:#042d4d; color:#fff; border:none; border-radius:10px;
+      font-size:18px; font-weight:700; cursor:pointer; transition:.2s ease; }
+    .generate-btn:hover { background:#0a4d7a; transform:translateY(-1px); }
+    .generate-btn:disabled { background:#cbd5e1; cursor:not-allowed; }
+    .muted { color:#6b7280; }
+
+    .results .cards { display:grid; gap:12px; max-width: 960px; margin: 0 auto; }
+    .results .card { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .results textarea { width:100%; min-height:120px; border:1px solid #e5e7eb; border-radius:10px; padding:10px; }
+
+    .modal { display:none; position:fixed; z-index:1000; top:0; right:0; bottom:0; left:0; background:rgba(0,0,0,.5); }
+    @supports (inset: 0) {
+      .modal { inset: 0; top: unset; right: unset; bottom: unset; left: unset; }
+    } 
+    .modal-content { background:#fff; margin:10% auto; padding:24px; border-radius:16px; max-width:520px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25); }
+    .modal .buttons { display:flex; gap:10px; margin-top:12px; }
+    .modal .btn { flex:1; padding:12px; border-radius:10px; border:none; font-weight:700; cursor:pointer; }
+    .modal .btn-primary { background:#042d4d; color:#fff; }
+    .modal .btn-secondary { background:#f3f4f6; color:#111827; }
+    .price { font-size:28px; font-weight:800; color:#042d4d; margin:8px 0; }
+    .benefits { list-style:none; padding:0; margin:8px 0; }
+    .benefits li { padding:6px 0; }
+    .benefits li::before { content:"✓ "; color:#22c55e; font-weight:700; }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav w-nav" aria-label="Primary">
+    <div class="container nav-container">
+      <div class="nav-elements-holder">
+        <a href="/" class="brand-link w-nav-brand" aria-label="Bluedobie Developing home">
+          <img src="/assets/images/bluedobielogo_1.webp" width="64" height="64" alt="Bluedobie Developing logo" class="brand-logo">
+        </a>
+
+        <div class="nav-menu-container">
+          <div class="nav-menu w-nav-menu" id="mainmenu">
+            <div class="nav-link-holder">
+              <a href="/" class="nav-link w-inline-block">Home</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/about.html" class="nav-link w-inline-block">About</a>
+            </div>
+            <div class="nav-link-holder">
+              <a href="/services.html" class="nav-link w-inline-block">Services</a>
+            </div>
+
+            <div class="nav-link-holder dropdown">
+              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
+              <section class="dropdown-menu" id="dropdown-menu">
+                <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
+                <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
+                <a href="/contact.html" class="nav-link">Contact</a>
+                <a href="/FAQ.html" class="nav-link">FAQ's</a>
+                <a href="/business-links.html" class="nav-link">Our Links</a>
+              </section>
+            </div>
+
+            <div class="nav-link-holder dropdown">
+              <button class="dropdown-toggle" id="products-toggle">Our Products</button>
+              <section class="dropdown-menu" id="products-menu">
+                <div class="nav-link-holder nav-group">
+                  <a href="/sales.html" class="nav-link">Offers</a>
+                  <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
+                  <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
+                  <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
+                  <a href="/blog/" class="nav-link">Dialogues</a>
+                </div>
+              </section>
+            </div>
+
+            <button class="menu-button w-nav-button" id="menu-button" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle menu">
+              <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="padding:20px 0;max-width:960px;margin:0 auto;">
+      <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
+      <p class="lead">3 quick captions, platform-aware, with optional AI variety. Built for busy owners, approved by Sabre.</p>
+      <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions logo" style="display: block; margin: 16px auto 0; max-width: 100%; height: auto; width: 300px; aspect-ratio: 1/1; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.3);" />
+    </section>
+
+    <section class="tool">
+      <div class="container" style="width:100%;margin:0 auto;">
+        <form id="captionForm" class="brief simple-form">
+          <div class="field-group">
+            <label for="company">Company / Brand (optional)</label>
+            <input type="text" id="company" placeholder="e.g., Bluedobie Developing"/>
+          </div>
+
+          <div class="field-group">
+            <label for="offer">What are you promoting? *</label>
+            <input type="text" id="offer" placeholder="e.g., Fall cleaning special — $99 for new clients" required />
+          </div>
+
+          <div class="field-group">
+            <label for="platform">Platform *</label>
+            <select id="platform">
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>LinkedIn</option>
+              <option>Twitter</option>
+              <option>TikTok</option>
+              <option>GMB</option>
+              <option>YTShorts</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="tone">Tone</label>
+            <div class="tone-control">
+              <span class="tone-label">Professional</span>
+              <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
+              <span class="tone-label">Playful</span>
+            </div>
+          </div>
+
+          <details class="advanced-toggle">
+            <summary>Advanced Options (optional)</summary>
+            <div class="advanced-content">
+              <div class="field-group">
+                <label for="audience">Who's your audience?</label>
+                <input type="text" id="audience" placeholder="e.g., busy homeowners in Western Kentucky" />
+              </div>
+
+              <div class="field-group">
+                <label for="problem">What problem do you solve?</label>
+                <input type="text" id="problem" placeholder="e.g., no time to clean" />
+              </div>
+
+              <div class="field-group">
+                <label for="outcome">Desired outcome</label>
+                <input type="text" id="outcome" placeholder="e.g., a sparkling home and free weekend" />
+              </div>
+
+              <div class="field-group">
+                <label for="cta">Call to action</label>
+                <input type="text" id="cta" placeholder="e.g., Book now at https://yoursite.com" />
+              </div>
+
+              <div class="field-group">
+                <label for="keywords">Keywords (for hashtags)</label>
+                <input type="text" id="keywords" placeholder="e.g., cleaning, local, kentucky" />
+              </div>
+
+              <div class="field-group">
+                <label for="format">Format</label>
+                <select id="format">
+                  <option>Post</option>
+                  <option>Story</option>
+                  <option>Reel</option>
+                  <option>Video</option>
+                  <option>Short</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="captionLength">Caption length</label>
+                <select id="captionLength">
+                  <option>Short</option>
+                  <option selected>Medium</option>
+                  <option>Long</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="voiceMode">Voice Mode</label>
+                <select id="voiceMode">
+                  <option value="leadgen">Lead Gen / Sales</option>
+                  <option value="community">Community / Fun</option>
+                  <option value="authority">Authority / Pro</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="hashtagDensity">Hashtag density</label>
+                <select id="hashtagDensity">
+                  <option>Light</option>
+                  <option selected>Standard</option>
+                  <option>Heavy</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label><input type="checkbox" id="cleanHashtags" checked /> Clean hashtags (lowercase, no repeats)</label>
+              </div>
+
+              <div class="field-group">
+                <label for="genMode">Generation mode</label>
+                <select id="genMode">
+                  <option value="auto" selected>Auto (Local; AI if Pro)</option>
+                  <option value="local">Local only (no AI)</option>
+                  <option value="ai">AI remix (Pro)</option>
+                </select>
+                <small class="muted">AI remix respects your facts (offers, URLs, prices). Requires Pro.</small>
+              </div>
+            </div>
+          </details>
+
+          <button type="submit" class="generate-btn" id="generateBtn">Generate 3 Captions</button>
+          <div style="text-align:center;margin-top:10px;">
+            <small class="muted" id="usageCounter"></small>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="container" style="max-width:960px;margin:0 auto;">
+        <h2 style="font-family:Georgia, 'Times New Roman', Times, serif">Results</h2>
+        <div id="results" class="cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer footer-v2">
+    <div class="footer-rows">
+      <!-- Brand -->
+      <section class="brand">
+        <a href="/index.html" aria-label="Back to homepage">
+          <img src="/images/bluedobielogo_1.webp" alt="Bluedobie Developing" class="logo">
+        </a>
+        <h2 class="brand-name">Bluedobie Developing</h2>
+        <p class="tagline">Web design that feels human.</p>
+      </section>
+
+      <!-- Info (nav + contact + socials) -->
+      <section class="info" aria-label="Footer information">
+        <nav class="links" aria-label="Footer navigation">
+          <ul>
+            <li><a href="/our-portfolio.html">Work</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <address class="contact" aria-label="Contact information">
+          <p>
+            <span class="no-break">270-388-3535</span>
+            <a class="no-break" href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a>
+          </p>
+        </address>
+
+        <div class="social" aria-label="Social media links">
+          <a href="https://facebook.com/bluedobiedev" aria-label="Facebook"><img src="/images/facebook.svg" width="32" height="32" alt=""></a>
+          <a href="https://instagram.com/bluedobiedev" aria-label="Instagram"><img src="/images/instagram.svg" width="32" height="32" alt=""></a>
+          <a href="https://linkedin.com/company/bluedobie-developing" aria-label="LinkedIn"><img src="/images/linkedin.svg" width="32" height="32" alt=""></a>
+        </div>
+      </section>
+
+      <!-- Copyright -->
+      <p class="legal">© 2025 Bluedobie Developing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="upgradeModal" class="modal">
+    <div class="modal-content">
+      <h2>🎯 You've used your 3 free captions today!</h2>
+      <p>Ready for unlimited access?</p>
+      <div class="price">$9<span style="font-size:18px;font-weight:400;">/month</span></div>
+      <ul class="benefits">
+        <li>Unlimited caption generation</li>
+        <li>All platforms & formats</li>
+        <li>Priority support</li>
+        <li>Early access to new features</li>
+      </ul>
+      <div class="buttons">
+        <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
+        <button class="btn btn-secondary" id="closeModalBtn">Maybe Later</button>
+        <button class="btn btn-secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
+      </div>
+      <p class="muted" style="text-align:center;margin-top:8px;">Resets tomorrow at midnight</p>
+    </div>
+  </div>
+  
+  <script src="captioncraft.js"></script>
+  <script src="/js/mobile-nav.js"></script>
+</body>
+</html>

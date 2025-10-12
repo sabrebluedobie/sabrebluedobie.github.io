@@ -1,0 +1,197 @@
+/* About page specific styles */
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #042d4d 0%, #0a2a42 100%);
+  color: #fff;
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff6ec;
+  margin: 0 0 20px 0;
+  font-weight: 400;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* Sections */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.section {
+  padding: 80px 20px;
+}
+
+.section-alt {
+  background: #fff6ec;
+}
+
+h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  margin: 0 0 30px 0;
+  font-weight: 400;
+}
+
+/* Two Column Layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.about-text p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+/* Quote Block */
+.quote-block {
+  background: #fff;
+  padding: 30px;
+  border-left: 4px solid #042d4d;
+  margin: 40px 0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #042d4d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: #0a2a42;
+  transform: translateY(-2px);
+}
+
+/* Video Container */
+.video-container {
+  position: relative;
+  padding: 56.25% 0 0 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.div-block-3 {
+  max-width: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  /* Force text-first, image-second order on mobile */
+  .two-col > div:first-child {
+    order: 1;
+  }
+  
+  .two-col > div:last-child {
+    order: 2;
+  }
+  
+  /* But reverse when image is naturally first */
+  .section:nth-of-type(4) .two-col > div:first-child {
+    order: 2;
+  }
+  
+  .section:nth-of-type(4) .two-col > div:last-child {
+    order: 1;
+  }
+  
+  .section {
+    padding: 50px 15px;
+  }
+  
+  .hero-section {
+    padding: 80px 20px 60px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .quote-block {
+    padding: 20px;
+    font-size: 1rem;
+    margin: 30px 0;
+  }
+  
+  .btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  
+  .about-image {
+    margin: 0 auto;
+    display: block;
+  }
+}

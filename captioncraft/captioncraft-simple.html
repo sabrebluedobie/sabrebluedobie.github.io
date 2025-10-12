@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DobieCore Captions — your social content generator</title>
+  <link rel="stylesheet" href="captioncraft.css" />
+  <style>
+    /* Simplified form styles */
+    .simple-form { max-width: 600px; margin: 0 auto; }
+    .field-group { margin-bottom: 20px; }
+    .field-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+    .field-group input[type="text"],
+    .field-group select { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      font-size: 16px;
+      background: #fff;
+    }
+    .tone-control { display: flex; align-items: center; gap: 12px; }
+    .tone-control input[type="range"] { flex: 1; }
+    .tone-label { font-size: 14px; color: #666; white-space: nowrap; }
+    
+    .advanced-toggle {
+      background: #f0f2f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 20px 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .advanced-toggle:hover { background: #e8eaed; }
+    .advanced-toggle summary {
+      font-weight: 600;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .advanced-toggle summary::-webkit-details-marker { display: none; }
+    .advanced-content { margin-top: 16px; padding-top: 16px; border-top: 1px solid #ddd; }
+    
+    .generate-btn {
+      width: 100%;
+      padding: 16px;
+      background: #042d4d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .generate-btn:hover { background: #0a4d7a; transform: translateY(-2px); }
+    .generate-btn:disabled { background: #ccc; cursor: not-allowed; }
+    
+    /* Upgrade Modal */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 500px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal h2 { margin-top: 0; color: #042d4d; }
+    .modal .benefits { list-style: none; padding: 0; margin: 20px 0; }
+    .modal .benefits li { padding: 8px 0; }
+    .modal .benefits li::before { content: "✓ "; color: #28a745; font-weight: bold; }
+    .modal .price { font-size: 32px; font-weight: 700; color: #042d4d; margin: 20px 0; }
+    .modal .buttons { display: flex; gap: 12px; margin-top: 20px; }
+    .modal .btn { flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; font-size: 16px; }
+    .modal .btn-primary { background: #042d4d; color: white; }
+    .modal .btn-secondary { background: #f0f2f5; color: #333; }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="https://www.bluedobiedev.com">
+        <img src="/assets/images/dobiecore/dobiecore-logo.webp" alt="DobieCore Captions logo" style="height:42px">
+      </a>
+      <nav class="top-nav">
+        <a href="/sales.html">Back to Sales</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-top:28px;padding-bottom:12px;">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
+          <p class="lead">Turn a quick brief into 3 ready-to-post captions with tailored hooks and clean hashtags. Built for busy business owners.</p>
+          <ul class="ticks">
+            <li>Platform-optimized for Instagram, Facebook, LinkedIn, TikTok & more</li>
+            <li>Professional → Playful tone control</li>
+            <li>3 free captions per day, unlimited with Pro</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool">
+      <div class="container">
+        <form id="captionForm" class="brief simple-form">
+          
+          <!-- SIMPLIFIED MAIN FIELDS -->
+          <div class="field-group">
+            <label for="offer">What are you promoting? *</label>
+            <input type="text" id="offer" placeholder="e.g., Fall cleaning special - $99 for new clients" required>
+          </div>
+
+          <div class="field-group">
+            <label for="platform">Platform *</label>
+            <select id="platform">
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>LinkedIn</option>
+              <option>Twitter</option>
+              <option>TikTok</option>
+              <option>GMB</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="tone">Tone</label>
+            <div class="tone-control">
+              <span class="tone-label">Professional</span>
+              <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5">
+              <span class="tone-label">Playful</span>
+            </div>
+          </div>
+
+          <!-- ADVANCED OPTIONS (COLLAPSED BY DEFAULT) -->
+          <details class="advanced-toggle">
+            <summary>
+              Advanced Options (optional)
+              <span>▼</span>
+            </summary>
+            <div class="advanced-content">
+              
+              <div class="field-group">
+                <label for="audience">Who's your audience?</label>
+                <input type="text" id="audience" placeholder="e.g., busy homeowners in Western Kentucky">
+              </div>
+
+              <div class="field-group">
+                <label for="problem">What problem do you solve?</label>
+                <input type="text" id="problem" placeholder="e.g., no time to clean">
+              </div>
+
+              <div class="field-group">
+                <label for="outcome">What outcome do they get?</label>
+                <input type="text" id="outcome" placeholder="e.g., a sparkling home and free weekend">
+              </div>
+
+              <div class="field-group">
+                <label for="cta">Call to action</label>
+                <input type="text" id="cta" placeholder="e.g., Book now at https://yoursite.com">
+              </div>
+
+              <div class="field-group">
+                <label for="keywords">Keywords (for hashtags)</label>
+                <input type="text" id="keywords" placeholder="e.g., cleaning, local, kentucky">
+              </div>
+
+              <div class="field-group">
+                <label for="format">Format</label>
+                <select id="format">
+                  <option>Post</option>
+                  <option>Story</option>
+                  <option>Reel</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="captionLength">Caption length</label>
+                <select id="captionLength">
+                  <option>Short</option>
+                  <option selected>Medium</option>
+                  <option>Long</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="voiceMode">Voice Mode</label>
+                <select id="voiceMode">
+                  <option value="leadgen">Lead Gen / Sales</option>
+                  <option value="community">Community / Fun</option>
+                  <option value="authority">Authority / Pro</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="hashtagDensity">Hashtag density</label>
+                <select id="hashtagDensity">
+                  <option>Light</option>
+                  <option selected>Standard</option>
+                  <option>Heavy</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label>
+                  <input type="checkbox" id="cleanHashtags" checked>
+                  Clean hashtags (lowercase, no repeats)
+                </label>
+              </div>
+
+            </div>
+          </details>
+
+          <button type="submit" class="generate-btn" id="generateBtn">Generate 3 Captions</button>
+          
+          <div style="text-align:center; margin-top: 12px;">
+            <small class="muted" id="usageCounter"></small>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="container">
+        <h2>Results</h2>
+        <div id="results" class="cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand-stack">
+        <img src="/assets/images/dobiecore/dobiecore-logo.webp" alt="" style="height:28px">
+        <p>Bluedobie Developing</p>
+      </div>
+      <ul class="footer-contact">
+        <li><a href="tel:12703883535">270-388-3535</a></li>
+        <li><a href="mailto:melanie.brown@bluedobiedev.com">melanie.brown@bluedobiedev.com</a></li>
+      </ul>
+      <p class="legal">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Upgrade Modal -->
+  <div id="upgradeModal" class="modal">
+    <div class="modal-content">
+      <h2>🎯 You've used your 3 free captions today!</h2>
+      <p>Ready for unlimited access?</p>
+      
+      <div class="price">$9<span style="font-size:18px; font-weight:400;">/month</span></div>
+      
+      <ul class="benefits">
+        <li>Unlimited caption generation</li>
+        <li>All platforms & formats</li>
+        <li>Priority support</li>
+        <li>Early access to new features</li>
+      </ul>
+      
+      <div class="buttons">
+        <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
+        <button class="btn btn-secondary" id="closeMod alBtn">Maybe Later</button>
+      </div>
+      
+      <p style="text-align:center; margin-top:20px; font-size:14px; color:#666;">
+        Resets tomorrow at midnight
+      </p>
+    </div>
+  </div>
+
+  <script src="captioncraft.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Upgrade button click
+    document.getElementById('upgradeBtn').addEventListener('click', () => {
+      window.location.href = 'https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203';
+    });
+    
+    // Close modal
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      document.getElementById('upgradeModal').style.display = 'none';
+    });
+    
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('upgradeModal');
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

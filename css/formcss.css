@@ -1,0 +1,44 @@
+#contact-wizard {
+  max-width: 500px;
+  margin: auto;
+  font-family: 'Inter', sans-serif;
+  color:#fff
+}
+
+.form-step {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-step.active {
+  display: flex;
+}
+
+input, select, textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  color: #000 !important;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  background-color: #042d4d;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #06517d;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
