@@ -112,6 +112,11 @@ keywords: "affordable custom web design, web design Western Kentucky, website de
     border-radius: 8px;
   }
 
+  .blog-home-image img[src="/Bluedobie--dialogues/assets/images/professional-website.webp"],
+  .blog-home-image img:not([src]) {
+    display: none;
+  }
+
   .pagination-controls {
     display: flex;
     justify-content: center;
@@ -285,6 +290,12 @@ keywords: "affordable custom web design, web design Western Kentucky, website de
 
     if (!article) return;
 
+    const imageHTML = article.image ? `
+      <div class="blog-home-image">
+        <img src="${article.image}" alt="${article.title}" onerror="this.parentElement.style.display='none'">
+      </div>
+    ` : '';
+
     const articleHTML = `
       <div class="blog-home-main-item">
         <a href="${article.link}" class="blog-home-main-item-link">
@@ -297,9 +308,7 @@ keywords: "affordable custom web design, web design Western Kentucky, website de
               <h2 class="blog-home-item-title">${article.title}</h2>
               <p class="blog-home-item-summary">${article.summary}</p>
             </div>
-            <div class="blog-home-image">
-              <img src="${article.image}" alt="${article.title}">
-            </div>
+            ${imageHTML}
           </div>
         </a>
       </div>

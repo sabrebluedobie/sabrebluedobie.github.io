@@ -1,127 +1,326 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sales | Bluedobie Developing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="/css/app.css" rel="stylesheet">
-  <link href="/css/sales.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/bluedobie-developing-redesign.webflow.css" type="text/css" />
-  <style>
-    .card{border:1px solid var(--gg-slate);border-radius:12px;padding:18px; box-shadow:0 8px 12px rgba(0,0,0,.5);background:#fff}
-    @media (max-width:900px) {.back-link {float:none;display:block;margin:0 auto 20px auto; top: 0;left: 5vw; position: relative; }
-  .card-img { width:100%; height:auto; object-fit:cover; display:block; }}
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand-link w-nav-brand" href="https://bit.ly/4aOSYq4"><img alt="The blue dobie logo on a white background" class="brand-logo" height="100" loading="lazy" src="images/bluedobielogo_1.webp" width="100"/></a>
-    <div  class="site-title" ><h1 style="font-size: 2.75rem; display: inline; float:right;margin-right: 20px;">Bluedobie Developing — Offers</h1></div>
-    <a href="index.html" class="back-link" style="margin-left: 20px;">→ Go to Bluedobie Home</a>
-  </header>
-  <div class="wrap">
-    <section class="content" style="display: inline; justify-content: space-between; align-items: center;" aria-labelledby="store-intro">
-      <h2 id="store-intro" style="font-size: 2.25rem; display: block; margin-left: 20px">Tools That Actually Work</h2>
-      <p class="muted" style="width: 35%;margin-left: 20px">Small tools, big results. Click any card to see what it does and try it yourself.</p><br>
-      <div style="margin-left: 20px;" class="filters">
-        <button class="pill active" data-filter="all">All</button>
-        <button class="pill" data-filter="social">Social</button>
-        <button class="pill" data-filter="branding">Branding</button>
-        <button class="pill" data-filter="analytics">Analytics</button>
-      </div>
-    </section>
+---
+layout: default-shared
+title: "Sales | Bluedobie Developing"
+description: "Small tools, big results. Check out our offers for web design tools and services."
+permalink: /sales.html
+extra_css:
+  - /css/app.css
+  - /css/sales.css
+---
+
+<style>
+  .site-header {
+    padding: 2rem 1rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-title h1 {
+    font-size: 2.75rem;
+    margin: 0;
+    color: #042d4d;
+  }
+
+  .back-link {
+    color: #042d4d;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .back-link:hover {
+    opacity: 0.7;
+  }
+
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .content {
+    margin-bottom: 3rem;
+  }
+
+  .muted {
+    color: #6b7280;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+
+  .pill {
+    padding: 0.5rem 1rem;
+    border: 1px solid #042d4d;
+    background: #fff;
+    color: #042d4d;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .pill:hover {
+    background: #f3f4f6;
+  }
+
+  .pill.active {
+    background: #042d4d;
+    color: #fff;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.08);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #042d4d;
+  }
+
+  .card-text {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-weight: 700;
+    color: #042d4d;
+    font-size: 1.1rem;
+  }
+
+  .badge {
+    padding: 0.25rem 0.75rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #042d4d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .cta-button:hover {
+    background: #063a62;
+  }
+
+  .cta-button.cta-ghost {
+    background: transparent;
+    color: #042d4d;
+    border: 1px solid #042d4d;
+  }
+
+  .cta-button.cta-ghost:hover {
+    background: #f3f4f6;
+  }
+
+  @media (max-width: 900px) {
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-title h1 {
+      font-size: 2rem;
+    }
+
+    .back-link {
+      margin-left: 0 !important;
+    }
+
+    .muted {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+
+    .card {
+      flex-direction: column;
+    }
+
+    .card-img {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+
+<header class="site-header">
+  <a class="brand-link w-nav-brand" href="https://bit.ly/4aOSYq4">
+    <img alt="The blue dobie logo on a white background" class="brand-logo" height="100" loading="lazy" src="images/bluedobielogo_1.webp" width="100"/>
+  </a>
+  <div class="site-title">
+    <h1>Bluedobie Developing — Offers</h1>
+  </div>
+  <a href="index.html" class="back-link">→ Go to Bluedobie Home</a>
+</header>
+
+<div class="wrap">
+  <section class="content" aria-labelledby="store-intro">
+    <h2 id="store-intro" style="font-size: 2.25rem; margin-bottom: 1rem;">Tools That Actually Work</h2>
+    <p class="muted" style="max-width: 600px;">Small tools, big results. Click any card to see what it does and try it yourself.</p>
     
+    <div class="filters">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="social">Social</button>
+      <button class="pill" data-filter="branding">Branding</button>
+      <button class="pill" data-filter="analytics">Analytics</button>
+    </div>
+  </section>
 
-    <section class="content">
-     
-      <div class="card-grid" id="product-grid">
-        <!-- Product Card: DobieCore CaptionCraft -->
-        <article class="card" style="display: flex; align-items: center;" data-tags="social">
-          <img src="/assets/images/dobiecore/captioncraftlogo.png" alt="CaptionCraft Starter preview" class="card-img" style="align-items: center;justify-content: center; height: 240px; width:240px; object-fit: contain;" />
-          <div class="card-body">
-            <h3 class="card-title">DobieCore Captions</h3>
-            <p class="card-text">Type your topic, get caption + hashtags in seconds. Works forever, costs once.</p>
-            <div class="card-meta">
-              <span class="price">$9 one-time</span>
-              <span class="badge">Social</span>
-            </div>
-            <div class="card-actions">
-              <a href="quickspin.html" class="cta-button">Open Tool</a>
-              <a href="quickspin-landing.html" class="cta-button cta-ghost">Learn More</a>
-            </div>
+  <section class="content">
+    <div class="card-grid" id="product-grid">
+      <!-- Product Card: DobieCore CaptionCraft -->
+      <article class="card" data-tags="social">
+        <img src="/assets/images/dobiecore/captioncraftlogo.png" alt="CaptionCraft Starter preview" class="card-img" />
+        <div class="card-body">
+          <h3 class="card-title">DobieCore Captions</h3>
+          <p class="card-text">Type your topic, get caption + hashtags in seconds. Works forever, costs once.</p>
+          <div class="card-meta">
+            <span class="price">$9 one-time</span>
+            <span class="badge">Social</span>
           </div>
-        </article>
+          <div class="card-actions">
+            <a href="quickspin.html" class="cta-button">Open Tool</a>
+            <a href="quickspin-landing.html" class="cta-button cta-ghost">Learn More</a>
+          </div>
+        </div>
+      </article>
 
-  
-    <!-- Product Card: Gridiron Gazette (updated to microsite links) -->
+      <!-- Product Card: Gridiron Gazette -->
+      <article class="card" data-tags="social analytics">
+        <img class="card-img" src="/assets/images/gazette/SabreReporter.png" width="240" height="240" alt="Gridiron Gazette" />
+        <div class="card-body">
+          <h3 class="card-title">Gridiron Gazette</h3>
+          <p class="card-text">
+            Weekly fantasy newsletter for your league. Stats + humor. Makes commissioners look good.
+          </p>
+          <div class="card-meta">
+            <span class="badge">Social</span>
+            <span class="badge">Analytics</span>
+          </div>
+          <div class="card-actions">
+            <a href="/gazette/" class="cta-button">Visit Gazette</a>
+            <a href="/gazette/sample/" class="cta-button cta-ghost">See Sample</a>
+          </div>
+        </div>
+      </article>
 
-<article class="card" data-tags="social analytics">
-  
-  <img
-    class="card-img"
-    src="/assets/images/gazette/SabreReporter.png"
-    width="240" height="240"
-    alt="Gridiron Gazette"
-  />
-  <div class="card-body">
-    <h3 class="card-title">Gridiron Gazette</h3>
-    <p class="card-text">
-      Weekly fantasy newsletter for your league. Stats + humor. Makes commissioners look good.
-    </p>
-    <div class="card-meta">
-      <span class="badge">Social</span>
-      <span class="badge">Analytics</span>
+      <!-- Product Card: Logo Sprint -->
+      <article class="card" data-tags="branding">
+        <img
+          class="card-img"
+          src="/assets/images/logo-sprint/card-480.webp"
+          srcset="/assets/images/logo-sprint/card-480.webp 480w,
+                  /assets/images/logo-sprint/card-360.webp 360w,
+                  /assets/images/logo-sprint/card-240.webp 240w"
+          sizes="(max-width: 480px) 240px, (max-width: 768px) 360px, 480px"
+          alt="Logo Sprint — Sabre sprinting at golden hour">
+        <div class="card-body">
+          <h3 class="card-title">Logo Sprint</h3>
+          <p class="card-text">Get three logo concepts in 48 hours. Pick one, I'll refine it. Final files ready to use.</p>
+          <div class="card-meta">
+            <span class="price">$99 flat</span>
+            <span class="badge">Branding</span>
+          </div>
+          <div class="card-actions">
+            <a href="/logo-sprint.html" class="cta-button">Start Sprint</a>
+            <a href="/logo-sprint-landing.html" class="cta-button cta-ghost">What You Get</a>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="card-actions">
-      <a href="/gazette/" class="cta-button">Visit Gazette</a>
-      <a href="/gazette/sample/" class="cta-button cta-ghost">See Sample</a>
-    </div>
-  </div>
-</article>
+  </section>
+</div>
 
-        <!-- Product Card: Logo Sprint (photoreal Sabre) -->
-<article class="card" data-tags="branding">
-  <img
-    class="card-img"
-    src="/assets/images/logo-sprint/card-480.webp"
-    srcset="/assets/images/logo-sprint/card-480.webp 480w,
-            /assets/images/logo-sprint/card-360.webp 360w,
-            /assets/images/logo-sprint/card-240.webp 240w"
-    sizes="(max-width: 480px) 240px, (max-width: 768px) 360px, 480px"
-    alt="Logo Sprint — Sabre sprinting at golden hour">
-  <div class="card-body">
-    <h3 class="card-title">Logo Sprint</h3>
-    <p class="card-text">Get three logo concepts in 48 hours. Pick one, I'll refine it. Final files ready to use.</p>
-    <div class="card-meta">
-      <span class="price">$99 flat</span>
-      <span class="badge">Branding</span>
-    </div>
-    <div class="card-actions">
-      <a href="/logo-sprint.html" class="cta-button">Start Sprint</a>
-      <a href="/logo-sprint-landing.html" class="cta-button cta-ghost">What You Get</a>
-    </div>
-  </div>
-</article>
-
-      </div>
-    </section>
-  </div>
-
-  <script>
-    // Simple tag filter
-    const grid = document.getElementById('product-grid');
-    const pills = document.querySelectorAll('.pill');
-    pills.forEach(p => p.addEventListener('click', () => {
-      pills.forEach(x => x.classList.remove('active'));
-      p.classList.add('active');
-      const tag = p.dataset.filter;
-      grid.querySelectorAll('.card').forEach(card => {
-        if (tag === 'all') { card.style.display = ''; return; }
-        const tags = (card.getAttribute('data-tags')||'').split(/\s+/);
-        card.style.display = tags.includes(tag) ? '' : 'none';
-      });
-    }));
-  </script>
-</body>
-</html>
+<script>
+  // Simple tag filter
+  const grid = document.getElementById('product-grid');
+  const pills = document.querySelectorAll('.pill');
+  pills.forEach(p => p.addEventListener('click', () => {
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    const tag = p.dataset.filter;
+    grid.querySelectorAll('.card').forEach(card => {
+      if (tag === 'all') { 
+        card.style.display = ''; 
+        return; 
+      }
+      const tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+      card.style.display = tags.includes(tag) ? '' : 'none';
+    });
+  }));
+</script>
