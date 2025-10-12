@@ -1,0 +1,236 @@
+/* Mobile Navigation Styles */
+
+/* Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Nav Panel */
+.mobile-nav-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  max-width: 85%;
+  height: 100%;
+  background: #fff;
+  z-index: 999;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-panel.active {
+  right: 0;
+}
+
+/* Prevent body scroll when menu is open */
+body.mobile-nav-open {
+  overflow: hidden;
+}
+
+/* Mobile Nav Header */
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  background: #042d4d;
+}
+
+.mobile-nav-logo {
+  height: 50px;
+  width: auto;
+}
+
+.mobile-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Nav Content */
+.mobile-nav-content {
+  padding: 1rem 0;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  background: #f5f5f5;
+}
+
+/* Expandable Sections */
+.mobile-nav-expandable {
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-nav-toggle {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-toggle:hover {
+  background: #f5f5f5;
+}
+
+.mobile-nav-toggle-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.mobile-nav-toggle.active .mobile-nav-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #f9f9f9;
+}
+
+.mobile-nav-submenu.active {
+  max-height: 500px;
+}
+
+.mobile-nav-submenu .mobile-nav-link {
+  padding-left: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* CTA Button */
+.mobile-nav-cta {
+  display: block;
+  margin: 1.5rem 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #042d4d;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-cta:hover {
+  background: #06396b;
+}
+
+/* Social Links Section */
+.mobile-social-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+}
+
+.mobile-social-group {
+  margin-bottom: 1.5rem;
+}
+
+.mobile-social-group:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-social-group h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobile-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mobile-social-link {
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #042d4d;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.mobile-social-link:hover {
+  background: #042d4d;
+  color: #fff;
+  border-color: #042d4d;
+}
+
+/* Hide mobile nav on larger screens */
+@media (min-width: 992px) {
+  .mobile-nav-panel,
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+}
+
+/* Override Webflow default mobile menu behavior */
+@media (max-width: 991px) {
+  /* Hide the default Webflow dropdown nav menu on mobile */
+  .nav-menu.w-nav-menu {
+    display: none !important;
+  }
+  
+  /* Ensure hamburger button is visible and clickable */
+  .menu-button.w-nav-button {
+    display: block !important;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  /* Disable any Webflow animations/transitions on the nav */
+  .w-nav-overlay {
+    display: none !important;
+  }
+}

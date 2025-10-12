@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Toggle mobile menu
   if (menuButton) {
     menuButton.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       if (mobileNavPanel.classList.contains('active')) {
         closeMobileMenu();
