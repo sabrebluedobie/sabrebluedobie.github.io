@@ -1,748 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>About Melanie Brown | Bluedobie Developing</title>
-  <meta name="description" content="Self-taught web designer building small projects under $3k. Based in Princeton, KY. No agency overhead, no 6-month timelines.">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Instrument+Serif&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="css/footer.css" rel="stylesheet" type="text/css">
-  <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/bluedobie-developing-redesign.webflow.css" rel="stylesheet" type="text/css">
-  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
-  <link href="https://www.bluedobiedev.com/about" rel="canonical">
-  
-  <!-- Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B45D1C0L8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-6B45D1C0L8');
-  </script>
-  
-  <!-- Navigation Styles -->
-  <style>
-    /* Base Navigation Styles */
-    .navbar {
-      background: #042d4d;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      position: relative;
-      z-index: 1000;
-    }
+---
+layout: default-shared
+title: About Melanie Brown | Bluedobie Developing
+description: Self-taught web designer building small projects under $3k. Based in Princeton, KY. No agency overhead, no 6-month timelines.
+permalink: /about.html
+extra_css:
+  - /css/about.css
+---
 
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+<!-- Hero -->
+<section class="hero-section">
+  <div class="container">
+    <h1>About Bluedobie Developing</h1>
+    <p>I'm Melanie Brown. I build small websites for people who need them done right, without the wait or the agency price tag.</p>
+  </div>
+</section>
 
-    .nav-elements-holder {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 80px;
-    }
-
-    .nav-menu-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .brand-link {
-      display: flex;
-      align-items: center;
-    }
-
-    .brand-logo {
-      height: 60px;
-      width: auto;
-    }
-
-    /* Desktop Navigation */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-left: auto;
-    }
-
-    .nav-link-holder {
-      position: relative;
-    }
-
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 18px;
-      display: block;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .nav-link:hover {
-      color: #ffd700;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 4px;
-    }
-
-    /* Social Bar Styles */
-    .social-bar {
-      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
-      border-top: 1px solid #e9edf6;
-      border-bottom: 1px solid #e9edf6;
-      padding: 10px 0;
-    }
-
-    .social-bar-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .social-links-column {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: nowrap;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      border: 1px solid #e9edf6;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    }
-
-    .social-links-column .label {
-      font-size: 14px;
-      font-weight: 600;
-      color: #0e1726;
-      white-space: nowrap;
-      margin-right: 8px;
-    }
-
-    .social-link {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #fff;
-      color: #0e1726;
-      text-decoration: none;
-      border: 2px solid #d9e0ee;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .social-link:hover {
-      background: #2f6df6;
-      color: #fff;
-      border-color: #2f6df6;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(47, 109, 246, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .social-bar-inner {
-        flex-direction: column;
-        gap: 12px;
-      }
-      
-      .social-links-column {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    /* Dropdown Styles */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 10px 18px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .dropdown-toggle:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: #ffd700;
-      color: #ffd700;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: #042d4d;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      min-width: 200px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      z-index: 1001;
-      margin-top: 5px;
-    }
-
-    .dropdown-menu .nav-link {
-      display: block;
-      padding: 12px 20px;
-      border-radius: 0;
-    }
-
-    .dropdown-menu .nav-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Contact Button */
-    .nav-button-holder .button {
-      background: #ffd700;
-      color: #042d4d;
-      padding: 10px 24px;
-      border-radius: 4px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
-      white-space: nowrap;
-    }
-
-    .nav-button-holder .button:hover {
-      background: #ffed4e;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Mobile Menu Button */
-    .menu-button {
-      display: none;
-      background: transparent;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    .menu-icon {
-      width: 30px;
-      height: 30px;
-      filter: brightness(0) invert(1);
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 991px) {
-      .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #042d4d;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-        gap: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .nav-link-holder {
-        width: 100%;
-      }
-
-      .nav-link {
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .social-links-column {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
-        gap: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .social-links-column .label {
-        margin-bottom: 5px;
-      }
-
-      .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        border: none;
-        border-left: 3px solid #ffd700;
-        margin-left: 20px;
-        margin-top: 10px;
-      }
-
-      .nav-button-holder {
-        margin-top: 10px;
-      }
-
-      .nav-button-holder .button {
-        display: block;
-        text-align: center;
-        width: 100%;
-      }
-
-      .menu-button {
-        display: block;
-      }
-    }
-
-    * {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      margin: 0;
-      padding: 0;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-    
-    .hero-section {
-      background: linear-gradient(135deg, #042d4d 0%, #0a2a42 100%);
-      color: #fff;
-      padding: 100px 20px 80px;
-      text-align: center;
-    }
-    
-    .hero-section h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: #fff6ec;
-      margin: 0 0 20px 0;
-      font-weight: 400;
-    }
-    
-    .hero-section p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-      opacity: 0.95;
-    }
-    
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-    
-    .section {
-      padding: 80px 20px;
-    }
-    
-    .section-alt {
-      background: #fff6ec;
-    }
-    
-    h2 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(1.8rem, 4vw, 2.3rem);
-      margin: 0 0 30px 0;
-      font-weight: 400;
-    }
-    
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    
-    .about-image {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    
-    .about-text p {
-      line-height: 1.8;
-      margin-bottom: 20px;
-      font-size: 1.05rem;
-    }
-    
-    .quote-block {
-      background: #fff;
-      padding: 30px;
-      border-left: 4px solid #042d4d;
-      margin: 40px 0;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      font-style: italic;
-    }
-    
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      background: #042d4d;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-    
-    .btn:hover {
-      background: #0a2a42;
-      transform: translateY(-2px);
-    }
-    
-    .video-container {
-      position: relative;
-      padding: 56.25% 0 0 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    
-    @media (max-width: 768px) {
-      .two-col {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      /* Force text-first, image-second order on mobile */
-      .two-col > div:first-child {
-        order: 1;
-      }
-      
-      .two-col > div:last-child {
-        order: 2;
-      }
-      
-      /* But reverse when image is naturally first */
-      .section:nth-of-type(4) .two-col > div:first-child {
-        order: 2;
-      }
-      
-      .section:nth-of-type(4) .two-col > div:last-child {
-        order: 1;
-      }
-      
-      .section {
-        padding: 50px 15px;
-      }
-      
-      .hero-section {
-        padding: 80px 20px 60px;
-      }
-      
-      .container {
-        padding: 0 15px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-      }
-      
-      .about-text p {
-        font-size: 1rem;
-        margin-bottom: 15px;
-      }
-      
-      .quote-block {
-        padding: 20px;
-        font-size: 1rem;
-        margin: 30px 0;
-      }
-      
-      .btn {
-        display: block;
-        text-align: center;
-        width: 100%;
-        max-width: 300px;
-        margin: 20px auto;
-      }
-      
-      .about-image {
-        margin: 0 auto;
-        display: block;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-      <div class="nav-elements-holder">
-        <div class="nav-menu-container">
-          <!-- Logo -->
-          <a href="/" class="brand-link" aria-label="Bluedobie Developing Home">
-            <img src="/assets/images/bluedobielogo_1.webp" alt="Bluedobie Developing Logo" class="brand-logo">
-          </a>
-
-          <!-- Desktop/Mobile Menu -->
-          <div class="nav-menu" id="mainmenu">
-            <!-- Main nav links -->
-            <div class="nav-link-holder">
-              <a href="/index.html" class="nav-link">Home</a>
-            </div>
-            <div class="nav-link-holder">
-              <a href="/about.html" class="nav-link">About</a>
-            </div>
-            <div class="nav-link-holder">
-              <a href="/services.html" class="nav-link">Services</a>
-            </div>
-
-            <!-- Dropdown -->
-            <div class="nav-link-holder dropdown">
-              <button class="dropdown-toggle" id="dropdown-toggle">More</button>
-              <div class="dropdown-menu" id="dropdown-menu">
-                <a href="/our-portfolio.html" class="nav-link">Portfolio</a>
-                <a href="/meet-sabre.html" class="nav-link">Meet Sabre</a>
-                <a href="/contact.html" class="nav-link">Contact</a>
-                <a href="/FAQ.html" class="nav-link">FAQ's</a>
-                <a href="/business-links.html" class="nav-link">Our Links</a>
-              </div>
-            </div>
-
-            <!-- Products dropdown -->
-            <div class="nav-link-holder dropdown">
-              <button class="dropdown-toggle" id="products-toggle">Our Products</button>
-              <div class="dropdown-menu" id="products-menu">
-                <a href="/sales.html" class="nav-link">Offers</a>
-                <a href="/dobiecore/contracts/index.html" class="nav-link">DobieCore Contracts (coming soon)</a>
-                <a href="/captioncraft/captioncraft.html" class="nav-link">DobieCore Caption</a>
-                <a href="/gazette/" class="nav-link">Gridiron Gazette</a>
-                <a href="/blog/" class="nav-link">Dialogues</a>
-              </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="nav-link-holder nav-button-holder">
-              <a href="/contact.html" class="button nav w-inline-block">
-                <div>Contact Us</div>
-              </a>
-            </div>
-
-            <!-- mobile menu button -->
-            <button class="menu-button w-nav-button"
-                    id="menu-button"
-                    aria-controls="mainmenu"
-                    aria-expanded="false"
-                    aria-label="Toggle menu">
-              <img src="/assets/images/menu-icon.svg" alt="" class="menu-icon">
-            </button>
-          </div>
-        </div>
+<!-- What I Do -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="about-text">
+        <h2>What I Actually Do</h2>
+        <p>I build landing pages, portfolio sites, and simple business websites for solopreneurs and small businesses. Projects under $3k. Fast turnaround. No 6-month timelines.</p>
+        <p>I'm based in Princeton, Kentucky, serving Western KY and beyond. You work directly with me - no account managers, no committees, no agency overhead.</p>
+        <p>Most projects take 2-4 weeks from start to launch. You get a functional, mobile-friendly site that actually works.</p>
+      </div>
+      <div>
+        <img src="images/melanie-brown.webp" alt="Melanie Brown" class="about-image" loading="lazy">
       </div>
     </div>
   </div>
-  
-  <!-- Social Links Bar (2nd row) -->
-  <div class="social-bar">
-    <div class="social-bar-inner">
-      <div class="social-links-column">
-        <span class="label">Follow Bluedobie:</span>
-        <a href="https://fb.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-        <a href="https://twitter.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Twitter</a>
-        <a href="https://www.linkedin.com/in/bluedobiedeveloping" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-        <a href="https://instagram.com/sabrebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
-      </div>
+</section>
 
-      <div class="social-links-column">
-        <span class="label">Follow Sabre:</span>
-        <a href="https://fb.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Facebook</a>
-        <a href="https://instagram.com/sabrethebluedobie" target="_blank" rel="noopener" class="social-link">Instagram</a>
+<!-- Video Section -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 20px;">How Bluedobie Works</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.7;">You contact me. We talk about what you need. I give you a clear quote. You approve it, I build it, you launch it. Most projects take 2-4 weeks from start to finish.</p>
+    <div class="div-block-3">
+      <div style="padding:56.25% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/1031168185?loop=1&autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479&muted=true" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Bluedobie Helping Small Businesses"></iframe>
+      </div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+    </div>
+  </div>
+</section>
+
+<!-- Origin Story -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <img src="images/blogphoto-1.webp" alt="Highway journey" class="about-image" loading="lazy">
+      </div>
+      <div class="about-text">
+        <h2>How I Got Here</h2>
+        <p>My dad taught me DOS as a kid on a computer he built from scratch. We moved around a lot (military family), and technology was the constant. I watched him build things, and I wanted to do the same.</p>
+        <p>I'm entirely self-taught. No bootcamp, no CS degree - just figuring things out, breaking things, fixing them. I learned from Google, University of Michigan courses, and years of trial and error.</p>
+        <p>Bluedobie Developing is named after my blue Doberman, Sabre. He's been my office companion through every project.</p>
+        <p style="text-align: center; margin-top: 30px;">
+          <a href="meet-sabre.html" class="btn">Meet Sabre</a>
+        </p>
       </div>
     </div>
   </div>
-</nav>
+</section>
 
-  <!-- Hero -->
-  <section class="hero-section">
-    <div class="container">
-      <h1>About Bluedobie Developing</h1>
-      <p>I'm Melanie Brown. I build small websites for people who need them done right, without the wait or the agency price tag.</p>
+<!-- Philosophy -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 style="text-align: center;">Why I Do This</h2>
+    <div class="quote-block">
+      "I love to code and watch projects transform on-screen based on what I enter. The challenges excite me - I enjoy solving problems. Working as a web designer, I can bring ideas to life that otherwise wouldn't exist."
     </div>
-  </section>
-
-  <!-- What I Do -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div class="about-text">
-          <h2>What I Actually Do</h2>
-          <p>I build landing pages, portfolio sites, and simple business websites for solopreneurs and small businesses. Projects under $3k. Fast turnaround. No 6-month timelines.</p>
-          <p>I'm based in Princeton, Kentucky, serving Western KY and beyond. You work directly with me - no account managers, no committees, no agency overhead.</p>
-          <p>Most projects take 2-4 weeks from start to launch. You get a functional, mobile-friendly site that actually works.</p>
-        </div>
-        <div>
-          <img src="images/melanie-brown.webp" alt="Melanie Brown" class="about-image" loading="lazy">
-        </div>
-      </div>
+    <div class="about-text" style="max-width: 700px; margin: 0 auto;">
+      <p>Small businesses and solopreneurs get stuck between two bad options: expensive agencies that take months, or cheap template sites that look like everyone else's.</p>
+      <p>I'm the middle ground. Custom work at a reasonable price. Fast turnaround without cutting corners. You get a site that works for your specific needs.</p>
+      <p>I almost died building a massive Shopify project last year (silent migraines, hospitalized). That's when I restructured everything. No more 6-month builds. Small projects only. Sustainable work that doesn't kill me.</p>
+      <p>If you need a small site built right, I'm your person.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Video Section -->
-  <section class="section section-alt">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 20px;">How Bluedobie Works</h2>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.7;">You contact me. We talk about what you need. I give you a clear quote. You approve it, I build it, you launch it. Most projects take 2-4 weeks from start to finish.</p>
-      <div class="div-block-3">
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1031168185?loop=1&amp;autoplay=1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;muted=true" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Bluedobie Helping Small Businesses"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-        </div>
-      </div>
-  </section>
-
-  <!-- Origin Story -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div>
-          <img src="images/blogphoto-1.webp" alt="Highway journey" class="about-image" loading="lazy">
-        </div>
-        <div class="about-text">
-          <h2>How I Got Here</h2>
-          <p>My dad taught me DOS as a kid on a computer he built from scratch. We moved around a lot (military family), and technology was the constant. I watched him build things, and I wanted to do the same.</p>
-          <p>I'm entirely self-taught. No bootcamp, no CS degree - just figuring things out, breaking things, fixing them. I learned from Google, University of Michigan courses, and years of trial and error.</p>
-          <p>Bluedobie Developing is named after my blue Doberman, Sabre. He's been my office companion through every project.</p>
-          <p style="text-align: center; margin-top: 30px;">
-            <a href="meet-sabre.html" class="btn">Meet Sabre</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy -->
-  <section class="section section-alt">
-    <div class="container">
-      <h2 style="text-align: center;">Why I Do This</h2>
-      <div class="quote-block">
-        "I love to code and watch projects transform on-screen based on what I enter. The challenges excite me - I enjoy solving problems. Working as a web designer, I can bring ideas to life that otherwise wouldn't exist."
-      </div>
-      <div class="about-text" style="max-width: 700px; margin: 0 auto;">
-        <p>Small businesses and solopreneurs get stuck between two bad options: expensive agencies that take months, or cheap template sites that look like everyone else's.</p>
-        <p>I'm the middle ground. Custom work at a reasonable price. Fast turnaround without cutting corners. You get a site that works for your specific needs.</p>
-        <p>I almost died building a massive Shopify project last year (silent migraines, hospitalized). That's when I restructured everything. No more 6-month builds. Small projects only. Sustainable work that doesn't kill me.</p>
-        <p>If you need a small site built right, I'm your person.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section" style="background: #042d4d; color: #fff; text-align: center;">
-    <div class="container">
-      <h2 style="color: #fff; margin-bottom: 20px;">Let's Work Together</h2>
-      <p style="font-size: 1.2rem; margin-bottom: 30px;">Small projects under $3k. Fast turnaround. No agency overhead.</p>
-      <a href="contact.html" class="btn" style="background: #fff; color: #042d4d;">Check Availability</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="/about" class="footer-link">About</a>
-        <a href="/services" class="footer-link">Services</a>
-        <a href="/contact" class="footer-link">Contact</a>
-        <a href="/FAQ" class="footer-link">FAQ's</a>
-        <a href="/privacy" class="footer-link">Privacy</a>
-      </div>
-      <div class="footer-brand">
-        <a href="/"><img alt="Bluedobie Logo" class="footer-logo" src="images/bluedobielogo_1.webp"/></a>
-        <p class="footer-text">© 2025 Bluedobie Developing. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Navigation Scripts -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const dropdownToggle = document.getElementById('dropdown-toggle');
-      const dropdownMenu = document.getElementById('dropdown-menu');
-      const productsToggle = document.getElementById('products-toggle');
-      const productsMenu = document.getElementById('products-menu');
-
-      if (dropdownToggle && dropdownMenu) {
-        dropdownToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isOpen = dropdownMenu.style.display === 'block';
-          dropdownMenu.style.display = isOpen ? 'none' : 'block';
-          if (productsMenu) productsMenu.style.display = 'none';
-        });
-      }
-
-      if (productsToggle && productsMenu) {
-        productsToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isOpen = productsMenu.style.display === 'block';
-          productsMenu.style.display = isOpen ? 'none' : 'block';
-          if (dropdownMenu) dropdownMenu.style.display = 'none';
-        });
-      }
-
-      document.addEventListener('click', (e) => {
-        if (dropdownToggle && dropdownMenu && 
-            !dropdownToggle.contains(e.target) && 
-            !dropdownMenu.contains(e.target)) {
-          dropdownMenu.style.display = 'none';
-        }
-        if (productsToggle && productsMenu && 
-            !productsToggle.contains(e.target) && 
-            !productsMenu.contains(e.target)) {
-          productsMenu.style.display = 'none';
-        }
-      });
-
-      const menuButton = document.getElementById('menu-button');
-      const mainMenu = document.getElementById('mainmenu');
-
-      if (menuButton && mainMenu) {
-        menuButton.addEventListener('click', () => {
-          const isOpen = mainMenu.classList.contains('active');
-          mainMenu.classList.toggle('active');
-          menuButton.setAttribute('aria-expanded', !isOpen);
-        });
-      }
-    });
-  </script>
-  
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=661e91253937928082595f31" crossorigin="anonymous"></script>
-  <script src="js/webflow.js"></script>
-</body>
-</html>
+<!-- CTA -->
+<section class="section" style="background: #042d4d; color: #fff; text-align: center;">
+  <div class="container">
+    <h2 style="color: #fff; margin-bottom: 20px;">Let's Work Together</h2>
+    <p style="font-size: 1.2rem; margin-bottom: 30px;">Small projects under $3k. Fast turnaround. No agency overhead.</p>
+    <a href="contact.html" class="btn" style="background: #fff; color: #042d4d;">Check Availability</a>
+  </div>
+</section>

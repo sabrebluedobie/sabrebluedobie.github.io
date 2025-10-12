@@ -27,11 +27,6 @@
 
   {%- comment -%} Global site scripts (internal → relative_url) {%- endcomment -%}
   <script src="{{ '/js/mobile-nav.js' | relative_url }}" defer></script>
-
-  {%- comment -%}
-    If you have other global, internal scripts (e.g., '/assets/js/webflow.js'),
-    load them here with | relative_url as well:
-    <script src="{{ '/assets/js/webflow.js' | relative_url }}" defer></script>
-  {%- endcomment -%}
+  <script src="{{ '/assets/js/webflow.js' | relative_url }}" defer></script>
 </body>
 </html>
