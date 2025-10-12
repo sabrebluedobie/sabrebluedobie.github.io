@@ -28,6 +28,9 @@ jobs:
           PAGES_REPO_NWO: ${{ github.repository }}
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Remove CNAME file temporarily
+        run: rm -f _site/CNAME
+
       - name: Create .nojekyll file
         run: touch _site/.nojekyll
 
