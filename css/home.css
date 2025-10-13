@@ -216,12 +216,15 @@ h2 {
 
 .service-card {
   background: var(--color-white);
-  padding: var(--space-lg);
+  padding: 2.5vh 2.5vw;
   border-radius: var(--radius-xl);
   border: var(--border-light);
   transition: var(--transition-all);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .service-card:hover {
@@ -231,19 +234,19 @@ h2 {
 }
 
 .service-card h3 {
-  font-size: var(--font-size-h4);
-  margin: 0 0 var(--space-xs) 0;
+  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  margin: 0 0 1vh 0;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-heading);
   color: var(--color-navy);
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .service-card p {
-  line-height: var(--line-height-normal);
+  line-height: 1.5;
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: var(--font-size-base);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
 }
 
 /* ========================================
