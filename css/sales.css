@@ -1,17 +1,148 @@
-.filters { display:flex; gap:8px; margin:8px 0 4px; flex-wrap:wrap; }
-.pill { border:1px solid #cfd3d7; background:#fff; border-radius:999px; padding:6px 12px; cursor:pointer; font:inherit; }
-.pill.active { background:#042d4d; color:#fff; border-color:#042d4d; }
+/* ========================================
+   SALES PAGE STYLES - Using Design Tokens
+   ======================================== */
 
-.card-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
-@media (max-width:900px){ .card-grid{ grid-template-columns: repeat(2, 1fr); } }
-@media (max-width:640px){ .card-grid{ grid-template-columns: 1fr; } }
+/* ========================================
+   FILTERS
+   ======================================== */
+.filters { 
+  display: flex; 
+  gap: var(--space-xs); 
+  margin: var(--space-xs) 0 var(--space-xs); 
+  flex-wrap: wrap; 
+}
 
-.card { display:flex; flex-direction:column; border:1px solid #e6e6e6; border-radius:12px; overflow:hidden; background:#fff; }
-.card-img { width:100%; height:180px; object-fit:cover; background:#f0f2f4; }
-.card-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
-.card-title { margin:0; font-size:1.1rem; font-weight:700; }
-.card-text { margin:0; color:#333; }
-.card-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; color:#111; }
-.price { font-weight:700; }
-.badge { background:#eef2f6; border:1px solid #d4dbe3; border-radius:999px; padding:2px 8px; font-size:.8rem; }
-.card-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
+.pill { 
+  border: var(--border-light); 
+  background: var(--color-white); 
+  border-radius: var(--radius-full); 
+  padding: var(--space-xs) var(--space-sm); 
+  cursor: pointer; 
+  font: inherit;
+  font-size: var(--font-size-sm);
+  transition: var(--transition-all);
+}
+
+.pill.active { 
+  background: var(--color-navy); 
+  color: var(--color-white); 
+  border-color: var(--color-navy); 
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========================================
+   CARD GRID
+   ======================================== */
+.card-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: var(--space-md); 
+}
+
+@media (max-width: 900px) { 
+  .card-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  } 
+}
+
+@media (max-width: 640px) { 
+  .card-grid { 
+    grid-template-columns: 1fr; 
+  } 
+}
+
+/* ========================================
+   CARD STYLES
+   ======================================== */
+.card { 
+  display: flex; 
+  flex-direction: column; 
+  border: var(--border-light); 
+  border-radius: var(--radius-lg); 
+  overflow: hidden; 
+  background: var(--color-white);
+  transition: var(--transition-transform);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-img { 
+  width: 100%; 
+  height: 180px; 
+  object-fit: cover; 
+  background: var(--color-gray-100); 
+}
+
+.card-body { 
+  padding: var(--space-md); 
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--space-xs); 
+}
+
+.card-title { 
+  margin: 0; 
+  font-size: var(--font-size-md); 
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-heading);
+}
+
+.card-text { 
+  margin: 0; 
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.card-meta { 
+  display: flex; 
+  align-items: center; 
+  gap: var(--space-xs); 
+  flex-wrap: wrap; 
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.price { 
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy);
+}
+
+.badge { 
+  background: var(--color-gray-50); 
+  border: var(--border-light); 
+  border-radius: var(--radius-full); 
+  padding: 2px var(--space-xs); 
+  font-size: var(--font-size-xs); 
+}
+
+.card-actions { 
+  display: flex; 
+  gap: var(--space-xs); 
+  flex-wrap: wrap; 
+  margin-top: auto; 
+}
+
+.card-actions .btn {
+  padding: var(--button-padding-sm);
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: none;
+  border-radius: var(--button-radius);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-decoration: none;
+}
+
+.card-actions .btn:hover {
+  background: var(--button-primary-bg-hover);
+  transform: translateY(-2px);
+}

@@ -1,4 +1,6 @@
-/* Contact page specific styles */
+/* ========================================
+   CONTACT PAGE STYLES - Using Design Tokens
+   ======================================== */
 
 body {
   margin: 0;
@@ -6,16 +8,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Hero Section */
+/* ========================================
+   HERO SECTION
+   ======================================== */
 .hero-section {
-  background-color: #000;
-  color: #fff;
-  padding: 100px 20px 80px;
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  padding: var(--section-padding-lg) var(--space-md) var(--section-padding-md);
   position: relative;
 }
 
 .second-home-container {
-  max-width: 1100px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
 }
 
@@ -24,69 +28,73 @@ body {
 }
 
 .hero-section h1 {
-  font-size: 4rem;
-  color: white;
-  font-family: 'Instrument Serif', serif;
-  margin: 20px 0;
+  font-size: var(--font-size-h1);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  margin: var(--space-md) 0;
 }
 
 .second-home-description {
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   max-width: 700px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
+  margin: 0 auto var(--space-2xl);
+  line-height: var(--line-height-relaxed);
 }
 
-/* Animation Text */
+/* ========================================
+   ANIMATION TEXT
+   ======================================== */
 .animation-5-content {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-md);
 }
 
 .animation-5-text-line {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  font-size: 2rem;
-  font-weight: 600;
+  gap: var(--space-xs);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 2px;
 }
 
-/* Booking Widget */
+/* ========================================
+   BOOKING WIDGET
+   ======================================== */
 .booking-widget-container {
-  padding: 80px 20px 60px;
+  padding: var(--section-padding-md) var(--space-md) var(--section-padding-sm);
   text-align: center;
-  background: #f8f9fa;
+  background: var(--color-background-secondary);
 }
 
 .booking-widget-container p {
-  font-size: 1.8rem;
-  font-family: 'Instrument Serif', serif;
-  margin: 0 0 40px 0;
-  color: #042d4d;
-  font-weight: 600;
+  font-size: var(--font-size-h3);
+  font-family: var(--font-heading);
+  margin: 0 0 var(--space-2xl) 0;
+  color: var(--color-navy);
+  font-weight: var(--font-weight-semibold);
 }
 
 /* TidyCal Embed Wrapper */
 .tidycal-embed-wrapper {
   width: 100%;
   max-width: 1600px;
-  margin: 30px auto;
-  padding: 0 20px;
+  margin: var(--space-xl) auto;
+  padding: 0 var(--space-md);
 }
 
 .tidycal-embed {
   width: 100%;
   min-height: 800px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--color-white);
 }
 
 .tidycal-embed iframe {
   width: 100% !important;
   min-height: 800px !important;
   border: none !important;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .booking-iframe {
@@ -94,38 +102,44 @@ body {
   max-width: 900px;
   height: 600px;
   border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin: 20px auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin: var(--space-md) auto;
   display: block;
 }
 
-/* Clutch Widget */
+/* ========================================
+   CLUTCH WIDGET
+   ======================================== */
 .clutch-widget {
-  margin: 20px auto;
+  margin: var(--space-md) auto;
 }
 
 hr.dashed {
   border: none;
-  border-top: 2px dashed #ccc;
-  margin: 40px 0;
+  border-top: var(--border-width-medium) dashed var(--color-border-medium);
+  margin: var(--space-2xl) 0;
 }
 
-/* Form Section */
+/* ========================================
+   FORM SECTION
+   ======================================== */
 .section {
-  padding: 60px 20px;
+  padding: var(--section-padding-sm) var(--space-md);
   max-width: 800px;
   margin: 0 auto;
 }
 
 #custom-form-container {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: var(--color-white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
-/* Multi-Step Form */
+/* ========================================
+   MULTI-STEP FORM
+   ======================================== */
 .form-step {
   display: none;
 }
@@ -135,9 +149,9 @@ hr.dashed {
 }
 
 .form-step h3 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 1.8rem;
-  margin: 0 0 30px 0;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  margin: 0 0 var(--space-xl) 0;
   text-align: center;
 }
 
@@ -145,19 +159,21 @@ hr.dashed {
 .form-step select,
 .form-step textarea {
   width: 100%;
-  padding: 14px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-body);
+  transition: var(--transition-colors);
 }
 
 .form-step input:focus,
 .form-step select:focus,
 .form-step textarea:focus {
   outline: none;
-  border-color: #042d4d;
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(4, 45, 77, 0.1);
 }
 
 .form-step textarea {
@@ -166,27 +182,27 @@ hr.dashed {
 }
 
 .form-step button {
-  background: #042d4d;
-  color: #fff;
-  padding: 14px 32px;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  padding: var(--button-padding-md);
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: var(--button-radius);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: var(--transition-all);
 }
 
 .form-step button:hover {
-  background: #0a2a42;
+  background: var(--button-primary-bg-hover);
   transform: translateY(-2px);
 }
 
 .nav-buttons {
   display: flex;
-  gap: 15px;
+  gap: var(--space-sm);
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: var(--space-md);
 }
 
 .nav-buttons button {
@@ -194,29 +210,31 @@ hr.dashed {
 }
 
 .paragraph-46 {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.6;
-  margin: 15px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: var(--line-height-normal);
+  margin: var(--space-sm) 0;
 }
 
 .paragraph-46 a {
-  color: #042d4d;
+  color: var(--color-navy);
   text-decoration: underline;
 }
 
-/* Mobile Responsive */
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
 @media (max-width: 768px) {
   .hero-section h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);
   }
   
   .animation-5-text-line {
-    font-size: 1.5rem;
+    font-size: var(--font-size-lg);
   }
   
   .tidycal-embed {
-    min-height: 500px;  /* Even shorter on mobile */
+    min-height: 500px;
   }
   
   .tidycal-embed iframe {
@@ -228,11 +246,11 @@ hr.dashed {
   }
   
   #custom-form-container {
-    padding: 25px 20px;
+    padding: var(--space-lg) var(--space-md);
   }
   
   .form-step h3 {
-    font-size: 1.4rem;
+    font-size: var(--font-size-h4);
   }
   
   .nav-buttons {

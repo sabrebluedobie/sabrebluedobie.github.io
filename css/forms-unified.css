@@ -1,0 +1,352 @@
+/* ========================================
+   UNIFIED FORM STYLES - Using Design Tokens
+   Consolidates: forms-unified.css, form.css, forms-unified.css
+   ======================================== */
+
+/* ========================================
+   BASE FORM STYLES
+   ======================================== */
+#custom-form-container.section,
+#contact-wizard {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-sm);
+  box-sizing: border-box;
+  font-family: var(--font-body);
+}
+
+/* ========================================
+   FORM INPUTS & CONTROLS
+   ======================================== */
+input, 
+textarea, 
+button, 
+select,
+.fs-input,
+.fs-select,
+.fs-textarea {
+  width: 100%;
+  margin-bottom: var(--space-sm);
+  padding: var(--space-xs);
+  font-size: var(--font-size-base);
+  border: var(--border-light);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  box-sizing: border-box;
+  outline: none;
+  transition: var(--transition-colors);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.fs-input:focus-visible,
+.fs-select:focus-visible,
+.fs-textarea:focus-visible {
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(4, 45, 77, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder,
+.fs-input::placeholder,
+.fs-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+textarea,
+.fs-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* ========================================
+   MULTI-STEP FORM
+   ======================================== */
+.form-step {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-step.active {
+  display: flex;
+}
+
+.form-step h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  margin: 0 0 var(--space-xl) 0;
+  text-align: center;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+button,
+button.fs-button,
+.fs-button {
+  padding: var(--button-padding-md);
+  border: none;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-all);
+  text-align: center;
+}
+
+button:hover,
+.fs-button:hover {
+  background-color: var(--button-primary-bg-hover);
+  transform: translateY(-2px);
+}
+
+button:focus-visible,
+.fs-button:focus-visible {
+  background-color: var(--button-primary-bg-hover);
+  outline: 3px solid rgba(4, 45, 77, 0.3);
+}
+
+.nav-buttons,
+.fs-button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.nav-buttons button,
+.fs-button-group button {
+  flex: 1;
+}
+
+/* ========================================
+   LABELS & DESCRIPTIONS
+   ======================================== */
+label,
+.fs-label,
+.zf-labelName {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.fs-description,
+.zf-instruction {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-xs);
+}
+
+/* ========================================
+   CHECKBOXES & RADIO BUTTONS
+   ======================================== */
+.fs-checkbox-field,
+.fs-radio-field,
+.fs-checkbox-group,
+.fs-radio-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+.fs-checkbox,
+.fs-radio {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: var(--border-width-thin) solid var(--color-navy);
+  background-color: var(--color-white);
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+.fs-checkbox,
+input[type="checkbox"] {
+  border-radius: var(--radius-sm);
+}
+
+.fs-radio,
+input[type="radio"] {
+  border-radius: var(--radius-full);
+}
+
+.fs-checkbox:checked,
+.fs-radio:checked,
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: var(--color-navy);
+  border-color: var(--color-navy);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.fs-checkbox:checked,
+input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+.fs-radio:checked,
+input[type="radio"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+}
+
+.fs-checkbox:focus-visible,
+.fs-radio:focus-visible,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+  outline: 3px solid rgba(4, 45, 77, 0.3);
+  outline-offset: 0;
+}
+
+/* ========================================
+   SELECT DROPDOWNS
+   ======================================== */
+select,
+.fs-select,
+.zf-form-sBox {
+  appearance: none;
+  background-color: var(--color-white);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* ========================================
+   TERMS & CONDITIONS
+   ======================================== */
+.zf-termsContainer {
+  margin: 0;
+  padding: 0;
+}
+
+.zf-termsMsg,
+.zf-termScrollRemove {
+  border: var(--border-light);
+  padding: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-sm);
+}
+
+.zf-termsMsg {
+  max-height: 250px;
+  min-height: 70px;
+  overflow-y: scroll;
+}
+
+.zf-termsAccept {
+  margin-top: var(--space-xs);
+}
+
+.zf-termsAccept input[type="checkbox"] {
+  float: left;
+  margin-top: 0.25rem;
+}
+
+.zf-termsAccept label {
+  margin-left: var(--space-md);
+  font-size: var(--font-size-sm);
+  display: block;
+}
+
+/* ========================================
+   RECAPTCHA
+   ======================================== */
+.g-recaptcha {
+  margin: var(--space-md) auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* ========================================
+   ERROR MESSAGES
+   ======================================== */
+.zf-errorMessage {
+  font-size: var(--font-size-xs);
+  color: #ff0000;
+  padding-top: var(--space-xs);
+}
+
+.zf-important {
+  color: #ff0000;
+  font-weight: normal;
+  margin-left: 0;
+  padding: 0;
+  font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   BOOKING WIDGET
+   ======================================== */
+.booking-widget-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.booking-widget-container iframe {
+  text-align: center;
+  width: 100%;
+  height: 700px;
+  border: none;
+  margin: var(--space-3xl) 0 0 0;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  #custom-form-container.section,
+  #contact-wizard {
+    padding: var(--space-xs);
+  }
+  
+  .fs-checkbox-field {
+    gap: var(--space-xs);
+  }
+  
+  input, 
+  textarea, 
+  button {
+    font-size: var(--font-size-sm);
+  }
+  
+  .nav-buttons {
+    flex-direction: column;
+  }
+  
+  .nav-buttons button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .booking-widget-container iframe {
+    display: block;
+    margin-top: 100vh;
+  }
+  
+  .booking-widget-container {
+    display: block;
+    overflow: visible;
+  }
+}
