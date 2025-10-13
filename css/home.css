@@ -91,16 +91,16 @@ body {
   margin: 0 0 var(--space-xl) 0;
   font-weight: 800;
   color: #ffffff;
-  background: linear-gradient(180deg, #ffffff 0%, #e8e8e8 50%, #d0d0d0 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 40%, #e0e0e0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: 
-    0 1px 3px rgba(255, 255, 255, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.8),
-    0 4px 16px rgba(0, 0, 0, 0.6);
+    0 1px 3px rgba(255, 255, 255, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 4px 16px rgba(0, 0, 0, 0.7);
   letter-spacing: -0.02em;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
 
 .hero-subtext {
@@ -204,38 +204,45 @@ h2 {
 }
 
 /* ========================================
-   SERVICES GRID
+   SERVICES GRID - 2x2 CARD LAYOUT
    ======================================== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
-  margin: var(--space-2xl) 0;
+  margin: var(--space-2xl) auto;
+  max-width: 900px;
 }
 
 .service-card {
   background: var(--color-white);
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
   border: var(--border-light);
-  transition: var(--transition-transform);
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-navy);
 }
 
 .service-card h3 {
   font-size: var(--font-size-h4);
-  margin: 0 0 var(--space-sm) 0;
-  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-md) 0;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-heading);
+  color: var(--color-navy);
 }
 
 .service-card p {
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-relaxed);
   margin: 0;
   color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
 }
 
 /* ========================================
@@ -341,7 +348,11 @@ h2 {
     padding: 0 var(--space-sm);
   }
   
-  .services-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: var(--space-md);
