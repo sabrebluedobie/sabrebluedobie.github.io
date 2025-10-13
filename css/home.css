@@ -56,16 +56,16 @@ body {
 }
 
 .hero-content {
-  position: relative;
+  position: relative !important;
   z-index: calc(var(--z-base) + 1);
-  text-align: center;
+  text-align: center !important;
   padding: var(--space-2xl) var(--space-md);
   max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 
 .hero-badge {
@@ -117,13 +117,13 @@ body {
 }
 
 .hero-buttons {
-  display: flex;
+  display: flex !important;
   gap: var(--space-lg);
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
   flex-wrap: wrap;
   margin-top: var(--space-xl);
-  width: 100%;
+  width: 100% !important;
 }
 
 /* Hero-specific button styles - POWER BUTTONS */
@@ -216,23 +216,23 @@ h2 {
 
 .service-card {
   background: var(--color-white);
-  padding: var(--space-2xl);
+  padding: var(--space-xl);
   border-radius: var(--radius-xl);
   border: var(--border-light);
   transition: var(--transition-all);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 12px 32px rgba(4, 45, 77, 0.2);
   border-color: var(--color-navy);
 }
 
 .service-card h3 {
   font-size: var(--font-size-h4);
-  margin: 0 0 var(--space-md) 0;
+  margin: 0 0 var(--space-sm) 0;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-heading);
   color: var(--color-navy);
