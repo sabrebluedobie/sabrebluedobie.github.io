@@ -69,7 +69,7 @@ body {
 /* TidyCal Embed Wrapper */
 .tidycal-embed-wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 30px auto;
   padding: 0 20px;
 }
@@ -216,11 +216,11 @@ hr.dashed {
   }
   
   .tidycal-embed {
-    min-height: 600px;
+    min-height: 500px;  /* Even shorter on mobile */
   }
   
   .tidycal-embed iframe {
-    min-height: 600px !important;
+    min-height: 500px !important;
   }
   
   .booking-iframe {

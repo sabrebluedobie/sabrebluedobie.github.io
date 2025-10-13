@@ -302,7 +302,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Modal controls
   qs("#upgradeBtn")?.addEventListener("click", () => {
-    window.location.href = "https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203";
+    window.location.href = "https://buy.stripe.com/6oU8wPfjX591as29Hg3Je03";
   });
   qs("#alreadyProBtn")?.addEventListener("click", () => {
     const email = prompt("Enter the email you used to upgrade (temporary local unlock):");
