@@ -216,7 +216,7 @@ h2 {
 
 .service-card {
   background: var(--color-white);
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   border-radius: var(--radius-xl);
   border: var(--border-light);
   transition: var(--transition-all);
@@ -232,14 +232,15 @@ h2 {
 
 .service-card h3 {
   font-size: var(--font-size-h4);
-  margin: 0 0 var(--space-sm) 0;
+  margin: 0 0 var(--space-xs) 0;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-heading);
   color: var(--color-navy);
+  line-height: 1.3;
 }
 
 .service-card p {
-  line-height: var(--line-height-relaxed);
+  line-height: var(--line-height-normal);
   margin: 0;
   color: var(--color-text-secondary);
   font-size: var(--font-size-base);
