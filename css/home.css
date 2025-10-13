@@ -216,7 +216,7 @@ h2 {
 
 .service-card {
   background: var(--color-white);
-  padding: 2.5vh 2.5vw;
+  padding: 1.5vh 1.5vw;
   border-radius: var(--radius-xl);
   border: var(--border-light);
   transition: var(--transition-all);
@@ -225,6 +225,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .service-card:hover {
@@ -235,11 +236,12 @@ h2 {
 
 .service-card h3 {
   font-size: clamp(1.5rem, 2.5vw, 1.75rem);
-  margin: 0 0 1vh 0;
+  margin: 0 0 0.75vh 0;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-heading);
   color: var(--color-navy);
   line-height: 1.2;
+  width: 100%;
 }
 
 .service-card p {
@@ -247,6 +249,7 @@ h2 {
   margin: 0;
   color: var(--color-text-secondary);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
+  width: 100%;
 }
 
 /* ========================================
