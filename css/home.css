@@ -223,11 +223,11 @@ h2 {
   border: var(--border-light);
   transition: var(--transition-all);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .service-card:hover {
@@ -243,7 +243,6 @@ h2 {
   font-family: var(--font-heading);
   color: var(--color-navy);
   line-height: 1.2;
-  width: 100%;
 }
 
 .service-card p {
@@ -251,7 +250,6 @@ h2 {
   margin: 0;
   color: var(--color-text-secondary);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
-  width: 100%;
 }
 
 /* ========================================
