@@ -53,15 +53,40 @@ body {
 
 /* Booking Widget */
 .booking-widget-container {
-  padding: 60px 20px;
+  padding: 80px 20px 60px;
   text-align: center;
   background: #f8f9fa;
 }
 
 .booking-widget-container p {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-family: 'Instrument Serif', serif;
-  margin: 20px 0;
+  margin: 0 0 40px 0;
+  color: #042d4d;
+  font-weight: 600;
+}
+
+/* TidyCal Embed Wrapper */
+.tidycal-embed-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.tidycal-embed {
+  width: 100%;
+  min-height: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: white;
+}
+
+.tidycal-embed iframe {
+  width: 100% !important;
+  min-height: 800px !important;
+  border: none !important;
+  border-radius: 12px;
 }
 
 .booking-iframe {
@@ -188,6 +213,14 @@ hr.dashed {
   
   .animation-5-text-line {
     font-size: 1.5rem;
+  }
+  
+  .tidycal-embed {
+    min-height: 600px;
+  }
+  
+  .tidycal-embed iframe {
+    min-height: 600px !important;
   }
   
   .booking-iframe {
