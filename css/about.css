@@ -16,18 +16,21 @@ body {
 .hero-section {
   background: linear-gradient(135deg, var(--color-navy) 0%, #0a2a42 100%);
   color: var(--color-white);
-  padding: var(--section-padding-lg) var(--space-md) var(--section-padding-md);
+  padding: var(--section-padding-lg) 0 var(--section-padding-md);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 40vh;
+  width: 100%;
+  margin: 0;
 }
 
 .hero-section .container {
   width: 100%;
   max-width: var(--content-max-width);
   margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
 .hero-section h1 {
