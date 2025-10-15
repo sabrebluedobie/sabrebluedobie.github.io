@@ -345,6 +345,24 @@ h2 {
   color: var(--color-white);
 }
 
+.cta-section .btn {
+  background: var(--color-white);
+  color: var(--color-navy);
+  border: 3px solid var(--color-white);
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-section .btn:hover {
+  background: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-navy);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
 /* ========================================
    MOBILE RESPONSIVE
    ======================================== */

@@ -1,281 +1,12 @@
 ---
 layout: default-shared
 title: "Bluedobie Developing's Design Portfolio"
-description: "Revolutionizing web design with a people-focused approach in Princeton, KY. Creating amazing experiences. Visit our web design portfolio to see more!"
+description: "Small web projects under $3k. Landing pages, portfolios, business sites. Every project delivered on time and functional from day one."
 og_image: "https://i.postimg.cc/WpBt76FN/temp-Image-Tnr-JLu.avif"
 canonical_url: "https://www.bluedobiedev.com/our-portfolio"
-keywords: "affordable custom web design, affordable website design services, custom design site, affordable website development, affordable website design company, custom website services, custom web page design, custom design web site, affordable design web, for your custom website, affordable custom web site design, affordable professional web design, custom web design firm, custom website design and development, custom web design company, affordable web design for business, affordable web design companies, best small business web hosting, best small business website host, web design Western Kentucky, website design Western Kentucky, web design, web design Princeton Kentucky, website design Princeton ky, kentucky web design, website design, web design in Princeton KY, web design in Kentucky"
+extra_css:
+  - /css/portfolio.css
 ---
-
-<style>
-  /* Portfolio-specific styles */
-  .hero-section {
-    padding-top: 180px; /* Add space for nav + social bar */
-    padding-bottom: 100px;
-    min-height: calc(100vh - 100px);
-    position: relative;
-    overflow: visible;
-    z-index: auto; /* Let children create their own stacking */
-  }
-  
-  .container {
-    position: relative !important;
-    z-index: 10 !important; /* Content above background */
-  }
-  
-  .second-home-container {
-    position: relative !important;
-    z-index: 5 !important; /* Text container above background */
-  }
-  
-  .second-home-text-holder {
-    position: relative !important;
-    z-index: 5 !important; /* Text holder above background */
-  }
-  
-  .hero-section h1 {
-    font-size: 2.75rem;
-    color: white !important;
-    margin: 1rem 0;
-    text-align: center;
-    position: relative !important;
-    z-index: 5 !important; /* Text above background */
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .second-home-description {
-    opacity: 1 !important; /* Force visible immediately for debugging */
-    animation: fadeIn 1s ease-in forwards;
-    animation-delay: 0.5s;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative !important;
-    z-index: 5 !important; /* Text above background */
-    color: white !important; /* Ensure text is white */
-    visibility: visible !important;
-  }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .about-hero-images-holder {
-    padding-top: 2.5vh;
-    overflow: visible !important; /* Ensure images aren't cut off */
-    display: flex !important;
-    flex-direction: column;
-    gap: 30px; /* Add space between rows */
-    position: relative !important;
-    z-index: 10 !important; /* Stack above the dark background */
-  }
-  
-  .company-image-container {
-    opacity: 1 !important; /* Changed from 0 - let individual images animate */
-    display: flex !important;
-    flex-direction: column;
-    gap: 30px; /* Space between the two scroll rows */
-    position: relative !important;
-    z-index: 10 !important; /* Stack above background */
-  }
-  
-  .company-image-holder.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Stagger the animations */
-  .company-image-holder:nth-child(1) { transition-delay: 0.1s; }
-  .company-image-holder:nth-child(2) { transition-delay: 0.2s; }
-  .company-image-holder:nth-child(3) { transition-delay: 0.3s; }
-  .company-image-holder:nth-child(4) { transition-delay: 0.4s; }
-  .company-image-holder:nth-child(5) { transition-delay: 0.5s; }
-  
-  /* Grid layout for portfolio images - HORIZONTAL SCROLL */
-  .w-layout-grid {
-    display: flex !important;
-    overflow-x: scroll !important;
-    overflow-y: hidden !important;
-    scroll-behavior: smooth;
-    gap: 16px;
-    padding: 20px 0;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-  }
-  
-  /* Hide scrollbar but keep functionality */
-  .w-layout-grid::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .w-layout-grid::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-  }
-  
-  .w-layout-grid::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
-  
-  .w-layout-grid::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-  }
-  
-  .company-images-grid {
-    margin-bottom: 3rem;
-  }
-  
-  /* Individual image animations + positioning */
-  .company-image-holder {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    flex: 0 0 auto; /* Don't shrink, don't grow */
-    width: 400px; /* Fixed width for horizontal scroll */
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  
-  .company-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-  
-  .cta-container {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    background-color: #042d4d;
-    color: #fff;
-    font-size: 16px;
-    padding: 15px 30px;
-    border: 1px solid #042d4d;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background: linear-gradient(#fff, lightgrey, #042d4d);
-    color: #000;
-  }
-  
-  .section-background-dark {
-    background-color: #000;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0; /* Behind all content */
-    pointer-events: none; /* Don't block clicks */
-  }
-  
-  .our-values-text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    transform: translate3d(-25px, 0, 0);
-    animation: slideInLeft 0.8s ease-out forwards;
-    animation-delay: 0.3s;
-  }
-  
-  @keyframes slideInLeft {
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  .about-image {
-    opacity: 0;
-    filter: blur(5px);
-    animation: imageReveal 1s ease-out forwards;
-    animation-delay: 0.5s;
-  }
-  
-  @keyframes imageReveal {
-    to {
-      opacity: 1;
-      filter: blur(0);
-    }
-  }
-  
-  
-  
-  /* Force horizontal scroll - override ALL grid styles */
-  .portfolio-scroll-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: scroll !important;
-    overflow-y: hidden !important;
-    gap: 16px;
-    padding: 20px 0;
-    scroll-behavior: auto; /* Changed from smooth to allow JS animation control */
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    max-width: 100%;
-    position: relative;
-    z-index: 15; /* Stack above everything */
-    min-height: 300px; /* Ensure row has visible height */
-    background: rgba(255, 255, 255, 0.05); /* Subtle background to see the row */
-  }
-  
-  .portfolio-scroll-wrapper .company-image-holder {
-    flex: 0 0 auto !important;
-    width: 400px;
-    scroll-snap-align: start;
-    position: relative;
-    z-index: 20; /* Images on top */
-  }
-
-  @media screen and (min-width: 900px) {
-    div.second-home-holder {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 40%; /* Adjust based on nav height */
-    }
-    .second-home-holder h1 {
-      display: block;
-      font-size: 3.5rem;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .hero-section {
-      padding-top: 120px; /* Account for mobile nav height */
-    }
-    
-    .hero-section h1 {
-      font-size: 2.5rem;
-    }
-    
-    .cta-button {
-      width: 90%;
-      font-size: 14px;
-      padding: 12px 20px;
-    }
-    
-    /* Smaller image width on mobile for horizontal scroll */
-    .company-image-holder {
-      width: 300px;
-    }
-  }
-</style>
 
 <div class="hero-section about-section">
   <div class="container">
@@ -330,7 +61,6 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
     </div>
   </div>
-  <div class="section-background-dark about"></div>
 </div>
 
 <div class="section">
@@ -344,7 +74,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       <p class="paragraph-32">Small business sites, portfolios, and digital products. Every project delivered on time, under $3k, and functional from day one.</p>
       
       <h3>Too Good Maids</h3>
-      <p class="paragraph-32">Cleaning service site. Clean design, easy booking, mobile-friendly.</p>
+      <p class="paragraph-32">Cleaning service site built for a growing business. Clean, minimal design that doesn't get in the way - just easy booking and clear service info. Mobile-friendly because most customers book from their phones.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Simple navigation, fast load times, and prominent booking CTA. The business grew so much after launch they had to hire additional help to keep up with demand.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://www.toogoodmaidscleaning.com' target='_blank' rel='noopener'>
           Sweep Your Worries Away with Too Good Maids!
@@ -353,6 +84,7 @@ keywords: "affordable custom web design, affordable website design services, cus
       
       <h3>Design and Development Showcase</h3>
       <p class="paragraph-32">Alternative navigation style for Too Good Maids. Shows how I approach personal, user-focused design with custom illustrations.</p>
+      <img src="assets/images/staging-1tgm.webp" alt="Too Good Maids staging site with custom illustration" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
       <div class="cta-container">
         <a class="cta-button" href='https://too-good-maids.github.io/staging' target='_blank' rel='noopener'>
           Experience Our Personal Touch in Web Design!
@@ -360,7 +92,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
       
       <h3>Tiny Trinkets Tha Business</h3>
-      <p class="paragraph-32">Portfolio site for handcrafted trinkets. Image galleries, easy navigation, works for both customers and vendors.</p>
+      <p class="paragraph-32">Portfolio site for handcrafted trinkets and jewelry. Built to showcase products beautifully while working for both retail customers and wholesale vendors. Image-heavy design with smooth galleries and easy navigation.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Big, clear product photos. Clean layout that doesn't compete with the jewelry. Separate sections for retail vs. wholesale so both audiences get what they need fast.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://tiny-trinkets-tha-business.webflow.io' target='_blank' rel='noopener'>
           Sparkle and Shine! Explore Tiny Trinkets!
@@ -368,7 +101,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
       
       <h3>Critter Care</h3>
-      <p class="paragraph-32">Pet care site. Warm design, easy navigation, clear service info.</p>
+      <p class="paragraph-32">Pet care and grooming site for a local business. Warm, welcoming design with easy-to-find service info and pricing. Built to make booking simple and showcase what makes them different from big chain groomers.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Friendly design that matches their personal approach. Clear service descriptions so customers know exactly what they're getting. Mobile-optimized because pet owners book on the go. Like Too Good Maids, they grew fast enough after launch to need more staff.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://www.crittercarepky.com' target='_blank' rel='noopener'>
           Paws and Click! Visit Critter Care's Site!
@@ -376,7 +110,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
 
       <h3>Arlo.Dobermann</h3>
-      <p class="paragraph-32">Petfluencer site. Fun design that shows Arlo's personality, links to Etsy, easy to navigate.</p>
+      <p class="paragraph-32">Petfluencer portfolio site for Arlo, a blue Doberman with an Etsy shop and growing social media following. Fun, personality-driven design that shows off Arlo's character while making it easy to shop his merch and connect on social.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Bold design that matches Arlo's vibe. Direct links to Etsy and social profiles. Simple navigation that doesn't overthink it - people want to see the dog and buy the merch.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://petfluencers.github.io/Arlo-Dobermann/index.html' target='_blank' rel='noopener'>
           Sit. Stay. Scroll! Visit Arlo's Site!
@@ -384,7 +119,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
       
       <h3>Pleasant Valley Bulk Foods</h3>
-      <p class="paragraph-32">Shopify eCommerce site for bulk foods. Custom theme, payment integration, mobile-optimized, product filtering. Clean design, easy shopping.</p>
+      <p class="paragraph-32">Full Shopify eCommerce site for a bulk foods store. Custom theme built from scratch, payment integration, mobile-optimized checkout, product filtering and search. Everything needed to run an online store that actually works.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Clean product pages that load fast. Easy filtering so customers can find what they need. Mobile checkout that doesn't frustrate people. Custom theme that looks professional without the Shopify template feel.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://www.pleasantvalleybulkfoods.com' target='_blank' rel='noopener'>
           Ready to make your Shopify store shine? Let's get to work.
@@ -392,7 +128,8 @@ keywords: "affordable custom web design, affordable website design services, cus
       </div>
       
       <h3>The Gridiron Gazette</h3>
-      <p class="paragraph-32">Automated fantasy football newsletter. Built from scratch with custom automation, Stripe integration, and a mascot builder. A subscription service that actually works. <a href="/documents/Week5_Gazette.pdf" target="_blank" rel="noopener" style="color: #042d4d; text-decoration: underline;">See a sample PDF</a>.</p>
+      <p class="paragraph-32">Automated fantasy football newsletter subscription service. Built entirely from scratch - custom automation, Stripe payment integration, mascot builder tool, and weekly PDF generation. This isn't a website, it's a full product that sends personalized recaps to fantasy football leagues every week.</p>
+      <p class="paragraph-32"><strong>What worked:</strong> Complete automation - subscribers get their custom newsletter without any manual work. Stripe integration that actually works. The mascot builder lets leagues customize their experience. It's a subscription service that runs itself. <a href="/documents/Week5_Gazette.pdf" target="_blank" rel="noopener" style="color: #042d4d; text-decoration: underline;">See a sample PDF</a>.</p>
       <div class="cta-container">
         <a class="cta-button" href='https://www.bluedobiedev.com/gazette.html' target='_blank' rel='noopener'>
           See the Gazette in action!
