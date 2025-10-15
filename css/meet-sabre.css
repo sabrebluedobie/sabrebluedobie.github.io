@@ -28,9 +28,12 @@ body {
 
 .hero-section .container {
   width: 100%;
-  max-width: var(--content-max-width);
+  max-width: 700px;
   margin: 0 auto;
   padding: 0 var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-section h1 {
@@ -42,8 +45,9 @@ body {
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 500px;
+  width: auto;
+  max-width: 375px;
+  max-height: 525px;
   height: auto;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
