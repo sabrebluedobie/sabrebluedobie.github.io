@@ -67,9 +67,9 @@ body {
 }
 
 .carousel-track {
-  display: flex;
+  display: flex !important;
   gap: 20px;
-  width: fit-content;
+  width: fit-content !important;
 }
 
 .carousel-track img {
@@ -115,7 +115,7 @@ body {
 
 /* Scroll Right Animation */
 .scroll-right .carousel-track {
-  animation: scrollRight 40s linear infinite;
+  animation: scrollRight 40s linear infinite !important;
 }
 
 @keyframes scrollRight {
@@ -129,7 +129,7 @@ body {
 
 /* Scroll Left Animation */
 .scroll-left .carousel-track {
-  animation: scrollLeft 40s linear infinite;
+  animation: scrollLeft 40s linear infinite !important;
 }
 
 @keyframes scrollLeft {
