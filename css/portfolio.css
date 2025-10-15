@@ -43,72 +43,107 @@ body {
 }
 
 /* ========================================
-   PORTFOLIO CAROUSEL
+   NEW PORTFOLIO CAROUSEL
    ======================================== */
-.about-hero-images-holder {
-  padding: var(--space-2xl) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
+.portfolio-carousel {
   background: #000;
-  position: relative;
-  z-index: 2;
-}
-
-.company-image-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
-}
-
-.portfolio-scroll-wrapper {
-  display: flex !important;
-  overflow-x: auto;
-  overflow-y: hidden;
-  gap: var(--space-md);
-  padding: var(--space-lg) 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-.portfolio-scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
-
-.portfolio-scroll-wrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.portfolio-scroll-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-.portfolio-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.company-image-holder {
-  flex: 0 0 auto;
-  width: 400px;
-  border-radius: var(--radius-lg);
+  padding: 60px 0;
   overflow: hidden;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  animation: fadeIn 0.8s ease-in;
 }
 
-.company-image-holder.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.company-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+.carousel-row {
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.carousel-row:last-child {
+  margin-bottom: 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  width: fit-content;
+}
+
+.carousel-track img {
+  height: 400px;
+  width: auto;
+  max-width: 600px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-track img:hover {
+  animation: bounceUp 0.4s ease-out;
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.25);
+}
+
+@keyframes bounceUp {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  55% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+  85% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Right Animation */
+.scroll-right .carousel-track {
+  animation: scrollRight 40s linear infinite;
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Scroll Left Animation */
+.scroll-left .carousel-track {
+  animation: scrollLeft 40s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Pause on hover */
+.carousel-row:hover .carousel-track {
+  animation-play-state: paused;
 }
 
 /* ========================================
@@ -225,8 +260,13 @@ h3 {
     font-size: var(--font-size-base);
   }
   
-  .company-image-holder {
-    width: 300px;
+  .portfolio-carousel {
+    padding: 40px 0;
+  }
+  
+  .carousel-track img {
+    height: 300px;
+    max-width: 450px;
   }
   
   .section {
