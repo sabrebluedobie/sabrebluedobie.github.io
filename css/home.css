@@ -318,6 +318,20 @@ h2 {
 }
 
 /* ========================================
+   PORTFOLIO LINK HOVER
+   ======================================== */
+.portfolio-link {
+  transition: all 0.3s ease;
+}
+
+.portfolio-link:hover {
+  background: var(--color-navy) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-navy) !important;
+  transform: translateY(-2px);
+}
+
+/* ========================================
    CTA SECTION
    ======================================== */
 .cta-section {
