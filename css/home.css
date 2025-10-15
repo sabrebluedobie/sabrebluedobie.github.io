@@ -211,45 +211,44 @@ h2 {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   margin: var(--space-2xl) auto;
-  max-width: 900px;
+  max-width: 1000px;
 }
 
 .service-card {
   background: var(--color-white);
-  padding: 1.5vh 1.5vw;
-  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
   border: var(--border-light);
   transition: var(--transition-all);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
+  gap: var(--space-sm);
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(4, 45, 77, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(4, 45, 77, 0.15);
   border-color: var(--color-navy);
 }
 
 .service-card h3 {
-  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
-  margin: 0 0 0.75vh 0;
+  font-size: var(--font-size-h4);
+  margin: 0;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-heading);
   color: var(--color-navy);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
 }
 
 .service-card p {
-  line-height: 1.5;
+  line-height: var(--line-height-normal);
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: var(--font-size-base);
 }
 
 /* ========================================
