@@ -227,7 +227,7 @@
 }
 
 /* Show on mobile */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .menu-button {
     display: block;
   }
