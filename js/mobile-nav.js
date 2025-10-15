@@ -236,3 +236,68 @@ function initMobileNav() {
 
   console.log('🔵 Mobile nav fully initialized!');
 }
+
+// Desktop/Tablet Dropdown Functionality
+function initDesktopDropdowns() {
+  console.log('🔵 Initializing desktop dropdowns...');
+  
+  // Get all dropdown toggles in the main nav
+  const dropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+  
+  dropdownToggles.forEach(toggle => {
+    const menuId = toggle.getAttribute('aria-controls');
+    const menu = document.getElementById(menuId);
+    
+    if (!menu) return;
+    
+    // Click handler for the toggle button
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other dropdowns
+      document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(otherToggle => {
+        if (otherToggle !== toggle) {
+          otherToggle.setAttribute('aria-expanded', 'false');
+          const otherId = otherToggle.getAttribute('aria-controls');
+          const otherMenu = document.getElementById(otherId);
+          if (otherMenu) {
+            otherMenu.classList.remove('show');
+          }
+        }
+      });
+      
+      // Toggle current dropdown
+      if (isExpanded) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('show');
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.classList.add('show');
+      }
+    });
+  });
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        const menuId = toggle.getAttribute('aria-controls');
+        const menu = document.getElementById(menuId);
+        if (menu) {
+          menu.classList.remove('show');
+        }
+      });
+    }
+  });
+  
+  console.log('🔵 Desktop dropdowns initialized!');
+}
+
+// Initialize desktop dropdowns on load
+window.addEventListener('load', function() {
+  setTimeout(initDesktopDropdowns, 150);
+});
