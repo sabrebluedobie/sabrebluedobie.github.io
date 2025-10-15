@@ -207,19 +207,47 @@
 /* ========================================
    SERVICES PAGE LAYOUT
    ======================================== */
-.services-hero.container,
+
+/* Services Hero Section */
+.services-hero {
+  background: linear-gradient(135deg, var(--color-navy) 0%, #0a2a42 100%);
+  color: var(--color-white);
+  padding: var(--section-padding-lg) var(--space-md) var(--section-padding-md);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+}
+
+.services-hero .container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.services-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  color: var(--color-cream);
+  margin: 0 0 var(--space-md) 0;
+  font-weight: var(--font-weight-normal);
+}
+
+.services-hero .lead {
+  font-size: var(--font-size-lg);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+  opacity: 0.95;
+}
+
+/* Grid and Process Sections */
 .services-grid.container,
 .services-process.container {
   display: block !important;
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-md);
-}
-
-.services-hero .lead {
-  font-size: var(--font-size-md);
-  opacity: 0.9;
-  line-height: var(--line-height-normal);
 }
 
 .services-grid {
@@ -493,6 +521,15 @@
 /* ========================================
    MOBILE RESPONSIVE
    ======================================== */
+
+/* Tablet: 2 columns for services */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Mobile: single column */
 @media (max-width: 768px) {
   /* Hide desktop dropdowns on mobile */
   .nav-menu .dropdown-menu {
