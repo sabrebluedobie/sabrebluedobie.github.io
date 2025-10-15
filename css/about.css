@@ -78,16 +78,27 @@ h2 {
    TWO COLUMN LAYOUT
    ======================================== */
 .two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4xl);
-  align-items: center;
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.two-col > div {
+  margin-bottom: var(--space-2xl);
 }
 
 .about-image {
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+  display: block;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+}
+
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .about-text p {
@@ -203,29 +214,6 @@ h2 {
    MOBILE RESPONSIVE
    ======================================== */
 @media (max-width: 768px) {
-  .two-col {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-  
-  /* Force text-first, image-second order on mobile */
-  .two-col > div:first-child {
-    order: 1;
-  }
-  
-  .two-col > div:last-child {
-    order: 2;
-  }
-  
-  /* But reverse when image is naturally first */
-  .section:nth-of-type(4) .two-col > div:first-child {
-    order: 2;
-  }
-  
-  .section:nth-of-type(4) .two-col > div:last-child {
-    order: 1;
-  }
-  
   .section {
     padding: var(--section-padding-sm) var(--space-sm);
   }
