@@ -1,3 +1,6 @@
 {
-    "liveServer.settings.root": "/"
+    "liveServer.settings.root": "/",
+    "files.exclude": { "_site": true },
+  "search.exclude": { "_site": true },
+  "files.watcherExclude": { "**/_site/**": true }
 }
