@@ -1,11 +1,12 @@
 ---
-layout: post
+layout: blog
 title: "Why Your Website Must Load in 3 Seconds or Less"
 date: 2025-10-22
-featured_image: /assets/images/dialogues/fast-loading-website.png
+author: "Melanie Brown"
 excerpt: "Learn why a speedy site is key to keeping your rural customers online and how to optimize performance."
-keywords: web performance, mobile users, site speed, website optimization, small business web design, rural Kentucky
-categories: [web-design, performance]
+image: /assets/images/dialogues/fast-loading-website.png
+tags: [web design, website optimization, performance, small business]
+toc: false
 ---
 
 ![Fast loading website visualization](/assets/images/dialogues/fast-loading-website.png)
