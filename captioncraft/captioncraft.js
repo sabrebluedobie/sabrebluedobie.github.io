@@ -1,357 +1,304 @@
 // @ts-nocheck
-// DobieCore CaptionCraft — Strict & human with optional AI remix (Pro).
+/* DobieCore Captions — durable submit wiring, platform/format helpers, safe guards
+   This file intentionally avoids optional selector explosions and ensures rendering always occurs.
+*/
 
-// ---------- tiny DOM helpers (no jQuery)
+// ---------- tiny helpers
 const qs = (sel, root = document) => root.querySelector(sel);
 const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// ---------- usage gating (3/day for Free)
-function todayKey() {
+// ---------- state: usage gating
+const USAGE_KEY_PREFIX = "dcc_usage_";
+const isPro = () => localStorage.getItem("dcc_pro") === "1" || !!localStorage.getItem("dcc_pro_email");
+const todayKey = () => {
   const d = new Date();
-  return `dcc_usage_${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-}
-function getUsage() {
-  const key = todayKey();
-  const n = parseInt(localStorage.getItem(key) || "0", 10);
-  return { key, n };
-}
-function incrementUsage() {
-  const { key, n } = getUsage();
-  localStorage.setItem(key, String(n + 1));
-}
-function isPro() {
-  return localStorage.getItem("dcc_pro") === "1" || !!localStorage.getItem("dcc_pro_email");
-}
-function updateUsageCounter() {
+  return `${USAGE_KEY_PREFIX}${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+};
+const getUsage = () => parseInt(localStorage.getItem(todayKey()) || "0", 10);
+const incUsage = () => localStorage.setItem(todayKey(), String(getUsage()+1));
+function updateUsageCounter(){
   const el = qs("#usageCounter");
   if (!el) return;
-  if (isPro()) {
-    el.textContent = "Pro: unlimited captions";
-  } else {
-    const { n } = getUsage();
-    el.textContent = `Free today: ${Math.max(0, 3 - n)} of 3 left`;
-  }
+  el.textContent = isPro() ? "Pro: unlimited captions" : `Free today: ${Math.max(0, 3 - getUsage())} of 3 left`;
 }
-function showUpgrade() { const m = qs("#upgradeModal"); if (m) m.style.display = "block"; }
-function closeModal() { const m = qs("#upgradeModal"); if (m) m.style.display = "none"; }
 
-// ---------- punctuation + basics
-function cleanPunctuation(s = "") {
+// ---------- platform/format hints
+const FORMAT_MAP = {
+  facebook:["Post","Story","Reel"],
+  instagram:["Post","Story","Reel"],
+  twitter:["Post"],
+  linkedin:["Profile","Page"],
+  gmb:["Post"],
+  tiktok:["Video"],
+  ytshorts:["Short"],
+  youtube:["Video"]
+};
+const FORMAT_HINT = {
+  "facebook:post":"1–3 short paragraphs • 4–7 hashtags",
+  "facebook:story":"2–3 lines • no hashtags • link sticker",
+  "facebook:reel":"Hook + 1–2 lines • 3–5 hashtags",
+  "instagram:post":"Hook + 2–3 lines • 5–9 hashtags",
+  "instagram:story":"Very short • no hashtag soup • link sticker",
+  "instagram:reel":"Hook + benefit + CTA • 3–7 hashtags",
+  "twitter:post":"≤ 280 chars • ≤ 2 hashtags",
+  "linkedin:profile":"3–6 lines • business tone • ≤ 3 hashtags",
+  "linkedin:page":"Brand voice • ≤ 3 hashtags",
+  "gmb:post":"Plain, local keywords • no hashtags",
+  "tiktok:video":"Hook + 2 lines + CTA • 6–10 hashtags",
+  "ytshorts:short":"2–3 lines • 3–5 hashtags",
+  "youtube:video":"Title + description • avoid hashtag soup"
+};
+
+function refreshFormats(){
+  const platformEl = qs("#platform");
+  const formatEl   = qs("#format");
+  if (!platformEl || !formatEl) return;
+  const platform = String(platformEl.value || "Facebook").toLowerCase();
+  const options = FORMAT_MAP[platform] || ["Post"];
+  formatEl.innerHTML = "";
+  for (const opt of options){
+    const o = document.createElement("option");
+    o.textContent = opt;
+    formatEl.appendChild(o);
+  }
+  updateFormatHint();
+}
+function updateFormatHint(){
+  const platformEl = qs("#platform");
+  const formatEl   = qs("#format");
+  const hint       = qs("#formatHint");
+  if (!platformEl || !formatEl || !hint) return;
+  const key = `${String(platformEl.value||"Facebook").toLowerCase()}:${String(formatEl.value||"Post").toLowerCase()}`;
+  hint.textContent = FORMAT_HINT[key] || "";
+}
+
+// ---------- text utilities
+function cleanPunctuation(s=""){
   return s
-    .replace(/\s{2,}/g, " ")
-    .replace(/([.!?])\1{1,}/g, "$1")
-    .replace(/([.!?])\s*([.!?])/g, "$1 ")
-    .replace(/\s+([,.;:!?])/g, "$1")
-    .replace(/([,.;:!?])([^\s])/g, "$1 $2")
-    .replace(/\s+”/g, "”")
-    .replace(/\s+'\b/g, "'")
-    .replace(/\.\s*([#])/g, ". $1")
-    .replace(/\s{2,}/g, " ")
+    .replace(/\s{2,}/g," ")
+    .replace(/([.!?])\1{1,}/g,"$1")
+    .replace(/([.!?])\s*([.!?])/g,"$1 ")
+    .replace(/\s+([,.;:!?])/g,"$1")
+    .replace(/([,.;:!?])([^\s])/g,"$1 $2")
     .trim();
 }
-function humanize(s, opts = {}) {
+function humanize(s, {platform} = {}){
   if (!s) return s;
-  let out = s.trim();
-  out = out.split(/\n+/).filter((line, i, arr) => line.trim() !== (arr[i - 1] || "").trim()).join("\n");
-  out = out.replace(/!{2,}/g, "!");
-  out = cleanPunctuation(out);
-  if ((opts.platform || "").toLowerCase() === "linkedin") {
-    const lines = out.split("\n");
-    if (lines.length > 6) out = lines.slice(0, 6).join("\n");
+  let out = cleanPunctuation(s);
+  if (String(platform).toLowerCase() === "linkedin"){
+    const lines = out.split("\n"); if (lines.length > 6) out = lines.slice(0,6).join("\n");
   }
   return out.trim();
 }
-
-// ---------- hashtags
-function cleanTag(s) {
-  return s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "").replace(/^#+/, "");
-}
-function buildHashtags(keywords = "", density = "standard", clean = true, platform = "instagram", format = "post") {
-  const p = String(platform || "").toLowerCase();
-  const f = String(format || "").toLowerCase();
-  if (p === "gmb" || p === "youtube" || f === "story") return "";
-
-  let parts = String(keywords || "").split(",").map(t => t.trim()).filter(Boolean);
+function cleanTag(s){ return s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"").replace(/^#+/,""); }
+function buildHashtags(keywords="", density="standard", clean=true, platform="instagram", format="post"){
+  const p = String(platform||"").toLowerCase();
+  const f = String(format||"").toLowerCase();
+  if (p==="gmb"||p==="youtube"||f==="story") return "";
+  let parts = String(keywords||"").split(",").map(t=>t.trim()).filter(Boolean);
   if (clean) parts = parts.map(cleanTag);
   parts = [...new Set(parts)].filter(Boolean);
-
-  let cap = 5;
-  if (p === "instagram" || p === "facebook") {
-    cap = f === "reel" ? 7 : density === "heavy" ? 10 : density === "light" ? 4 : 7;
-  } else if (p === "twitter") cap = density === "heavy" ? 3 : 2;
-  else if (p === "linkedin") cap = density === "heavy" ? 5 : density === "light" ? 2 : 3;
-  else if (p === "tiktok") cap = density === "heavy" ? 15 : density === "light" ? 6 : 10;
-  else if (p === "ytshorts") cap = density === "heavy" ? 7 : density === "light" ? 3 : 5;
-
-  return parts.slice(0, cap).map(t => (t ? `#${t}` : "")).filter(Boolean).join(" ");
+  let cap = 7;
+  if (p==="twitter") cap = density==="heavy"?3:2;
+  else if (p==="linkedin") cap = density==="heavy"?5:density==="light"?2:3;
+  else if (p==="tiktok") cap = density==="heavy"?15:density==="light"?6:10;
+  else if (p==="ytshorts") cap = density==="heavy"?7:density==="light"?3:5;
+  return parts.slice(0,cap).map(t=>`#${t}`).join(" ");
 }
-
-// ---------- platform helpers
-function platformStyle(p) {
-  switch ((p || "").toLowerCase()) {
-    case "linkedin": return { emoji: false, lineBreaks: true };
-    case "tiktok":   return { emoji: true,  lineBreaks: false };
-    case "facebook": return { emoji: true,  lineBreaks: true };
-    case "twitter":  return { emoji: false, lineBreaks: true };
-    default:         return { emoji: true,  lineBreaks: true }; // Instagram etc.
+function platformStyle(p){
+  switch(String(p||"").toLowerCase()){
+    case "linkedin": return {emoji:false,lineBreaks:true};
+    case "twitter":  return {emoji:false,lineBreaks:true};
+    case "tiktok":   return {emoji:true,lineBreaks:false};
+    case "facebook": return {emoji:true,lineBreaks:true};
+    default:         return {emoji:true,lineBreaks:true}; // instagram etc
   }
 }
-function platformKey(p = "Instagram", f = "Post") {
-  return `${String(p || "").toLowerCase()}:${String(f || "").toLowerCase()}`;
-}
 
-// ---------- brief helpers
-function briefIsComplete(b) {
-  return !!(b.company && b.offer && b.platform && b.tone !== undefined);
-}
-function brandLead(company) {
-  const c = (company || "").trim();
-  return c ? `At ${c}, ` : "";
-}
-
-// ---------- template map
-const TPL = new Proxy({}, {
-  get: (_, __) => makeTemplate
-});
-
-// ---------- core template
-function makeTemplate(ctx) {
-  const {
-    company, audience, problem, outcome, offer,
-    cta, platform, tone, length, keywords, format
-  } = ctx;
+// ---------- caption factory (local)
+function makeCaption({company, offer, audience, problem, outcome, cta, platform, format, length, tone, keywords}){
   const p = platformStyle(platform);
-  const who = (audience || "busy owners").replace(/^\w/, c => c.toUpperCase());
+  const hookPool = {
+    pro: ["Quick win you’ll actually use","A small change, big payoff","This fixes the ‘no time’ problem"],
+    friendly: ["Weekend vibes + real help","Hey, local friends — this helps","What if ‘marketing’ felt easy?"]
+  };
+  const hooks = tone <= 0.4 ? hookPool.pro : hookPool.friendly;
+  const hook = pick(hooks);
 
-  // Deterministic pattern when the brief is complete
-  if (briefIsComplete(ctx)) {
-    const lines = [
-      `${who}—you don’t need another app; you need momentum.`,
-      `At ${company.trim()}, we know consistency is key.`,
-      offer ? `Our ${offer} fits real-world schedules.`
-            : `Our caption tools fit real-world schedules.`,
-      outcome ? `Get your posts out faster and ${outcome}.`
-              : `Get your posts out faster and keep the conversation alive.`
-    ].filter(Boolean);
+  const who = audience ? `For ${audience},` : `For busy folks,`;
+  const body = [
+    company ? `At ${company}, we get it.` : null,
+    offer || "Your offer here.",
+    problem ? `You’re battling ${problem} —` : null,
+    outcome ? `we’ll help you get ${outcome}.` : null
+  ].filter(Boolean).join(" ");
 
-    let text = p.lineBreaks ? lines.join("\n") : lines.join(" ");
-    const tags = buildHashtags(
-      keywords,
-      (qs("#hashtagDensity")?.value || "Standard").toLowerCase(),
-      !!qs("#cleanHashtags")?.checked,
-      platform,
-      format
-    );
-    if (tags) text = p.lineBreaks ? `${text}\n\n${tags}` : `${text} ${tags}`;
-    return humanize(text, { platform });
-  }
+  const ctas = ["Book now","Message us to claim","Learn more","Call today","Get a free quote"];
+  const picked = cta && cta.trim() ? cta.trim() : pick(ctas);
+  const capLen = String(length||"Medium").toLowerCase();
+  const trimmed = capLen === "short" ? `${hook}. ${offer || ""} ${picked}`.trim()
+                : capLen === "long"  ? `${hook}. ${who} ${body} ${picked}.`
+                : `${hook}. ${body} ${picked}.`;
 
-  // Strict conservative fallback (no invention)
-  const intro = (company || "").trim()
-    ? `At ${company.trim()}, we help you stay consistent.`
-    : `Stay consistent and visible.`;
-
-  const hook = who ? `${who}, this is for you.` : `Quick note to help you post faster.`;
-  const offerLine = offer ? `Offer: ${offer}.` : ``;
-  const resultLine = outcome ? `${outcome}.` : `Keep conversations alive.`;
-  const call = (cta && cta.trim()) ? cta.trim() : `Learn more`;
-
-  let blocks = [hook, intro, offerLine, resultLine, call].filter(Boolean);
-  const t = Number(tone) || 0.5;
-  if (t > 0.6) blocks = blocks.slice(0, 4); // playful: tighter
-  if (t < 0.4 && blocks.length > 5) blocks = blocks.slice(0, 5); // pro: trim
-
-  let text = blocks.join(p.lineBreaks ? "\n\n" : " ");
-  const tags = buildHashtags(
-    keywords,
-    (qs("#hashtagDensity")?.value || "Standard").toLowerCase(),
-    !!qs("#cleanHashtags")?.checked,
-    platform,
-    format
-  );
-  if (tags) text = p.lineBreaks ? `${text}\n\n${tags}` : `${text} ${tags}`;
-  return humanize(text, { platform });
+  const tags = buildHashtags(keywords, (qs("#hashtagDensity")?.value||"Standard").toLowerCase(), !!qs("#cleanHashtags")?.checked, platform, format);
+  const text = p.lineBreaks ? [trimmed, tags].filter(Boolean).join("\n\n") : `${trimmed} ${tags}`.trim();
+  return humanize(text, {platform});
 }
 
-// ---------- AI Remix (Cloudflare Worker) optional
+// ---------- render
+function renderCards(texts){
+  const root = qs("#results"); if (!root) return;
+  root.innerHTML = "";
+  texts.forEach((text, i) => {
+    const card = document.createElement("article");
+    card.className = "card";
+    // first comment block (hashtags only)
+    const hashtagsOnly = text.split("\n").filter(l => l.trim().startsWith("#")).join(" ");
+    const fcBlock = hashtagsOnly ? `
+      <div class="first-comment">
+        <div class="row" style="justify-content:space-between"><strong>First comment (copy)</strong>
+          <button type="button" class="btn secondary" data-firstcopy>Copy first comment</button>
+        </div>
+        <textarea readonly>${hashtagsOnly}</textarea>
+      </div>` : "";
+
+    card.innerHTML = `
+      <h3>Caption ${i+1}</h3>
+      <textarea id="cap_${i+1}" readonly>${text}</textarea>
+      <div class="row">
+        <button type="button" class="btn" data-copy="cap_${i+1}">Copy</button>
+        <span class="meta muted">Auto-formatted</span>
+      </div>
+      ${fcBlock}
+    `;
+    root.appendChild(card);
+  });
+
+  // Wire copy buttons
+  root.addEventListener("click", (ev) => {
+    const btn = ev.target.closest("button[data-copy]");
+    if (btn){
+      const id = btn.getAttribute("data-copy");
+      const ta = document.getElementById(id);
+      if (ta){ ta.select(); document.execCommand("copy"); btn.textContent = "Copied!"; setTimeout(()=>btn.textContent="Copy", 1000); }
+    }
+    if (ev.target.matches("button[data-firstcopy]")){
+      const ta = ev.target.closest(".first-comment")?.querySelector("textarea");
+      if (ta){ ta.select(); document.execCommand("copy"); ev.target.textContent="Copied!"; setTimeout(()=>ev.target.textContent="Copy first comment", 1000); }
+    }
+  }, { once:true });
+}
+
+// ---------- AI remix (Pro only; safe fallback)
 const WORKER_URLS = [
   "https://www.bluedobiedev.com/api/remix",
   "https://dobiecore-remix.melanie-brown.workers.dev"
 ];
-
-async function maybeRemixWithAI(texts, brief) {
-  const mode = (brief.genMode || "auto").toLowerCase();
-  let allowAI = false;
-  if (mode === "ai") allowAI = true;
-  else if (mode === "local") allowAI = false;
-  else allowAI = isPro(); // auto
-
-  if (!isPro()) allowAI = false;
-  if (!allowAI) return texts;
-
+async function maybeRemixWithAI(texts, brief){
+  if (!isPro()) return texts;
   const payload = {
-    drafts: texts.map((t, i) => ({ id: String(i + 1), text: t })),
-    platform: (brief.platform || "instagram"),
-    tone: typeof brief.tone === "number" ? brief.tone : 0.5,
-    length: (brief.length || "medium").toLowerCase(),
-    ctaOptions: (function pickCTAs(userCTA) {
-      const base = ["Book now", "Call today", "Message us to claim", "Learn more", "See how it works", "Get your free consult"];
-      const out = [];
-      if (userCTA && userCTA.trim()) out.push(userCTA.trim());
-      while (out.length < 3) {
-        const x = base[Math.floor(Math.random()*base.length)];
-        if (!out.includes(x)) out.push(x);
-      }
-      return Array.from(new Set(out)).slice(0, 3);
-    })(brief.cta),
-    hashtags: buildHashtags(
-      brief.keywords,
-      (brief.hashtagDensity || "standard").toLowerCase(),
-      brief.cleanHashtags !== false,
-      brief.platform,
-      brief.format
-    )
+    drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
+    platform: brief.platform, tone: brief.tone, length: brief.length,
+    ctaOptions: [brief.cta].filter(Boolean),
+    hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity||"standard").toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
   };
-
-  for (const url of WORKER_URLS) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+  for (const url of WORKER_URLS){
+    try{
+      const res = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
       if (!res.ok) continue;
-      const data = await res.json(); // Worker returns an ARRAY
-      if (Array.isArray(data) && data.length) {
-        return data.map(d => String(d.text || "")).filter(Boolean);
-      }
-    } catch {}
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) return data.map(d => String(d.text||"")).filter(Boolean);
+    }catch{/* ignore */}
   }
   console.warn("AI remix unavailable; using local drafts");
   return texts;
 }
 
-// ---------- render
-function renderCards(texts) {
-  const results = qs("#results");
-  results.innerHTML = "";
-  texts.forEach((text, i) => {
-    const card = document.createElement("article");
-    card.className = "card";
-    const hashtagsOnly = text.split("\n").filter(l => l.trim().startsWith("#")).join(" ");
-    const fcBlock = hashtagsOnly
-      ? `<div class="first-comment"><div class="muted">First comment</div><textarea readonly>${hashtagsOnly}</textarea><div class="actions"><button type="button" class="copy-first-btn">Copy first comment</button></div></div>`
-      : "";
-    card.innerHTML = `
-      <h3 style="margin:0 0 6px;">Caption ${i + 1}</h3>
-      <textarea readonly>${text}</textarea>
-      <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:8px;">
-        <button type="button" class="copy-btn">Copy</button>
-        <span class="meta">Platform-ready</span>
-      </div>
-      ${fcBlock}
-    `;
-    results.appendChild(card);
-    const copyBtn = card.querySelector(".copy-btn");
-    const ta = card.querySelector("textarea");
-    copyBtn?.addEventListener("click", () => {
-      ta.select(); document.execCommand("copy");
-      copyBtn.textContent = "Copied!";
-      setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
-    });
-    const fcCopy = card.querySelector(".copy-first-btn");
-    if (fcCopy) {
-      const fta = card.querySelector(".first-comment textarea");
-      fcCopy.addEventListener("click", () => {
-        fta.select(); document.execCommand("copy");
-        fcCopy.textContent = "Copied!";
-        setTimeout(() => (fcCopy.textContent = "Copy first comment"), 1200);
-      });
-    }
-  });
-}
-
-// ---------- brief reader
-function readBrief() {
+// ---------- read brief
+function readBrief(){
+  const v = id => qs(`#${id}`)?.value?.trim() || "";
   return {
-    company: qs("#company")?.value || "",
-    audience: qs("#audience")?.value || "",
-    offer: qs("#offer")?.value || "",
-    problem: qs("#problem")?.value || "",
-    outcome: qs("#outcome")?.value || "",
-    cta: qs("#cta")?.value || "",
-    keywords: qs("#keywords")?.value || "",
-    platform: qs("#platform")?.value || "Instagram",
-    format: qs("#format")?.value || "Post",
-    length: qs("#captionLength")?.value || "Medium",
-    tone: parseFloat(qs("#tone")?.value || "0.5"),
-    hashtagDensity: qs("#hashtagDensity")?.value || "Standard",
-    cleanHashtags: !!qs("#cleanHashtags")?.checked,
-    voiceMode: qs("#voiceMode")?.value || "leadgen",
-    genMode: (qs("#genMode")?.value || "auto").toLowerCase()
+    company: v("company"),
+    offer: v("offer"),
+    audience: v("audience"),
+    problem: v("problem"),
+    outcome: v("outcome"),
+    cta: v("cta"),
+    keywords: v("keywords"),
+    platform: v("platform") || "Instagram",
+    format: v("format") || "Post",
+    length: v("captionLength") || "Medium",
+    tone: parseFloat(v("tone") || "0.5"),
+    hashtagDensity: v("hashtagDensity") || "Standard",
+    cleanHashtags: qs("#cleanHashtags")?.checked !== false
   };
 }
 
 // ---------- wiring
-window.addEventListener("DOMContentLoaded", () => {
-  updateUsageCounter();
-
+(function init(){
   const form = qs("#captionForm");
   const results = qs("#results");
+  if (!form || !results){ console.warn("DobieCore Captions: required DOM not found."); return; }
 
-  // Modal controls
-  qs("#upgradeBtn")?.addEventListener("click", () => {
-    window.location.href = "https://buy.stripe.com/6oU8wPfjX591as29Hg3Je03";
+  refreshFormats(); updateUsageCounter();
+
+  // tone label
+  const toneEl = qs("#tone"); const toneLbl = toneEl?.nextElementSibling;
+  toneEl?.addEventListener("input", () => {
+    const t = parseFloat(toneEl.value||"0.5");
+    toneLbl && (toneLbl.textContent = t < 0.35 ? "Professional" : t > 0.65 ? "Playful" : "Balanced");
   });
+
+  qs("#platform")?.addEventListener("change", refreshFormats);
+  qs("#format")?.addEventListener("change", updateFormatHint);
+
+  // Modal actions
+  const modal = qs("#upgradeModal");
+  qs("#upgradeBtn")?.addEventListener("click", () => window.location.href = "https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203");
   qs("#alreadyProBtn")?.addEventListener("click", () => {
     const email = prompt("Enter the email you used to upgrade (temporary local unlock):");
-    if (email && /\S+@\S+\.\S+/.test(email)) {
-      localStorage.setItem("dcc_pro_email", email);
-      localStorage.setItem("dcc_pro", "1");
-      closeModal();
-      updateUsageCounter();
-      alert("Pro unlocked on this browser.");
-    } else {
-      alert("That email doesn’t look valid.");
-    }
+    if (email && /\S+@\S+\.\S+/.test(email)){ localStorage.setItem("dcc_pro_email", email); localStorage.setItem("dcc_pro","1"); updateUsageCounter(); modal?.setAttribute("hidden",""); alert("Pro unlocked on this browser."); }
+    else alert("That email doesn’t look valid.");
   });
-  qs("#closeModalBtn")?.addEventListener("click", closeModal);
-  window.addEventListener("click", (e) => {
-    const modal = qs("#upgradeModal");
-    if (e.target === modal) closeModal();
-  });
+  qs("#closeModalBtn")?.addEventListener("click", () => modal?.setAttribute("hidden",""));
+  window.addEventListener("click", (e) => { if (e.target === modal) modal?.setAttribute("hidden",""); });
 
-  // Generate
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    if (!isPro()) {
-      const { n } = getUsage();
-      if (n >= 3) { showUpgrade(); return; }
-    }
+  // Submit
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
 
     const brief = readBrief();
-    if (!brief.offer.trim()) {
-      alert("Please enter your Offer.");
+    if (!brief.offer){
+      alert("Please add what you’re promoting (the Offer).");
+      qs("#offer")?.focus();
       return;
     }
 
-    // Build exactly three local variants
-    results.innerHTML = "";
-    const make = TPL["any"] || makeTemplate;
-    const local = [];
-    for (let i = 0; i < 3; i++) local.push(make(brief));
-
-    // Optional AI remix (safe fallback)
-    const remixed = await maybeRemixWithAI(local, brief);
-
-    // Render
-    renderCards(remixed);
-
-    if (!isPro()) {
-      incrementUsage();
-      updateUsageCounter();
+    if (!isPro() && getUsage() >= 3){
+      modal?.removeAttribute("hidden");
+      return;
     }
+
+    // build local drafts
+    const drafts = [makeCaption(brief), makeCaption(brief), makeCaption(brief)];
+
+    // optional AI remix
+    const out = await maybeRemixWithAI(drafts, brief);
+
+    renderCards(out);
+
+    if (!isPro()){ incUsage(); updateUsageCounter(); }
+    results.scrollIntoView({behavior:"smooth",block:"start"});
   });
-});
+
+  // Clear
+  qs("#clearBtn")?.addEventListener("click", () => {
+    ["company","offer","audience","problem","outcome","cta","keywords"].forEach(id => { const el = qs(`#${id}`); if (el) el.value = ""; });
+    qs("#captionLength") && (qs("#captionLength").value = "Medium");
+    qs("#hashtagDensity") && (qs("#hashtagDensity").value = "Standard");
+    qs("#cleanHashtags") && (qs("#cleanHashtags").checked = true);
+    qs("#tone") && (qs("#tone").value = 0.5);
+    results.innerHTML = "";
+  });
+})();
