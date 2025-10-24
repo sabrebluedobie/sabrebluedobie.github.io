@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DobieCore Captions — Standalone</title>
+<style>
+:root{--ink:#0e1726;--ring:#e5e7eb;--muted:#6b7280;--bg:#f8fafc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,Segoe UI,Inter,Arial,sans-serif}
+.container{max-width:960px;margin:0 auto;padding:16px}
+h1{margin:0 0 8px}
+label{display:block;font-weight:600;margin:6px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--ring);border-radius:8px;background:#fff}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.btn{padding:10px 14px;border-radius:8px;border:1px solid var(--ring);background:#0f172a;color:#fff;cursor:pointer}
+.btn.secondary{background:#f1f5f9;color:#0f172a}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px}
+.card{background:#fff;border:1px solid var(--ring);border-radius:12px;padding:12px}
+.card h3{margin:0 0 8px}
+.meta{font-size:12px;color:var(--muted)}
+.first-comment{background:#f8fafc;border:1px dashed var(--ring);border-radius:8px;padding:8px;margin-top:8px}
+.muted{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+  <main class="container">
+    <h1>DobieCore Captions — Standalone</h1>
+    <p class="muted">If this page generates captions, your original issue is path/case or script load. We’ll fix that next.</p>
+
+    <form id="captionForm" class="brief" novalidate>
+      <div class="row">
+        <div style="flex:1;min-width:220px">
+          <label for="company">Company / Brand</label>
+          <input id="company" placeholder="Bluedobie Developing">
+        </div>
+        <div style="flex:2;min-width:280px">
+          <label for="offer">What are you promoting? *</label>
+          <input id="offer" required placeholder="Logo Sprint waitlist now open">
+        </div>
+        <div>
+          <label for="platform">Platform *</label>
+          <select id="platform">
+            <option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>Twitter</option>
+          </select>
+        </div>
+        <div>
+          <label for="tone">Tone</label>
+          <input id="tone" type="range" min="0" max="1" step="0.01" value="0.5">
+          <div id="toneLabel" class="muted">Balanced</div>
+        </div>
+      </div>
+
+      <details style="margin-top:10px">
+        <summary>Advanced</summary>
+        <div class="row">
+          <div style="flex:1;min-width:220px">
+            <label for="audience">Audience</label>
+            <input id="audience" placeholder="early-stage founders">
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="problem">Problem</label>
+            <input id="problem" placeholder="brand stuck in draft mode">
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="outcome">Desired outcome</label>
+            <input id="outcome" placeholder="pro logo in 48 hours">
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="cta">Call to action</label>
+            <input id="cta" placeholder="Join the waitlist at /logo-sprint-landing.html">
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="keywords">Keywords (hashtags)</label>
+            <input id="keywords" placeholder="logo, branding, startup, design, fast">
+          </div>
+          <div>
+            <label for="captionLength">Length</label>
+            <select id="captionLength">
+              <option>Short</option><option selected>Medium</option><option>Long</option>
+            </select>
+          </div>
+          <div>
+            <label for="hashtagDensity">Hashtag density</label>
+            <select id="hashtagDensity">
+              <option>Light</option><option selected>Standard</option><option>Heavy</option>
+            </select>
+          </div>
+          <div style="align-self:center">
+            <label><input id="cleanHashtags" type="checkbox" checked> Clean hashtags</label>
+          </div>
+        </div>
+      </details>
+
+      <div class="row" style="margin-top:10px;align-items:center">
+        <button class="btn" type="submit">Generate 3 Captions</button>
+        <button class="btn secondary" type="button" id="clearBtn">Clear</button>
+        <small id="ping" class="muted" aria-live="polite"></small>
+      </div>
+    </form>
+
+    <h2 style="margin-top:16px">Results</h2>
+    <div id="results" class="cards" aria-live="polite"></div>
+  </main>
+
+<script>
+/* Minimal, self-contained generator. If this works, your original files have a path/case/load issue. */
+(function(){
+  const qs = (s,r=document)=>r.querySelector(s);
+  const pick = (arr)=>arr[Math.floor(Math.random()*arr.length)];
+  const ping = qs("#ping"); ping.textContent = "JS loaded ✔";
+  const tone = qs("#tone"); const toneLabel = qs("#toneLabel");
+  tone.addEventListener("input", () => {
+    const t = parseFloat(tone.value||"0.5");
+    toneLabel.textContent = t < .35 ? "Professional" : t > .65 ? "Playful" : "Balanced";
+  });
+
+  function cleanTag(s){ return String(s).toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,""); }
+  function buildHashtags(keywords="", density="Standard", platform="Instagram"){
+    const p = String(platform).toLowerCase();
+    if (p==="linkedin") return "";
+    let parts = String(keywords).split(",").map(t=>t.trim()).filter(Boolean).map(cleanTag);
+    parts = [...new Set(parts)].filter(Boolean);
+    let cap = p==="twitter" ? (density==="Heavy"?3:density==="Light"?1:2) : (density==="Heavy"?10:density==="Light"?3:6);
+    return parts.slice(0,cap).map(t=>"#"+t).join(" ");
+  }
+  function platformStyle(p){
+    switch(String(p).toLowerCase()){
+      case "linkedin": return {emoji:false,breaks:true};
+      case "twitter":  return {emoji:false,breaks:false};
+      case "facebook": return {emoji:true,breaks:true};
+      default:         return {emoji:true,breaks:true};
+    }
+  }
+  function makeCaption({company,offer,audience,problem,outcome,cta,platform,length,keywords,hashtagDensity}){
+    const tone = parseFloat(qs("#tone").value||"0.5");
+    const hooksPro = ["A small change, big payoff","This fixes the ‘no time’ problem","Quick win you’ll use"];
+    const hooksFun = ["Speed-run your brand","Founder mode: ON","Ready, set, launch"];
+    const hook = pick(tone<.4?hooksPro:hooksFun);
+    const who = audience ? `For ${audience},` : `For busy folks,`;
+    const body = [company?`At ${company}, we get it.`:null, offer, problem?`You’re battling ${problem} —`:null, outcome?`we’ll help you get ${outcome}.`:null].filter(Boolean).join(" ");
+    const ctaLine = cta && !/^\s*$/.test(cta) ? cta.trim() : "Message us to start";
+    const capLen = String(length||"Medium").toLowerCase();
+    const text = capLen==="short" ? `${hook}. ${offer}. ${ctaLine}`
+               : capLen==="long"  ? `${hook}. ${who} ${body} ${ctaLine}.`
+               : `${hook}. ${body} ${ctaLine}.`;
+    const tags = buildHashtags(keywords, hashtagDensity, platform);
+    const style = platformStyle(platform);
+    const final = style.breaks ? [text,tags].filter(Boolean).join("\n\n") : (text+" "+tags).trim();
+    return final;
+  }
+  function renderCards(texts){
+    const root = qs("#results"); root.innerHTML = "";
+    texts.forEach((t,i)=>{
+      const card = document.createElement("article");
+      card.className = "card";
+      const hashtagsOnly = t.split("\n").filter(l=>l.trim().startsWith("#")).join(" ");
+      card.innerHTML = `
+        <h3>Caption ${i+1}</h3>
+        <textarea readonly style="width:100%;min-height:140px">${t}</textarea>
+        <div class="row" style="align-items:center">
+          <button type="button" class="btn" data-copy>Copy</button>
+          <span class="meta">Auto-formatted</span>
+        </div>
+        ${hashtagsOnly?`<div class="first-comment"><strong>First comment</strong><textarea readonly style="width:100%;min-height:60px">${hashtagsOnly}</textarea></div>`:""}
+      `;
+      card.addEventListener("click", (e)=>{
+        if (e.target.matches("[data-copy]")){
+          const ta = card.querySelector("textarea");
+          ta.select(); document.execCommand("copy");
+          e.target.textContent = "Copied!"; setTimeout(()=>e.target.textContent="Copy", 1000);
+        }
+      });
+      root.appendChild(card);
+    });
+  }
+
+  qs("#captionForm").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const v = id => qs("#"+id)?.value?.trim() || "";
+    const brief = {
+      company:v("company"), offer:v("offer"), audience:v("audience"),
+      problem:v("problem"), outcome:v("outcome"), cta:v("cta"),
+      platform:v("platform"), length:v("captionLength"),
+      keywords:v("keywords"), hashtagDensity:v("hashtagDensity")
+    };
+    if (!brief.offer){ alert("Please add what you’re promoting (the Offer)."); qs("#offer").focus(); return; }
+    const drafts = [makeCaption(brief), makeCaption(brief), makeCaption(brief)];
+    renderCards(drafts);
+    qs("#results").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
+  qs("#clearBtn").addEventListener("click", ()=>{
+    ["company","offer","audience","problem","outcome","cta","keywords"].forEach(id => { const el = qs("#"+id); if (el) el.value=""; });
+    qs("#results").innerHTML = "";
+  });
+})();
+</script>
+</body>
+</html>
