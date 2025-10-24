@@ -1,7 +1,7 @@
 # Bluedobie – Shared Nav & Footer Bundle (Jekyll)
 
 This bundle gives you:
-- `_includes/nav.html` (canonical nav that mirrors CaptionCraft)
+- `_includes/nav.html` (canonical nav that mirrors DobieCore Captions)
 - `_includes/footer.html` (shared footer with Liquid dynamic year)
 - `_includes/footer-scripts.html` (global scripts + per-page hook)
 - `_layouts/default-shared.html` (safe new layout you can switch pages to)
