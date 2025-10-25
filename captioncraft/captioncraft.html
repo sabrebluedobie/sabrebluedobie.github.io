@@ -53,24 +53,42 @@
               <label for="offer">What are you promoting? *</label>
               <input id="offer" type="text" placeholder="Fall cleaning special — $99 for new clients" required />
             </div>
+          </div>
 
-            <div>
-              <label for="platform">Platform *</label>
-              <select id="platform">
-                <option>Instagram</option>
-                <option>Facebook</option>
-                <option>LinkedIn</option>
-                <option>Twitter</option>
-                <option>TikTok</option>
-                <option>YTShorts</option>
-                <option>GMB</option>
-              </select>
+          <!-- Voice & Style Section -->
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-top:12px">
+            <div style="font-size:13px;font-weight:600;color:#475569;margin-bottom:8px">
+              💡 Voice & Style <span style="font-weight:400;color:#64748b">(These settings work together to define your caption's personality)</span>
             </div>
+            <div class="row" style="gap:12px">
+              <div>
+                <label for="platform">Platform *</label>
+                <select id="platform">
+                  <option>Instagram</option>
+                  <option>Facebook</option>
+                  <option>LinkedIn</option>
+                  <option>Twitter</option>
+                  <option>TikTok</option>
+                  <option>YTShorts</option>
+                  <option>GMB</option>
+                </select>
+              </div>
 
-            <div>
-              <label for="tone">Tone</label>
-              <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
-              <div class="muted" aria-live="polite">Balanced</div>
+              <div>
+                <label for="voiceMode">Voice Mode</label>
+                <select id="voiceMode">
+                  <option value="leadgen">Lead Gen / Sales</option>
+                  <option value="community">Community / Fun</option>
+                  <option value="authority">Authority / Pro</option>
+                </select>
+                <div class="muted" style="font-size:11px;margin-top:2px">Changes everything!</div>
+              </div>
+
+              <div>
+                <label for="tone">Tone</label>
+                <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
+                <div class="muted" aria-live="polite">Balanced</div>
+              </div>
             </div>
           </div>
 
@@ -112,14 +130,6 @@
                 </select>
               </div>
               <div>
-                <label for="voiceMode">Voice Mode</label>
-                <select id="voiceMode">
-                  <option value="leadgen">Lead Gen / Sales</option>
-                  <option value="community">Community / Fun</option>
-                  <option value="authority">Authority / Pro</option>
-                </select>
-              </div>
-              <div>
                 <label for="hashtagDensity">Hashtag density</label>
                 <select id="hashtagDensity">
                   <option>Light</option><option selected>Standard</option><option>Heavy</option>
@@ -151,7 +161,7 @@
   <!-- Upgrade Modal -->
   <div id="upgradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle" hidden>
     <div class="modal-content">
-      <h2 id="upgradeTitle">🎯 You’ve used your 3 free captions today!</h2>
+      <h2 id="upgradeTitle">🎯 You've used your 3 free captions today!</h2>
       <div class="price">$9<span style="font-weight:400">/month</span></div>
       <ul class="benefits">
         <li>Unlimited caption generation</li>
@@ -161,7 +171,7 @@
       </ul>
       <div class="row" style="margin-top:12px">
         <button class="btn" id="upgradeBtn">Upgrade to Pro</button>
-        <button class="btn secondary" id="alreadyProBtn" title="Temporary local unlock">I’m already Pro</button>
+        <button class="btn secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
         <button class="btn secondary" id="closeModalBtn">Maybe later</button>
       </div>
       <small class="muted">Resets tomorrow at midnight</small>
