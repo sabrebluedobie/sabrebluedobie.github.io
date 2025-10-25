@@ -190,13 +190,13 @@ function renderCards(texts){
   }, { once:true });
 }
 
-// ---------- AI remix (Pro only; safe fallback)
+// ---------- AI remix (everyone gets AI, usage gated elsewhere)
 const WORKER_URLS = [
   "https://www.bluedobiedev.com/api/remix",
   "https://dobiecore-remix.melanie-brown.workers.dev"
 ];
 async function maybeRemixWithAI(texts, brief){
-  if (!isPro()) return texts;
+  // AI for everyone - usage limits handled in form submit
   const payload = {
     drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
     platform: brief.platform, tone: brief.tone, length: brief.length,
