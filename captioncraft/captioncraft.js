@@ -8,19 +8,65 @@ const qs = (sel, root = document) => root.querySelector(sel);
 const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// ---------- state: usage gating
+// ---------- state: usage gating with API check
 const USAGE_KEY_PREFIX = "dcc_usage_";
-const isPro = () => localStorage.getItem("dcc_pro") === "1" || !!localStorage.getItem("dcc_pro_email");
+const API_BASE = "https://dobiecore-remix.melanie-brown.workers.dev/api";
+
+// Check if user is pro (checks API first, then falls back to localStorage)
+async function isPro() {
+  const email = localStorage.getItem("dcc_email");
+  if (!email) return false;
+  
+  // Check cache first (valid for 5 minutes)
+  const cacheKey = "dcc_pro_cache";
+  const cacheTime = "dcc_pro_cache_time";
+  const cached = localStorage.getItem(cacheKey);
+  const cacheTimestamp = parseInt(localStorage.getItem(cacheTime) || "0");
+  const now = Date.now();
+  
+  if (cached === "true" && (now - cacheTimestamp) < 5 * 60 * 1000) {
+    return true;
+  }
+  
+  // Check API
+  try {
+    const res = await fetch(`${API_BASE}/check-pro`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    
+    if (res.ok) {
+      const data = await res.json();
+      if (data.isPro) {
+        localStorage.setItem(cacheKey, "true");
+        localStorage.setItem(cacheTime, String(now));
+        return true;
+      }
+    }
+  } catch (err) {
+    console.warn("Pro check failed, using local cache:", err);
+  }
+  
+  // Clear cache if not pro
+  localStorage.removeItem(cacheKey);
+  localStorage.removeItem(cacheTime);
+  return false;
+}
+
 const todayKey = () => {
   const d = new Date();
   return `${USAGE_KEY_PREFIX}${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 };
 const getUsage = () => parseInt(localStorage.getItem(todayKey()) || "0", 10);
 const incUsage = () => localStorage.setItem(todayKey(), String(getUsage()+1));
-function updateUsageCounter(){
+
+async function updateUsageCounter(){
   const el = qs("#usageCounter");
   if (!el) return;
-  el.textContent = isPro() ? "Pro: unlimited captions" : `Free today: ${Math.max(0, 3 - getUsage())} of 3 left`;
+  
+  const pro = await isPro();
+  el.textContent = pro ? "Pro: unlimited captions" : `Free today: ${Math.max(0, 3 - getUsage())} of 3 left`;
 }
 
 // ---------- platform/format hints
@@ -120,8 +166,8 @@ function platformStyle(p){
 function makeCaption({company, offer, audience, problem, outcome, cta, platform, format, length, tone, keywords}){
   const p = platformStyle(platform);
   const hookPool = {
-    pro: ["Quick win you’ll actually use","A small change, big payoff","This fixes the ‘no time’ problem"],
-    friendly: ["Weekend vibes + real help","Hey, local friends — this helps","What if ‘marketing’ felt easy?"]
+    pro: ["Quick win you'll actually use","A small change, big payoff","This fixes the 'no time' problem"],
+    friendly: ["Weekend vibes + real help","Hey, local friends — this helps","What if 'marketing' felt easy?"]
   };
   const hooks = tone <= 0.4 ? hookPool.pro : hookPool.friendly;
   const hook = pick(hooks);
@@ -130,8 +176,8 @@ function makeCaption({company, offer, audience, problem, outcome, cta, platform,
   const body = [
     company ? `At ${company}, we get it.` : null,
     offer || "Your offer here.",
-    problem ? `You’re battling ${problem} —` : null,
-    outcome ? `we’ll help you get ${outcome}.` : null
+    problem ? `You're battling ${problem} —` : null,
+    outcome ? `we'll help you get ${outcome}.` : null
   ].filter(Boolean).join(" ");
 
   const ctas = ["Book now","Message us to claim","Learn more","Call today","Get a free quote"];
@@ -192,11 +238,10 @@ function renderCards(texts){
 
 // ---------- AI remix (everyone gets AI, usage gated elsewhere)
 const WORKER_URLS = [
-  "https://www.bluedobiedev.com/api/remix",
-  "https://dobiecore-remix.melanie-brown.workers.dev"
+  `${API_BASE}/remix`,
+  "https://www.bluedobiedev.com/api/remix"
 ];
 async function maybeRemixWithAI(texts, brief){
-  // AI for everyone - usage limits handled in form submit
   const payload = {
     drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
     platform: brief.platform, tone: brief.tone, length: brief.length,
@@ -241,7 +286,8 @@ function readBrief(){
   const results = qs("#results");
   if (!form || !results){ console.warn("DobieCore Captions: required DOM not found."); return; }
 
-  refreshFormats(); updateUsageCounter();
+  refreshFormats(); 
+  updateUsageCounter(); // This is now async but we don't need to await it
 
   // tone label
   const toneEl = qs("#tone"); const toneLbl = toneEl?.nextElementSibling;
@@ -257,9 +303,17 @@ function readBrief(){
   const modal = qs("#upgradeModal");
   qs("#upgradeBtn")?.addEventListener("click", () => window.location.href = "https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203");
   qs("#alreadyProBtn")?.addEventListener("click", () => {
-    const email = prompt("Enter the email you used to upgrade (temporary local unlock):");
-    if (email && /\S+@\S+\.\S+/.test(email)){ localStorage.setItem("dcc_pro_email", email); localStorage.setItem("dcc_pro","1"); updateUsageCounter(); modal?.setAttribute("hidden",""); alert("Pro unlocked on this browser."); }
-    else alert("That email doesn’t look valid.");
+    const email = prompt("Enter the email you used to purchase (this will verify with our system):");
+    if (email && /\S+@\S+\.\S+/.test(email)){ 
+      localStorage.setItem("dcc_email", email.toLowerCase());
+      // Clear cache to force a fresh check
+      localStorage.removeItem("dcc_pro_cache");
+      localStorage.removeItem("dcc_pro_cache_time");
+      updateUsageCounter(); 
+      modal?.setAttribute("hidden",""); 
+      alert("Checking your pro status. If you just purchased, please wait a moment and try generating a caption."); 
+    }
+    else alert("That email doesn't look valid.");
   });
   qs("#closeModalBtn")?.addEventListener("click", () => modal?.setAttribute("hidden",""));
   window.addEventListener("click", (e) => { if (e.target === modal) modal?.setAttribute("hidden",""); });
@@ -270,12 +324,13 @@ function readBrief(){
 
     const brief = readBrief();
     if (!brief.offer){
-      alert("Please add what you’re promoting (the Offer).");
+      alert("Please add what you're promoting (the Offer).");
       qs("#offer")?.focus();
       return;
     }
 
-    if (!isPro() && getUsage() >= 3){
+    const pro = await isPro();
+    if (!pro && getUsage() >= 3){
       modal?.removeAttribute("hidden");
       return;
     }
@@ -288,7 +343,7 @@ function readBrief(){
 
     renderCards(out);
 
-    if (!isPro()){ incUsage(); updateUsageCounter(); }
+    if (!pro){ incUsage(); updateUsageCounter(); }
     results.scrollIntoView({behavior:"smooth",block:"start"});
   });
 
