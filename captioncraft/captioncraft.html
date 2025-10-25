@@ -1,11 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DobieCore Captions — Generate Platform-Smart Captions</title>
+---
+layout: default-shared
+title: DobieCore Captions — Generate Platform-Smart Captions
+head_extra: |
   <link rel="preload" as="image" href="/assets/images/dobiecore/Caption.webp">
-  <link rel="stylesheet" href="captioncraft.css" />
+  <link rel="stylesheet" href="/captioncraft/captioncraft.css" />
   <style>
     /* tiny safety net if CSS fails to load */
     .container{max-width:960px;margin:0 auto;padding:0 16px}
@@ -17,174 +15,152 @@
     .btn.secondary{background:#f1f5f9;color:#0f172a}
     textarea{width:100%;min-height:140px}
   </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner row" style="justify-content:space-between">
-      <a class="brand" href="/sales.html" aria-label="Back to Sales">
-        <img src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions" style="height:42px;border-radius:8px">
-      </a>
-      <nav class="top-nav">
-        <a href="/contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+---
 
-  <main>
-    <section class="hero" style="padding:24px 0;">
-      <div class="container">
-        <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
-        <p class="lead">Turn a quick brief into platform-ready captions with clean hashtags and first-comment helpers.</p>
-        <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions" style="display:block;margin:16px auto 0;max-width:100%;height:auto;width:300px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)" />
-      </div>
-    </section>
-
-    <section class="tool">
-      <div class="container">
-        <form id="captionForm" class="brief simple-form" novalidate>
-          <!-- Main fields -->
-          <div class="row" style="gap:12px">
-            <div style="flex:1;min-width:240px">
-              <label for="company">Company / Brand (optional)</label>
-              <input id="company" type="text" placeholder="Bluedobie Developing" />
-            </div>
-
-            <div style="flex:2;min-width:280px">
-              <label for="offer">What are you promoting? *</label>
-              <input id="offer" type="text" placeholder="Fall cleaning special — $99 for new clients" required />
-            </div>
-          </div>
-
-          <!-- Voice & Style Section -->
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-top:12px">
-            <div style="font-size:13px;font-weight:600;color:#475569;margin-bottom:8px">
-              💡 Voice & Style <span style="font-weight:400;color:#64748b">(These settings work together to define your caption's personality)</span>
-            </div>
-            <div class="row" style="gap:12px">
-              <div>
-                <label for="platform">Platform *</label>
-                <select id="platform">
-                  <option>Instagram</option>
-                  <option>Facebook</option>
-                  <option>LinkedIn</option>
-                  <option>Twitter</option>
-                  <option>TikTok</option>
-                  <option>YTShorts</option>
-                  <option>GMB</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="voiceMode">Voice Mode</label>
-                <select id="voiceMode">
-                  <option value="leadgen">Lead Gen / Sales</option>
-                  <option value="community">Community / Fun</option>
-                  <option value="authority">Authority / Pro</option>
-                </select>
-                <div class="muted" style="font-size:11px;margin-top:2px">Changes everything!</div>
-              </div>
-
-              <div>
-                <label for="tone">Tone</label>
-                <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
-                <div class="muted" aria-live="polite">Balanced</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Advanced -->
-          <details class="advanced-toggle" style="margin-top:12px">
-            <summary>Advanced Options (optional)</summary>
-            <div class="row" style="gap:12px;margin-top:8px">
-              <div style="flex:1;min-width:220px">
-                <label for="audience">Audience</label>
-                <input id="audience" type="text" placeholder="busy homeowners in Western Kentucky" />
-              </div>
-              <div style="flex:1;min-width:220px">
-                <label for="problem">Problem</label>
-                <input id="problem" type="text" placeholder="no time to clean" />
-              </div>
-              <div style="flex:1;min-width:220px">
-                <label for="outcome">Desired outcome</label>
-                <input id="outcome" type="text" placeholder="sparkling home + free weekend" />
-              </div>
-              <div style="flex:1;min-width:220px">
-                <label for="cta">Call to action</label>
-                <input id="cta" type="text" placeholder="Book now at https://yoursite.com" />
-              </div>
-              <div style="flex:1;min-width:220px">
-                <label for="keywords">Keywords (hashtags)</label>
-                <input id="keywords" type="text" placeholder="cleaning, local, kentucky" />
-              </div>
-              <div>
-                <label for="format">Format</label>
-                <select id="format">
-                  <option>Post</option><option>Story</option><option>Reel</option><option>Video</option><option>Short</option>
-                </select>
-                <div id="formatHint" class="muted" style="font-size:12px;margin-top:4px"></div>
-              </div>
-              <div>
-                <label for="captionLength">Caption length</label>
-                <select id="captionLength">
-                  <option>Short</option><option selected>Medium</option><option>Long</option>
-                </select>
-              </div>
-              <div>
-                <label for="hashtagDensity">Hashtag density</label>
-                <select id="hashtagDensity">
-                  <option>Light</option><option selected>Standard</option><option>Heavy</option>
-                </select>
-              </div>
-              <div style="align-self:flex-end">
-                <label><input id="cleanHashtags" type="checkbox" checked /> Clean hashtags</label>
-              </div>
-            </div>
-          </details>
-
-          <div class="row" style="margin-top:12px;align-items:center">
-            <button type="submit" id="generateBtn" class="btn">Generate 3 Captions</button>
-            <button type="button" id="clearBtn" class="btn secondary">Clear</button>
-            <small id="usageCounter" class="muted" style="margin-left:8px" aria-live="polite"></small>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="results">
-      <div class="container">
-        <h2>Results</h2>
-        <div id="results" class="cards" aria-live="polite"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Upgrade Modal -->
-  <div id="upgradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle" hidden>
-    <div class="modal-content">
-      <h2 id="upgradeTitle">🎯 You've used your 3 free captions today!</h2>
-      <div class="price">$9<span style="font-weight:400">/month</span></div>
-      <ul class="benefits">
-        <li>Unlimited caption generation</li>
-        <li>All platforms & formats</li>
-        <li>Priority support</li>
-        <li>Early access to new features</li>
-      </ul>
-      <div class="row" style="margin-top:12px">
-        <button class="btn" id="upgradeBtn">Upgrade to Pro</button>
-        <button class="btn secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
-        <button class="btn secondary" id="closeModalBtn">Maybe later</button>
-      </div>
-      <small class="muted">Resets tomorrow at midnight</small>
-    </div>
+<section class="hero" style="padding:24px 0;">
+  <div class="container">
+    <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
+    <p class="lead">Turn a quick brief into platform-ready captions with clean hashtags and first-comment helpers.</p>
+    <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions" style="display:block;margin:16px auto 0;max-width:100%;height:auto;width:300px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)" />
   </div>
+</section>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="legal">© <span id="year"></span> Bluedobie Developing. All rights reserved.</p>
+<section class="tool">
+  <div class="container">
+    <form id="captionForm" class="brief simple-form" novalidate>
+      <!-- Main fields -->
+      <div class="row" style="gap:12px">
+        <div style="flex:1;min-width:240px">
+          <label for="company">Company / Brand (optional)</label>
+          <input id="company" type="text" placeholder="Bluedobie Developing" />
+        </div>
+
+        <div style="flex:2;min-width:280px">
+          <label for="offer">What are you promoting? *</label>
+          <input id="offer" type="text" placeholder="Fall cleaning special — $99 for new clients" required />
+        </div>
+      </div>
+
+      <!-- Voice & Style Section -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-top:12px">
+        <div style="font-size:13px;font-weight:600;color:#475569;margin-bottom:8px">
+          💡 Voice & Style <span style="font-weight:400;color:#64748b">(These settings work together to define your caption's personality)</span>
+        </div>
+        <div class="row" style="gap:12px">
+          <div>
+            <label for="platform">Platform *</label>
+            <select id="platform">
+              <option>Instagram</option>
+              <option>Facebook</option>
+              <option>LinkedIn</option>
+              <option>Twitter</option>
+              <option>TikTok</option>
+              <option>YTShorts</option>
+              <option>GMB</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="voiceMode">Voice Mode</label>
+            <select id="voiceMode">
+              <option value="leadgen">Lead Gen / Sales</option>
+              <option value="community">Community / Fun</option>
+              <option value="authority">Authority / Pro</option>
+            </select>
+            <div class="muted" style="font-size:11px;margin-top:2px">Changes everything!</div>
+          </div>
+
+          <div>
+            <label for="tone">Tone</label>
+            <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
+            <div class="muted" aria-live="polite">Balanced</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced -->
+      <details class="advanced-toggle" style="margin-top:12px">
+        <summary>Advanced Options (optional)</summary>
+        <div class="row" style="gap:12px;margin-top:8px">
+          <div style="flex:1;min-width:220px">
+            <label for="audience">Audience</label>
+            <input id="audience" type="text" placeholder="busy homeowners in Western Kentucky" />
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="problem">Problem</label>
+            <input id="problem" type="text" placeholder="no time to clean" />
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="outcome">Desired outcome</label>
+            <input id="outcome" type="text" placeholder="sparkling home + free weekend" />
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="cta">Call to action</label>
+            <input id="cta" type="text" placeholder="Book now at https://yoursite.com" />
+          </div>
+          <div style="flex:1;min-width:220px">
+            <label for="keywords">Keywords (hashtags)</label>
+            <input id="keywords" type="text" placeholder="cleaning, local, kentucky" />
+          </div>
+          <div>
+            <label for="format">Format</label>
+            <select id="format">
+              <option>Post</option><option>Story</option><option>Reel</option><option>Video</option><option>Short</option>
+            </select>
+            <div id="formatHint" class="muted" style="font-size:12px;margin-top:4px"></div>
+          </div>
+          <div>
+            <label for="captionLength">Caption length</label>
+            <select id="captionLength">
+              <option>Short</option><option selected>Medium</option><option>Long</option>
+            </select>
+          </div>
+          <div>
+            <label for="hashtagDensity">Hashtag density</label>
+            <select id="hashtagDensity">
+              <option>Light</option><option selected>Standard</option><option>Heavy</option>
+            </select>
+          </div>
+          <div style="align-self:flex-end">
+            <label><input id="cleanHashtags" type="checkbox" checked /> Clean hashtags</label>
+          </div>
+        </div>
+      </details>
+
+      <div class="row" style="margin-top:12px;align-items:center">
+        <button type="submit" id="generateBtn" class="btn">Generate 3 Captions</button>
+        <button type="button" id="clearBtn" class="btn secondary">Clear</button>
+        <small id="usageCounter" class="muted" style="margin-left:8px" aria-live="polite"></small>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="results">
+  <div class="container">
+    <h2>Results</h2>
+    <div id="results" class="cards" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- Upgrade Modal -->
+<div id="upgradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle" hidden>
+  <div class="modal-content">
+    <h2 id="upgradeTitle">🎯 You've used your 3 free captions today!</h2>
+    <div class="price">$9<span style="font-weight:400">/month</span></div>
+    <ul class="benefits">
+      <li>Unlimited caption generation</li>
+      <li>All platforms & formats</li>
+      <li>Priority support</li>
+      <li>Early access to new features</li>
+    </ul>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="upgradeBtn">Upgrade to Pro</button>
+      <button class="btn secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
+      <button class="btn secondary" id="closeModalBtn">Maybe later</button>
     </div>
-  </footer>
+    <small class="muted">Resets tomorrow at midnight</small>
+  </div>
+</div>
 
-  <script src="captioncraft.js" defer></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-</body>
-</html>
+<script src="/captioncraft/captioncraft.js" defer></script>
