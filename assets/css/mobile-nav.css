@@ -1,249 +1,345 @@
-/* Mobile Navigation Styles */
+/* ============================================
+   NAVIGATION STYLES
+   Works with existing nav.html structure
+   ============================================ */
 
-/* Overlay */
-.mobile-nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+/* Base navigation */
+.site-nav {
+  position: relative;
+  z-index: 1000;
+  background: white;
 }
 
-.mobile-nav-overlay.active {
-  opacity: 1;
-  visibility: visible;
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-/* Mobile Nav Panel */
-.mobile-nav-panel {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 300px;
-  max-width: 85%;
-  height: 100%;
-  background: #fff;
-  z-index: 999;
-  overflow-y: auto;
-  transition: right 0.3s ease;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-nav-panel.active {
-  right: 0;
-}
-
-/* Prevent body scroll when menu is open */
-body.mobile-nav-open {
-  overflow: hidden;
-}
-
-/* Mobile Nav Header */
-.mobile-nav-header {
+.nav-elements-holder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  background: #042d4d;
 }
 
-.mobile-nav-logo {
-  height: 50px;
-  width: auto;
+/* Logo */
+.brand-link {
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+  position: relative;
 }
 
-.mobile-close-btn {
+.brand-logo {
+  width: 64px;
+  height: 64px;
+}
+
+/* Desktop menu container */
+.nav-menu-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Desktop navigation menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link-holder {
+  position: relative;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
   background: none;
   border: none;
-  font-size: 2rem;
-  color: #fff;
   cursor: pointer;
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: inherit;
+  transition: opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dropdown-toggle:hover {
+  opacity: 0.7;
+}
+
+.dropdown-toggle::after {
+  content: '▾';
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  z-index: 1002;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu .nav-link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu .nav-link:hover {
+  background: #f5f5f5;
+  opacity: 1;
+}
+
+/* Hamburger button - hidden on desktop */
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.w-icon-nav-menu {
+  width: 24px;
+  height: 24px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Mobile Nav Content */
-.mobile-nav-content {
+.w-icon-nav-menu::before {
+  content: '☰';
+  font-size: 24px;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.menu-button.w--open .w-icon-nav-menu::before {
+  content: '✕';
+  font-size: 28px;
+}
+
+/* ============================================
+   MOBILE & TABLET STYLES
+   ============================================ */
+
+@media screen and (max-width: 991px) {
+  /* Show hamburger */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Mobile menu slide-out */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 5rem 0 2rem;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  /* Open state */
+  .nav-menu.w--open {
+    transform: translateX(0);
+  }
+  
+  /* Overlay when menu is open */
+  .nav-menu.w--open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 300px;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Nav items in mobile */
+  .nav-link-holder {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    width: 100%;
+  }
+  
+  /* Dropdowns in mobile menu */
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid #eee;
+    border-radius: 0;
+    margin-top: 0;
+    padding: 0;
+    background: #f9f9f9;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .dropdown-menu.show {
+    max-height: 500px;
+  }
+  
+  .dropdown-menu .nav-link {
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .dropdown-menu .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  /* Prevent body scroll when menu is open */
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* Slightly narrower on phones */
+  .nav-menu {
+    width: 280px;
+  }
+  
+  .nav-menu.w--open::before {
+    right: 280px;
+  }
+}
+
+/* ============================================
+   SOCIAL BAR
+   ============================================ */
+
+.social-bar {
+  border-top: 1px solid #eee;
   padding: 1rem 0;
+  background: #f9f9f9;
 }
 
-.mobile-nav-item {
-  border-bottom: 1px solid #eee;
-}
-
-.mobile-nav-link {
-  display: block;
-  padding: 1rem 1.5rem;
-  color: #333;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background 0.2s ease;
-}
-
-.mobile-nav-link:hover {
-  background: #f5f5f5;
-}
-
-/* Expandable Sections */
-.mobile-nav-expandable {
-  border-bottom: 1px solid #eee;
-}
-
-.mobile-nav-toggle {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  background: none;
-  border: none;
-  text-align: left;
-  font-size: 1rem;
-  color: #333;
-  cursor: pointer;
+.social-groups {
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
+  justify-content: center;
   align-items: center;
-  transition: background 0.2s ease;
-}
-
-.mobile-nav-toggle:hover {
-  background: #f5f5f5;
-}
-
-.mobile-nav-toggle-icon {
-  transition: transform 0.3s ease;
-  font-size: 0.8rem;
-}
-
-.mobile-nav-toggle.active .mobile-nav-toggle-icon {
-  transform: rotate(180deg);
-}
-
-.mobile-nav-submenu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background: #f9f9f9;
-}
-
-.mobile-nav-submenu.active {
-  max-height: 500px;
-}
-
-.mobile-nav-submenu .mobile-nav-link {
-  padding-left: 2.5rem;
-  font-size: 0.95rem;
-}
-
-/* CTA Button */
-.mobile-nav-cta {
-  display: block;
-  margin: 1.5rem 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #042d4d;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.mobile-nav-cta:hover {
-  background: #06396b;
-}
-
-/* Social Links Section */
-.mobile-social-section {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #f9f9f9;
-}
-
-.mobile-social-group {
-  margin-bottom: 1.5rem;
-}
-
-.mobile-social-group:last-child {
-  margin-bottom: 0;
-}
-
-.mobile-social-group h4 {
-  margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.mobile-social-links {
-  display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
-.mobile-social-link {
-  padding: 0.5rem 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #042d4d;
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
+.social-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.mobile-social-link:hover {
-  background: #042d4d;
-  color: #fff;
-  border-color: #042d4d;
+.social-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
 }
 
-/* Hide mobile nav on larger screens */
-@media (min-width: 992px) {
-  .mobile-nav-panel,
-  .mobile-nav-overlay {
-    display: none !important;
-  }
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-/* Override Webflow default mobile menu behavior */
-@media (max-width: 991px) {
-  /* Hide the default Webflow dropdown nav menu on mobile - FORCE IT */
-  .nav-menu.w-nav-menu,
-  [data-nav-menu-open],
-  .w--nav-link-open {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-  
-  /* Disable Webflow's nav overlay completely */
-  .w-nav-overlay {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
+.social-links a {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.social-links a:hover {
+  opacity: 0.7;
+}
+
+.social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .social-groups {
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  /* Stop Webflow from adding the w--open class behavior */
-  .menu-button.w-nav-button.w--open {
-    background-color: transparent !important;
-    color: inherit !important;
-  }
-  
-  /* Ensure hamburger button is visible and clickable */
-  .menu-button.w-nav-button {
-    display: block !important;
-    position: relative;
-    z-index: 1001;
-    background: transparent !important;
+  .social-group {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
   }
 }
