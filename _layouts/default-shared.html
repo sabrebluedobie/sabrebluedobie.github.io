@@ -9,7 +9,7 @@
   {% include head.html %}
 
   {%- comment -%} Site-wide mobile nav styles (internal asset → relative_url) {%- endcomment -%}
-  <link rel="stylesheet" href="{{ '/css/mobile-nav.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/mobile-nav.css' | relative_url }}" />
 
   {%- comment -%} Optional per-page head extras (e.g., 404 noindex) {%- endcomment -%}
   {% if page.head_extra %}{{ page.head_extra }}{% endif %}
