@@ -6,45 +6,29 @@ permalink: /logo-sprint-landing/
 ---
 
 <style>
-  /* Hero Section with Video */
+  /* Hero Section with Video - Full Width */
   .hero-video-section {
+    background: #f9fafb;
+  }
+
+  .hero-video-container {
+    width: 100%;
     position: relative;
-    height: 70vh;
-    min-height: 500px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(4, 45, 77, 0.85) 0%, rgba(4, 45, 77, 0.6) 100%);
-    z-index: 2;
+    height: auto;
+    display: block;
   }
 
   .hero-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: white;
-    padding: 2rem;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #042d4d;
   }
 
   .hero-content h1 {
@@ -52,32 +36,33 @@ permalink: /logo-sprint-landing/
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: #042d4d;
   }
 
   .hero-content .tagline {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    font-weight: 300;
     line-height: 1.4;
+    color: #6b7280;
   }
 
   .hero-cta {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: #fff;
-    color: #042d4d;
+    background: #042d4d;
+    color: #fff;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
     font-size: 1.1rem;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(4, 45, 77, 0.3);
   }
 
   .hero-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 20px rgba(4, 45, 77, 0.4);
+    background: #063a62;
   }
 
   /* Content Sections */
@@ -273,14 +258,11 @@ permalink: /logo-sprint-landing/
   }
 
   .faq-item {
-    padding: 1.5rem;
+    padding: 2rem;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid #e5e7eb;
-  }
-
-  .faq-item:last-child {
-    border-bottom: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
   .faq-question {
@@ -292,7 +274,8 @@ permalink: /logo-sprint-landing/
 
   .faq-answer {
     color: #4b5563;
-    line-height: 1.7;
+    line-height: 1.8;
+    font-size: 1.05rem;
   }
 
   /* CTA Section */
@@ -349,21 +332,30 @@ permalink: /logo-sprint-landing/
       font-size: 2.5rem;
     }
 
-    .pricing-grid {
-      grid-template-columns: 1fr;
+    .faq-item {
+      padding: 1.5rem;
+    }
+
+    .faq-question {
+      font-size: 1.15rem;
+    }
+
+    .faq-answer {
+      font-size: 1rem;
     }
   }
 </style>
 
-<!-- Hero Section with Video -->
+<!-- Hero Section - Full Width Video with Content Below -->
 <section class="hero-video-section">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="/assets/videos/logo-sprint-hero.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="hero-overlay"></div>
+  <div class="hero-video-container">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="/assets/videos/logo-sprint-hero.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  
   <div class="hero-content">
-    <h1>Logo Sprint</h1>
     <p class="tagline">Professional logo options—days faster, not weeks.</p>
     <a href="#pricing" class="hero-cta">See Packages</a>
   </div>
