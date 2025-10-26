@@ -1,0 +1,607 @@
+---
+layout: default
+title: "DobieCore Captions - AI Caption Generator for Social Media"
+description: "Generate platform-optimized captions in seconds. Try 3 free captions, then unlimited for $9/month. Instagram, Facebook, LinkedIn, TikTok & more."
+permalink: /dobiecore-captions-landing/
+---
+
+<style>
+  /* Hero Section */
+  .captions-hero {
+    background: linear-gradient(135deg, #042d4d 0%, #063a62 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .captions-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .captions-hero .tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .captions-hero .cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .hero-cta-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #fff;
+    color: #042d4d;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .hero-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+
+  .hero-cta-secondary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+  }
+
+  .hero-cta-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-top: 1rem;
+  }
+
+  /* Content Sections */
+  .content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: #042d4d;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Problem/Solution Section */
+  .pain-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .pain-point {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .pain-point h3 {
+    font-size: 1.2rem;
+    color: #991b1b;
+    margin-bottom: 0.5rem;
+  }
+
+  .pain-point p {
+    color: #7f1d1d;
+    line-height: 1.6;
+  }
+
+  .solution-point {
+    background: #f0fdf4;
+    border-left: 4px solid #10b981;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .solution-point h3 {
+    font-size: 1.2rem;
+    color: #065f46;
+    margin-bottom: 0.5rem;
+  }
+
+  .solution-point p {
+    color: #064e3b;
+    line-height: 1.6;
+  }
+
+  /* Platform Grid */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .platform-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .platform-card:hover {
+    border-color: #042d4d;
+    box-shadow: 0 4px 12px rgba(4, 45, 77, 0.1);
+  }
+
+  .platform-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .platform-name {
+    font-weight: 700;
+    color: #042d4d;
+    font-size: 1.1rem;
+  }
+
+  /* Pricing Card */
+  .pricing-showcase {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: white;
+    border: 3px solid #042d4d;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+
+  .pricing-showcase .price {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-showcase .price-period {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #6b7280;
+  }
+
+  .pricing-showcase .price-subtext {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    text-align: left;
+  }
+
+  .pricing-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .pricing-features li:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-features li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Example Section */
+  .example-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .example-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #042d4d;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .example-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #1f2937;
+  }
+
+  .example-hashtags {
+    margin-top: 1rem;
+    color: #0369a1;
+    font-weight: 600;
+  }
+
+  /* CTA Section */
+  .final-cta-section {
+    background: linear-gradient(135deg, #042d4d 0%, #063a62 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .final-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .final-cta-button {
+    display: inline-block;
+    padding: 1.25rem 3rem;
+    background: white;
+    color: #042d4d;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .final-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .captions-hero h1 {
+      font-size: 2.2rem;
+    }
+
+    .captions-hero .tagline {
+      font-size: 1.2rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .pricing-showcase {
+      padding: 2rem 1.5rem;
+    }
+
+    .pricing-showcase .price {
+      font-size: 3rem;
+    }
+
+    .cta-row {
+      flex-direction: column;
+    }
+
+    .hero-cta-primary,
+    .hero-cta-secondary {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>
+
+<!-- Hero Section -->
+<section class="captions-hero">
+  <h1>Never Stare at a Blank Screen Again</h1>
+  <p class="tagline">Captions in seconds, not hours. Try 3 free, then unlimited for $9/month.</p>
+  
+  <div class="cta-row">
+    <a href="/captioncraft/captioncraft.html" class="hero-cta-primary">Try 3 Free Captions</a>
+    <a href="#pricing" class="hero-cta-secondary">See Pricing</a>
+  </div>
+  
+  <p class="hero-badge">✨ No credit card required for free trial</p>
+</section>
+
+<!-- Problem Section -->
+<section class="content-section">
+  <div class="section-header">
+    <h2>Sound Familiar?</h2>
+    <p>You're not alone. Writing captions is the #1 thing business owners and marketers dread about social media.</p>
+  </div>
+
+  <div class="pain-points">
+    <div class="pain-point">
+      <h3>⏰ "It takes forever"</h3>
+      <p>You spend 30 minutes writing one caption when you have 10 other things on your to-do list.</p>
+    </div>
+
+    <div class="pain-point">
+      <h3>😰 "I never know what to say"</h3>
+      <p>You stare at the blank screen wondering if you sound professional enough, fun enough, or just... enough.</p>
+    </div>
+
+    <div class="pain-point">
+      <h3>🔄 "Every platform is different"</h3>
+      <p>What works on Instagram bombs on LinkedIn. What works on Facebook feels wrong on TikTok.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Solution Section -->
+<section class="content-section" style="background: #f9fafb;">
+  <div class="section-header">
+    <h2>Meet DobieCore Captions</h2>
+    <p>Your AI-powered caption generator that understands platform differences, brand voice, and what actually converts.</p>
+  </div>
+
+  <div class="pain-points">
+    <div class="solution-point">
+      <h3>⚡ Generate in seconds</h3>
+      <p>Type a quick brief, get 3 caption options instantly. Pick your favorite or tweak it. Done in 2 minutes.</p>
+    </div>
+
+    <div class="solution-point">
+      <h3>🎯 Platform-optimized</h3>
+      <p>Each caption is tailored for your platform—Instagram hooks, LinkedIn authority, TikTok energy, you name it.</p>
+    </div>
+
+    <div class="solution-point">
+      <h3>📱 7+ platforms supported</h3>
+      <p>Instagram, Facebook, LinkedIn, Twitter, TikTok, YouTube Shorts, and Google Business—all with the right voice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Platforms Section -->
+<section class="content-section">
+  <div class="section-header">
+    <h2>Works Across All Your Platforms</h2>
+    <p>One tool, every platform. Each caption optimized for where your audience actually hangs out.</p>
+  </div>
+
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-icon">📸</div>
+      <div class="platform-name">Instagram</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">👥</div>
+      <div class="platform-name">Facebook</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">💼</div>
+      <div class="platform-name">LinkedIn</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">🐦</div>
+      <div class="platform-name">Twitter</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">🎵</div>
+      <div class="platform-name">TikTok</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">▶️</div>
+      <div class="platform-name">YouTube Shorts</div>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">🗺️</div>
+      <div class="platform-name">Google Business</div>
+    </div>
+  </div>
+</section>
+
+<!-- Example Section -->
+<section class="content-section" style="background: #f9fafb;">
+  <div class="section-header">
+    <h2>See It In Action</h2>
+    <p>Here's what DobieCore Captions can generate for you in seconds:</p>
+  </div>
+
+  <div class="example-card">
+    <span class="example-label">Instagram • Lead Gen Mode</span>
+    <div class="example-text">
+      Fall cleaning season is here 🍂✨<br><br>
+      
+      And if the thought of deep-cleaning your home makes you want to hibernate until spring... we've got you covered.<br><br>
+      
+      New clients get our full home cleaning for just $99 this month. No contracts, no catch—just a sparkling home and your weekend back.<br><br>
+      
+      DM us or click the link in bio to book before slots fill up!
+    </div>
+    <div class="example-hashtags">#FallCleaning #KentuckySmallBusiness #CleanHomeHappyHome #LocalCleaning</div>
+  </div>
+
+  <div class="example-card">
+    <span class="example-label">LinkedIn • Authority Mode</span>
+    <div class="example-text">
+      The hidden cost of trying to do everything yourself: your actual business growth.<br><br>
+      
+      As a business owner, you're juggling operations, marketing, sales, and—oh yeah—the service you actually provide. When do you have time to think strategically?<br><br>
+      
+      That's why smart businesses outsource what drains their time. Whether it's cleaning, bookkeeping, or social media management, delegating frees you up to focus on what only YOU can do: grow your business.<br><br>
+      
+      What's one thing you could delegate this week?
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="content-section" id="pricing">
+  <div class="section-header">
+    <h2>Simple, Honest Pricing</h2>
+    <p>Try it free. Love it? Upgrade for unlimited everything.</p>
+  </div>
+
+  <div class="pricing-showcase">
+    <div class="price">
+      $9<span class="price-period">/month</span>
+    </div>
+    <div class="price-subtext">Try 3 captions free. No credit card needed.</div>
+
+    <ul class="pricing-features">
+      <li>Unlimited caption generation</li>
+      <li>All 7+ platforms (Instagram, Facebook, LinkedIn, TikTok, etc.)</li>
+      <li>Voice modes: Lead Gen, Community, Authority</li>
+      <li>Platform-optimized hashtags</li>
+      <li>Multiple format support (posts, stories, reels, videos)</li>
+      <li>Copy-paste ready captions</li>
+      <li>Priority support</li>
+    </ul>
+
+    <a href="/captioncraft/captioncraft.html" class="final-cta-button" style="display: block; margin-top: 1.5rem;">Start Free Trial</a>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="content-section" style="background: #f9fafb;">
+  <div class="section-header">
+    <h2>How It Works</h2>
+    <p>Three clicks to better captions.</p>
+  </div>
+
+  <div class="pain-points">
+    <div class="solution-point">
+      <h3>1️⃣ Tell us what you're promoting</h3>
+      <p>"Fall cleaning special - $99 for new clients" or "New blog post about time management"</p>
+    </div>
+
+    <div class="solution-point">
+      <h3>2️⃣ Pick your platform & voice</h3>
+      <p>Instagram + Lead Gen mode? LinkedIn + Authority? We'll match the platform's style.</p>
+    </div>
+
+    <div class="solution-point">
+      <h3>3️⃣ Get 3 captions instantly</h3>
+      <p>Pick your favorite, copy-paste to your platform, and hit publish. Done.</p>
+    </div>
+  </div>
+
+  <!-- Voice Mode Pro Tip -->
+  <div style="max-width: 800px; margin: 3rem auto; background: #fffbeb; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 8px;">
+    <h3 style="font-size: 1.5rem; color: #92400e; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+      💡 Pro Tip: Voice Mode is Everything
+    </h3>
+    <p style="color: #78350f; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">
+      The <strong>Voice Mode</strong> setting dramatically changes your caption's personality and approach. If a caption doesn't sound right, don't regenerate—just try a different voice mode:
+    </p>
+    <ul style="color: #78350f; line-height: 1.8; margin-left: 1.5rem;">
+      <li><strong>Lead Gen / Sales</strong> → Direct, benefit-focused, includes clear CTAs</li>
+      <li><strong>Community / Fun</strong> → Casual, engaging, builds connection</li>
+      <li><strong>Authority / Pro</strong> → Professional, insightful, establishes expertise</li>
+    </ul>
+    <p style="color: #78350f; line-height: 1.7; font-size: 1.1rem; margin-top: 1rem;">
+      Same content, completely different vibe. Experiment with all three to find what fits your brand!
+    </p>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="content-section">
+  <div class="section-header">
+    <h2>Questions?</h2>
+  </div>
+
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">What's included in the free trial?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">You get 3 free caption generations per day—no credit card required. Each generation gives you 3 caption options to choose from. That's enough to try it out and see if it fits your workflow.</p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">What happens after I use my 3 free captions?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">You can upgrade to unlimited for $9/month anytime. Your free trial resets daily, so you can keep trying it free if you're not ready to commit yet.</p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">Can I cancel anytime?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">Absolutely. Cancel anytime with one click. No contracts, no hassle.</p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">Do you write the captions, or is it AI?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">It's AI-powered, but we've trained it specifically for social media best practices. Each caption is optimized for your chosen platform's style and your selected voice mode.</p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">What if I don't like the captions it generates?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">Just regenerate! Each time you hit "Generate," you get 3 fresh options. With unlimited, you can keep generating until you find the perfect caption.</p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.3rem; color: #042d4d; margin-bottom: 0.5rem;">Can I use this for client work?</h3>
+      <p style="color: #4b5563; line-height: 1.7;">Yes! Social media managers and agencies use DobieCore Captions to speed up their caption writing for clients. One subscription covers all your caption needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta-section">
+  <h2>Never Stare at a Blank Screen Again</h2>
+  <p>Captions in seconds, not hours. Try 3 captions free—no credit card, no commitment.</p>
+  <a href="/captioncraft/captioncraft.html" class="final-cta-button">Start Free Trial Now</a>
+  <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">Join small businesses, solopreneurs, and social media managers who've already saved hours on caption writing.</p>
+</section>
