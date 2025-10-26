@@ -1,18 +1,487 @@
-<header class="hero">
-  <picture>
-    <source type="image/webp"
-            srcset="/assets/images/logo-sprint/hero-1280.webp 1280w,
-                    /assets/images/logo-sprint/hero-1920.webp 1920w"
-            sizes="100vw">
-    <img
-      src="/assets/images/logo-sprint/hero-1280.jpg"
-      srcset="/assets/images/logo-sprint/hero-1280.jpg 1280w,
-              /assets/images/logo-sprint/hero-1920.jpg 1920w"
-      sizes="100vw"
-      alt="Sabre sprinting at golden hour — Logo Sprint">
-  </picture>
-  <div class="hero-copy">
+---
+layout: default
+title: "Logo Sprint - Professional Logo Design in 48-72 Hours"
+description: "Get custom logo concepts fast. Two tiers, professional results, no waiting weeks. Starting at $199."
+permalink: /logo-sprint-landing/
+---
+
+<style>
+  /* Hero Section with Video */
+  .hero-video-section {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(4, 45, 77, 0.85) 0%, rgba(4, 45, 77, 0.6) 100%);
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-content .tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #fff;
+    color: #042d4d;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+
+  /* Content Sections */
+  .content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: #042d4d;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Pricing Tiers */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .pricing-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2.5rem;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .pricing-card.featured {
+    border-color: #042d4d;
+    position: relative;
+  }
+
+  .pricing-card.featured::before {
+    content: "MOST POPULAR";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #042d4d;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .tier-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-turnaround {
+    color: #6b7280;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex: 1;
+  }
+
+  .tier-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .tier-features li:last-child {
+    border-bottom: none;
+  }
+
+  .tier-features li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .tier-cta {
+    display: block;
+    padding: 1rem 2rem;
+    background: #042d4d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .tier-cta:hover {
+    background: #063a62;
+  }
+
+  /* Process Section */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .step-number {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: #042d4d;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 60px;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* FAQ Section */
+  .faq-list {
+    max-width: 800px;
+    margin: 3rem auto 0;
+  }
+
+  .faq-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-answer {
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  /* CTA Section */
+  .final-cta-section {
+    background: linear-gradient(135deg, #042d4d 0%, #063a62 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .final-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .final-cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: white;
+    color: #042d4d;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .final-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.2rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .tier-price {
+      font-size: 2.5rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- Hero Section with Video -->
+<section class="hero-video-section">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="/assets/videos/logo-sprint-hero.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <h1>Logo Sprint</h1>
-    <p>Professional logo options—days faster.</p>
+    <p class="tagline">Professional logo options—days faster, not weeks.</p>
+    <a href="#pricing" class="hero-cta">See Packages</a>
   </div>
-</header>
+</section>
+
+<!-- Value Proposition -->
+<section class="content-section">
+  <div class="section-header">
+    <h2>Your Logo, No Waiting</h2>
+    <p>You don't have weeks to wait or thousands to spend. Logo Sprint delivers custom logo concepts in 48-72 hours. Pick your favorite, and I'll refine it to perfection.</p>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="content-section" id="pricing" style="background: #f9fafb;">
+  <div class="section-header">
+    <h2>Choose Your Sprint</h2>
+    <p>Both tiers include custom concepts, professional delivery, and a designer who actually responds to emails.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Basic Tier -->
+    <div class="pricing-card">
+      <h3 class="tier-name">Logo Sprint Basic</h3>
+      <div class="tier-price">$199</div>
+      <p class="tier-turnaround">3-5 day turnaround</p>
+      
+      <ul class="tier-features">
+        <li>3 custom logo concepts</li>
+        <li>1 round of revisions</li>
+        <li>Final logo in PNG & JPG formats</li>
+        <li>Primary logo version only</li>
+        <li>Professional, print-ready files</li>
+      </ul>
+
+      <a href="/contact.html?service=logo-sprint-basic" class="tier-cta">Start Basic Sprint</a>
+    </div>
+
+    <!-- Pro Tier -->
+    <div class="pricing-card featured">
+      <h3 class="tier-name">Logo Sprint Pro</h3>
+      <div class="tier-price">$399</div>
+      <p class="tier-turnaround">2-3 day turnaround</p>
+      
+      <ul class="tier-features">
+        <li>5 custom logo concepts</li>
+        <li>2 rounds of revisions</li>
+        <li>PNG, JPG, SVG & vector AI formats</li>
+        <li>Primary logo + simplified/icon version</li>
+        <li>Brand color palette (5 colors with hex codes)</li>
+        <li>Font pairing recommendations</li>
+        <li>Professional, print-ready files</li>
+      </ul>
+
+      <a href="/contact.html?service=logo-sprint-pro" class="tier-cta">Start Pro Sprint</a>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="content-section">
+  <div class="section-header">
+    <h2>Simple Process, Fast Results</h2>
+    <p>No complicated contracts. No endless back-and-forth. Just a straightforward sprint to your new logo.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h3 class="step-title">Tell Me About Your Brand</h3>
+      <p class="step-description">Fill out a quick questionnaire about your business, style preferences, and what makes you different.</p>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h3 class="step-title">I Create Concepts</h3>
+      <p class="step-description">Using AI-assisted design and professional polish, I develop 3-5 unique logo concepts tailored to your brand.</p>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h3 class="step-title">You Pick & Refine</h3>
+      <p class="step-description">Choose your favorite concept, and I'll refine it based on your feedback until it's exactly right.</p>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h3 class="step-title">Get Your Files</h3>
+      <p class="step-description">Receive professional files ready to use on your website, business cards, social media, and anywhere else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="content-section" style="background: #f9fafb;">
+  <div class="section-header">
+    <h2>Questions?</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <h3 class="faq-question">What if I don't like any of the concepts?</h3>
+      <p class="faq-answer">That's never happened yet, but if we're not on the same page, I'll create a fresh round of concepts at no extra charge. Your satisfaction matters.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Do I own the logo after purchase?</h3>
+      <p class="faq-answer">Absolutely. Once you've paid in full, you own the logo and all the files. Use it however you want, forever.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Can I get more revisions than what's included?</h3>
+      <p class="faq-answer">Yes! Additional revision rounds are $50 each. That said, most clients are happy with what's included in their tier.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">What about trademark or copyright issues?</h3>
+      <p class="faq-answer">All logos are created as original work. However, trademark searches and legal registration are your responsibility. I can recommend trademark attorneys if needed.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Can I get it faster than 2-3 days?</h3>
+      <p class="faq-answer">Rush delivery (24 hours) is available for $150 extra on the Pro tier only. Contact me before ordering to confirm availability.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">What if I need other branding materials?</h3>
+      <p class="faq-answer">I also offer business cards ($99), social media templates ($149), and full brand kit packages. Ask about bundling when you book your sprint.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta-section">
+  <h2>Ready to Sprint?</h2>
+  <p>Your logo doesn't have to wait. Let's get started today.</p>
+  <a href="/contact.html?service=logo-sprint" class="final-cta-button">Start Your Sprint</a>
+</section>
