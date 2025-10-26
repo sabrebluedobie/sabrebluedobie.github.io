@@ -103,8 +103,8 @@ function initNavigation() {
       
       if (!isOpen) {
         dropdownMenu.classList.add('show');
-        dropdownMenu.style.display = 'block';
-        dropdownMenu.style.maxHeight = '500px'; // Force visibility in mobile
+        dropdownMenu.style.setProperty('display', 'block', 'important');
+        dropdownMenu.style.setProperty('max-height', '500px', 'important');
         newToggle.setAttribute('aria-expanded', 'true');
         console.log('🔵 More dropdown opened');
       }
@@ -129,8 +129,8 @@ function initNavigation() {
       
       if (!isOpen) {
         productsMenu.classList.add('show');
-        productsMenu.style.display = 'block';
-        productsMenu.style.maxHeight = '500px'; // Force visibility in mobile
+        productsMenu.style.setProperty('display', 'block', 'important');
+        productsMenu.style.setProperty('max-height', '500px', 'important');
         newToggle.setAttribute('aria-expanded', 'true');
         console.log('🔵 Products dropdown opened');
       }
