@@ -221,20 +221,19 @@ permalink: /logo-sprint-landing/
 
   /* Process Section */
   .process-steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    max-width: 900px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
-    margin-top: 3rem;
   }
 
   .process-step {
-  text-align: center;
-  display: block;
   padding: 2rem;
-  flex: 1 1 280px;  /* Changed base from 220px to 280px */
-  max-width: 350px;  /* Increased max-width to allow them to be wider */
-  min-width: 220px;  /* Add a min-width so they don't get too narrow */
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
   .step-number {
