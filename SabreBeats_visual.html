@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluedobie Music Visualizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #0a0e27;
+        color: #ffffff;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    #visualizer {
+        flex: 1;
+        width: 100%;
+        display: block;
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1e3f 100%);
+    }
+
+    .controls {
+        background: rgba(10, 14, 39, 0.95);
+        padding: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        border-top: 2px solid #2e5cb8;
+        position: relative;
+        z-index: 10;
+    }
+
+    button {
+        background: linear-gradient(135deg, #2e5cb8 0%, #4a7fd9 100%);
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(46, 92, 184, 0.3);
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, #4a7fd9 0%, #5a8fe9 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(46, 92, 184, 0.4);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .mode-btn, .color-btn {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+
+    .mode-btn.active, .color-btn.active {
+        background: linear-gradient(135deg, #5a8fe9 0%, #6a9ff9 100%);
+        box-shadow: 0 0 20px rgba(90, 143, 233, 0.5);
+    }
+
+    .mode-buttons, .color-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .control-label {
+        font-size: 12px;
+        color: #8a8fa0;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status {
+        color: #5a8fe9;
+        font-size: 12px;
+        padding: 8px 16px;
+        background: rgba(90, 143, 233, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba(90, 143, 233, 0.3);
+    }
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+        color: #5a8fe9;
+        display: none;
+    }
+
+    .fullscreen-btn {
+        background: rgba(46, 92, 184, 0.2);
+        border: 1px solid rgba(46, 92, 184, 0.5);
+    }
+
+    .fullscreen-btn:hover {
+        background: rgba(74, 127, 217, 0.3);
+        border: 1px solid rgba(74, 127, 217, 0.7);
+    }
+
+    @media (max-width: 768px) {
+        .controls {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 12px;
+        }
+
+        .mode-btn, .color-btn {
+            padding: 8px 14px;
+            font-size: 11px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <canvas id="visualizer"></canvas>
+
+```
+<div class="loading" id="loading">Initializing...</div>
+
+<div class="controls">
+    <button id="startBtn">Start Visualizer</button>
+    
+    <div class="control-group">
+        <span class="control-label">Visualization</span>
+        <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="bars">Bars</button>
+            <button class="mode-btn" data-mode="wave">Wave</button>
+            <button class="mode-btn" data-mode="circular">Circular</button>
+            <button class="mode-btn" data-mode="particles">Particles</button>
+            <button class="mode-btn" data-mode="oscilloscope">Oscilloscope</button>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <span class="control-label">Color Theme</span>
+        <div class="color-buttons">
+            <button class="color-btn active" data-color="blue">Sabre Blue</button>
+            <button class="color-btn" data-color="purple">Purple</button>
+            <button class="color-btn" data-color="green">Emerald</button>
+            <button class="color-btn" data-color="orange">Sunset</button>
+            <button class="color-btn" data-color="rose">Rose</button>
+            <button class="color-btn" data-color="cyan">Cyan</button>
+            <button class="color-btn" data-color="rainbow">Rainbow</button>
+        </div>
+    </div>
+
+    <span class="status" id="status">Ready</span>
+    
+    <button class="fullscreen-btn" id="fullscreenBtn">Fullscreen</button>
+</div>
+
+<script>
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+    const startBtn = document.getElementById('startBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const statusEl = document.getElementById('status');
+    const loadingEl = document.getElementById('loading');
+    const modeButtons = document.querySelectorAll('.mode-btn');
+    const colorButtons = document.querySelectorAll('.color-btn');
+
+    let audioContext;
+    let analyser;
+    let dataArray;
+    let bufferLength;
+    let animationId;
+    let currentMode = 'bars';
+    let currentColorTheme = 'blue';
+    let particles = [];
+
+    // Color theme palettes
+    const colorThemes = {
+        blue: {
+            primary: '#2e5cb8',
+            secondary: '#4a7fd9',
+            accent: '#5a8fe9',
+            dark: '#1e4c98',
+            light: '#6a9ff9'
+        },
+        purple: {
+            primary: '#7c3aed',
+            secondary: '#8b5cf6',
+            accent: '#a78bfa',
+            dark: '#6d28d9',
+            light: '#c4b5fd'
+        },
+        green: {
+            primary: '#059669',
+            secondary: '#10b981',
+            accent: '#34d399',
+            dark: '#047857',
+            light: '#6ee7b7'
+        },
+        orange: {
+            primary: '#ea580c',
+            secondary: '#f97316',
+            accent: '#fb923c',
+            dark: '#c2410c',
+            light: '#fdba74'
+        },
+        rose: {
+            primary: '#be123c',
+            secondary: '#e11d48',
+            accent: '#f43f5e',
+            dark: '#9f1239',
+            light: '#fb7185'
+        },
+        cyan: {
+            primary: '#0891b2',
+            secondary: '#06b6d4',
+            accent: '#22d3ee',
+            dark: '#0e7490',
+            light: '#67e8f9'
+        },
+        rainbow: null // Special case handled differently
+    };
+
+    let colors = colorThemes.blue;
+
+    // Resize canvas
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight - document.querySelector('.controls').offsetHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Particle class for particle mode
+    class Particle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 4;
+            this.vy = (Math.random() - 0.5) * 4;
+            this.size = Math.random() * 3 + 2;
+            this.color = color;
+            this.life = 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life -= 0.01;
+        }
+
+        draw() {
+            ctx.globalAlpha = this.life;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    // Get color for rainbow mode
+    function getRainbowColor(index, total) {
+        const hue = (index / total) * 360;
+        return `hsl(${hue}, 70%, 60%)`;
+    }
+
+    // Get gradient based on current theme
+    function getGradient(x1, y1, x2, y2, index = 0, total = 1) {
+        if (currentColorTheme === 'rainbow') {
+            return getRainbowColor(index, total);
+        }
+        
+        const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+        gradient.addColorStop(0, colors.dark);
+        gradient.addColorStop(0.5, colors.primary);
+        gradient.addColorStop(1, colors.light);
+        return gradient;
+    }
+
+    // Start audio
+    async function startAudio() {
+        try {
+            loadingEl.style.display = 'block';
+            statusEl.textContent = 'Requesting microphone...';
+
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 2048;
+            analyser.smoothingTimeConstant = 0.8;
+
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const source = audioContext.createMediaStreamSource(stream);
+            source.connect(analyser);
+
+            bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+
+            statusEl.textContent = 'Visualizing...';
+            loadingEl.style.display = 'none';
+            startBtn.disabled = true;
+
+            animate();
+        } catch (err) {
+            console.error('Error accessing microphone:', err);
+            statusEl.textContent = 'Microphone access denied';
+            loadingEl.style.display = 'none';
+        }
+    }
+
+    // Animation loop
+    function animate() {
+        animationId = requestAnimationFrame(animate);
+
+        switch (currentMode) {
+            case 'bars':
+                drawBars();
+                break;
+            case 'wave':
+                drawWave();
+                break;
+            case 'circular':
+                drawCircular();
+                break;
+            case 'particles':
+                drawParticles();
+                break;
+            case 'oscilloscope':
+                drawOscilloscope();
+                break;
+        }
+    }
+
+    // Drawing functions
+    function drawBars() {
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.3)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = (dataArray[i] / 255) * canvas.height * 0.8;
+
+            if (currentColorTheme === 'rainbow') {
+                ctx.fillStyle = getRainbowColor(i, bufferLength);
+            } else {
+                const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+                gradient.addColorStop(0, colors.dark);
+                gradient.addColorStop(0.5, colors.primary);
+                gradient.addColorStop(1, colors.light);
+                ctx.fillStyle = gradient;
+            }
+
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    }
+
+    function drawWave() {
+        analyser.getByteTimeDomainData(dataArray);
+
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.2)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+
+        const sliceWidth = canvas.width / bufferLength;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = v * canvas.height / 2;
+
+            if (currentColorTheme === 'rainbow') {
+                ctx.strokeStyle = getRainbowColor(i, bufferLength);
+            } else {
+                ctx.strokeStyle = getGradient(x, 0, x, canvas.height);
+            }
+
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        ctx.stroke();
+    }
+
+    function drawCircular() {
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.2)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = Math.min(canvas.width, canvas.height) * 0.3;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const angle = (i / bufferLength) * Math.PI * 2;
+            const barHeight = (dataArray[i] / 255) * radius;
+
+            const x1 = centerX + Math.cos(angle) * radius;
+            const y1 = centerY + Math.sin(angle) * radius;
+            const x2 = centerX + Math.cos(angle) * (radius + barHeight);
+            const y2 = centerY + Math.sin(angle) * (radius + barHeight);
+
+            if (currentColorTheme === 'rainbow') {
+                ctx.strokeStyle = getRainbowColor(i, bufferLength);
+            } else {
+                const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+                gradient.addColorStop(0, colors.dark);
+                gradient.addColorStop(1, colors.light);
+                ctx.strokeStyle = gradient;
+            }
+
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+    }
+
+    function drawParticles() {
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Create new particles based on audio
+        const bass = dataArray.slice(0, 50).reduce((a, b) => a + b) / 50;
+        if (bass > 150 && particles.length < 100) {
+            let particleColor;
+            if (currentColorTheme === 'rainbow') {
+                particleColor = getRainbowColor(Math.random() * 360, 360);
+            } else {
+                const colors_array = [colors.primary, colors.secondary, colors.accent, colors.light];
+                particleColor = colors_array[Math.floor(Math.random() * colors_array.length)];
+            }
+
+            for (let i = 0; i < 3; i++) {
+                particles.push(new Particle(
+                    canvas.width / 2,
+                    canvas.height / 2,
+                    particleColor
+                ));
+            }
+        }
+
+        // Update and draw particles
+        particles = particles.filter(p => p.life > 0);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+    }
+
+    function drawOscilloscope() {
+        analyser.getByteTimeDomainData(dataArray);
+
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 10;
+        
+        if (currentColorTheme === 'rainbow') {
+            ctx.strokeStyle = getRainbowColor(Date.now() % 360, 360);
+            ctx.shadowColor = ctx.strokeStyle;
+        } else {
+            ctx.strokeStyle = colors.accent;
+            ctx.shadowColor = colors.accent;
+        }
+
+        ctx.beginPath();
+
+        const sliceWidth = canvas.width / bufferLength;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = v * canvas.height / 2;
+
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+    }
+
+    // Event listeners
+    startBtn.addEventListener('click', () => {
+        if (!audioContext) {
+            startAudio();
+        }
+    });
+
+    modeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modeButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentMode = btn.dataset.mode;
+            particles = []; // Clear particles when switching modes
+        });
+    });
+
+    colorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            colorButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentColorTheme = btn.dataset.color;
+            
+            // Update colors object (except for rainbow which is handled differently)
+            if (currentColorTheme !== 'rainbow') {
+                colors = colorThemes[currentColorTheme];
+            }
+            
+            particles = []; // Clear particles when switching colors
+        });
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            fullscreenBtn.textContent = 'Exit Fullscreen';
+        } else {
+            document.exitFullscreen();
+            fullscreenBtn.textContent = 'Fullscreen';
+        }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            fullscreenBtn.textContent = 'Fullscreen';
+        }
+        resizeCanvas();
+    });
+</script>
+```
+
+</body>
+</html>
