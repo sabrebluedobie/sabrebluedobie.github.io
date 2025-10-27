@@ -470,9 +470,13 @@
         ctx.fillStyle = 'rgba(10, 14, 39, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Create new particles based on audio
+        // Create new particles based on audio - lower threshold for more responsiveness
         const bass = dataArray.slice(0, 50).reduce((a, b) => a + b) / 50;
-        if (bass > 150 && particles.length < 100) {
+        const mid = dataArray.slice(50, 150).reduce((a, b) => a + b) / 100;
+        const high = dataArray.slice(150, 250).reduce((a, b) => a + b) / 100;
+        
+        // Create particles more frequently and from different frequency ranges
+        if (bass > 80 && particles.length < 150) {
             let particleColor;
             if (currentColorTheme === 'rainbow') {
                 particleColor = getRainbowColor(Math.random() * 360, 360);
@@ -481,13 +485,46 @@
                 particleColor = colors_array[Math.floor(Math.random() * colors_array.length)];
             }
 
-            for (let i = 0; i < 3; i++) {
+            const numParticles = Math.floor(bass / 30);
+            for (let i = 0; i < numParticles; i++) {
                 particles.push(new Particle(
                     canvas.width / 2,
                     canvas.height / 2,
                     particleColor
                 ));
             }
+        }
+
+        // Add mid-range particles from sides
+        if (mid > 60 && particles.length < 150) {
+            let particleColor;
+            if (currentColorTheme === 'rainbow') {
+                particleColor = getRainbowColor(Math.random() * 360, 360);
+            } else {
+                particleColor = colors.accent;
+            }
+            
+            particles.push(new Particle(
+                Math.random() * canvas.width,
+                canvas.height / 2,
+                particleColor
+            ));
+        }
+
+        // Add high-range particles from top
+        if (high > 60 && particles.length < 150) {
+            let particleColor;
+            if (currentColorTheme === 'rainbow') {
+                particleColor = getRainbowColor(Math.random() * 360, 360);
+            } else {
+                particleColor = colors.light;
+            }
+            
+            particles.push(new Particle(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height / 3,
+                particleColor
+            ));
         }
 
         // Update and draw particles
@@ -569,21 +606,49 @@
     });
 
     fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement) {
+            // Enter fullscreen
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => {
+                    console.error('Fullscreen error:', err);
+                    statusEl.textContent = 'Fullscreen not available';
+                });
+            } else if (elem.webkitRequestFullscreen) { // Safari
+                elem.webkitRequestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
             fullscreenBtn.textContent = 'Exit Fullscreen';
         } else {
-            document.exitFullscreen();
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
             fullscreenBtn.textContent = 'Fullscreen';
         }
     });
 
-    document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    function handleFullscreenChange() {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && 
+            !document.mozFullScreenElement && !document.msFullscreenElement) {
             fullscreenBtn.textContent = 'Fullscreen';
         }
         resizeCanvas();
-    });
+    }
 </script>
 ```
 
