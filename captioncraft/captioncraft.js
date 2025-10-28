@@ -303,7 +303,7 @@ function readBrief(){
 
   // Modal actions
   const modal = qs("#upgradeModal");
-  qs("#upgradeBtn")?.addEventListener("click", () => window.location.href = "https://buy.stripe.com/6oUaEY6oTaHBcd6drP0x203");
+  qs("#upgradeBtn")?.addEventListener("click", () => window.location.href = "https://buy.stripe.com/6oU8wPfjX591as29Hg3Je03");
   qs("#alreadyProBtn")?.addEventListener("click", () => {
     const email = prompt("Enter the email you used to purchase (this will verify with our system):");
     if (email && /\S+@\S+\.\S+/.test(email)){ 
