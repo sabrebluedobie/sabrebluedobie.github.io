@@ -400,16 +400,13 @@ function readBrief(){
       return;
     }
 
-    // build local drafts
-    const drafts = [makeCaption(brief), makeCaption(brief), makeCaption(brief)];
-
+    
     if (!brief.keywords || brief.keywords.trim() === '') {
   brief.keywords = extractKeywordsFromOffer(brief.offer, brief.platform);
 }
 
     // optional AI remix
-    const out = await maybeRemixWithAI(drafts, brief);
-
+    const out = await maybeRemixWithAI([], brief);
     renderCards(out);
 
     if (!pro){ incUsage(); updateUsageCounter(); }
