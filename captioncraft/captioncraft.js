@@ -243,6 +243,7 @@ const WORKER_URLS = [
 ];
 async function maybeRemixWithAI(texts, brief){
   const payload = {
+    email: brief.email,
     drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
     platform: brief.platform, tone: brief.tone, length: brief.length,
     ctaOptions: [brief.cta].filter(Boolean),
@@ -264,6 +265,7 @@ async function maybeRemixWithAI(texts, brief){
 function readBrief(){
   const v = id => qs(`#${id}`)?.value?.trim() || "";
   return {
+    email: v("email"),
     company: v("company"),
     offer: v("offer"),
     audience: v("audience"),
@@ -323,6 +325,14 @@ function readBrief(){
     ev.preventDefault();
 
     const brief = readBrief();
+    
+    // Validate email
+    if (!brief.email || !/\S+@\S+\.\S+/.test(brief.email)){
+      alert("Please enter a valid email address.");
+      qs("#email")?.focus();
+      return;
+    }
+    
     if (!brief.offer){
       alert("Please add what you're promoting (the Offer).");
       qs("#offer")?.focus();
@@ -349,7 +359,7 @@ function readBrief(){
 
   // Clear
   qs("#clearBtn")?.addEventListener("click", () => {
-    ["company","offer","audience","problem","outcome","cta","keywords"].forEach(id => { const el = qs(`#${id}`); if (el) el.value = ""; });
+    ["email","company","offer","audience","problem","outcome","cta","keywords"].forEach(id => { const el = qs(`#${id}`); if (el) el.value = ""; });
     qs("#captionLength") && (qs("#captionLength").value = "Medium");
     qs("#hashtagDensity") && (qs("#hashtagDensity").value = "Standard");
     qs("#cleanHashtags") && (qs("#cleanHashtags").checked = true);
