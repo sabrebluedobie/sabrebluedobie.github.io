@@ -242,13 +242,21 @@ const WORKER_URLS = [
   "https://www.bluedobiedev.com/api/remix"
 ];
 async function maybeRemixWithAI(texts, brief){
+  // ✅ Get brand voice selections
+  const { traits, custom, remember } = getBrandVoiceSelections();
+  
   const payload = {
     email: brief.email,
     drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
-    platform: brief.platform, tone: brief.tone, length: brief.length,
+    platform: brief.platform, 
+    tone: brief.tone, 
+    length: brief.length,
     ctaOptions: [brief.cta].filter(Boolean),
-    hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity||"standard").toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format)
+    hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity||"standard").toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format),
+    // ✅ Add brand voice to payload
+    brandVoice: { traits, custom, remember }
   };
+  
   for (const url of WORKER_URLS){
     try{
       const res = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
