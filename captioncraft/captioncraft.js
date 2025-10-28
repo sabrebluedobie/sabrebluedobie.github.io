@@ -306,7 +306,14 @@ async function maybeRemixWithAI(texts, brief){
   
   for (const url of WORKER_URLS){
     try{
-      const res = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const res = await fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer sk_3c3817bc640cba7cec4c317004313aaaa1e76c7c20433ca84cf955a2eb4fcd30"  // paste your actual key
+  },
+  body: JSON.stringify(payload)
+});
       if (!res.ok) continue;
       const data = await res.json();
       if (Array.isArray(data) && data.length) return data.map(d => String(d.text||"")).filter(Boolean);
