@@ -138,6 +138,53 @@ function humanize(s, {platform} = {}){
   return out.trim();
 }
 function cleanTag(s){ return s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"").replace(/^#+/,""); }
+// ============================================================================
+// AUTO-GENERATE KEYWORDS FROM OFFER TEXT
+// ============================================================================
+function extractKeywordsFromOffer(offer, platform) {
+  if (!offer || typeof offer !== 'string') return "";
+  
+  // Remove common filler words
+  const fillerWords = new Set([
+    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+    'of', 'with', 'by', 'from', 'up', 'about', 'into', 'through', 'during',
+    'including', 'until', 'against', 'among', 'throughout', 'despite', 'towards',
+    'upon', 'concerning', 'that', 'this', 'these', 'those', 'is', 'are', 'was',
+    'were', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will',
+    'would', 'should', 'could', 'may', 'might', 'must', 'can', 'your', 'our',
+    'their', 'its', 'get', 'now', 'just', 'more', 'new', 'come', 'get'
+  ]);
+  
+  // Extract meaningful words
+  const words = offer.toLowerCase()
+    .replace(/[^\w\s-]/g, ' ')  // Keep hyphens for compound words
+    .split(/\s+/)
+    .filter(w => {
+      return w.length > 3 &&           // Skip short words
+             !fillerWords.has(w) &&    // Skip filler words
+             !/^\d+$/.test(w);         // Skip pure numbers
+    });
+  
+  // Remove duplicates and take first 3-5 keywords
+  const unique = [...new Set(words)];
+  const keywords = unique.slice(0, 5);
+  
+  // Add a platform-specific keyword if we have room
+  const platformKeywords = {
+    instagram: 'instagram',
+    linkedin: 'linkedin',
+    facebook: 'facebook',
+    twitter: 'twitter',
+    tiktok: 'tiktok'
+  };
+  
+  const platformTag = platformKeywords[platform?.toLowerCase()];
+  if (platformTag && keywords.length < 5 && !keywords.includes(platformTag)) {
+    keywords.push(platformTag);
+  }
+  
+  return keywords.join(', ');
+}
 function buildHashtags(keywords="", density="standard", clean=true, platform="instagram", format="post"){
   const p = String(platform||"").toLowerCase();
   const f = String(format||"").toLowerCase();
@@ -355,6 +402,10 @@ function readBrief(){
 
     // build local drafts
     const drafts = [makeCaption(brief), makeCaption(brief), makeCaption(brief)];
+
+    if (!brief.keywords || brief.keywords.trim() === '') {
+  brief.keywords = extractKeywordsFromOffer(brief.offer, brief.platform);
+}
 
     // optional AI remix
     const out = await maybeRemixWithAI(drafts, brief);
