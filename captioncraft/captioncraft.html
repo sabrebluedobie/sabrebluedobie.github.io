@@ -15,6 +15,9 @@ head_extra: |
     .btn{padding:10px 14px;border-radius:8px;border:1px solid #cbd5e1;background:#0f172a;color:#fff;cursor:pointer}
     .btn.secondary{background:#f1f5f9;color:#0f172a}
     textarea{width:100%;min-height:140px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid #28344a;background:#0b121e;color:#e9eef7;padding:6px 10px;border-radius:999px;cursor:pointer}
+  .chip.active{background:#1e2a44;border-color:#4c77ff}
   </style>
 ---
 
@@ -82,6 +85,55 @@ head_extra: |
             <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
             <div class="muted" aria-live="polite">Balanced</div>
           </div>
+          <!-- 🎨 Brand Voice (optional) -->
+<section class="card" id="brandVoiceBlock" style="margin-top:12px;">
+  <h3>🎨 Brand voice <span class="muted">(optional but recommended)</span></h3>
+
+  <div id="voiceTraits" class="chips" aria-label="Brand voice traits">
+    <button type="button" class="chip" data-trait="Direct">Direct</button>
+    <button type="button" class="chip" data-trait="No-BS">No-BS</button>
+    <button type="button" class="chip" data-trait="Warm">Warm</button>
+    <button type="button" class="chip" data-trait="Encouraging">Encouraging</button>
+    <button type="button" class="chip" data-trait="Witty">Witty</button>
+    <button type="button" class="chip" data-trait="Playful">Playful</button>
+    <button type="button" class="chip" data-trait="Bold">Bold</button>
+    <button type="button" class="chip" data-trait="Technical">Technical</button>
+    <button type="button" class="chip" data-trait="Authentic">Authentic</button>
+    <button type="button" class="chip" data-trait="Snarky">Snarky</button>
+    <button type="button" class="chip" data-trait="Professional">Professional</button>
+    <button type="button" class="chip" data-trait="Luxe">Luxe</button>
+    <button type="button" class="chip" data-trait="Down-to-earth">Down-to-earth</button>
+    <button type="button" class="chip" data-trait="Educational">Educational</button>
+    <button type="button" class="chip" data-trait="Aspirational">Aspirational</button>
+    <button type="button" class="chip" data-trait="Irreverent">Irreverent</button>
+    <button type="button" class="chip" data-trait="Results-focused">Results-focused</button>
+    <button type="button" class="chip" data-trait="Confident">Confident</button>
+    <button type="button" class="chip" data-trait="Conversational">Conversational</button>
+    <button type="button" class="chip" data-trait="Empowering">Empowering</button>
+    <button type="button" class="chip" data-trait="Strategic">Strategic</button>
+    <button type="button" class="chip" data-trait="Creative">Creative</button>
+    <button type="button" class="chip" data-trait="Rebellious">Rebellious</button>
+    <button type="button" class="chip" data-trait="Grounded">Grounded</button>
+  </div>
+
+  <div class="muted" id="voiceCount" style="margin:6px 0 10px;">Selected: 0/5</div>
+
+  <label for="brandVoiceCustom" class="muted">Or describe in your own words</label>
+  <input id="brandVoiceCustom" type="text"
+         placeholder='e.g., "rural Kentucky realness with a side of tech brilliance"' />
+
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px;">
+    <input id="rememberBrandVoice" type="checkbox" />
+    Remember my brand voice for future captions
+  </label>
+
+  <details class="muted" style="margin-top:6px;">
+    <summary>What is “brand voice”?</summary>
+    <p>Your brand voice helps the AI match your personality. Choose traits that describe how you sound, not what you do.</p>
+    <p><strong>Good:</strong> “warm, playful, direct”<br><strong>Not:</strong> “luxury real estate, high-end”</p>
+  </details>
+</section>
+
         </div>
       </div>
 
@@ -171,3 +223,54 @@ head_extra: |
 </div>
 
 <script src="/captioncraft/captioncraft.js" defer></script>
+
+<script>
+  // Tone label live update (your snippet already has a <div class="muted">Balanced</div>)
+  (function wireToneLabel(){
+    const tone = document.getElementById('tone');
+    const label = tone?.nextElementSibling; // your "Balanced" div
+    if (!tone || !label) return;
+    const word = (v)=> v<=0.34 ? 'Professional' : v<=0.66 ? 'Balanced' : 'Playful';
+    const sync = ()=> label.textContent = word(parseFloat(tone.value||'0.5'));
+    tone.addEventListener('input', sync); sync();
+  })();
+
+  // Brand Voice chips
+  const MAX_TRAITS = 5;
+  let selectedTraits = [];
+  const traitsEl = document.getElementById('voiceTraits');
+  const countEl  = document.getElementById('voiceCount');
+
+  traitsEl?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    const trait = btn.dataset.trait;
+    const i = selectedTraits.indexOf(trait);
+    if (i>=0){ selectedTraits.splice(i,1); btn.classList.remove('active'); }
+    else {
+      if (selectedTraits.length>=MAX_TRAITS) return;
+      selectedTraits.push(trait); btn.classList.add('active');
+    }
+    if (countEl) countEl.textContent = `Selected: ${selectedTraits.length}/${MAX_TRAITS}`;
+  });
+
+  function getBrandVoiceSelections(){
+    const custom   = (document.getElementById('brandVoiceCustom')?.value || '').trim();
+    const remember = !!document.getElementById('rememberBrandVoice')?.checked;
+    return { traits: selectedTraits.slice(0, MAX_TRAITS), custom, remember };
+  }
+
+  // ✅ Hook into your existing payload builder (where you call the Worker)
+  // Find the code where you build `payload` for remix. Then add:
+  //   const { traits, custom, remember } = getBrandVoiceSelections();
+  //   payload.brandVoice = { traits, custom, remember };
+
+  // Example — if you have something like:
+  // const payload = {
+  //   drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
+  //   platform, tone, length, ctaOptions, hashtags
+  // };
+  // Merge brand voice:
+  // const { traits, custom, remember } = getBrandVoiceSelections();
+  // payload.brandVoice = { traits, custom, remember };
+</script>
