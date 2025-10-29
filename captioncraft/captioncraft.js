@@ -293,16 +293,14 @@ async function maybeRemixWithAI(texts, brief){
   const { traits, custom, remember } = getBrandVoiceSelections();
   
   const payload = {
-    email: brief.email,
-    drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
-    platform: brief.platform, 
-    tone: brief.tone, 
-    length: brief.length,
-    ctaOptions: [brief.cta].filter(Boolean),
-    hashtags: buildHashtags(brief.keywords, (brief.hashtagDensity||"standard").toLowerCase(), brief.cleanHashtags !== false, brief.platform, brief.format),
-    // ✅ Add brand voice to payload
-    brandVoice: { traits, custom, remember }
-  };
+  email: brief.email,
+  company: brief.company,   // ✅ Worker expects these
+  offer: brief.offer,
+  audience: brief.audience,
+  problem: brief.problem,
+  outcome: brief.outcome,
+  // ...
+}
   
   for (const url of WORKER_URLS){
     try{
