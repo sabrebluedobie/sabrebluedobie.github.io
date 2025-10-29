@@ -309,8 +309,8 @@ async function maybeRemixWithAI(texts, brief){
       const res = await fetch(url, {
   method: "POST",
   headers: {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer sk_3c3817bc640cba7cec4c317004313aaaa1e76c7c20433ca84cf955a2eb4fcd30"  // paste your actual key
+    "Content-Type": "application/json"
+    // No Authorization header needed - email-based auth instead
   },
   body: JSON.stringify(payload)
 });
