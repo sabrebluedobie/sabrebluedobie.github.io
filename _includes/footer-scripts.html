@@ -8,6 +8,8 @@
 <!-- Load mobile nav LAST to override Webflow -->
 <script src="/js/mobile-nav.js" defer></script>
 
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"1927a8607675f3c63aa39fc054521551"})});</script>
+
 {%- comment -%} Optional per-page hook for extra scripts {%- endcomment -%}
 {% if page.extra_scripts %}
   {{ page.extra_scripts }}
