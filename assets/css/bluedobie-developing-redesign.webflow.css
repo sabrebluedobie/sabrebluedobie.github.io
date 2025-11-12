@@ -7500,7 +7500,7 @@ button:disabled {
     grid-row-gap: 20px;
     border-bottom: 1px solid var(--light-grey);
     background-color: var(--nav-white-text-color);
-    color: #fff;
+    color: #333 !important;
     border-radius: 0;
     flex-direction: row;
     justify-content: center;
