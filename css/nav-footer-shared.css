@@ -37,6 +37,7 @@
   padding: var(--space-xs) 0;
   margin-top: var(--space-xs);
   display: none; /* Hidden by default */
+  color: #000;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
