@@ -26,7 +26,7 @@
 }
 
 .nav-menu .dropdown-menu {
-  position: absolute;
+  position: relative;
   top: 100%;
   left: 0;
   background: var(--color-white);
