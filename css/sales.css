@@ -38,10 +38,9 @@
    CARD GRID
    ======================================== */
 #product-grid.card-flex { 
-  display: flex; 
-  flex-direction: row !important;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  justify-content: start;
   gap: var(--space-md); 
 }
 
