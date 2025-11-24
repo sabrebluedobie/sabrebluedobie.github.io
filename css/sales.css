@@ -38,8 +38,10 @@
    CARD GRID
    ======================================== */
 .card-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: var(--space-md); 
 }
 
