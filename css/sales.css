@@ -104,7 +104,8 @@
 
 .card-meta { 
   display: flex; 
-  align-items: center; 
+  align-items: center;
+  justify-content: flex-start; 
   gap: var(--space-xs); 
   flex-wrap: wrap; 
   color: var(--color-text-primary);
