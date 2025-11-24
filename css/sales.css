@@ -85,7 +85,7 @@
 .card-body { 
   padding: var(--space-md); 
   display: flex; 
-  flex-direction: column; 
+  flex-direction: row; 
   gap: var(--space-xs); 
 }
 
