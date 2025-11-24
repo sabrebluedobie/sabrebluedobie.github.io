@@ -39,7 +39,7 @@
    ======================================== */
 .card-grid { 
   display: flex; 
-  flex-direction: row;
+  flex-direction: row !important;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: var(--space-md); 
