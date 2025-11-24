@@ -76,7 +76,7 @@
 
 .card-img { 
   width: 100% !important; 
-  height: 100% !important; 
+  height: 200px !important; 
   object-fit: cover !important; 
   background: var(--color-gray-100); 
 }
