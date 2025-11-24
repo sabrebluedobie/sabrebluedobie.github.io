@@ -62,7 +62,7 @@
    ======================================== */
 .card { 
   display: flex; 
-  flex-direction: row; 
+  flex-direction: column !important; 
   border: var(--border-light); 
   border-radius: var(--radius-lg); 
   overflow: hidden; 
@@ -76,16 +76,16 @@
 }
 
 .card-img { 
-  width: 100%; 
-  height: auto; 
-  object-fit: cover; 
+  width: 100% !important; 
+  height: auto !important; 
+  object-fit: cover !important; 
   background: var(--color-gray-100); 
 }
 
 .card-body { 
   padding: var(--space-md); 
   display: flex; 
-  flex-direction: row; 
+  flex-direction: row !important; 
   gap: var(--space-xs); 
 }
 
