@@ -1,11 +1,11 @@
 /* SabreBeats landing (coming soon) */
 .sabrebeats-page {
-  padding-top: 220px; /* adjust once, done */
+  margin-top: 220px; /* adjust once, done */
 }
 
 .sabrebeats-hero {
-  padding-top: clamp(160px, 18vh, 240px);
-  padding-bottom: 60px;
+  margin-top: clamp(160px, 18vh, 240px);
+  margin-bottom: 60px;
   color: #000 !important;
   text-align: center;
 }
