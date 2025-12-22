@@ -12,6 +12,9 @@
 }
 
 .sabrebeats-hero-image {
+  display: flex;
+    justify-content: center;
+    align-items: center;
   margin-top: 36px;
   max-width: 1100px;
 }
