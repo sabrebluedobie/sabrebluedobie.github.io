@@ -3,12 +3,14 @@
 .sabrebeats-hero {
   padding-top: 120px; /* gives breathing room under nav */
   padding-bottom: 60px;
-  color: #000;
+  color: #000 !important;
   text-align: center;
 }
 
 .sabrebeats-intro {
   max-width: 900px;
+  color: #000 !important;
+  margin: 0 auto;
 }
 
 .sabrebeats-hero-image {
