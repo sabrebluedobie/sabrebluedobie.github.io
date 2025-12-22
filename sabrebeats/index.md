@@ -9,7 +9,7 @@ extra_css:
 
 <section class="hero-section sabrebeats-hero">
   <div class="container">
-    <div>
+    <div class=hero-top>
     <span class="hero-badge">Coming Soon</span>
     <h1>SabreBeats</h1>
     <p class="hero-subtext">
