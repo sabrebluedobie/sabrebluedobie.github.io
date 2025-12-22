@@ -50,7 +50,7 @@
 }
 
 .footer-v2 .brand-name {
-  margin: 0 auto 8px auto !important;
+  margin: 0 auto auto !important;
   padding: 0 !important;
   font-family: "Instrument Serif", Georgia, serif;
   font-size: 1.5rem;
@@ -62,7 +62,7 @@
 }
 
 .footer-v2 .tagline {
-  margin: 0 auto 20px auto !important;
+  margin: 0 auto auto !important;
   padding: 0 !important;
   color: #e0e4e8;
   font-size: 1rem;
