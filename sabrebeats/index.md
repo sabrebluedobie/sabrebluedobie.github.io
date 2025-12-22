@@ -51,7 +51,7 @@ extra_css:
         </p>
       </div>
 
-      <div class="playlist-embed">
+    <div class="playlist-embed">
         <iframe allow="autoplay *; encrypted-media *;"
           frameborder="0"
           height="450"
