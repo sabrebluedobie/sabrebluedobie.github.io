@@ -73,6 +73,9 @@
 }
 
 @media (max-width: 768px) {
+    .sabrebeats-page {
+  margin-top: 50px; /* adjust once, done */
+}
   .sabrebeats-hero {
     padding-top: 110px;
   }
