@@ -1,7 +1,7 @@
 /* SabreBeats landing (coming soon) */
 
 .sabrebeats-hero {
-  padding-top: 120px; /* gives breathing room under nav */
+  padding-top: 50vh; /* gives breathing room under nav */
   padding-bottom: 60px;
   color: #000 !important;
   text-align: center;
