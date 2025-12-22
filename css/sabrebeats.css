@@ -1,7 +1,10 @@
 /* SabreBeats landing (coming soon) */
+.sabrebeats-page {
+  padding-top: 220px; /* adjust once, done */
+}
 
 .sabrebeats-hero {
-  padding-top: 180px; /* under nav */
+  /* under nav */
   padding-bottom: 60px;
   color: #000 !important;
   text-align: center;
