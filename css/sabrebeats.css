@@ -1,0 +1,64 @@
+/* SabreBeats landing (coming soon) */
+
+.sabrebeats-hero {
+  padding-top: 120px; /* gives breathing room under nav */
+  padding-bottom: 60px;
+}
+
+.sabrebeats-intro {
+  max-width: 900px;
+}
+
+.sabrebeats-hero-image {
+  margin-top: 36px;
+  max-width: 1100px;
+}
+
+.sabrebeats-hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+
+.playlist-card {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.playlist-card__header {
+  max-width: 720px;
+}
+
+.playlist-embed {
+  margin-top: 18px;
+}
+
+/* Center the Apple embed (it has a max-width inline style) */
+.playlist-embed iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Small note styling */
+.playlist-note {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .sabrebeats-hero {
+    padding-top: 100px;
+  }
+
+  .playlist-card {
+    padding: 18px;
+  }
+}
