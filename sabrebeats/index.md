@@ -9,12 +9,15 @@ extra_css:
 
 <section class="hero-section sabrebeats-hero">
   <div class="container">
+    <div>
     <span class="hero-badge">Coming Soon</span>
     <h1>SabreBeats</h1>
     <p class="hero-subtext">
       Curated music libraries built for musicians who don’t want to plateau.
       Listen with intention. Practice with purpose. Keep leveling up.
     </p>
+    </div>
+    
 
     <div class="sabrebeats-hero-image">
       <img
@@ -57,10 +60,5 @@ extra_css:
           src="https://embed.music.apple.com/us/playlist/sabrebeats-jazz-essentials/pl.u-mJy89o0syBXo36">
         </iframe>
       </div>
-
-      <p class="playlist-note">
-        Note: Apple Music embeds look best in a wide layout (horizontal artwork). We’ll format the cover images to match.
-      </p>
-    </div>
   </div>
 </section>
