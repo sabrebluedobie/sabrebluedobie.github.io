@@ -8,8 +8,9 @@ head_extra: |
   <style>
     /* tiny safety net if CSS fails to load */
     .container{max-width:960px;margin:0 auto;padding:0 16px}
-    .cards{display:flex; flex-direction: row;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
+    .cards{display:flex; flex-wrap: wrap; gap:16px; align-items: stretch;}
+    .card{display: flex; flex-direction: column; height: 100%; border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
+    .card h3 { min-height: 2.5em;}
     .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .muted{color:#6b7280}
     .btn{padding:10px 14px;border-radius:8px;border:1px solid #cbd5e1;background:#0f172a;color:#fff;cursor:pointer}
