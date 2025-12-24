@@ -1,6 +1,6 @@
 ---
 layout: default-shared
-title: DobieCore Captions — Generate Platform-Smart Captions
+title: DobieCore Suite — Generate Platform-Smart Captions and Images
 head_extra: |
 ---
   <link rel="preload" as="image" href="/assets/images/dobiecore/Caption.webp">
@@ -23,254 +23,65 @@ head_extra: |
 
 <section class="hero" style="padding:24px 0;">
   <div class="container">
-    <h1><span class="accent">DobieCore Captions</span> — your social content generator</h1>
-    <p class="lead">Turn a quick brief into platform-ready captions with clean hashtags and first-comment helpers.</p>
-    <img class="hero-image" src="/assets/images/dobiecore/Caption.webp" alt="DobieCore Captions" style="display:block;margin:16px auto 0;width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)" />
+    <h1><span class="accent">DobieCore Suite</span> — your social content generator</h1>
+    <p class="lead">Turn a quick brief into platform-ready captions with clean hashtags, CTAs and stunning images.</p>
+    <img class="hero-image" src="/assets/images/dobiecore/dobiecore-suite-hero.png" alt="DobieCore Suite" style="display:block;margin:16px auto 0;width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)" />
   </div>
+  <a href="/app" class="btn" style="margin:16px auto 0;display:block;width:max-content;">Get Started</a>
 </section>
 
-<section class="tool">
+<section class="features" style="padding:24px 0;background:#f9fafb;">
   <div class="container">
-    <form id="captionForm" class="brief simple-form" novalidate>
-      <!-- Main fields -->
-      <div class="row" style="gap:12px">
-        <div style="flex:1;min-width:240px">
-          <label for="company">Company / Brand (optional)</label>
-          <input id="company" type="text" placeholder="Bluedobie Developing" />
-        </div>
+    <h2 style="text-align:center;margin-bottom:24px;">
+      What’s Included in DobieCore Suite
+    </h2>
 
-        <div style="flex:1;min-width:240px">
-          <label for="email">Email *</label>
-          <input id="email" type="email" placeholder="your@email.com" required />
-          <div class="muted" style="font-size:11px;margin-top:2px">Free tier: 3 captions/day</div>
-        </div>
-
-        <div style="flex:2;min-width:280px">
-          <label for="offer">What are you promoting? *</label>
-          <input id="offer" type="text" placeholder="Fall cleaning special — $99 for new clients" required />
-        </div>
+    <div class="cards">
+      <div class="card">
+        <h3>DobieCore Captions</h3>
+        <p>
+          Access a powerful caption generator designed to write in clear, brand-aware voices
+          for social media and marketing content.
+        </p>
       </div>
 
-      <!-- Voice & Style Section -->
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-top:12px">
-        <div style="font-size:13px;font-weight:600;color:#475569;margin-bottom:8px">
-          💡 Voice & Style <span style="font-weight:400;color:#64748b">(These settings work together to define your caption's personality)</span>
-        </div>
-        <div class="row" style="gap:12px">
-          <div>
-            <label for="platform">Platform *</label>
-            <select id="platform">
-              <option>Instagram</option>
-              <option>Facebook</option>
-              <option>LinkedIn</option>
-              <option>Twitter</option>
-              <option>TikTok</option>
-              <option>YTShorts</option>
-              <option>GMB</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="voiceMode">Voice Mode</label>
-            <select id="voiceMode">
-              <option value="leadgen">Lead Gen / Sales</option>
-              <option value="community">Community / Fun</option>
-              <option value="authority">Authority / Pro</option>
-            </select>
-            <div class="muted" style="font-size:11px;margin-top:2px">Changes everything!</div>
-          </div>
-
-          <div>
-            <label for="tone">Tone</label>
-            <input type="range" id="tone" min="0" max="1" step="0.01" value="0.5" />
-            <div class="muted" aria-live="polite">Balanced</div>
-          </div>
-          <!-- 🎨 Brand Voice (optional) -->
-<section class="card" id="brandVoiceBlock" style="margin-top:12px;">
-  <h3>🎨 Brand voice <span class="muted">(optional but recommended)</span></h3>
-
-  <div id="voiceTraits" class="chips" aria-label="Brand voice traits">
-    <button type="button" class="chip" data-trait="Direct">Direct</button>
-    <button type="button" class="chip" data-trait="No-BS">No-BS</button>
-    <button type="button" class="chip" data-trait="Warm">Warm</button>
-    <button type="button" class="chip" data-trait="Encouraging">Encouraging</button>
-    <button type="button" class="chip" data-trait="Witty">Witty</button>
-    <button type="button" class="chip" data-trait="Playful">Playful</button>
-    <button type="button" class="chip" data-trait="Bold">Bold</button>
-    <button type="button" class="chip" data-trait="Technical">Technical</button>
-    <button type="button" class="chip" data-trait="Authentic">Authentic</button>
-    <button type="button" class="chip" data-trait="Snarky">Snarky</button>
-    <button type="button" class="chip" data-trait="Professional">Professional</button>
-    <button type="button" class="chip" data-trait="Luxe">Luxe</button>
-    <button type="button" class="chip" data-trait="Down-to-earth">Down-to-earth</button>
-    <button type="button" class="chip" data-trait="Educational">Educational</button>
-    <button type="button" class="chip" data-trait="Aspirational">Aspirational</button>
-    <button type="button" class="chip" data-trait="Irreverent">Irreverent</button>
-    <button type="button" class="chip" data-trait="Results-focused">Results-focused</button>
-    <button type="button" class="chip" data-trait="Confident">Confident</button>
-    <button type="button" class="chip" data-trait="Conversational">Conversational</button>
-    <button type="button" class="chip" data-trait="Empowering">Empowering</button>
-    <button type="button" class="chip" data-trait="Strategic">Strategic</button>
-    <button type="button" class="chip" data-trait="Creative">Creative</button>
-    <button type="button" class="chip" data-trait="Rebellious">Rebellious</button>
-    <button type="button" class="chip" data-trait="Grounded">Grounded</button>
-  </div>
-
-  <div class="muted" id="voiceCount" style="margin:6px 0 10px;">Selected: 0/5</div>
-
-  <label for="brandVoiceCustom" class="muted">Or describe in your own words</label>
-  <input id="brandVoiceCustom" type="text"
-         placeholder='e.g., "rural Kentucky realness with a side of tech brilliance"' />
-
-  <label style="display:flex;gap:8px;align-items:center;margin-top:10px;">
-    <input id="rememberBrandVoice" type="checkbox" />
-    Remember my brand voice for future captions
-  </label>
-
-  <details class="muted" style="margin-top:6px;">
-    <summary>What is “brand voice”?</summary>
-    <p>Your brand voice helps the AI match your personality. Choose traits that describe how you sound, not what you do.</p>
-    <p><strong>Good:</strong> “warm, playful, direct”<br><strong>Not:</strong> “luxury real estate, high-end”</p>
-  </details>
-</section>
-
-        </div>
+      <div class="card">
+        <h3>DobieCore Images</h3>
+        <p>
+          Create high-quality AI image prompts built for engagement, storytelling,
+          and visual consistency.
+        </p>
       </div>
 
-      <!-- Advanced -->
-      <details class="advanced-toggle" style="margin-top:12px">
-        <summary>Advanced Options (optional)</summary>
-        <div class="row" style="gap:12px;margin-top:8px">
-          <div style="flex:1;min-width:220px">
-            <label for="audience">Audience</label>
-            <input id="audience" type="text" placeholder="busy homeowners in Western Kentucky" />
-          </div>
-          <div style="flex:1;min-width:220px">
-            <label for="problem">Problem</label>
-            <input id="problem" type="text" placeholder="no time to clean" />
-          </div>
-          <div style="flex:1;min-width:220px">
-            <label for="outcome">Desired outcome</label>
-            <input id="outcome" type="text" placeholder="sparkling home + free weekend" />
-          </div>
-          <div style="flex:1;min-width:220px">
-            <label for="cta">Call to action</label>
-            <input id="cta" type="text" placeholder="Book now at https://yoursite.com" />
-          </div>
-          <div style="flex:1;min-width:220px">
-            <label for="keywords">Keywords (hashtags)</label>
-            <input id="keywords" type="text" placeholder="cleaning, local, kentucky" />
-          </div>
-          <div>
-            <label for="format">Format</label>
-            <select id="format">
-              <option>Post</option><option>Story</option><option>Reel</option><option>Video</option><option>Short</option>
-            </select>
-            <div id="formatHint" class="muted" style="font-size:12px;margin-top:4px"></div>
-          </div>
-          <div>
-            <label for="captionLength">Caption length</label>
-            <select id="captionLength">
-              <option>Short</option><option selected>Medium</option><option>Long</option>
-            </select>
-          </div>
-          <div>
-            <label for="hashtagDensity">Hashtag density</label>
-            <select id="hashtagDensity">
-              <option>Light</option><option selected>Standard</option><option>Heavy</option>
-            </select>
-          </div>
-          <div style="align-self:flex-end">
-            <label><input id="cleanHashtags" type="checkbox" checked /> Clean hashtags</label>
-          </div>
-        </div>
-      </details>
-
-      <div class="row" style="margin-top:12px;align-items:center">
-        <button type="submit" id="generateBtn" class="btn">Generate 3 Captions</button>
-        <button type="button" id="clearBtn" class="btn secondary">Clear</button>
-        <small id="usageCounter" class="muted" style="margin-left:8px" aria-live="polite"></small>
+      <div class="card">
+        <h3>Brand Voice Control</h3>
+        <p>
+          Define tone, style, and personality once, then reuse it across captions and images
+          inside the app.
+        </p>
       </div>
-    </form>
-  </div>
-</section>
 
-<section class="results">
-  <div class="container">
-    <h2>Results</h2>
-    <div id="results" class="cards" aria-live="polite"></div>
-  </div>
-</section>
+      <div class="card">
+        <h3>Built for Real Workflows</h3>
+        <p>
+          Designed for small businesses, creators, and solo founders who need speed
+          without sacrificing quality.
+        </p>
+      </div>
 
-<!-- Upgrade Modal -->
-<div id="upgradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle" hidden>
-  <div class="modal-content">
-    <h2 id="upgradeTitle">🎯 You've used your 3 free captions today!</h2>
-    <div class="price">$29<span style="font-weight:400">/month</span></div>
-    <ul class="benefits">
-      <li>Unlimited caption generation</li>
-      <li>All platforms & formats</li>
-      <li>Priority support</li>
-      <li>Early access to new features</li>
-    </ul>
-    <div class="row" style="margin-top:12px">
-      <button class="btn" id="upgradeBtn">Upgrade to Pro</button>
-      <button class="btn secondary" id="alreadyProBtn" title="Temporary local unlock">I'm already Pro</button>
-      <button class="btn secondary" id="closeModalBtn">Maybe later</button>
+      <div class="card">
+        <h3>Clean, Focused Interface</h3>
+        <p>
+          No clutter, no learning curve — just practical tools that do exactly what they promise.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Web App Access</h3>
+        <p>
+          Unlock full access to the DobieCore app experience after purchase.
+        </p>
+      </div>
     </div>
-    <small class="muted">Resets tomorrow at midnight</small>
   </div>
-</div>
-
-<script src="/captioncraft/captioncraft.js" defer></script>
-
-<script>
-  // Tone label live update (your snippet already has a <div class="muted">Balanced</div>)
-  (function wireToneLabel(){
-    const tone = document.getElementById('tone');
-    const label = tone?.nextElementSibling; // your "Balanced" div
-    if (!tone || !label) return;
-    const word = (v)=> v<=0.34 ? 'Professional' : v<=0.66 ? 'Balanced' : 'Playful';
-    const sync = ()=> label.textContent = word(parseFloat(tone.value||'0.5'));
-    tone.addEventListener('input', sync); sync();
-  })();
-
-  // Brand Voice chips
-  const MAX_TRAITS = 5;
-  let selectedTraits = [];
-  const traitsEl = document.getElementById('voiceTraits');
-  const countEl  = document.getElementById('voiceCount');
-
-  traitsEl?.addEventListener('click', (e) => {
-    const btn = e.target.closest('.chip');
-    if (!btn) return;
-    const trait = btn.dataset.trait;
-    const i = selectedTraits.indexOf(trait);
-    if (i>=0){ selectedTraits.splice(i,1); btn.classList.remove('active'); }
-    else {
-      if (selectedTraits.length>=MAX_TRAITS) return;
-      selectedTraits.push(trait); btn.classList.add('active');
-    }
-    if (countEl) countEl.textContent = `Selected: ${selectedTraits.length}/${MAX_TRAITS}`;
-  });
-
-  function getBrandVoiceSelections(){
-    const custom   = (document.getElementById('brandVoiceCustom')?.value || '').trim();
-    const remember = !!document.getElementById('rememberBrandVoice')?.checked;
-    return { traits: selectedTraits.slice(0, MAX_TRAITS), custom, remember };
-  }
-
-  // ✅ Hook into your existing payload builder (where you call the Worker)
-  // Find the code where you build `payload` for remix. Then add:
-  //   const { traits, custom, remember } = getBrandVoiceSelections();
-  //   payload.brandVoice = { traits, custom, remember };
-
-  // Example — if you have something like:
-  // const payload = {
-  //   drafts: texts.map((t,i)=>({id:String(i+1),text:t})),
-  //   platform, tone, length, ctaOptions, hashtags
-  // };
-  // Merge brand voice:
-  // const { traits, custom, remember } = getBrandVoiceSelections();
-  // payload.brandVoice = { traits, custom, remember };
-</script>
+</section>
