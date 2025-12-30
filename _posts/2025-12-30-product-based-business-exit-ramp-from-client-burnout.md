@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: post
 title: "Product-Based Business: The Exit Ramp From Client Burnout"
 date: 2025-12-30
 categories: [Bluedobie Dialogues, Business]

@@ -27,7 +27,7 @@ defaults:
       path: "_posts"
       type: "posts"
     values:
-      layout: "post, blog"
+      layout: "post"
   - scope:
       path: "gazette"
     values:
