@@ -287,7 +287,6 @@ PLATFORMS
 DEPENDENCIES
   faraday-retry
   github-pages
-  jekyll (~> 3.10)
   jekyll-feed
   jekyll-redirect-from
   jekyll-sitemap
