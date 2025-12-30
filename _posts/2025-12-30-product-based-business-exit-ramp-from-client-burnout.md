@@ -29,7 +29,7 @@ Pick one thing you do repeatedly for clients and package it:
 
 Build the smallest version first, then improve it based on real use.
 
-This was part of what drove me to build DobieCore Suite. I was running ragged trying to keep up with client demands. But beyond that, the pride in having something tangible that I have built makes it worth it.
+This was part of what drove me to build DobieCore Suite. I was running myself ragged trying to keep up with client demands. But beyond that, the pride in having something tangible that I have built makes it worth it.
 
 If you’re tired of the grind, products aren’t “passive income.” They’re **predictable effort**—and that’s the point.
 
