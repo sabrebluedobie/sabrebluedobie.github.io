@@ -93,7 +93,7 @@
 
     <!-- Structured data (enhanced) -->
     <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
-    <meta itemprop="image" content="{{ (page.image | default: '/assets/images/bluedobielogo_1.webp') | absolute_url }}">
+    <meta itemprop="image" content="{{ page.image | default: '/assets/images/bluedobielogo_1.webp' | absolute_url }}">
   </article>
 
   {% include footer.html %}
