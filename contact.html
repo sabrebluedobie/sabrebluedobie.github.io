@@ -62,8 +62,7 @@ head_extra: |
 
 <div class="section" id="custom-form-container">
   <form action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" id="multiForm" method="POST">
-    <div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl" data-action="LOGIN"></div>
-      <br/>
+    
     <!-- Step 1: Basic Info -->
     <div class="form-step active" id="step1">
       <h3>Step 1 of 3</h3>
@@ -113,25 +112,25 @@ head_extra: |
 <script src="https://www.google.com/recaptcha/api.js?render=6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></script>
 <script>
   const form = document.getElementById('multiForm');
+  const siteKey = '6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl';
+
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    grecaptcha.ready(function() {
-      grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(function(token) {
-        const tokenInput = document.createElement('input');
-        tokenInput.type = 'hidden';
-        tokenInput.name = 'token';
-        tokenInput.value = token;
-        form.appendChild(tokenInput);
 
-        const actionInput = document.createElement('input');
-        actionInput.type = 'hidden';
-        actionInput.name = 'action';
-        actionInput.value = 'submit';
-        form.appendChild(actionInput);
+    // Honeypot check
+    const honey = form.querySelector('input[name="company_website"]');
+    if (honey && honey.value.trim() !== '') return;
+
+    grecaptcha.ready(function() {
+      grecaptcha.execute(siteKey, { action: 'submit' }).then(function(token) {
+        // Use existing hidden input instead of appending duplicates
+        const tokenField = document.getElementById('recaptcha_token');
+        if (tokenField) tokenField.value = token;
 
         form.submit();
       });
     });
   });
 </script>
+
 <script src="/assets/js/formjs.js"></script>
