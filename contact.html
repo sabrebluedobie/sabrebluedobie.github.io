@@ -8,7 +8,7 @@ extra_css:
   - /css/contact.css
   - /css/forms-unified.css
 head_extra: |
-  <script async src="https://www.google.com/recaptcha/api.js?render=6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></script>
+   <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 ---
 
 <div class="hero-section">
@@ -62,6 +62,8 @@ head_extra: |
 
 <div class="section" id="custom-form-container">
   <form action="https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/" id="multiForm" method="POST">
+    <div class="g-recaptcha" data-sitekey="6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl" data-action="LOGIN"></div>
+      <br/>
     <!-- Step 1: Basic Info -->
     <div class="form-step active" id="step1">
       <h3>Step 1 of 3</h3>
