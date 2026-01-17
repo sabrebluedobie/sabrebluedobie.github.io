@@ -91,21 +91,12 @@ body {
 
 .tidycal-embed iframe {
   width: 100% !important;
-  min-height: 800px !important;
+  height: 800px !important;
   border: none !important;
   border-radius: var(--radius-lg);
 }
 
-.booking-iframe {
-  width: 100%;
-  max-width: 900px;
-  height: 600px;
-  border: none;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  margin: var(--space-md) auto;
-  display: block;
-}
+
 
 /* ========================================
    CLUTCH WIDGET
