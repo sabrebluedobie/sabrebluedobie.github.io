@@ -8,7 +8,7 @@ extra_css:
   - /css/contact.css
   - /css/forms-unified.css
 head_extra: |
-   <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+   
 ---
 
 <div class="hero-section">
@@ -101,7 +101,7 @@ head_extra: |
       <h3>Step 3 of 3</h3>
       <textarea name="message" placeholder="Tell us a bit more..." required></textarea>
       <input aria-label="Company Website" name="company_website" style="display:none;" type="text" />
-      <input id="recaptcha_token" name="token" type="hidden" />
+      
       <input name="action" type="hidden" value="submit">
       <p class="paragraph-46">By submitting this form, you agree to our <a href="/privacy" rel="noopener noreferrer" target="_blank">Privacy Policy</a>.</p>
       <p class="paragraph-46">We will get back to you within 24 hours. If you need immediate assistance, please call us at <a href="tel:+12703883535">270-388-3535</a>.</p>
@@ -115,7 +115,7 @@ head_extra: |
   </form>
 </div>
 
-<script data-cfasync="false" defer src="https://www.google.com/recaptcha/api.js?render=6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl"></script>
+
 <script>
   const form = document.getElementById('multiForm');
   const siteKey = '6LdmNropAAAAAPdl2vq3CqNOkx4PxWWw0nz65nYl';
@@ -127,19 +127,7 @@ head_extra: |
     const honey = form.querySelector('input[name="company_website"]');
     if (honey && honey.value.trim() !== '') return;
 
-    grecaptcha.ready(function () {
-      grecaptcha.execute(siteKey, { action: 'submit' }).then(function(token) {
-        // Use existing hidden input instead of appending duplicates
-        const tokenField = document.getElementById('recaptcha_token');
-        if (tokenField) tokenField.value = token;
-          HTMLFormElement.prototype.submit.call(form);
-        })
-        .catch(function (err) {
-          console.warn('reCAPTCHA failed—submitting without token.', err);
-          HTMLFormElement.prototype.submit.call(form);
-        });
-    });
-  });
+    
 </script>
 
 <script src="/assets/js/formjs.js"></script>
