@@ -14,30 +14,35 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('multiForm');
   if (!form) return;
 
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    grecaptcha.ready(function() {
-      grecaptcha.execute('6LcjC3srAAAAAIvVLL8EHSE1IcIiB7nWch5vJp_Q', {action: 'submit'}).then(async function(token) {
-        const formData = new FormData(form);
-        formData.append('token', token);
+    const formData = new FormData(form);
 
-        try {
-          const response = await fetch('https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/', {
-            method: 'POST',
-            body: formData
-          });
+    // OPTIONAL: keep honeypot logic if you have it
+    const honey = form.querySelector('input[name="company_website"]');
+    if (honey && honey.value.trim() !== '') return;
 
-          if (response.ok) {
-            window.location.href = "/thank-you.html";
-          } else {
-            alert("There was an error submitting the form. Please try again.");
-          }
-        } catch (error) {
-          console.error("Submission error:", error);
-          alert("There was an error submitting the form. Please try again.");
-        }
+    // If using Turnstile, token is already in a hidden input
+    const turnstileToken = document.getElementById('turnstile_token');
+    if (turnstileToken && turnstileToken.value) {
+      formData.append('turnstile_token', turnstileToken.value);
+    }
+
+    try {
+      const response = await fetch('https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/', {
+        method: 'POST',
+        body: formData
       });
-    });
+
+      if (response.ok) {
+        window.location.href = "/thank-you.html";
+      } else {
+        alert("There was an error submitting the form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("There was an error submitting the form. Please try again.");
+    }
   });
 });
