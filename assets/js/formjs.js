@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
   // Step form handlers
   window.nextStep = function(current) {
@@ -14,35 +13,40 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('multiForm');
   if (!form) return;
 
-  form.addEventListener('submit', async function(event) {
+  form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const formData = new FormData(form);
-
-    // OPTIONAL: keep honeypot logic if you have it
+    // Honeypot check
     const honey = form.querySelector('input[name="company_website"]');
-    if (honey && honey.value.trim() !== '') return;
-
-    // If using Turnstile, token is already in a hidden input
-    const turnstileToken = document.getElementById('turnstile_token');
-    if (turnstileToken && turnstileToken.value) {
-      formData.append('turnstile_token', turnstileToken.value);
+    if (honey && honey.value.trim() !== '') {
+      console.warn("Honeypot triggered. Submission blocked.");
+      return;
     }
 
+    // Collect form data
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
     try {
-      const response = await fetch('https://hooks.zapier.com/hooks/catch/13018559/ub6p3as/', {
-        method: 'POST',
-        body: formData
+      const response = await fetch('https://hook.us2.make.com/mw8kpkfkzarglrhqsk4ynuw7swg5p3ao', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Make-ApiKey": "dobiecore_audit_expo_2026"
+        },
+        body: JSON.stringify(payload)
       });
 
-      if (response.ok) {
-        window.location.href = "/thank-you.html";
-      } else {
-        alert("There was an error submitting the form. Please try again.");
+      if (!response.ok) {
+        throw new Error("Make webhook failed");
       }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("There was an error submitting the form. Please try again.");
+
+      form.reset();
+      alert("Thanks! Your message has been sent.");
+
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again later.");
     }
   });
 });

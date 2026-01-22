@@ -118,48 +118,6 @@ head_extra: |
   </form>
 </div>
 
+<script src="/assets/js/formjs.js"></script>
 
-<script>
-  const form = document.getElementById('multiForm');
-
-  const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/mw8kpkfkzarglrhqsk4ynuw7swg5p3ao";
-  const MAKE_API_KEY = "dobiecore_audit_expo_2026";
-
-  form.addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    // Honeypot check
-    const honey = form.querySelector('input[name="company_website"]');
-    if (honey && honey.value.trim() !== '') {
-      console.warn("Honeypot triggered. Submission blocked.");
-      return;
-    }
-
-    // Collect form data
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch(MAKE_WEBHOOK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Make-ApiKey": MAKE_API_KEY
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
-        throw new Error("Make webhook failed");
-      }
-
-      form.reset();
-      alert("Thanks! Your message has been sent.");
-
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong. Please try again later.");
-    }
-  });
-</script>
 
