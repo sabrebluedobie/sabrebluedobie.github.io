@@ -64,6 +64,18 @@
   <link rel="stylesheet" href="{{ '/assets/css/webflow.css' | relative_url }}">
 </noscript>
 
+<link rel="preload" href="{{ '/assets/css/normalize.css' | relative_url }}"
+      as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}"></noscript>
+
+<link rel="preload" href="{{ '/css/design-tokens.css' | relative_url }}"
+      as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/css/design-tokens.css' | relative_url }}"></noscript>
+
+<link rel="preload" href="{{ '/css/nav-footer-shared.css' | relative_url }}"
+      as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/css/nav-footer-shared.css' | relative_url }}"></noscript>
+
 
 <!-- CSS: reset → design tokens → framework → theme → overrides -->
 <link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}">
