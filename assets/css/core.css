@@ -1,0 +1,1456 @@
+/* normalizing css */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. CUSTOM FOR WEBFLOW: Removed the input[type="submit"] selector to reduce
+ *    specificity and defer to the .w-button selector
+ */
+button,
+html input[type="button"],
+input[type="reset"] {
+  -webkit-appearance: button;
+  appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. CUSTOM FOR WEBFLOW: changed from `textfield` to `none` to normalize iOS rounded input
+ * 2. CUSTOM FOR WEBFLOW: box-sizing: content-box rule removed
+ *    (similar to normalize.css >=4.0.0)
+ */
+input[type='search'] {
+  -webkit-appearance: none;
+  appearance: none;
+  /* 1 */
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+
+/* End of normalize.css */
+/* tokens and base styles */
+
+/* ========================================
+   DESIGN TOKENS - Bluedobie Developing
+   Single source of truth for all design values
+   ======================================== */
+
+/* ========================================
+   COLOR PALETTE
+   ======================================== */
+:root {
+  /* Primary Colors */
+  --color-navy: #042d4d;
+  --color-cream: #fff6ec;
+  --color-ink: #0e1726;
+  --color-white: #ffffff;
+  
+  /* Gray Scale */
+  --color-gray-50: #f8f9fa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e0e0e0;
+  --color-gray-300: #ddd;
+  --color-gray-400: #ccc;
+  --color-gray-500: #999;
+  --color-gray-600: #666;
+  --color-gray-700: #555;
+  --color-gray-800: #333;
+  
+  /* Semantic Colors */
+  --color-text-primary: #0e1726;
+  --color-text-secondary: #555;
+  --color-text-light: #666;
+  --color-text-muted: #999;
+  
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f8f9fa;
+  --color-background-cream: #fff6ec;
+  
+  --color-border-light: #ddd;
+  --color-border-medium: #ccc;
+  --color-border-dark: #042d4d;
+  
+  /* Interactive States */
+  --color-link: #042d4d;
+  --color-link-hover: #06396b;
+  --color-button-primary: #042d4d;
+  --color-button-primary-hover: #06396b;
+}
+
+/* ========================================
+   TYPOGRAPHY SCALE
+   ======================================== */
+:root {
+  /* Font Families */
+  --font-heading: 'Instrument Serif', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Font Sizes - Fluid Typography */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);      /* 12-14px */
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);        /* 14-16px */
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);      /* 16-18px */
+  --font-size-md: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);       /* 18-20px */
+  --font-size-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);        /* 20-24px */
+  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);              /* 24-32px */
+  
+  /* Heading Sizes - Consistent Across All Pages */
+  --font-size-h1: clamp(2rem, 1.5rem + 2.5vw, 3rem);              /* 32-48px */
+  --font-size-h2: clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);        /* 28-40px */
+  --font-size-h3: clamp(1.5rem, 1.3rem + 1vw, 2rem);              /* 24-32px */
+  --font-size-h4: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);        /* 20-24px */
+  --font-size-h5: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);    /* 18-20px */
+  --font-size-h6: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);        /* 16-18px */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+}
+
+/* ========================================
+   SPACING SYSTEM
+   ======================================== */
+:root {
+  /* Base Spacing Unit: 8px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  --space-2xl: 4rem;     /* 64px */
+  --space-3xl: 5rem;     /* 80px */
+  --space-4xl: 6rem;     /* 96px */
+  
+  /* Section Padding - Standard */
+  --section-padding-sm: 3rem;     /* 48px - small sections */
+  --section-padding-md: 5rem;     /* 80px - default sections */
+  --section-padding-lg: 6rem;     /* 96px - hero sections */
+  
+  /* Container Widths */
+  --container-width-sm: 640px;
+  --container-width-md: 768px;
+  --container-width-lg: 1024px;
+  --container-width-xl: 1280px;
+  
+  /* Content Max Width */
+  --content-max-width: 1200px;
+}
+
+/* ========================================
+   BORDER & RADIUS
+   ======================================== */
+:root {
+  /* Border Widths */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Standard Borders */
+  --border-light: 1px solid var(--color-border-light);
+  --border-medium: 1px solid var(--color-border-medium);
+  --border-dark: 2px solid var(--color-border-dark);
+}
+
+/* ========================================
+   SHADOWS & EFFECTS
+   ======================================== */
+:root {
+  /* Box Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+  
+  /* Common Transition Properties */
+  --transition-colors: color var(--transition-base), 
+                       background-color var(--transition-base), 
+                       border-color var(--transition-base);
+  --transition-transform: transform var(--transition-base);
+  --transition-opacity: opacity var(--transition-base);
+  --transition-all: all var(--transition-base);
+}
+
+/* ========================================
+   BUTTON SYSTEM
+   ======================================== */
+:root {
+  /* Button Sizes */
+  --button-padding-sm: 0.5rem 1rem;      /* Small button */
+  --button-padding-md: 0.75rem 1.5rem;   /* Default button */
+  --button-padding-lg: 1rem 2rem;        /* Large button */
+  
+  --button-font-size-sm: var(--font-size-sm);
+  --button-font-size-md: var(--font-size-base);
+  --button-font-size-lg: var(--font-size-md);
+  
+  --button-radius: var(--radius-md);
+  
+  /* Button Colors - Primary */
+  --button-primary-bg: var(--color-navy);
+  --button-primary-text: var(--color-white);
+  --button-primary-bg-hover: #06396b;
+  
+  /* Button Colors - Secondary */
+  --button-secondary-bg: var(--color-white);
+  --button-secondary-text: var(--color-navy);
+  --button-secondary-border: var(--color-navy);
+  --button-secondary-bg-hover: var(--color-navy);
+  --button-secondary-text-hover: var(--color-white);
+}
+
+/* ========================================
+   Z-INDEX SCALE
+   ======================================== */
+:root {
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+}
+
+/* ========================================
+   BREAKPOINTS (for reference in media queries)
+   ======================================== */
+:root {
+  /* Reference values - use in @media queries like: 
+     @media (min-width: 768px) { ... } */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Typography Utilities */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* Spacing Utilities */
+.space-xs { margin: var(--space-xs); }
+.space-sm { margin: var(--space-sm); }
+.space-md { margin: var(--space-md); }
+.space-lg { margin: var(--space-lg); }
+.space-xl { margin: var(--space-xl); }
+
+/* Container */
+.container {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* Section */
+.section {
+  padding-top: var(--section-padding-md);
+  padding-bottom: var(--section-padding-md);
+}
+
+.section-sm {
+  padding-top: var(--section-padding-sm);
+  padding-bottom: var(--section-padding-sm);
+}
+
+.section-lg {
+  padding-top: var(--section-padding-lg);
+  padding-bottom: var(--section-padding-lg);
+}
+
+/* End of tokens and base styles */
+/* overall styles */
+
+/* ========================================
+   APP.CSS - Site-wide Custom Tweaks
+   Using Design Tokens
+   ======================================== */
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+h1, h2, h3, .site-title {
+  font-family: var(--font-heading);
+}
+/* ========================================
+   BUTTON STYLES - Using Design Tokens
+   ======================================== */
+
+/* Base Button - Primary Style */
+.button {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    font-size: var(--button-font-size-md);
+    padding: var(--button-padding-md);
+    border: var(--border-width-thin) solid var(--button-primary-bg);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: var(--transition-colors), var(--transition-transform);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+}
+
+.button:hover {
+    background-color: var(--button-primary-bg-hover);
+    transform: translateY(-1px);
+}
+
+/* Secondary Button - Outlined Style */
+.button-secondary {
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+    font-size: var(--button-font-size-md);
+    padding: var(--button-padding-md);
+    border: var(--border-width-medium) solid var(--button-secondary-border);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: var(--transition-colors), var(--transition-transform);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+}
+
+.button-secondary:hover {
+    background-color: var(--button-secondary-bg-hover);
+    color: var(--button-secondary-text-hover);
+    transform: translateY(-1px);
+}
+
+/* Dark Background Variation (Inverted Colors) */
+.button-dark {
+    background-color: var(--button-secondary-bg-hover);
+    color: var(--button-secondary-text-hover);
+    font-size: var(--button-font-size-md);
+    padding: var(--button-padding-md);
+    border: var(--border-width-thin) solid var(--color-white);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: var(--transition-colors), var(--transition-transform);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+}
+
+.button-dark:hover {
+    background-color: var(--color-white);
+    color: var(--button-primary-bg);
+    transform: translateY(-1px);
+}
+
+/* Button Sizes */
+.button-sm,
+.button-secondary-sm,
+.button-dark-sm {
+    font-size: var(--button-font-size-sm);
+    padding: var(--button-padding-sm);
+}
+
+.button-lg,
+.button-secondary-lg,
+.button-dark-lg {
+    font-size: var(--button-font-size-lg);
+    padding: var(--button-padding-lg);
+}
+
+/* Button States */
+.button:disabled,
+.button-secondary:disabled,
+.button-dark:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button:active,
+.button-secondary:active,
+.button-dark:active {
+    transform: translateY(0);
+}
+/* End of app.css */
+/* nav-footer-shared.css */
+/* Shared Styles for Navigation and Footer Components */
+
+/* ========================================
+   NAVIGATION & FOOTER SHARED STYLES
+   Used across all pages with default-shared layout
+   Using Design Tokens
+   ======================================== */
+
+/* ========================================
+   DESKTOP/TABLET DROPDOWN STYLES
+   ======================================== */
+.nav-menu .dropdown {
+  position: relative;
+}
+
+.nav-menu .dropdown-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: var(--transition-colors);
+}
+
+.nav-menu .dropdown-toggle:hover {
+  color: var(--color-navy);
+}
+
+.nav-menu .dropdown-menu {
+  position: relative;
+  top: 100%;
+  left: 0;
+  background: var(--color-white);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 200px;
+  padding: var(--space-xs) 0;
+  margin-top: var(--space-xs);
+  display: none; /* Hidden by default */
+  color: #000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 1000;
+}
+
+.nav-menu .dropdown-menu.show {
+  display: block; /* Show when active */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-menu .dropdown-menu .nav-link {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: var(--transition-colors);
+  white-space: nowrap;
+}
+
+.nav-menu .dropdown-menu .nav-link:hover {
+  background: var(--color-gray-50);
+  color: var(--color-navy);
+}
+
+/* ========================================
+   NAVIGATION SOCIAL BAR (2nd row)
+   ======================================== */
+.social-bar {
+  background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  border-top: var(--border-light);
+  border-bottom: var(--border-light);
+  padding: var(--space-xs) 0;
+}
+
+.social-groups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.social-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.social-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========================================
+   CONTAINER OVERRIDES
+   ======================================== */
+.container {
+  display: block !important;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* ========================================
+   404 PAGE LAYOUT
+   ======================================== */
+.notfound.container {
+  display: block !important;
+  text-align: center;
+  max-width: 900px;
+  margin: var(--space-4xl) auto;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.nf-header {
+  display: block;
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.nf-header h1 {
+  font-size: var(--font-size-h1);
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-normal);
+}
+
+.nf-header .lead {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: var(--line-height-normal);
+}
+
+.nf-figure {
+  display: block;
+  margin: var(--space-2xl) auto;
+  max-width: 500px;
+}
+
+.nf-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.nf-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--space-2xl) 0;
+}
+
+.nf-actions .btn {
+  display: inline-block;
+  padding: var(--button-padding-md);
+  border-radius: var(--button-radius);
+  border: var(--border-width-medium) solid var(--color-ink);
+  text-decoration: none;
+  color: var(--color-ink);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-all);
+}
+
+.nf-actions .btn:hover {
+  background: var(--color-ink);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.nf-note {
+  display: block;
+  margin-top: var(--space-lg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.nf-note a {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
+
+/* ========================================
+   SERVICES PAGE LAYOUT
+   ======================================== */
+
+/* Services Hero Section */
+.services-hero {
+  background: linear-gradient(135deg, var(--color-navy) 0%, #0a2a42 100%);
+  color: var(--color-white);
+  padding: var(--section-padding-lg) 0 var(--section-padding-md);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  width: 100%;
+  margin: 0;
+}
+
+.services-hero .container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.services-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  color: var(--color-cream);
+  margin: 0 0 var(--space-md) 0;
+  font-weight: var(--font-weight-normal);
+}
+
+.services-hero .lead {
+  font-size: var(--font-size-lg);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+  opacity: 0.95;
+}
+
+/* Grid and Process Sections */
+.services-grid.container,
+.services-process.container {
+  display: block !important;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.services-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.service-card {
+  display: block;
+  background: var(--color-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  transition: var(--transition-transform);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card h2 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-h4);
+  font-family: var(--font-heading);
+}
+
+.service-card p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-height-normal);
+}
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-card ul li {
+  padding-left: var(--space-lg);
+  position: relative;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text-light);
+}
+
+.service-card ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-navy);
+  font-weight: var(--font-weight-bold);
+}
+
+.services-process {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-4xl);
+}
+
+.services-process h2 {
+  font-size: var(--font-size-h2);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-heading);
+}
+
+.services-process ol {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 0 auto var(--space-2xl);
+  text-align: left;
+}
+
+.services-process ol li {
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-light);
+}
+
+.services-process ol li:last-child {
+  border-bottom: none;
+}
+
+.cta {
+  margin-top: var(--space-2xl);
+}
+
+.cta .button {
+  display: inline-block;
+  padding: var(--button-padding-md);
+  border-radius: var(--button-radius);
+  border: var(--border-width-medium) solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-all);
+}
+
+.cta .button:hover {
+  background: var(--color-white);
+  color: var(--color-ink);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.site-footer {
+  background: linear-gradient(135deg, var(--color-navy) 0%, #d7d9dc 50%, var(--color-white) 100%);
+  color: var(--color-ink);
+  padding: var(--space-lg) var(--space-md) var(--space-sm);
+  margin-top: var(--space-4xl);
+}
+
+.footer-rows {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  justify-items: center;
+}
+
+.footer-rows .brand {
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.footer-rows .brand img.logo {
+  width: 100px;
+  height: auto;
+  margin: 0 auto var(--space-xs);
+  display: block;
+}
+
+.footer-rows .brand-name {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h5);
+  margin: 0;
+  font-weight: var(--font-weight-normal);
+  text-align: center;
+  line-height: var(--line-height-tight);
+  width: 100%;
+  display: block;
+}
+
+.footer-rows .tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-ink);
+  margin: 0;
+  text-align: center;
+  line-height: var(--line-height-snug);
+  width: 100%;
+  display: block;
+}
+
+.footer-rows .info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  justify-items: center;
+}
+
+.footer-rows .links {
+  margin: 0;
+  width: 100%;
+}
+
+.footer-rows .links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  line-height: var(--line-height-snug);
+}
+
+.footer-rows .links a {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: var(--transition-colors);
+}
+
+.footer-rows .links a:hover {
+  color: var(--color-navy);
+}
+
+.footer-rows .contact {
+  font-style: normal;
+  margin: 0;
+  width: 100%;
+}
+
+.footer-rows .contact p {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-ink);
+  line-height: var(--line-height-snug);
+}
+
+.footer-rows .contact a {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: var(--transition-colors);
+}
+
+.footer-rows .contact a:hover {
+  color: var(--color-navy);
+}
+
+.footer-rows .social {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.footer-rows .social a {
+  display: inline-block;
+  transition: var(--transition-all);
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-rows .social a:hover {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+.footer-rows .social img {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.footer-rows .legal {
+  text-align: center;
+  padding-top: var(--space-xs);
+  margin: var(--space-xs) 0 0 0;
+  border-top: var(--border-width-thin) solid rgba(0, 0, 0, 0.1);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-snug);
+  width: 100%;
+  display: block;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
+
+/* Tablet: 2 columns for services */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 768px) {
+  /* Hide desktop dropdowns on mobile */
+  .nav-menu .dropdown-menu {
+    display: none !important;
+  }
+  
+  .social-bar {
+    display: none;
+  }
+  
+  .social-groups {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .footer-rows .links ul {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+}
+/* End of nav-footer-shared.css */
+/* style.css */
+
+---
+---
+/* 1) Global resets for images/media */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+picture { display: block; }
+iframe { max-width: 100%; }
+
+/* 2) Container + spacing */
+.container {
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 24px);
+}
+
+/* 3) Responsive type scale with clamp() */
+:root{
+  --step--1: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+  --step-0:  clamp(1rem, 1.2vw + 0.6rem, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.6vw + 0.6rem, 1.5rem);
+  --step-2:  clamp(1.5rem, 2.2vw + 0.6rem, 1.875rem);
+  --step-3:  clamp(1.9rem, 3.2vw + 0.6rem, 2.4rem);
+  --step-4:  clamp(2.4rem, 4.5vw + 0.6rem, 3rem);
+}
+h1{ font-size: var(--step-4); line-height: 1.1; }
+h2{ font-size: var(--step-3); line-height: 1.2; }
+h3{ font-size: var(--step-2); line-height: 1.25; }
+p, li{ font-size: var(--step-0); line-height: 1.6; }
+
+/* 4) Card grid that doesn’t break on mobile */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+.card-img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;   /* or 'contain' for logos */
+  border-radius: 12px;
+}
+
+/* 5) Hero images keep ratio (reduce CLS) */
+.hero picture, .hero img{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* 6) Nav: wrap neatly on small screens */
+.site-nav .nav-menu{
+  display: flex; gap: 18px; flex-wrap: wrap;
+}
+
+/* 3-up -> 2-up -> 1-up */
+.three-up{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+}
+
+/* tablet */
+@media (max-width: 1024px){
+  .three-up{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* phone */
+@media (max-width: 640px){
+  .three-up{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* make card internals behave */
+.three-up .card,
+.three-up article{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  margin: 0 5px;
+  box-sizing: border-box;
+}
+.three-up .card img{
+  width: 100%;
+  height: auto;               /* or use aspect-ratio if you want a fixed tile */
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 860px){
+  .site-nav .nav-menu{
+    gap: 10px;
+  }
+  .social-links-column{ display:none; } /* optional to declutter */
+}
+
+/* 7) Buttons: large tap targets on mobile */
+.button, .btn, .cta-button{
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 10px;
+}
+
+/* 8) Forms: inputs fill width on phones */
+input[type=text], input[type=email], textarea, select{
+  width: 100%;
+  max-width: 100%;
+  font-size: var(--step-0);
+}
+
+/* 9) Prevent horizontal scroll from rogue elements */
+html, body { overflow-x: hidden; }
+[class*="row"], [class*="grid"] { min-width: 0; }
+img[style*="width:100vw"]{ width:100% !important; } /* guardrail */
+
+/* 10) Footer wraps cleanly */
+.footer-links{
+  display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+}
+.footer-link{ white-space: nowrap; }
+
+/* 11) Dropdown menu stays within viewport on mobile */
+.dropdown-menu{
+  position: absolute;
+  inset-inline-start: 0;
+  min-width: 220px;
+  z-index: 1000;
+}
+@media (max-width: 640px){
+  .dropdown-menu{
+    position: fixed;
+    top: 64px; left: 12px; right: 12px;
+    max-height: 70vh; overflow:auto;
+  }
+}
+/* End of style.css */
+/* End of core.css */
