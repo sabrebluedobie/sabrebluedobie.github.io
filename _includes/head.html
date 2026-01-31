@@ -25,14 +25,13 @@
 {%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc }}">{%- endif -%}
 <meta name="twitter:image" content="{{ _image }}">
 
-<!-- Google Fonts -->
-<!-- Critical: H1 font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link rel="preload"
+      href="/assets/fonts/InstrumentSerif-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin>
 
-<!-- Non-critical: body font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
 <!-- Favicon -->
