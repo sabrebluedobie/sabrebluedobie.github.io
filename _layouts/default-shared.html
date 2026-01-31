@@ -17,7 +17,10 @@
   
   {%- comment -%} Load scripts in correct order: jQuery → footer-scripts → Webflow → Mobile Nav {%- endcomment -%}
   {% include footer-scripts.html %}
+  {% unless page.no_webflow_js %}
   <script src="{{ '/assets/js/webflow.js' | relative_url }}"></script>
+{% endunless %}
+
   <script src="{{ '/js/mobile-nav.js' | relative_url }}"></script>
 </body>
 </html>
