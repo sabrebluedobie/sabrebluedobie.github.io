@@ -1,7 +1,7 @@
 {%- comment -%} Centralized <head> {%- endcomment -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="cf-rocket-loader" content="off">
 {%- assign _title   = page.title | default: site.title | default: "Bluedobie Developing" -%}
 {%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | normalize_whitespace | truncate: 160 -%}
 {%- assign _image   = page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
@@ -11,9 +11,6 @@
 <title>{{ _title }}</title>
 {%- if _desc and _desc != "" -%}<meta name="description" content="{{ _desc }}">{%- endif -%}
 <link rel="canonical" href="{{ _canon }}">
-
-<meta name="cf-rocket-loader" content="off">
-
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ _title }}">
