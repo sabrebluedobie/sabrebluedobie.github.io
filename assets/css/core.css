@@ -1332,7 +1332,7 @@ h1, h2, h3, .site-title {
   
   .footer-rows .links ul {
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-md);
   }
 }
 /* End of nav-footer-shared.css */
