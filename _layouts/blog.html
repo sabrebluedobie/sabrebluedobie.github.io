@@ -428,12 +428,14 @@
 
   <script>
     // Table of Contents Generator
-    {% if page.toc == true %}
     document.addEventListener('DOMContentLoaded', function() {
-      const content = document.querySelector('.post-content');
+      // Only generate when a TOC container exists (i.e., when page.toc enabled in the template)
       const tocList = document.getElementById('toc-list');
+      if (!tocList) return;
+
+      const content = document.querySelector('.post-content');
       
-      if (content && tocList) {
+      if (content) {
         const headings = content.querySelectorAll('h2, h3');
         
         headings.forEach((heading, index) => {
@@ -457,7 +459,6 @@
         });
       }
     });
-    {% endif %}
 
     // Copy Link Functionality
     function copyLink() {

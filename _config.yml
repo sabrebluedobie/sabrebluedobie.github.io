@@ -23,16 +23,13 @@ sass:
 
 # Defaults: use our layouts
 defaults:
+  
   - scope:
-      path: "_posts"
+      path: ""
       type: "posts"
     values:
       layout: "post"
-  - scope:
-      path: "gazette"
-    values:
-      layout: "gazette"
-      section: "gazette"   # we can use this to pick the nav or styles
+      section: "post"   # we can use this to pick the nav or styles
   - scope:
       path: ""
     values:

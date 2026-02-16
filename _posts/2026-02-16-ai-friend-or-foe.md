@@ -1,7 +1,7 @@
 ---
-layout: blog
+layout: post
 title: "Friend or Foe? Decoding AI's Role in Our Future"
-date: 2024-06-15
+date: 2026-02-16
 author: "Melanie Brown"
 excerpt: "Learn how AI is shaping the future of web design and small businesses. Explore its benefits and challenges in digital marketing."
 image: /images/Future-of-AI.webp
