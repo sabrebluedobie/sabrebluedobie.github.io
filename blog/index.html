@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Bluedobie Dialogues"
+permalink: /blog/
+---
+
+<section class="blog-home">
+  <h1>Bluedobie Dialogues</h1>
+  <p>Articles on web design, business growth, automation, and practical tech.</p>
+
+  <div class="blog-grid">
+    {% for post in site.posts %}
+      <article class="blog-card">
+        {% if post.image %}
+          <a href="{{ post.url | relative_url }}">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}">
+          </a>
+        {% endif %}
+
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+
+        <p class="meta">{{ post.date | date: "%B %e, %Y" }}</p>
+
+        {% if post.excerpt %}
+          <p>{{ post.excerpt | strip_html }}</p>
+        {% endif %}
+
+        <a class="read-more" href="{{ post.url | relative_url }}">Read more →</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
