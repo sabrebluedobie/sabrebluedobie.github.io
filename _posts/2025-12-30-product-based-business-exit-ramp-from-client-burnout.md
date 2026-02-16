@@ -7,7 +7,6 @@ categories: [Bluedobie Dialogues, Business]
 tags: [product-based, burnout, small business, systems]
 excerpt: "Client work can feel like a hamster wheel. Here’s why products can give you time back without killing your creativity."
 ---
-![Stressed woman sits with head in hands at a desk in a home or office setting, conveying exhaustion and burnout](/images/exit-from-burnout.webp)
 
 Client work can feel like a hamster wheel: you’re always moving, but you’re never *done*.
 
