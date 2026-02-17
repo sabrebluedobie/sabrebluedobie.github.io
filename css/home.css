@@ -187,10 +187,12 @@ body {
    SECTIONS
    ======================================== */
 .section {
+  margin: 0 !important;
   padding: var(--section-padding-md) var(--space-md);
 }
 
 .section-alt {
+  margin: 0 !important;
   background: var(--color-background-cream);
 }
 
