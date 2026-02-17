@@ -363,9 +363,9 @@ th {
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
-  background: #ffffff;
-  color: #042d4d;
-  border: 2px solid #ffffff;
+  background: #042d4d;
+  color: #ffffff;
+  border: 2px solid #042d4d;
   text-align: center;
   align-items: center;
   justify-content: center;
