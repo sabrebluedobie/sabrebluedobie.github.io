@@ -228,7 +228,6 @@ h2 {
   gap: var(--space-lg);
   margin: var(--space-2xl) auto;
   max-width: 1000px;
-  max-height: 500px;
 }
 
 .service-card {
@@ -240,8 +239,10 @@ h2 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: left;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--space-sm);
+  max-width: 450px;
+  max-height: fit-content;
 }
 
 .service-card:hover {
