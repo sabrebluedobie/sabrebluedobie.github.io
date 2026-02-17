@@ -356,6 +356,52 @@ td,
 th {
   padding: 0;
 }
+.hero-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Primary Button */
+.hero-btn.primary {
+  background: #ffffff;
+  color: #042d4d;
+  border: 2px solid #ffffff;
+}
+
+.hero-btn.primary:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+.hero-btn.primary:active {
+  transform: scale(0.97);
+}
+
+/* Secondary Button */
+.hero-btn.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.hero-btn.secondary:hover {
+  background: #ffffff;
+  color: #042d4d;
+}
+
+.hero-btn.secondary:active {
+  transform: scale(0.97);
+}
+
+/* Accessibility Focus */
+.hero-btn:focus-visible {
+  outline: 3px solid #ffcc00;
+  outline-offset: 4px;
+}
 
 /* End of normalize.css */
 /* tokens and base styles */
