@@ -92,18 +92,18 @@ body {
   line-height: 1.1;
   margin: 0 0 var(--space-xl) 0;
   font-weight: 800;
-  color: #ffffff;
-  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 40%, #e0e0e0 100%);
+
+  background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 60%, #e6e6e6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
   text-shadow: 
-    0 1px 3px rgba(255, 255, 255, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.9),
-    0 4px 16px rgba(0, 0, 0, 0.7);
+    0 2px 6px rgba(0, 0, 0, 0.75);
+
   letter-spacing: -0.02em;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
+
 
 .hero-subtext {
   font-size: clamp(1.1rem, 2.2vw, 1.5rem);
