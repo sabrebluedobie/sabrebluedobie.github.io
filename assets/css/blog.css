@@ -1,0 +1,60 @@
+/* -----------------------------
+   BLOG POST STYLING
+   ----------------------------- */
+
+/* Excerpt styling */
+.post-excerpt {
+  font-style: italic;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Post meta spacing */
+.post-meta {
+  margin-left: 5vw;
+  margin-bottom: 1.5vh;
+}
+
+/* -----------------------------
+   TABLE STYLING
+   ----------------------------- */
+
+.post-content table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-bottom: 2.5vh;
+  table-layout: auto;
+}
+
+.post-content th,
+.post-content td {
+  padding: 12px 14px;
+  vertical-align: top;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.post-content th {
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Make description column wrap better */
+.post-content td:last-child {
+  max-width: 420px;
+}
+
+/* Improve table readability on small screens */
+@media screen and (max-width: 768px) {
+  .post-content table {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .post-meta {
+    margin-left: 4vw;
+  }
+}
