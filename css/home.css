@@ -238,10 +238,9 @@ h2 {
   transition: var(--transition-all);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: left;
-  display: block;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-sm);
-  max-width: 60ch;
-  max-height: 450px;
 }
 
 .service-card:hover {
@@ -264,6 +263,17 @@ h2 {
   margin: 0;
   color: var(--color-text-secondary);
   font-size: var(--font-size-base);
+}
+
+@media screen and (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    max-width: 100%;
+    max-height: none;
+  }
 }
 
 /* ========================================
