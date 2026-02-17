@@ -240,7 +240,7 @@ h2 {
   text-align: left;
   display: block;
   gap: var(--space-sm);
-  max-width: 600px;
+  max-width: 60ch;
   max-height: 450px;
 }
 
