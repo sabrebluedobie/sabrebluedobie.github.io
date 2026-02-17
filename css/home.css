@@ -232,7 +232,7 @@ h2 {
 
 .service-card {
   background: var(--color-white);
-  padding: var(--space-sm);
+
   border-radius: var(--radius-lg);
   border: var(--border-light);
   transition: var(--transition-all);
