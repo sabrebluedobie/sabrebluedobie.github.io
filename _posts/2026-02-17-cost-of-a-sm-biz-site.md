@@ -2,6 +2,7 @@
 layout: post
 title: "How Much Does a Small Business Website Cost?"
 description: "A clear breakdown of small business web design pricing—from DIY builders to agencies—plus what affects cost, hidden fees to watch for, and how to budget smart."
+permalink: /blog/:title/
 image: /assets/images/small-business-website-cost-planning.webp
 ---
 
