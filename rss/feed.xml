@@ -1,0 +1,52 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>en-us</language>
+
+    {% for post in site.posts limit: 20 %}
+    {% assign img = post.image %}
+
+    {% if img %}
+      {% assign ext = img | split: '.' | last | downcase %}
+      {% if ext == "jpg" or ext == "jpeg" %}
+        {% assign mime = "image/jpeg" %}
+      {% elsif ext == "png" %}
+        {% assign mime = "image/png" %}
+      {% elsif ext == "gif" %}
+        {% assign mime = "image/gif" %}
+      {% elsif ext == "webp" %}
+        {% assign mime = "image/webp" %}
+      {% else %}
+        {% assign mime = "image/jpeg" %}
+      {% endif %}
+    {% endif %}
+
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+
+      <description><![CDATA[
+        {% if img %}
+          <img src="{{ site.url }}{{ site.baseurl }}{{ img }}" alt="{{ post.title | xml_escape }}" /><br>
+        {% endif %}
+        {{ post.excerpt | strip_html | strip_newlines | truncate: 200 }}
+      ]]></description>
+
+      {% if img %}
+      <enclosure 
+        url="{{ site.url }}{{ site.baseurl }}{{ img }}"
+        type="{{ mime }}"
+        length="0" />
+      {% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
