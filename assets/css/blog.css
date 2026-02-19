@@ -47,6 +47,19 @@
   max-width: 420px;
 }
 
+/* Blog Post List Styling */
+.post-content ul {
+  margin-left: 10vw;
+  padding-left: 1.2rem; /* keeps bullets aligned nicely */
+  list-style-type: disc;
+}
+
+.post-content ul li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+
 /* Improve table readability on small screens */
 @media screen and (max-width: 768px) {
   .post-content table {
