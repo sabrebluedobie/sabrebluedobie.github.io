@@ -58,6 +58,16 @@
   margin-bottom: 0.6rem;
   line-height: 1.6;
 }
+.post-content ol {
+  margin-left: 10vw;
+  padding-left: 1.2rem; /* keeps bullets aligned nicely */
+  list-style-type: decimal;
+}
+
+.post-content ol li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
 
 
 /* Improve table readability on small screens */
