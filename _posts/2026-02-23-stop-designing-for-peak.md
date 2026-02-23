@@ -13,6 +13,7 @@ tags:
 categories:
   - Strategy
   - Business Systems
+excerpt: If your business systems only work when you're at your best, they aren't sustainable. Learn how to design repeatable workflows for small businesses.
 ---
 
 There’s a quiet assumption baked into a lot of modern work culture:

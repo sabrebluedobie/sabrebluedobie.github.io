@@ -68,6 +68,71 @@
   line-height: 1.6;
 }
 
+.post-divider{
+  margin: 2.5rem 0 1.75rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.10);
+}
+
+.post-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.post-tags .tag{
+  display:inline-block;
+  padding:.35rem .7rem;
+  border:1px solid rgba(0,0,0,0.12);
+  border-radius:999px;
+  font-size:.85rem;
+  line-height:1;
+  text-decoration:none;
+}
+
+.post-share{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  margin: 0 0 1.75rem;
+}
+
+.post-share .btn.share{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.55rem .9rem;
+  border-radius:10px;
+  font-size:.9rem;
+  text-decoration:none;
+  border:1px solid rgba(0,0,0,0.12);
+}
+
+/* Post nav: make it look like nav, not random link text */
+.post-nav{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding-top:1.25rem;
+  border-top:1px solid rgba(0,0,0,0.10);
+  font-size:.95rem;
+}
+
+.post-nav a{
+  text-decoration:none;
+  max-width:48%;
+}
+
+.post-tags-label,
+.post-share-label{
+  font-size:.8rem;
+  opacity:.7;
+  margin: 0 0 .5rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
 
 /* Improve table readability on small screens */
 @media screen and (max-width: 768px) {
