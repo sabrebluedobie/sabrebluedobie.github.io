@@ -54,7 +54,7 @@
 /* Blog Post List Styling */
 .p.post-content ul,
 .post-content ol {
-  margin-left: 5rem;
+  margin-left: 5vw;
   padding-left: 4rem;
   list-style: initial !important;
   list-style-position: outside !important;
