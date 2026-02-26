@@ -55,7 +55,7 @@
 .p.post-content ul,
 .post-content ol {
   margin-left: 5rem;
-  padding-left: 4 rem;
+  padding-left: 4rem;
   list-style: initial !important;
   list-style-position: outside !important;
 }
@@ -145,6 +145,15 @@
   .post-content table {
     width: 100%;
     font-size: 0.95rem;
+  }
+
+    /* Blog Post List Styling */
+  .p.post-content ul,
+  .post-content ol {
+    margin-left: 5 rem;
+    padding-left: 4 rem;
+    list-style: initial !important;
+    list-style-position: outside !important;
   }
 
   .post-meta {
