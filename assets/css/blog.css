@@ -52,7 +52,7 @@
 }
 
 /* Blog Post List Styling */
-.p.post-content ul,
+.post-content ul
 .post-content ol {
   margin-left: 5vw;
   padding-left: 4rem;
@@ -148,7 +148,7 @@
   }
 
     /* Blog Post List Styling */
-  .p.post-content ul,
+  .post-content ul,
   .post-content ol {
     margin-left: 5 rem;
     padding-left: 4 rem;
