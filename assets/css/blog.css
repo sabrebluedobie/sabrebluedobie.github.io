@@ -139,6 +139,41 @@
   letter-spacing: .04em;
 }
 
+/* Blog CTA Box */
+
+.blog-cta {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f6f8fa;
+  border-left: 4px solid #2f6fed;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.blog-cta h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.blog-cta p {
+  margin: 0.75rem 0 1.5rem;
+  line-height: 1.6;
+}
+
+.blog-cta a.cta-button {
+  display: inline-block;
+  padding: 0.65rem 1.2rem;
+  background: #042d4d;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.blog-cta a.cta-button:hover {
+  background: #1a3e90;
+}
+
 
 /* Improve table readability on small screens */
 @media screen and (max-width: 768px) {

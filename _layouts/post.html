@@ -59,6 +59,20 @@
     <div class="post-content" itemprop="articleBody">
       {{ content }}
     </div>
+    {% unless page.hide_cta == true %}
+<hr class="post-divider" />
+<div class="blog-cta">
+  <h3>Need a Website or Business System That Actually Works?</h3>
+  <p>
+  Many small businesses don’t need more complexity — they need clearer systems.
+  If your website or content process feels harder than it should, I help
+  businesses simplify their workflows and build systems that actually hold.
+  </p>
+  <a href="{{ site.consult_url | default:'/contact/' | relative_url }}" class="cta-button">
+    Book a Free 30-Minute Consultation
+  </a>
+</div>
+{% endunless %}
 
     <hr class="post-divider" />
 
