@@ -197,7 +197,7 @@ body {
   background: var(--color-background-cream);
 }
 .section.container {
-  container: (max-width + margin auto);
+  container: (--content-max-width + margin auto);
 }
 
 .Why-Work {
