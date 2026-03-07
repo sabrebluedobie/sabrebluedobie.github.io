@@ -316,7 +316,7 @@ h2 {
   .intro-text {
     font-size: var(--font-size-lg);
     text-align: center;
-    margin: 0 auto var(--space-2xl);
+    margin: 0 auto;
     max-width: 700px;
     line-height: var(--line-height-relaxed);
   }
@@ -341,6 +341,7 @@ h2 {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding:var(--space-md) 0;
   gap: var(--space-md);
   margin: var(--space-xl) 0 var(--space-2xl);
 }
