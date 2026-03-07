@@ -263,6 +263,10 @@ h2 {
   gap: var(--space-sm);
   width: 100%;
 }
+.service-card h2, .service-card p {
+  max-width: 95%;
+  width: 100%;
+}
 
 .service-card:hover {
   transform: translateY(-4px);
@@ -352,8 +356,6 @@ h2 {
   box-shadow: var(--shadow-md);
   cursor: pointer;
   transition: var(--transition-transform);
-  max-width: 95%;
-  margin: 0 auto;
 }
 
 .portfolio-item:hover {
