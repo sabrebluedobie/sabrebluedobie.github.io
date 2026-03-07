@@ -296,14 +296,14 @@ h2 {
   .build-header {
     font-family: var(--font-heading);
     font-size: var(--font-size-h2);
-    margin: 0 !important;
+    margin: 0 0 var(--space-md) 0;
     text-align: center;
     font-weight: var(--font-weight-normal);
   }
   .intro-text {
     font-size: var(--font-size-lg);
     text-align: center;
-    margin: 0 !important;
+    margin: 0 auto var(--space-2xl);
     max-width: 700px;
     line-height: var(--line-height-relaxed);
   }
