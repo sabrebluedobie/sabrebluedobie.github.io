@@ -323,10 +323,11 @@ h2 {
   .intro-text {
     font-size: var(--font-size-lg);
     text-align: center;
-    margin: 0 !important;
+    margin: 0 auto !important;
     max-width: 700px;
     line-height: var(--line-height-relaxed);
-    width: auto !important;
+    width: 100% !important;
+    padding: 0 !important;
 
   }
 
