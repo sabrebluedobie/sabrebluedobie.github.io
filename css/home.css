@@ -196,6 +196,9 @@ body {
   margin: 0 !important;
   background: var(--color-background-cream);
 }
+.section.container {
+  container: max-width + margin auto;
+}
 
 .Why-Work {
   margin: 0 !important;
