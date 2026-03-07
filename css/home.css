@@ -189,14 +189,12 @@ body {
    ======================================== */
 .section {
   margin: 0 !important;
-  /* margin-left: 10vw !important; */
   padding: var(--section-padding-md) var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 .section-alt {
   margin: 0 !important;
   padding: var(--section-padding-md) var(--space-md);
