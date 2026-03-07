@@ -25,6 +25,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   color: var(--color-white);
   overflow: hidden;
   margin: 0;
