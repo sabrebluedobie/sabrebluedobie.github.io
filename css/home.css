@@ -352,6 +352,8 @@ h2 {
   box-shadow: var(--shadow-md);
   cursor: pointer;
   transition: var(--transition-transform);
+  max-width: 95%;
+  margin: 0 auto;
 }
 
 .portfolio-item:hover {
