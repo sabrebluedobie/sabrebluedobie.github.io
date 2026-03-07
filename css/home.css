@@ -284,6 +284,12 @@ h2 {
     max-height: none;
   }
 }
+  .build {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
 /* ========================================
    WHY LIST
