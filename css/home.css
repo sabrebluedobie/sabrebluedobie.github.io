@@ -311,6 +311,7 @@ h2 {
     margin: 0 !important;
     padding: 0 !important;
     width: auto !important;
+    margin-top: var(--space-md);
   }
 
   .build-header {
