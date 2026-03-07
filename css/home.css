@@ -118,7 +118,7 @@ body {
 
 
 .hero-subtext {
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-size: clamp(0.75rem, 1.5vw, 1.5rem);
   line-height: 1.6;
   margin: 0 auto var(--space-2xl) auto;
   color: #f5f5f5;
