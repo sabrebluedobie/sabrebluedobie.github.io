@@ -200,6 +200,7 @@ body {
 .Why-Work {
   margin: 0 !important;
   padding: var(--section-padding-md) var(--space-md);
+  margin-right: 10vw !important;
   background: var(--color-background-cream);
 }
 
