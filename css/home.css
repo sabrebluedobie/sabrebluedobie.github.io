@@ -88,8 +88,8 @@ body {
 
 .hero-section h1 {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.1;
+  font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  line-height: 1.08;
   margin: 0 0 var(--space-xl) 0;
   font-weight: 800;
   letter-spacing: -0.02em;
