@@ -133,6 +133,7 @@ body {
 .hero-buttons {
   display: flex !important;
   gap: var(--space-lg);
+  flex-direction: row !important;
   justify-content: center !important;
   align-items: center !important;
   flex-wrap: wrap;
