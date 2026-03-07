@@ -189,7 +189,7 @@ body {
    ======================================== */
 .section {
   margin: 0 !important;
-  margin-left: 10vw !important;
+  /* margin-left: 10vw !important; */
   padding: var(--section-padding-md) var(--space-md);
   display: flex;
   flex-direction: column;
