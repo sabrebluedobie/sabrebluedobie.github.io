@@ -471,6 +471,10 @@ h2 {
     gap: var(--space-md);
     width: 100%;
   }
+  .hero-section {
+    flex-direction: column;
+    padding: var(--space-2xl) var(--space-sm);
+  }
   
   .hero-buttons .btn {
     width: 90%;
