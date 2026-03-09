@@ -79,7 +79,8 @@
     }
     .hero-content {
         gap: 10px;
-        margin-top: -5vh;
+        position: absolute !important;
+        top: 10%;
     }
     .hero-content h1 {
         font-size: 1.8em;
