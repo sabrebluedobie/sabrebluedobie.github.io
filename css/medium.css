@@ -75,7 +75,7 @@
 @media screen and (max-width: 768px) {
     .hero-section {
         padding: 40px 10px;
-        margin-bottom: 5vh;
+        margin-top: -5vh;
     }
     .hero-content h1 {
         font-size: 1.8em;
@@ -83,5 +83,9 @@
     .hero-content p {
         font-size: 1em;
     }
+    .medium-widget iframe {
+        height: 800px;
+        margin-bottom: 60px;
+    }   
     
 }
