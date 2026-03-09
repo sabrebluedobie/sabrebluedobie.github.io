@@ -79,11 +79,11 @@
     }
     .blog-container {
         padding: 10px;
-        position: relative;
+        
     }
     .hero-content {
+        position: relative;
         gap: 10px;
-        position: absolute !important;
         top: 10%;
     }
     .hero-content h1 {
