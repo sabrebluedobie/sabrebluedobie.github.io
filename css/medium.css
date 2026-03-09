@@ -47,6 +47,12 @@
     margin-bottom: 20px;
     max-height: 100vh !important;
 }
+.blog-home-image {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .medium-widget {
     margin-top: 40px;
 }
