@@ -18,11 +18,15 @@
 }
 .hero-content h1 {
     font-size: 2.5em;
-    margin: 0;
+    margin: 0 auto;
+    color: #333;
+    text-align: center;
 }
 .hero-content p {
+    margin: 0 auto;
     font-size: 1.2em;
     color: #666;
+    text-align: center;
 }
 .blog-home-image {
     max-width: 100%;
