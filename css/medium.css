@@ -35,11 +35,14 @@
     color: #666;
     text-align: center;
 }
-.blog-home-image {
+.hero-image {
     max-width: 100%;
     height: auto;
     border: 1px solid #ddd;
     padding: 5px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
 }
 .medium-widget {
     margin-top: 40px;
