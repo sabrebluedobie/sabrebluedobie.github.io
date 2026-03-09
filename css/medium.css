@@ -71,3 +71,17 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
+
+@media screen and (max-width: 768px) {
+    .hero-section {
+        padding: 40px 10px;
+        top:0;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+    
+}
