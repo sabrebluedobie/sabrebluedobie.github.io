@@ -75,6 +75,10 @@
 @media screen and (max-width: 768px) {
     .hero-section {
         padding: 40px 10px;
+        
+    }
+    .hero-content {
+        gap: 10px;
         margin-top: -5vh;
     }
     .hero-content h1 {
