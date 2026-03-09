@@ -75,7 +75,7 @@
 @media screen and (max-width: 768px) {
     .hero-section {
         padding: 40px 10px;
-        top:0;
+        margin-bottom: 5vh;
     }
     .hero-content h1 {
         font-size: 1.8em;
