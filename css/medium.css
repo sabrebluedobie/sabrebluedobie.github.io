@@ -77,6 +77,10 @@
         padding: 40px 10px;
         
     }
+    .blog-container {
+        padding: 10px;
+        position: relative;
+    }
     .hero-content {
         gap: 10px;
         position: absolute !important;
