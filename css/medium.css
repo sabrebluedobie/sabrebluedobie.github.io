@@ -84,7 +84,7 @@
         font-size: 1em;
     }
     .medium-widget iframe {
-        height: 800px;
+        height: auto;
         margin-bottom: 60px;
     }   
     
