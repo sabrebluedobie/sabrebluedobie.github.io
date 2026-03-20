@@ -1,4 +1,3 @@
-```markdown
 ---
 layout: post
 title: "Why Most Content Strategies Collapse After 30 Days"
@@ -17,8 +16,6 @@ categories:
 excerpt: Most content strategies collapse after about 30 days—not because people lack discipline, but because the system behind them was never designed to hold.
 image: /assets/images/disappearing-planner.webp
 ---
-
-# Why Most Content Strategies Collapse After 30 Days
 
 Creating a content strategy is an important step for any business trying to build visibility and engage its audience online. Yet many businesses discover that their strategy quietly collapses after about 30 days.
 
