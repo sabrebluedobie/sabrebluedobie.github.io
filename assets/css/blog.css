@@ -190,7 +190,13 @@
     list-style: initial !important;
     list-style-position: outside !important;
   }
-
+ .post-content li {
+    margin-left: 5rem;
+    padding-left: 4rem;
+     list-style: initial !important;
+     list-style-position: outside !important;
+     list-style-type: disc !important;
+ }
   .post-meta {
     margin-left: 4vw;
   }
