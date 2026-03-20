@@ -50,7 +50,7 @@
 .post-content li {
   display: list-item !important;
   margin-left: 5rem !important;
-  padding-left: 4rem !important;
+  
   
 }
 
@@ -58,7 +58,6 @@
 .post-content ul
 .post-content ol {
   margin-left: 5vw !important;
-  padding-left: 4rem !important;
   list-style: initial !important;
   list-style-position: outside !important;
 }
