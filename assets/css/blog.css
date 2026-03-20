@@ -50,6 +50,7 @@
 .post-content li {
   display: list-item !important;
   margin-left: 5rem !important;
+  list-style-type: disc;
   
   
 }
