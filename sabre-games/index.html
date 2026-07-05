@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Sabre Says Hi!</title>
+<style>
+  :root { --bg1:#ffe066; --bg2:#ff8fab; --bg3:#6ecbff; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none; }
+  html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#222; font-family:-apple-system,"Segoe UI","Comic Sans MS","Trebuchet MS",sans-serif; touch-action:manipulation; }
+  #stage { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3)); background-size:300% 300%; animation:gradientDrift 18s ease-in-out infinite; cursor:pointer; }
+  @keyframes gradientDrift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+  #photoWrap { position:relative; width:min(90vw,90vh); height:min(90vw,90vh); display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  #photo { max-width:100%; max-height:100%; border-radius:36px; box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 10px rgba(255,255,255,.85); object-fit:contain; animation:breathe 3.2s ease-in-out infinite; will-change:transform; background:#fff; }
+  @keyframes breathe { 0%,100%{transform:scale(1) rotate(0deg);} 50%{transform:scale(1.035) rotate(-.6deg);} }
+  .pop { animation:popIn .55s cubic-bezier(.34,1.56,.64,1) !important; }
+  @keyframes popIn { 0%{transform:scale(.55) rotate(-8deg); opacity:.2;} 55%{transform:scale(1.12) rotate(4deg); opacity:1;} 100%{transform:scale(1) rotate(0deg); opacity:1;} }
+  #label { position:absolute; left:50%; top:6%; transform:translate(-50%,-20px) scale(.6); font-size:clamp(2.5rem,9vw,6rem); font-weight:900; color:#fff; -webkit-text-stroke:3px #ff4d6d; text-shadow:0 6px 0 #ff4d6d,0 10px 24px rgba(0,0,0,.3); opacity:0; letter-spacing:2px; pointer-events:none; transition:opacity .2s; }
+  #label.show { animation:labelPop 1.3s cubic-bezier(.34,1.56,.64,1) forwards; }
+  @keyframes labelPop { 0%{opacity:0; transform:translate(-50%,-20px) scale(.4) rotate(-6deg);} 25%{opacity:1; transform:translate(-50%,0) scale(1.15) rotate(3deg);} 45%{opacity:1; transform:translate(-50%,0) scale(1) rotate(0deg);} 85%{opacity:1;} 100%{opacity:0; transform:translate(-50%,0) scale(1) rotate(0deg);} }
+  .particle { position:fixed; top:0; left:0; font-size:2.4rem; pointer-events:none; z-index:5; will-change:transform,opacity; }
+  #muteBtn { position:fixed; bottom:22px; right:22px; width:64px; height:64px; border-radius:50%; border:none; background:rgba(255,255,255,.85); box-shadow:0 6px 16px rgba(0,0,0,.25); font-size:30px; display:flex; align-items:center; justify-content:center; z-index:20; opacity:.55; }
+  #muteBtn:active { transform:scale(.9); }
+  #hint { position:fixed; bottom:4%; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.9); font-size:clamp(1rem,2.6vw,1.4rem); font-weight:700; text-shadow:0 2px 6px rgba(0,0,0,.35); opacity:1; transition:opacity 1.5s ease; pointer-events:none; text-align:center; }
+  #hint.fade { opacity:0; }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div id="photoWrap">
+      <img id="photo" src="/images/sabresmile-p-1080.webp" alt="Sabre the dog">
+      <div id="label">SABRE!</div>
+    </div>
+  </div>
+  <div id="hint">🐾 touch the screen 🐾</div>
+  <button id="muteBtn" aria-label="mute">🔊</button>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  const photo=document.getElementById('photo');
+  const label=document.getElementById('label');
+  const hint=document.getElementById('hint');
+  const muteBtn=document.getElementById('muteBtn');
+  const photos=['/images/sabresmile-p-1080.webp','/images/IMG_0124-p-500.webp','/images/sabre-digital-marketing.jpg','/images/sabresmile-p-1080.webp'];
+  let idx=0, muted=false, audioCtx=null;
+  function getCtx(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); return audioCtx; }
+  function playChime(){ if(muted) return; const ctx=getCtx(); const notes=[523.25,659.25,783.99,1046.5]; const start=ctx.currentTime; notes.forEach((freq,i)=>{ const osc=ctx.createOscillator(); const gain=ctx.createGain(); osc.type='sine'; osc.frequency.value=freq; const t0=start+i*.09; gain.gain.setValueAtTime(0,t0); gain.gain.linearRampToValueAtTime(.28,t0+.02); gain.gain.exponentialRampToValueAtTime(.001,t0+.35); osc.connect(gain).connect(ctx.destination); osc.start(t0); osc.stop(t0+.4); }); }
+  function playBoop(){ if(muted) return; const ctx=getCtx(); const osc=ctx.createOscillator(); const gain=ctx.createGain(); osc.type='triangle'; const t0=ctx.currentTime; osc.frequency.setValueAtTime(220,t0); osc.frequency.exponentialRampToValueAtTime(440,t0+.18); gain.gain.setValueAtTime(.3,t0); gain.gain.exponentialRampToValueAtTime(.001,t0+.25); osc.connect(gain).connect(ctx.destination); osc.start(t0); osc.stop(t0+.3); }
+  function playWoof(){ if(muted) return; const ctx=getCtx(); const t0=ctx.currentTime; const osc=ctx.createOscillator(); const gain=ctx.createGain(); osc.type='sawtooth'; osc.frequency.setValueAtTime(160,t0); osc.frequency.exponentialRampToValueAtTime(80,t0+.12); gain.gain.setValueAtTime(.001,t0); gain.gain.linearRampToValueAtTime(.35,t0+.02); gain.gain.exponentialRampToValueAtTime(.001,t0+.22); osc.connect(gain).connect(ctx.destination); osc.start(t0); osc.stop(t0+.25); }
+  const sounds=[playChime,playBoop,playWoof];
+  const EMOJI=['⭐','💖','🐾','✨','🎈','🌟'];
+  function burstParticles(x,y){ for(let i=0;i<10;i++){ const el=document.createElement('div'); el.className='particle'; el.textContent=EMOJI[Math.floor(Math.random()*EMOJI.length)]; el.style.left=x+'px'; el.style.top=y+'px'; document.body.appendChild(el); const angle=(Math.PI*2*i)/10+Math.random()*.5; const dist=90+Math.random()*140; const dx=Math.cos(angle)*dist; const dy=Math.sin(angle)*dist-40; const rot=(Math.random()-.5)*240; const duration=900+Math.random()*500; el.animate([{transform:'translate(-50%,-50%) translate(0,0) rotate(0deg) scale(.6)',opacity:1},{transform:`translate(-50%,-50%) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(1.3)`,opacity:0}],{duration,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'}); setTimeout(()=>el.remove(),duration+50); } }
+  function react(x,y){ idx=(idx+1)%photos.length; photo.src=photos[idx]; photo.classList.remove('pop'); void photo.offsetWidth; photo.classList.add('pop'); label.classList.remove('show'); void label.offsetWidth; label.classList.add('show'); burstParticles(x,y); sounds[Math.floor(Math.random()*sounds.length)](); hint.classList.add('fade'); lastInteraction=Date.now(); }
+  stage.addEventListener('pointerdown',e=>react(e.clientX,e.clientY));
+  window.addEventListener('keydown',e=>{ if(e.code==='Space'||e.code==='Enter') react(window.innerWidth/2,window.innerHeight/2); });
+  muteBtn.addEventListener('click',e=>{ e.stopPropagation(); muted=!muted; muteBtn.textContent=muted?'🔇':'🔊'; });
+  muteBtn.addEventListener('pointerdown',e=>e.stopPropagation());
+  let lastInteraction=Date.now();
+  setInterval(()=>{ if(Date.now()-lastInteraction>6000){ const rect=photo.getBoundingClientRect(); burstParticles(rect.left+rect.width/2,rect.top+rect.height/2); photo.classList.remove('pop'); void photo.offsetWidth; photo.classList.add('pop'); } },7000);
+})();
+</script>
+</body>
+</html>
