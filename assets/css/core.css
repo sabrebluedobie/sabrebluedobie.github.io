@@ -815,6 +815,77 @@ h1, h2, h3, .site-title {
 .button-dark:active {
     transform: translateY(0);
 }
+
+/* Global .btn alias — ensures every "btn/btn-primary/btn-secondary" CTA
+   across the site is a real, clickable-looking button even on pages that
+   don't load a page-specific stylesheet with a more specific override. */
+.btn {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    font-size: var(--button-font-size-md);
+    padding: var(--button-padding-md);
+    border: var(--border-width-thin) solid var(--button-primary-bg);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: var(--transition-colors), var(--transition-transform);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-semibold);
+}
+
+.btn:hover {
+    background-color: var(--button-primary-bg-hover);
+    color: var(--button-primary-text);
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    border-color: var(--button-primary-bg);
+}
+
+.btn-primary:hover {
+    background-color: var(--button-primary-bg-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--button-secondary-text);
+    border: var(--border-width-medium) solid var(--button-secondary-border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--button-secondary-bg-hover);
+    color: var(--button-secondary-text-hover);
+}
+
+/* Dark hero backgrounds (navy) need inverted button contrast so the CTA
+   doesn't blend into the background it sits on. */
+.services-hero .btn-primary {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    border-color: var(--color-white);
+}
+
+.services-hero .btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.services-hero .btn-secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.services-hero .btn-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+}
 /* End of app.css */
 /* nav-footer-shared.css */
 /* Shared Styles for Navigation and Footer Components */

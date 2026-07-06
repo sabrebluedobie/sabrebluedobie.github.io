@@ -5,6 +5,16 @@
    ======================================== */
 
 /* ========================================
+   MOBILE MENU BUTTON
+   ======================================== */
+/* Guards against page-specific stylesheets (e.g. forms-unified.css) that
+   set a generic `button { color: ... }` rule, which would otherwise make
+   the hamburger icon invisible against the white nav background. */
+.site-nav .menu-button {
+  color: var(--color-text-primary, #0e1726);
+}
+
+/* ========================================
    DESKTOP/TABLET DROPDOWN STYLES
    ======================================== */
 .nav-menu .dropdown {

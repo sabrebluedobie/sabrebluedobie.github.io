@@ -12,9 +12,26 @@ extra_css:
 <section class="hero-section">
   <div class="container">
     <h1>Meet Sabre</h1>
-    <img src="/images/sabresmile-p-1080.webp" alt="Sabre the blue Doberman" class="hero-image">
+    <img src="/images/sabresmile-p-1080.webp" alt="Sabre the blue Doberman" class="hero-image" id="sabre-hero-image">
   </div>
 </section>
+
+<script>
+(function () {
+  var sabreHeroImages = [
+    { src: "/images/sabresmile-p-1080.webp", alt: "Sabre the blue Doberman smiling" },
+    { src: "/images/confused-sabre.webp", alt: "Sabre the blue Doberman looking confused" },
+    { src: "/images/sabre-website.webp", alt: "Sabre the blue Doberman overseeing the website" },
+    { src: "/images/sabre-medium.webp", alt: "Sabre the blue Doberman, medium shot" },
+    { src: "/images/SabreReporter.webp", alt: "Sabre the blue Doberman as the Gridiron Gazette reporter" }
+  ];
+  var img = document.getElementById("sabre-hero-image");
+  if (!img) return;
+  var choice = sabreHeroImages[Math.floor(Math.random() * sabreHeroImages.length)];
+  img.src = choice.src;
+  img.alt = choice.alt;
+})();
+</script>
 
 <!-- About Sabre -->
 <section class="section">
@@ -146,10 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="container">
     <h2>Want to Know More About Bluedobie?</h2>
     <p>Sabre supervises. Melanie builds the websites and content systems.</p>
-    <p style="margin-top: 16px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 16px;">
       <a href="/about.html" class="btn">About Bluedobie</a>
-      &nbsp;
       <a href="/free-web-audit/" class="btn">Request a Free Web Audit</a>
-    </p>
+    </div>
   </div>
 </section>
