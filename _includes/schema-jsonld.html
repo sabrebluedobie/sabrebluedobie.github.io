@@ -1,11 +1,12 @@
 {%- comment -%}
   GEO / structured data foundation for Bluedobie Developing.
   Kept in one include so every page can share the same entity graph.
+  Use jsonify for dynamic strings so rendered JSON-LD remains valid.
 {%- endcomment -%}
 {%- assign schema_title = page.title | default: site.title | default: 'Bluedobie Developing' -%}
 {%- assign schema_desc = page.description | default: page.excerpt | default: site.description | default: 'Bluedobie Developing helps small businesses with practical websites, content systems, free website audits, and AI-supported workflows.' | strip_html | normalize_whitespace -%}
 {%- assign schema_url = page.canonical_url | default: page.canonical | default: page.url | absolute_url -%}
-{%- assign schema_image = page.og_image | default: page.image | default: '/assets/images/bluedobielogo_1.webp' | absolute_url -%}
+{%- assign schema_image = page.og_image | default: page.image | default: site.logo | default: '/assets/images/bluedobielogo_1.webp' | absolute_url -%}
 
 <script type="application/ld+json">
 {
@@ -13,15 +14,15 @@
   "@graph": [
     {
       "@type": ["ProfessionalService", "LocalBusiness"],
-      "@id": "{{ '/' | absolute_url }}#organization",
+      "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }},
       "name": "Bluedobie Developing",
       "legalName": "Bluedobie Developing, LLC",
-      "url": "{{ '/' | absolute_url }}",
-      "logo": "{{ '/images/bluedobielogo_1.webp' | absolute_url }}",
-      "image": "{{ schema_image }}",
+      "url": {{ '/' | absolute_url | jsonify }},
+      "logo": {{ '/images/bluedobielogo_1.webp' | absolute_url | jsonify }},
+      "image": {{ '/images/bluedobielogo_1.webp' | absolute_url | jsonify }},
       "description": "Founder-led small business web design, website cleanup, free website audits, content systems, and practical AI workflow support from Princeton, Kentucky.",
       "founder": {
-        "@id": "{{ '/about.html' | absolute_url }}#melanie-brown"
+        "@id": {{ '/about.html' | absolute_url | append: '#melanie-brown' | jsonify }}
       },
       "areaServed": [
         { "@type": "Place", "name": "Western Kentucky" },
@@ -60,19 +61,19 @@
           {
             "@type": "Offer",
             "itemOffered": {
-              "@id": "{{ '/services.html' | absolute_url }}#service"
+              "@id": {{ '/services.html' | absolute_url | append: '#service' | jsonify }}
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
-              "@id": "{{ '/free-web-audit/' | absolute_url }}#service"
+              "@id": {{ '/free-web-audit/' | absolute_url | append: '#service' | jsonify }}
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
-              "@id": "{{ '/dobiecore/' | absolute_url }}#dobiecore-suite"
+              "@id": {{ '/dobiecore/' | absolute_url | append: '#dobiecore-suite' | jsonify }}
             }
           }
         ]
@@ -80,13 +81,13 @@
     },
     {
       "@type": "Person",
-      "@id": "{{ '/about.html' | absolute_url }}#melanie-brown",
+      "@id": {{ '/about.html' | absolute_url | append: '#melanie-brown' | jsonify }},
       "name": "Melanie Brown",
-      "url": "{{ '/about.html' | absolute_url }}",
-      "image": "{{ '/images/Melanieheadshot.webp' | absolute_url }}",
+      "url": {{ '/about.html' | absolute_url | jsonify }},
+      "image": {{ '/images/Melanieheadshot.webp' | absolute_url | jsonify }},
       "jobTitle": "Founder and Web Designer",
       "worksFor": {
-        "@id": "{{ '/' | absolute_url }}#organization"
+        "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
       },
       "knowsAbout": [
         "web design",
@@ -98,47 +99,47 @@
     },
     {
       "@type": "WebSite",
-      "@id": "{{ '/' | absolute_url }}#website",
+      "@id": {{ '/' | absolute_url | append: '#website' | jsonify }},
       "name": "Bluedobie Developing",
-      "url": "{{ '/' | absolute_url }}",
+      "url": {{ '/' | absolute_url | jsonify }},
       "publisher": {
-        "@id": "{{ '/' | absolute_url }}#organization"
+        "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
       },
       "inLanguage": "en-US"
     },
     {
       "@type": "WebPage",
-      "@id": "{{ schema_url }}#webpage",
-      "url": "{{ schema_url }}",
-      "name": "{{ schema_title | escape }}",
-      "description": "{{ schema_desc | escape }}",
+      "@id": {{ schema_url | append: '#webpage' | jsonify }},
+      "url": {{ schema_url | jsonify }},
+      "name": {{ schema_title | jsonify }},
+      "description": {{ schema_desc | jsonify }},
       "isPartOf": {
-        "@id": "{{ '/' | absolute_url }}#website"
+        "@id": {{ '/' | absolute_url | append: '#website' | jsonify }}
       },
       "about": {
-        "@id": "{{ '/' | absolute_url }}#organization"
+        "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "{{ schema_image }}"
+        "url": {{ schema_image | jsonify }}
       },
       "inLanguage": "en-US"
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "{{ schema_url }}#breadcrumb",
+      "@id": {{ schema_url | append: '#breadcrumb' | jsonify }},
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "{{ '/' | absolute_url }}"
+          "item": {{ '/' | absolute_url | jsonify }}
         }{% unless page.url == '/' %},
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "{{ schema_title | escape }}",
-          "item": "{{ schema_url }}"
+          "name": {{ schema_title | jsonify }},
+          "item": {{ schema_url | jsonify }}
         }{% endunless %}
       ]
     }
@@ -151,7 +152,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "{{ schema_url }}#faq",
+  "@id": {{ schema_url | append: '#faq' | jsonify }},
   "mainEntity": [
     {
       "@type": "Question",
@@ -203,14 +204,14 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "@id": "{{ schema_url }}#dobiecore-suite",
+  "@id": {{ schema_url | append: '#dobiecore-suite' | jsonify }},
   "name": "DobieCore Suite",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "url": "{{ schema_url }}",
+  "url": {{ schema_url | jsonify }},
   "description": "Brand voice-based content support for small businesses, including prewriting, captions, image direction, blog drafts, and content calendar templates.",
   "creator": {
-    "@id": "{{ '/' | absolute_url }}#organization"
+    "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
   "offers": {
     "@type": "Offer",
@@ -227,12 +228,12 @@
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "@id": "{{ schema_url }}#bifrost",
+  "@id": {{ schema_url | append: '#bifrost' | jsonify }},
   "name": "Bifrost",
-  "url": "{{ schema_url }}",
+  "url": {{ schema_url | jsonify }},
   "description": "Bifrost is a developing local-first concept from Bluedobie Developing for AI workflow routing and small business continuity planning.",
   "creator": {
-    "@id": "{{ '/' | absolute_url }}#organization"
+    "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
   "keywords": [
     "AI workflow routing",
@@ -249,13 +250,13 @@
 {
   "@context": "https://schema.org",
   "@type": "Thing",
-  "@id": "{{ schema_url }}#sabre",
+  "@id": {{ schema_url | append: '#sabre' | jsonify }},
   "name": "Sabre",
-  "url": "{{ schema_url }}",
+  "url": {{ schema_url | jsonify }},
   "description": "Sabre is Melanie Brown's blue Doberman and part of the Bluedobie Developing brand story.",
-  "image": "{{ '/images/sabresmile-p-1080.webp' | absolute_url }}",
+  "image": {{ '/images/sabresmile-p-1080.webp' | absolute_url | jsonify }},
   "subjectOf": {
-    "@id": "{{ schema_url }}#webpage"
+    "@id": {{ schema_url | append: '#webpage' | jsonify }}
   }
 }
 </script>
@@ -266,12 +267,12 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "{{ schema_url }}#service",
-  "name": "{{ schema_title | escape }}",
-  "url": "{{ schema_url }}",
-  "description": "{{ schema_desc | escape }}",
+  "@id": {{ schema_url | append: '#service' | jsonify }},
+  "name": {{ schema_title | jsonify }},
+  "url": {{ schema_url | jsonify }},
+  "description": {{ schema_desc | jsonify }},
   "provider": {
-    "@id": "{{ '/' | absolute_url }}#organization"
+    "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
   "areaServed": [
     "Western Kentucky",
