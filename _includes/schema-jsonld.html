@@ -52,7 +52,31 @@
         "business continuity planning",
         "DobieCore Suite",
         "Bifrost"
-      ]
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Bluedobie Developing services and products",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "{{ '/services.html' | absolute_url }}#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "{{ '/free-web-audit/' | absolute_url }}#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "{{ '/dobiecore/' | absolute_url }}#dobiecore-suite"
+            }
+          }
+        ]
+      }
     },
     {
       "@type": "Person",
@@ -193,6 +217,45 @@
     "price": "0",
     "priceCurrency": "USD",
     "description": "Free sign-up with paid usage after free limits."
+  }
+}
+</script>
+{%- endif -%}
+
+{%- if page.url == '/looking-ahead/' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "{{ schema_url }}#bifrost",
+  "name": "Bifrost",
+  "url": "{{ schema_url }}",
+  "description": "Bifrost is a developing local-first concept from Bluedobie Developing for AI workflow routing and small business continuity planning.",
+  "creator": {
+    "@id": "{{ '/' | absolute_url }}#organization"
+  },
+  "keywords": [
+    "AI workflow routing",
+    "small business continuity planning",
+    "business owner absence support",
+    "local-first AI systems"
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if page.url == '/meet-sabre.html' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Thing",
+  "@id": "{{ schema_url }}#sabre",
+  "name": "Sabre",
+  "url": "{{ schema_url }}",
+  "description": "Sabre is Melanie Brown's blue Doberman and part of the Bluedobie Developing brand story.",
+  "image": "{{ '/images/sabresmile-p-1080.webp' | absolute_url }}",
+  "subjectOf": {
+    "@id": "{{ schema_url }}#webpage"
   }
 }
 </script>
