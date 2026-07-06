@@ -24,7 +24,9 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  align-items: safe center;
   justify-content: center;
+  justify-content: safe center;
   flex-direction: row;
   color: var(--color-white);
   overflow: hidden;
@@ -67,8 +69,10 @@ body {
   margin: 0 auto !important;
   display: flex !important;
   flex-direction: column !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
   justify-content: center !important;
+  justify-content: safe center !important;
 }
 
 .hero-badge {
@@ -467,10 +471,47 @@ h2 {
    MOBILE RESPONSIVE
    ======================================== */
 @media (max-width: 768px) {
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-lg);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hero-section {
+    justify-content: flex-start !important;
+  }
+
+  .hero-content {
+    justify-content: flex-start !important;
+    padding-top: calc(var(--space-md) + 16px) !important;
+    padding-bottom: var(--space-sm) !important;
+  }
+
+  .hero-buttons .btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  .hero-badge {
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-section h1 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-subtext {
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-sm);
+  }
+
   .hero-buttons {
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
     width: 100%;
+    margin-top: var(--space-sm);
   }
   .hero-section {
     flex-direction: column;
