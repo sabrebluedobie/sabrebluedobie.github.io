@@ -36,8 +36,12 @@ sass:
   style: compressed
 
 # Defaults: use our layouts
+# KidGames stays available by direct URL, but is excluded from the generated sitemap.
 defaults:
-  
+  - scope:
+      path: "KidGames"
+    values:
+      sitemap: false
   - scope:
       path: ""
       type: "posts"
