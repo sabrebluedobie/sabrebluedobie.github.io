@@ -1,7 +1,21 @@
 title: "Bluedobie Developing"
+description: "Bluedobie Developing helps small businesses reduce website and content overwhelm with practical websites, free website audits, DobieCore content systems, and AI-supported workflow tools."
 url: "https://www.bluedobiedev.com"
 baseurl: ""   # leave empty at domain root
 repository: "sabrebluedobie/sabrebluedobie.github.io"
+author: "Melanie Brown"
+logo: "/images/bluedobielogo_1.webp"
+email: "melanie.brown@bluedobiedev.com"
+phone: "270-388-3535"
+location: "Princeton, Kentucky"
+service_area: "Western Kentucky"
+consult_url: "/contact.html"
+
+social:
+  facebook: "https://facebook.com/bluedobiedev"
+  instagram: "https://instagram.com/bluedobiedev"
+  linkedin: "https://linkedin.com/company/bluedobie-developing"
+  github: "https://github.com/sabrebluedobie"
 
 # Blog posts (Bluedobie Dialogues)
 collections:
