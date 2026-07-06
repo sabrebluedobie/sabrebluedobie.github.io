@@ -4,8 +4,8 @@
 <meta name="cf-rocket-loader" content="off">
 {%- assign _title   = page.title | default: site.title | default: "Bluedobie Developing" -%}
 {%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | normalize_whitespace | truncate: 160 -%}
-{%- assign _image   = page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
-{%- assign _canon   = page.canonical_url | default: page.url | absolute_url -%}
+{%- assign _image   = page.og_image | default: page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
+{%- assign _canon   = page.canonical_url | default: page.canonical | default: page.url | absolute_url -%}
 {%- assign _og_type = page.og_type | default: (page.layout == "post" or page.collection == "posts") | ternary: "article", "website" -%}
 
 <title>{{ _title }}</title>
@@ -13,6 +13,7 @@
 <link rel="canonical" href="{{ _canon }}">
 
 <!-- Open Graph -->
+<meta property="og:site_name" content="Bluedobie Developing">
 <meta property="og:title" content="{{ _title }}">
 {%- if _desc and _desc != "" -%}<meta property="og:description" content="{{ _desc }}">{%- endif -%}
 <meta property="og:type" content="{{ _og_type }}">
@@ -24,6 +25,9 @@
 <meta name="twitter:title" content="{{ _title }}">
 {%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc }}">{%- endif -%}
 <meta name="twitter:image" content="{{ _image }}">
+
+<!-- GEO / Structured Data -->
+{% include schema-jsonld.html %}
 
 <!-- Fonts -->
 <link rel="preload"
