@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Block World Builder</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Inter:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Press+Start+2P&family=Inter:wght@400;700&display=swap');
 
     * { box-sizing: border-box; }
 
@@ -193,45 +193,87 @@
     #message-box {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(20,15,10,0.78);
         z-index: 100;
         display: flex;
         justify-content: center;
         align-items: center;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(3px);
     }
     .modal-content {
-        background-color: #e0f2f1;
-        padding: 30px;
-        border-radius: 15px;
+        background-color: #c6c6c6;
+        background-image:
+            linear-gradient(rgba(255,255,255,0.08) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(255,255,255,0.08) 2px, transparent 2px),
+            linear-gradient(rgba(0,0,0,0.08) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(0,0,0,0.08) 2px, transparent 2px);
+        background-size: 16px 16px;
+        background-position: 0 0, 0 0, 8px 8px, 8px 8px;
+        padding: 26px 30px 18px;
+        border-radius: 4px;
         text-align: center;
-        max-width: 90%;
-        width: 460px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        border: 5px solid #00c1e3;
-        color: #0d1a26;
+        max-width: 92%;
+        width: 480px;
+        box-shadow:
+            inset 4px 4px 0 rgba(255,255,255,0.5),
+            inset -4px -4px 0 rgba(0,0,0,0.35),
+            0 15px 40px rgba(0,0,0,0.6);
+        border: 4px solid #3b3b3b;
+        color: #1a1a1a;
+        image-rendering: pixelated;
     }
     .modal-content h2 {
-        font-family: 'Bungee Inline', cursive;
-        font-size: 1.7rem;
-        color: #00c1e3;
-        margin-bottom: 10px;
+        font-family: 'Press Start 2P', 'Bungee Inline', cursive;
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: #5aa83c;
+        text-shadow: 3px 3px 0 rgba(0,0,0,0.55);
+        margin-bottom: 14px;
+        letter-spacing: 1px;
     }
     .modal-content p { font-size: 0.9rem; line-height: 1.5; }
     .modal-button {
-        background-color: #00e3a6;
-        color: #0d1a26;
-        padding: 10px 20px;
+        font-family: 'Press Start 2P', 'Bungee Inline', cursive;
+        font-size: 0.8rem;
+        background-color: #6a6a6a;
+        color: #ffffff;
+        padding: 12px 20px;
         margin-top: 18px;
         border: none;
-        border-radius: 10px;
-        font-weight: bold;
+        border-radius: 2px;
+        box-shadow:
+            inset 3px 3px 0 rgba(255,255,255,0.35),
+            inset -3px -3px 0 rgba(0,0,0,0.45);
         cursor: pointer;
-        transition: background-color 0.2s, transform 0.1s;
+        transition: background-color 0.15s, transform 0.1s;
     }
     .modal-button:hover {
-        background-color: #00c1e3;
-        transform: scale(1.05);
+        background-color: #7d975f;
+        transform: scale(1.04);
+    }
+
+    .credit-footer {
+        margin-top: 22px;
+        padding-top: 14px;
+        border-top: 2px dashed rgba(0,0,0,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .credit-footer img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid #3b3b3b;
+        background: #fff;
+    }
+    .credit-footer span {
+        font-family: 'Press Start 2P', 'Bungee Inline', cursive;
+        font-size: 0.55rem;
+        line-height: 1.4;
+        color: #3b3b3b;
+        text-align: left;
     }
 
     @media (pointer: coarse) {
@@ -265,7 +307,7 @@
 
     <div id="message-box">
         <div class="modal-content">
-            <h2>Block World Builder</h2>
+            <h2>Block World<br>Builder</h2>
             <p>
                 Explore a blocky world and build whatever you like!<br><br>
                 <strong>Desktop:</strong> WASD to move, mouse to look, Space to jump.
@@ -275,6 +317,10 @@
                 right side of the screen to look, and tap Jump / Break / Place.
             </p>
             <button id="start-button" class="modal-button">Start Building!</button>
+            <div class="credit-footer">
+                <img src="../../images/bluedobielogo_1.webp" alt="Bluedobie Design and Developing logo">
+                <span>Created by<br>Bluedobie Design and Developing</span>
+            </div>
         </div>
     </div>
 </div>
