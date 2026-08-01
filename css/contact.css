@@ -56,6 +56,11 @@ body {
   opacity: 0.95;
 }
 
+.contact-hero-action {
+  margin-top: var(--space-lg);
+  width: auto;
+}
+
 /* ========================================
    BOOKING WIDGET
    ======================================== */
@@ -125,6 +130,53 @@ hr.dashed {
   padding: var(--space-2xl);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+}
+
+.audit-form-intro {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: var(--border-light);
+  text-align: center;
+}
+
+.audit-form-intro h2 {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+}
+
+.audit-form-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.audit-form-label {
+  margin: 0 0 var(--space-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: var(--space-md) 0 0;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.form-status-success {
+  color: #216e39;
+}
+
+.form-status-error {
+  color: #b42318;
+}
+
+.form-step button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
 }
 
 /* ========================================

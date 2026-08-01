@@ -16,7 +16,8 @@ head_extra: |
     <div class="second-home-container">
       <div class="second-home-text-holder">
         <h1>Let's Work Together</h1>
-        <p class="second-home-description">Reach out about a free web audit, website help, DobieCore Suite content support, or a future Bifrost/business continuity inquiry. Book a free 30-minute consultation below and we'll talk about what you need and map out next steps.</p>
+        <p class="second-home-description">Reach out about a free web audit, website help, DobieCore Suite content support, or a future Bifrost/business continuity inquiry. If you are requesting an audit, the contact form — not the calendar — starts the process.</p>
+        <a class="button button-dark contact-hero-action" href="#custom-form-container">Start with the Contact Form</a>
       </div>
     </div>
   </div>
@@ -32,10 +33,10 @@ head_extra: |
 <div class="tidycal-embed" data-path="bluedobiedeveloping/30-minute-design"></div><script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
 
   <p style="margin-top: 12px;">
-  Need a follow-up or troubleshooting session? Or in case of technical difficulty.<br><strong>View all booking options :</strong>
-  <button class="btn"><a href="https://tidycal.com/bluedobiedeveloping" target="_blank" rel="noopener" style="color:#ffffff">
-    Open booking page
-  </a></button>
+  Need a follow-up or troubleshooting session, or having technical difficulty?<br><strong>View all booking options:</strong><br>
+  <a class="button" href="https://tidycal.com/bluedobiedeveloping" target="_blank" rel="noopener">
+    Open Booking Page
+  </a>
 </p>
 
 
@@ -57,11 +58,16 @@ head_extra: |
 </div>
 
 <div class="section" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 60px 20px 40px;">
-  <h2>Prefer to Send a Quick Message?</h2>
-  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 30px;">Can't find a time that works or just have a quick question? Fill out the form below and we'll get back to you within 24 hours. For project inquiries, booking a call gets you faster results.</p>
+  <h2>Start with the Contact Form</h2>
+  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 30px;">Requesting a free web audit, have a quick question, or prefer to reach out before booking? Complete the form below and we'll get back to you within 24 hours. The consultation calendar is optional.</p>
 </div>
 
 <div class="section" id="custom-form-container">
+  <div class="audit-form-intro">
+    <p class="audit-form-label">Free Web Audit</p>
+    <h2>Request Your Free Website Audit</h2>
+    <p>Select <strong>Free Web Audit</strong> and include your website address. Submitting this form starts the audit; you do not need to schedule a consultation first.</p>
+  </div>
   <form id="multiForm" method="POST"
     class="multi-step-form">
     
@@ -71,7 +77,7 @@ head_extra: |
       <input name="first-name" placeholder="First Name" required />
       <input name="last-name" placeholder="Last Name" required />
       <input name="email" placeholder="Email" required type="email" />
-      <input name="website" placeholder="Website (if applicable)" type="url" />
+      <input aria-label="Website URL" name="website" placeholder="Website (if applicable)" type="url" />
       <button onclick="nextStep(1)" type="button">Next</button>
     </div>
 
@@ -110,9 +116,8 @@ head_extra: |
         <button type="submit">Submit</button>
       </div>
     </div>
+    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
   </form>
 </div>
 
 <script src="/assets/js/formjs.js"></script>
-
-
