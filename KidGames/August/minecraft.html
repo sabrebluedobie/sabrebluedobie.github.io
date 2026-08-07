@@ -53,6 +53,28 @@
     #crosshair::before { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-1px); }
     #crosshair::after { left: 50%; top: 0; height: 100%; width: 2px; transform: translateX(-1px); }
 
+    #toast {
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(20,15,10,0.88);
+        color: #fff;
+        font-family: 'Press Start 2P', 'Bungee Inline', cursive;
+        font-size: 0.65rem;
+        line-height: 1.6;
+        padding: 12px 18px;
+        border-radius: 6px;
+        border: 2px solid #ef4444;
+        z-index: 30;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+        text-align: center;
+        max-width: 80%;
+    }
+    #toast.show { opacity: 1; }
+
     #hud {
         position: absolute;
         top: 12px;
@@ -423,6 +445,7 @@
 <div id="game-wrap">
     <canvas id="c"></canvas>
     <div id="crosshair"></div>
+    <div id="toast"></div>
 
     <div id="hud">
         <div><strong>Mode:</strong> <span id="mode-label">Walking</span></div>
@@ -449,7 +472,9 @@
             <h2>Block World<br>Builder</h2>
             <p>
                 Explore a blocky world and build whatever you like! Break blocks
-                to collect resources, then craft them into new blocks.<br><br>
+                to collect resources, then craft them into new blocks. Stone and
+                Brick need a Pickaxe - craft Planks into Sticks, then combine
+                Planks and Sticks into a Pickaxe!<br><br>
                 <strong>Desktop:</strong> WASD to move, mouse to look, Space to jump.
                 Left click breaks a block, right click places one. Press 1-9 to
                 pick a block, F to toggle Fly mode, E to open Crafting.<br><br>
@@ -475,7 +500,8 @@
             </div>
             <div class="craft-inventory" id="craft-inventory"></div>
             <p class="craft-recipes-hint">
-                1 Wood &rarr; 4 Plank &nbsp;&bull;&nbsp; 2&times;2 Stone &rarr; 4 Brick &nbsp;&bull;&nbsp; 2&times;2 Sand &rarr; 4 Glass<br>
+                1 Wood &rarr; 4 Plank &nbsp;&bull;&nbsp; 1 Plank &rarr; 4 Stick &nbsp;&bull;&nbsp; 2&times;2 Stone &rarr; 4 Brick &nbsp;&bull;&nbsp; 2&times;2 Sand &rarr; 4 Glass<br>
+                3 Plank (top row) + 2 Stick (middle column) &rarr; 1 Pickaxe &mdash; needed to break Stone &amp; Brick!<br>
                 Tap a resource to select it, then tap grid squares to place it. Tap a filled square to take it back.
             </p>
             <button id="craft-close" class="modal-button">Close</button>
@@ -599,9 +625,20 @@
     };
     const HOTBAR = ['grass', 'dirt', 'stone', 'wood', 'leaves', 'sand', 'plank', 'brick', 'glass'];
 
+    // Tools aren't placeable blocks, just crafting materials/gear
+    const TOOL_ITEMS = {
+        stick: { name: 'Stick', swatch: '#a9743a' },
+        pickaxe: { name: 'Pickaxe', swatch: '#9aa5ad' }
+    };
+    function itemDef(type) { return BLOCK_TYPES[type] || TOOL_ITEMS[type]; }
+    const CRAFT_ITEMS = HOTBAR.concat(['stick', 'pickaxe']);
+
+    // Stone and brick are too tough to break by hand - need a pickaxe crafted first
+    const HARD_BLOCKS = { stone: true, brick: true };
+
     // ---------- Inventory (gather by breaking, spend by placing/crafting) ----------
     const blockCounts = {};
-    HOTBAR.forEach((t) => { blockCounts[t] = 0; });
+    CRAFT_ITEMS.forEach((t) => { blockCounts[t] = 0; });
     blockCounts.dirt = 4;
     blockCounts.stone = 4;
     blockCounts.wood = 4;
@@ -793,11 +830,24 @@
         return hits.length ? hits[0] : null;
     }
 
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+    function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1700);
+    }
+
     function breakBlock() {
         if (craftOpen) return;
         const hit = getTargetBlock();
         if (!hit) return;
         const { x, y, z, type } = hit.object.userData;
+        if (HARD_BLOCKS[type] && (blockCounts.pickaxe || 0) <= 0) {
+            showToast('You need a Pickaxe to break ' + BLOCK_TYPES[type].name + '!');
+            return;
+        }
         if (removeBlock(x, y, z)) {
             blockCounts[type] = (blockCounts[type] || 0) + 1;
             updateHotbarUI();
@@ -847,7 +897,16 @@
     const RECIPES = [
         { shape: [['wood']], output: 'plank', count: 4 },
         { shape: [['stone', 'stone'], ['stone', 'stone']], output: 'brick', count: 4 },
-        { shape: [['sand', 'sand'], ['sand', 'sand']], output: 'glass', count: 4 }
+        { shape: [['sand', 'sand'], ['sand', 'sand']], output: 'glass', count: 4 },
+        { shape: [['plank']], output: 'stick', count: 4 },
+        {
+            shape: [
+                ['plank', 'plank', 'plank'],
+                [null, 'stick', null],
+                [null, 'stick', null]
+            ],
+            output: 'pickaxe', count: 1
+        }
     ];
 
     function trimGrid(grid) {
@@ -895,7 +954,7 @@
         craftGrid.forEach((type, idx) => {
             const cell = document.createElement('div');
             cell.className = 'craft-slot' + (type ? ' filled' : '');
-            cell.style.background = type ? BLOCK_TYPES[type].swatch : '';
+            cell.style.background = type ? itemDef(type).swatch : '';
             cell.addEventListener('click', () => {
                 if (craftGrid[idx]) {
                     // take a filled cell back to inventory
@@ -919,8 +978,8 @@
 
     function renderCraftInventory() {
         craftInventoryEl.innerHTML = '';
-        HOTBAR.forEach((type) => {
-            const def = BLOCK_TYPES[type];
+        CRAFT_ITEMS.forEach((type) => {
+            const def = itemDef(type);
             const count = blockCounts[type] || 0;
             const item = document.createElement('div');
             item.className = 'inv-item' + (count <= 0 ? ' empty' : '') + (selectedCraftType === type ? ' selected' : '');
@@ -930,7 +989,7 @@
                 '<div class="label">' + def.name + '</div>';
             item.addEventListener('click', () => {
                 if (count <= 0) return;
-                selectedCraftType = selectedCraftType === type ? null : type;
+                selectedCraftType = type;
                 renderCraftInventory();
             });
             craftInventoryEl.appendChild(item);
@@ -941,7 +1000,7 @@
         const recipe = matchRecipe();
         if (recipe) {
             craftOutputEl.classList.remove('empty');
-            craftOutputEl.style.background = BLOCK_TYPES[recipe.output].swatch;
+            craftOutputEl.style.background = itemDef(recipe.output).swatch;
             craftOutputEl.innerHTML = '<span>' + recipe.count + '</span>';
             craftOutputEl.dataset.ready = '1';
         } else {
