@@ -110,7 +110,10 @@
         border-color: #00e3a6;
         box-shadow: 0 0 10px #00e3a6;
     }
-    .slot span {
+    .slot .key-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
         font-size: 0.6rem;
         color: rgba(255,255,255,0.8);
         background: rgba(0,0,0,0.4);
@@ -118,6 +121,16 @@
         text-align: center;
         border-radius: 0 0 4px 4px;
     }
+    .slot .count-label {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+        font-size: 0.65rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.9);
+    }
+    .slot.empty { opacity: 0.4; }
 
     #fly-toggle {
         position: absolute;
@@ -136,6 +149,21 @@
     #fly-toggle.on {
         background: #00e3a6;
         color: #0d1a26;
+    }
+
+    #craft-toggle {
+        position: absolute;
+        bottom: 62px;
+        right: 16px;
+        z-index: 20;
+        background: rgba(13,26,38,0.7);
+        color: #e0f2f1;
+        border: 2px solid #00c1e3;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        cursor: pointer;
     }
 
     /* Mobile touch controls */
@@ -200,7 +228,7 @@
         align-items: center;
         backdrop-filter: blur(3px);
     }
-    .modal-content {
+    .modal-content, .craft-panel {
         background-color: #c6c6c6;
         background-image:
             linear-gradient(rgba(255,255,255,0.08) 2px, transparent 2px),
@@ -222,7 +250,7 @@
         color: #1a1a1a;
         image-rendering: pixelated;
     }
-    .modal-content h2 {
+    .modal-content h2, .craft-panel h2 {
         font-family: 'Press Start 2P', 'Bungee Inline', cursive;
         font-size: 1.25rem;
         line-height: 1.6;
@@ -276,6 +304,116 @@
         text-align: left;
     }
 
+    /* Crafting */
+    #craft-box {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(20,15,10,0.78);
+        z-index: 110;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(3px);
+    }
+    #craft-box.open { display: flex; }
+
+    .craft-panel {
+        max-width: 94%;
+        width: 560px;
+        padding: 22px 24px 20px;
+    }
+    .craft-panel h2 { font-size: 1.1rem; margin-bottom: 6px; }
+
+    .craft-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin: 16px 0;
+        flex-wrap: wrap;
+    }
+    .craft-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 46px);
+        grid-template-rows: repeat(3, 46px);
+        gap: 5px;
+    }
+    .craft-slot {
+        width: 46px;
+        height: 46px;
+        border-radius: 4px;
+        border: 3px solid #3d5a73;
+        background: rgba(0,0,0,0.15);
+        cursor: pointer;
+    }
+    .craft-slot.filled { border-color: #00c1e3; }
+    .craft-arrow { font-size: 1.6rem; color: #3b3b3b; }
+    .craft-output {
+        width: 54px;
+        height: 54px;
+        border-radius: 4px;
+        border: 3px solid #5aa83c;
+        background: rgba(90,168,60,0.2);
+        position: relative;
+        cursor: pointer;
+    }
+    .craft-output.empty { cursor: default; border-color: #3d5a73; background: rgba(0,0,0,0.15); }
+    .craft-output span {
+        position: absolute;
+        bottom: 2px;
+        right: 4px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.85);
+    }
+
+    .craft-inventory {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 6px;
+        padding-top: 14px;
+        border-top: 2px dashed rgba(0,0,0,0.25);
+    }
+    .inv-item {
+        width: 54px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+    .inv-item.empty { opacity: 0.35; cursor: default; }
+    .inv-item.selected .swatch {
+        border-color: #00e3a6;
+        box-shadow: 0 0 8px #00e3a6;
+    }
+    .inv-item .swatch {
+        width: 36px;
+        height: 36px;
+        border-radius: 4px;
+        border: 2px solid #3b3b3b;
+    }
+    .inv-item .count {
+        font-size: 0.65rem;
+        font-weight: bold;
+        margin-top: 3px;
+        color: #1a1a1a;
+    }
+    .inv-item .label {
+        font-size: 0.48rem;
+        color: #444;
+        text-align: center;
+    }
+
+    .craft-recipes-hint {
+        font-size: 0.62rem;
+        line-height: 1.7;
+        color: #444;
+        margin-top: 12px;
+    }
+
     @media (pointer: coarse) {
         #touch-controls { display: block; }
     }
@@ -288,13 +426,14 @@
 
     <div id="hud">
         <div><strong>Mode:</strong> <span id="mode-label">Walking</span></div>
-        <div id="desktop-help">WASD move · Mouse look · Space jump · Click break · Right-click place · 1-6 pick block · F fly</div>
-        <div id="mobile-help" style="display:none;">Left joystick move · Drag right side to look · Buttons: jump / break / place</div>
+        <div id="desktop-help">WASD move · Mouse look · Space jump · Click break · Right-click place · 1-9 pick block · F fly · E craft</div>
+        <div id="mobile-help" style="display:none;">Left joystick move · Drag right side to look · Buttons: jump / break / place · Craft button to build</div>
     </div>
 
     <a id="back-link" href="index.html">← Games</a>
 
     <div id="hotbar"></div>
+    <button id="craft-toggle">Craft</button>
     <button id="fly-toggle">Fly: Off</button>
 
     <div id="touch-controls">
@@ -309,18 +448,37 @@
         <div class="modal-content">
             <h2>Block World<br>Builder</h2>
             <p>
-                Explore a blocky world and build whatever you like!<br><br>
+                Explore a blocky world and build whatever you like! Break blocks
+                to collect resources, then craft them into new blocks.<br><br>
                 <strong>Desktop:</strong> WASD to move, mouse to look, Space to jump.
-                Left click breaks a block, right click places one. Press 1-6 to
-                pick a block, F to toggle Fly mode.<br><br>
+                Left click breaks a block, right click places one. Press 1-9 to
+                pick a block, F to toggle Fly mode, E to open Crafting.<br><br>
                 <strong>Tablet/Phone:</strong> use the joystick to move, drag the
-                right side of the screen to look, and tap Jump / Break / Place.
+                right side of the screen to look, tap Jump / Break / Place, and
+                tap Craft to build.
             </p>
             <button id="start-button" class="modal-button">Start Building!</button>
             <div class="credit-footer">
                 <img src="../../images/bluedobielogo_1.webp" alt="Bluedobie Design and Developing logo">
                 <span>Created by<br>Bluedobie Design and Developing</span>
             </div>
+        </div>
+    </div>
+
+    <div id="craft-box">
+        <div class="craft-panel">
+            <h2>Crafting</h2>
+            <div class="craft-body">
+                <div class="craft-grid" id="craft-grid"></div>
+                <div class="craft-arrow">&#8594;</div>
+                <div class="craft-output empty" id="craft-output"></div>
+            </div>
+            <div class="craft-inventory" id="craft-inventory"></div>
+            <p class="craft-recipes-hint">
+                1 Wood &rarr; 4 Plank &nbsp;&bull;&nbsp; 2&times;2 Stone &rarr; 4 Brick &nbsp;&bull;&nbsp; 2&times;2 Sand &rarr; 4 Glass<br>
+                Tap a resource to select it, then tap grid squares to place it. Tap a filled square to take it back.
+            </p>
+            <button id="craft-close" class="modal-button">Close</button>
         </div>
     </div>
 </div>
@@ -382,6 +540,26 @@
         return tex;
     }
 
+    function makeBrickTexture() {
+        const size = 16;
+        const cnv = document.createElement('canvas');
+        cnv.width = cnv.height = size;
+        const g = cnv.getContext('2d');
+        g.fillStyle = '#9c9c9c';
+        g.fillRect(0, 0, size, size);
+        g.fillStyle = '#7a7a7a';
+        g.fillRect(0, 0, size, 1);
+        g.fillRect(0, 8, size, 1);
+        g.fillRect(0, 0, 1, 8);
+        g.fillRect(8, 8, 1, 8);
+        g.fillRect(4, 0, 1, 8);
+        g.fillRect(12, 8, 1, 8);
+        const t = new THREE.CanvasTexture(cnv);
+        t.magFilter = THREE.NearestFilter;
+        t.minFilter = THREE.NearestFilter;
+        return t;
+    }
+
     const tex = {
         grassTop: makeTexture('#5aa83c', '#4d9433', 40, null),
         grassSide: makeTexture('#8a5a34', '#7a4d2c', 30, '#5aa83c'),
@@ -391,7 +569,8 @@
         woodTop: makeTexture('#a97c50', '#8a6440', 30, null),
         leaves: makeTexture('#3a7d2c', '#2f6a23', 50, null),
         plank: makeTexture('#c8a165', '#b8905a', 15, null),
-        sand: makeTexture('#e6d28a', '#d9c377', 20, null)
+        sand: makeTexture('#e6d28a', '#d9c377', 20, null),
+        brick: makeBrickTexture()
     };
 
     function boxMat(sideTex, topTex, bottomTex) {
@@ -402,16 +581,31 @@
         return [s, s, t, b, s, s];
     }
 
+    function glassMat() {
+        const m = new THREE.MeshLambertMaterial({ color: 0xbfe8f0, transparent: true, opacity: 0.5 });
+        return [m, m, m, m, m, m];
+    }
+
     const BLOCK_TYPES = {
         grass: { name: 'Grass', mat: boxMat(tex.grassSide, tex.grassTop, tex.dirt), swatch: '#5aa83c' },
         dirt: { name: 'Dirt', mat: boxMat(tex.dirt), swatch: '#8a5a34' },
         stone: { name: 'Stone', mat: boxMat(tex.stone), swatch: '#8a8a8a' },
         wood: { name: 'Wood', mat: boxMat(tex.wood, tex.woodTop, tex.woodTop), swatch: '#6b4423' },
         leaves: { name: 'Leaves', mat: boxMat(tex.leaves), swatch: '#3a7d2c' },
+        sand: { name: 'Sand', mat: boxMat(tex.sand), swatch: '#e6d28a' },
         plank: { name: 'Plank', mat: boxMat(tex.plank), swatch: '#c8a165' },
-        sand: { name: 'Sand', mat: boxMat(tex.sand), swatch: '#e6d28a' }
+        brick: { name: 'Brick', mat: boxMat(tex.brick), swatch: '#9c9c9c' },
+        glass: { name: 'Glass', mat: glassMat(), swatch: '#bfe8f0' }
     };
-    const HOTBAR = ['grass', 'dirt', 'stone', 'wood', 'leaves', 'plank'];
+    const HOTBAR = ['grass', 'dirt', 'stone', 'wood', 'leaves', 'sand', 'plank', 'brick', 'glass'];
+
+    // ---------- Inventory (gather by breaking, spend by placing/crafting) ----------
+    const blockCounts = {};
+    HOTBAR.forEach((t) => { blockCounts[t] = 0; });
+    blockCounts.dirt = 4;
+    blockCounts.stone = 4;
+    blockCounts.wood = 4;
+    blockCounts.sand = 4;
 
     const boxGeo = new THREE.BoxGeometry(1, 1, 1);
 
@@ -517,7 +711,7 @@
         const slot = document.createElement('div');
         slot.className = 'slot' + (i === 0 ? ' active' : '');
         slot.style.background = def.swatch;
-        slot.innerHTML = '<span>' + (i + 1) + '</span>';
+        slot.innerHTML = '<span class="count-label"></span><span class="key-label">' + (i + 1) + '</span>';
         slot.addEventListener('click', () => selectSlot(i));
         slot.addEventListener('touchstart', (e) => { e.preventDefault(); selectSlot(i); }, { passive: false });
         hotbarEl.appendChild(slot);
@@ -527,6 +721,16 @@
         selectedType = HOTBAR[i];
         document.querySelectorAll('.slot').forEach((s, idx) => s.classList.toggle('active', idx === i));
     }
+    function updateHotbarUI() {
+        const slotEls = hotbarEl.querySelectorAll('.slot');
+        slotEls.forEach((s, idx) => {
+            const type = HOTBAR[idx];
+            const count = blockCounts[type] || 0;
+            s.querySelector('.count-label').textContent = count;
+            s.classList.toggle('empty', count <= 0);
+        });
+    }
+    updateHotbarUI();
 
     // ---------- Fly toggle ----------
     const flyBtn = document.getElementById('fly-toggle');
@@ -543,10 +747,19 @@
     // ---------- Input state ----------
     const keys = {};
     let gameStarted = false;
+    let craftOpen = false;
 
     window.addEventListener('keydown', (e) => {
+        if (e.code === 'KeyE') {
+            if (gameStarted) toggleCraft();
+            return;
+        }
+        if (craftOpen) {
+            if (e.code === 'Escape') closeCraft();
+            return;
+        }
         keys[e.code] = true;
-        if (e.code >= 'Digit1' && e.code <= 'Digit6') {
+        if (e.code >= 'Digit1' && e.code <= 'Digit9') {
             selectSlot(parseInt(e.code.slice(-1), 10) - 1);
         }
         if (e.code === 'KeyF') setFly(!player.fly);
@@ -581,13 +794,19 @@
     }
 
     function breakBlock() {
+        if (craftOpen) return;
         const hit = getTargetBlock();
         if (!hit) return;
-        const { x, y, z } = hit.object.userData;
-        removeBlock(x, y, z);
+        const { x, y, z, type } = hit.object.userData;
+        if (removeBlock(x, y, z)) {
+            blockCounts[type] = (blockCounts[type] || 0) + 1;
+            updateHotbarUI();
+        }
     }
 
     function placeBlock() {
+        if (craftOpen) return;
+        if ((blockCounts[selectedType] || 0) <= 0) return;
         const hit = getTargetBlock();
         if (!hit) return;
         const n = hit.face.normal;
@@ -601,15 +820,180 @@
         const py = Math.floor(camera.position.y);
         const py2 = Math.floor(camera.position.y - player.eyeHeight + 0.1);
         if (nx === px && nz === pz && (ny === py || ny === py2)) return;
-        addBlock(nx, ny, nz, selectedType);
+        if (addBlock(nx, ny, nz, selectedType)) {
+            blockCounts[selectedType]--;
+            updateHotbarUI();
+        }
     }
 
     canvas.addEventListener('mousedown', (e) => {
-        if (!gameStarted) return;
+        if (!gameStarted || craftOpen) return;
         if (e.button === 0) breakBlock();
         if (e.button === 2) placeBlock();
     });
     canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // ---------- Crafting ----------
+    const craftBox = document.getElementById('craft-box');
+    const craftToggleBtn = document.getElementById('craft-toggle');
+    const craftGridEl = document.getElementById('craft-grid');
+    const craftOutputEl = document.getElementById('craft-output');
+    const craftInventoryEl = document.getElementById('craft-inventory');
+    const craftCloseBtn = document.getElementById('craft-close');
+
+    let craftGrid = new Array(9).fill(null);
+    let selectedCraftType = null;
+
+    const RECIPES = [
+        { shape: [['wood']], output: 'plank', count: 4 },
+        { shape: [['stone', 'stone'], ['stone', 'stone']], output: 'brick', count: 4 },
+        { shape: [['sand', 'sand'], ['sand', 'sand']], output: 'glass', count: 4 }
+    ];
+
+    function trimGrid(grid) {
+        let minR = 3, maxR = -1, minC = 3, maxC = -1;
+        for (let r = 0; r < 3; r++) {
+            for (let c = 0; c < 3; c++) {
+                if (grid[r * 3 + c]) {
+                    minR = Math.min(minR, r); maxR = Math.max(maxR, r);
+                    minC = Math.min(minC, c); maxC = Math.max(maxC, c);
+                }
+            }
+        }
+        if (maxR < 0) return null;
+        const trimmed = [];
+        for (let r = minR; r <= maxR; r++) {
+            const row = [];
+            for (let c = minC; c <= maxC; c++) row.push(grid[r * 3 + c]);
+            trimmed.push(row);
+        }
+        return trimmed;
+    }
+
+    function shapesEqual(a, b) {
+        if (a.length !== b.length) return false;
+        for (let r = 0; r < a.length; r++) {
+            if (a[r].length !== b[r].length) return false;
+            for (let c = 0; c < a[r].length; c++) {
+                if (a[r][c] !== b[r][c]) return false;
+            }
+        }
+        return true;
+    }
+
+    function matchRecipe() {
+        const trimmed = trimGrid(craftGrid);
+        if (!trimmed) return null;
+        for (const recipe of RECIPES) {
+            if (shapesEqual(trimmed, recipe.shape)) return recipe;
+        }
+        return null;
+    }
+
+    function renderCraftGrid() {
+        craftGridEl.innerHTML = '';
+        craftGrid.forEach((type, idx) => {
+            const cell = document.createElement('div');
+            cell.className = 'craft-slot' + (type ? ' filled' : '');
+            cell.style.background = type ? BLOCK_TYPES[type].swatch : '';
+            cell.addEventListener('click', () => {
+                if (craftGrid[idx]) {
+                    // take a filled cell back to inventory
+                    blockCounts[craftGrid[idx]] = (blockCounts[craftGrid[idx]] || 0) + 1;
+                    craftGrid[idx] = null;
+                } else if (selectedCraftType && (blockCounts[selectedCraftType] || 0) > 0) {
+                    // place the selected resource into this empty cell
+                    craftGrid[idx] = selectedCraftType;
+                    blockCounts[selectedCraftType]--;
+                } else {
+                    return;
+                }
+                renderCraftGrid();
+                renderCraftInventory();
+                updateCraftOutput();
+                updateHotbarUI();
+            });
+            craftGridEl.appendChild(cell);
+        });
+    }
+
+    function renderCraftInventory() {
+        craftInventoryEl.innerHTML = '';
+        HOTBAR.forEach((type) => {
+            const def = BLOCK_TYPES[type];
+            const count = blockCounts[type] || 0;
+            const item = document.createElement('div');
+            item.className = 'inv-item' + (count <= 0 ? ' empty' : '') + (selectedCraftType === type ? ' selected' : '');
+            item.innerHTML =
+                '<div class="swatch" style="background:' + def.swatch + '"></div>' +
+                '<div class="count">' + count + '</div>' +
+                '<div class="label">' + def.name + '</div>';
+            item.addEventListener('click', () => {
+                if (count <= 0) return;
+                selectedCraftType = selectedCraftType === type ? null : type;
+                renderCraftInventory();
+            });
+            craftInventoryEl.appendChild(item);
+        });
+    }
+
+    function updateCraftOutput() {
+        const recipe = matchRecipe();
+        if (recipe) {
+            craftOutputEl.classList.remove('empty');
+            craftOutputEl.style.background = BLOCK_TYPES[recipe.output].swatch;
+            craftOutputEl.innerHTML = '<span>' + recipe.count + '</span>';
+            craftOutputEl.dataset.ready = '1';
+        } else {
+            craftOutputEl.classList.add('empty');
+            craftOutputEl.style.background = '';
+            craftOutputEl.innerHTML = '';
+            craftOutputEl.dataset.ready = '0';
+        }
+    }
+
+    craftOutputEl.addEventListener('click', () => {
+        if (craftOutputEl.dataset.ready !== '1') return;
+        const recipe = matchRecipe();
+        if (!recipe) return;
+        craftGrid = craftGrid.map(() => null);
+        blockCounts[recipe.output] = (blockCounts[recipe.output] || 0) + recipe.count;
+        renderCraftGrid();
+        renderCraftInventory();
+        updateCraftOutput();
+        updateHotbarUI();
+    });
+
+    function openCraft() {
+        craftOpen = true;
+        selectedCraftType = null;
+        craftBox.classList.add('open');
+        if (document.pointerLockElement === canvas) document.exitPointerLock();
+        renderCraftGrid();
+        renderCraftInventory();
+        updateCraftOutput();
+    }
+
+    function closeCraft() {
+        craftGrid.forEach((type, idx) => {
+            if (!type) return;
+            blockCounts[type] = (blockCounts[type] || 0) + 1;
+            craftGrid[idx] = null;
+        });
+        selectedCraftType = null;
+        craftOpen = false;
+        craftBox.classList.remove('open');
+        updateHotbarUI();
+        if (!isTouch && gameStarted) canvas.requestPointerLock();
+    }
+
+    function toggleCraft() {
+        if (craftOpen) closeCraft(); else openCraft();
+    }
+
+    craftToggleBtn.addEventListener('click', () => { if (gameStarted) toggleCraft(); });
+    craftToggleBtn.addEventListener('touchstart', (e) => { e.preventDefault(); if (gameStarted) toggleCraft(); }, { passive: false });
+    craftCloseBtn.addEventListener('click', closeCraft);
 
     // ---------- Touch controls ----------
     const joystick = document.getElementById('joystick');
