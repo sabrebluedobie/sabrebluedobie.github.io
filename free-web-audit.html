@@ -19,7 +19,7 @@ extra_css:
       </p>
       <p class="audit-hero-note">Automated data plus a real-world review by a web developer — at no cost.</p>
       <div class="audit-hero-actions">
-        <a href="/contact.html?service=Free%20Web%20Audit#custom-form-container" class="btn btn-primary">Start My Free Web Audit</a>
+        <a href="/contact?service=Free%20Web%20Audit#custom-form-container" class="btn btn-primary">Start My Free Web Audit</a>
         <span>No consultation required. The request form starts the process.</span>
       </div>
     </header>
@@ -145,7 +145,7 @@ extra_css:
   <div class="container" style="text-align: center;">
     <h2>Start Your Free Web Audit</h2>
     <p style="font-size: 1.2rem; margin-bottom: 30px;">Complete the short request form and include your website address. No consultation is required to get started.</p>
-    <a href="/contact.html?service=Free%20Web%20Audit#custom-form-container" class="btn btn-primary">Start My Free Web Audit</a>
+    <a href="/contact?service=Free%20Web%20Audit#custom-form-container" class="btn btn-primary">Start My Free Web Audit</a>
   </div>
 </section>
 
@@ -167,7 +167,7 @@ extra_css:
       if (Array.from(utmParams.keys()).length === 0) return;
 
       document
-        .querySelectorAll('a[href^="/contact.html?service=Free%20Web%20Audit"]')
+        .querySelectorAll('a[href^="/contact?service=Free%20Web%20Audit"]')
         .forEach(function (link) {
           var url = new URL(link.href, window.location.origin);
           utmParams.forEach(function (value, key) {
