@@ -130,6 +130,8 @@ hr.dashed {
   padding: var(--space-2xl);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+  /* Keep the form clear of the sticky nav (124px) when jumped to via #custom-form-container. */
+  scroll-margin-top: 140px;
 }
 
 .audit-form-intro {

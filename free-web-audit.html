@@ -148,3 +148,36 @@ extra_css:
     <a href="/contact.html?service=Free%20Web%20Audit#custom-form-container" class="btn btn-primary">Start My Free Web Audit</a>
   </div>
 </section>
+
+<script>
+  // Forward any incoming UTM params onto the audit CTAs so LinkedIn (and
+  // other campaign) traffic stays attributable through to the contact form.
+  // No-op, clean links preserved, if the visitor arrived without any.
+  (function () {
+    try {
+      var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+      var incoming = new URLSearchParams(window.location.search);
+      var utmParams = new URLSearchParams();
+
+      UTM_KEYS.forEach(function (key) {
+        var value = incoming.get(key);
+        if (value) utmParams.set(key, value);
+      });
+
+      if (Array.from(utmParams.keys()).length === 0) return;
+
+      document
+        .querySelectorAll('a[href^="/contact.html?service=Free%20Web%20Audit"]')
+        .forEach(function (link) {
+          var url = new URL(link.href, window.location.origin);
+          utmParams.forEach(function (value, key) {
+            url.searchParams.set(key, value);
+          });
+          link.href = url.toString();
+        });
+    } catch (error) {
+      // Defensive: never let this break the CTA links.
+      console.warn('UTM forwarding failed:', error);
+    }
+  })();
+</script>

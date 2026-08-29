@@ -48,6 +48,51 @@ document.addEventListener('DOMContentLoaded', function () {
     return true;
   }
 
+  // A deep link (?service=Free Web Audit) can land the visitor on step 2
+  // directly, which can leave step 1's required fields empty and hidden.
+  // A browser can't show a validation bubble for a display:none field, so
+  // form.reportValidity() would silently fail in that case. Walk every
+  // field in DOM order instead, and jump to whichever step holds the
+  // first invalid one before reporting it.
+  function goToFirstInvalidField() {
+    const fields = form.querySelectorAll('input, select, textarea');
+
+    for (const field of fields) {
+      if (!field.checkValidity()) {
+        const stepEl = field.closest('.form-step');
+        const match = stepEl && stepEl.id.match(/^step(\d+)$/);
+        if (match) showStep(Number(match[1]));
+        field.reportValidity();
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+  function getUtmParams() {
+    const params = new URLSearchParams(window.location.search);
+    const utm = {};
+    UTM_KEYS.forEach((key) => {
+      const value = params.get(key);
+      if (value) utm[key] = value;
+    });
+    return utm;
+  }
+
+  function trackEvent(name, extraParams) {
+    try {
+      if (typeof gtag === 'function') {
+        gtag('event', name, Object.assign({}, extraParams, getUtmParams()));
+      }
+    } catch (error) {
+      // Analytics must never block navigation or form submission.
+      console.warn('Analytics event failed:', name, error);
+    }
+  }
+
   window.nextStep = function (currentStep) {
     if (!validateStep(currentStep)) return;
 
@@ -75,6 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (matchingOption) {
       serviceSelect.value = matchingOption.value;
+
+      // Only the Free Web Audit deep link jumps straight to step 2 so the
+      // preselection is visibly confirmed immediately. Other ?service=
+      // values keep the existing behavior (preselected, but step 1 first).
+      if (normalizedService === 'free web audit') {
+        showStep(2);
+        trackEvent('audit_flow_start', { service_type: matchingOption.value });
+      }
     }
   }
 
@@ -86,8 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    if (goToFirstInvalidField()) {
       return;
     }
 
@@ -129,6 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (!response.ok) {
         throw new Error(`Make webhook failed with status ${response.status}`);
+      }
+
+      if (payload['request-type'] === 'Free Web Audit') {
+        trackEvent('audit_form_submit', { service_type: payload['request-type'] });
       }
 
       form.reset();
