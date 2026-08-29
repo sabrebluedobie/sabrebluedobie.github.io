@@ -9,7 +9,7 @@ email: "melanie.brown@bluedobiedev.com"
 phone: "270-388-3535"
 location: "Princeton, Kentucky"
 service_area: "Western Kentucky"
-consult_url: "/contact.html"
+consult_url: "/contact"
 
 social:
   facebook: "https://facebook.com/bluedobiedev"

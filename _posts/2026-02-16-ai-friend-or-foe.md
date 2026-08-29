@@ -51,4 +51,4 @@ In conclusion, AI is neither inherently a friend nor a foe. It is a potent tool 
 
 ---
 
-**Ready to leverage AI for your business?** Bluedobie Developing is committed to helping small businesses embrace new technologies. [Contact us today](/contact.html) to learn how we can help you integrate AI into your digital strategy!
+**Ready to leverage AI for your business?** Bluedobie Developing is committed to helping small businesses embrace new technologies. [Contact us today](/contact) to learn how we can help you integrate AI into your digital strategy!

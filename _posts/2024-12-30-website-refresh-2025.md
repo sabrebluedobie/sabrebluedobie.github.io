@@ -82,8 +82,8 @@ Testing prevents potential errors from undermining the effectiveness of your cha
 
 Refreshing your website is an opportunity to reconnect with your audience, improve functionality, and boost your brand's credibility. By updating content, refining design, and leveraging SEO, you can position your business for success in 2025.
 
-**Ready to take the next step? Let Bluedobie Developing help you make your website the centerpiece of your business's growth. [Contact us today](/contact.html)!**
+**Ready to take the next step? Let Bluedobie Developing help you make your website the centerpiece of your business's growth. [Contact us today](/contact)!**
 
 ## To learn more
 
-Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact.html), and let's build something remarkable together!
+Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact), and let's build something remarkable together!

@@ -5,7 +5,15 @@
 {%- endcomment -%}
 {%- assign schema_title = page.title | default: site.title | default: 'Bluedobie Developing' -%}
 {%- assign schema_desc = page.description | default: page.excerpt | default: site.description | default: 'Bluedobie Developing helps small businesses with practical websites, content systems, free website audits, and AI-supported workflows.' | strip_html | normalize_whitespace -%}
-{%- assign schema_url = page.canonical_url | default: page.canonical | default: page.url | absolute_url -%}
+{%- assign schema_url_raw = page.canonical_url | default: page.canonical | default: page.url -%}
+{%- assign schema_url_suffix = schema_url_raw | slice: -5, 5 -%}
+{%- if schema_url_raw == '/index.html' -%}
+  {%- assign schema_url_raw = '/' -%}
+{%- elsif schema_url_suffix == '.html' -%}
+  {%- assign schema_trim_len = schema_url_raw.size | minus: 5 -%}
+  {%- assign schema_url_raw = schema_url_raw | slice: 0, schema_trim_len -%}
+{%- endif -%}
+{%- assign schema_url = schema_url_raw | absolute_url -%}
 {%- assign schema_image = page.og_image | default: page.image | default: site.logo | default: '/assets/images/bluedobielogo_1.webp' | absolute_url -%}
 
 <script type="application/ld+json">
@@ -23,7 +31,7 @@
       "description": "Founder-led small business web design, website cleanup, free website audits, content systems, and practical AI workflow support from Princeton, Kentucky.",
       "priceRange": "$$",
       "founder": {
-        "@id": {{ '/about.html' | absolute_url | append: '#melanie-brown' | jsonify }}
+        "@id": {{ '/about' | absolute_url | append: '#melanie-brown' | jsonify }}
       },
       "areaServed": [
         { "@type": "Place", "name": "Western Kentucky" },
@@ -63,7 +71,7 @@
           {
             "@type": "Offer",
             "itemOffered": {
-              "@id": {{ '/services.html' | absolute_url | append: '#service' | jsonify }}
+              "@id": {{ '/services' | absolute_url | append: '#service' | jsonify }}
             }
           },
           {
@@ -83,9 +91,9 @@
     },
     {
       "@type": "Person",
-      "@id": {{ '/about.html' | absolute_url | append: '#melanie-brown' | jsonify }},
+      "@id": {{ '/about' | absolute_url | append: '#melanie-brown' | jsonify }},
       "name": "Melanie Brown",
-      "url": {{ '/about.html' | absolute_url | jsonify }},
+      "url": {{ '/about' | absolute_url | jsonify }},
       "image": {{ '/images/Melanieheadshot.webp' | absolute_url | jsonify }},
       "jobTitle": "Founder and Web Designer",
       "worksFor": {

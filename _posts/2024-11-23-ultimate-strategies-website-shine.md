@@ -54,4 +54,4 @@ Transforming your website into a client magnet doesn't happen overnight, but wit
 
 ## To learn more
 
-Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact.html), and let's build something remarkable together!
+Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact), and let's build something remarkable together!

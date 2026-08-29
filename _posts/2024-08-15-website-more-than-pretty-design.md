@@ -41,7 +41,7 @@ Your website is **your business's digital storefront**, and just like a physical
 
 A **successful** website is more than just pretty visuals—it must be **fast, secure, user-friendly, and optimized for search engines**. At **Bluedobie Developing**, we **create websites that don't just look good—they perform.**
 
-🚀 **Need help building a website that actually converts?** Let's talk! Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact.html) and let's build something remarkable together!
+🚀 **Need help building a website that actually converts?** Let's talk! Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact) and let's build something remarkable together!
 
 ---
 

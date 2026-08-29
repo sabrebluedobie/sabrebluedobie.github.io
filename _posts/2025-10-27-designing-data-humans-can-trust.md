@@ -206,7 +206,7 @@ Because if your team can't follow the reasoning, your AI can't explain itself—
 
 At Bluedobie Developing, we believe the best technology serves people, not the other way around. That's why every system we design—websites, dashboards, or AI workflows—starts with clarity and ends with confidence.
 
-[Let's talk](/contact.html) about building data systems your users can understand, trust, and actually enjoy using.
+[Let's talk](/contact) about building data systems your users can understand, trust, and actually enjoy using.
 
 ---
 

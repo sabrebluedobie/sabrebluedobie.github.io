@@ -5,7 +5,15 @@
 {%- assign _title   = page.title | default: site.title | default: "Bluedobie Developing" -%}
 {%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | normalize_whitespace | truncate: 160 -%}
 {%- assign _image   = page.og_image | default: page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
-{%- assign _canon   = page.canonical_url | default: page.canonical | default: page.url | absolute_url -%}
+{%- assign _canon_raw = page.canonical_url | default: page.canonical | default: page.url -%}
+{%- assign _canon_suffix = _canon_raw | slice: -5, 5 -%}
+{%- if _canon_raw == '/index.html' -%}
+  {%- assign _canon_raw = '/' -%}
+{%- elsif _canon_suffix == '.html' -%}
+  {%- assign _canon_trim_len = _canon_raw.size | minus: 5 -%}
+  {%- assign _canon_raw = _canon_raw | slice: 0, _canon_trim_len -%}
+{%- endif -%}
+{%- assign _canon = _canon_raw | absolute_url -%}
 {%- assign _og_type = page.og_type | default: (page.layout == "post" or page.collection == "posts") | ternary: "article", "website" -%}
 
 <title>{{ _title }}</title>

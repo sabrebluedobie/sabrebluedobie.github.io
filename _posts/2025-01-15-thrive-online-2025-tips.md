@@ -79,8 +79,8 @@ An accessible website means everyone, including people with disabilities, can us
 
 Getting your website ready for 2025 doesn't have to be hard. By focusing on speed, mobile-friendliness, videos, content, and accessibility, you can create a website that attracts and keeps customers. Need help? Bluedobie Developing is here to make the process easy for you.
 
-**Ready to take the next step? Let Bluedobie Developing help you make your website the centerpiece of your business's growth. [Contact us today](/contact.html)!**
+**Ready to take the next step? Let Bluedobie Developing help you make your website the centerpiece of your business's growth. [Contact us today](/contact)!**
 
 ## To learn more
 
-Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact.html), and let's build something remarkable together!
+Bluedobie Developing is committed to helping small businesses learn about web design and business topics. Ready to elevate your online presence? [Contact Bluedobie Developing today](/contact), and let's build something remarkable together!

@@ -51,4 +51,4 @@ Stay tuned for more **Bluedobie Dialogues** where we continue to explore topics 
 
 ---
 
-**Ready to make your website a magnet for customers?** [Contact us today](/contact.html) to learn how Bluedobie Developing can transform your online presence!
+**Ready to make your website a magnet for customers?** [Contact us today](/contact) to learn how Bluedobie Developing can transform your online presence!

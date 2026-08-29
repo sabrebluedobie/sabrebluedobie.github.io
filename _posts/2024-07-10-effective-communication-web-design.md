@@ -53,4 +53,4 @@ Effective communication in web design goes beyond exchanging information. It's a
 
 ---
 
-**Need help improving your web design process?** [Contact Bluedobie Developing](/contact.html) today to learn how we can help streamline your projects with better communication strategies!
+**Need help improving your web design process?** [Contact Bluedobie Developing](/contact) today to learn how we can help streamline your projects with better communication strategies!

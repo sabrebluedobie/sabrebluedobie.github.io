@@ -58,4 +58,4 @@ A powerful online presence can transform your small business, opening up new cha
 
 ## To learn more
 
-Bluedobie Developing is committed to helping small businesses learn about web design and business topics. To ask questions or set up a consultation, [check out our Contact Form here](/contact.html).
+Bluedobie Developing is committed to helping small businesses learn about web design and business topics. To ask questions or set up a consultation, [check out our Contact Form here](/contact).
