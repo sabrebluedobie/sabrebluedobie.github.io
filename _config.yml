@@ -70,3 +70,6 @@ exclude:
   - MOBILE-NAV-README.md
   - REPO_ORGANIZATION_PLAN.md
   - README_APPLY.md
+  - poll-backend/
+  - archive/
+  - template/

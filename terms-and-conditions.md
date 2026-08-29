@@ -4,6 +4,7 @@ title: "Bluedobie Developing Terms and Conditions"
 description: "Review the Terms and Conditions for using Bluedobie Developing's services and website."
 canonical: "https://www.bluedobiedev.com/terms-and-conditions"
 permalink: /terms-and-conditions.html
+sitemap: false
 ---
 
 <style>

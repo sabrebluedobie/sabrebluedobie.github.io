@@ -4,6 +4,7 @@ title: "Bluedobie Developing Privacy Policy"
 description: "Explore the Bluedobie Developing Privacy Policy, tailored to safeguard your personal data and uphold transparency."
 canonical: "https://www.bluedobiedev.com/privacy"
 permalink: /privacy.html
+sitemap: false
 ---
 
 <style>
