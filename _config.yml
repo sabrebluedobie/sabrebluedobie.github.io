@@ -64,3 +64,9 @@ exclude:
   - Gemfile.lock
   - README.md
   - Bluedobie--Dialogues/
+  - CLEANUP-SUMMARY.md
+  - JEKYLL-AUDIT-REPORT.md
+  - MOBILE-FIXES-SUMMARY.md
+  - MOBILE-NAV-README.md
+  - REPO_ORGANIZATION_PLAN.md
+  - README_APPLY.md

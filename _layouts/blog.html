@@ -47,7 +47,7 @@
     {% if page.tags %}
     <div class="post-tags">
       {% for tag in page.tags %}
-      <a class="tag" href="{{ '/tags/' | append: tag | slugify | append: '/' | relative_url }}">#{{ tag }}</a>
+      <a class="tag" href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}">#{{ tag }}</a>
       {% endfor %}
     </div>
     {% endif %}
