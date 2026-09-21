@@ -13,7 +13,7 @@
     <header class="post-hero">
       {%- if cover -%}
       <figure class="post-cover">
-        <img src="{{ cover | relative_url }}" alt="{{ page.title | escape }}" loading="eager" width="1600" height="900">
+        <img src="{{ cover | relative_url }}" alt="{{ page.title | escape }}" loading="eager" fetchpriority="high" width="1600" height="900">
       </figure>
       {%- endif -%}
 
