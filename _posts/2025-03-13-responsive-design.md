@@ -10,7 +10,7 @@ image: "/assets/images/responsive-visibility.webp"
 
 In today's fast-paced digital era, having a website that looks great and functions perfectly on all devices is imperative. Responsive design and mobile optimization have become essential elements in web development to ensure a seamless user experience. In this blog post, we'll delve into why responsive design matters, explore key strategies for mobile optimization, and provide actionable tips for enhancing your website. Additionally, we'll discuss the impact of these practices on digital marketing, business growth, and media consumption.
 
-![Image of someone holding a phone showing “Responsive Web Design](/assets/images/responsive-visibility.webp/600x400)
+![Image of someone holding a phone showing “Responsive Web Design](/assets/images/responsive-visibility.webp)
 
 ## What is Responsive Design?
 
@@ -18,7 +18,7 @@ Responsive design is a web development approach that ensures a website's layout 
 
 ### Key Benefits of Responsive Design
 
-![Image of multiple devices showing responsive website](/assets/images/responsive-design.webp)
+![Image of multiple devices showing responsive website](/assets/images/Responsive-design.webp)
 
 1. **Improved User Experience:** A consistent and enjoyable browsing experience across devices leads to higher user satisfaction and engagement.
 2. **Increased Mobile Traffic:** With mobile internet usage surpassing desktop, having a mobile-friendly site is crucial. In fact, over 50% of web traffic comes from mobile devices.
