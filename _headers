@@ -1,0 +1,21 @@
+# Cloudflare Pages headers.
+# no-transform stops Cloudflare from rewriting HTML at the edge (JS Detections
+# challenge script, email obfuscation, etc.). Assets keep a 4h browser cache
+# because filenames are not versioned.
+/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/assets/*
+  Cache-Control: public, max-age=14400, must-revalidate, no-transform
+
+/images/*
+  Cache-Control: public, max-age=14400, must-revalidate, no-transform
+
+/videos/*
+  Cache-Control: public, max-age=14400, must-revalidate, no-transform
+
+/css/*
+  Cache-Control: public, max-age=14400, must-revalidate, no-transform
+
+/js/*
+  Cache-Control: public, max-age=14400, must-revalidate, no-transform

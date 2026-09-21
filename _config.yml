@@ -53,7 +53,7 @@ defaults:
     values:
       layout: "default"
 
-include: ['.well-known']
+include: ['.well-known', '_headers']
 
 # Exclude build clutter
 exclude:
