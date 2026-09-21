@@ -4,12 +4,12 @@ title: "Why Your Website Must Load in 3 Seconds or Less"
 date: 2025-10-22
 author: "Melanie Brown"
 excerpt: "Learn why a speedy site is key to keeping your rural customers online and how to optimize performance."
-image: /assets/images/dialogues/fast-loading-website.png
+image: /assets/images/dialogues/fast-loading-website.webp
 tags: [web design, website optimization, performance, small business]
 toc: false
 ---
 
-![Fast loading website visualization](/assets/images/dialogues/fast-loading-website.png)
+![Fast loading website visualization](/assets/images/dialogues/fast-loading-website.webp)
 
 Hey there, friends! 👋 If you run a small business anywhere near Princeton, KY or around Western Kentucky, listen up — because I have a little nugget of wisdom that could make or break your business online.
 
@@ -17,7 +17,7 @@ Hey there, friends! 👋 If you run a small business anywhere near Princeton, KY
 
 You might've heard this before: over half of mobile users will **abandon your website if it takes more than three seconds to load**. Yep, a whopping 53% to be exact. That means your beautifully designed website, your lovely photos, and your carefully crafted message might never even get seen if your site crawls like a tractor stuck in mud.
 
-![Local charm in Princeton, KY](/assets/images/dialogues/local-charm.png)
+![Local charm in Princeton, KY](/assets/images/dialogues/local-charm.webp)
 
 Think about it. We live in a world that moves fast (I'm looking at you, TikTok and fast food drive-thrus). People expect websites to load almost instantly, especially on their phones.
 

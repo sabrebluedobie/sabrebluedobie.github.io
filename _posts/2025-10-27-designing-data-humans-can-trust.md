@@ -4,7 +4,7 @@ title: "Designing Data Humans Can Trust: The Missing Layer in AI Strategy"
 date: 2025-10-27
 author: "Melanie Brown"
 excerpt: "AI trust starts with human-readable data. Learn how design clarity and traceability prevent errors and build accessible, explainable systems."
-image: /assets/images/dialogues/data-trust-hero.png
+image: /assets/images/dialogues/data-trust-hero.webp
 tags: [artificial intelligence, data strategy, web development, explainable AI]
 toc: true
 ---

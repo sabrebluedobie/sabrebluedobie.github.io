@@ -15,7 +15,7 @@ Hello, friends! Sabre here, your loyal companion and mascot for Bluedobie Develo
 
 ## What Is Custom Web Design
 
-![web design](/images/sabre-website.png)
+![web design](/images/sabre-website.webp)
 
 Custom web design is like having a tailor-made collar: it fits your business perfectly. Unlike cookie-cutter templates that may work for anyone, a custom web design is crafted specifically for your brand, your goals, and your audience. It's not just about looking good (although that's important); it's about functionality and standing out in the pack.
 

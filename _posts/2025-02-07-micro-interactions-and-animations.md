@@ -5,6 +5,8 @@ categories: [Web Design]
 layout: blog
 excerpt: "Micro-interactions and animations may seem like small elements in web design, but they play a colossal role in driving engagement and enhancing user experience."
 image: "/assets/images/micro-interactions.jpg"
+redirect_from:
+  - /blog/testing-post/
 ---
 # Creating Engaging User Experiences with Micro-interactions and Animations
 

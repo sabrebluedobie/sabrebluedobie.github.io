@@ -1,4 +1,6 @@
-.privacy-hero {
+---
+---
+.terms-hero {
   background-color: #042d4d;
   color: white;
   padding: 80px 20px 40px;
@@ -6,13 +8,13 @@
   margin-top: 80px;
 }
 
-.privacy-hero h1 {
+.terms-hero h1 {
   font-size: 2.5rem;
   margin: 0;
   color: white;
 }
 
-.privacy-content {
+.terms-content {
   max-width: 900px;
   margin: 60px auto;
   padding: 40px 30px;
@@ -22,70 +24,58 @@
   line-height: 1.8;
 }
 
-.privacy-content h2 {
+.terms-content h2 {
   color: #042d4d;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-top: 40px;
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 2px solid #042d4d;
 }
 
-.privacy-content h3 {
-  color: #042d4d;
-  font-size: 1.4rem;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-.privacy-content p {
+.terms-content p {
   margin: 15px 0;
   font-size: 1.05rem;
   color: #333;
 }
 
-.privacy-content ol,
-.privacy-content ul {
+.terms-content ul {
   margin: 15px 0;
   padding-left: 30px;
 }
 
-.privacy-content li {
+.terms-content li {
   margin: 10px 0;
   font-size: 1.05rem;
   color: #333;
 }
 
-.privacy-content strong {
+.terms-content strong {
   color: #042d4d;
 }
 
-.privacy-effective-date {
+.terms-effective-date {
   font-style: italic;
   color: #666;
-  margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 @media (max-width: 768px) {
-  .privacy-hero {
+  .terms-hero {
     padding: 60px 20px 30px;
     margin-top: 60px;
   }
 
-  .privacy-hero h1 {
+  .terms-hero h1 {
     font-size: 2rem;
   }
 
-  .privacy-content {
+  .terms-content {
     margin: 40px 15px;
     padding: 30px 20px;
   }
 
-  .privacy-content h2 {
-    font-size: 1.5rem;
-  }
-
-  .privacy-content h3 {
-    font-size: 1.2rem;
+  .terms-content h2 {
+    font-size: 1.4rem;
   }
 }
