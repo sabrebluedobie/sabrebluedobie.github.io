@@ -4,301 +4,10 @@ title: "Our Links | Bluedobie Developing"
 description: "Not only does Bluedobie build your website, but we can recommend related products too!"
 canonical: "https://www.bluedobiedev.com/business-links"
 sitemap: false
+extra_css:
+  - /assets/css/pages/business-links.css
 ---
 
-<style>
-/* Hero Section */
-.links-hero-section {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  overflow: hidden;
-  margin-top: 80px;
-}
-
-.links-hero-video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.links-hero-video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.links-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 2;
-}
-
-.links-hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.links-hero-content h1 {
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.links-hero-content h2,
-.links-hero-content h3,
-.links-hero-content p {
-  color: white;
-}
-
-/* Main Content Container */
-.links-page-content {
-  background: white;
-  padding: 60px 20px;
-  min-height: 50vh;
-}
-
-/* Affiliate Disclaimer */
-.affiliate-disclaimer {
-  background-color: #fff3cd;
-  border: 2px solid #ffc107;
-  border-radius: 8px;
-  padding: 25px;
-  margin: 0 auto 60px;
-  max-width: 1000px;
-  text-align: center;
-}
-
-.affiliate-disclaimer p {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #856404;
-  line-height: 1.7;
-  font-weight: 500;
-}
-
-/* Collapsible Sections */
-.collapsible-container {
-  margin: 30px auto;
-  max-width: 1000px;
-  border: 2px solid #042d4d;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  background: white;
-}
-
-.collapsible-btn {
-  width: 100%;
-  background-color: #042d4d;
-  color: white;
-  padding: 20px 25px;
-  border: none;
-  text-align: left;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.collapsible-btn:hover {
-  background-color: #063a63;
-}
-
-.collapsible-btn::after {
-  content: '+';
-  font-size: 2rem;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  margin-left: 20px;
-}
-
-.collapsible-btn.active::after {
-  content: '−';
-}
-
-.collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-  background-color: #fafafa;
-}
-
-.collapsible-content.active {
-  max-height: 10000px;
-  transition: max-height 0.6s ease-in;
-}
-
-.collapsible-inner {
-  padding: 40px 30px;
-}
-
-/* Content Styles */
-.text-wrap {
-  margin: 20px 0;
-  line-height: 1.8;
-}
-
-.text-wrap h2 {
-  color: #042d4d;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.text-wrap h3 {
-  color: #042d4d;
-  font-size: 1.5rem;
-  margin: 30px 0 15px;
-}
-
-.text-wrap p {
-  margin: 15px 0;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.text-wrap ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 20px 0;
-}
-
-.text-wrap ul li {
-  margin: 15px 0;
-  padding-left: 40px;
-  position: relative;
-  font-size: 1.05rem;
-  color: #333;
-  line-height: 1.6;
-}
-
-.text-wrap ul li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #28a745;
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.banner-div {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.banner-div img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.tp-image {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.tp-image img {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.text-link,
-.cta-button {
-  display: inline-block;
-  margin: 20px 10px;
-  padding: 15px 35px;
-  background-color: #042d4d;
-  color: white !important;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.text-link:hover,
-.cta-button:hover {
-  background-color: #063a63;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.promo {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.promo img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-@media screen and (max-width: 768px) {
-  .links-hero-section {
-    height: 50vh;
-    margin-top: 60px;
-  }
-  
-  .links-hero-content h1 {
-    font-size: 1.8rem;
-  }
-  
-  .collapsible-container {
-    margin: 20px 10px;
-  }
-  
-  .affiliate-disclaimer {
-    margin: 30px 10px;
-    padding: 20px 15px;
-  }
-  
-  .collapsible-btn {
-    font-size: 1.1rem;
-    padding: 15px 20px;
-  }
-  
-  .collapsible-inner {
-    padding: 25px 20px;
-  }
-  
-  .text-wrap h2 {
-    font-size: 1.5rem;
-  }
-  
-  .text-wrap h3 {
-    font-size: 1.3rem;
-  }
-}
-</style>
 
 <!-- Hero Section -->
 <div class="links-hero-section">
@@ -334,7 +43,7 @@ sitemap: false
       <div class="collapsible-inner">
         <div class="banner-div">
           <a href="https://www.tkqlhce.com/click-101342345-13942203" target="_blank" rel="noopener">
-            <img src="https://www.lduhtrp.net/image-101342345-13942203" width="430" height="358" alt="Complete end-to-end security. Sucuri.net" border="0"/>
+            <img src="https://www.lduhtrp.net/image-101342345-13942203" width="430" height="358" alt="Complete end-to-end security. Sucuri.net">
           </a>
         </div>
         
@@ -356,7 +65,7 @@ sitemap: false
         
         <div style="text-align: center;">
           <a class="text-link" href="https://www.kqzyfj.com/click-101342345-13942195" target="_blank" rel="noopener">View Platform Plan Pricing</a>
-          <img src="https://www.tqlkg.com/image-101342345-13942195" alt="" width="1" height="1" border="0"/>
+          <img src="https://www.tqlkg.com/image-101342345-13942195" alt="" width="1" height="1">
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
@@ -378,7 +87,7 @@ sitemap: false
             <a href="https://www.tkqlhce.com/click-101342345-15622545?url=https%3A%2F%2Fus.store.tp-link.com%2Fproducts%2Farcher-ax55%3F_pos%3D1%26_sid%3Db9f0433db%26_ss%3Dr&cjsku=Archer-Ax55" target="_blank" rel="noopener" style="color: #042d4d; text-decoration: none;">
               TP-Link AX3000 Dual Band Gigabit Wi-Fi 6 Router
             </a>
-            <img src="https://www.tqlkg.com/image-101342345-15622545" width="1" height="1" alt="" border="0"/>
+            <img src="https://www.tqlkg.com/image-101342345-15622545" width="1" height="1" alt="">
           </h2>
         </div>
         
@@ -386,7 +95,7 @@ sitemap: false
           <a href="https://www.jdoqocy.com/click-101342345-15622545?url=https%3A%2F%2Fus.store.tp-link.com%2Fproducts%2Farcher-ax55%3F_pos%3D1%26_sid%3Db9f0433db%26_ss%3Dr&cjsku=Archer-Ax55" target="_blank" rel="noopener">
             <img src="https://us.store.tp-link.com/cdn/shop/products/21_Archer-AX55_01_1500x1500_e726d69a-851e-4a59-b77b-d06c4d8e0728_600x.png?v=1634258275" border="0" alt="TP-Link AX3000 Router"/>
           </a>
-          <img src="https://www.lduhtrp.net/image-101342345-15622545" width="1" height="1" border="0"/>
+          <img src="https://www.lduhtrp.net/image-101342345-15622545" width="1" height="1" alt="">
         </div>
         
         <div class="text-wrap">
@@ -412,7 +121,7 @@ sitemap: false
             <input type="hidden" name="url" value="https://us.store.tp-link.com/"/>
             <input type="submit" value="Buy Now" class="cta-button"/>
           </form>
-          <img src="https://www.ftjcfx.com/image-101342345-15622545" width="1" height="1" border="0"/>
+          <img src="https://www.ftjcfx.com/image-101342345-15622545" width="1" height="1" alt="">
         </div>
       </div>
     </div>
@@ -425,7 +134,7 @@ sitemap: false
       <div class="collapsible-inner">
         <div class="banner-div">
           <a href="https://www.tkqlhce.com/click-101342345-11337760" target="_blank" rel="noopener">
-            <img src="https://www.awltovhc.com/image-101342345-11337760" width="728" height="90" alt="InterServer Web Hosting and VPS" border="0"/>
+            <img src="https://www.awltovhc.com/image-101342345-11337760" width="728" height="90" alt="InterServer Web Hosting and VPS">
           </a>
         </div>
 
@@ -438,7 +147,7 @@ sitemap: false
 
           <div class="promo">
             <a href="https://www.anrdoezrs.net/click-101342345-11337766" target="_blank" rel="noopener">
-              <img src="https://www.tqlkg.com/image-101342345-11337766" width="300" height="250" alt="InterServer VPS Hosting" border="0"/>
+              <img src="https://www.tqlkg.com/image-101342345-11337766" width="300" height="250" alt="InterServer VPS Hosting">
             </a>
           </div>
           

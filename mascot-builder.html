@@ -99,6 +99,9 @@
             background: var(--gg-navy);
         }
         
+        .output-section h2 { font-size: 1.17em; }
+        .email-section h3 { font-size: 1em; }
+
         .output-section {
             margin-top: 30px;
             padding: 20px;
@@ -250,12 +253,12 @@
         </form>
         
         <div class="output-section" id="outputSection" style="display: none;">
-            <h3>Your AI Prompt:</h3>
+            <h2>Your AI Prompt:</h2>
             <div class="prompt-output" id="promptOutput"></div>
             <button class="copy-btn" onclick="copyPrompt()">📋 Copy Prompt</button>
             
             <div class="email-section">
-                <h4>📧 Send to Gridiron Gazette</h4>
+                <h3>📧 Send to Gridiron Gazette</h3>
                 <p>Copy the prompt above and email it to: <strong>gridirongazette@bluedobiedev.com</strong></p>
                 <p>Include your team name in the subject line: "Mascot Request - [Team Name]"</p>
             </div>

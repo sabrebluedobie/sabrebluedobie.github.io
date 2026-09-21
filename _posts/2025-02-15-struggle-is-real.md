@@ -53,7 +53,7 @@ Your website might look great, but if visitors don’t know **what action to tak
 ✅ **Use Buttons, Not Just Links** – Buttons stand out and encourage clicks.  
 ✅ **Highlight What You Offer in the First 5 Seconds** – Don’t make people scroll to figure it out.  
 
-<video controls width="100%">
+<video controls style="width:100%">
   <source src="/assets/video/mobile-responsiveness.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>

@@ -1,0 +1,25 @@
+.notfound { text-align:center; padding: 3.5rem 1rem; color:#1a1a2e; }
+  .nf-figure { margin:1.25rem auto; max-width: 420px; }
+  .nf-figure img { width:100%; height:auto; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+  .nf-header h1 { font-family: 'Instrument Serif', serif; font-size: clamp(1.9rem, 2.8vw, 2.6rem); margin:.75rem 0 .35rem; text-align: center; font-weight: 400; }
+  .lead { 
+    font-size: 1.05rem; 
+    color:#444; 
+    margin:0 auto 1.25rem; 
+    padding: 0;
+    max-width: 52ch; 
+    text-align: center;
+  }
+  .nf-actions { display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin:1.25rem 0 1.25rem; }
+  .btn {
+    display:inline-block; padding:.7rem 1.1rem; border-radius:999px;
+    border:1px solid #16213e; text-decoration:none; color:#16213e;
+    transition: transform .12s ease, background .12s ease;
+  }
+  .btn:hover { background:#16213e; color:#fff; transform:translateY(-1px); }
+  .nf-note { 
+    margin: .75rem 0 0; 
+    padding: 0;
+    color:#555; 
+    text-align: center;
+  }

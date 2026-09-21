@@ -1,0 +1,361 @@
+/* Hero Section with Video - Full Width */
+.hero-video-section {
+  background: #f9fafb;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-video-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #042d4d;
+  }
+  .hero-video-section .hero-content {
+    position: relative !important;
+  }
+
+  .hero-video-section .hero-video-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #042d4d;
+  }
+
+  .hero-content .tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    color: #6b7280;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #042d4d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(4, 45, 77, 0.3);
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 45, 77, 0.4);
+    background: #063a62;
+  }
+
+  /* Content Sections */
+  .content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: #042d4d;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Pricing Tiers */
+  .pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pricing-grid > * {
+    flex: 1 1 400px;
+    max-width: 480px;
+    min-width: 320px;
+  }
+
+  .pricing-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2.5rem;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .pricing-card.featured {
+    border-color: #042d4d;
+    position: relative;
+  }
+
+  .pricing-card.featured::before {
+    content: "MOST POPULAR";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #042d4d;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .tier-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-turnaround {
+    color: #6b7280;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex: 1;
+  }
+
+  .tier-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .tier-features li:last-child {
+    border-bottom: none;
+  }
+
+  .tier-features li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .tier-cta {
+    display: block;
+    padding: 1rem 2rem;
+    background: #042d4d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .tier-cta:hover {
+    background: #063a62;
+  }
+
+  /* Process Section */
+  .process-steps {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .process-step {
+  padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+  .step-number {
+  display: inline-flex;  /* Change from inline-block to inline-flex */
+  align-items: center;    /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  width: 60px;
+  height: 60px;
+  background: #042d4d;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+  .step-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* FAQ Section */
+  .faq-list {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-item {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .faq-question {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #042d4d;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-answer {
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  /* CTA Section */
+  .final-cta-section {
+    background: linear-gradient(135deg, #042d4d 0%, #063a62 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .final-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .final-cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: white;
+    color: #042d4d;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .final-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.2rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .tier-price {
+      font-size: 2.5rem;
+    }
+
+    .faq-item {
+      padding: 1.5rem;
+    }
+
+    .faq-question {
+      font-size: 1.15rem;
+    }
+
+    .faq-answer {
+      font-size: 1rem;
+    }
+  }
