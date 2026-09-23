@@ -81,6 +81,8 @@
 /* ---------- Hero ---------- */
 
 .ai-hero {
+  display: flex;
+  flex-direction: column;
   padding: 0 0 clamp(2rem, 4vw, 3rem);
   background:
     radial-gradient(circle at 12% 0%, rgba(110, 203, 255, 0.16), transparent 22rem),
@@ -188,7 +190,13 @@
     letter-spacing: 0.04em;
   }
 
-  .ai-hero-copy { padding-top: clamp(1.75rem, 5vw, 2.5rem); }
+  /* Text first so the headline is not duplicated by the banner above it, and
+     so the buttons land above the fold. The banner follows as support. */
+  .ai-hero-copy    { order: 1; padding-top: clamp(1.75rem, 5vw, 2.5rem); }
+  .ai-hero-actions { order: 2; }
+  .ai-hero-artwrap { order: 3; margin-top: clamp(1.75rem, 5vw, 2.5rem); }
+
+  .ai-hero-actions .ai-cta-row { justify-content: stretch; }
 }
 
 .ai-hero h1 {
@@ -253,6 +261,21 @@
   border-color: var(--color-navy);
   background: rgba(4, 45, 77, 0.04);
 }
+
+.ai-btn-invert {
+  background: var(--color-cream);
+  color: var(--color-navy);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+.ai-btn-invert:hover,
+.ai-btn-invert:focus {
+  background: var(--color-white);
+  color: var(--color-navy);
+  transform: translateY(-2px);
+}
+
+.ai-cta-centered { justify-content: center; }
 
 .ai-btn-lg {
   padding: 1.1rem 2.4rem;
@@ -388,6 +411,24 @@
 .ai-guide .ai-lead,
 .ai-guide p { margin-inline: auto; }
 .ai-guide .ai-cta-row { justify-content: center; }
+
+.ai-callout {
+  margin: 2.25rem 0 0 !important;
+  padding: 1.1rem 1.35rem;
+  border-left: 4px solid rgba(255, 246, 236, 0.5);
+  background: rgba(255, 246, 236, 0.07);
+  border-radius: 0 10px 10px 0;
+  font-weight: 600;
+  font-size: 1.06rem !important;
+  line-height: 1.55 !important;
+  color: var(--color-white) !important;
+}
+
+.ai-pullquote-wide {
+  max-width: 34ch;
+  margin-inline: auto !important;
+  margin-top: 2.75rem !important;
+}
 
 /* ---------- Guide email gate ---------- */
 
