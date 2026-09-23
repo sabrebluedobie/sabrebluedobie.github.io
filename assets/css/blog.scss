@@ -211,3 +211,14 @@
     margin-left: 4vw;
   }
 }
+
+/* Post cover art: reserve a fixed box so a source image of any ratio cannot
+   shift the page when it loads. See the note in _layouts/blog.html. */
+.post-cover img {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: #{"16 / 9"};
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}

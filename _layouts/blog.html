@@ -22,7 +22,14 @@
 
     .post-cover img {
       width: 100%;
-      height: auto;
+      max-width: 100%;
+      /* Cover art ranges from 0.67 to 1.99 across posts while the markup
+         declares 1600x900, so the browser reserved 16:9 and then reflowed to
+         the real ratio on load. Pin the box instead — no shift, and covers
+         look consistent from post to post. */
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
       display: block;
     }
 
