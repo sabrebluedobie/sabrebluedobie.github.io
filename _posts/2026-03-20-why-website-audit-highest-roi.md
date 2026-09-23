@@ -2,7 +2,9 @@
 layout: post
 title: "Why a Website Audit Delivers the Highest ROI (And What Most Businesses Miss)"
 date: 2026-03-20
-permalink: /blog/why-website-audit-highest-roi/
+permalink: /knowledge/website-audit-roi/
+redirect_from:
+  - /blog/why-website-audit-highest-roi/
 description: "Think your website is “fine”? A website audit can uncover hidden issues quietly costing you leads, speed, and visibility."
 tags:
   - Website Audits

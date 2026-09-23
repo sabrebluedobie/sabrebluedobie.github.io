@@ -3,7 +3,9 @@ layout: post
 title: "How Much Does a Small Business Website Cost?"
 description: "A clear breakdown of small business web design pricing—from DIY builders to agencies—plus what affects cost, hidden fees to watch for, and how to budget smart."
 excerpt: "Most small business websites cost anywhere from $500 to $6,000. Here’s what affects pricing, what to watch out for, and how to budget smart without wasting money."
-permalink: /blog/:title/
+permalink: /knowledge/small-business-website-cost/
+redirect_from:
+  - /blog/cost-of-a-sm-biz-site/
 image: /assets/images/small-business-website-cost-planning.webp
 ---
 
