@@ -67,41 +67,48 @@
   }
 </style>
 
-<link rel="preload" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}"></noscript>
+{%- comment -%}
+  One build stamp for every stylesheet. _headers caches /assets/* for four
+  hours and these filenames are not content-hashed, so without it an edited
+  stylesheet is served stale from Cloudflare's edge after a deploy.
+{%- endcomment -%}
+{%- assign css_v = site.time | date: '%s' -%}
 
-<link rel="preload" href="{{ '/assets/css/blog.css' | relative_url }}"
+<link rel="preload" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}?v={{ css_v }}"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}"></noscript>
+<noscript><link rel="stylesheet" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}?v={{ css_v }}"></noscript>
+
+<link rel="preload" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ css_v }}"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ css_v }}"></noscript>
 
 <link rel="preload"
-      href="{{ '/assets/css/webflow.css' | relative_url }}"
+      href="{{ '/assets/css/webflow.css' | relative_url }}?v={{ css_v }}"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
-  <link rel="stylesheet" href="{{ '/assets/css/webflow.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/webflow.css' | relative_url }}?v={{ css_v }}">
 </noscript>
 
-<link rel="preload" href="{{ '/assets/css/normalize.css' | relative_url }}"
+<link rel="preload" href="{{ '/assets/css/normalize.css' | relative_url }}?v={{ css_v }}"
       as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}"></noscript>
+<noscript><link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}?v={{ css_v }}"></noscript>
 
-<link rel="preload" href="{{ '/css/design-tokens.css' | relative_url }}"
+<link rel="preload" href="{{ '/css/design-tokens.css' | relative_url }}?v={{ css_v }}"
       as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/css/design-tokens.css' | relative_url }}"></noscript>
+<noscript><link rel="stylesheet" href="{{ '/css/design-tokens.css' | relative_url }}?v={{ css_v }}"></noscript>
 
-<link rel="preload" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v=2"
+<link rel="preload" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v={{ css_v }}"
       as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v=2"></noscript>
+<noscript><link rel="stylesheet" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v={{ css_v }}"></noscript>
 
 
 <!-- CSS: reset → design tokens → framework → theme → overrides -->
 
-<link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}?v=3">
-<link rel="stylesheet" href="{{ '/assets/css/mobile-nav.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}?v={{ css_v }}">
+<link rel="stylesheet" href="{{ '/assets/css/mobile-nav.css' | relative_url }}?v={{ css_v }}">
 
 <!-- Your site-level overrides -->
 {%- comment -%} GA4 and the Meta pixel are loaded by Cloudflare Zaraz, not here. {%- endcomment -%}
