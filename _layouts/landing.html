@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+  {% if page.head_extra %}{{ page.head_extra }}{% endif %}
+</head>
+
+<body class="landing">
+
+  {%- comment -%}
+    No nav by design. A landing page has one job; a nav bar is an exit.
+    Legal links live in the slim footer below.
+  {%- endcomment -%}
+
+  <main id="content">
+    {{ content }}
+  </main>
+
+  <footer class="landing-footer">
+    <div class="landing-footer-inner">
+      <a href="/" class="landing-footer-brand">
+        <img src="{{ '/assets/images/bluedobielogo-200.webp' | relative_url }}"
+             alt="Bluedobie Developing" width="56" height="55" loading="lazy">
+        <span>Bluedobie Developing</span>
+      </a>
+      <p class="landing-footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms-and-conditions">Terms</a>
+        <a href="/contact">Contact</a>
+      </p>
+      <p class="landing-footer-legal">{{ page.legal_note }}</p>
+      <p class="landing-footer-copy">&copy; {{ 'now' | date: "%Y" }} Bluedobie Developing, LLC &middot; Princeton, Kentucky</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+---
+layout: landing
+title: "AI Setup Review for Local Service Businesses | Bluedobie Developing"
+description: "Practical AI workflow and boundary guidance for plumbers, HVAC companies, salons, contractors, and other local service businesses. Know what your AI can see, what it can do, and where it should stop."
+permalink: /ai-setup-review/
+redirect_from:
+  - /landing-page
+  - /landing-page.html
+og_image: "https://www.bluedobiedev.com/assets/images/bluedobielogo_1.webp"
+legal_note: "Bluedobie Developing provides AI workflow, architecture, security-awareness, and operational guidance. Services are not legal, regulatory, cybersecurity certification, or compliance advice."
+extra_css:
+  - /assets/css/pages/ai-setup-review.css
+---
+
+<!-- Hero -->
+<section class="ai-hero">
+  <button type="button" class="ai-hero-artwrap" id="heroZoom">
+    <img class="ai-hero-art"
+         src="{{ '/assets/images/ai-setup-hero.webp' | relative_url }}"
+         srcset="{{ '/assets/images/ai-setup-hero-sm.webp' | relative_url }} 900w, {{ '/assets/images/ai-setup-hero.webp' | relative_url }} 1600w"
+         sizes="100vw" width="1536" height="1024" fetchpriority="high" decoding="async"
+         alt="AI can help your business. It also needs boundaries. Sabre, a Doberman, sits on a gravel drive facing a wooden signpost: Cloud — convenient, powerful, use with care — one way, and Local — more control, more privacy, built around you — the other.">
+    <span class="ai-zoom-hint" aria-hidden="true">Tap to enlarge</span>
+  </button>
+
+  <dialog class="ai-lightbox" id="heroLightbox" aria-label="Enlarged banner">
+    <button type="button" class="ai-lightbox-close" id="heroLightboxClose" aria-label="Close">&times;</button>
+    <img src="{{ '/assets/images/ai-setup-hero.webp' | relative_url }}" alt="" decoding="async">
+  </dialog>
+
+  <div class="ai-wrap ai-hero-copy">
+    <p class="ai-eyebrow">AI Advisory for Local Service-Based Small Businesses</p>
+    <h1>AI can help your business.<br>It also needs boundaries.</h1>
+    <p class="ai-lead">
+      You may already be using ChatGPT, Claude, Gemini, or another AI tool to write emails, put together
+      marketing content, answer questions, organize information, or get through the administrative work
+      that piles up when you're busy actually running the business.
+    </p>
+    <p class="ai-lead">
+      The question isn't whether your business should use AI. It's knowing what AI should have access to,
+      where your information goes, and where the boundaries need to be.
+    </p>
+    <p class="ai-lead">
+      I help local service businesses build AI workflows that fit the way they already work.
+    </p>
+  </div>
+
+  <div class="ai-wrap ai-hero-actions">
+    <p class="ai-cta-row">
+      <a class="ai-btn ai-btn-primary" href="https://tidycal.com/bluedobiedeveloping" target="_blank" rel="noopener">
+        Schedule an AI Setup Review
+      </a>
+      <a class="ai-btn ai-btn-ghost" href="#guide">Get the free guide first</a>
+    </p>
+  </div>
+</section>
+
+<!-- You don't need an enterprise strategy -->
+<section class="ai-section">
+  <div class="ai-wrap ai-narrow">
+    <h2>You don't need an enterprise AI strategy.</h2>
+    <p>You need to know what makes sense for your business.</p>
+    <p>
+      A plumber, HVAC company, salon, photographer, landscaper, repair shop, cleaning company, or contractor
+      does not need a 70-page AI governance plan. You probably need answers to much more practical questions:
+    </p>
+    <ul class="ai-question-list">
+      <li>Which AI tools actually make sense for what we do?</li>
+      <li>What can employees safely put into them?</li>
+      <li>What customer or business information should stay out?</li>
+      <li>Should anything run locally instead of in the cloud?</li>
+      <li>Who should have access?</li>
+      <li>Where should passwords and API keys live?</li>
+      <li>Should AI be allowed to take actions, or only make recommendations?</li>
+      <li>Where does a human need to approve something?</li>
+      <li>What happens to the information we hand these tools?</li>
+      <li>Are we paying for five different AI tools that solve the same problem?</li>
+    </ul>
+    <p class="ai-emphasis">
+      Those are architecture questions. Answering them before you connect everything together is a lot
+      easier than untangling it afterward.
+    </p>
+  </div>
+</section>
+
+<!-- Start with the business -->
+<section class="ai-section ai-section-cream">
+  <div class="ai-wrap ai-narrow">
+    <h2>Start with the business. Then choose the AI.</h2>
+    <p>There's no AI stack that's right for every small business, so I start with what you actually do.</p>
+    <p>
+      What takes your time? What information moves through the business? What do employees need access to?
+      Where are the repetitive tasks? What contains customer information? What absolutely cannot break?
+    </p>
+    <p>Then we decide where AI is useful.</p>
+    <p class="ai-stack">
+      That may mean cloud AI.<br>
+      It may mean local AI.<br>
+      It may mean automation.<br>
+      It may mean keeping a human approval step in the middle.
+    </p>
+    <p>And sometimes the right answer is simply:</p>
+    <p class="ai-pullquote">AI doesn't need access to that.</p>
+  </div>
+</section>
+
+<!-- What the review looks at -->
+<section class="ai-section">
+  <div class="ai-wrap">
+    <h2 class="ai-centered">What an AI Setup Review looks at</h2>
+    <div class="ai-grid">
+
+      <article class="ai-card">
+        <h3>Your current AI use</h3>
+        <p>
+          We look at the AI tools already being used in the business, including the unofficial ones. A policy
+          that says "don't use AI" doesn't tell you what somebody pasted into ChatGPT at 4:30 yesterday afternoon.
+        </p>
+      </article>
+
+      <article class="ai-card">
+        <h3>Your information</h3>
+        <p>
+          We sort the kinds of information your business handles, separating ordinary working information from
+          the things that deserve more protection. Customer records. Employee records. Contracts. Financials.
+          Credentials. Internal know-how. Not everything carries the same risk.
+        </p>
+      </article>
+
+      <article class="ai-card">
+        <h3>Cloud vs. local</h3>
+        <p>
+          Cloud AI isn't automatically unsafe. Local AI isn't automatically private. We look at what belongs
+          where, based on the information involved and the controls you actually have.
+        </p>
+      </article>
+
+      <article class="ai-card">
+        <h3>Access and security</h3>
+        <p>
+          Who can use the AI? What can it read? What can it change? Where are its credentials stored? What
+          happens when an employee leaves? A useful AI system needs boundaries around both information and authority.
+        </p>
+      </article>
+
+      <article class="ai-card">
+        <h3>Human approval</h3>
+        <p>
+          There's a big difference between "draft a response to this customer" and "send this response to the
+          customer." We map where AI can work on its own and where a person stays in the loop.
+        </p>
+      </article>
+
+      <article class="ai-card">
+        <h3>The whole pile</h3>
+        <p>
+          One piece of information may be harmless. Customer lists, pricing, vendors, schedules, margins,
+          complaints, renewal dates, procedures, and upcoming work collected together can say quite a lot about
+          a business. We look at the pile, not just each piece.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- What you leave with -->
+<section class="ai-section ai-section-navy">
+  <div class="ai-wrap ai-narrow">
+    <h2>What you leave with</h2>
+    <p>
+      This isn't an hour of talking about AI that ends with you holding twelve new buzzwords. The goal is a
+      plan you can use. Depending on the scope of the review, that can include:
+    </p>
+    <dl class="ai-deliverables">
+      <dt>AI Workflow Map</dt>
+      <dd>Where AI fits into your existing processes, and where it doesn't.</dd>
+
+      <dt>Cloud / Local Recommendations</dt>
+      <dd>Which work suits cloud AI, and where a controlled local setup makes more sense.</dd>
+
+      <dt>AI Data Boundaries</dt>
+      <dd>Clear guidance on what employees can use with AI, what needs a second look, and what stays out.</dd>
+
+      <dt>Access &amp; Approval Boundaries</dt>
+      <dd>Who gets access, what the AI is allowed to do, and which actions need a person to sign off.</dd>
+
+      <dt>Tool Recommendations</dt>
+      <dd>What's worth using, what overlaps, and what you can probably drop.</dd>
+
+      <dt>Practical AI Use Guidelines</dt>
+      <dd>Something your team can actually follow when work gets busy.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Local AI -->
+<section class="ai-section">
+  <div class="ai-wrap ai-narrow">
+    <h2>Local AI, when it makes sense</h2>
+    <p>
+      Local AI can be a good fit when your business needs tighter control over internal knowledge, or when you'd
+      rather not send certain information to an outside provider as a matter of routine.
+    </p>
+    <p>But installing a model on a computer doesn't make it secure.</p>
+    <p>
+      A properly designed local setup may need authentication, device encryption, protected credentials, limited
+      file access, network controls, backups, logging, and human approval boundaries.
+    </p>
+    <p class="ai-pullquote">
+      Think less "I downloaded an AI model."<br>
+      Think more "Who has the keys, and what do those keys open?"
+    </p>
+  </div>
+</section>
+
+<!-- Free guide -->
+<section class="ai-section ai-section-cream" id="guide">
+  <div class="ai-wrap ai-narrow ai-guide">
+    <p class="ai-eyebrow">Free download</p>
+    <h2>Two pages you can hand your team today</h2>
+    <p>
+      A first-pass guide to what goes in cloud AI and what stays local, plus eight things that have to be locked
+      down before a local setup counts as private. Print it. Stick it by the desk.
+    </p>
+
+    <form class="ai-guide-form" id="guideForm" novalidate>
+      <div class="ai-field">
+        <label for="guideName">First name</label>
+        <input type="text" id="guideName" name="first-name" autocomplete="given-name" required>
+      </div>
+      <div class="ai-field">
+        <label for="guideEmail">Email</label>
+        <input type="email" id="guideEmail" name="email" autocomplete="email" required>
+      </div>
+      <!-- Honeypot, matching the contact form's convention. -->
+      <input class="ai-hp" aria-hidden="true" tabindex="-1" name="company_website" type="text" autocomplete="off">
+      <button class="ai-btn ai-btn-primary" type="submit" id="guideSubmit">Send me the guide</button>
+      <p class="ai-form-note" id="guideNote">
+        One email, one guide. No list, no drip sequence &mdash; I'll only follow up if you ask.
+        See the <a href="/privacy">privacy policy</a>.
+      </p>
+    </form>
+
+    <div class="ai-guide-done" id="guideDone" hidden>
+      <p class="ai-guide-done-head">Here it is &mdash; thanks!</p>
+      <p class="ai-cta-row">
+        <a class="ai-btn ai-btn-primary" id="guideLink" href="{{ '/documents/Bluedobie-AI-Setup-Guide.pdf' | relative_url }}" target="_blank" rel="noopener">
+          Open the guide (PDF)
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Credibility -->
+<section class="ai-section">
+  <div class="ai-wrap ai-narrow">
+    <h2>Built from working systems, not AI theory</h2>
+    <p>
+      I'm Melanie Brown, the owner and developer behind Bluedobie Developing.
+    </p>
+    <p>
+      My work with AI grew out of building systems for my own business, including Bifrost, a local AI routing and
+      governance architecture built around controlled access, model routing, human approval, and clear authority
+      boundaries.
+    </p>
+    <p>That work taught me something useful: the hardest part of business AI usually isn't choosing a model. It's designing the system around it.</p>
+    <p>
+      AI needs to know what it can see, what it can do, when it needs a person, and where it should stop. Those
+      same principles scale down to an ordinary small business better than you'd expect.
+    </p>
+    <p class="ai-emphasis">You don't need to build Bifrost. You need the right boundaries for your business.</p>
+  </div>
+</section>
+
+<!-- Understand what you're paying for -->
+<section class="ai-section ai-section-alt">
+  <div class="ai-wrap ai-narrow">
+    <h2>You should understand the system you're paying for</h2>
+    <p>
+      My goal isn't to make your business dependent on me to run its own AI. You should understand what was
+      recommended, why, what the risks are, and what your team needs to do differently.
+    </p>
+    <p>
+      That's also why this work sits alongside <a href="https://learn.bluedobiedev.com">DobieCore Learn</a>, where
+      I teach small-business owners how to work with AI more effectively. Consulting helps design the system.
+      Education helps you keep using it well after I leave.
+    </p>
+  </div>
+</section>
+
+<!-- Qualifier + final CTA -->
+<section class="ai-section ai-final">
+  <div class="ai-wrap ai-narrow">
+    <h2>Not sure whether you need one?</h2>
+    <p>If AI is already being used in your business and you can't confidently answer these:</p>
+    <ul class="ai-question-list ai-tight">
+      <li>What are we using?</li>
+      <li>What information are we giving it?</li>
+      <li>Where does that information go?</li>
+      <li>Who has access?</li>
+      <li>What can the AI actually do?</li>
+    </ul>
+    <p>&hellip;then we have somewhere useful to start.</p>
+
+    <div class="ai-final-cta">
+      <h3>Build an AI setup that holds up when business gets busy.</h3>
+      <p>Practical recommendations. Clear boundaries. No AI theater.</p>
+      <p class="ai-cta-row">
+        <a class="ai-btn ai-btn-primary ai-btn-lg" href="https://tidycal.com/bluedobiedeveloping" target="_blank" rel="noopener">
+          Schedule an AI Setup Review
+        </a>
+      </p>
+      <p class="ai-rate"><strong>$75/hour.</strong> Western Kentucky rates, not consultancy rates. We'll scope the hours together on the call, before anything starts.</p>
+      <p class="ai-form-note">Booking opens my <strong>30 minute first time consult</strong> &mdash; a casual conversation about what you need, what it would take, and whether we're the right fit. No charge for the call.</p>
+      <p class="ai-fineprint">
+        Serving local service businesses in western Kentucky and remotely.
+        Questions first? <a href="mailto:melanie.brown@bluedobiedev.com">Email me</a>
+        or call <a href="tel:+12703883535">270-388-3535</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var trigger = document.getElementById('heroZoom');
+    var dialog  = document.getElementById('heroLightbox');
+    var close   = document.getElementById('heroLightboxClose');
+    if (!trigger || !dialog || typeof dialog.showModal !== 'function') return;
+
+    trigger.addEventListener('click', function () { dialog.showModal(); });
+    close.addEventListener('click', function () { dialog.close(); });
+    // Tapping the backdrop closes it; taps on the image itself do not.
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+  })();
+
+  // Guide email gate. Posts to the same Make webhook the contact form uses.
+  (function () {
+    var form   = document.getElementById('guideForm');
+    var done   = document.getElementById('guideDone');
+    var note   = document.getElementById('guideNote');
+    var submit = document.getElementById('guideSubmit');
+    if (!form) return;
+
+    var ENDPOINT = 'https://hook.us2.make.com/mw8kpkfkzarglrhqsk4ynuw7swg5p3ao';
+
+    function reveal() {
+      form.hidden = true;
+      done.hidden = false;
+      done.querySelector('a').focus();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.company_website.value) return;        // bot
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          'first-name': form['first-name'].value.trim(),
+          'last-name': '',
+          email: form.email.value.trim(),
+          'request-type': 'AI Setup Guide download',
+          summary: 'Downloaded the cloud vs. local AI guide',
+          message: 'Requested the free AI setup guide from /ai-setup-review/',
+          action: 'submit'
+        })
+      })
+      .catch(function () {
+        // Their plumbing problem, not the visitor's — hand over the guide anyway.
+        note.textContent = "Couldn't save your details, but here's the guide.";
+      })
+      .then(reveal);
+    });
+  })();
+</script>
