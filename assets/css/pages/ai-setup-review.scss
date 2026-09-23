@@ -216,6 +216,20 @@
   color: var(--color-text-secondary);
 }
 
+.ai-section p a:not(.ai-btn),
+.ai-form-note a,
+.ai-fineprint a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ai-section p a:not(.ai-btn):hover,
+.ai-form-note a:hover,
+.ai-fineprint a:hover { color: var(--color-link-hover); }
+
+.ai-section-navy p a:not(.ai-btn) { color: var(--color-cream); }
+
 /* ---------- Buttons ---------- */
 
 .ai-cta-row {
