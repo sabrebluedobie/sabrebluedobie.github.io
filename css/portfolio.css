@@ -69,7 +69,6 @@ body {
 
 .carousel-track {
   display: flex !important;
-  gap: 20px;
   width: fit-content !important;
 }
 
@@ -77,6 +76,9 @@ body {
   height: 400px;
   width: auto;
   max-width: 600px;
+  /* Each card carries its own trailing gap so the -50% loop lands exactly
+     on the duplicate. A flex `gap` leaves n-1 gaps and drifts 10px a cycle. */
+  margin-right: 20px;
   border-radius: 12px;
   object-fit: contain;
   background: #1a1a1a;
