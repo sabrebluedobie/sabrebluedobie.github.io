@@ -1,7 +1,7 @@
 ---
 layout: default-shared
 title: "Case Study: Arlo Dobermann Petfluencer Hub | Bluedobie Developing"
-description: "How Bluedobie Developing built a five-page audience and revenue hub for Arlo Dobermann, a Doberman with 51K+ Instagram followers, an Etsy shop, and affiliate partnerships."
+description: "How Bluedobie Developing built a five-page audience and revenue hub for Arlo Dobermann, a Doberman with 165K+ followers across Instagram and Facebook, an Etsy shop, and affiliate partnerships."
 og_image: "https://www.bluedobiedev.com/images/arlo-dobermann-ipad.webp"
 canonical: "https://www.bluedobiedev.com/case-studies/arlo-dobermann/"
 permalink: /case-studies/arlo-dobermann/
@@ -11,7 +11,7 @@ permalink: /case-studies/arlo-dobermann/
 <section class="services-hero">
   <div class="container">
     <header class="hero-header">
-      <h1 style="text-align: center;">Petfluencer Hub for a 51K-Following Doberman</h1>
+      <h1 style="text-align: center;">Petfluencer Hub for a 165K-Following Doberman</h1>
       <p class="lead" style="text-align: center;">
         A case study on building Arlo Dobermann's five-page audience and revenue hub.
       </p>
@@ -23,7 +23,7 @@ permalink: /case-studies/arlo-dobermann/
   <div class="container" style="max-width: 760px; margin: 0 auto;">
 
     <h2>The Situation</h2>
-    <p>Arlo is a Doberman with 51.6K Instagram followers, a growing Etsy shop, affiliate partnerships with brands like Tractive and K9Empowered, Amazon favorites lists for two countries, and a creator behind him who already knows how to build an audience.</p>
+    <p>Arlo is a Doberman with 52.5K Instagram followers and 113K on Facebook, a growing Etsy shop, affiliate partnerships with brands like Tractive and K9Empowered, Amazon favorites lists for two countries, and a creator behind him who already knows how to build an audience.</p>
     <p>What he did not have was a central hub. His audience had plenty of places to interact with him, but there was not one clear destination that connected his story, shop, affiliate links, social content, and brand partnerships in a way that felt organized and on-brand.</p>
     <p>I approached Jess about building it. We bartered. She got the site. I got a portfolio piece worth keeping.</p>
 
@@ -34,7 +34,7 @@ permalink: /case-studies/arlo-dobermann/
       <li><strong>Arlo's Story</strong> — a narrative-driven origin page that builds connection before asking the visitor to click, shop, or follow</li>
       <li><strong>Photo Gallery</strong> — a visual archive for fans who want more than the feed</li>
       <li><strong>Arlo's Links</strong> — a custom on-site link hub that consolidates affiliate codes, Amazon lists, and store links without relying on a third-party link tool</li>
-      <li><strong>Arlo's Store</strong> — an embedded Etsy shop using SociableKIT so products stay current without manual site updates</li>
+      <li><strong>Arlo's Store</strong> — an embedded Etsy shop using SociableKIT so products stayed current without manual site updates (retired in 2026 when the shop closed)</li>
       <li><strong>Doberman Diaries</strong> — a live Instagram feed embedded directly on the site to keep the site fresh automatically</li>
     </ul>
     <p>The full site was delivered in one week.</p>
@@ -50,6 +50,18 @@ permalink: /case-studies/arlo-dobermann/
     <p>I also added SociableKIT widgets for both the live Instagram feed and Etsy shop. This allowed the site to update itself whenever Jess posts new content or lists new products.</p>
     <p>The result is a site that stays more relevant with less maintenance.</p>
 
+    <h2>Two Years In</h2>
+    <p>I came back again for a full technical audit, and it turned up problems that were invisible from the front end.</p>
+    <p>Every page still carried a canonical tag pointing at the original GitHub Pages address, a URL that had started returning 404. The site was telling Google its real home was a dead page, which is why Search Console kept reporting the old location and third-party SEO tools would not read the live domain. Fixing that meant rewriting the canonicals, rebuilding the sitemap, and repointing analytics at the custom domain.</p>
+    <p>Social previews were broken too. The Open Graph image used a relative path, which the spec does not accept, and the Twitter card tag held an image path instead of a card type. Neither Facebook nor Twitter could render a preview at all. Both are fixed, along with page titles that had been near-duplicates of each other.</p>
+    <p>The link buttons had a layout bug that only showed up outside a 287-pixel window, caused by a mobile fix accidentally nested inside a tablet media query. Below 481px and above 768px the cards ran off the screen. There was also a typewriter heading effect whose keyframes had been commented out at some point, leaving its clipping behaviour running without the animation, so longer headings were silently cut off mid-word on phones.</p>
+    <p>Finally, I converted the site to Jekyll. Six hand-maintained copies of the header, footer and meta block had drifted apart, and one page had quietly lost its attribution link. The shared chrome now lives in one place, the rotating hero builds its own image list from a folder, and stylesheets are versioned so a deploy is never masked by a browser cache. The conversion removed about three hundred lines of duplication without changing a single URL.</p>
+
+    <h2>What the Numbers Say</h2>
+    <p>The analytics tell a clear story about what a creator site is actually for.</p>
+    <p>Visitors arriving from Instagram and Facebook engage at between 67% and 89%. Arlo's Story, the narrative origin page, holds a 92% engagement rate and the longest dwell time on the site. The average session runs close to three minutes.</p>
+    <p>Those are the numbers that matter for this kind of build. The site was never going to convert cold traffic, and it was not designed to. It was designed to catch warm attention and hold it, and the engagement data says it does exactly that. Traffic volume, by contrast, depends entirely on the creator linking to it, which is the one variable a developer does not control.</p>
+
     <h2>Why This Matters</h2>
     <p>Creator and personality brands need a different kind of website than traditional service businesses.</p>
     <p>A service business website often has to convert cold traffic. A creator website usually catches warm traffic from people who already trust the creator, follow the personality, or recognize the brand.</p>
@@ -64,6 +76,10 @@ permalink: /case-studies/arlo-dobermann/
       <li>Embedded ecommerce integration</li>
       <li>Live social content integration</li>
       <li>Low-maintenance site architecture</li>
+      <li>Technical SEO auditing and canonical recovery</li>
+      <li>Static site generator migration (Jekyll) without URL changes</li>
+      <li>Core Web Vitals and responsive layout debugging</li>
+      <li>Analytics implementation and reporting</li>
       <li>Fast delivery without sacrificing strategy</li>
     </ul>
 
