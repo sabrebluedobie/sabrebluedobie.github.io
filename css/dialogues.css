@@ -1,0 +1,175 @@
+/* ========================================
+   /dialogues — landing page for the
+   Bluedobie Dialogues publication at
+   dialogues.bluedobiedev.com
+
+   Scoped to .dialogues-* on purpose: the
+   shared webflow .hero-section forces
+   height:100vh and white text, which this
+   page does not want.
+   ======================================== */
+
+.dialogues-hero {
+  background-color: var(--color-gray-100);
+  padding: var(--space-xl) var(--space-md);
+}
+
+.dialogues-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dialogues-wordmark {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--space-lg);
+}
+
+.dialogues-eyebrow {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin: 0 0 var(--space-xs);
+}
+
+.dialogues-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md);
+}
+
+.dialogues-hero p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-md);
+}
+
+/* --- Four threads --- */
+
+.dialogues-detail {
+  padding: var(--section-padding-sm) var(--space-md);
+}
+
+.dialogues-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.dialogues-kicker {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin: 0 0 var(--space-md);
+}
+
+.dialogues-threads {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.dialogues-thread {
+  background-color: var(--color-background-cream);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.dialogues-thread h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.dialogues-thread p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.dialogues-thread--dark {
+  background-color: var(--color-navy);
+}
+
+.dialogues-thread--dark h2 {
+  color: var(--color-white);
+}
+
+.dialogues-thread--dark p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* --- Pull quote --- */
+
+.dialogues-quote {
+  border-left: var(--border-width-thick) solid var(--color-navy);
+  padding: 0 0 0 var(--space-md);
+  margin: 0 0 var(--space-xl);
+}
+
+.dialogues-quote p {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --- Close --- */
+
+.dialogues-note {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-lg);
+}
+
+.dialogues-note a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.dialogues-note a:hover {
+  color: var(--color-link-hover);
+}
+
+.dialogues-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+/* --- Mobile --- */
+
+@media screen and (max-width: 768px) {
+  .dialogues-hero {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .dialogues-detail {
+    padding: var(--space-xl) var(--space-sm);
+  }
+
+  .dialogues-threads {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dialogues-cta-row .button,
+  .dialogues-cta-row .button-secondary {
+    width: 100%;
+  }
+}

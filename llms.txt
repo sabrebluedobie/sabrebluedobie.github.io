@@ -42,7 +42,8 @@ Primary services and products include:
 - FAQ: https://www.bluedobiedev.com/FAQ.html
 - Contact: https://www.bluedobiedev.com/contact.html
 - Meet Sabre: https://www.bluedobiedev.com/meet-sabre.html
-- Bluedobie Dialogues on Medium: https://www.bluedobiedev.com/dialogues-medium.html
+- Bluedobie Dialogues: https://www.bluedobiedev.com/dialogues.html
+- Bluedobie Dialogues publication (separate site): https://dialogues.bluedobiedev.com/
 
 ## Products and Concepts
 
