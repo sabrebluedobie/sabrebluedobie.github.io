@@ -75,6 +75,40 @@
   margin-top: var(--space-md);
 }
 
+/* A concrete example sitting under the three cards, narrower than the grid
+   above it so it reads as a note rather than a fourth column. */
+.dcb-proof {
+  max-width: 560px;
+  margin: var(--space-xl) auto 0;
+  text-align: center;
+}
+
+.dcb-proof-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  border: var(--border-light);
+  background-color: var(--color-white);
+}
+
+.container .dcb-proof figcaption,
+.dcb-proof figcaption {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-sm);
+}
+
+.dcb-proof figcaption a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.dcb-proof figcaption a:hover {
+  color: var(--color-link-hover);
+}
+
 /* --- Continuity list --- */
 
 .dcb-list {
