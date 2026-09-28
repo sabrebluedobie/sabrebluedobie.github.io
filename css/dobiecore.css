@@ -1,0 +1,120 @@
+/* ========================================
+   /dobiecore/ — DobieCore + Bifrost
+
+   Scoped to .dcb-* because the shared webflow .hero-section forces
+   height:100vh and white text. Section shells (.section, .section-alt,
+   .cta-section, .services-grid, .service-card) come from core.scss.
+   ======================================== */
+
+/* The logo art is opaque on #fefdf9, so the hero uses that exact colour and
+   the logo blends into it instead of sitting on the navy as a pale card.
+   A light hero here also lets the rainbow read, and sets this page apart
+   from /learn, whose hero is navy. */
+.dcb-hero {
+  background-color: #fefdf9;
+  padding: var(--section-padding-sm) var(--space-md);
+}
+
+.dcb-hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dcb-logo {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--space-md);
+}
+
+.dcb-eyebrow {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.dcb-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md);
+}
+
+.dcb-lede {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0 auto var(--space-lg);
+}
+
+.dcb-fine {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin: var(--space-md) 0 0;
+}
+
+.dcb-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.dcb-cta-row--center,
+.dcb-hero .dcb-cta-row {
+  justify-content: center;
+}
+
+.cta-section .dcb-cta-row {
+  margin-top: var(--space-md);
+}
+
+/* --- Continuity list --- */
+
+.dcb-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0 0;
+}
+
+.dcb-list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+.dcb-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-navy);
+}
+
+.dcb-list strong {
+  color: var(--color-text-primary);
+}
+
+/* --- Mobile --- */
+
+@media screen and (max-width: 768px) {
+  .dcb-hero {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .dcb-cta-row .button,
+  .dcb-cta-row .button-secondary {
+    width: 100%;
+  }
+}

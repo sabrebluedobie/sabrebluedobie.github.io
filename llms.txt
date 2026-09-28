@@ -36,10 +36,9 @@ Primary services and products include:
 - About: https://www.bluedobiedev.com/about.html
 - Services: https://www.bluedobiedev.com/services.html
 - Free Website Audit: https://www.bluedobiedev.com/free-web-audit/
-- DobieCore Suite: https://www.bluedobiedev.com/dobiecore/
+- DobieCore + Bifrost: https://www.bluedobiedev.com/dobiecore/
 - DobieCore Learn (course): https://www.bluedobiedev.com/learn.html
 - DobieCore Learn course site: https://learn.bluedobiedev.com/
-- Looking Ahead / Bifrost: https://www.bluedobiedev.com/looking-ahead/
 - Portfolio: https://www.bluedobiedev.com/our-portfolio.html
 - FAQ: https://www.bluedobiedev.com/FAQ.html
 - Contact: https://www.bluedobiedev.com/contact.html
@@ -59,7 +58,7 @@ Canonical page: https://www.bluedobiedev.com/dobiecore/
 
 Bifrost is a developing local-first system for AI workflow routing and small business continuity planning. It is intended to help business owners route tasks to the right kind of support and reduce operational disruption during unexpected absence.
 
-Canonical page: https://www.bluedobiedev.com/looking-ahead/
+Canonical page: https://www.bluedobiedev.com/dobiecore/
 
 ### Free Website Audit
 

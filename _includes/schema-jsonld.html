@@ -215,11 +215,20 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "@id": {{ schema_url | append: '#dobiecore-suite' | jsonify }},
-  "name": "DobieCore Suite",
+  "name": "DobieCore + Bifrost",
+  "alternateName": ["DobieCore Suite", "Bifrost"],
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
   "url": {{ schema_url | jsonify }},
-  "description": "Brand voice-based content support for small businesses, including prewriting, captions, image direction, blog drafts, and content calendar templates.",
+  "description": "DobieCore Suite provides brand voice-based content support for small businesses — prewriting, captions, image direction, blog drafts, and content planning. It is being combined with Bifrost, a context and workflow-routing layer for small business continuity, into one system: DobieCore + Bifrost.",
+  "keywords": [
+    "AI content system for small business",
+    "brand voice",
+    "business context",
+    "AI workflow routing",
+    "small business continuity planning",
+    "business owner absence support"
+  ],
   "creator": {
     "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
   },
@@ -233,27 +242,6 @@
 </script>
 {%- endif -%}
 
-{%- if page.url == '/looking-ahead/' -%}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "@id": {{ schema_url | append: '#bifrost' | jsonify }},
-  "name": "Bifrost",
-  "url": {{ schema_url | jsonify }},
-  "description": "Bifrost is a developing local-first concept from Bluedobie Developing for AI workflow routing and small business continuity planning.",
-  "creator": {
-    "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }}
-  },
-  "keywords": [
-    "AI workflow routing",
-    "small business continuity planning",
-    "business owner absence support",
-    "local-first AI systems"
-  ]
-}
-</script>
-{%- endif -%}
 
 {%- if page.url == '/meet-sabre.html' -%}
 <script type="application/ld+json">
