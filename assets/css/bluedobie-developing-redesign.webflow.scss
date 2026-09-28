@@ -2824,14 +2824,6 @@ overflow: visible;
   line-height: 1.75rem;
   width: 100%;
   max-width: 70ch;
-  /* auto side margins centre a paragraph whose width the 70ch cap actually
-     binds — e.g. the CTA bands on / and /about, where the heading and button
-     are centred. The old rule faked this with margin-left: 5vw, which only
-     approximated centre at one viewport width and left every other block
-     misaligned. Where the cap does not bind (cards, narrow columns, the
-     820px prose pages) the paragraph fills its column and auto is a no-op. */
-  margin-left: auto;
-  margin-right: auto;
   /* Default was a 10px bottom margin under a 28px line-height, which ran
      consecutive paragraphs together. */
   margin-bottom: var(--space-md);
@@ -2841,6 +2833,16 @@ overflow: visible;
   line-height: 1.75rem;
   width: 100%;
   max-width: 70ch;
+}
+
+/* Auto side margins centre a paragraph whose width the 70ch cap actually binds
+   — the CTA bands on / and /about, where the heading and button are centred.
+   Restricted to DIRECT children of .container on purpose: applied to every
+   descendant it also centred paragraphs inside cards, pushing them out of
+   line with their own heading and bullets. */
+.container > p {
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Ensure dropdown menu appears above other content */
 .dropdown {
