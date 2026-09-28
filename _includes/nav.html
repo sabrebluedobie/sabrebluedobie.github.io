@@ -3,11 +3,12 @@ Canonical navigation include, mirroring /dobiecore/
 Adjusted per Melanie:
 - Dialogues → /dialogues, the landing page for dialogues.bluedobiedev.com
   (local blog retired 2026-09-23; Medium retired 2026-09-26)
-- "Offerings" dropdown replaced the single DobieCore link (2026-09-28). It holds every
-  product and the two service pages that had no nav home. Services and Free Web Audit
-  stay in the top bar because they are the primary money pages.
-  The toggle/menu ids (products-toggle / products-menu) are the ones js/mobile-nav.js
-  already looks for — do not rename them.
+- Two dropdowns, no catch-all (2026-09-28): "About" holds the company pages and
+  "Offerings" holds everything we sell plus Dialogues and the FAQ. The old "More"
+  dropdown is gone. Services and Free Web Audit stay in the top bar as the primary
+  money pages, and are repeated inside Offerings.
+  js/mobile-nav.js wires up every .dropdown generically, so adding another one here
+  needs no script change — just .dropdown > .dropdown-toggle + .dropdown-menu.
 - SabreBeats is on hold (2026-09-28) and is deliberately unlinked. The page still
   resolves at /sabrebeats/; put it back under Products when it restarts.
 - DobieCore Suite and Bifrost merged into one product (2026-09-28). /looking-ahead/
@@ -31,8 +32,13 @@ Adjusted per Melanie:
           <div class="nav-link-holder">
             <a href="/" class="nav-link w-inline-block">Home</a>
           </div>
-          <div class="nav-link-holder">
-            <a href="/about" class="nav-link w-inline-block">About</a>
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="about-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">About</button>
+            <div class="dropdown-menu" id="about-menu" role="menu">
+              <a href="/about" class="nav-link" role="menuitem">About Bluedobie</a>
+              <a href="/our-portfolio" class="nav-link" role="menuitem">Portfolio</a>
+              <a href="/meet-sabre" class="nav-link" role="menuitem">Meet Sabre</a>
+            </div>
           </div>
           <div class="nav-link-holder">
             <a href="/services" class="nav-link w-inline-block">Services</a>
@@ -53,20 +59,13 @@ Adjusted per Melanie:
               <a href="/services" class="nav-link" role="menuitem">Web Design &amp; Content</a>
               <a href="/ai-setup-review/" class="nav-link" role="menuitem">AI Setup Review</a>
               <a href="/logo-sprint-landing/" class="nav-link" role="menuitem">Logo Sprint</a>
+              <p class="dropdown-group-label" role="presentation">Reading</p>
+              <a href="/dialogues" class="nav-link" role="menuitem">Dialogues</a>
+              <a href="/FAQ" class="nav-link" role="menuitem">FAQ's</a>
             </div>
           </div>
           <div class="nav-link-holder">
             <a href="/contact" class="nav-link w-inline-block">Contact</a>
-          </div>
-
-          <div class="nav-link-holder dropdown">
-            <button class="dropdown-toggle" id="dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">More</button>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <a href="/our-portfolio" class="nav-link" role="menuitem">Portfolio</a>
-              <a href="/meet-sabre" class="nav-link" role="menuitem">Meet Sabre</a>
-              <a href="/FAQ" class="nav-link" role="menuitem">FAQ's</a>
-              <a href="/dialogues" class="nav-link" role="menuitem">Dialogues</a>
-            </div>
           </div>
         </div>
 

@@ -57,88 +57,52 @@ function initNavigation() {
   
   // ========================================
   // DROPDOWN MENUS (Desktop & Mobile)
+  //
+  // Wired up generically: every .dropdown that contains a .dropdown-toggle and
+  // a .dropdown-menu works. Adding or removing a dropdown in _includes/nav.html
+  // needs no change here.
   // ========================================
-  
-  const dropdownToggle = document.getElementById('dropdown-toggle');
-  const dropdownMenu = document.getElementById('dropdown-menu');
-  const productsToggle = document.getElementById('products-toggle');
-  const productsMenu = document.getElementById('products-menu');
-  
-  console.log('🔵 Dropdown elements found:', {
-    dropdownToggle: !!dropdownToggle,
-    dropdownMenu: !!dropdownMenu,
-    productsToggle: !!productsToggle,
-    productsMenu: !!productsMenu
-  });
-  
-  // Helper to close all dropdowns
+
+  const dropdowns = Array.from(document.querySelectorAll('.nav-menu .dropdown'));
+  const panels = [];
+
   function closeAllDropdowns() {
-    if (dropdownMenu) {
-      dropdownMenu.classList.remove('show');
-      dropdownMenu.style.display = '';
-      dropdownMenu.style.maxHeight = '';
-    }
-    if (productsMenu) {
-      productsMenu.classList.remove('show');
-      productsMenu.style.display = '';
-      productsMenu.style.maxHeight = '';
-    }
-    if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
-    if (productsToggle) productsToggle.setAttribute('aria-expanded', 'false');
+    panels.forEach(function (d) {
+      d.menu.classList.remove('show');
+      d.menu.style.display = '';
+      d.menu.style.maxHeight = '';
+      d.toggle.setAttribute('aria-expanded', 'false');
+    });
   }
-  
-  // "More" dropdown
-  if (dropdownToggle && dropdownMenu) {
-    // Clone to remove existing handlers
-    const newToggle = dropdownToggle.cloneNode(true);
-    dropdownToggle.parentNode.replaceChild(newToggle, dropdownToggle);
-    
-    newToggle.addEventListener('click', function(e) {
-      console.log('🔵 More dropdown clicked');
+
+  dropdowns.forEach(function (dropdown) {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const menu = dropdown.querySelector('.dropdown-menu');
+    if (!toggle || !menu) return;
+
+    // Clone to drop any handler Webflow already attached.
+    const fresh = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(fresh, toggle);
+    panels.push({ toggle: fresh, menu: menu });
+
+    fresh.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      
-      const isOpen = dropdownMenu.classList.contains('show');
+
+      const isOpen = menu.classList.contains('show');
       closeAllDropdowns();
-      
+
       if (!isOpen) {
-        dropdownMenu.classList.add('show');
-        dropdownMenu.style.setProperty('display', 'block', 'important');
-        dropdownMenu.style.setProperty('max-height', '500px', 'important');
-        newToggle.setAttribute('aria-expanded', 'true');
-        console.log('🔵 More dropdown opened');
+        menu.classList.add('show');
+        menu.style.setProperty('display', 'block', 'important');
+        menu.style.setProperty('max-height', '500px', 'important');
+        fresh.setAttribute('aria-expanded', 'true');
       }
     });
-    
-    console.log('🔵 More dropdown ready!');
-  }
-  
-  // "Products" dropdown
-  if (productsToggle && productsMenu) {
-    // Clone to remove existing handlers
-    const newToggle = productsToggle.cloneNode(true);
-    productsToggle.parentNode.replaceChild(newToggle, productsToggle);
-    
-    newToggle.addEventListener('click', function(e) {
-      console.log('🔵 Products dropdown clicked');
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const isOpen = productsMenu.classList.contains('show');
-      closeAllDropdowns();
-      
-      if (!isOpen) {
-        productsMenu.classList.add('show');
-        productsMenu.style.setProperty('display', 'block', 'important');
-        productsMenu.style.setProperty('max-height', '500px', 'important');
-        newToggle.setAttribute('aria-expanded', 'true');
-        console.log('🔵 Products dropdown opened');
-      }
-    });
-    
-    console.log('🔵 Products dropdown ready!');
-  }
-  
+  });
+
+  console.log('🔵 Dropdowns wired:', panels.length);
+
   // ========================================
   // CLOSE HANDLERS
   // ========================================

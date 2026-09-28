@@ -37,18 +37,18 @@
   color: var(--color-navy);
 }
 
-/* "More" is styled as a dark utility pill by #dropdown-toggle in the webflow
-   sheet. "Offerings" is a primary nav item, so it matches the other top-bar
-   links instead. Uses an id selector to clear that sheet's specificity. */
-.nav-menu #products-toggle {
+/* Every dropdown toggle is a primary nav item, so they all read like the other
+   top-bar links. Was keyed to #products-toggle while #dropdown-toggle ("More")
+   still existed as a dark pill; that dropdown is gone, so this is generic now. */
+.nav-menu .dropdown-toggle {
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--color-ink);
 }
 
-.nav-menu #products-toggle:hover,
-.nav-menu #products-toggle[aria-expanded="true"] {
+.nav-menu .dropdown-toggle:hover,
+.nav-menu .dropdown-toggle[aria-expanded="true"] {
   color: var(--color-navy);
 }
 

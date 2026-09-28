@@ -2883,18 +2883,9 @@ background-color: #f1f1f1; /* Highlight links on hover */
 overflow: visible !important; /* Prevent clipping of child elements */
 }
 
-#dropdown-toggle {
-background-color: #000; /* Black background */
-color: #fff; /* White text */
-padding: 10px 20px;
-border: none;
-border-radius: 5px; /* Optional rounded corners */
-cursor: pointer;
-}
-
-#dropdown-toggle:hover {
-background-color: #444; /* Slightly lighter black on hover */
-}
+/* The #dropdown-toggle black pill was the old "More" menu button. That
+   dropdown was removed 2026-09-28 and no element carries the id any more, so
+   the rule is gone with it. Toggle styling lives in css/nav-footer-shared. */
 
 
 
