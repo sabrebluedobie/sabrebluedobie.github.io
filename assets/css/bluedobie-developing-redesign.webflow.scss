@@ -1378,7 +1378,7 @@ blockquote {
   align-items: center;
   display: flex;
   position: relative;
-  left: 5%;
+  left: 0;
 }
 
 .blog-featured-image-holder {
@@ -1803,7 +1803,9 @@ blockquote {
   padding-bottom: 100px;
   display: block;
   position: relative;
-  left: 7.5%;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .video {
@@ -2225,7 +2227,7 @@ button:disabled {
     border-style: none;
     width: 90%;
     height: auto;
-    left: 5%;
+    left: 0;
   }
 }
 
@@ -2468,7 +2470,7 @@ button:disabled {
   .div-block-3 {
     margin-bottom: 60px;
     padding-bottom: 0;
-    left: 5%;
+    left: 0;
   }
 }
 
@@ -2789,7 +2791,7 @@ button:disabled {
 
   .div-block-3 {
     margin-bottom: auto;
-    left: 5%;
+    left: 0;
   }
 
   .image {
@@ -2822,6 +2824,14 @@ overflow: visible;
   line-height: 1.75rem;
   width: 100%;
   max-width: 70ch;
+  /* auto side margins centre a paragraph whose width the 70ch cap actually
+     binds — e.g. the CTA bands on / and /about, where the heading and button
+     are centred. The old rule faked this with margin-left: 5vw, which only
+     approximated centre at one viewport width and left every other block
+     misaligned. Where the cap does not bind (cards, narrow columns, the
+     820px prose pages) the paragraph fills its column and auto is a no-op. */
+  margin-left: auto;
+  margin-right: auto;
   /* Default was a 10px bottom margin under a 28px line-height, which ran
      consecutive paragraphs together. */
   margin-bottom: var(--space-md);
