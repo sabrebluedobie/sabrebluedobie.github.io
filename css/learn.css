@@ -1,0 +1,420 @@
+/* ========================================
+   /learn — gate page for DobieCore Learn
+   at learn.bluedobiedev.com
+
+   Scoped to .learn-* on purpose: the shared
+   webflow .hero-section forces height:100vh
+   and white text. Section shells (.section,
+   .section-alt, .cta-section, .container)
+   come from the shared stylesheets so this
+   page matches /dobiecore/.
+   ======================================== */
+
+.learn-hero {
+  background-color: var(--color-navy);
+  padding: var(--section-padding-sm) var(--space-md);
+}
+
+.learn-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* The hero art already carries the product name and tagline, so the
+   headline below it argues the point instead of repeating it. */
+.learn-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--space-lg);
+  border-radius: var(--radius-lg);
+}
+
+.learn-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-white);
+  margin: 0 0 var(--space-md);
+}
+
+.learn-lede {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 var(--space-lg);
+}
+
+.learn-fine {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.65);
+  margin: var(--space-md) 0 0;
+}
+
+.learn-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin: 0;
+}
+
+/* The hero sits on navy, so both buttons invert: the solid navy primary would
+   otherwise be invisible against the background. */
+.learn-hero .button {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+.learn-hero .button:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-navy);
+}
+
+.learn-hero .button-secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.learn-hero .button-secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+/* --- Positioning section --- */
+
+.learn-pullquote {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
+  color: var(--color-navy);
+  border-left: var(--border-width-thick) solid var(--color-navy);
+  padding-left: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+/* --- Module cards --- */
+
+.learn-modules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.learn-module {
+  background-color: var(--color-white);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.learn-module-num {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.learn-module h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.learn-module p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.learn-artifact {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: var(--border-light);
+  color: var(--color-navy) !important;
+  font-weight: var(--font-weight-semibold);
+}
+
+.learn-artifact span {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+/* --- How it works list --- */
+
+.learn-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0 0;
+}
+
+.learn-list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+.learn-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-navy);
+}
+
+.learn-list strong {
+  color: var(--color-text-primary);
+}
+
+/* --- Price card --- */
+
+.learn-price {
+  background-color: var(--color-white);
+  border: var(--border-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.learn-price-eyebrow {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin: 0 0 var(--space-xs);
+}
+
+.learn-price-amount {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.learn-price-note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin: var(--space-xs) 0 var(--space-md);
+}
+
+.learn-price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+  text-align: left;
+  display: inline-block;
+}
+
+.learn-price-list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+.learn-price-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-navy);
+  font-weight: var(--font-weight-bold);
+}
+
+.learn-price .learn-fine {
+  color: var(--color-text-light);
+}
+
+.learn-price .learn-fine a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+/* --- Closing CTA --- */
+
+.learn-cta-row--center {
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+/* --- Mobile --- */
+
+@media screen and (max-width: 900px) {
+  .learn-modules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .learn-hero {
+    padding: var(--space-md) var(--space-sm) var(--space-xl);
+  }
+
+  .learn-hero-image {
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .learn-price {
+    padding: var(--space-md);
+  }
+
+  .learn-cta-row .button,
+  .learn-cta-row .button-secondary {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   Section shells
+
+   .section / .section-alt / .cta-section are used by /dobiecore/ too, but
+   their backgrounds are defined in css/home.scss, which is page-scoped and
+   not loaded here — only the 80px .section padding reaches this page. These
+   rules supply the rest. They are unprefixed on purpose: learn.css only
+   loads on /learn, so they cannot leak to other pages.
+   ======================================== */
+
+.section-alt {
+  background-color: var(--color-gray-50);
+}
+
+.cta-section {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  text-align: center;
+  padding: var(--section-padding-md) var(--space-md);
+}
+
+.cta-section .container h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-tight);
+  color: var(--color-white);
+  margin: 0 0 var(--space-sm);
+}
+
+.cta-section .container p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: var(--line-height-normal);
+  margin: 0 auto;
+  max-width: 620px;
+}
+
+.cta-section .button {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+.cta-section .button:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-navy);
+}
+
+.cta-section .button-secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cta-section .button-secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+/* ========================================
+   Prose resets
+
+   assets/css/bluedobie-developing-redesign.webflow.css carries
+   `.container p  { width: 80%; margin-left: 5vw;   font-size: 1.25rem }` and
+   `.container li { width: 80%; margin-left: 7.5vw; font-size: 1.25rem }`.
+   That indents every paragraph by 72px at desktop width, clips each one to 80%
+   of its column (visible as short divider rules inside the module cards), and
+   flattens the pull quote. Headings pick up a stray left margin too. These
+   rules undo all of it. They match or beat that sheet's specificity and
+   learn.css is loaded last, so order settles the rest. Unprefixed on purpose —
+   learn.css only loads on /learn.
+   ======================================== */
+
+.container p,
+.container ul,
+.container li,
+.container h2,
+.container h3 {
+  margin-left: 0;
+  width: auto;
+}
+
+.container h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.container p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.container .learn-pullquote {
+  font-size: var(--font-size-xl);
+  color: var(--color-navy);
+}
+
+.container .learn-module p,
+.container .learn-module-num {
+  font-size: var(--font-size-sm);
+  margin-bottom: 0;
+}
+
+.container .learn-price-amount {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+.container .learn-price-eyebrow,
+.container .learn-price-note,
+.container .learn-fine {
+  font-size: var(--font-size-sm);
+}
+
+.container .learn-list li,
+.container .learn-price-list li {
+  font-size: var(--font-size-base);
+}

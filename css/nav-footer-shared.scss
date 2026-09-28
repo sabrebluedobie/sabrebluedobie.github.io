@@ -37,6 +37,21 @@
   color: var(--color-navy);
 }
 
+/* "More" is styled as a dark utility pill by #dropdown-toggle in the webflow
+   sheet. "Offerings" is a primary nav item, so it matches the other top-bar
+   links instead. Uses an id selector to clear that sheet's specificity. */
+.nav-menu #products-toggle {
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-ink);
+}
+
+.nav-menu #products-toggle:hover,
+.nav-menu #products-toggle[aria-expanded="true"] {
+  color: var(--color-navy);
+}
+
 .nav-menu .dropdown-menu {
   position: relative;
   top: 100%;
@@ -76,6 +91,24 @@
 .nav-menu .dropdown-menu .nav-link:hover {
   background: var(--color-gray-50);
   color: var(--color-navy);
+}
+
+/* Group headings inside the Offerings dropdown (Products / Services). */
+.nav-menu .dropdown-menu .dropdown-group-label {
+  margin: var(--space-xs) 0 2px;
+  padding: 0 var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.nav-menu .dropdown-menu .dropdown-group-label:not(:first-child) {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-xs);
+  border-top: var(--border-light);
 }
 
 /* ========================================

@@ -37,6 +37,8 @@ Primary services and products include:
 - Services: https://www.bluedobiedev.com/services.html
 - Free Website Audit: https://www.bluedobiedev.com/free-web-audit/
 - DobieCore Suite: https://www.bluedobiedev.com/dobiecore/
+- DobieCore Learn (course): https://www.bluedobiedev.com/learn.html
+- DobieCore Learn course site: https://learn.bluedobiedev.com/
 - Looking Ahead / Bifrost: https://www.bluedobiedev.com/looking-ahead/
 - Portfolio: https://www.bluedobiedev.com/our-portfolio.html
 - FAQ: https://www.bluedobiedev.com/FAQ.html

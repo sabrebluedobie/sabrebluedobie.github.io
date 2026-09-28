@@ -3,6 +3,13 @@ Canonical navigation include, mirroring /dobiecore/
 Adjusted per Melanie:
 - Dialogues → /dialogues, the landing page for dialogues.bluedobiedev.com
   (local blog retired 2026-09-23; Medium retired 2026-09-26)
+- "Offerings" dropdown replaced the single DobieCore link (2026-09-28). It holds every
+  product and the two service pages that had no nav home. Services and Free Web Audit
+  stay in the top bar because they are the primary money pages.
+  The toggle/menu ids (products-toggle / products-menu) are the ones js/mobile-nav.js
+  already looks for — do not rename them.
+- SabreBeats is on hold (2026-09-28) and is deliberately unlinked. The page still
+  resolves at /sabrebeats/; put it back under Products when it restarts.
 - Product label: "DobieCore Captions"
 - Cleaned hrefs (removed angle-bracket markdown)
 {%- endcomment -%}
@@ -34,8 +41,18 @@ Adjusted per Melanie:
           <div class="nav-link-holder">
             <a href="/knowledge/" class="nav-link w-inline-block">Knowledge</a>
           </div>
-          <div class="nav-link-holder">
-            <a href="/dobiecore/" class="nav-link w-inline-block">DobieCore</a>
+          <div class="nav-link-holder dropdown">
+            <button class="dropdown-toggle" id="products-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="products-menu">Offerings</button>
+            <div class="dropdown-menu" id="products-menu" role="menu">
+              <p class="dropdown-group-label" role="presentation">Products</p>
+              <a href="/dobiecore/" class="nav-link" role="menuitem">DobieCore Suite</a>
+              <a href="/learn" class="nav-link" role="menuitem">DobieCore Learn</a>
+              <a href="/looking-ahead/" class="nav-link" role="menuitem">Bifrost (Coming)</a>
+              <p class="dropdown-group-label" role="presentation">Services</p>
+              <a href="/services" class="nav-link" role="menuitem">Web Design &amp; Content</a>
+              <a href="/ai-setup-review/" class="nav-link" role="menuitem">AI Setup Review</a>
+              <a href="/logo-sprint-landing/" class="nav-link" role="menuitem">Logo Sprint</a>
+            </div>
           </div>
           <div class="nav-link-holder">
             <a href="/contact" class="nav-link w-inline-block">Contact</a>
@@ -46,10 +63,8 @@ Adjusted per Melanie:
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
               <a href="/our-portfolio" class="nav-link" role="menuitem">Portfolio</a>
               <a href="/meet-sabre" class="nav-link" role="menuitem">Meet Sabre</a>
-              <a href="/looking-ahead/" class="nav-link" role="menuitem">Looking Ahead: Bifrost</a>
               <a href="/FAQ" class="nav-link" role="menuitem">FAQ's</a>
               <a href="/dialogues" class="nav-link" role="menuitem">Dialogues</a>
-              <a href="/sabrebeats/" class="nav-link" role="menuitem">SabreBeats (Coming Soon)</a>
             </div>
           </div>
         </div>
