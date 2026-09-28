@@ -1148,7 +1148,10 @@ h1, h2, h3, .site-title {
   background: var(--color-white);
   border: var(--border-light);
   border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
+  /* Was a flat var(--space-2xl) (64px) at every width, which left only 169px
+     of text inside a 297px card on a 375px phone — long, narrow, very tall
+     cards. Scales from 20px on a phone to 40px on a wide screen. */
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   transition: var(--transition-transform);
 }
 
