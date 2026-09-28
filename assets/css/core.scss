@@ -902,48 +902,6 @@ h1, h2, h3, .site-title {
 /* ========================================
    NAVIGATION SOCIAL BAR (2nd row)
    ======================================== */
-.social-bar {
-  background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
-  border-top: var(--border-light);
-  border-bottom: var(--border-light);
-  padding: var(--space-xs) 0;
-}
-
-.social-groups {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-2xl);
-  flex-wrap: wrap;
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
-
-.social-group {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.social-label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink);
-  white-space: nowrap;
-}
-
-.social-links {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: center;
-}
-
-.social-icon {
-  width: 24px;
-  height: 24px;
-}
-
 /* ========================================
    CONTAINER OVERRIDES
    ======================================== */
@@ -1220,32 +1178,13 @@ h1, h2, h3, .site-title {
   }
 }
 
-/* Mobile: single column */
+/* Mobile: single column. The nav, social-bar and footer counterparts to this
+   block live in css/nav-footer-shared.scss. */
 @media (max-width: 768px) {
-  /* Hide desktop dropdowns on mobile */
-  .nav-menu .dropdown-menu {
-    display: none !important;
-  }
-  
-  .social-bar {
-    display: none;
-  }
-  
-  .social-groups {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-  
   .services-grid {
     grid-template-columns: 1fr !important;
   }
-  
-  .footer-rows .links ul {
-    flex-direction: column;
-    gap: var(--space-md);
-  }
 }
-/* End of nav-footer-shared.css */
 /* style.css */
 
 /* 1) Global resets for images/media */
