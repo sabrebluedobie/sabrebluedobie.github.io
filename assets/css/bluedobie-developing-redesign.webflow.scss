@@ -2809,20 +2809,25 @@ margin: 0 auto;
 overflow: visible;
 }
 
-.container h2, .container h3 {
-  margin-left: 2.5vw;
-}
+/* 2026-09-28: dropped the 2.5vw/5vw/7.5vw margin-left indents on headings,
+   paragraphs and list items — they knocked every block out of alignment with
+   its neighbours on all 15 pages that use .container. The old `width: 80%`
+   also clipped any paragraph nested in a card or grid cell, so it became
+   `width: 100%; max-width: 70ch` — the same reading measure for full-width
+   prose (~700px) while narrower contexts fill their column. The explicit
+   width:100% matters: several of these containers are flex with centred
+   items, and without it the paragraphs shrink-wrap to their content. */
 .container p {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  width: 80%;
-  margin-left: 5vw;
+  width: 100%;
+  max-width: 70ch;
 }
 .container li {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  width: 80%;
-  margin-left: 7.5vw;
+  width: 100%;
+  max-width: 70ch;
 }
 /* Ensure dropdown menu appears above other content */
 .dropdown {
@@ -2933,14 +2938,7 @@ object-fit: cover;
     left: 0%; 
   }
 
-  .container p {
-    width: 98%;
-    margin-left: 5vw;
-  }
-  .container li {
-    width: 98%;
-    margin-left: 5vw;
-  }
+
   
   @media screen and (max-width: 768px) {
 #pages .container {

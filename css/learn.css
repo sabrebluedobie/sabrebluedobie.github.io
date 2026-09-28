@@ -291,113 +291,17 @@
 }
 
 /* ========================================
-   Section shells
+   Two overrides that survive the 2026-09-28 global cleanup
 
-   .section / .section-alt / .cta-section are used by /dobiecore/ too, but
-   their backgrounds are defined in css/home.scss, which is page-scoped and
-   not loaded here — only the 80px .section padding reaches this page. These
-   rules supply the rest. They are unprefixed on purpose: learn.css only
-   loads on /learn, so they cannot leak to other pages.
+   `.container p { font-size: 1.25rem }` in the webflow sheet still outranks a
+   bare class, so the pull quote and the price figure restate their size.
    ======================================== */
-
-.section-alt {
-  background-color: var(--color-gray-50);
-}
-
-.cta-section {
-  background-color: var(--color-navy);
-  color: var(--color-white);
-  text-align: center;
-  padding: var(--section-padding-md) var(--space-md);
-}
-
-.cta-section .container h2 {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-h2);
-  line-height: var(--line-height-tight);
-  color: var(--color-white);
-  margin: 0 0 var(--space-sm);
-}
-
-.cta-section .container p {
-  color: rgba(255, 255, 255, 0.85);
-  line-height: var(--line-height-normal);
-  margin: 0 auto;
-  max-width: 620px;
-}
-
-.cta-section .button {
-  background-color: var(--color-white);
-  color: var(--color-navy);
-  border-color: var(--color-white);
-}
-
-.cta-section .button:hover {
-  background-color: var(--color-cream);
-  border-color: var(--color-cream);
-  color: var(--color-navy);
-}
-
-.cta-section .button-secondary {
-  background-color: transparent;
-  color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.cta-section .button-secondary:hover {
-  background-color: var(--color-white);
-  color: var(--color-navy);
-  border-color: var(--color-white);
-}
-
-/* ========================================
-   Prose resets
-
-   assets/css/bluedobie-developing-redesign.webflow.css carries
-   `.container p  { width: 80%; margin-left: 5vw;   font-size: 1.25rem }` and
-   `.container li { width: 80%; margin-left: 7.5vw; font-size: 1.25rem }`.
-   That indents every paragraph by 72px at desktop width, clips each one to 80%
-   of its column (visible as short divider rules inside the module cards), and
-   flattens the pull quote. Headings pick up a stray left margin too. These
-   rules undo all of it. They match or beat that sheet's specificity and
-   learn.css is loaded last, so order settles the rest. Unprefixed on purpose —
-   learn.css only loads on /learn.
-   ======================================== */
-
-.container p,
-.container ul,
-.container li,
-.container h2,
-.container h3 {
-  margin-left: 0;
-  width: auto;
-}
-
-.container h2 {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-h2);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-  margin-top: 0;
-  margin-bottom: var(--space-md);
-}
-
-.container p {
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-md);
-}
 
 .container .learn-pullquote {
+  font-family: var(--font-heading);
   font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
   color: var(--color-navy);
-}
-
-.container .learn-module p,
-.container .learn-module-num {
-  font-size: var(--font-size-sm);
-  margin-bottom: 0;
 }
 
 .container .learn-price-amount {
@@ -408,13 +312,15 @@
   margin-bottom: 0;
 }
 
-.container .learn-price-eyebrow,
-.container .learn-price-note,
-.container .learn-fine {
+.container .learn-module p,
+.container .learn-module-num {
   font-size: var(--font-size-sm);
+  margin-bottom: 0;
 }
 
-.container .learn-list li,
-.container .learn-price-list li {
-  font-size: var(--font-size-base);
+.container .learn-price-eyebrow,
+.container .learn-price-note,
+.container .learn-fine,
+.container .learn-eyebrow {
+  font-size: var(--font-size-sm);
 }

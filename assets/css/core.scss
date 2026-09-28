@@ -1586,3 +1586,89 @@ img[style*="width:100vw"]{ width:100% !important; } /* guardrail */
 }
 /* End of style.css */
 /* End of core.css */
+/* ========================================
+   SHARED SECTION SHELLS
+
+   Added 2026-09-28. .section-alt, .cta-section and .intro-text were only
+   defined in css/home.scss, which is page-scoped via extra_css. Any page that
+   used those classes without loading home.css rendered them unstyled — on
+   /dobiecore/ that meant no alternating backgrounds and a closing CTA with no
+   navy band, no padding and dark text. Values match home.scss so pages that do
+   load it are unchanged.
+   ======================================== */
+
+.section-alt {
+  margin: 0 !important;
+  padding: var(--section-padding-md) var(--space-md);
+  background: var(--color-background-cream);
+}
+
+.intro-text {
+  font-size: var(--font-size-lg);
+  text-align: center;
+  margin: 0 auto var(--space-2xl);
+  max-width: 700px;
+  line-height: var(--line-height-relaxed);
+}
+
+.cta-section {
+  background: var(--color-navy);
+  color: var(--color-white);
+  text-align: center;
+  padding: var(--section-padding-md) var(--space-md);
+}
+
+.cta-section h2 {
+  color: var(--color-white);
+}
+
+.cta-section p {
+  color: var(--color-white);
+}
+
+.cta-section a:not(.btn):not(.button):not(.button-secondary) {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.cta-section .button {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+.cta-section .button:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-navy);
+}
+
+.cta-section .button-secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cta-section .button-secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  border-color: var(--color-white);
+}
+
+.cta-section .btn {
+  background: var(--color-white);
+  color: var(--color-navy);
+  border: 3px solid var(--color-white);
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-section .btn:hover {
+  background: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-navy);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
