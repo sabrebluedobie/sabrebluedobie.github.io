@@ -122,7 +122,7 @@ head_extra: |
         <li>Frequently asked questions</li>
         <li>Educational answer pages</li>
         <li>Internal links between related pages</li>
-        <li>An <code>llms.txt</code> file</li>
+        <li><a href="#llms-txt">An <code>llms.txt</code> file</a> &mdash; a plain-text summary of the business that AI tools can read</li>
         <li>Updated Google Business Profile information</li>
         <li>Clear calls to action</li>
       </ul>
@@ -134,10 +134,31 @@ head_extra: |
       <p>For example, it can identify a business, a service, a frequently asked question, a person, a website, or an article.</p>
       <p>People do not usually see structured data on the page, but it supports the behind-the-scenes clarity of the site. It is one of the ways a website can say, “Here is what this page is about, and here is how it connects to the rest of the business.”</p>
 
-      <h2>What <code>llms.txt</code> Does</h2>
+      <h2 id="llms-txt">What an <code>llms.txt</code> File Is, and What It Does</h2>
       <p>An <code>llms.txt</code> file is a plain text file that gives AI tools a simple summary of important site information.</p>
+
+      <h3>Where it lives</h3>
+      <p>It sits at the root of the website, so the address is just your domain with <code>/llms.txt</code> on the end. Ours is at <a href="/llms.txt">bluedobiedev.com/llms.txt</a> if you want to see a real one. You can open it in any browser. There is nothing to install and nothing hidden.</p>
+
+      <h3>What goes in it</h3>
+      <p>Plain sentences and short lists, written so a person could read them too:</p>
+      <ul>
+        <li>Who the business is, and where it is</li>
+        <li>What it actually does, in ordinary words</li>
+        <li>The services and products it offers</li>
+        <li>Links to the pages that matter most</li>
+        <li>How to get in touch</li>
+      </ul>
+      <p>No code, no tags, no special syntax to learn. If you can write an email explaining your business to someone, you can write one of these.</p>
+
+      <h3>How it differs from robots.txt</h3>
+      <p>Most websites already have a <code>robots.txt</code> file. That one is about permission &mdash; which pages an automated visitor may or may not look at.</p>
+      <p>An <code>llms.txt</code> file is about meaning. It does not grant or deny access to anything. It just explains the business plainly, in one place, so a machine reading the site does not have to piece the story together from a navigation menu and a footer.</p>
+
+      <h3>Being honest about what it is worth</h3>
+      <p>This is a young convention, not an established standard. Support varies between AI tools, and no system is obliged to read the file or to act on it. Anyone promising that an <code>llms.txt</code> file will get a business recommended by AI is overselling it.</p>
       <p>It does not force an AI system to use your business. It does not guarantee that your business will be recommended.</p>
-      <p>It is more like a neatly labeled front desk folder. It gives machines a cleaner starting point when they are trying to understand the site.</p>
+      <p>It is more like a neatly labeled front desk folder. It gives machines a cleaner starting point when they are trying to understand the site. It is cheap to write, it costs nothing to maintain, and the act of writing one tends to expose whether the business can be described clearly at all &mdash; which is useful whether or not a single AI tool ever reads it.</p>
 
       <h2>GEO Should Not Turn Into Hype</h2>
       <p>There is a danger in treating GEO like the next shiny marketing panic.</p>
@@ -171,7 +192,7 @@ head_extra: |
       <p>No. GEO does not guarantee recommendations or rankings. It improves the clarity and structure of your information so people, search engines, and AI systems have better material to work with.</p>
 
       <h3>What does GEO include for a small business website?</h3>
-      <p>GEO may include clear service descriptions, consistent contact information, structured data, internal links, helpful educational content, an <code>llms.txt</code> file, and pages that answer common customer questions.</p>
+      <p>GEO may include clear service descriptions, consistent contact information, structured data, internal links, helpful educational content, an <a href="#llms-txt"><code>llms.txt</code> file</a> (a plain-text summary of the business for AI tools), and pages that answer common customer questions.</p>
 
       <h3>Should every small business care about GEO?</h3>
       <p>Small businesses do not need to chase every AI trend. But they should care about whether their business information is clear, consistent, and easy to understand across websites, search tools, and AI-assisted discovery.</p>
