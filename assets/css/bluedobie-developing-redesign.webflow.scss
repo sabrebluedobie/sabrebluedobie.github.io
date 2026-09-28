@@ -83,7 +83,13 @@ h1 {
 }
 
 h2 {
-  color: var(--text-color);
+  /* Was var(--text-color), a hard near-black that beat inheritance, so any
+     heading inside a dark band came out almost invisible — the CTA panels on
+     /, /about, /learn, /dobiecore/ and /logo-sprint-landing/ all had to set a
+     colour by hand to work around it. Inheriting is the correct default:
+     headings take their container's colour, dark bands get light headings,
+     and anything with its own rule is unaffected. */
+  color: inherit;
   margin-top: 20px;
   margin-bottom: 10px;
   font-family: Instrument Serif, sans-serif;
