@@ -2,7 +2,7 @@
 layout: default-shared
 title: "Meet Sabre | Bluedobie Developing"
 description: "Meet Sabre, the blue Doberman behind Bluedobie Developing. Office manager, project supervisor, and the reason I named this whole thing."
-og_image: "https://www.bluedobiedev.com/images/sabre-digital-marketing.jpg"
+og_image: "https://www.bluedobiedev.com/images/sabre-at-the-laptop.webp"
 canonical: "https://www.bluedobiedev.com/meet-sabre"
 extra_css:
   - /css/meet-sabre.css
@@ -10,29 +10,20 @@ sitemap: false
 ---
 
 <!-- Hero -->
+{%- comment -%}
+  Was a script that picked one of five Sabre photos at random on each load.
+  Replaced 2026-09-28 with a single fixed hero; the other five images are all
+  still in /images/ if the rotation is ever wanted back.
+{%- endcomment -%}
 <section class="hero-section">
   <div class="container">
     <h1>Meet Sabre</h1>
-    <img src="/images/sabresmile-p-1080.webp" alt="Sabre the blue Doberman" class="hero-image" id="sabre-hero-image">
+    <img src="/images/sabre-at-the-laptop.webp"
+         alt="Sabre, a blue Doberman in a green collar, resting beside an open laptop full of code and looking straight at the camera"
+         class="hero-image" width="800" height="1200"
+         loading="eager" decoding="async" fetchpriority="high">
   </div>
 </section>
-
-<script>
-(function () {
-  var sabreHeroImages = [
-    { src: "/images/sabresmile-p-1080.webp", alt: "Sabre the blue Doberman smiling" },
-    { src: "/images/confused-sabre.webp", alt: "Sabre the blue Doberman looking confused" },
-    { src: "/images/sabre-website.webp", alt: "Sabre the blue Doberman overseeing the website" },
-    { src: "/images/sabre-medium.webp", alt: "Sabre the blue Doberman, medium shot" },
-    { src: "/images/SabreReporter.webp", alt: "Sabre the blue Doberman as the Gridiron Gazette reporter" }
-  ];
-  var img = document.getElementById("sabre-hero-image");
-  if (!img) return;
-  var choice = sabreHeroImages[Math.floor(Math.random() * sabreHeroImages.length)];
-  img.src = choice.src;
-  img.alt = choice.alt;
-})();
-</script>
 
 <!-- About Sabre -->
 <section class="section">
