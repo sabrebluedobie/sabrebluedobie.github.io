@@ -13,16 +13,48 @@
 
     <!-- Info (nav + contact + socials) -->
     <section class="info" aria-label="Footer information">
+      {%- comment -%}
+        Grouped to mirror _includes/nav.html: the same About / Products /
+        Services / Reading split the Offerings and About dropdowns use. Keep the
+        two in step when either changes.
+      {%- endcomment -%}
       <nav class="links" aria-label="Footer navigation">
-        <ul>
-          <li><a href="{{ '/services' | relative_url }}">Services</a></li>
-          <li><a href="{{ '/free-web-audit/' | relative_url }}">Free Web Audit</a></li>
-          <li><a href="{{ '/knowledge/' | relative_url }}">Knowledge Center</a></li>
-          <li><a href="{{ '/dobiecore/' | relative_url }}">DobieCore Suite</a></li>
-          <li><a href="{{ '/dobiecore/' | relative_url }}">DobieCore + Bifrost</a></li>
-          <li><a href="{{ '/our-portfolio' | relative_url }}">Work</a></li>
-          <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
-        </ul>
+        <div class="footer-link-group">
+          <h3>About</h3>
+          <ul>
+            <li><a href="{{ '/about' | relative_url }}">About Bluedobie</a></li>
+            <li><a href="{{ '/our-portfolio' | relative_url }}">Portfolio</a></li>
+            <li><a href="{{ '/meet-sabre' | relative_url }}">Meet Sabre</a></li>
+            <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-link-group">
+          <h3>Products</h3>
+          <ul>
+            <li><a href="{{ '/dobiecore/' | relative_url }}">DobieCore + Bifrost</a></li>
+            <li><a href="{{ '/learn' | relative_url }}">DobieCore Learn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-link-group">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="{{ '/services' | relative_url }}">Web Design &amp; Content</a></li>
+            <li><a href="{{ '/free-web-audit/' | relative_url }}">Free Web Audit</a></li>
+            <li><a href="{{ '/ai-setup-review/' | relative_url }}">AI Setup Review</a></li>
+            <li><a href="{{ '/logo-sprint-landing/' | relative_url }}">Logo Sprint</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-link-group">
+          <h3>Reading</h3>
+          <ul>
+            <li><a href="{{ '/knowledge/' | relative_url }}">Knowledge Center</a></li>
+            <li><a href="{{ '/dialogues' | relative_url }}">Dialogues</a></li>
+            <li><a href="{{ '/FAQ' | relative_url }}">FAQ's</a></li>
+          </ul>
+        </div>
       </nav>
 
       <address class="contact">

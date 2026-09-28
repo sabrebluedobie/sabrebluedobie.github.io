@@ -888,64 +888,16 @@ h1, h2, h3, .site-title {
 /* ========================================
    DESKTOP/TABLET DROPDOWN STYLES
    ======================================== */
-.nav-menu .dropdown {
-  position: relative;
-}
+/* ========================================
+   NAV DROPDOWNS
 
-.nav-menu .dropdown-toggle {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  transition: var(--transition-colors);
-}
-
-.nav-menu .dropdown-toggle:hover {
-  color: var(--color-navy);
-}
-
-.nav-menu .dropdown-menu {
-  position: relative;
-  top: 100%;
-  left: 0;
-  background: var(--color-white);
-  border: var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  min-width: 200px;
-  padding: var(--space-xs) 0;
-  margin-top: var(--space-xs);
-  display: none; /* Hidden by default */
-  color: #000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  z-index: 1000;
-}
-
-.nav-menu .dropdown-menu.show {
-  display: block; /* Show when active */
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.nav-menu .dropdown-menu .nav-link {
-  display: block;
-  padding: var(--space-sm) var(--space-md);
-  color: var(--color-ink);
-  text-decoration: none;
-  transition: var(--transition-colors);
-  white-space: nowrap;
-}
-
-.nav-menu .dropdown-menu .nav-link:hover {
-  background: var(--color-gray-50);
-  color: var(--color-navy);
-}
+   Duplicated here and in css/nav-footer-shared.scss. Both load on every
+   page and this one loads last, so this copy won every tie — its
+   `font: inherit` was resetting the toggle weight set in the shared sheet,
+   leaving About and Offerings lighter than the nav links beside them.
+   Removed 2026-09-28; nav dropdown styles live only in
+   css/nav-footer-shared.scss.
+   ======================================== */
 
 /* ========================================
    NAVIGATION SOCIAL BAR (2nd row)
@@ -1247,165 +1199,15 @@ h1, h2, h3, .site-title {
 /* ========================================
    FOOTER
    ======================================== */
-.site-footer {
-  background: linear-gradient(135deg, var(--color-navy) 0%, #d7d9dc 50%, var(--color-white) 100%);
-  color: var(--color-ink);
-  padding: var(--space-lg) var(--space-md) var(--space-sm);
-  margin-top: var(--space-4xl);
-}
+/* ========================================
+   FOOTER
 
-.footer-rows {
-  max-width: 600px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-sm);
-  justify-items: center;
-}
-
-.footer-rows .brand {
-  text-align: center;
-  margin: 0;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-}
-
-.footer-rows .brand img.logo {
-  width: 100px;
-  height: auto;
-  margin: 0 auto var(--space-xs);
-  display: block;
-}
-
-.footer-rows .brand-name {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-h5);
-  margin: 0;
-  font-weight: var(--font-weight-normal);
-  text-align: center;
-  line-height: var(--line-height-tight);
-  width: 100%;
-  display: block;
-}
-
-.footer-rows .tagline {
-  font-size: var(--font-size-sm);
-  color: var(--color-ink);
-  margin: 0;
-  text-align: center;
-  line-height: var(--line-height-snug);
-  width: 100%;
-  display: block;
-}
-
-.footer-rows .info {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-xs);
-  text-align: center;
-  margin: 0;
-  width: 100%;
-  justify-items: center;
-}
-
-.footer-rows .links {
-  margin: 0;
-  width: 100%;
-}
-
-.footer-rows .links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-  justify-content: center;
-  line-height: var(--line-height-snug);
-}
-
-.footer-rows .links a {
-  color: var(--color-ink);
-  text-decoration: none;
-  font-size: var(--font-size-sm);
-  transition: var(--transition-colors);
-}
-
-.footer-rows .links a:hover {
-  color: var(--color-navy);
-}
-
-.footer-rows .contact {
-  font-style: normal;
-  margin: 0;
-  width: 100%;
-}
-
-.footer-rows .contact p {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  justify-content: center;
-  font-size: var(--font-size-xs);
-  color: var(--color-ink);
-  line-height: var(--line-height-snug);
-}
-
-.footer-rows .contact a {
-  color: var(--color-ink);
-  text-decoration: none;
-  transition: var(--transition-colors);
-}
-
-.footer-rows .contact a:hover {
-  color: var(--color-navy);
-}
-
-.footer-rows .social {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.footer-rows .social a {
-  display: inline-block;
-  transition: var(--transition-all);
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.footer-rows .social a:hover {
-  opacity: 0.7;
-  transform: translateY(-2px);
-}
-
-.footer-rows .social img {
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 32px;
-  height: 32px;
-}
-
-.footer-rows .legal {
-  text-align: center;
-  padding-top: var(--space-xs);
-  margin: var(--space-xs) 0 0 0;
-  border-top: var(--border-width-thin) solid rgba(0, 0, 0, 0.1);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-snug);
-  width: 100%;
-  display: block;
-}
+   The whole footer block used to be duplicated here and in
+   css/nav-footer-shared.scss. Both load on every page and this one loads
+   last, so this copy silently won every tie — edits made in the shared
+   sheet appeared to do nothing. Removed 2026-09-28; footer styles now live
+   only in css/nav-footer-shared.scss.
+   ======================================== */
 
 /* ========================================
    MOBILE RESPONSIVE

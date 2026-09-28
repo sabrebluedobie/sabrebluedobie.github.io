@@ -416,7 +416,11 @@
 }
 
 .footer-rows {
-  max-width: 600px;
+  /* 600px before the footer carried grouped link columns — that left each of
+     the four only 126px and wrapped names like "Web Design & Content" mid
+     phrase. Everything else in here is centre-justified, so the extra width
+     only benefits the link grid. */
+  max-width: 920px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -476,14 +480,32 @@
   width: 100%;
 }
 
+/* Four groups mirroring the nav (About / Products / Services / Reading).
+   Was a single centred wrap-row, which had no hierarchy once the footer
+   carried every nav destination. */
+.footer-rows .links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+  text-align: left;
+}
+
+.footer-rows .footer-link-group h3 {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xs);
+}
+
 .footer-rows .links ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-xs);
   line-height: var(--line-height-snug);
 }
 
@@ -602,5 +624,25 @@
   .footer-rows .links ul {
     flex-direction: column;
     gap: var(--space-sm);
+  }
+}
+
+/* --- Footer link groups: 4 columns → 2 → 1 --- */
+
+@media screen and (max-width: 900px) {
+  .footer-rows .links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .footer-rows .links {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+  }
+
+  .footer-rows .links ul {
+    align-items: center;
   }
 }
