@@ -41,6 +41,9 @@
   border-bottom: 3px solid #042d4d;
 }
 
+/* <details>, styled as the row that wraps one question and its answer. Its
+   display is deliberately left at the UA default: overriding it is what can
+   break the native closed-state hiding of the content. */
 .faq-item {
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 15px;
@@ -51,6 +54,7 @@
 }
 
 .faq-question {
+  font-family: inherit;
   font-size: 1.15rem;
   font-weight: bold;
   cursor: pointer;
@@ -61,8 +65,19 @@
   margin: 10px 0;
   transition: background-color 0.3s ease;
   display: flex;
+  gap: 16px;
   justify-content: space-between;
   align-items: center;
+  list-style: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question:focus-visible {
+  outline: 3px solid #042d4d;
+  outline-offset: 3px;
 }
 
 .faq-question::after {
@@ -72,7 +87,7 @@
   transition: transform 0.3s ease;
 }
 
-.faq-question.active::after {
+details[open] > .faq-question::after {
   content: '−';
   transform: rotate(180deg);
 }
@@ -82,7 +97,6 @@
 }
 
 .faq-answer {
-  display: none;
   padding: 20px;
   margin: 0;
   background-color: #f9f9f9;
@@ -91,10 +105,6 @@
   line-height: 1.7;
   font-size: 1.05rem;
   color: #333;
-}
-
-.faq-answer.active {
-  display: block;
 }
 
 .faq-answer a,

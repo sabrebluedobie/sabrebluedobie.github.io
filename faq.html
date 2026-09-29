@@ -5,8 +5,6 @@ description: "Answers about Bluedobie Developing's small business website builds
 og_image: "https://www.bluedobiedev.com/images/confused-sabre.webp"
 permalink: /faq.html
 extra_css: /css/faq.css
-extra_scripts: |
-  <script src="/js/faq.js"></script>
 sitemap: false
 ---
 
@@ -22,6 +20,14 @@ sitemap: false
   - two-report audit, "no consultation required": free-web-audit.html
   The FAQPage JSON-LD in _includes/schema-jsonld.html repeats a subset of
   these answers and is keyed on page.url == '/faq.html'.
+
+  Each item is a native <details>/<summary>, not a div with an onclick.
+  That gives Tab/Enter/Space operation and the expanded-collapsed state in
+  the accessibility tree for free, and it still opens with JavaScript
+  disabled. css/faq.css hides the UA disclosure marker and draws the +/-
+  itself; there is no accompanying script. Do not set `display` on the
+  <details> elements - that is what can break the browser's own hiding of
+  a closed answer, which is what keeps its links out of the tab order.
 {%- endcomment -%}
 
 <div class="faq-page-content">
@@ -34,130 +40,130 @@ sitemap: false
     <!-- Website Projects -->
     <div class="faq-section">
       <h2>Website Projects</h2>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What does a 3-page website build include?</div>
+      <details class="faq-item">
+        <summary class="faq-question">What does a 3-page website build include?</summary>
         <div class="faq-answer">Three pages — usually Home, Services, and Contact — with a responsive layout that works on phones, on-brand colors and type, fast load times, basic on-page SEO setup, and a simple path for making edits later. Need more pages than that? Say so in your inquiry and it gets quoted as part of the scope. <a href="/services">See what's in each service</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What do I need to provide?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What do I need to provide?</summary>
         <div class="faq-answer">Your logo and any brand colors you already use, the words and photos you want on each page, and a clear idea of what you want a visitor to do — call, book, buy, or get in touch. If you don't have the copy or photos ready yet, say so up front. That changes the timeline, not the answer.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">How long does a website project take?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">How long does a website project take?</summary>
         <div class="faq-answer">Most small website projects take 2-4 weeks from start to launch, depending on scope and how quickly content comes back. You get a clear estimate before any work starts. <a href="/about">See how the process works</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What does a website cost?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What does a website cost?</summary>
         <div class="faq-answer">Small business website builds are priced under $3k, quoted after a short conversation about what you actually need — no surprise invoices. Updates, edits, and cleanup are quoted separately as their own work. The Logo Sprint is the one service with published tiers, starting at $199.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Who owns the website after launch?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Who owns the website after launch?</summary>
         <div class="faq-answer">You do. It's your site, and you keep control of it — you review, we launch, and it's yours. Where you want the domain and hosting in your own accounts, that's how it gets set up; if you'd rather I hold a piece of it, ask and we'll scope that explicitly rather than leaving it vague.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Can you update the site later?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can you update the site later?</summary>
         <div class="faq-answer">Yes. Website Updates &amp; Light Edits is a standing service booked by appointment — content swaps, image updates, accessibility fixes, and small changes without a full rebuild. There's no retainer and no monthly minimum; you come back when you need something. If a site has drifted into broken, confusing, or slow, that's Website Cleanup instead. <a href="/services#after-launch">See both post-launch options</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Do you only work with businesses in Western Kentucky?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do you only work with businesses in Western Kentucky?</summary>
         <div class="faq-answer">No. I'm based in Princeton, Kentucky and work with clients everywhere — website projects run remotely. Western Kentucky is home, so local clients can meet in person, and DobieCore Suite is available nationally to any small business.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Ready to talk about a build?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Ready to talk about a build?</summary>
         <div class="faq-answer">Tell me what you need and I'll come back with a quote. <a href="/contact?service=Website#custom-form-container">Start a website project inquiry</a>.</div>
-      </div>
+      </details>
     </div>
 
     <!-- Free Web Audit -->
     <div class="faq-section">
       <h2>Free Web Audit</h2>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Do I need a call to request the free audit?</div>
+      <details class="faq-item">
+        <summary class="faq-question">Do I need a call to request the free audit?</summary>
         <div class="faq-answer">No. The request form starts the audit — pick <strong>Free Web Audit</strong> and include your website address. A call is optional later if it would actually help. The booking calendar on the Contact page is for consultations, not for audit requests, so you don't have to schedule anything to get one. <a href="/contact?service=Free%20Web%20Audit#custom-form-container">Request the audit</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">How does the free web audit work?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">How does the free web audit work?</summary>
         <div class="faq-answer">It comes back as two reports. <strong>First,</strong> an automated PageSpeed Insights PDF covering loading performance, mobile experience, accessibility, and technical SEO. <strong>Then,</strong> a follow-up manual report: search visibility findings, a hands-on walk through your site the way a customer would use it, the hidden blockers that turns up, and recommendations in priority order. <a href="/free-web-audit/">See everything the audit covers</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Is the audit really free?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Is the audit really free?</summary>
         <div class="faq-answer">Yes. No cost, and no requirement to book or buy anything afterward. Use the roadmap yourself, hand it to your current developer, or ask me to implement it — all three are fine outcomes.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What if the audit says my site is fine?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What if the audit says my site is fine?</summary>
         <div class="faq-answer">Then you've got that in writing and you can stop worrying about it. The audit is meant to tell you what to fix first, and sometimes the honest answer is that the site isn't the problem.</div>
-      </div>
+      </details>
     </div>
 
     <!-- Is This a Fit -->
     <div class="faq-section">
       <h2>Is This a Fit?</h2>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">I'm not sure what I need. Where do I start?</div>
+      <details class="faq-item">
+        <summary class="faq-question">I'm not sure what I need. Where do I start?</summary>
         <div class="faq-answer">If you already have a site and something about it isn't working, start with the <a href="/free-web-audit/">free web audit</a> — it's built to tell you which problem to solve first. If you know you need a site built or rebuilt, skip the audit and <a href="/contact?service=Website#custom-form-container">send a project inquiry</a> instead.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What happens after I send an inquiry?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What happens after I send an inquiry?</summary>
         <div class="faq-answer">You hear back within 24 hours. We talk about what you need, you get a clear quote, and if you approve it I build it and you launch it. No account managers and no committees — you work directly with me the whole way.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What if my project is bigger than a small website?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What if my project is bigger than a small website?</summary>
         <div class="faq-answer">I'll tell you. Building small is a deliberate choice — landing pages, portfolios, and simple business sites, not six-month builds. If you need a large e-commerce or application project, I'd rather point you somewhere else than take it on and do it badly. The free audit is still open to you either way. <a href="/about">Read why I work this way</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Do you do anything besides websites?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do you do anything besides websites?</summary>
         <div class="faq-answer">Yes, and each one is deliberately bounded rather than open-ended: a <a href="/free-web-audit/">free web audit</a> if you want a diagnosis first, an <a href="/ai-setup-review/">AI Setup Review</a> for local service businesses already using ChatGPT, Claude, or Gemini, a <a href="/logo-sprint-landing/">Logo Sprint</a> for concepts in 48-72 hours, and the DobieCore content system and course for handling content yourself. <a href="/services">See all of it grouped by what you're trying to do</a>.</div>
-      </div>
+      </details>
     </div>
 
     <!-- DobieCore + Bifrost -->
     <div class="faq-section">
       <h2>DobieCore + Bifrost</h2>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What is DobieCore Suite?</div>
+      <details class="faq-item">
+        <summary class="faq-question">What is DobieCore Suite?</summary>
         <div class="faq-answer">DobieCore Suite is a brand voice-based content system that helps small businesses with prewriting, captions, images, blogs, and a content calendar template — all built from one consistent brand voice. <a href="/dobiecore/">Explore DobieCore + Bifrost</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">How much does DobieCore Suite cost?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">How much does DobieCore Suite cost?</summary>
         <div class="faq-answer">Signing up is free, and no credit card is required until you pass the free usage limits.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Is DobieCore Suite only for Western Kentucky businesses?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Is DobieCore Suite only for Western Kentucky businesses?</summary>
         <div class="faq-answer">No. DobieCore Suite is available nationally to any small business that wants brand-consistent content support.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What is Bifrost?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What is Bifrost?</summary>
         <div class="faq-answer">Bifrost is the context and routing layer being combined with DobieCore into one system, DobieCore + Bifrost. It covers AI workflow routing and small business continuity planning, including support for unexpected owner absence. The backend runs today; the combined product is still being built, while DobieCore Suite is available now. <a href="/dobiecore/">Read more on the DobieCore + Bifrost page</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Can I sign up for Bifrost now?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I sign up for Bifrost now?</summary>
         <div class="faq-answer">Not yet. It will likely start as a local-first test with a small group of Western Kentucky businesses. If you're curious, reach out and we'll keep you posted.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What is DobieCore Learn?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What is DobieCore Learn?</summary>
         <div class="faq-answer">A course for working with AI clearly, whichever assistant you already use — three modules and 36 lessons that end with a reusable business foundation instead of a folder of someone else's prompts. <a href="/learn">See what the course covers</a>.</div>
-      </div>
+      </details>
     </div>
 
     <!-- About Bluedobie -->
     <div class="faq-section">
       <h2>About Bluedobie</h2>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">What is Bluedobie Developing?</div>
+      <details class="faq-item">
+        <summary class="faq-question">What is Bluedobie Developing?</summary>
         <div class="faq-answer">Bluedobie Developing is a small business web design and content systems company founded by Melanie Brown. We build practical websites and free web audits locally in Western Kentucky, and support small businesses nationally through DobieCore Suite, our brand voice-based content system.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Who is Melanie Brown?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Who is Melanie Brown?</summary>
         <div class="faq-answer">Melanie Brown is the founder of Bluedobie Developing. She's self-taught, based in Princeton, Kentucky, and builds practical digital systems for small businesses that don't have time for bloated tech stacks. <a href="/about">Read more on the About page</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Who is Sabre?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Who is Sabre?</summary>
         <div class="faq-answer">Sabre is Melanie's blue Doberman and the reason the company is named Bluedobie. He's part of the brand personality — office manager, project supervisor, and occasional social media star. <a href="/meet-sabre">Meet Sabre</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">Can I see work you've done?</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I see work you've done?</summary>
         <div class="faq-answer">Yes — client websites and in-house products are both on the <a href="/our-portfolio">portfolio page</a>, each labeled live, staging, or archived, with full case studies for Too Good Maids, Arlo.Dobermann, and the Gridiron Gazette.</div>
-      </div>
+      </details>
     </div>
 
     <!-- Two routes out -->
