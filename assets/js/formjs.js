@@ -7,6 +7,30 @@ document.addEventListener('DOMContentLoaded', function () {
   const websiteInput = form.querySelector('input[name="website"]');
   const statusMessage = form.querySelector('#form-status');
   const preselectedNote = form.querySelector('#form-preselected');
+  const formIntro = document.getElementById('form-intro');
+
+  const defaultIntro = formIntro ? formIntro.innerHTML : null;
+
+  // The intro above the form names whichever service is selected. Variants
+  // live in <template data-service="..."> blocks in contact.html, keyed by
+  // the exact option value, so the copy stays editable in the page. An
+  // option with no template falls back to the default intro.
+  function syncFormIntro() {
+    if (!formIntro || defaultIntro === null) return;
+
+    const selected = serviceSelect ? serviceSelect.value : '';
+    const variant = selected
+      ? document.querySelector(
+          `template[data-service="${window.CSS && CSS.escape ? CSS.escape(selected) : selected}"]`
+        )
+      : null;
+
+    if (variant) {
+      formIntro.replaceChildren(variant.content.cloneNode(true));
+    } else {
+      formIntro.innerHTML = defaultIntro;
+    }
+  }
 
   function isAuditRequest() {
     return serviceSelect && serviceSelect.value.toLowerCase() === 'free web audit';
@@ -130,8 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (preselectedNote) {
         preselectedNote.textContent =
+          'Your details first. ' +
           matchingOption.textContent.trim() +
-          ' is selected. Start with your details, and we will confirm the rest on the next step.';
+          ' is already selected for you on step 2.';
         preselectedNote.hidden = false;
       }
 
@@ -142,8 +167,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   syncWebsiteRequirement();
+  syncFormIntro();
   if (serviceSelect) {
-    serviceSelect.addEventListener('change', syncWebsiteRequirement);
+    serviceSelect.addEventListener('change', function () {
+      syncWebsiteRequirement();
+      syncFormIntro();
+    });
   }
 
   form.addEventListener('submit', async function (event) {
@@ -199,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       form.reset();
       syncWebsiteRequirement();
+      syncFormIntro();
       showStep(1);
 
       if (statusMessage) {

@@ -64,11 +64,59 @@ sitemap: false
 </div>
 
 <div class="section" id="custom-form-container">
-  <div class="audit-form-intro">
+  {%- comment -%}
+    The intro follows whichever service is selected. The markup below is the
+    no-selection default and is what renders without JavaScript; the
+    <template> blocks after it hold one variant per option in the step 2
+    dropdown, keyed by that option's exact value. assets/js/formjs.js swaps
+    the matching variant in on a ?service= deep link and whenever the
+    visitor changes the dropdown.
+
+    To edit the wording, edit it here - the copy deliberately lives in this
+    page rather than in the script. A service with no template keeps the
+    default, so adding an <option> without a template degrades quietly.
+  {%- endcomment -%}
+  <div class="audit-form-intro" id="form-intro">
+    <p class="audit-form-label">Contact</p>
+    <h2>Tell Me What You Need</h2>
+    <p>Pick a service in step 2 and add the details. You'll hear back within 24 hours. If you're after a free web audit, this form &mdash; not the calendar &mdash; is what starts it.</p>
+  </div>
+
+  <template data-service="Free Web Audit">
     <p class="audit-form-label">Free Web Audit</p>
     <h2>Request Your Free Website Audit</h2>
-    <p>Select <strong>Free Web Audit</strong> and include your website address. Submitting this form starts the audit; you do not need to schedule a consultation first.</p>
-  </div>
+    <p>Include your website address. Submitting this form starts the audit; you do not need to schedule a consultation first.</p>
+  </template>
+
+  <template data-service="Website">
+    <p class="audit-form-label">Website Help</p>
+    <h2>Ask About a Website Project</h2>
+    <p>A new build, an update, or a cleanup &mdash; tell me what the site needs to do. You'll get a clear quote back, not a sales call.</p>
+  </template>
+
+  <template data-service="DobieCore">
+    <p class="audit-form-label">DobieCore</p>
+    <h2>Ask About DobieCore Content Support</h2>
+    <p>Tell me what you're trying to publish and where you keep getting stuck. DobieCore Suite is live today, and signing up is free.</p>
+  </template>
+
+  <template data-service="Bifrost">
+    <p class="audit-form-label">Bifrost</p>
+    <h2>Bifrost &amp; Business Continuity</h2>
+    <p>Bifrost isn't open for signup yet. Tell me what you're trying to protect and I'll keep you posted as the combined DobieCore + Bifrost system is built.</p>
+  </template>
+
+  <template data-service="Logo Design">
+    <p class="audit-form-label">Logo Sprint</p>
+    <h2>Start a Logo Sprint</h2>
+    <p>Concepts in 48&ndash;72 hours, two tiers starting at $199. Tell me about the business and the feel you're after.</p>
+  </template>
+
+  <template data-service="Business Cards">
+    <p class="audit-form-label">Business Cards</p>
+    <h2>Ask About Business Card Design</h2>
+    <p>Tell me what you need printed, and whether you already have a logo and brand colors to work from.</p>
+  </template>
   <form id="multiForm" method="POST"
     class="multi-step-form">
     
