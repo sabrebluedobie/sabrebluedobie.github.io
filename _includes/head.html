@@ -79,10 +79,16 @@
       onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ '/assets/css/bluedobie-developing-redesign.webflow.css' | relative_url }}?v={{ css_v }}"></noscript>
 
+{%- comment -%}
+  blog.css only styles the article body the `post` layout renders. Loading it
+  sitewide cost 41 other pages a stylesheet none of them used.
+{%- endcomment -%}
+{%- if page.layout == 'post' -%}
 <link rel="preload" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ css_v }}"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ css_v }}"></noscript>
+{%- endif -%}
 
 <link rel="preload"
       href="{{ '/assets/css/webflow.css' | relative_url }}?v={{ css_v }}"
@@ -96,10 +102,6 @@
       as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}?v={{ css_v }}"></noscript>
 
-<link rel="preload" href="{{ '/css/design-tokens.css' | relative_url }}?v={{ css_v }}"
-      as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/css/design-tokens.css' | relative_url }}?v={{ css_v }}"></noscript>
-
 <link rel="preload" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v={{ css_v }}"
       as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ '/css/nav-footer-shared.css' | relative_url }}?v={{ css_v }}"></noscript>
@@ -107,6 +109,13 @@
 
 <!-- CSS: reset → design tokens → framework → theme → overrides -->
 
+{%- comment -%}
+  design-tokens.css must load render-blocking and BEFORE core.css: it defines
+  the custom properties (--color-navy, --space-*, ...) that core.css consumes.
+  While it was deferred there was a window in which core.css applied with every
+  var() unresolved.
+{%- endcomment -%}
+<link rel="stylesheet" href="{{ '/css/design-tokens.css' | relative_url }}?v={{ css_v }}">
 <link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}?v={{ css_v }}">
 <link rel="stylesheet" href="{{ '/assets/css/mobile-nav.css' | relative_url }}?v={{ css_v }}">
 
