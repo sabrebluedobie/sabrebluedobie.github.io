@@ -4,6 +4,10 @@ title: "Our Links | Bluedobie Developing"
 description: "Not only does Bluedobie build your website, but we can recommend related products too!"
 canonical: "https://www.bluedobiedev.com/business-links"
 sitemap: false
+# Parked 2026-09-29: unlinked from the site and kept out of search while
+# it is off the menu. Drop this line and restore the manual-sitemap.xml
+# entry to bring it back.
+noindex: true
 extra_css:
   - /assets/css/pages/business-links.css
 ---

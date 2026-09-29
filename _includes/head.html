@@ -19,6 +19,20 @@
 <title>{{ _title }}</title>
 {%- if _desc and _desc != "" -%}<meta name="description" content="{{ _desc }}">{%- endif -%}
 <link rel="canonical" href="{{ _canon }}">
+{%- comment -%}
+  Per-page search visibility. `noindex: true` in a page's front matter keeps it
+  out of search results while the URL keeps working - for pages that are parked
+  or only meant to be reached directly. "follow" is deliberate: crawlers may
+  still follow the links on the page, they just will not list the page itself.
+
+  This is NOT the same as `sitemap: false`, which only excludes a page from the
+  GENERATED sitemap and is set on about/services/contact/faq/our-portfolio too,
+  because manual-sitemap.xml is the source of truth. Removing a page from that
+  file stops advertising it; only this flag keeps it out of results.
+{%- endcomment -%}
+{%- if page.noindex -%}
+<meta name="robots" content="noindex, follow">
+{%- endif -%}
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Bluedobie Developing">
