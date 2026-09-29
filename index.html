@@ -11,9 +11,16 @@ extra_css:
 
 <!-- Hero Section -->
 <section class="hero-section">
+  {%- comment -%}
+    Same build stamp the stylesheets and scripts carry. _headers caches
+    /videos/* for four hours and the filename is not content-hashed, so a
+    re-encoded video is served stale from the edge after a deploy. That bites
+    hardest here, because this video is the page's largest-contentful-paint
+    element - returning visitors would keep the slower old file for hours.
+  {%- endcomment -%}
   <div class="hero-video-container">
     <video autoplay muted loop playsinline preload="metadata" poster="images/video-poster.webp" width="1364" height="766">
-      <source src="videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
+      <source src="videos/Sabre-Office-Adventures-wide2.mp4?v={{ site.time | date: '%s' }}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>

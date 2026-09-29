@@ -17,8 +17,8 @@ extra_css:
 <div class="links-hero-section">
   <div class="links-hero-video-container">
     <video autoplay loop muted playsinline>
-      <source src="/videos/Sabre-Office-Adventures-wide2.mp4" type="video/mp4">
-      <source src="/videos/Sabre-Office-Adventures-wide1.webm" type="video/webm">
+      <source src="/videos/Sabre-Office-Adventures-wide2.mp4?v={{ site.time | date: '%s' }}" type="video/mp4">
+      <source src="/videos/Sabre-Office-Adventures-wide1.webm?v={{ site.time | date: '%s' }}" type="video/webm">
     </video>
   </div>
   
