@@ -20,3 +20,33 @@
 /tags     /knowledge/  301
 /tags/    /knowledge/  301
 /tags/*   /knowledge/  301
+
+# DobieCore: the Suite landing page lives at /dobiecore/ (permalink on
+# DobieCoreSuite.html). These are the older addresses still in circulation.
+/dobiecore-captions       /dobiecore/  301
+/dobiecore-captions/      /dobiecore/  301
+/dobiecore-captions.html  /dobiecore/  301
+/DobieCoreSuite           /dobiecore/  301
+/DobieCoreSuite/          /dobiecore/  301
+/DobieCoreSuite.html      /dobiecore/  301
+
+# Retired blog tag links used a hyphen, not a slash, so the /tags/* rule
+# above never matched them. 19 of these showed up in GA4 for September.
+/tags-*   /knowledge/  301
+
+# Gridiron Gazette funnel was retired to archive/gazette-funnel/; the surviving
+# Gazette content is the case study. 22 of September's 404 views were these.
+/gazette            /case-studies/gridiron-gazette/  301
+/gazette/           /case-studies/gridiron-gazette/  301
+/gazette/*          /case-studies/gridiron-gazette/  301
+
+# Other retired pages still receiving traffic.
+/sales                              /services        301
+/blogpost1                          /dialogues       301
+/site-pages/scheduling              /contact         301
+/site-pages/about-me---portfolio    /our-portfolio   301
+
+# Malformed links with a literal space in the path. The space must be written
+# as %20 here, because _redirects uses whitespace to separate its columns.
+/services%20services   /services  301
+/%20home               /          301
