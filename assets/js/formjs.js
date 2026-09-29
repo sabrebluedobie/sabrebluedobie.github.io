@@ -107,9 +107,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function trackEvent(name, extraParams) {
+    const params = Object.assign({}, extraParams, getUtmParams());
     try {
-      if (typeof gtag === 'function') {
-        gtag('event', name, Object.assign({}, extraParams, getUtmParams()));
+      // GA4 is loaded by Cloudflare Zaraz here, which means there is no global
+      // gtag on the page - zaraz.track is its equivalent. The old code guarded
+      // on `typeof gtag === 'function'`, which is always false under Zaraz, so
+      // every event was silently dropped. The gtag branch stays as a fallback
+      // in case the site ever loads gtag.js directly again.
+      if (window.zaraz && typeof window.zaraz.track === 'function') {
+        window.zaraz.track(name, params);
+      } else if (typeof gtag === 'function') {
+        gtag('event', name, params);
       }
     } catch (error) {
       // Analytics must never block navigation or form submission.
@@ -222,9 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error(`Make webhook failed with status ${response.status}`);
       }
 
-      if (payload['request-type'] === 'Free Web Audit') {
-        trackEvent('audit_form_submit', { service_type: payload['request-type'] });
-      }
+      trackEvent('generate_lead', { service_type: payload['request-type'] });
 
       form.reset();
       syncWebsiteRequirement();
