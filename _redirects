@@ -57,3 +57,12 @@
 /FAQ       /faq  301
 /FAQ/      /faq  301
 /FAQ.html  /faq  301
+
+# DobieCore Captions and ContractKit were placeholder pages for products that
+# are not shipping separately; both are folded into /dobiecore/ (2026-09-29).
+# A 301 here rather than jekyll-redirect-from, because that plugin emits a 200
+# HTML page with a meta refresh, and these were already indexed.
+/dobiecore/captioncraft       /dobiecore/  301
+/dobiecore/captioncraft/      /dobiecore/  301
+/dobiecore/contracts          /dobiecore/  301
+/dobiecore/contracts/         /dobiecore/  301
