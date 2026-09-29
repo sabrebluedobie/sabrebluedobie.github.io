@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const serviceSelect = form.querySelector('select[name="request-type"]');
   const websiteInput = form.querySelector('input[name="website"]');
   const statusMessage = form.querySelector('#form-status');
+  const preselectedNote = form.querySelector('#form-preselected');
 
   function isAuditRequest() {
     return serviceSelect && serviceSelect.value.toLowerCase() === 'free web audit';
@@ -48,12 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
     return true;
   }
 
-  // A deep link (?service=Free Web Audit) can land the visitor on step 2
-  // directly, which can leave step 1's required fields empty and hidden.
-  // A browser can't show a validation bubble for a display:none field, so
-  // form.reportValidity() would silently fail in that case. Walk every
-  // field in DOM order instead, and jump to whichever step holds the
-  // first invalid one before reporting it.
+  // Every visitor now starts on step 1, but a field on a later step can
+  // still be invalid at submit time. A browser can't show a validation
+  // bubble for a display:none field, so form.reportValidity() would fail
+  // silently. Walk every field in DOM order instead, and jump to whichever
+  // step holds the first invalid one before reporting it.
   function goToFirstInvalidField() {
     const fields = form.querySelectorAll('input, select, textarea');
 
@@ -110,6 +110,13 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // Preselect a service from links such as ?service=Free%20Web%20Audit.
+  //
+  // The audit deep link used to call showStep(2) so the preselection was
+  // visible straight away, but step 2 is the inquiry step: that dropped
+  // the visitor past step 1, where their name, email and website URL are
+  // collected, and left them to work out that they had to press Back.
+  // Everyone starts on step 1 now, and the preselection is confirmed in
+  // place by the note at the top of that step.
   const requestedService = new URLSearchParams(window.location.search).get('service');
 
   if (requestedService && serviceSelect) {
@@ -121,11 +128,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (matchingOption) {
       serviceSelect.value = matchingOption.value;
 
-      // Only the Free Web Audit deep link jumps straight to step 2 so the
-      // preselection is visibly confirmed immediately. Other ?service=
-      // values keep the existing behavior (preselected, but step 1 first).
+      if (preselectedNote) {
+        preselectedNote.textContent =
+          matchingOption.textContent.trim() +
+          ' is selected. Start with your details, and we will confirm the rest on the next step.';
+        preselectedNote.hidden = false;
+      }
+
       if (normalizedService === 'free web audit') {
-        showStep(2);
         trackEvent('audit_flow_start', { service_type: matchingOption.value });
       }
     }

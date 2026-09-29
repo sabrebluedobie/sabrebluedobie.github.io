@@ -74,6 +74,12 @@ sitemap: false
     
     <!-- Step 1: Basic Info -->
     <div class="form-step active" id="step1">
+      {%- comment -%}
+        Filled in and revealed by assets/js/formjs.js when a ?service= deep
+        link preselects a service on step 2. It exists so the visitor can see
+        their choice took effect without the form skipping this step.
+      {%- endcomment -%}
+      <p class="form-preselected" id="form-preselected" role="status" hidden></p>
       <h3>Step 1 of 3</h3>
       <input name="first-name" placeholder="First Name" required />
       <input name="last-name" placeholder="Last Name" required />
@@ -121,4 +127,10 @@ sitemap: false
   </form>
 </div>
 
-<script src="/assets/js/formjs.js"></script>
+{%- comment -%}
+  Same build stamp the stylesheets get in _includes/head.html: _headers
+  caches /assets/* for four hours and this filename is not content-hashed,
+  so without it a returning visitor keeps running the previous formjs.js
+  after a deploy.
+{%- endcomment -%}
+<script src="/assets/js/formjs.js?v={{ site.time | date: '%s' }}"></script>

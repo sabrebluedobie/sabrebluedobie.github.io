@@ -305,3 +305,20 @@ hr.dashed {
     width: 100%;
   }
 }
+
+/* Confirms a ?service= preselection at the top of step 1. Hidden until
+   assets/js/formjs.js fills it in, so it never shows an empty box. */
+.form-preselected {
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-cream);
+  border-left: 4px solid var(--color-navy);
+  border-radius: var(--radius-md);
+  color: var(--color-navy);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-relaxed);
+}
+
+.form-preselected[hidden] {
+  display: none;
+}
