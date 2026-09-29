@@ -50,3 +50,10 @@
 # as %20 here, because _redirects uses whitespace to separate its columns.
 /services%20services   /services  301
 /%20home               /          301
+
+# The FAQ moved from /FAQ to lowercase /faq (2026-09-29). /faq was a 404 and is
+# the address people type and paste. Cloudflare Pages matches both assets and
+# these rules case-sensitively, so the two spellings cannot loop into each other.
+/FAQ       /faq  301
+/FAQ/      /faq  301
+/FAQ.html  /faq  301

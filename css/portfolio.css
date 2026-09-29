@@ -289,3 +289,92 @@ h3 {
     max-width: 350px;
   }
 }
+
+/* ========================================
+   PROJECT STATUS + PROBLEM / BUILD / OUTCOME
+   Added 2026-09-29 with the client-vs-products split. The status chip sits
+   inside the project h3 so it can never drift away from the name it labels.
+   ======================================== */
+.portfolio-group-intro {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.project-status {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--space-sm);
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: 0.2em;
+}
+
+.project-status-live {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.project-status-staging {
+  background: var(--color-cream);
+  color: var(--color-navy);
+  border: 1px solid var(--color-navy);
+}
+
+.project-status-archived {
+  background: transparent;
+  color: var(--color-text-light);
+  border: 1px solid var(--color-text-light);
+}
+
+.project-meta {
+  margin: 0 0 var(--space-lg);
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--color-navy);
+}
+
+.project-meta p {
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-md);
+  margin: 0 0 var(--space-sm);
+}
+
+.project-meta p:last-child {
+  margin-bottom: 0;
+}
+
+.project-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+}
+
+.portfolio-routes-note {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 600px) {
+  .project-status {
+    display: block;
+    margin: var(--space-xs) 0 0;
+    width: fit-content;
+    vertical-align: baseline;
+  }
+}
+
+/* core.scss defines .section-alt, but this file declares .section with a white
+   background later in the cascade at equal specificity, so the alternating
+   band has to be restated here to win. */
+.section.section-alt {
+  background: var(--color-background-cream);
+}

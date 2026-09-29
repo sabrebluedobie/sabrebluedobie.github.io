@@ -1,0 +1,189 @@
+/* Services page.
+   The hero, grid, card and process styles come from assets/css/core.scss.
+   This file only adds what the intent-grouped layout needs on top of those:
+   the "which one do I need?" chooser, the per-group headers, the CTA line
+   inside each card, and the after-launch strip. */
+
+/* ---- Which one do I need? ---- */
+.services-chooser {
+  padding-top: var(--space-2xl);
+  padding-bottom: 0;
+}
+
+.services-chooser h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  margin: 0 0 var(--space-xs);
+}
+
+.services-chooser-intro {
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-lg);
+}
+
+.services-chooser-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.services-chooser-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-white);
+  border: var(--border-light);
+  border-left: 4px solid var(--color-navy);
+  border-radius: var(--radius-md, 8px);
+}
+
+.services-chooser-list strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.services-chooser-list a {
+  color: var(--color-navy);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+/* ---- Intent groups ---- */
+.services-group {
+  padding-top: var(--space-2xl);
+  padding-bottom: 0;
+}
+
+.services-group-header {
+  max-width: 720px;
+}
+
+.services-group-header h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  margin: 0 0 var(--space-xs);
+}
+
+.services-group-header p {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* Cards drop to h3 now that each group owns the h2. Mirrors .service-card h2
+   in core.scss so the two stay visually identical. */
+.service-card h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-h4);
+  font-family: var(--font-heading);
+}
+
+/* ---- The next action on every card ---- */
+.service-card-cta {
+  margin: var(--space-md) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+}
+
+.service-card-cta a {
+  color: var(--color-navy);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.service-card-note {
+  margin: var(--space-sm) 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text-light, #666);
+}
+
+/* ---- Audit-versus-consultation clarifier ---- */
+.services-clarifier {
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-cream);
+  border-left: 4px solid var(--color-navy);
+  border-radius: var(--radius-md, 8px);
+}
+
+.services-clarifier p {
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.services-clarifier p + p {
+  margin-top: var(--space-xs);
+}
+
+/* ---- After launch ---- */
+.services-after-launch {
+  padding-top: var(--space-2xl);
+  padding-bottom: 0;
+}
+
+.services-after-launch-inner {
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.services-after-launch h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  color: var(--color-cream);
+  margin: 0 0 var(--space-xs);
+}
+
+.services-after-launch p {
+  margin: 0 0 var(--space-md);
+  line-height: var(--line-height-relaxed);
+  max-width: 68ch;
+}
+
+.services-after-launch ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.services-after-launch li {
+  line-height: var(--line-height-relaxed);
+}
+
+.services-after-launch a {
+  color: var(--color-cream);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- Two routes out, instead of one button ---- */
+.services-routes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
+.services-routes-note {
+  margin-top: var(--space-md);
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .services-chooser-list a {
+    white-space: normal;
+  }
+}

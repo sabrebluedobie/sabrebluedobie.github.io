@@ -40,7 +40,7 @@ Primary services and products include:
 - DobieCore Learn (course): https://www.bluedobiedev.com/learn.html
 - DobieCore Learn course site: https://learn.bluedobiedev.com/
 - Portfolio: https://www.bluedobiedev.com/our-portfolio.html
-- FAQ: https://www.bluedobiedev.com/FAQ.html
+- FAQ: https://www.bluedobiedev.com/faq
 - Contact: https://www.bluedobiedev.com/contact.html
 - Meet Sabre: https://www.bluedobiedev.com/meet-sabre.html
 - Bluedobie Dialogues: https://www.bluedobiedev.com/dialogues.html

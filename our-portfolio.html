@@ -1,7 +1,7 @@
 ---
 layout: default-shared
 title: "Bluedobie Developing's Design Portfolio"
-description: "Small web projects under $3k. Landing pages, portfolios, business sites. Every project delivered on time and functional from day one."
+description: "Client websites and in-house products from Bluedobie Developing, each labeled live, staging, or archived. Client website builds come in under $3k with a 2-4 week turnaround."
 og_image: "https://i.postimg.cc/WpBt76FN/temp-Image-Tnr-JLu.avif"
 canonical_url: "https://www.bluedobiedev.com/our-portfolio"
 extra_css:
@@ -12,11 +12,28 @@ extra_scripts: |
 sitemap: false
 ---
 
+{%- comment -%}
+  Two groups, deliberately separated (2026-09-29): client websites built for
+  someone else, then in-house products and experiments. The under-$3k /
+  on-time / 2-4 week claim describes the client builds only and is stated in
+  that group's intro, not in the hero and not over the products.
+
+  Every project carries a visible status chip — Live, Staging, or Archived —
+  so a visitor can tell what they are about to click before they click it.
+  External link labels are deliberately plain ("View live site") rather than
+  clever, because the label is the only promise about where the link goes.
+
+  The carousel tracks repeat their images on purpose: each track is duplicated
+  end to end so the CSS marquee loops without a visible seam. That is not a
+  content bug — do not "deduplicate" it.
+{%- endcomment -%}
+
 <div class="hero-section">
   <div class="container">
     <h1>Portfolio</h1>
     <p class="second-home-description" style="text-align: center;">
-      Small websites. Done fast. Under $3k. This is what I build - landing pages, portfolios, business sites. Every project here was delivered on time and actually works.
+      Client websites first, then the in-house products. Every project is labeled
+      live, staging, or archived, so you know what you are looking at.
     </p>
   </div>
 </div>
@@ -32,15 +49,15 @@ sitemap: false
       <img src="assets/images/Week5_Gazette-page01.webp" alt="Gridiron Gazette newsletter">
       <img src="images/dapenguin-work-with-me.webp" alt="DaPenguin Cycling partnerships page">
       <!-- Duplicate for seamless loop -->
-      <img src="images/Critter-Care-home-page_1.webp" alt="Critter Care pet grooming website">
-      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="Tiny Trinkets jewelry website">
-      <img src="assets/images/staging-1tgm.webp" alt="Too Good Maids staging site">
-      <img src="images/arlo-dobermann-ipad.webp" alt="Arlo Dobermann petfluencer site">
-      <img src="assets/images/Week5_Gazette-page01.webp" alt="Gridiron Gazette newsletter">
-      <img src="images/dapenguin-work-with-me.webp" alt="DaPenguin Cycling partnerships page">
+      <img src="images/Critter-Care-home-page_1.webp" alt="" aria-hidden="true">
+      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="" aria-hidden="true">
+      <img src="assets/images/staging-1tgm.webp" alt="" aria-hidden="true">
+      <img src="images/arlo-dobermann-ipad.webp" alt="" aria-hidden="true">
+      <img src="assets/images/Week5_Gazette-page01.webp" alt="" aria-hidden="true">
+      <img src="images/dapenguin-work-with-me.webp" alt="" aria-hidden="true">
     </div>
   </div>
-  
+
   <!-- Row 2: Scrolls Left -->
   <div class="carousel-row scroll-left">
     <div class="carousel-track">
@@ -51,116 +68,132 @@ sitemap: false
       <img src="images/Simulator-Screenshot---iPad-Pro-12.9-inch-6th-generation---2024-04-06-at-13.15.11.webp" alt="Tiny Trinkets iPad view">
       <img src="images/dapenguin-work-with-me.webp" alt="DaPenguin Cycling partnerships page">
       <!-- Duplicate for seamless loop -->
-      <img src="assets/images/Arlo-Dobermann-04-24-2025_12_52_PM.webp" alt="Arlo Dobermann website">
-      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="Tiny Trinkets website">
-      <img src="images/Simulator-Too-Good-Maids-Homepage.webp" alt="Too Good Maids homepage">
-      <img src="assets/images/Arlo-Dobermann-story.webp" alt="Arlo Dobermann story page">
-      <img src="images/Simulator-Screenshot---iPad-Pro-12.9-inch-6th-generation---2024-04-06-at-13.15.11.webp" alt="Tiny Trinkets iPad view">
-      <img src="images/dapenguin-work-with-me.webp" alt="DaPenguin Cycling partnerships page">
+      <img src="assets/images/Arlo-Dobermann-04-24-2025_12_52_PM.webp" alt="" aria-hidden="true">
+      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="" aria-hidden="true">
+      <img src="images/Simulator-Too-Good-Maids-Homepage.webp" alt="" aria-hidden="true">
+      <img src="assets/images/Arlo-Dobermann-story.webp" alt="" aria-hidden="true">
+      <img src="images/Simulator-Screenshot---iPad-Pro-12.9-inch-6th-generation---2024-04-06-at-13.15.11.webp" alt="" aria-hidden="true">
+      <img src="images/dapenguin-work-with-me.webp" alt="" aria-hidden="true">
     </div>
   </div>
 </div>
 
+<!-- Group 1: client websites -->
 <div class="section">
   <div class="container">
-    <div class="statistics-holder">
-      <div data-w-id="b3f260a8-46e1-c6a3-3817-275686f7fdd7" class="about-boxes-holder"></div>
-    </div>
     <div class="about-description-holder">
-      <h2>What I've Built</h2>
+      <h2>Client Websites</h2>
 
-      <p class="paragraph-32">These are real websites built for real businesses —
-      designed to attract customers, not just look nice.</p>
-      
-      <p class="paragraph-32">Small business sites, portfolios, and digital products. Every project delivered on time, under $3k, and functional from day one.</p>
-      
-      <h3>Too Good Maids</h3>
-      <p class="paragraph-32">Cleaning service site built for a growing business with two different kinds of customers - residential and commercial - who don't make decisions the same way. Clean, minimal design with easy booking and clear service info. Mobile-friendly because most customers book from their phones.</p>
-      <p class="paragraph-32"><strong>What worked:</strong> Simple navigation, fast load times, and a prominent booking CTA. The business grew enough after launch to hire an additional cleaner within three months, and two more by the one-year mark.</p>
+      <p class="paragraph-32 portfolio-group-intro">Real websites built for real businesses &mdash; designed to help
+      someone become a customer, not just to look nice. <strong>These client builds were delivered on time and
+      under $3k.</strong> Each one below says what the business was up against, what I built, and what came of it.</p>
+
+      <h3>Too Good Maids <span class="project-status project-status-live">Live</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> A growing cleaning service with two kinds of customer &mdash; residential and commercial &mdash; who do not make decisions the same way, funneled through one generic path.</p>
+        <p><span class="project-meta-label">What I built</span> A clean, minimal site designed around the decision each visitor is actually making: clear service information per audience, easy booking, and a mobile-first layout, because most customers book from a phone.</p>
+        <p><span class="project-meta-label">Outcome</span> Simple navigation, fast load times, and a prominent booking CTA. The business grew enough after launch to hire an additional cleaner within three months, and two more by the one-year mark.</p>
+      </div>
       <img src="images/Simulator-Too-Good-Maids-Homepage.webp" alt="Too Good Maids homepage" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
       <div class="cta-container">
-        <a class="cta-button" href='/case-studies/too-good-maids/'>
-          Read the Full Case Study →
-        </a>
-        <a class="cta-button" href='https://www.toogoodmaidscleaning.com' target='_blank' rel='noopener'>
-          Sweep Your Worries Away with Too Good Maids!
-        </a>
+        <a class="cta-button" href='/case-studies/too-good-maids/'>Read case study</a>
+        <a class="cta-button" href='https://www.toogoodmaidscleaning.com' target='_blank' rel='noopener'>View live site</a>
       </div>
 
-      <h3>Version 2: Residential/Commercial Redesign</h3>
-      <p class="paragraph-32">A staging redesign that splits the site into separate residential and commercial journeys, so each visitor lands in a section built for them. Also moved off Webflow to GitHub Pages with Cloudflare, cutting recurring hosting costs.</p>
+      <h3>Too Good Maids, version 2 <span class="project-status project-status-staging">Staging concept</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> One site still asking residential and commercial visitors to sort themselves out, plus recurring Webflow hosting costs the business did not need to be paying.</p>
+        <p><span class="project-meta-label">What I built</span> A redesign that splits the site into separate residential and commercial journeys, so each visitor lands in a section built for them &mdash; and a move off Webflow to GitHub Pages with Cloudflare.</p>
+        <p><span class="project-meta-label">Status</span> A staging concept, not the live site. It is published so you can see how the split works before deciding whether it is right for your own business.</p>
+      </div>
       <img src="assets/images/staging-1tgm.webp" alt="Too Good Maids staging site with custom illustration" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
       <div class="cta-container">
-        <a class="cta-button" href='https://too-good-maids.github.io/staging' target='_blank' rel='noopener'>
-          Experience Our Personal Touch in Web Design!
-        </a>
-      </div>
-      
-      <h3>Tiny Trinkets Tha Business</h3>
-      <p class="paragraph-32">Portfolio site for handcrafted trinkets and jewelry. Built to showcase products beautifully while working for both retail customers and wholesale vendors. Image-heavy design with smooth galleries and easy navigation.</p>
-      <p class="paragraph-32"><strong>What worked:</strong> Big, clear product photos. Clean layout that doesn't compete with the jewelry. Separate sections for retail vs. wholesale so both audiences get what they need fast.</p>
-      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="Tiny Trinkets jewelry portfolio website" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
-      <div class="cta-container">
-        <a class="cta-button" href='https://tiny-trinkets-tha-business.webflow.io' target='_blank' rel='noopener'>
-          Sparkle and Shine! Explore Tiny Trinkets!
-        </a>
-      </div>
-      
-      <h3>Critter Care</h3>
-      <p class="paragraph-32">Pet care and grooming site for a local business. Warm, welcoming design with easy-to-find service info and pricing. Built to make booking simple and showcase what makes them different from big chain groomers. <em>The business has since closed, but the site delivered exactly what they needed during their operation.</em></p>
-      <p class="paragraph-32"><strong>What worked:</strong> Friendly design that matches their personal approach. Clear service descriptions so customers know exactly what they're getting. Mobile-optimized because pet owners book on the go.</p>
-      <img src="images/Critter-Care-home-page_1.webp" alt="Critter Care pet grooming website homepage" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
-      <div style="text-align: center; margin: 20px 0;">
-        <a href="images/Critter-Care-home-page_1-500.webp" data-lightbox="critter-care" data-title="Critter Care Homepage" style="display: inline-block; color: #042d4d; text-decoration: none; font-weight: 600; padding: 10px 20px; border: 2px solid #042d4d; border-radius: 4px; transition: all 0.3s ease;">View Additional Design Pages →</a>
-        <a href="images/Critter-Care-Location_1-500.webp" data-lightbox="critter-care" data-title="Critter Care Location & Hours" style="display: none;"></a>
-      </div>
-      <p class="paragraph-32">This project is no longer active. The design and development are shown here as part of my portfolio.</p>
-      <div class="cta-container">
-        <a class="cta-button">Project Archive</a>
+        <a class="cta-button" href='https://too-good-maids.github.io/staging' target='_blank' rel='noopener'>View staging concept</a>
       </div>
 
-      <h3>Arlo.Dobermann</h3>
-      <p class="paragraph-32">Petfluencer hub for Arlo, a Doberman with 51K+ Instagram followers, an Etsy shop, and affiliate partnerships. A five-page site organized around how his audience already behaves - story, gallery, links, store, and a live Instagram feed.</p>
-      <p class="paragraph-32"><strong>What worked:</strong> A custom on-site link hub that replaced a third-party link-in-bio tool. Embedded Etsy and Instagram widgets that keep the site fresh without manual updates. Delivered in one week.</p>
+      <h3>Arlo.Dobermann <span class="project-status project-status-live">Live</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> A Doberman with 51K+ Instagram followers, an Etsy shop, and affiliate partnerships, all held together by a rented third-party link-in-bio page that had to be updated by hand.</p>
+        <p><span class="project-meta-label">What I built</span> A five-page hub organized around how the audience already behaves &mdash; story, gallery, links, store, and a live Instagram feed &mdash; with a custom on-site link hub replacing the rented tool. Delivered in one week.</p>
+        <p><span class="project-meta-label">Outcome</span> The clearest example of a site that stays useful after launch. The embedded Instagram feed keeps it current without anyone editing a page, and over two years it has come back twice for targeted work &mdash; a rotating hero and self-updating feeds at year one, then a technical audit and a Jekyll conversion &mdash; rather than a rebuild.</p>
+      </div>
       <img src="images/arlo-dobermann-ipad.webp" alt="Arlo Dobermann petfluencer portfolio website" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
       <div class="cta-container">
-        <a class="cta-button" href='/case-studies/arlo-dobermann/'>
-          Read the Full Case Study →
-        </a>
-        <a class="cta-button" href='https://www.arlodobermann.com' target='_blank' rel='noopener'>
-          Sit. Stay. Scroll! Visit Arlo's Site!
-        </a>
+        <a class="cta-button" href='/case-studies/arlo-dobermann/'>Read case study</a>
+        <a class="cta-button" href='https://www.arlodobermann.com' target='_blank' rel='noopener'>View live site</a>
       </div>
-      
-      <h3>The Gridiron Gazette</h3>
-      <p class="paragraph-32">Automated fantasy football recap product built to replace 2-3 days of manual weekly writing with about five minutes of automation - without losing the personality that keeps a league engaged all season.</p>
-      <p class="paragraph-32"><strong>What worked:</strong> An AI content pipeline pulling real ESPN league data, weekly awards and callouts with a consistent voice, and branded PDF output ready to drop into a group chat. <a href="/documents/Week5_Gazette.pdf" target="_blank" rel="noopener" style="color: #042d4d; text-decoration: underline;">See a sample PDF</a>.</p>
-      <img src="assets/images/Week5_Gazette-page01.webp" alt="Gridiron Gazette fantasy football newsletter sample" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
-      <div class="cta-container">
-        <a class="cta-button" href='/case-studies/gridiron-gazette/'>
-          Read the Full Case Study →
-        </a>
+
+      <h3>DaPenguin Cycling <span class="project-status project-status-live">Live</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> A road cyclist building an audience and looking for sponsors, with a season's worth of proof scattered across platforms and nothing a sponsor could size up quickly.</p>
+        <p><span class="project-meta-label">What I built</span> A personal-brand site with a ride log, photo and video galleries, and season stats laid out for a sponsor to scan, plus a partnerships page naming the categories that actually fit &mdash; gear, nutrition, events and travel, Kentucky businesses &mdash; and the brands he has already ridden with.</p>
+        <p><span class="project-meta-label">Outcome</span> A Strava workflow keeps the season numbers current on their own &mdash; miles ridden, events entered, distances &mdash; so nobody edits a page after a ride. Dark, high-contrast layout that puts the photography first.</p>
       </div>
-      
-      <h3>DaPenguin Cycling</h3>
-      <p class="paragraph-32">Personal-brand site for a road cyclist building an audience and looking for sponsors. Ride log, photo and video galleries, and season stats, laid out so a sponsor can size up the rider without digging. A dedicated partnerships page names the categories that actually fit - gear, nutrition, events and travel, Kentucky businesses - and the brands he has already ridden with.</p>
-      <p class="paragraph-32"><strong>What worked:</strong> A Strava workflow that keeps the season numbers updating automatically - miles ridden, events entered, distances - so the stats on the site stay current without anyone editing a page after a ride. Dark, high-contrast layout that puts the photography first.</p>
       <img src="images/dapenguin-cycling-home.webp" alt="DaPenguin Cycling homepage" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
       <div class="cta-container">
-        <a class="cta-button" href='https://dapenguincycling.com' target='_blank' rel='noopener'>
-          Good ride, good work.
-        </a>
+        <a class="cta-button" href='https://dapenguincycling.com' target='_blank' rel='noopener'>View live site</a>
       </div>
-      
-      <p class="paragraph-32">Need a small website? I build landing pages, portfolios, and business sites for under $3k. 2-4 week turnaround. Western Kentucky based, working everywhere.</p>
-      
-      
-        <img src="images/Melanieheadshot.webp" alt="Melanie Brown" class="about-image" loading="lazy">
+
+      <h3>Tiny Trinkets Tha Business <span class="project-status project-status-live">Live</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> Handcrafted trinkets and jewelry sold to two very different buyers &mdash; retail customers and wholesale vendors &mdash; on a site that treated them the same.</p>
+        <p><span class="project-meta-label">What I built</span> An image-led portfolio with smooth galleries and separate sections for retail and wholesale, so each audience reaches what it needs without wading through the other's information.</p>
+        <p><span class="project-meta-label">Outcome</span> Big, clear product photos on a layout deliberately quiet enough not to compete with the jewelry.</p>
+      </div>
+      <img src="images/Tiny-Trinkets-Clutch-img.webp" alt="Tiny Trinkets jewelry portfolio website" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
+      <div class="cta-container">
+        <a class="cta-button" href='https://tiny-trinkets-tha-business.webflow.io' target='_blank' rel='noopener'>View live site</a>
+      </div>
+
+      <h3>Critter Care <span class="project-status project-status-archived">Archived</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> A local pet care and grooming business competing with big chain groomers, with no clear way to show what made it different or what anything cost.</p>
+        <p><span class="project-meta-label">What I built</span> A warm, welcoming site with service info and pricing where people look for them, clear service descriptions, and a mobile-optimized booking path, because pet owners book on the go.</p>
+        <p><span class="project-meta-label">Status</span> The business has since closed and the site is no longer active. The design and development are shown here as portfolio work; it served the business for as long as the business ran.</p>
+      </div>
+      <img src="images/Critter-Care-home-page_1.webp" alt="Critter Care pet grooming website homepage" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
+      <div style="text-align: center; margin: 20px 0;">
+        <a href="images/Critter-Care-home-page_1-500.webp" data-lightbox="critter-care" data-title="Critter Care Homepage" style="display: inline-block; color: #042d4d; text-decoration: none; font-weight: 600; padding: 10px 20px; border: 2px solid #042d4d; border-radius: 4px; transition: all 0.3s ease;">View more design pages</a>
+        <a href="images/Critter-Care-Location_1-500.webp" data-lightbox="critter-care" data-title="Critter Care Location &amp; Hours" style="display: none;"></a>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- Group 2: in-house products and experiments -->
+<div class="section section-alt">
+  <div class="container">
+    <div class="about-description-holder">
+      <h2>Products &amp; Experiments</h2>
 
+      <p class="paragraph-32 portfolio-group-intro">In-house work, not client projects. These were built on my own
+      schedule to solve a problem I had, so the on-time and under-$3k claims above do not apply to them. They are
+      here because they show how I think about automation and content systems.</p>
+
+      <h3>The Gridiron Gazette <span class="project-status project-status-archived">Archived &mdash; case study only</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> Writing a weekly fantasy football recap took 2-3 days, and dropping the personality out of it is what kills a league's interest by week six.</p>
+        <p><span class="project-meta-label">What I built</span> An AI content pipeline pulling real ESPN league data, weekly awards and callouts in a consistent voice, and branded PDF output ready to drop straight into a group chat.</p>
+        <p><span class="project-meta-label">Outcome</span> The same weekly recap, in about five minutes instead of 2-3 days. The product itself is retired; the case study and a sample issue are what remain.</p>
+      </div>
+      <img src="assets/images/Week5_Gazette-page01.webp" alt="Gridiron Gazette fantasy football newsletter sample" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy">
+      <div class="cta-container">
+        <a class="cta-button" href='/case-studies/gridiron-gazette/'>Read case study</a>
+        <a class="cta-button" href="/documents/Week5_Gazette.pdf" target="_blank" rel="noopener">View sample PDF</a>
+      </div>
+
+      <h3>DobieCore + Bifrost <span class="project-status project-status-live">Live &mdash; in progress</span></h3>
+      <div class="project-meta">
+        <p><span class="project-meta-label">Problem</span> The small business owners I build websites for do not only struggle with the website. They struggle with what to post afterward, and with keeping it sounding like them.</p>
+        <p><span class="project-meta-label">What I built</span> A brand voice-based content system &mdash; prewriting, captions, images, blogs, and content planning &mdash; now being combined with Bifrost, a context and workflow-routing layer.</p>
+        <p><span class="project-meta-label">Status</span> DobieCore Suite is available today; the combined product is still being built.</p>
+      </div>
+      <div class="cta-container">
+        <a class="cta-button" href="/dobiecore/">Explore DobieCore + Bifrost</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="section">
   <div class="container">
@@ -168,12 +201,13 @@ sitemap: false
       <div data-w-id="086d3f13-9d51-4ddf-a630-0306844cfd6f" class="our-values-text">
         What I Do
       </div>
-      <p class="paragraph-31">I build small websites for people who need them done right. No agency overhead, no 6-month timelines. Projects under $3k, delivered in 2-4 weeks. Based in Western Kentucky, working with clients everywhere.</p>
+      <p class="paragraph-31">I build small websites for people who need them done right. No agency overhead, no 6-month timelines. Website builds come in under $3k, delivered in 2-4 weeks. Based in Western Kentucky, working with clients everywhere.</p>
+      <p class="paragraph-31 portfolio-routes-note">If one of these looks like your situation, ask for a quote. If you have a site already and are not sure what is wrong with it, the free audit is the cheaper first step. And the sites above did not stop at launch &mdash; <a href="/services#after-launch">light edits and cleanup are standing services</a>, with no retainer.</p>
       <div class="cta-container">
-        <a class="cta-button" href="/contact">
-          Let's Work Together
-        </a>
+        <a class="cta-button" href="/contact?service=Website#custom-form-container">Start a project inquiry</a>
+        <a class="cta-button" href="/free-web-audit/">Get a free web audit</a>
       </div>
+      <img src="images/Melanieheadshot.webp" alt="Melanie Brown" class="about-image" loading="lazy">
     </div>
   </div>
 </div>

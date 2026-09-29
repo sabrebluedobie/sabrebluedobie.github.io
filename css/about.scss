@@ -274,3 +274,116 @@ h2 {
     display: block;
   }
 }
+
+/* ========================================
+   IS THIS A FIT? — scope, then two routes out
+   ======================================== */
+.about-fit-intro {
+  max-width: 700px;
+  margin: 0 auto var(--space-xl);
+  text-align: center;
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.about-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.about-fit-card {
+  background: var(--color-white);
+  border: var(--border-light);
+  border-top: 4px solid var(--color-navy);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.about-fit-card-out {
+  border-top-color: var(--color-text-light);
+}
+
+.about-fit-card h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h4);
+  margin: 0 0 var(--space-sm);
+}
+
+.about-fit-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.about-fit-card li {
+  margin-bottom: var(--space-xs);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.about-fit-card > p {
+  margin: var(--space-md) 0 0;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  line-height: var(--line-height-relaxed);
+}
+
+.about-paths-heading {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  margin: var(--space-2xl) 0 var(--space-lg);
+}
+
+.about-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.about-path {
+  display: block;
+  background: var(--color-navy);
+  color: var(--color-white);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-decoration: none;
+  transition: var(--transition-all);
+}
+
+.about-path:hover,
+.about-path:focus-visible {
+  background: var(--color-white);
+  color: var(--color-navy);
+  transform: translateY(-2px);
+}
+
+.about-path-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h4);
+  margin-bottom: var(--space-xs);
+}
+
+.about-path-detail {
+  display: block;
+  line-height: var(--line-height-relaxed);
+  opacity: 0.9;
+}
+
+.about-fit-after {
+  max-width: 700px;
+  margin: var(--space-xl) auto 0;
+  text-align: center;
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .about-fit-grid,
+  .about-paths {
+    grid-template-columns: 1fr;
+  }
+}

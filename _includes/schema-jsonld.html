@@ -157,7 +157,11 @@
 }
 </script>
 
-{%- if page.url == '/FAQ.html' -%}
+{%- if page.url == '/faq.html' -%}
+{%- comment -%}
+  A subset of /faq — the questions a buyer asks before hiring. Keep the text
+  here in step with the answers on faq.html when either changes.
+{%- endcomment -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -166,26 +170,58 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is Bluedobie Developing?",
+      "name": "What does a 3-page website build include?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bluedobie Developing is a small business web design and content systems company founded by Melanie Brown. Bluedobie builds practical websites and free web audits locally in Western Kentucky, and supports small businesses nationally through DobieCore Suite."
+        "text": "Three pages, usually Home, Services, and Contact, with a responsive layout that works on phones, on-brand colors and type, fast load times, basic on-page SEO setup, and a simple path for making edits later. Additional pages are quoted as part of the scope."
       }
     },
     {
       "@type": "Question",
-      "name": "Who is Melanie Brown?",
+      "name": "How long does a small business website take to build?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Melanie Brown is the founder of Bluedobie Developing. She is based in Princeton, Kentucky, and builds practical digital systems for small businesses."
+        "text": "Most small website projects take 2 to 4 weeks from start to launch, depending on scope and how quickly content comes back. Bluedobie Developing gives a clear estimate before work starts."
       }
     },
     {
       "@type": "Question",
-      "name": "What website services does Bluedobie Developing offer?",
+      "name": "What does a small business website cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bluedobie Developing offers basic small business websites, light website edits and updates, website cleanup, and free website audits."
+        "text": "Small business website builds are priced under $3,000 and quoted after a short conversation about scope. Updates, edits, and cleanup are quoted separately. The Logo Sprint has published tiers starting at $199."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the website after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The client does. You review, the site launches, and you keep control of it. Where you want the domain and hosting in your own accounts, that is how it is set up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Bluedobie Developing update my site after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Website updates and light edits are booked by appointment: content swaps, image updates, accessibility fixes, and small changes without a full rebuild. There is no retainer and no monthly minimum. Sites that are broken, confusing, or slow are handled as Website Cleanup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a call to request the free website audit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The request form starts the audit. You receive two reports: an automated PageSpeed Insights PDF covering performance, mobile, accessibility, and technical SEO, then a follow-up manual report with search visibility findings, customer-journey blockers, and prioritized recommendations. A call is optional later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Bluedobie Developing only work with businesses in Western Kentucky?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Bluedobie Developing is based in Princeton, Kentucky and works with clients everywhere; website projects run remotely. Local clients in Western Kentucky can meet in person, and DobieCore Suite is available nationally."
       }
     },
     {
@@ -201,7 +237,7 @@
       "name": "What is Bifrost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bifrost is a developing concept for AI workflow routing and small business continuity planning, including support for unexpected owner absence."
+        "text": "Bifrost is the context and workflow-routing layer being combined with DobieCore into one system. It covers AI workflow routing and small business continuity planning, including support for unexpected owner absence."
       }
     }
   ]

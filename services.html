@@ -1,8 +1,10 @@
 ---
 layout: default-shared
 title: Small Business Website & Content Services | Bluedobie Developing
-description: Explore practical website help, free web audits, light website edits, and content systems from Bluedobie Developing for small business owners.
+description: Website builds, updates, and cleanup for small businesses, plus a free web audit, focused AI and design reviews, and content systems — grouped by what you are actually trying to fix.
 permalink: /services.html
+extra_css:
+  - /css/services.css
 sitemap: false
 ---
 <!--
@@ -10,6 +12,14 @@ sitemap: false
   The layout injects: <!DOCTYPE html>, <html>, <head>, sitewide CSS (mobile-nav.css),
   the canonical NAV include, the shared FOOTER, and global scripts.
   Keep ONLY page-specific content in this file.
+
+  Structure (2026-09-29): grouped by buyer intent rather than listed as a
+  catalog. Every card ends in one next action, and the chooser at the top maps
+  a problem to a group. Group ids are linked from elsewhere — /faq points at
+  #after-launch — so do not rename them casually.
+
+  Scope note: the under-$3k / 2-4 week claim belongs to the website builds in
+  the first group only. It is stated there and nowhere else on this page.
 -->
 
 <!-- Hero / Header -->
@@ -18,110 +28,201 @@ sitemap: false
     <header class="hero-header">
       <h1 style="text-align: center;">Services</h1>
       <p class="lead" style="text-align: center;">
-        For small business owners who need a clearer website, a plain-language
-        audit, or a system for content that keeps their brand voice consistent.
+        Practical, bounded systems for small businesses. Websites that get built
+        and launched, reviews that end in a plain-language answer, and content
+        tools you can run yourself — each one with a defined edge, not an
+        open-ended engagement.
       </p>
     </header>
   </div>
 </section>
 
-<!-- Bucket 1: Website Help -->
-<section class="services-grid container">
-  <div class="service-card">
-    <h2>Basic Small Business Websites</h2>
-    <p>Clean 3-page builds with responsive layout, fast load, and a simple edit path.</p>
-    <ul>
-      <li>Home / Services / Contact</li>
-      <li>On-brand layout & colors</li>
-      <li>Basic on-page SEO setup</li>
-    </ul>
+<!-- Which one do I need? -->
+<section class="services-chooser container" aria-labelledby="services-chooser-heading">
+  <h2 id="services-chooser-heading">Which one do I need?</h2>
+  <p class="services-chooser-intro">Start from whatever is actually bothering you right now.</p>
+  <ul class="services-chooser-list">
+    <li><strong>I need a website built, updated, or repaired.</strong> <a href="#website-work">Website work →</a></li>
+    <li><strong>Something is wrong and I don't know what.</strong> <a href="#diagnosis">Get a diagnosis first →</a></li>
+    <li><strong>I need one focused piece of work done.</strong> <a href="#focused-reviews">Focused reviews &amp; design →</a></li>
+    <li><strong>I want to handle content myself.</strong> <a href="#content-systems">Content systems &amp; learning →</a></li>
+    <li><strong>My site is already live and needs attention.</strong> <a href="#after-launch">After launch →</a></li>
+  </ul>
+</section>
+
+<!-- Group 1: done-for-you website work -->
+<section class="services-group container" id="website-work" aria-labelledby="website-work-heading">
+  <div class="services-group-header">
+    <h2 id="website-work-heading">Build or repair my website</h2>
+    <p>
+      Done-for-you website work. Builds are priced under $3k and most launch in
+      2-4 weeks; you work directly with me from the quote through to launch.
+      That pricing and timeline covers the website work in this group — the
+      reviews and products further down are scoped and priced on their own.
+    </p>
   </div>
 
-  <div class="service-card">
-    <h2>Website Updates & Light Edits</h2>
-    <p>Edits by appointment — content swaps, image updates, and small fixes without a full rebuild.</p>
-    <ul>
-      <li>Content updates & accessibility fixes</li>
-      <li>Navigation consistency (shared includes)</li>
-      <li>Blog/article additions</li>
-    </ul>
-  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Basic Small Business Websites</h3>
+      <p>Clean 3-page builds with responsive layout, fast load, and a simple edit path.</p>
+      <ul>
+        <li>Home / Services / Contact</li>
+        <li>On-brand layout &amp; colors</li>
+        <li>Basic on-page SEO setup</li>
+      </ul>
+      <p class="service-card-cta"><a href="/contact?service=Website#custom-form-container">Request a build quote →</a></p>
+      <p class="service-card-note">Tell me what the site needs to do. You get a quote, not a sales call.</p>
+    </div>
 
-  <div class="service-card">
-    <h2>Website Cleanup</h2>
-    <p>Polish and repair existing pages — fixing what's broken, confusing, or slow.</p>
-    <ul>
-      <li>Performance tuning</li>
-      <li>Minor component tweaks</li>
-      <li>Business card design, on request</li>
-    </ul>
+    <div class="service-card">
+      <h3>Website Updates &amp; Light Edits</h3>
+      <p>Edits by appointment — content swaps, image updates, and small fixes without a full rebuild.</p>
+      <ul>
+        <li>Content updates &amp; accessibility fixes</li>
+        <li>Navigation consistency (shared includes)</li>
+        <li>Blog/article additions</li>
+      </ul>
+      <p class="service-card-cta"><a href="/contact?service=Website#custom-form-container">Ask about an edit →</a></p>
+      <p class="service-card-note">No retainer and no monthly minimum. Come back when you need something.</p>
+    </div>
+
+    <div class="service-card">
+      <h3>Website Cleanup</h3>
+      <p>Polish and repair existing pages — fixing what's broken, confusing, or slow.</p>
+      <ul>
+        <li>Performance tuning</li>
+        <li>Minor component tweaks</li>
+        <li>Business card design, on request</li>
+      </ul>
+      <p class="service-card-cta"><a href="/contact?service=Website#custom-form-container">Request a cleanup quote →</a></p>
+      <p class="service-card-note">Works on sites I didn't build. Not sure it's worth it? Start with the audit below.</p>
+    </div>
   </div>
 </section>
 
-<!-- Bucket 2: Website Audit -->
-<section class="services-grid container">
-  <div class="service-card">
-    <h2>Free Website Audit</h2>
-    <p>Find out what's holding your site back. I'll review your site's clarity, speed, mobile layout, and calls to action — then send plain-language recommendations you can actually use.</p>
-    <ul>
-      <li>SEO & visibility basics</li>
-      <li>Mobile & speed improvements</li>
-      <li>Fixes to help visitors take the next step</li>
-    </ul>
-    <p><a href="/free-web-audit/">See how the audit works →</a></p>
+<!-- Group 2: diagnosis before you spend anything -->
+<section class="services-group container" id="diagnosis" aria-labelledby="diagnosis-heading">
+  <div class="services-group-header">
+    <h2 id="diagnosis-heading">Get a diagnosis first</h2>
+    <p>
+      For when you know something isn't working but not which thing. Free, and
+      it ends in a written roadmap you can act on with or without me.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Free Website Audit</h3>
+      <p>Find out what's holding your site back. Your site gets reviewed for clarity, speed, mobile layout, and calls to action — then you get plain-language recommendations you can actually use.</p>
+      <ul>
+        <li>SEO &amp; visibility basics</li>
+        <li>Mobile &amp; speed improvements</li>
+        <li>Fixes to help visitors take the next step</li>
+      </ul>
+      <p class="service-card-cta">
+        <a href="/free-web-audit/">See how the audit works →</a>
+        <a href="/contact?service=Free%20Web%20Audit#custom-form-container">Request the audit →</a>
+      </p>
+      <p class="service-card-note">Two reports: an automated technical PDF first, then a manual customer-journey review.</p>
+    </div>
+  </div>
+
+  <div class="services-clarifier">
+    <p><strong>An audit is a form, not a call.</strong> Submitting the audit request form is what starts the process — you do not need to schedule a consultation first, and a call is optional later if it would genuinely help.</p>
+    <p>The booking calendar on the <a href="/contact">Contact page</a> is for consultations about a project. If what you want is the audit, use the form and pick <strong>Free Web Audit</strong>.</p>
   </div>
 </section>
 
-<!-- Knowledge Center Support -->
-<section class="services-grid container" aria-labelledby="services-knowledge-heading">
-  <div class="service-card">
-    <h2 id="services-knowledge-heading">Learn Before You Decide</h2>
-    <p>Not sure what your website needs yet? The Knowledge Center explains the practical pieces behind the work in plain language.</p>
-    <ul>
-      <li><a href="/knowledge/what-is-a-digital-foundation/">What Is a Digital Foundation?</a></li>
-      <li><a href="/knowledge/what-is-a-website-audit/">What Is a Website Audit?</a></li>
-      <li><a href="/knowledge/what-is-geo/">What Is GEO?</a></li>
-    </ul>
-    <p><a href="/knowledge/">Visit the Knowledge Center →</a></p>
+<!-- Group 3: one focused piece of work -->
+<section class="services-group container" id="focused-reviews" aria-labelledby="focused-reviews-heading">
+  <div class="services-group-header">
+    <h2 id="focused-reviews-heading">Focused reviews &amp; design</h2>
+    <p>
+      Single, bounded pieces of work with a defined deliverable and a short
+      turnaround. Neither one requires a website project.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>AI Setup Review</h3>
+      <p>For local service businesses already using ChatGPT, Claude, or Gemini. We work out what your AI should have access to, where your information goes, and where the boundaries belong.</p>
+      <ul>
+        <li>What your AI can see, and what it shouldn't</li>
+        <li>Practical workflow and boundary guidance</li>
+        <li>Written for plumbers, HVAC, salons, and contractors</li>
+      </ul>
+      <p class="service-card-cta"><a href="/ai-setup-review/">See how the review works →</a></p>
+    </div>
+
+    <div class="service-card">
+      <h3>Logo Sprint</h3>
+      <p>Custom logo concepts in 48&ndash;72 hours instead of weeks. Two tiers, starting at $199.</p>
+      <ul>
+        <li>Professional concepts, fast turnaround</li>
+        <li>Files ready for web and print</li>
+      </ul>
+      <p class="service-card-cta">
+        <a href="/logo-sprint-landing/">See the Logo Sprint →</a>
+        <a href="/contact?service=Logo%20Design#custom-form-container">Start a logo request →</a>
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- Bucket 3: AI & design services -->
-<section class="services-grid container">
-  <div class="service-card">
-    <h2>AI Setup Review</h2>
-    <p>For local service businesses already using ChatGPT, Claude, or Gemini. We work out what your AI should have access to, where your information goes, and where the boundaries belong.</p>
-    <ul>
-      <li>What your AI can see, and what it shouldn't</li>
-      <li>Practical workflow and boundary guidance</li>
-      <li>Written for plumbers, HVAC, salons, and contractors</li>
-    </ul>
-    <p><a href="/ai-setup-review/">See how the review works →</a></p>
+<!-- Group 4: self-serve tools and learning -->
+<section class="services-group container" id="content-systems" aria-labelledby="content-systems-heading">
+  <div class="services-group-header">
+    <h2 id="content-systems-heading">Content systems &amp; learning</h2>
+    <p>
+      Self-serve, for when you would rather run the thing yourself than hire it
+      out. Sign up, read, or take the course on your own schedule — there's no
+      project to scope.
+    </p>
   </div>
 
-  <div class="service-card">
-    <h2>Logo Sprint</h2>
-    <p>Custom logo concepts in 48&ndash;72 hours instead of weeks. Two tiers, starting at $199.</p>
-    <ul>
-      <li>Professional concepts, fast turnaround</li>
-      <li>Files ready for web and print</li>
-    </ul>
-    <p><a href="/logo-sprint-landing/">See the Logo Sprint →</a></p>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>DobieCore + Bifrost</h3>
+      <p>Brand voice-based content support for small businesses tired of starting from scratch — prewriting, captions, images, blogs, and content planning. DobieCore Suite is live today; Bifrost is the context layer being built underneath it.</p>
+      <p class="service-card-cta"><a href="/dobiecore/">Explore DobieCore + Bifrost →</a></p>
+      <p class="service-card-note">Free to sign up; no card until you pass the free usage limits.</p>
+    </div>
+
+    <div class="service-card">
+      <h3>DobieCore Learn</h3>
+      <p>A course for working with AI clearly &mdash; whichever assistant you already use. Three modules and 36 lessons that end with a reusable business foundation, not a folder of someone else's prompts.</p>
+      <p class="service-card-cta"><a href="/learn">See what the course covers →</a></p>
+    </div>
+
+    <div class="service-card">
+      <h3>Learn Before You Decide</h3>
+      <p>Not sure what your website needs yet? The Knowledge Center explains the practical pieces behind the work in plain language.</p>
+      <ul>
+        <li><a href="/knowledge/what-is-a-digital-foundation/">What Is a Digital Foundation?</a></li>
+        <li><a href="/knowledge/what-is-a-website-audit/">What Is a Website Audit?</a></li>
+        <li><a href="/knowledge/what-is-geo/">What Is GEO?</a></li>
+      </ul>
+      <p class="service-card-cta"><a href="/knowledge/">Visit the Knowledge Center →</a></p>
+    </div>
   </div>
 </section>
 
-<!-- Bucket 4: Products -->
-<section class="services-grid container">
-  <div class="service-card">
-    <h2>Content Systems: DobieCore + Bifrost</h2>
-    <p>Brand voice-based content support for small businesses tired of starting from scratch — prewriting, captions, images, blogs, and content planning. DobieCore Suite is live today; Bifrost is the context layer being built underneath it.</p>
-    <p><a href="/dobiecore/">Explore DobieCore + Bifrost →</a></p>
-  </div>
-
-  <div class="service-card">
-    <h2>DobieCore Learn</h2>
-    <p>A course for working with AI clearly &mdash; whichever assistant you already use. Three modules and 36 lessons that end with a reusable business foundation, not a folder of someone else's prompts.</p>
-    <p><a href="/learn">See what the course covers →</a></p>
+<!-- After launch -->
+<section class="services-after-launch container" id="after-launch" aria-labelledby="after-launch-heading">
+  <div class="services-after-launch-inner">
+    <h2 id="after-launch-heading">After launch</h2>
+    <p>
+      A site is worth more the longer it stays useful, and that shouldn't
+      require a retainer. There isn't a monthly plan here — there's a standing
+      way to come back when something needs doing.
+    </p>
+    <ul>
+      <li><strong>Something needs changing.</strong> Content swaps, new photos, a new page, accessibility fixes — booked as <a href="/contact?service=Website#custom-form-container">an appointment for light edits</a>.</li>
+      <li><strong>Something has broken or gone slow.</strong> That's <a href="/contact?service=Website#custom-form-container">Website Cleanup</a>, and it applies to sites I didn't build.</li>
+      <li><strong>You're not sure it's still doing its job.</strong> Run a <a href="/free-web-audit/">free web audit</a> against your own site and find out.</li>
+    </ul>
   </div>
 </section>
 
@@ -134,7 +235,9 @@ sitemap: false
     <li><strong>Publish:</strong> You review, we launch, and you keep control.</li>
   </ol>
 
-  <div class="cta">
-    <a class="button" href="/free-web-audit/" aria-label="Request a Free Web Audit">Not sure what you need? Start with a Free Web Audit.</a>
+  <div class="services-routes">
+    <a class="btn btn-primary" href="/contact?service=Website#custom-form-container">Start a project inquiry</a>
+    <a class="btn btn-secondary" href="/free-web-audit/">Not sure yet? Get a free web audit</a>
   </div>
+  <p class="services-routes-note">Two different doors. The audit is a form and needs no call; a project inquiry is where you get a quote.</p>
 </section>
