@@ -388,5 +388,12 @@
   }
 }
 @media (max-width: 991px) {
-  #mainmenu.w--open { max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; }
+  #mainmenu.w--open {
+    top: 112px !important;
+    height: calc(100dvh - 112px) !important;
+    max-height: calc(100dvh - 112px);
+    padding: 0 0 1rem !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
