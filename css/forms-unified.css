@@ -350,3 +350,5 @@ select,
     overflow: visible;
   }
 }
+
+#multiForm label { display: block; margin: 0 0 .4rem; font-weight: 600; color: #042d4d; }

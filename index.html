@@ -19,7 +19,7 @@ extra_css:
     element - returning visitors would keep the slower old file for hours.
   {%- endcomment -%}
   <div class="hero-video-container">
-    <video autoplay muted loop playsinline preload="metadata" poster="images/video-poster.webp" width="1364" height="766">
+    <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/video-poster.webp" width="1364" height="766">
       <source src="videos/Sabre-Office-Adventures-wide2.mp4?v={{ site.time | date: '%s' }}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -38,6 +38,7 @@ extra_css:
   <a href="/free-web-audit/" class="btn btn-primary">Request a Free Web Audit</a>
   <a href="/dobiecore/" class="btn btn-secondary">Explore DobieCore + Bifrost</a>
 </div>
+<button type="button" class="motion-control" data-motion-target="hero-video" hidden>Pause background video</button>
 </div>
 </section>
 
