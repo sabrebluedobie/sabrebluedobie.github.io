@@ -1,153 +1,85 @@
-// Unified Navigation - Works with existing nav.html structure
-console.log('🔵 Unified nav script loading...');
-
-// Wait for DOM to be ready
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('🔵 DOM ready, initializing navigation...');
-  
-  // Give Webflow a moment, then take over
-  setTimeout(initNavigation, 200);
-});
+document.addEventListener('DOMContentLoaded', initNavigation);
 
 function initNavigation() {
-  console.log('🔵 Initializing navigation...');
-  
-  // ========================================
-  // MOBILE HAMBURGER MENU
-  // ========================================
-  
   const menuButton = document.getElementById('menu-button');
   const mainMenu = document.getElementById('mainmenu');
-  
-  if (menuButton && mainMenu) {
-    console.log('🔵 Setting up mobile hamburger...');
-    
-    // Remove any existing handlers by cloning
-    const newMenuButton = menuButton.cloneNode(true);
-    menuButton.parentNode.replaceChild(newMenuButton, menuButton);
-    
-    // Add our handler
-    newMenuButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const isOpen = mainMenu.classList.contains('w--open');
-      
-      if (isOpen) {
-        // Close menu
-        mainMenu.classList.remove('w--open');
-        newMenuButton.classList.remove('w--open');
-        newMenuButton.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        console.log('🔵 Mobile menu closed');
-      } else {
-        // Open menu
-        mainMenu.classList.add('w--open');
-        newMenuButton.classList.add('w--open');
-        newMenuButton.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        console.log('🔵 Mobile menu opened');
-      }
-    });
-    
-    console.log('🔵 Mobile hamburger ready!');
-  } else {
-    console.warn('⚠️ Menu button or main menu not found');
-  }
-  
-  // ========================================
-  // DROPDOWN MENUS (Desktop & Mobile)
-  //
-  // Wired up generically: every .dropdown that contains a .dropdown-toggle and
-  // a .dropdown-menu works. Adding or removing a dropdown in _includes/nav.html
-  // needs no change here.
-  // ========================================
-
-  const dropdowns = Array.from(document.querySelectorAll('.nav-menu .dropdown'));
   const panels = [];
+  const compact = window.matchMedia('(max-width: 991px)');
+  const background = Array.from(document.querySelectorAll('main, footer, .social-bar'));
+  const previousInert = new Map();
+  let previousOverflow = '';
+  const visibleControls = () => Array.from(mainMenu.querySelectorAll('a[href], button:not([disabled])'))
+    .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
 
-  function closeAllDropdowns() {
-    panels.forEach(function (d) {
-      d.menu.classList.remove('show');
-      d.menu.style.display = '';
-      d.menu.style.maxHeight = '';
-      d.toggle.setAttribute('aria-expanded', 'false');
-    });
+  function closeDropdown(panel) {
+    panel.menu.classList.remove('show');
+    panel.menu.style.display = '';
+    panel.menu.style.maxHeight = '';
+    panel.toggle.setAttribute('aria-expanded', 'false');
   }
-
-  dropdowns.forEach(function (dropdown) {
+  function closeAllDropdowns() { panels.forEach(closeDropdown); }
+  function setDrawerOpen(open, returnFocus = false) {
+    if (!mainMenu || !menuButton) return;
+    const wasOpen = mainMenu.classList.contains('w--open');
+    mainMenu.classList.toggle('w--open', open);
+    menuButton.classList.toggle('w--open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    if (open && !wasOpen) {
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      background.forEach(element => { previousInert.set(element, element.inert); element.inert = true; });
+      visibleControls()[0]?.focus();
+    } else if (!open && wasOpen) {
+      document.body.style.overflow = previousOverflow;
+      background.forEach(element => { element.inert = previousInert.get(element) || false; });
+      previousInert.clear();
+      closeAllDropdowns();
+      if (returnFocus) menuButton.focus();
+    }
+  }
+  menuButton?.addEventListener('click', event => {
+    event.preventDefault();
+    setDrawerOpen(!mainMenu.classList.contains('w--open'), true);
+  });
+  document.querySelectorAll('.nav-menu .dropdown').forEach(dropdown => {
     const toggle = dropdown.querySelector('.dropdown-toggle');
     const menu = dropdown.querySelector('.dropdown-menu');
     if (!toggle || !menu) return;
-
-    // Clone to drop any handler Webflow already attached.
-    const fresh = toggle.cloneNode(true);
-    toggle.parentNode.replaceChild(fresh, toggle);
-    panels.push({ toggle: fresh, menu: menu });
-
-    fresh.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const isOpen = menu.classList.contains('show');
+    const panel = { toggle, menu };
+    panels.push(panel);
+    toggle.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
       closeAllDropdowns();
-
-      if (!isOpen) {
+      if (open) {
         menu.classList.add('show');
         menu.style.setProperty('display', 'block', 'important');
-        menu.style.setProperty('max-height', '500px', 'important');
-        fresh.setAttribute('aria-expanded', 'true');
+        menu.style.setProperty('max-height', compact.matches ? 'none' : '500px', 'important');
+        toggle.setAttribute('aria-expanded', 'true');
       }
     });
   });
-
-  console.log('🔵 Dropdowns wired:', panels.length);
-
-  // ========================================
-  // CLOSE HANDLERS
-  // ========================================
-  
-  // Close dropdowns when clicking outside
-  document.addEventListener('click', function(e) {
-    const clickedDropdown = e.target.closest('.dropdown');
-    if (!clickedDropdown) {
-      closeAllDropdowns();
-    }
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.dropdown')) closeAllDropdowns();
   });
-  
-  // Close everything on escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeAllDropdowns();
-      
-      // Also close mobile menu if open
-      if (mainMenu && mainMenu.classList.contains('w--open')) {
-        const btn = document.getElementById('menu-button');
-        mainMenu.classList.remove('w--open');
-        if (btn) btn.classList.remove('w--open');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        console.log('🔵 Mobile menu closed via escape');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      const panel = panels.find(panel => panel.toggle.getAttribute('aria-expanded') === 'true');
+      if (panel) { closeDropdown(panel); panel.toggle.focus(); }
+      else setDrawerOpen(false, true);
+    }
+    if (event.key === 'Tab' && mainMenu?.classList.contains('w--open')) {
+      const controls = [...visibleControls(), menuButton];
+      const index = controls.indexOf(document.activeElement);
+      if ((event.shiftKey && index <= 0) || (!event.shiftKey && index === controls.length - 1)) {
+        event.preventDefault();
+        controls[event.shiftKey ? controls.length - 1 : 0]?.focus();
       }
     }
   });
-  
-  // Close mobile menu when clicking nav links
-  if (mainMenu) {
-    const navLinks = mainMenu.querySelectorAll('a.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        setTimeout(function() {
-          const btn = document.getElementById('menu-button');
-          mainMenu.classList.remove('w--open');
-          if (btn) btn.classList.remove('w--open');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-          closeAllDropdowns();
-        }, 100);
-      });
-    });
-  }
-  
-  console.log('🔵 Navigation fully initialized!');
+  mainMenu?.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', () => setDrawerOpen(false));
+  });
+  compact.addEventListener('change', event => { if (!event.matches) setDrawerOpen(false); });
 }

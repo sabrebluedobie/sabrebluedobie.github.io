@@ -387,3 +387,6 @@
     gap: 0.5rem;
   }
 }
+@media (max-width: 991px) {
+  #mainmenu.w--open { max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; }
+}

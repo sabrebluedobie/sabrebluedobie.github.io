@@ -589,3 +589,15 @@ h2 {
     height: auto;
   }
 }
+
+.hero-content .motion-control {
+  margin-top: 1rem;
+  padding: .6rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: #042d4d;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.hero-content .motion-control:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }

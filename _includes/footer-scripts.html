@@ -8,6 +8,8 @@
 {%- endcomment -%}
 <script data-cfasync="false" src="/js/mobile-nav.js?v={{ site.time | date: '%s' }}" defer></script>
 
+<script src="/js/motion-controls.js?v={{ site.time | date: '%s' }}" defer></script>
+
 {%- comment -%} Optional per-page hook for extra scripts {%- endcomment -%}
 {% if page.extra_scripts %}
   {{ page.extra_scripts }}

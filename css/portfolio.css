@@ -13,6 +13,7 @@ body {
    HERO SECTION
    ======================================== */
 .hero-section {
+  height: auto;
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: var(--color-white);
   padding: calc(var(--section-padding-lg) + 100px) var(--space-md) var(--section-padding-lg);
@@ -377,4 +378,21 @@ h3 {
    band has to be restated here to win. */
 .section.section-alt {
   background: var(--color-background-cream);
+}
+
+.portfolio-carousel .motion-control {
+  display: block;
+  margin: 0 auto 1rem;
+  padding: .6rem 1rem;
+  border: 2px solid #042d4d;
+  border-radius: 6px;
+  background: #042d4d;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.portfolio-carousel .motion-control[hidden] { display: none; }
+.portfolio-carousel.motion-paused .carousel-track { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-carousel:not(.motion-allowed) .carousel-track { animation-play-state: paused !important; }
 }
