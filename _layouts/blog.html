@@ -324,6 +324,7 @@
 <body>
   {% include nav.html %}
 
+  <main id="content" tabindex="-1">
   <article class="post-wrap" itemscope itemtype="https://schema.org/BlogPosting">
     <header class="post-hero">
       {% if page.image %}
@@ -432,6 +433,7 @@
     <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
     <meta itemprop="image" content="{{ page.image | default: '/images/bluedobielogo_1.webp' | absolute_url }}">
   </article>
+  </main>
 
 
   <script>

@@ -6,6 +6,7 @@
 <body>
   {% include nav.html %}
 
+  <main id="content" tabindex="-1">
   <article class="post-wrap" itemscope itemtype="https://schema.org/BlogPosting">
     {%- assign cover = page.image | default: nil -%}
 
@@ -114,6 +115,7 @@
     <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
     <meta itemprop="image" content="{{ page.image | default: '/assets/images/bluedobielogo_1.webp' | absolute_url }}">
   </article>
+  </main>
 
   {% include footer.html %}
   {% include footer-scripts.html %}

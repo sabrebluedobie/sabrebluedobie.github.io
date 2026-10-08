@@ -210,13 +210,15 @@ extra_css:
       down before a local setup counts as private. Print it. Stick it by the desk.
     </p>
 
-    <form class="ai-guide-form" id="guideForm" novalidate>
+    <p id="guideUnavailable">The request form needs JavaScript. You can <a href="mailto:melanie.brown@bluedobiedev.com">email Melanie for the guide</a>.</p>
+    <form class="ai-guide-form" id="guideForm" novalidate aria-label="Request the AI setup guide">
+      <fieldset disabled aria-label="Guide request details">
       <div class="ai-field">
-        <label for="guideName">First name</label>
+        <label for="guideName">First name (required)</label>
         <input type="text" id="guideName" name="first-name" autocomplete="given-name" required>
       </div>
       <div class="ai-field">
-        <label for="guideEmail">Email</label>
+        <label for="guideEmail">Email (required)</label>
         <input type="email" id="guideEmail" name="email" autocomplete="email" required>
       </div>
       <!-- Honeypot, matching the contact form's convention. -->
@@ -226,10 +228,11 @@ extra_css:
         One email, one guide. No list, no drip sequence &mdash; I'll only follow up if you ask.
         See the <a href="/privacy">privacy policy</a>.
       </p>
+      </fieldset>
     </form>
 
     <div class="ai-guide-done" id="guideDone" hidden>
-      <p class="ai-guide-done-head">Here it is &mdash; thanks!</p>
+      <p class="ai-guide-done-head" id="guideStatus" role="status"></p>
       <p class="ai-cta-row ai-cta-centered">
         <a class="ai-btn ai-btn-primary" id="guideLink" href="{{ '/documents/Bluedobie-AI-Setup-Guide.pdf' | relative_url }}" target="_blank" rel="noopener">
           Open the guide (PDF)
@@ -312,6 +315,9 @@ extra_css:
     var note   = document.getElementById('guideNote');
     var submit = document.getElementById('guideSubmit');
     if (!form) return;
+    var pending = false;
+    var fields = form.querySelector('fieldset');
+    var deliveryStatus = document.getElementById('guideStatus');
 
     var ENDPOINT = 'https://hook.us2.make.com/mw8kpkfkzarglrhqsk4ynuw7swg5p3ao';
 
@@ -323,30 +329,46 @@ extra_css:
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (form.company_website.value) return;        // bot
+      if (pending) return;
+      if (form.elements.namedItem('company_website').value) return;        // bot
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
+      pending = true;
+      var controller = new AbortController();
+      var timer = window.setTimeout(function () { controller.abort(); }, 15000);
       submit.disabled = true;
       submit.textContent = 'Sending…';
+      form.setAttribute('aria-busy', 'true');
 
       fetch(ENDPOINT, {
+        signal: controller.signal,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          'first-name': form['first-name'].value.trim(),
+          'first-name': form.elements.namedItem('first-name').value.trim(),
           'last-name': '',
-          email: form.email.value.trim(),
+          email: form.elements.namedItem('email').value.trim(),
           'request-type': 'AI Setup Guide download',
           summary: 'Downloaded the cloud vs. local AI guide',
           message: 'Requested the free AI setup guide from /ai-setup-review/',
           action: 'submit'
         })
       })
-      .catch(function () {
-        // Their plumbing problem, not the visitor's — hand over the guide anyway.
-        note.textContent = "Couldn't save your details, but here's the guide.";
+      .then(function (response) {
+        if (!response.ok) throw new Error('Request not confirmed');
+        deliveryStatus.textContent = 'Your request was accepted. You can open the guide below now.';
       })
-      .then(reveal);
+      .catch(function () {
+        deliveryStatus.textContent = 'We could not confirm your email request. You can still open the guide below; no need to send the form again.';
+      })
+      .finally(function () {
+        window.clearTimeout(timer);
+        form.removeAttribute('aria-busy');
+        reveal();
+        // Keep this completed gate closed; do not send the same request twice.
+      });
     });
+    fields.disabled = false;
+    document.getElementById('guideUnavailable').hidden = true;
   })();
 </script>

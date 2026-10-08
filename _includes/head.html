@@ -14,11 +14,17 @@
   {%- assign _canon_raw = _canon_raw | slice: 0, _canon_trim_len -%}
 {%- endif -%}
 {%- assign _canon = _canon_raw | absolute_url -%}
-{%- assign _og_type = page.og_type | default: (page.layout == "post" or page.collection == "posts") | ternary: "article", "website" -%}
+{%- if page.og_type -%}
+  {%- assign _og_type = page.og_type -%}
+{%- elsif page.layout == 'post' or page.collection == 'posts' -%}
+  {%- assign _og_type = 'article' -%}
+{%- else -%}
+  {%- assign _og_type = 'website' -%}
+{%- endif -%}
 
-<title>{{ _title }}</title>
-{%- if _desc and _desc != "" -%}<meta name="description" content="{{ _desc }}">{%- endif -%}
-<link rel="canonical" href="{{ _canon }}">
+<title>{{ _title | escape }}</title>
+{%- if _desc and _desc != "" -%}<meta name="description" content="{{ _desc | escape }}">{%- endif -%}
+<link rel="canonical" href="{{ _canon | escape }}">
 {%- comment -%}
   Per-page search visibility. `noindex: true` in a page's front matter keeps it
   out of search results while the URL keeps working - for pages that are parked
@@ -36,17 +42,17 @@
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Bluedobie Developing">
-<meta property="og:title" content="{{ _title }}">
-{%- if _desc and _desc != "" -%}<meta property="og:description" content="{{ _desc }}">{%- endif -%}
-<meta property="og:type" content="{{ _og_type }}">
-<meta property="og:url" content="{{ _canon }}">
-<meta property="og:image" content="{{ _image }}">
+<meta property="og:title" content="{{ _title | escape }}">
+{%- if _desc and _desc != "" -%}<meta property="og:description" content="{{ _desc | escape }}">{%- endif -%}
+<meta property="og:type" content="{{ _og_type | escape }}">
+<meta property="og:url" content="{{ _canon | escape }}">
+<meta property="og:image" content="{{ _image | escape }}">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ _title }}">
-{%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc }}">{%- endif -%}
-<meta name="twitter:image" content="{{ _image }}">
+<meta name="twitter:title" content="{{ _title | escape }}">
+{%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc | escape }}">{%- endif -%}
+<meta name="twitter:image" content="{{ _image | escape }}">
 
 <!-- GEO / Structured Data -->
 {% include schema-jsonld.html %}

@@ -18,6 +18,7 @@ sitemap: false
       <div class="second-home-text-holder">
         <h1>Let's Work Together</h1>
         <p class="second-home-description">Reach out about a free web audit, website help, DobieCore Suite content support, or a future Bifrost/business continuity inquiry. If you are requesting an audit, the contact form — not the calendar — starts the process.</p>
+        <p><a href="mailto:melanie.brown@bluedobiedev.com">Email Melanie</a> or call <a href="tel:+12703883535">270-388-3535</a>.</p>
         <a class="button button-dark contact-hero-action" href="#custom-form-container">Start with the Contact Form</a>
       </div>
     </div>
@@ -117,8 +118,10 @@ sitemap: false
     <h2>Ask About Business Card Design</h2>
     <p>Tell me what you need printed, and whether you already have a logo and brand colors to work from.</p>
   </template>
+  <p id="form-unavailable" role="status">The inquiry form needs JavaScript to load. You can also <a href="mailto:melanie.brown@bluedobiedev.com">email Melanie</a> or call <a href="tel:+12703883535">270-388-3535</a>.</p>
   <form id="multiForm" method="POST"
-    class="multi-step-form">
+    class="multi-step-form" aria-label="Project inquiry">
+    <fieldset disabled aria-label="Inquiry details">
     
     <!-- Step 1: Basic Info -->
     <div class="form-step active" id="step1">
@@ -128,22 +131,23 @@ sitemap: false
         their choice took effect without the form skipping this step.
       {%- endcomment -%}
       <p class="form-preselected" id="form-preselected" role="status" hidden></p>
-      <h3>Step 1 of 3</h3>
-      <label for="contact-first-name">First Name</label>
+      <h3 tabindex="-1">Step 1 of 3</h3>
+      <label for="contact-first-name">First Name (required)</label>
       <input id="contact-first-name" autocomplete="given-name" name="first-name" placeholder="First Name" required />
-      <label for="contact-last-name">Last Name</label>
+      <label for="contact-last-name">Last Name (required)</label>
       <input id="contact-last-name" autocomplete="family-name" name="last-name" placeholder="Last Name" required />
-      <label for="contact-email">Email</label>
+      <label for="contact-email">Email (required)</label>
       <input id="contact-email" autocomplete="email" name="email" placeholder="Email" required type="email" />
       <label for="contact-website">Website (if applicable)</label>
-      <input id="contact-website" autocomplete="url" name="website" placeholder="Website (if applicable)" type="url" />
+      <input id="contact-website" aria-describedby="website-help" autocomplete="url" name="website" placeholder="Website (if applicable)" type="url" />
+      <p id="website-help">Use the full website address, for example https://example.com.</p>
       <button onclick="nextStep(1)" type="button">Next</button>
     </div>
 
     <!-- Step 2: Inquiry -->
-    <div class="form-step" id="step2">
-      <h3>Step 2 of 3</h3>
-      <label for="contact-request-type">Service Type</label>
+    <div class="form-step" id="step2" hidden>
+      <h3 tabindex="-1">Step 2 of 3</h3>
+      <label for="contact-request-type">Service Type (required)</label>
       <select id="contact-request-type" name="request-type" required>
         <option value="">Select a Service</option>
         <option value="Free Web Audit">Free Web Audit</option>
@@ -153,7 +157,7 @@ sitemap: false
         <option value="Logo Design">Logo Design</option>
         <option value="Business Cards">Business Cards</option>
       </select>
-      <label for="contact-summary">One-sentence summary</label>
+      <label for="contact-summary">One-sentence summary (required)</label>
       <input id="contact-summary" name="summary" placeholder="One-sentence summary" required />
       <div class="nav-buttons">
         <button onclick="prevStep(1)" type="button">Back</button>
@@ -162,11 +166,11 @@ sitemap: false
     </div>
 
     <!-- Step 3: Final Message -->
-    <div class="form-step" id="step3">
-      <h3>Step 3 of 3</h3>
-      <label for="contact-message">Tell us a bit more...</label>
+    <div class="form-step" id="step3" hidden>
+      <h3 tabindex="-1">Step 3 of 3</h3>
+      <label for="contact-message">Tell us a bit more (required)</label>
       <textarea id="contact-message" name="message" placeholder="Tell us a bit more..." required></textarea>
-      <input aria-label="Company Website" name="company_website" style="display:none;" type="text" />
+      <input tabindex="-1" autocomplete="off" aria-label="Company Website" name="company_website" style="display:none;" type="text" />
       
       <input name="action" type="hidden" value="submit">
       <p class="paragraph-46">By submitting this form, you agree to our <a href="/privacy" rel="noopener noreferrer" target="_blank">Privacy Policy</a>.</p>
@@ -178,7 +182,8 @@ sitemap: false
         <button type="submit">Submit</button>
       </div>
     </div>
-    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+    </fieldset>
+    <p tabindex="-1" id="form-status" class="form-status" role="status" aria-live="polite"></p>
   </form>
 </div>
 

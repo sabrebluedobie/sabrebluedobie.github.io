@@ -3,7 +3,7 @@
 <head>{% include head.html %}</head>
 <body class="site {{ page.section | default: 'main' }}">
   {% include nav.html %}
-  <main class="container">{{ content }}</main>
+  <main id="content" class="container" tabindex="-1">{{ content }}</main>
   {% include footer.html %}{% include footer-scripts.html %}
 </body>
 
