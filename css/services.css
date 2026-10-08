@@ -187,3 +187,13 @@
     white-space: normal;
   }
 }
+
+.services-hero a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.services-hero a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}

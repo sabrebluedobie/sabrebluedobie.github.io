@@ -599,3 +599,7 @@
   .ai-cta-row .ai-btn { width: 100%; text-align: center; }
   .ai-hero h1 { max-width: none; }
 }
+
+/* The request remains safely disabled if its script cannot load. */
+.ai-guide-form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+#guideUnavailable[hidden], #guideForm[hidden], #guideDone[hidden] { display: none; }

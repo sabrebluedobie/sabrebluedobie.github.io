@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', initNavigation);
 function initNavigation() {
   const menuButton = document.getElementById('menu-button');
   const mainMenu = document.getElementById('mainmenu');
+  if (!mainMenu || !menuButton) return;
+  const nav = mainMenu.closest('.site-nav');
   const panels = [];
   const compact = window.matchMedia('(max-width: 991px)');
   const background = Array.from(document.querySelectorAll('main, footer, .social-bar'));
@@ -12,6 +14,7 @@ function initNavigation() {
     .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
 
   function closeDropdown(panel) {
+    panel.menu.inert = true;
     panel.menu.classList.remove('show');
     panel.menu.style.display = '';
     panel.menu.style.maxHeight = '';
@@ -21,6 +24,7 @@ function initNavigation() {
   function setDrawerOpen(open, returnFocus = false) {
     if (!mainMenu || !menuButton) return;
     const wasOpen = mainMenu.classList.contains('w--open');
+    mainMenu.inert = compact.matches && !open;
     mainMenu.classList.toggle('w--open', open);
     menuButton.classList.toggle('w--open', open);
     menuButton.setAttribute('aria-expanded', String(open));
@@ -47,12 +51,14 @@ function initNavigation() {
     if (!toggle || !menu) return;
     const panel = { toggle, menu };
     panels.push(panel);
+    closeDropdown(panel);
     toggle.addEventListener('click', event => {
       event.preventDefault();
       event.stopPropagation();
       const open = toggle.getAttribute('aria-expanded') !== 'true';
       closeAllDropdowns();
       if (open) {
+        menu.inert = false;
         menu.classList.add('show');
         menu.style.setProperty('display', 'block', 'important');
         menu.style.setProperty('max-height', compact.matches ? 'none' : '500px', 'important');
@@ -81,5 +87,18 @@ function initNavigation() {
   mainMenu?.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', () => setDrawerOpen(false));
   });
-  compact.addEventListener('change', event => { if (!event.matches) setDrawerOpen(false); });
+  compact.addEventListener('change', () => {
+    const focusInside = mainMenu.contains(document.activeElement);
+    setDrawerOpen(false);
+    if (compact.matches && focusInside) menuButton.focus();
+  });
+  // Mark only the URL actually being viewed, independent of .html clean URLs.
+  const path = value => value.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  mainMenu.querySelectorAll('a[href]').forEach(link => {
+    if (path(new URL(link.href, window.location.href).pathname) === path(window.location.pathname)) {
+      link.setAttribute('aria-current', 'page');
+    }
+  });
+  nav?.classList.add('nav-ready');
+  setDrawerOpen(false);
 }

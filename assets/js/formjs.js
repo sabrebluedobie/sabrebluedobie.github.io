@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const preselectedNote = form.querySelector('#form-preselected');
   const formIntro = document.getElementById('form-intro');
 
+  const fieldsContainer = form.querySelector('fieldset');
+  let submitting = false;
+  form.noValidate = true; // Reveal the correct step before reporting native validation.
+
   const defaultIntro = formIntro ? formIntro.innerHTML : null;
 
   // The intro above the form names whichever service is selected. Variants
@@ -41,58 +45,73 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const auditSelected = isAuditRequest();
     websiteInput.required = auditSelected;
+    const label = form.querySelector('label[for="contact-website"]');
+    if (label) label.textContent = auditSelected ? 'Website (required for a free web audit)' : 'Website (optional)';
     websiteInput.placeholder = auditSelected
       ? 'Website URL (required for a free web audit)'
       : 'Website (if applicable)';
   }
 
-  function showStep(stepNumber) {
-    steps.forEach((step) => step.classList.remove('active'));
-
+  function showStep(stepNumber, moveFocus = true) {
     const targetStep = form.querySelector(`#step${stepNumber}`);
-    if (targetStep) {
-      targetStep.classList.add('active');
+    if (!targetStep) return;
+    steps.forEach(step => {
+      const active = step === targetStep;
+      step.classList.toggle('active', active);
+      step.hidden = !active;
+    });
+    if (moveFocus) targetStep.querySelector('h3')?.focus();
+  }
+
+  function setStatus(message, state = '') {
+    if (!statusMessage) return;
+    statusMessage.textContent = message;
+    statusMessage.classList.toggle('form-status-error', state === 'error');
+    statusMessage.classList.toggle('form-status-success', state === 'success');
+  }
+
+  function firstInvalid(container) {
+    for (const field of container.querySelectorAll('input, select, textarea')) {
+      if (field.required && field.type !== 'hidden') {
+        field.setCustomValidity(field.value.trim() ? '' : 'Please complete this required field.');
+      }
+      if (!field.checkValidity()) return field;
     }
+    return null;
+  }
+
+  function reportField(field) {
+    const step = field.closest('.form-step');
+    if (step) showStep(Number(step.id.replace('step', '')), false);
+    field.setAttribute('aria-invalid', 'true');
+    const label = field.labels?.[0]?.textContent || 'This field';
+    setStatus(label + ': ' + field.validationMessage, 'error');
+    field.focus();
+    field.reportValidity();
   }
 
   function validateStep(stepNumber) {
-    const currentStep = form.querySelector(`#step${stepNumber}`);
-    if (!currentStep) return false;
-
-    const requiredFields = currentStep.querySelectorAll(
-      'input[required], select[required], textarea[required]'
-    );
-
-    for (const field of requiredFields) {
-      if (!field.checkValidity()) {
-        field.reportValidity();
-        return false;
-      }
-    }
-
+    const step = form.querySelector(`#step${stepNumber}`);
+    if (!step) return false;
+    const invalid = firstInvalid(step);
+    if (invalid) { reportField(invalid); return false; }
+    setStatus('');
     return true;
   }
 
-  // Every visitor now starts on step 1, but a field on a later step can
-  // still be invalid at submit time. A browser can't show a validation
-  // bubble for a display:none field, so form.reportValidity() would fail
-  // silently. Walk every field in DOM order instead, and jump to whichever
-  // step holds the first invalid one before reporting it.
   function goToFirstInvalidField() {
-    const fields = form.querySelectorAll('input, select, textarea');
-
-    for (const field of fields) {
-      if (!field.checkValidity()) {
-        const stepEl = field.closest('.form-step');
-        const match = stepEl && stepEl.id.match(/^step(\d+)$/);
-        if (match) showStep(Number(match[1]));
-        field.reportValidity();
-        return true;
-      }
-    }
-
-    return false;
+    const invalid = firstInvalid(form);
+    if (!invalid) return false;
+    reportField(invalid);
+    return true;
   }
+
+  form.addEventListener('input', event => {
+    if (typeof event.target.setCustomValidity !== 'function') return;
+    event.target.setCustomValidity('');
+    event.target.removeAttribute('aria-invalid');
+    if (statusMessage?.classList.contains('form-status-error')) setStatus('');
+  });
 
   const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
@@ -126,11 +145,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.nextStep = function (currentStep) {
-    if (!validateStep(currentStep)) return;
+    if (submitting || !validateStep(currentStep)) return;
 
     if (currentStep === 2 && isAuditRequest() && websiteInput && !websiteInput.checkValidity()) {
-      showStep(1);
-      websiteInput.reportValidity();
+      reportField(websiteInput);
       return;
     }
 
@@ -138,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   window.prevStep = function (targetStep) {
-    showStep(targetStep);
+    if (!submitting) showStep(targetStep);
   };
 
   // Preselect a service from links such as ?service=Free%20Web%20Audit.
@@ -152,7 +170,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const requestedService = new URLSearchParams(window.location.search).get('service');
 
   if (requestedService && serviceSelect) {
-    const normalizedService = requestedService.trim().toLowerCase();
+    const aliases = { 'logo-sprint': 'Logo Design', 'logo-sprint-basic': 'Logo Design', 'logo-sprint-pro': 'Logo Design' };
+    const requested = requestedService.trim().toLowerCase();
+    const normalizedService = (aliases[requested] || requested).toLowerCase();
+    const summary = form.querySelector('[name=summary]');
+    if (summary && !summary.value && /^logo-sprint-(basic|pro)$/.test(requested)) {
+      summary.value = requested.endsWith('basic') ? 'Logo Sprint Basic inquiry' : 'Logo Sprint Pro inquiry';
+    }
     const matchingOption = Array.from(serviceSelect.options).find(
       (option) => option.value.trim().toLowerCase() === normalizedService
     );
@@ -185,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
+    if (submitting) return;
 
     if (goToFirstInvalidField()) {
       return;
@@ -200,24 +225,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton ? submitButton.textContent : '';
 
-    if (statusMessage) {
-      statusMessage.textContent = '';
-      statusMessage.classList.remove('form-status-error', 'form-status-success');
-    }
-
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-    }
-
+    const payload = Object.fromEntries(new FormData(form).entries());
+    submitting = true;
+    setStatus('Sending your request…');
+    if (fieldsContainer) fieldsContainer.disabled = true;
+    if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Sending…'; }
     form.setAttribute('aria-busy', 'true');
-
-    // Collect form data
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
 
     try {
       const response = await fetch('https://hook.us2.make.com/mw8kpkfkzarglrhqsk4ynuw7swg5p3ao', {
+        signal: controller.signal,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -235,23 +254,19 @@ document.addEventListener('DOMContentLoaded', function () {
       form.reset();
       syncWebsiteRequirement();
       syncFormIntro();
-      showStep(1);
+      showStep(1, false);
+      if (preselectedNote) preselectedNote.hidden = true;
 
-      if (statusMessage) {
-        statusMessage.textContent = 'Thanks! Your request has been sent. We will be in touch within 24 hours.';
-        statusMessage.classList.add('form-status-success');
-      }
+      setStatus('Thanks! Your request has been sent. We will be in touch within 24 hours.', 'success');
     } catch (error) {
-      console.error('Form submission error:', error);
-
-      if (statusMessage) {
-        statusMessage.textContent = 'Something went wrong while sending your request. Please try again or email melanie.brown@bluedobiedev.com.';
-        statusMessage.classList.add('form-status-error');
-      } else {
-        alert('Something went wrong. Please try again later.');
-      }
+      // A timeout/network error cannot prove whether the server received the request.
+      setStatus('We could not confirm that your request was sent. It may have arrived. Before sending again, email melanie.brown@bluedobiedev.com or call 270-388-3535. Your details are still here.', 'error');
     } finally {
+      window.clearTimeout(timeout);
+      submitting = false;
+      if (fieldsContainer) fieldsContainer.disabled = false;
       form.removeAttribute('aria-busy');
+      statusMessage?.focus();
 
       if (submitButton) {
         submitButton.disabled = false;
@@ -259,4 +274,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
+  showStep(1, false);
+  if (fieldsContainer) fieldsContainer.disabled = false;
+  const unavailable = document.getElementById('form-unavailable');
+  if (unavailable) unavailable.hidden = true;
+
 });
