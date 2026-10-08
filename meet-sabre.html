@@ -6,6 +6,7 @@ og_image: "https://www.bluedobiedev.com/images/sabre-at-the-laptop.webp"
 canonical: "https://www.bluedobiedev.com/meet-sabre"
 extra_css:
   - /css/meet-sabre.css
+  - /css/sabre-reels.css
 sitemap: false
 ---
 
@@ -145,11 +146,27 @@ document.addEventListener("DOMContentLoaded", function () {
     <h2>Sabre on Social Media</h2>
     <p>Because apparently he's more popular than the websites I build.</p>
     
-    <div class="social-embeds">
-      <iframe class="instagram-media" src="https://widgets.sociablekit.com/instagram-reels/iframe/25661024" title="Sabre on Instagram" style="border:0;width:100%;height:1000px"></iframe>
-    </div>
+    <section class="sabre-reels" aria-labelledby="sabre-reels-heading" data-reels>
+      <h3 id="sabre-reels-heading">Sabre on Instagram</h3>
+      <p>Read Sabre's post captions here, or open a reel on Instagram to watch. Instagram may ask you to sign in. Post captions are not video transcripts.</p>
+      <p class="reels-status" role="status" data-reels-status>Saved posts from {{ site.data.sabre-reels.saved_label | escape }}. New posts load automatically when available.</p>
+      <ul class="reels-grid" data-reels-list>
+        {% for reel in site.data.sabre-reels.posts %}
+        <li class="reel-card">
+          {% if reel.image != empty %}<img src="{{ reel.image | escape }}" alt="" loading="lazy" width="480" height="480">{% endif %}
+          <div class="reel-copy">
+            <h4><a href="{{ reel.url | escape }}">Watch reel on Instagram<span class="reel-link-context">: {{ reel.caption | truncate: 100 | escape }} ({{ reel.date | slice: 0, 10 }})</span></a></h4>
+            <time datetime="{{ reel.date | slice: 0, 10 }}">{{ reel.date_label | escape }}</time>
+            <p class="reel-caption">{{ reel.caption | escape }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="https://www.instagram.com/sabrethebluedobie/reels/">See all of Sabre's reels on Instagram</a></p>
+      <noscript><p>These saved posts work without JavaScript. Visit Instagram for the newest reels.</p></noscript>
+    </section>
+    <script src="{{ '/js/sabre-reels.js' | relative_url }}" defer></script>
 
-    <script async src="https://www.instagram.com/embed.js"></script>
   </div>
 </section>
 

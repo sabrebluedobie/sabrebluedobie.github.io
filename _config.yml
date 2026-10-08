@@ -73,3 +73,6 @@ exclude:
   - poll-backend/
   - archive/
   - template/
+
+  - tests/
+  - FEED-REVIEW.md

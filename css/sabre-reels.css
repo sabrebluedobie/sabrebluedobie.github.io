@@ -1,0 +1,48 @@
+.sabre-reels { line-height: 1.6; }
+.sabre-reels a { color: var(--color-navy, #092c46); text-decoration: underline; }
+.sabre-reels a:focus-visible { outline: 3px solid var(--color-navy, #092c46); outline-offset: 4px; }
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0;
+  list-style: none;
+}
+.reel-card {
+  min-width: 0;
+  background: var(--color-cream, #fff9f0);
+  border: 1px solid var(--color-navy, #092c46);
+  border-radius: 12px;
+}
+.reel-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 11px 11px 0 0;
+  background: var(--color-background-cream, #f8f5f0);
+}
+.reel-copy { padding: 18px; overflow-wrap: anywhere; }
+.reel-copy h4 { margin: 0 0 8px; font-size: 1.15rem; }
+.reel-copy h4 a { display: inline-block; padding-block: 8px; }
+.reel-caption { white-space: pre-wrap; margin-bottom: 0; }
+.reels-status, .reel-copy time { font-size: .95rem; }
+.reel-link-context {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (max-width: 850px) { .reels-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 550px) { .reels-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Override the page's general section image styles inside feed cards only. */
+.sabre-reels .reel-card img { margin: 0; max-width: none; box-shadow: none; border-radius: 11px 11px 0 0; }
+.sabre-reels .reel-card { color: var(--color-navy, #092c46); }
+.sabre-reels .reel-copy h4 { font-family: var(--font-body); line-height: 1.5; }
+.sabre-reels a:focus-visible { background: #fff; box-shadow: 0 0 0 6px #fff; }
