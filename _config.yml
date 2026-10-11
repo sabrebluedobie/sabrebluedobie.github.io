@@ -70,6 +70,7 @@ include: ['.well-known', '_headers', '_redirects']
 
 # Exclude build clutter
 exclude:
+  - scripts/
   - node_modules/
   - vendor/
   - .bundle/

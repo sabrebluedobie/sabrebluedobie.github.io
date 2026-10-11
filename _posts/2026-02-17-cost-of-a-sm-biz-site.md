@@ -1,4 +1,5 @@
 ---
+social_card: website-cost
 layout: post
 title: "How Much Does a Small Business Website Cost?"
 description: "A clear breakdown of small business web design pricing—from DIY builders to agencies—plus what affects cost, hidden fees to watch for, and how to budget smart."
