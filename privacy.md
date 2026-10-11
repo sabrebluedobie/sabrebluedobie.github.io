@@ -15,7 +15,7 @@ extra_css:
 </div>
 
 <div class="privacy-content">
-  <p class="privacy-effective-date"><strong>Effective Date:</strong> February 9, 2024</p>
+  <p class="privacy-effective-date"><strong>Effective Date:</strong> October 11, 2026</p>
 
   <p><strong>Website:</strong> www.bluedobiedev.com</p>
   <p><strong>Type of website:</strong> Portfolio</p>
@@ -38,11 +38,8 @@ extra_css:
   <p>This Privacy Policy applies in addition to the terms and conditions of our Site.</p>
 
   <h2>Consent</h2>
-  <p>By using our Site users agree that they consent to:</p>
-  <ol>
-    <li>The conditions set out in this Privacy Policy; and</li>
-    <li>The collection, use, and retention of the data listed in this Privacy Policy.</li>
-  </ol>
+  <p>We ask for consent before using optional analytics and advertising technologies. Our consent notice allows users to accept all optional purposes, reject all optional purposes, or confirm selected preferences. Essential website functions are not affected by a user's choice regarding optional technologies.</p>
+  <p>When consent is required, Google Analytics 4 and Meta/Facebook Pixel will only be used for the purposes the user affirmatively accepts. A missing consent choice is not treated as consent.</p>
 
   <h2>Personal Data We Collect</h2>
   <p>We only collect data that helps us achieve the purpose set out in this Privacy Policy. We will not collect any additional data beyond the data listed below without notifying you first.</p>
@@ -77,7 +74,10 @@ extra_css:
 
   <p>The data we collect automatically is used for the following purposes:</p>
   <ol>
-    <li>Marketing.</li>
+    <li>Understanding how visitors use the Site;</li>
+    <li>Improving the Site's content, usability, and performance;</li>
+    <li>Measuring marketing and advertising results; and</li>
+    <li>Supporting advertising activities.</li>
   </ol>
 
   <p>The data we collect when the user performs certain functions may be used for the following purposes:</p>
@@ -94,20 +94,26 @@ extra_css:
   <p>We may share user data with the following third parties:</p>
   <ol>
     <li>PayPal processes payments;</li>
-    <li>Microsoft Clarity (marketing); and</li>
-    <li>Google Analytics 4.</li>
+    <li>Cloudflare provides website infrastructure, consent management, and server-side tag management through Cloudflare Zaraz;</li>
+    <li>Google Analytics 4 provides website analytics; and</li>
+    <li>Meta Platforms, including Facebook Pixel and the Conversions API, provides advertising measurement and related marketing services.</li>
   </ol>
 
   <p>We may share the following user data with third parties:</p>
   <ol>
     <li>PayPal receives payment information; and</li>
-    <li>Microsoft Clarity and GA4 receive site analytics.</li>
+    <li>Cloudflare processes website requests, consent preferences, and analytics or advertising events on our behalf;</li>
+    <li>Google Analytics 4 may receive page and event information, device and browser information, approximate location information, and network identifiers such as an IP address; and</li>
+    <li>Meta may receive page-view, advertising, conversion, or e-commerce event information and associated device, browser, and network information.</li>
   </ol>
 
   <p>We may share user data with third parties for the following purposes:</p>
   <ol>
     <li>Payment processing; and</li>
-    <li>Marketing.</li>
+    <li>Website delivery and security;</li>
+    <li>Consent and tag management;</li>
+    <li>Website analytics and improvement; and</li>
+    <li>Advertising and marketing measurement.</li>
   </ol>
 
   <p>Third parties will not be able to access user data beyond what is reasonably necessary to achieve the given purpose.</p>
@@ -127,7 +133,7 @@ extra_css:
   <p>User data will be stored until the purpose the data was collected for has been achieved. You will be notified if your data is kept for longer than this period.</p>
 
   <h2>How We Protect Your Personal Data</h2>
-  <p>I only use reputable third parties and do not share any personally identifiable information other than to process a voluntary payment. While we take all reasonable precautions to ensure that user data is secure and that users are protected, there always remains the risk of harm. The Internet as a whole can be insecure at times and therefore we are unable to guarantee the security of user data beyond what is reasonably practical.</p>
+  <p>We use reputable service providers and limit disclosures to the purposes described in this Privacy Policy, including payment processing, website delivery and security, analytics, consent management, and advertising measurement. While we take reasonable precautions to protect user data, there always remains a risk of harm. The Internet as a whole can be insecure at times, and we cannot guarantee security beyond what is reasonably practical.</p>
 
   <h2>Children</h2>
   <p>We do not knowingly collect or use personal data from children under 13 years of age. If we learn that we have collected personal data from a child under 13 years of age, the personal data will be deleted as soon as possible. If a child under 13 years of age has provided us with personal data their parent or guardian may contact our privacy officer.</p>
@@ -141,12 +147,16 @@ extra_css:
   <h2>Cookie Policy</h2>
   <p>A cookie is a small file, stored on a user's hard drive by a website. Its purpose is to collect data relating to the user's browsing habits. You can choose to be notified each time a cookie is transmitted. You can also choose to disable cookies entirely in your internet browser, but this may decrease the quality of your user experience.</p>
 
+  <p>We use Cloudflare Zaraz to manage consent and certain analytics and advertising tools. Zaraz stores consent preferences in a first-party cookie named <code>zaraz-consent</code>. This cookie records whether a user accepted or rejected the optional purposes presented in the consent notice.</p>
+
   <p>We use the following types of cookies on our Site:</p>
   <ol>
-    <li><strong>Functional cookies:</strong> Functional cookies are used to remember the selections you make on our Site so that your selections are saved for your next visits;</li>
-    <li><strong>Analytical cookies:</strong> Analytical cookies allow us to improve the design and functionality of our Site by collecting data on how you access our Site, for example data on the content you access, how long you stay on our Site, etc; and</li>
-    <li><strong>Third-Party Cookies:</strong> Third-party cookies are created by a website other than ours. We may use third-party cookies to achieve the following purposes: Monitor user preferences to allow us to best serve our clients.</li>
+    <li><strong>Consent and functional cookies:</strong> These cookies remember consent choices and other selections needed to provide requested website functionality;</li>
+    <li><strong>Analytical cookies:</strong> With consent, analytical cookies help us understand how visitors access and use the Site so we can improve its design, content, and performance; and</li>
+    <li><strong>Advertising cookies and related technologies:</strong> With consent, Meta/Facebook technologies may be used to measure advertising, record conversion or e-commerce events, and support advertising activities.</li>
   </ol>
+
+  <p>Depending on the consent choices and tool behavior, Zaraz may use first-party cookies including <code>zaraz_google-analytics_v4</code>, <code>zarazs_google-analytics_v4</code>, <code>zaraz_facebook-pixel</code>, and <code>zarazs_facebook-pixel</code>. Some analytics and advertising events may be transmitted server-side through Cloudflare Zaraz rather than by loading a vendor script directly in the browser.</p>
 
   <h2>Modifications</h2>
   <p>This Privacy Policy may be amended from time to time in order to maintain compliance with the law and to reflect any changes to our data collection process. When we amend this Privacy Policy we will update the "Effective Date" at the top of this Privacy Policy. We recommend that our users periodically review our Privacy Policy to ensure that they are notified of any updates. If necessary, we may notify users by email of changes to this Privacy Policy.</p>
