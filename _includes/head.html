@@ -4,7 +4,18 @@
 <meta name="cf-rocket-loader" content="off">
 {%- assign _title   = page.title | default: site.title | default: "Bluedobie Developing" -%}
 {%- assign _desc    = page.description | default: page.excerpt | default: page.content | strip_html | normalize_whitespace | truncate: 160 -%}
-{%- assign _image   = page.og_image | default: page.image | default: "/assets/images/bluedobielogo_1.webp" | absolute_url -%}
+{%- comment -%} Social-only copy and artwork; search titles, descriptions and schema keep their existing sources. {%- endcomment -%}
+{%- assign _card = site.data.social_cards[page.social_card] -%}
+{%- unless _card or page.og_image or page.image -%}
+  {%- assign _card = site.data.social_cards.default -%}
+{%- endunless -%}
+{%- assign _social_title = _card.title | default: page.og_title | default: _title -%}
+{%- assign _social_desc = _card.description | default: page.og_description | default: _desc -%}
+{%- assign _image = _card.image | default: page.og_image | default: page.image | absolute_url -%}
+{%- assign _image_alt = _card.alt | default: page.og_image_alt | default: _social_title -%}
+{%- assign _image_width = _card.width | default: page.og_image_width -%}
+{%- assign _image_height = _card.height | default: page.og_image_height -%}
+{%- assign _image_type = _card.type | default: page.og_image_type -%}
 {%- assign _canon_raw = page.canonical_url | default: page.canonical | default: page.url -%}
 {%- assign _canon_suffix = _canon_raw | slice: -5, 5 -%}
 {%- if _canon_raw == '/index.html' -%}
@@ -42,17 +53,22 @@
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Bluedobie Developing">
-<meta property="og:title" content="{{ _title | escape }}">
-{%- if _desc and _desc != "" -%}<meta property="og:description" content="{{ _desc | escape }}">{%- endif -%}
+<meta property="og:title" content="{{ _social_title | escape }}">
+{%- if _social_desc and _social_desc != "" -%}<meta property="og:description" content="{{ _social_desc | escape }}">{%- endif -%}
 <meta property="og:type" content="{{ _og_type | escape }}">
 <meta property="og:url" content="{{ _canon | escape }}">
 <meta property="og:image" content="{{ _image | escape }}">
+<meta property="og:image:alt" content="{{ _image_alt | escape }}">
+{%- if _image_width -%}<meta property="og:image:width" content="{{ _image_width }}">{%- endif -%}
+{%- if _image_height -%}<meta property="og:image:height" content="{{ _image_height }}">{%- endif -%}
+{%- if _image_type -%}<meta property="og:image:type" content="{{ _image_type | escape }}">{%- endif -%}
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ _title | escape }}">
-{%- if _desc and _desc != "" -%}<meta name="twitter:description" content="{{ _desc | escape }}">{%- endif -%}
+<meta name="twitter:title" content="{{ _social_title | escape }}">
+{%- if _social_desc and _social_desc != "" -%}<meta name="twitter:description" content="{{ _social_desc | escape }}">{%- endif -%}
 <meta name="twitter:image" content="{{ _image | escape }}">
+<meta name="twitter:image:alt" content="{{ _image_alt | escape }}">
 
 <!-- GEO / Structured Data -->
 {% include schema-jsonld.html %}
