@@ -221,6 +221,23 @@
   margin: var(--space-xs) 0 var(--space-md);
 }
 
+/* What exists today versus what is still being written, stated plainly so
+   the founder offer never reads as more than it is. */
+.learn-price-status {
+  background-color: var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  text-align: left;
+  margin: 0 0 var(--space-md);
+}
+
+.learn-price-status strong {
+  color: var(--color-text-primary);
+}
+
 .learn-price-list {
   list-style: none;
   padding: 0;
@@ -320,6 +337,7 @@
 
 .container .learn-price-eyebrow,
 .container .learn-price-note,
+.container .learn-price-status,
 .container .learn-fine,
 .container .learn-eyebrow {
   font-size: var(--font-size-sm);
