@@ -375,9 +375,25 @@ h2 {
 
   }
 
-/* Multi-paragraph sections (founder intro) need visible breaks; the rule above zeroes every margin. */
-.founder-intro .intro-text + .intro-text {
+/* Multi-paragraph sections (founder intro, audit intro) need visible breaks; the rule above zeroes every margin. */
+.founder-intro .intro-text + .intro-text,
+.audit-intro .intro-text + .intro-text,
+.audit-intro .bullet-list + .intro-text {
   margin-top: var(--space-md) !important;
+}
+
+/* Center the checklist as a block under the centered text, items still left-aligned. */
+.audit-intro .bullet-list {
+  text-align: left;
+  width: fit-content;
+  margin: var(--space-md) auto !important;
+}
+
+.audit-intro h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-normal);
+  margin: var(--space-xl) 0 var(--space-sm);
 }
 
 /* ========================================
