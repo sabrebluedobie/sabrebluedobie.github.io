@@ -375,6 +375,11 @@ h2 {
 
   }
 
+/* Multi-paragraph sections (founder intro) need visible breaks; the rule above zeroes every margin. */
+.founder-intro .intro-text + .intro-text {
+  margin-top: var(--space-md) !important;
+}
+
 /* ========================================
    WHY LIST
    ======================================== */
