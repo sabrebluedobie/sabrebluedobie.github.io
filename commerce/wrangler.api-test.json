@@ -1,0 +1,25 @@
+{
+  "name": "workbook-api-test",
+  "main": "production/test-api.mjs",
+  "account_id": "f53121e2c48be300b121f58074fe3b66",
+  "compatibility_date": "2026-10-23",
+  "workers_dev": true,
+  "vars": {
+    "WORKBOOK_RELEASE_APPROVED": "false",
+    "WORKBOOK_PURCHASES_ENABLED": "false",
+    "WORKBOOK_DISPATCH_ENABLED": "false"
+  },
+  "d1_databases": [
+    {
+      "binding": "WORKBOOK_DB",
+      "database_name": "workbook-orders-test",
+      "database_id": "0f881c18-d9e4-4331-9bc7-8a324e367a49"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "DOWNLOADS_BUCKET",
+      "bucket_name": "bluedobie-downloads"
+    }
+  ]
+}
