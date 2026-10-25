@@ -91,3 +91,12 @@ exclude:
   - tests/
   - FEED-REVIEW.md
   - PUBLIC-JOURNEY-REVIEW.md
+
+  - commerce/
+  - functions/
+
+# Workbook launch approved; publish only after backend cutover readiness.
+workbook_purchases_enabled: true
+workbook_policies_approved: true
+workbook_public_samples_approved: false
+workbook_production_approved: true
