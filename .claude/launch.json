@@ -4,8 +4,64 @@
     {
       "name": "jekyll",
       "runtimeExecutable": "bundle",
-      "runtimeArgs": ["exec", "jekyll", "serve", "--livereload"],
+      "runtimeArgs": [
+        "exec",
+        "jekyll",
+        "serve",
+        "--livereload"
+      ],
       "port": 4000
+    },
+    {
+      "name": "learn",
+      "runtimeExecutable": "bundle",
+      "runtimeArgs": [
+        "exec",
+        "jekyll",
+        "serve",
+        "--source",
+        "/Users/bluedobiedev/Documents/dobiecore-learn",
+        "--destination",
+        "/Users/bluedobiedev/Documents/dobiecore-learn/_site",
+        "--config",
+        "/Users/bluedobiedev/Documents/dobiecore-learn/_config.yml",
+        "--port",
+        "4001",
+        "--livereload",
+        "--livereload-port",
+        "35730"
+      ],
+      "port": 4001,
+      "env": {
+        "LANG": "en_US.UTF-8",
+        "LC_ALL": "en_US.UTF-8"
+      }
+    },
+    {
+      "name": "jekyll-static",
+      "runtimeExecutable": "bundle",
+      "runtimeArgs": [
+        "exec",
+        "jekyll",
+        "serve",
+        "--port",
+        "4002",
+        "--skip-initial-build",
+        "--no-watch"
+      ],
+      "port": 4002
+    },
+    {
+      "name": "arlo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4003",
+        "--directory",
+        "/Users/bluedobiedev/Documents/design-work/Arlo-Dobermann/_site"
+      ],
+      "port": 4003
     }
   ]
 }
