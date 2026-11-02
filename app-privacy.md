@@ -1,7 +1,7 @@
 ---
 layout: default-shared
-title: "Meta Publishing Core — Application Privacy Policy"
-description: "Privacy policy for Meta Publishing Core, the internal social publishing application operated by Bluedobie Developing."
+title: "Bluedobie Publishing — Application Privacy Policy"
+description: "Privacy policy for Bluedobie Publishing, the internal social publishing application operated by Bluedobie Developing."
 canonical: "https://www.bluedobiedev.com/app-privacy"
 permalink: /app-privacy.html
 sitemap: false
@@ -12,19 +12,19 @@ extra_css:
 
 <div class="privacy-hero">
   <h1>Application Privacy Policy</h1>
-  <p>Meta Publishing Core</p>
+  <p>Bluedobie Publishing</p>
 </div>
 
 <div class="privacy-content">
   <p class="privacy-effective-date"><strong>Effective Date:</strong> November 2, 2026</p>
 
-  <p><strong>Application:</strong> Meta Publishing Core</p>
+  <p><strong>Application:</strong> Bluedobie Publishing</p>
   <p><strong>Type:</strong> Internal business tool, not a public product</p>
 
-  <p>This policy covers the Meta Publishing Core application only. It is separate from and additional to the <a href="/privacy.html">privacy policy for www.bluedobiedev.com</a>, which covers visitors to the website.</p>
+  <p>This policy covers the Bluedobie Publishing application only. It is separate from and additional to the <a href="/privacy.html">privacy policy for www.bluedobiedev.com</a>, which covers visitors to the website.</p>
 
   <h2>Who operates this application</h2>
-  <p>Meta Publishing Core is built and operated by Bluedobie Developing, LLC, of Princeton, Kentucky. Contact:</p>
+  <p>Bluedobie Publishing is built and operated by Bluedobie Developing, LLC, of Princeton, Kentucky. Contact:</p>
   <ul>
     <li>Email: melanie.brown@bluedobiedev.com</li>
     <li>Phone: (270) 388-3535</li>
